@@ -225,7 +225,7 @@ The v1 artifacts remain the frozen pilot and are not pooled with the v2 run.
 | Artifact ID | Path | SHA-256 | Producer and validation |
 |---|---|---|---|
 | `ALC-CORE-v1` | `julia/src/ApproximateCompression.jl` | `a600e485b4e2cca0bdee84ceee3702071c0a77cee797c8fbb205b8df9cdab1ac` | exact signed loss evaluator, complete subset/Pareto enumeration, deterministic greedy and beam searches, and solver-neutral operational-cover/lazy-cut formulation |
-| `ALC-CODE-v1` | `julia/scripts/run_approximate_compression.jl` | `b37b2c0b93e860831139b7d1a8ffba61427cb346707203e02d2d800529df44e2` | deterministic benchmark runner, exact CSV/JSON/report/SVG renderers, hard gates, and nonmutating `--check` |
+| `ALC-CODE-v1` | `julia/scripts/run_approximate_compression.jl` | `661ab3f08f001337ee03142cb46bd9e04c6edc8c17cd30d3e4ab55861d1e6973` | deterministic benchmark runner, exact CSV/JSON/report/SVG renderers, hard gates, and nonmutating `--check` |
 | `ALC-TEST-v1` | `julia/test/test_approximate_compression.jl` | `be290fa2d332f2d4e4edde0b3a086a29372300dad546e645e990420e3477260c` | 119 definition, enumeration, Pareto, heuristic, 0--1, benchmark, serialization, figure, and artifact-drift checks |
 | `ALC-CONFIG-v1` | `experiments/configs/approximate_compression.toml` | `6daaadfc8c64fd9d4434c664a19ab1d71d64bc8355c45d4086cd041a1df07103` | exact fixture identity, horizon, reference belief, signed budgets, enumeration cap, beam widths, and output contract |
 | `ALC-REPORT-v1` | `APPROXIMATE_COMPRESSION_REPORT.md` | `354cc2cd2b3bd9f9c9d332407edd54f6c6166c5076223ea0e1aa2bb369c13f41` | answer-first technical report with definitions, methods, findings, validation, limitations, and explicit numerical-only boundary |
@@ -306,7 +306,7 @@ MILP solver was invoked; `CMP-CORE-v1` records formulation data only.
 | `RO-TEST-v1` | `julia/test/test_resource_optimization.jl` | `c3a973e532a4a5ff746880da95e6ccb09d113faac7562bd2858d559d74d7f19a` | standalone exact primitive, witness-property, survivor, and artifact-drift checks |
 | `RO-CONFIG-v1` | `experiments/configs/resource_optimization_counterexamples.toml` | `197d39550971181e11a421547bcfc4de393541b4819a101cd2c5833247bd6476` | versioned search bounds, arithmetic declaration, and output paths |
 | `RO-AUDIT-v1` | `experiments/results/resource_optimization_claim_audit.json` | `9eb6008891991c67a955fffcc1c37d8fc3e886a4cb25ad1a791621458f3f0f5f` | Julia 1.12.6 record of 13 exact counterexamples, one surviving claim, search counts, theorem revisions, and per-fixture SHA-256 manifest |
-| `BEM-SPEC-v1` | `BRIDGE_ELASTICITY_SPEC.md` | `a6e109a385c206076722150711a4f43e72a14f7d18c3991c532f2e1b93976f1f` | complete human algebra plus Lean-verified named-coordinate derivatives, elasticities, corrected normalized-margin and fixed-threshold divergence, boundary, and exact example; no reusable Julia implementation |
+| `BEM-SPEC-v1` | `BRIDGE_ELASTICITY_SPEC.md` | `5253b0313c0e07f395291f46bf0443a234717a5483d5663139a20f3a11bda7ad` | complete human algebra plus Lean-verified named-coordinate derivatives, elasticities, corrected normalized-margin and fixed-threshold divergence, boundary, and exact example; no reusable Julia implementation |
 
 `RO-AUDIT-v1` links 14 committed per-target fixtures under
 `experiments/results/resource_optimization_fixtures/` and records the hash of

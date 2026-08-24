@@ -748,7 +748,7 @@ function render_approximate_compression_report(experiment)
     println(io)
     println(
         io,
-        "Exact enumeration finds a three-strategy compression of the registered six-strategy source (50.0% reduction) with `OpLoss = 0`, `GenLoss = 0`, and `ValueLoss = 0` under \\(\\epsilon_{op}=1\\), \\(\\epsilon_{gen}=1/4\\), horizon four, and reference belief one. In the eight-strategy expanded benchmark, the exact optimum retains two strategies (75.0% reduction), with `OpLoss = 1/2`, `GenLoss = 0`, and `ValueLoss = 2025/8192` (0.2472).",
+        "Exact enumeration finds a three-strategy compression of the registered six-strategy source (50.0% reduction) with `OpLoss = 0`, `GenLoss = 0`, and `ValueLoss = 0` under \$\\epsilon_{op}=1\$, \$\\epsilon_{gen}=1/4\$, horizon four, and reference belief one. In the eight-strategy expanded benchmark, the exact optimum retains two strategies (75.0% reduction), with `OpLoss = 1/2`, `GenLoss = 0`, and `ValueLoss = 2025/8192` (0.2472).",
     )
     println(io)
     println(
@@ -787,7 +787,7 @@ function render_approximate_compression_report(experiment)
     println(io)
     println(
         io,
-        "For source \\(L\\), sublibrary \\(L'\\), frozen-library operating value \\(W_H\\), and unified raw-model value \\(V_H\\):",
+        "For source \$L\$, sublibrary \$L'\$, frozen-library operating value \$W_H\$, and unified raw-model value \$V_H\$:",
     )
     println(io)
     println(io, "- `OpLoss(L′) = max_b [F_L(b) − F_L′(b)]`;")

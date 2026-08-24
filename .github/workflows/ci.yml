@@ -151,14 +151,22 @@ jobs:
           set -o pipefail
           {
             sudo apt-get update
-            sudo apt-get install --no-install-recommends latexmk ripgrep texlive-latex-base
+            sudo apt-get install --no-install-recommends \
+              latexmk \
+              lmodern \
+              ripgrep \
+              texlive-fonts-recommended \
+              texlive-latex-base \
+              texlive-latex-extra \
+              texlive-latex-recommended \
+              texlive-pictures
           } 2>&1 | tee ci-logs/latex-install.log
 
-      - name: Compile manuscript
+      - name: Compile manuscript and online supplement
         shell: bash
         run: |
           set -o pipefail
-          ./manuscript/build.sh 2>&1 | tee ci-logs/latex-build.log
+          make manuscript 2>&1 | tee ci-logs/latex-build.log
 
       - name: Record LaTeX diagnostics
         if: failure()
@@ -179,5 +187,6 @@ jobs:
           path: |
             ci-logs/
             manuscript/build/*.log
+            manuscript/online_supplement/build/*.log
           if-no-files-found: warn
           retention-days: 7

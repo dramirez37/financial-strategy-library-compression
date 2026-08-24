@@ -1,3 +1,85 @@
+const FLOAT64_ARTIFACT_ATOL = 2e-12
+const FLOAT64_ARTIFACT_RTOL = 2e-12
+const FLOAT64_ARTIFACT_NUMBER = r"[-+]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][-+]?\d+)?"
+
+function _csv_rows(text)
+    return [split(line, ','; keepempty = true) for line in split(chomp(text), '\n')]
+end
+
+"""Compare a rendered Float64 CSV while retaining exact nonnumeric fields."""
+function _float64_csv_equivalent(
+    committed,
+    generated,
+    approximate_columns;
+    atol = FLOAT64_ARTIFACT_ATOL,
+    rtol = FLOAT64_ARTIFACT_RTOL,
+)
+    committed_rows = _csv_rows(committed)
+    generated_rows = _csv_rows(generated)
+    length(committed_rows) == length(generated_rows) || return false
+    isempty(committed_rows) && return true
+    committed_rows[1] == generated_rows[1] || return false
+
+    header = committed_rows[1]
+    approximate_names = Set(string.(approximate_columns))
+    all(name -> name in header, approximate_names) || return false
+    approximate_indices = Set(findall(name -> name in approximate_names, header))
+
+    for (committed_row, generated_row) in
+        zip(committed_rows[2:end], generated_rows[2:end])
+        length(committed_row) == length(header) || return false
+        length(generated_row) == length(header) || return false
+        for column_index in eachindex(header)
+            committed_cell = committed_row[column_index]
+            generated_cell = generated_row[column_index]
+            committed_cell == generated_cell && continue
+            column_index in approximate_indices || return false
+            committed_value = tryparse(Float64, committed_cell)
+            generated_value = tryparse(Float64, generated_cell)
+            isnothing(committed_value) && return false
+            isnothing(generated_value) && return false
+            isapprox(
+                committed_value,
+                generated_value;
+                atol,
+                rtol,
+                nans = false,
+            ) || return false
+        end
+    end
+    return true
+end
+
+"""Compare SVG structure exactly and platform-sensitive numeric tokens closely."""
+function _float64_svg_equivalent(
+    committed,
+    generated;
+    atol = FLOAT64_ARTIFACT_ATOL,
+    rtol = FLOAT64_ARTIFACT_RTOL,
+)
+    replace(committed, FLOAT64_ARTIFACT_NUMBER => "#") ==
+        replace(generated, FLOAT64_ARTIFACT_NUMBER => "#") || return false
+    committed_numbers = [
+        parse(Float64, match.match) for
+        match in eachmatch(FLOAT64_ARTIFACT_NUMBER, committed)
+    ]
+    generated_numbers = [
+        parse(Float64, match.match) for
+        match in eachmatch(FLOAT64_ARTIFACT_NUMBER, generated)
+    ]
+    length(committed_numbers) == length(generated_numbers) || return false
+    return all(
+        isapprox(
+            committed_number,
+            generated_number;
+            atol,
+            rtol,
+            nans = false,
+        ) for (committed_number, generated_number) in
+            zip(committed_numbers, generated_numbers)
+    )
+end
+
 @testset "unified comparative-statics parameter contract" begin
     exact = UnifiedComparativeParameters()
     @test exact.frontier_level isa ExactRational
@@ -219,6 +301,22 @@ end
 end
 
 @testset "unified comparative-statics artifacts" begin
+    @test _float64_csv_equivalent(
+        "label,value\nrow,1\n",
+        "label,value\nrow,1.000000000001\n",
+        (:value,),
+    )
+    @test !_float64_csv_equivalent(
+        "label,value\nrow,1\n",
+        "changed,value\nrow,1.000000000001\n",
+        (:value,),
+    )
+    @test !_float64_csv_equivalent(
+        "label,value\nrow,1\n",
+        "label,value\nrow,1.0001\n",
+        (:value,),
+    )
+
     result = run_unified_comparative_statics_experiment()
     @test result.experiment_id == "unified-comparative-statics-v1"
     @test length(result.response_rows) == 78
@@ -291,11 +389,41 @@ end
             "unified_comparative_statics_policy.svg",
         ),
     )
-    @test read(committed.response, String) == response
-    @test read(committed.interaction, String) == interaction
+    @test _float64_csv_equivalent(
+        read(committed.response, String),
+        response,
+        (
+            :total_value,
+            :passive_value,
+            :research_option_premium,
+            :operational_innovation,
+            :generative_innovation,
+            :research_frequency,
+            :research_cutoff,
+            :pruning_loss,
+            :compression_ratio,
+            :descendant_quality,
+            :frontier_closure_cross_difference,
+            :bellman_residual,
+            :value_error_bound,
+        ),
+    )
+    @test _float64_csv_equivalent(
+        read(committed.interaction, String),
+        interaction,
+        (
+            :total_value,
+            :research_option_premium,
+            :research_frequency,
+            :interaction,
+        ),
+    )
     @test read(committed.signs, String) == signs
     @test read(committed.fixtures, String) == fixtures
     @test read(committed.summary, String) == summary
-    @test read(committed.value_figure, String) == value_figure
+    @test _float64_svg_equivalent(
+        read(committed.value_figure, String),
+        value_figure,
+    )
     @test read(committed.policy_figure, String) == policy_figure
 end

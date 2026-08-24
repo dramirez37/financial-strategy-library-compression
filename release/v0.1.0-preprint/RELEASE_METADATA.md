@@ -5,9 +5,9 @@
 - Repository: https://github.com/dramirez37/financial-strategy-library-compression
 - Release commit: `$Format:%H$`
 - Main PDF: `financial-strategy-library-compression-preprint.pdf`
-- Main PDF SHA-256: f445d36a7da6fd0504d8cbe6786cd4295576489a7b4b4a36d0cb3ef8a75bccc4
+- Main PDF SHA-256: 032c3b4315f9ef7d30a5ec82a306677394efd9d63451b69c11b690d1493e99d6
 - Supplement PDF: `financial-strategy-library-compression-online-supplement.pdf`
-- Supplement PDF SHA-256: 8c00eae258ff7a1d30b86ef5ffce26adc1b18f8f3598d9a778ee247cf7a569f7
+- Supplement PDF SHA-256: cb973200d19e6864844a7eb118123bb1faf370a28d7281901855627745359f79
 - Status: release candidate; no tag or publication action has been performed
 
 The Git format placeholder in a working checkout is expanded to the exact

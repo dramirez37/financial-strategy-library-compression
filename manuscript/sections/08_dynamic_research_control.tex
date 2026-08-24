@@ -161,27 +161,44 @@ action-value record.}
 
 Write \(I,A,B,D\) for \(s_0,c_A,c_B,g\).  The three prospectively fixed
 integer schedules keep the silent carriers symmetric.  In the coordinate
-order \((I,A,B,D)\), their exact weight vectors are equal-active
-\((1,1,1,1)\), carrier-heavy \((1,2,2,1)\), and descendant-heavy
-\((1,1,1,2)\).
-The positive mandatory weight is common to every feasible library.  It shifts
-reported capacities and penalized levels but not within-schedule switching
-prices.
+order \((I,A,B,D)\), their primary-model weight vectors are equal-active
+\((0,1,1,1)\), carrier-heavy \((0,2,2,1)\), and descendant-heavy
+\((0,1,1,2)\), consistently with \(w_I=w_{s_0}=0\).  The benchmark artifacts
+display a common mandatory resource unit in addition to that formal burden:
+\begin{equation}\label{eq:canonical-display-burden}
+ \widetilde W(L):=1+W(L).
+\end{equation}
+Thus the displayed schedule vectors are \((1,1,1,1)\), \((1,2,2,1)\), and
+\((1,1,1,2)\).  If \(\widetilde V^\star\) and \(\widetilde J^\star\) denote
+the benchmark objectives written in this display convention, then
+\begin{align}
+ \widetilde V^\star(b;\widetilde B)
+ &=V^\star(b;\widetilde B-1), && \widetilde B\ge1,\label{eq:canonical-display-capacity}\\
+ \widetilde J^\star(b;\lambda)
+ &=J^\star(b;\lambda)-\lambda.\label{eq:canonical-display-penalty}
+\end{align}
+The translation shifts capacity axes by one unit and penalized-value levels by
+\(-\lambda\).  It leaves optimal libraries, switching prices, breakpoint
+order, and absolute burden reductions unchanged.  The capacity and penalty
+theorems, and their Lean counterparts, apply to \(W\), not to
+\(\widetilde W\).
 
 Complete enumeration shows that the full source compresses uniquely to
 \(I+D\) under every
 schedule, keeps frontier \((2,4)\) and closure \(\{m\}\), and saves one-half,
-two-thirds, or two-fifths of source burden.  These are exact finite
-enumeration certificates, not consequences of a greedy rule.  The complete
+two-thirds, or two-fifths of displayed source burden \(\widetilde W\).  These
+are exact finite enumeration certificates, not consequences of a greedy
+rule.  The complete
 source-by-source correspondence and exact burden reductions are in Online
 Supplement~S4.
 
 \subsection{Capacity-optimal library path}
 
-The hard-capacity optimizer is evaluated at every attainable burden.  Equal
-active and carrier heavy jump directly from \(I\) to \(I+D\).  Descendant
-heavy passes through the tied carrier pair \(I+A\) or \(I+B\); the resulting
-capacity complements make the second value increment exceed the first.
+The hard-capacity optimizer is evaluated at every attainable displayed burden
+\(\widetilde B\).  Equal active and carrier heavy jump directly from \(I\) to
+\(I+D\).  Descendant heavy passes through the tied carrier pair \(I+A\) or
+\(I+B\); the resulting capacity complements make the second value increment
+exceed the first.
 The exact paths, globally active positive switch prices, and inactive pairwise
 crossing candidates are tabulated in Online Supplement~S4; the main text uses
 the combined economic-geometry figure to avoid repeating the same staircase
@@ -189,13 +206,14 @@ and breakpoints.
 
 \subsection{Penalized envelope, breakpoints, and selected burden}
 
-For each schedule and belief, the penalized problem exhausts the eight affine
-branches \(V(b,L)-\lambda W(L)\).  Only \(I+D\) and \(I\) are globally active
-for \(\lambda>0\).  Equal active and carrier heavy switch at \(1229/288\)
-from low belief and \(2089/288\) from high belief.  Descendant heavy doubles
-the relevant burden difference, so its breakpoints are \(1229/576\) and
-\(2089/576\).  At a breakpoint both libraries are optimal; away from it the
-optimizer is unique after removal of redundant equal-state libraries.
+For each schedule and belief, the displayed penalized problem exhausts the
+eight affine branches \(V(b,L)-\lambda\widetilde W(L)\).  Only \(I+D\) and
+\(I\) are globally active for \(\lambda>0\).  Equal active and carrier heavy
+switch at \(1229/288\) from low belief and \(2089/288\) from high belief.
+Descendant heavy doubles the relevant burden difference, so its breakpoints
+are \(1229/576\) and \(2089/576\).  At a breakpoint both libraries are
+optimal; away from it the optimizer is unique after removal of redundant
+equal-state libraries.
 
 \subsection{Innovation duration and elasticity values}
 
@@ -235,14 +253,17 @@ Online Supplement~S5.
   \centering
   \input{figures/unified_economic_geometry}
   \caption{Economic geometry of the canonical outer optimization.  Panel
-  (a) plots the estimand \(V^\star(b;B)\) at and between attainable exact
-  rational burdens as right-continuous stairs.  Panel (b) plots the exact
-  active affine branches of \(J^\star(b;\lambda)\) over the displayed range.
-  Panel (c) plots selected burden under the declared right-continuous
-  minimum-burden tie rule; open endpoints are excluded and filled endpoints
-  are selected.  Equal-active and carrier-heavy schedules coincide.  Source
-  values are exact \texttt{Rational\{BigInt\}}; only TeX mark placement uses
-  rendered floating-point coordinates.}
+  (a) plots \(\widetilde V^\star(b;\widetilde B)\) at and between attainable
+  exact displayed burdens as right-continuous stairs.  Panel (b) plots the
+  exact active affine branches of \(\widetilde J^\star(b;\lambda)\) over the
+  displayed range.  Panel (c) plots displayed burden \(\widetilde W\) under
+  the declared right-continuous minimum-burden tie rule; open endpoints are
+  excluded and filled endpoints are selected.  Here
+  \(\widetilde W=1+W\) includes the common mandatory display unit; the formal
+  model and Lean theorem use \(w_{s_0}=0\).  Equal-active and carrier-heavy
+  schedules coincide.  Source values are exact
+  \texttt{Rational\{BigInt\}}; only TeX mark placement uses rendered
+  floating-point coordinates.}
   \label{fig:canonical-economic-geometry}
 \end{figure}
 

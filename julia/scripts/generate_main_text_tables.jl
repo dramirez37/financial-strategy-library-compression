@@ -234,7 +234,7 @@ function _randomized_summary_source()
     println(io, "\\toprule")
     println(io, "Registered estimand (unit) & Exact result or explicitly rendered mean \\\\")
     println(io, "\\midrule")
-    println(io, "Safe resources retained (share of source) & Mean burden \\($(_tex_exact(safe_weight))\\); mean cardinality \\($(_tex_exact(safe_cardinality))\\) \\\\")
+    println(io, "Exact safe-compression reduction (share of source) & Mean burden removed \\($(_tex_exact(safe_weight))\\); mean cardinality removed \\($(_tex_exact(safe_cardinality))\\) \\\\")
     println(io, "Registered deletion-order gap (burden units) & Mean and maximum \\(0\\); positive in \\(0/1024\\) trials \\\\")
     println(io, "Frontier-only loss (normalized value units) & Positive in \\($positive_losses/1024\\); mean \\(\\approx$(_decimal(mean_loss))\\), conditional-positive mean \\(\\approx$(_decimal(conditional_loss))\\), median \\(0\\), maximum \\($(_tex_exact(maximum_loss))\\) \\\\")
     println(io, "Capacity value at 75\\% source burden (normalized value units) & Across-trial mean \\(\\approx$(_decimal(mean_b75; digits = 4))\\) \\\\")
@@ -334,7 +334,7 @@ function _canonical_safe_appendix_source()
     println(io, "% Exact source: experiments/results/summaries/unified_canonical_resource_safe_compression.csv.")
     println(io, "\\begin{tabular}{@{}>{\\raggedright\\arraybackslash}p{0.27\\linewidth}>{\\raggedright\\arraybackslash}p{0.30\\linewidth}>{\\raggedright\\arraybackslash}p{0.33\\linewidth}@{}}")
     println(io, "\\toprule")
-    println(io, "Raw source & Minimum-resource safe library or libraries & Burden reduction by schedule (equal, carrier-heavy, descendant-heavy) \\\\")
+    println(io, "Raw source & Minimum-resource safe library or libraries & Burden reduction \\(\\Delta\\widetilde W=\\Delta W\\) by schedule (equal, carrier-heavy, descendant-heavy) \\\\")
     println(io, "\\midrule")
     for (sources, expected_optimum) in groups
         source_rows = [_only_row(rows; schedule = first(schedules), source_library = source) for source in sources]
@@ -377,15 +377,15 @@ function _canonical_resource_appendix_source()
     println(io, "% Exact sources: unified_canonical_resource_{capacity,switching_prices}.csv.")
     println(io, "\\begin{tabular}{@{}p{0.19\\linewidth}p{0.43\\linewidth}p{0.28\\linewidth}@{}}")
     println(io, "\\toprule")
-    println(io, "Weight schedule & Low-belief capacity path & Positive globally active switch prices \\((\\ell,h)\\) \\\\")
+    println(io, "Display-burden schedule & Low-belief display-capacity path & Positive globally active switch prices \\((\\ell,h)\\) \\\\")
     println(io, "\\midrule")
     for (schedule, label) in schedules
         selected = filter(row -> row["schedule"] == schedule && row["belief"] == "low", capacity)
         sort!(selected; by = row -> _exact(row["capacity"]))
         path = if schedule == "descendant_heavy"
-            "\\(B=1:I;\\ B=2:I{+}A\\text{ or }I{+}B;\\ B\\ge3:I{+}D\\)"
+            "\\(\\widetilde B=1:I;\\ \\widetilde B=2:I{+}A\\text{ or }I{+}B;\\ \\widetilde B\\ge3:I{+}D\\)"
         else
-            "\\(B=1:I;\\ B\\ge2:I{+}D\\)"
+            "\\(\\widetilde B=1:I;\\ \\widetilde B\\ge2:I{+}D\\)"
         end
         for row in selected
             expected = if _exact(row["capacity"]) == 1

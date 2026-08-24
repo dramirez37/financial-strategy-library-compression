@@ -746,9 +746,21 @@ end
 
 function _render_capacity_figure(rows, config)
     source = ResourceBenchmark._render_value_capacity_figure(rows)
+    source = replace(
+        source,
+        "Productive value by exact capacity" => "Productive value by exact display capacity",
+        "Two belief panels show the exact right-continuous capacity-value step function for each preregistered weight schedule." =>
+            "Two belief panels show the exact right-continuous value function against display capacity, which includes the common mandatory unit.",
+        "Value–capacity curve" => "Value–display-capacity curve",
+        "Exact right-continuous steps; markers identify attainable Rational{BigInt} capacities." =>
+            "Exact right-continuous steps; display capacity includes the common mandatory unit.",
+        ", B=" => ", display B=",
+        "Total resource capacity B (including inactive policy)" =>
+            "Display resource capacity (common mandatory unit included)",
+    )
     marker = "<metadata data-experiment=\"$EXPERIMENT_ID\" data-sources=\"$(_xml(config["outputs"]["capacity"]))\">Exact Rational{BigInt} source rows; Float64 coordinates are secondary.</metadata>"
     source = replace(source, "<title id=\"title\">" => marker * "<title id=\"title\">"; count = 1)
-    return replace(source, "</svg>" => "<text x=\"18\" y=\"240\" text-anchor=\"middle\" class=\"axis\" transform=\"rotate(-90 18 240)\">Optimal productive value V*(B)</text>\n</svg>"; count = 1)
+    return replace(source, "</svg>" => "<text x=\"18\" y=\"240\" text-anchor=\"middle\" class=\"axis\" transform=\"rotate(-90 18 240)\">Display-capacity value V_display*(B_display)</text>\n</svg>"; count = 1)
 end
 
 function _price_xmax(rows)
@@ -770,11 +782,11 @@ function _render_penalized_envelope_figure(rows, config)
     y_min, y_max = minimum(endpoint_values), maximum(endpoint_values)
     y_min == y_max && (y_max += 1)
     io = IOBuffer()
-    _svg_header(io, 980, 470, "Penalized exact library envelope",
-        "Exact active affine branches of max_L V(L)-lambda W(L), shown in two belief panels.",
+    _svg_header(io, 980, 470, "Display penalized exact library envelope",
+        "Exact active affine branches of max_L V(L)-lambda W_display(L), shown in two belief panels.",
         [config["outputs"]["penalized_path"]])
-    println(io, "<text x=\"55\" y=\"35\" class=\"title\">Penalized piecewise-linear envelope</text>")
-    println(io, "<text x=\"55\" y=\"55\" class=\"subtitle\">Exact branch intercepts and burdens; Float64 positions only.</text>")
+    println(io, "<text x=\"55\" y=\"35\" class=\"title\">Display penalized piecewise-linear envelope</text>")
+    println(io, "<text x=\"55\" y=\"55\" class=\"subtitle\">Exact branch intercepts and display burdens; Float64 positions only.</text>")
     for (panel, belief) in enumerate(BELIEF_ORDER)
         x, y, width, height = 65 + (panel - 1) * 465, 100, 400, 285
         _draw_axes(io, x, y, width, height, 0, x_max, y_min, y_max, "Initial belief: $belief")
@@ -786,12 +798,12 @@ function _render_penalized_envelope_figure(rows, config)
                 right = isnothing(row.upper_price) ? x_max : min(row.upper_price, x_max)
                 left_value = row.productive_value - left * row.selected_burden
                 right_value = row.productive_value - right * row.selected_burden
-                println(io, "<line x1=\"$(_sx(left, 0, x_max, x, width))\" y1=\"$(_sy(left_value, y_min, y_max, y, height))\" x2=\"$(_sx(right, 0, x_max, x, width))\" y2=\"$(_sy(right_value, y_min, y_max, y, height))\" stroke=\"$(SCHEDULE_COLOR[schedule])\" stroke-width=\"2.5\" stroke-dasharray=\"$(SCHEDULE_DASH[schedule])\"><title>$(_xml("$(schedule), $(belief), $(row.selected_library): V=$(_ratio(row.productive_value)), W=$(_ratio(row.selected_burden))"))</title></line>")
+                println(io, "<line x1=\"$(_sx(left, 0, x_max, x, width))\" y1=\"$(_sy(left_value, y_min, y_max, y, height))\" x2=\"$(_sx(right, 0, x_max, x, width))\" y2=\"$(_sy(right_value, y_min, y_max, y, height))\" stroke=\"$(SCHEDULE_COLOR[schedule])\" stroke-width=\"2.5\" stroke-dasharray=\"$(SCHEDULE_DASH[schedule])\"><title>$(_xml("$(schedule), $(belief), $(row.selected_library): V=$(_ratio(row.productive_value)), W_display=$(_ratio(row.selected_burden))"))</title></line>")
             end
         end
     end
     println(io, "<text x=\"490\" y=\"442\" text-anchor=\"middle\" class=\"axis\">Resource price lambda</text>")
-    println(io, "<text x=\"18\" y=\"245\" text-anchor=\"middle\" class=\"axis\" transform=\"rotate(-90 18 245)\">Penalized value J(lambda)</text>")
+    println(io, "<text x=\"18\" y=\"245\" text-anchor=\"middle\" class=\"axis\" transform=\"rotate(-90 18 245)\">Display penalized value J_display(lambda)</text>")
     for (index, schedule) in enumerate(SCHEDULE_ORDER)
         x = 545 + (index - 1) * 138
         println(io, "<line x1=\"$x\" y1=\"55\" x2=\"$(x + 23)\" y2=\"55\" stroke=\"$(SCHEDULE_COLOR[schedule])\" stroke-width=\"3\" stroke-dasharray=\"$(SCHEDULE_DASH[schedule])\"/>")
@@ -807,10 +819,10 @@ function _render_selected_burden_figure(rows, config)
     y_max = maximum(row.selected_burden for row in segments)
     y_min == y_max && (y_max += 1)
     io = IOBuffer()
-    _svg_header(io, 980, 470, "Selected burden along the exact penalty path",
-        "Right-continuous minimum-burden selections from exact penalized optimizer correspondences.",
+    _svg_header(io, 980, 470, "Selected display burden along the exact penalty path",
+        "Right-continuous minimum-display-burden selections from exact penalized optimizer correspondences.",
         [config["outputs"]["penalized_path"]])
-    println(io, "<text x=\"55\" y=\"35\" class=\"title\">Selected burden versus resource price</text>")
+    println(io, "<text x=\"55\" y=\"35\" class=\"title\">Selected display burden versus resource price</text>")
     println(io, "<text x=\"55\" y=\"55\" class=\"subtitle\">Every path is weakly decreasing; breakpoint ties remain in the source table.</text>")
     for (panel, belief) in enumerate(BELIEF_ORDER)
         x, y, width, height = 65 + (panel - 1) * 465, 100, 400, 285
@@ -822,12 +834,12 @@ function _render_selected_burden_figure(rows, config)
                 left > x_max && continue
                 right = isnothing(row.upper_price) ? x_max : min(row.upper_price, x_max)
                 yy = _sy(row.selected_burden, y_min, y_max, y, height)
-                println(io, "<line x1=\"$(_sx(left, 0, x_max, x, width))\" y1=\"$yy\" x2=\"$(_sx(right, 0, x_max, x, width))\" y2=\"$yy\" stroke=\"$(SCHEDULE_COLOR[schedule])\" stroke-width=\"3\" stroke-dasharray=\"$(SCHEDULE_DASH[schedule])\"><title>$(_xml("$(schedule), $(belief): W=$(_ratio(row.selected_burden)), $(row.selected_library)"))</title></line>")
+                println(io, "<line x1=\"$(_sx(left, 0, x_max, x, width))\" y1=\"$yy\" x2=\"$(_sx(right, 0, x_max, x, width))\" y2=\"$yy\" stroke=\"$(SCHEDULE_COLOR[schedule])\" stroke-width=\"3\" stroke-dasharray=\"$(SCHEDULE_DASH[schedule])\"><title>$(_xml("$(schedule), $(belief): W_display=$(_ratio(row.selected_burden)), $(row.selected_library)"))</title></line>")
             end
         end
     end
     println(io, "<text x=\"490\" y=\"442\" text-anchor=\"middle\" class=\"axis\">Resource price lambda</text>")
-    println(io, "<text x=\"18\" y=\"245\" text-anchor=\"middle\" class=\"axis\" transform=\"rotate(-90 18 245)\">Selected total burden W</text>")
+    println(io, "<text x=\"18\" y=\"245\" text-anchor=\"middle\" class=\"axis\" transform=\"rotate(-90 18 245)\">Selected display burden W_display</text>")
     for (index, schedule) in enumerate(SCHEDULE_ORDER)
         legend_x = 550 + (index - 1) * 135
         println(io, "<line x1=\"$legend_x\" y1=\"55\" x2=\"$(legend_x + 22)\" y2=\"55\" stroke=\"$(SCHEDULE_COLOR[schedule])\" stroke-width=\"3\" stroke-dasharray=\"$(SCHEDULE_DASH[schedule])\"/>")

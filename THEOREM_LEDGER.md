@@ -43,6 +43,16 @@ $W(L)=\sum_{s\in L}w_s$. Productive dynamic value $V$ and every raw
 transition remain unchanged; the new net objective is
 $J_\lambda=V-\lambda W$.
 
+The canonical resource artifacts use a separate reporting translation
+$\widetilde W(L)=1+W(L)$. Their configuration field named `inactive` is the
+common display addend; it is not a positive formal weight for $s_0$. Thus
+$\widetilde V^\star(b;\widetilde B)=V^\star(b;\widetilde B-1)$ for
+$\widetilde B\ge1$ and
+$\widetilde J^\star(b;\lambda)=J^\star(b;\lambda)-\lambda$. Optimizers,
+switching prices, breakpoint order, and absolute burden reductions are
+unchanged. Every Lean resource statement and every claim-status entry below
+continues to use $W$ and the zero-burden inactive-only library.
+
 The additive burden, exact safe-feasibility, minimum-attainment, productive
 value-preservation wrapper, and rational capacity predicates now have a
 building, axiom-audited Lean foundation under OPT-FND below. The exact finite

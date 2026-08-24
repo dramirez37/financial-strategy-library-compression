@@ -233,6 +233,16 @@ comparison.
 The following tables retain every source and every optimizer tie.  Masks use
 the coordinate order \((I,A,B,D)\); semicolon-separated entries are tied
 solutions, not a sequence of selections.
+The primary burden keeps \(w_I=w_{s_0}=0\).  The committed canonical resource
+artifacts use the separately displayed total
+\(\widetilde W(L)=1+W(L)\), so their machine fields
+\texttt{source\_burden}, \texttt{capacity}, \texttt{optimal\_burdens}, and
+\texttt{selected\_burden} are display burdens.  Consequently the capacity
+objective is \(\widetilde V^\star(b;\widetilde B)\) and the penalized net-value
+field is \(\widetilde J^\star(b;\lambda)=J^\star(b;\lambda)-\lambda\).
+Absolute burden reductions and all switching prices are invariant to this
+common-unit translation.  The capacity theorem and Lean formalization use
+\(W\), not \(\widetilde W\).
 
 \tiny
 \csvreader[
@@ -240,12 +250,12 @@ solutions, not a sequence of selections.
   table head={\caption{Complete safe-compression optimizer correspondence.}
     \label{tab:supp-safe-compression}\\
     \toprule
-    Schedule & Source mask & Source library & Burden & Feasible masks & Objective &
-    Optimal masks & Optimal libraries & Reduction & Frontier & Closure & Ties complete\\
+    Schedule & Source mask & Source library & \shortstack{Display source\\burden \(\widetilde W\)} & Feasible masks & \shortstack{Minimum display\\burden \(\widetilde W\)} &
+    Optimal masks & Optimal libraries & \shortstack{Burden reduction\\\(\Delta\widetilde W=\Delta W\)} & Frontier & Closure & Ties complete\\
     \midrule\endfirsthead
     \toprule
-    Schedule & Source mask & Source library & Burden & Feasible masks & Objective &
-    Optimal masks & Optimal libraries & Reduction & Frontier & Closure & Ties complete\\
+    Schedule & Source mask & Source library & \shortstack{Display source\\burden \(\widetilde W\)} & Feasible masks & \shortstack{Minimum display\\burden \(\widetilde W\)} &
+    Optimal masks & Optimal libraries & \shortstack{Burden reduction\\\(\Delta\widetilde W=\Delta W\)} & Frontier & Closure & Ties complete\\
     \midrule\endhead
     \bottomrule\endfoot}
 ]{../../experiments/results/summaries/unified_canonical_resource_safe_compression.csv}{
@@ -275,12 +285,12 @@ solutions, not a sequence of selections.
   table head={\caption{Complete capacity paths and value certificates.}
     \label{tab:supp-capacity-paths}\\
     \toprule
-    Schedule & Belief & Capacity & Objective & Optimal masks & Optimal libraries &
-    Optimal burdens & Selected library & Op. value & Gen. value & Total value & Ties complete\\
+    Schedule & Belief & \shortstack{Display capacity\\\(\widetilde B\)} & \(\widetilde V^\star\) & Optimal masks & Optimal libraries &
+    \shortstack{Optimal display\\burdens \(\widetilde W\)} & Selected library & Op. value & Gen. value & Total value & Ties complete\\
     \midrule\endfirsthead
     \toprule
-    Schedule & Belief & Capacity & Objective & Optimal masks & Optimal libraries &
-    Optimal burdens & Selected library & Op. value & Gen. value & Total value & Ties complete\\
+    Schedule & Belief & \shortstack{Display capacity\\\(\widetilde B\)} & \(\widetilde V^\star\) & Optimal masks & Optimal libraries &
+    \shortstack{Optimal display\\burdens \(\widetilde W\)} & Selected library & Op. value & Gen. value & Total value & Ties complete\\
     \midrule\endhead
     \bottomrule\endfoot}
 ]{../../experiments/results/summaries/unified_canonical_resource_capacity.csv}{
@@ -320,11 +330,11 @@ that never reach the upper envelope, and the globally active breakpoints.
     \label{tab:supp-penalized-intervals}\\
     \toprule
     Schedule & Belief & Cell & Lower & Upper & Low incl. & Up incl. & Probe &
-    Optimal masks & Optimal libraries & Optimal burdens & Selected & Net value & Ties complete\\
+    Optimal masks & Optimal libraries & \shortstack{Optimal display\\burdens \(\widetilde W\)} & Selected & \(\widetilde J^\star\) & Ties complete\\
     \midrule\endfirsthead
     \toprule
     Schedule & Belief & Cell & Lower & Upper & Low incl. & Up incl. & Probe &
-    Optimal masks & Optimal libraries & Optimal burdens & Selected & Net value & Ties complete\\
+    Optimal masks & Optimal libraries & \shortstack{Optimal display\\burdens \(\widetilde W\)} & Selected & \(\widetilde J^\star\) & Ties complete\\
     \midrule\endhead
     \bottomrule\endfoot}
 ]{../../experiments/results/summaries/unified_canonical_resource_penalized_intervals.csv}{
@@ -359,12 +369,12 @@ that never reach the upper envelope, and the globally active breakpoints.
   table head={\caption{All pairwise resource-price relationships and crossing candidates.}
     \label{tab:supp-pairwise-crossings}\\
     \toprule
-    Schedule & Belief & Left library & Left value & Left burden & Right library &
-    Right value & Right burden & Relation & Price & Nonnegative & Globally active\\
+    Schedule & Belief & Left library & Left value & \shortstack{Left display\\burden \(\widetilde W\)} & Right library &
+    Right value & \shortstack{Right display\\burden \(\widetilde W\)} & Relation & Price & Nonnegative & Globally active\\
     \midrule\endfirsthead
     \toprule
-    Schedule & Belief & Left library & Left value & Left burden & Right library &
-    Right value & Right burden & Relation & Price & Nonnegative & Globally active\\
+    Schedule & Belief & Left library & Left value & \shortstack{Left display\\burden \(\widetilde W\)} & Right library &
+    Right value & \shortstack{Right display\\burden \(\widetilde W\)} & Relation & Price & Nonnegative & Globally active\\
     \midrule\endhead
     \bottomrule\endfoot}
 ]{../../experiments/results/summaries/unified_canonical_resource_switching_prices.csv}{

@@ -711,12 +711,16 @@ Every experiment must have:
 - **Configuration:** `experiments/configs/unified_canonical_resources.toml`
 - **Source benchmark:** `unified-canonical-benchmark-v1`, selected C0424
 - **Entry point:** `julia/scripts/run_unified_resource_benchmark.jl`
-- **Weights:** preregistered in D-0131 before resource outputs: equal-active
-  `(1,1,1,1)`, carrier-heavy `(1,2,2,1)`, and descendant-heavy
-  `(1,1,1,2)`, ordered as inactive, carrier A, carrier B, descendant
-- **Arithmetic:** `Rational{BigInt}` for values, burdens, optima, switching
-  prices, derivatives, durations, elasticities, and certificates; `Float64`
-  only after exact evaluation for SVG coordinates
+- **Weights:** preregistered in D-0131 before resource outputs. The primary
+  model uses `W` schedules `(0,1,1,1)`, `(0,2,2,1)`, and `(0,1,1,2)`, ordered
+  as inactive, carrier A, carrier B, descendant. The resource artifacts add a
+  common mandatory display unit, `W_display(L) = 1 + W(L)`, and therefore
+  store/display `(1,1,1,1)`, `(1,2,2,1)`, and `(1,1,1,2)`. The configuration
+  key named `inactive` is this display addend, not a positive primary-model
+  weight for the inactive strategy.
+- **Arithmetic:** `Rational{BigInt}` for values, display burdens, optima,
+  switching prices, derivatives, durations, elasticities, and certificates;
+  `Float64` only after exact evaluation for SVG coordinates
 - **Randomness:** none
 - **Command:** `./.local_runtime/julia-1.12.6/bin/julia --project=julia
   julia/scripts/run_unified_resource_benchmark.jl`; append `--check` for the
@@ -725,9 +729,10 @@ Every experiment must have:
   `experiments/results/summaries/unified_canonical_resource_*`, exact channel
   TeX under `manuscript/tables/`, and four SVGs under `manuscript/figures/`
 - **Enumeration domain:** all eight inactive-containing raw libraries, all
-  exact safe sublibraries of every source, every attainable total burden, all
-  pairwise library intersections, and every globally active nonnegative price
-  cell, for both initial beliefs and all three weight schedules
+  exact safe sublibraries of every source, every attainable displayed total
+  burden, all pairwise library intersections, and every globally active
+  nonnegative price cell, for both initial beliefs and all three weight
+  schedules
 - **Expected invariants:** every optimum is feasible and every tie is retained;
   every proper exact-safe deletion strictly lowers positive active burden;
   productive value is constant on every exact safe class; capacity value is

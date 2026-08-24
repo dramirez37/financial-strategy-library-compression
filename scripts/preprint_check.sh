@@ -36,7 +36,6 @@ for path in \
     DATA_ACCESS.md \
     ARTIFACT_MANIFEST.md \
     EMPIRICAL_INFORMATION_SET_AUDIT.md \
-    PUBLIC_RELEASE_MANIFEST.md \
     THEOREM_LEDGER.md \
     CITATION.cff \
     LICENSE \

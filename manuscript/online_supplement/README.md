@@ -43,15 +43,13 @@ S1--S7 supplement.
 - `../../formal/StrategyInnovation/Audit/AxiomAudit.lean` is the executable
   comprehensive axiom audit, containing the complete declaration audit rather
   than a selected table.
-- `../../PREPRINT_LEAN_AUDIT.md` records the clean-build, source-integrity,
-  correspondence, and axiom results.
+- `../../THEOREM_LEDGER.md` records the claim-level correspondence and axiom
+  status.
 
 ## Theorem and implementation correspondence
 
-- `../../THEOREM_LEDGER.md` is the authoritative result-by-result theorem
-  ledger.
-- `../../FORMALIZATION_MAP.md` maps mathematical dependencies to Lean and
-  Julia components and is the full implementation correspondence map.
+- `../../formal/README.md` and `../../julia/README.md` map the proof and
+  computational components.
 - `../../ARTIFACT_MANIFEST.md` and `../../REPRODUCIBILITY.md` map generated
   outputs to their producers and drift checks.
 - `../../shared/exact_fixtures/` and

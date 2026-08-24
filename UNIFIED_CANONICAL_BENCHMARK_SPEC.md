@@ -3,9 +3,9 @@
 ## Status and implementation gate
 
 This document fixes the proposed replacement for the legacy six-state
-compatibility benchmark. It is a specification of one exact finite instance
-of the unified positive-duration raw path law in
-`RAW_TO_COMPRESSED_SPEC.md` and `UNIFIED_TIMING_SPEC.md`.
+compatibility benchmark. It is a specification of the exact finite instance
+of the unified positive-duration raw path law used by the manuscript and
+`experiments/configs/unified_canonical_benchmark.toml`.
 
 The benchmark passed the internal consistency audit in Section 13 before this
 file was added. This run does **not** implement the instance in Julia or Lean,

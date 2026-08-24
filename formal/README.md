@@ -74,7 +74,7 @@ lake env lean StrategyInnovation/Audit/Elasticity.lean
 
 The first command is the release linter; the second executes the comprehensive
 752-command axiom audit, including every declaration and definition named in
-the active manuscript correspondence. See `../PREPRINT_LEAN_AUDIT.md` for the
+the active manuscript correspondence. See `../THEOREM_LEDGER.md` for the
 current reconciliation.
 
 These commands cover F0, R0, T1--T7, UDI, supporting F1--F8, S4--S7, C2,

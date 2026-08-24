@@ -36,8 +36,8 @@ Multiple statuses may eventually apply, but no status implies another.
 
 ## Resource-layer claim boundary
 
-`RESOURCE_MODEL_SPEC.md` and D-0111 adopt fixed additive rational retention
-burden as a conservative outer layer. Every active strategy has
+The resource layer adopts fixed additive rational retention burden as a
+conservative outer layer. Every active strategy has
 \(w_s>0\), the inactive strategy has \(w_{s_0}=0\), and
 \(W(L)=\sum_{s\in L}w_s\). Productive dynamic value \(V\) and every raw
 transition remain unchanged; the new net objective is
@@ -58,8 +58,8 @@ results concern productive dynamics. They do not imply equality of
 \(K_L=(F_L,C_L)\), and the current rechecked-pruning theorem does not imply a
 global minimum-resource endpoint.
 
-`OPTIMIZATION_PROBLEM_SPEC.md` and D-0112 now freeze four definition-level
-problems without changing that status boundary:
+The manuscript and Lean definitions fix four optimization problems without
+changing that status boundary:
 
 - source-relative exact safe compression minimizes \(W\) under frontier and
   general-closure equality;
@@ -80,8 +80,8 @@ point, no nonnegative price supports it, and the Lagrangian gap is \(1/2\).
 No strong constrained--penalized equivalence may be attributed to the current
 theorem package.
 
-`LOCAL_VS_GLOBAL_COMPRESSION_SPEC.md` and D-0113 fix the interpretation of
-innovation-safe deletion without changing T3. A current-library deletion
+The local-versus-global result fixes the interpretation of innovation-safe
+deletion without changing T3. A current-library deletion
 certificate preserves feasibility, and positive active weight makes the
 deletion a strict resource reduction. A rechecked trace remains feasible, but
 only an explicitly complete trace can support endpoint irreducibility.
@@ -110,8 +110,8 @@ FX-OPT-PENALIZED-BURDEN-MONOTONE-01 survived the bounded search and remains
 the exact Julia fixture for the boundary. The general all-optimizer-pairs
 burden order is now Lean verified as
 `FinitePenalizedProblem.optimalBurden_antitone`; the selected-burden corollary
-is `selectedBurden_antitone`. `OPTIMIZATION_THEOREM_REVISIONS.md` records the
-pre-formalization revision that removed the rejected stronger claims.
+is `selectedBurden_antitone`. Rejected stronger claims are recorded with their
+counterexamples later in this ledger.
 
 ### OPT-FND — Resource and exact-safe-compression foundations
 
@@ -259,8 +259,7 @@ pre-formalization revision that removed the rejected stronger claims.
 ### SC — Exact safe-compression theorem
 
 - **Theorem ID:** SC
-- **Specification:** `SAFE_COMPRESSION_THEOREM_SPEC.md`
-- **Human proof:** `SAFE_COMPRESSION_PROOF_OUTLINE.md`
+- **Human proof and assumption boundary:** manuscript Appendix B
 - **Informal statement:** For an admissible finite source library, the exact
   frontier--closure safe family is nonempty and attains minimum additive
   rational burden. Under the current raw factorization and closure
@@ -330,8 +329,8 @@ pre-formalization revision that removed the rejected stronger claims.
 ### SC-COMP — Complexity of exact safe compression
 
 - **Theorem ID:** SC-COMP
-- **Audit:** `COMPLEXITY_AUDIT.md`
-- **Human proof:** `SAFE_COMPRESSION_COMPLEXITY_APPENDIX_PROOF.md`
+- **Evidence status:** exact Julia reduction fixtures; no manuscript theorem or
+  Lean verification claim
 - **Informal statement:** Under an explicit finite binary encoding, the
   identity-closure safe-compression decision problem is NP-complete and its
   minimum-weight optimization problem is NP-hard. Frontier preservation alone
@@ -384,7 +383,8 @@ pre-formalization revision that removed the rejected stronger claims.
 
 - **Theorem ID:** PEN
 - **Manuscript label:** `thm:penalized-envelope`
-- **Specification and human proof:** `PENALIZED_ENVELOPE_SPEC.md`
+- **Specification and human proof:** manuscript Theorem
+  `thm:penalized-envelope` and Appendix B
 - **Informal statement:** For a fixed nonempty finite feasible library family,
   finite productive values, and nonnegative burdens, the real-price extension
   \[
@@ -494,7 +494,8 @@ pre-formalization revision that removed the rejected stronger claims.
 
 - **Theorem ID:** CAP
 - **Manuscript label:** `thm:capacity-value`
-- **Specification and human proof:** `CAPACITY_VALUE_SPEC.md`
+- **Specification and human proof:** manuscript Theorem `thm:capacity-value`
+  and Appendix B
 - **Informal statement:** For the fixed finite outer-certified library family
   with a zero-burden inactive library, the capacity-constrained productive
   value
@@ -593,7 +594,7 @@ pre-formalization revision that removed the rejected stronger claims.
 
 - **Theorem ID:** REP
 - **Manuscript role:** supporting result only; no main contribution label
-- **Specification and human proof:** `REPLACEMENT_OPTIMIZATION_SPEC.md`
+- **Specification and human proof:** online supplement S3
 - **Informal statement:** For an outer-certified candidate \(c\notin L\),
   additive burden turns replacement feasibility into the exact release
   requirement
@@ -745,7 +746,8 @@ pre-formalization revision that removed the rejected stronger claims.
 
 - **Theorem ID:** CED
 - **Manuscript location:** Appendix C at `prop:channel-elasticity`
-- **Specification and human proof:** CHANNEL_ELASTICITY_SPEC.md
+- **Specification and human proof:** manuscript Appendix C,
+  `prop:channel-elasticity`
 - **Informal statement:** Along one named positive scalar path on which the
   T5 channel values are differentiable,
   \[
@@ -844,7 +846,8 @@ pre-formalization revision that removed the rejected stronger claims.
 - **Theorem ID:** IDCV
 - **Manuscript location:** Appendix C, unnumbered result at
   `eq:innovation-duration`
-- **Specification and human proof:** INNOVATION_DURATION_SPEC.md
+- **Specification and human proof:** manuscript Appendix C,
+  `eq:innovation-duration`
 - **Informal statement:** For \(H\ge1\), \(\alpha>0\), and a fixed
   nonnegative nonzero exposure sequence, define
   \[
@@ -958,7 +961,7 @@ actual switches.
 - **Theorem ID:** CPEL
 - **Manuscript role:** supporting finite-change result for optimization
   T6--T7
-- **Specification and human proof:** `CAPACITY_ELASTICITY_SPEC.md`
+- **Specification and human proof:** manuscript Appendix C and this ledger
 - **Informal statement:** For a declared positive increment, positive base
   capacity, and positive capacity value, the forward capacity arc elasticity
   is
@@ -1041,9 +1044,8 @@ actual switches.
 
 ## Updated complete formal audit
 
-The current claim-gate audit is recorded in
-`PREPRINT_LEAN_AUDIT.md` and
-`formal/StrategyInnovation/Audit/AxiomAudit.lean`. The latter elaborates and
+The current claim-gate audit is executed by
+`formal/StrategyInnovation/Audit/AxiomAudit.lean`. It elaborates and
 executes 752 distinct `#print axioms` commands covering every one of the 276
 distinct Lean declarations or definitions in the active manuscript
 correspondence, the principal theorem dependencies, and the retained audited
@@ -1129,8 +1131,8 @@ claim depends on it.
 The current full record is
 `experiments/results/revision_counterexample_gauntlet.json`; the legacy record
 is `experiments/results/theorem_feasibility.json`. Boundary witnesses and their
-exact reductions are in `COUNTEREXAMPLES.md`. No assumption was silently added
-during adjudication.
+exact reductions are recorded in those artifacts and the Lean counterexample
+modules. No assumption was silently added during adjudication.
 
 ## Lean-verified foundational lemma family
 
@@ -2250,8 +2252,8 @@ during adjudication.
   every finite calendar-horizon optimal value factors through \((b,K_L)\).
 - **Finite target statement:** Use the raw generator \(G\), verification rule
   \(\nu\), derived admitted law \(\Gamma\), and declared joint
-  belief-path/outcome coupling \(\Lambda_q\) in
-  `RAW_TO_COMPRESSED_SPEC.md`. Prove RC1--RC3 and, for every calendar horizon,
+  belief-path/outcome coupling \(\Lambda_q\). Prove RC1--RC3 and, for every
+  calendar horizon,
   belief, and admissible library,
   \[
     V_h^{\mathrm{raw}}(b,L)=\bar V_h(b,K_L),
@@ -2313,9 +2315,9 @@ during adjudication.
   minimality is false by CX-T1-MIN-T2-SILENT-01; sufficiency without the raw
   generator restriction is false by CX-T1-RAW-01; a
   provenance-dependent joint coupling is an additional direct failure mode.
-- **Informal mathematical validity:** `RAW_TO_COMPRESSED_SPEC.md` gives the
-  matching finite update, transition pushforward, embedded controlled-Markov,
-  and strong calendar-horizon arguments.
+- **Informal mathematical validity:** manuscript Section 3 and Appendix A give
+  the matching finite update, transition pushforward, embedded
+  controlled-Markov, and strong calendar-horizon arguments.
 - **Lean kernel verification:** The realizable compressed carrier is finite;
   the induced law is a deterministic pushforward of the R0 admitted law; the
   representative-invariance and embedded controlled semi-Markov theorems
@@ -4221,8 +4223,8 @@ during adjudication.
   differentiability.
 - **Status:** exact Julia validated; theorem statements revised; no Lean
   verification and no empirical interpretation.
-- **Formalization consequence:** only the statements in
-  `OPTIMIZATION_THEOREM_REVISIONS.md` may proceed to Lean.
+- **Formalization consequence:** only the surviving statements recorded in
+  this ledger may proceed to Lean.
 
 ### N1 — Julia value-iteration convergence diagnostics
 

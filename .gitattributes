@@ -2,53 +2,5 @@
 # creating an impossible self-referential commit hash in the working tree.
 release/v0.1.0-preprint/RELEASE_METADATA.md export-subst
 
-# Internal development, editorial, migration, and redundant directory notes
-# are retained in the private source tree but omitted from the reader-facing
-# release export.
-.github/workflows/README.md export-ignore
-AGENTS.md export-ignore
-APPENDIX_REVISION_LOG.md export-ignore
-BIBLIOGRAPHY_VERIFICATION.md export-ignore
-CITATION_LEDGER.md export-ignore
-DECISIONS.md export-ignore
-FATAL_OVERLAP_AUDIT_2026.md export-ignore
-FATAL_OVERLAP_CHECK.md export-ignore
-FIGURE_AUDIT.md export-ignore
-FORMAL_PROOF_AUDIT.md export-ignore
-INTERACTION_THEOREM_DIAGNOSIS.md export-ignore
-MANUSCRIPT_FOCUS_PAGE_ECONOMY_AUDIT.md export-ignore
-MANUSCRIPT_REVISION_MAP.md export-ignore
-NOVELTY_MATRIX.md export-ignore
-NOVELTY_REFEREE_REPORT_2026.md export-ignore
-OPTIMIZATION_FORMAL_AUDIT.md export-ignore
-OPTIMIZATION_MANUSCRIPT_MAP.md export-ignore
-OPTIMIZATION_REVISION_BASELINE.md export-ignore
-PREPRINT_BASELINE.md export-ignore
-PREPRINT_BASELINE_AUDIT.md export-ignore
-PREPRINT_SECTION5_TRIAGE.md export-ignore
-PUBLIC_REPOSITORY_AUDIT.md export-ignore
-REPOSITORY_AUDIT.md export-ignore
-RESEARCH_PLAN.md export-ignore
-RESOURCE_RETENTION_RESTRUCTURE_AUDIT.md export-ignore
-REVISED_NOVELTY_STATEMENT_2026.md export-ignore
-REVISION_2_BASELINE.md export-ignore
-REVISION_2_DEPENDENCY_MAP.md export-ignore
-REVISION_BASELINE.md export-ignore
-STATUS.md export-ignore
-SWITCHING_ELASTICITY_SPEC.md export-ignore
-TABLE_AUDIT.md export-ignore
-UPDATED_CITATION_LEDGER.md export-ignore
-UPDATED_CITATION_LEDGER_2026.md export-ignore
-UPDATED_FORMAL_PROOF_AUDIT.md export-ignore
-UPDATED_MANUSCRIPT_FORMAL_AUDIT.md export-ignore
-UPDATED_NOVELTY_MATRIX.md export-ignore
-UPDATED_NOVELTY_MATRIX_2026.md export-ignore
-experiments/logs/README.md export-ignore
-julia/notebooks/README.md export-ignore
-manuscript/appendices/README.md export-ignore
-manuscript/bibliography/README.md export-ignore
-manuscript/build/README.md export-ignore
-manuscript/figures/README.md export-ignore
-manuscript/sections/README.md export-ignore
-manuscript/tables/README.md export-ignore
+# Deprecated compatibility wrapper; public commands use `scripts/verify.sh`.
 scripts/full_check.sh export-ignore

@@ -5,9 +5,8 @@ development. It checks unused arguments across `StrategyInnovation` and
 `simpNF` on the major theorem-bearing publication namespace families.
 `AxiomAudit.lean` is the comprehensive release axiom audit: its 752 distinct
 commands include all 276 distinct declarations and definitions named in the
-active manuscript correspondence. The preprint report is
-`../../../PREPRINT_LEAN_AUDIT.md`; the claim-by-claim correspondence is in
-`../../../THEOREM_LEDGER.md`.
+active manuscript correspondence. The claim-by-claim status and
+correspondence are in `../../../THEOREM_LEDGER.md`.
 
 `Foundations.lean` records `#print axioms` output for the principal
 finite-library lemmas. `DynamicInnovation.lean` does the same for the abstract

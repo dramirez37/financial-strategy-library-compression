@@ -1020,7 +1020,6 @@ Every experiment must have:
 
 ### raw-realizable-rectangle-fixtures-v1
 
-- **Specification:** `REALIZABLE_RECTANGLE_CONSTRUCTION.md`
 - **Implementation:** `julia/src/RealizableRectangles.jl`
 - **Tests:** `julia/test/test_realizable_rectangles.jl`
 - **Environment:** Julia 1.12.6 with the committed Julia project and manifest
@@ -1371,9 +1370,9 @@ locally present financial inputs remain ignored, and requires both financial
 status records to preserve the nonredistributable-input/publishable-aggregate
 boundary.
 
-`PUBLIC_RELEASE_MANIFEST.md` gives the complete path classification and public
-reproduction boundary. The public repository begins from a fresh or squashed
-snapshot of the audited release tree; private development refs and local
+`make public-audit` checks the public reproduction and licensed-data boundary.
+The public repository begins from a fresh or squashed snapshot of the audited
+release tree; private development refs and local
 machine metadata are outside the cleared release surface.
 
 ### Top-level release verification

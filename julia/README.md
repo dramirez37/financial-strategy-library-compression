@@ -46,8 +46,8 @@ frontier-silent carrier into one base raw library, recomputes every compressed
 image, and derives corner menus, transition laws, finite-horizon values, and
 policies through `RawInnovationProcess`. Two deterministic
 `Rational{BigInt}` fixtures cover identity and nontrivial generated closure.
-The construction contract and consistency gate are recorded in
-`REALIZABLE_RECTANGLE_CONSTRUCTION.md`.
+The implementation and consistency gate are in
+`src/RealizableRectangles.jl` and `test/test_realizable_rectangles.jl`.
 
 `Rational{BigInt}` is the default for all theorem fixtures. A caller must pass
 `mode = Float64Mode()` explicitly to construct simulation-mode profiles or
@@ -161,22 +161,20 @@ The routine named `penalty_breakpoints` returns zero together with every
 nonnegative pairwise switching-price candidate. A candidate is an actual
 envelope breakpoint only when unequal-burden branches are globally optimal
 there.
-`PENALIZED_ENVELOPE_SPEC.md` records this filter and the exact active-face
-one-sided slope theorem; the current Julia routine does not claim that every
-returned candidate is a kink.
+The manuscript and `THEOREM_LEDGER.md` record this filter and the exact
+active-face one-sided slope theorem; the current Julia routine does not claim
+that every returned candidate is a kink.
 
-`CAPACITY_VALUE_SPEC.md` proves the finite attainable-burden step theorem,
-defines value breakpoints separately from tied optimizer thresholds, and
-records the exact lumpy-weight, jointly required-module, and submodularity-
-alone boundaries. The current Julia routines evaluate rational capacities;
-the specification's real-capacity domain is the canonical analytic extension
-of the same exact burden--value pairs.
+The manuscript and `THEOREM_LEDGER.md` state the finite attainable-burden step
+theorem, distinguish value breakpoints from tied optimizer thresholds, and
+record the exact boundary examples. The current Julia routines evaluate
+rational capacities; the manuscript's real-capacity domain is the canonical
+analytic extension of the same exact burden--value pairs.
 
-`REPLACEMENT_OPTIMIZATION_SPEC.md` keeps conditional candidate replacement as
-a supporting result. It proves the exact burden-release and admission-value
-decompositions, distinguishes current-library safety from candidate-relative
-safety, and records why positive standalone value need not justify
-displacement. `optimal_admission_deletion_set` now provides the reusable exact
+The online supplement and `THEOREM_LEDGER.md` keep conditional candidate
+replacement as a supporting result. They distinguish current-library safety
+from candidate-relative safety and record why positive standalone value need
+not justify displacement. `optimal_admission_deletion_set` provides the reusable exact
 enumerator; the audit script continues to reproduce the registered minimized
 capacity-release fixture independently.
 

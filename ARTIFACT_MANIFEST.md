@@ -1,6 +1,3 @@
-Warning: truncated output (original token count: 32819)
-Total output lines: 809
-
 # Artifact Manifest
 
 ## How to use this manifest
@@ -16,7 +13,7 @@ Lean source records kernel verification of an encoded statement; exact Julia
 artifacts record finite computations; randomized outputs record evidence under
 the registered synthetic generator; and financial outputs record
 retrospective licensed-data diagnostics. `THEOREM_LEDGER.md` and
-`PREPRINT_CLAIM_LEDGER.md` are authoritative for claim status.
+the manuscript validation-status appendix are authoritative for claim status.
 
 The tables below preserve registered identifiers, paths, hashes, producers,
 and validation boundaries. PUBLIC GENERATED paths are redistributable under
@@ -29,9 +26,9 @@ provenance are outside this manifest's distributable artifact surface.
 |---|---|
 | Paper overview and minimum commands | `README.md` |
 | Environment, seeds, configurations, and exact commands | `REPRODUCIBILITY.md` |
-| Formal claim and axiom status | `THEOREM_LEDGER.md`, `PREPRINT_LEAN_AUDIT.md`, `PREPRINT_THEOREM_AUDIT.md` |
+| Formal claim and axiom status | `THEOREM_LEDGER.md` and `formal/StrategyInnovation/Audit/AxiomAudit.lean` |
 | Licensed-data input contract | `DATA_ACCESS.md` |
-| Public/private packaging boundary | `PUBLIC_RELEASE_MANIFEST.md` and `make public-audit` |
+| Public/private packaging boundary | `make public-audit`, `.gitignore`, and `DATA_ACCESS.md` |
 | Citation metadata | `CITATION.cff` |
 | Software, content, and third-party rights | `LICENSE` |
 
@@ -67,65 +64,6 @@ coordinates and displayed decimal summaries remain presentation layers.
 date, exact PDF hashes, and an `export-subst` commit placeholder. In a release
 archive that placeholder expands to the exact source commit without creating
 an impossible self-referential commit hash in the committed file.
-
-## Historical baseline inventory
-
-The repository started empty on 2026-07-20. Governance was created in the
-initial commit; the next change audited that baseline and added buildable,
-content-free project scaffolds without deleting any asset.
-
-## Governance artifacts
-
-| Path | Role | Status |
-|---|---|---|
-| `README.md` | concise paper overview, evidence hierarchy, quick start, and repository map | current |
-| `DATA_ACCESS.md` | licensed CRSP/WRDS input contract and public-output boundary | current |
-| `data/README.md` | empty local licensed-source template, paths, and column contracts | current |
-| `PUBLIC_RELEASE_MANIFEST.md` | four-class release inventory and proposed public tree | current |
-| `CITATION.cff` | machine-readable preprint and software citation metadata | current |
-| `LICENSE` | scoped MIT/CC BY 4.0 grant with licensed-data and third-party exclusions | current |
-| `MODEL_SPEC.md` | accepted finite model, timing, value recursion, and theorem forms | created |
-| `THEOREM_LEDGER.md` | result-to-Lean/Julia/manuscript correspondence | created |
-| `ASSUMPTIONS.md` | unique assumption registry | created |
-| `NOTATION.md` | cross-language notation source of truth | created |
-| `FORMALIZATION_MAP.md` | planned proof architecture and dependency order | created |
-| `FORMALIZATION_GAPS.md` | open mismatches and formal blockers | created |
-| `COUNTEREXAMPLES.md` | exact counterexample registry and search obligations | created |
-| `REPRODUCIBILITY.md` | outside-researcher guide plus complete registered environment and experiment protocol | current |
-| `ARTIFACT_MANIFEST.md` | artifact inventory and lineage | created |
-| `COMPLEXITY_AUDIT.md` | exact identity/general-closure complexity classification, explicit reductions, and tractable-case boundaries for safe compression | current; human proof complete, Lean formalization open |
-| `SAFE_COMPRESSION_COMPLEXITY_APPENDIX_PROOF.md` | appendix-ready proof of proposed SC-COMP by weight-preserving reductions from weighted set cover | current; not an active-manuscript or Lean-verified claim |
-| `PENALIZED_ENVELOPE_SPEC.md` | exact finite penalized-envelope theorem, complete human proof, switching cases, active-face slopes, and nonnested-library boundary | current; requested finite-envelope core Lean verified, with active-face/global-partition and raw-boundary extensions still open |
-| `CAPACITY_VALUE_SPEC.md` | exact finite capacity-value theorem, complete human proof, attainable-burden step structure, complementarity witness, and diminishing-returns boundaries | current; requested finite CAP core, joint-capability witness, and separate additive-unit grid condition Lean verified; stronger packaging/boundaries remain open |
-| `CAPACITY_ELASTICITY_SPEC.md` | forward capacity and resource-demand arc elasticities, shadow-value jump sums, capacity spikes, and unequal-burden tie boundary | current; proposed CPEL supporting T6--T7, Lean formalization open |
-| `REPLACEMENT_OPTIMIZATION_SPEC.md` | supporting capacity-constrained replacement proposition, safe-release hierarchy, opportunity-cost identity, and acceptance/rejection boundaries | current; proposed REP supporting result, Lean formalization open |
-| `BRIDGE_ELASTICITY_SPEC.md` | supporting canonical bridge-margin elasticity derivation, normalized fragility, zero-margin correction, duration exposure, and action-region boundary | current; BEM derivatives, elasticities, normalized-margin blow-up, boundary, and exact example Lean verified |
-| `CHANNEL_ELASTICITY_SPEC.md` | T5 channel-elasticity derivative identity, contribution decomposition, positive-channel weighted average, parameter interpretations, and exact boundary examples | current; CED real-path calculus and three exact examples Lean verified; model-specific path adapters remain conditional |
-| `INNOVATION_DURATION_SPEC.md` | fixed-exposure innovation-duration and timing-convexity theorem, equality cases, exact rational formulas, and finite examples | current; IDCV finite derivative/duration/variance core and four exact examples Lean verified; broader support equality cases and bounds remain human-only |
-| `PREPRINT_LEAN_AUDIT.md` | final clean-build, source-integrity, linter, and comprehensive axiom audit | current |
-| `PREPRINT_THEOREM_AUDIT.md` | final result-by-result theorem and manuscript correspondence audit | current |
-
-## Infrastructure artifacts
-
-| Class | Paths | Current status |
-|---|---|---|
-| Julia package and standalone optimization/complexity tools | `julia/Project.toml`, `julia/Manifest.toml`, `julia/src/`, `julia/test/Project.toml`, `julia/test/Manifest.toml`, `julia/test/{core,test_compression,test_dynamic_programming,test_innovation_value,test_joint_descendant_bound,test_system_interaction,test_realizable_rectangles,test_primitive_substitution,test_coverage,test_kernel_persistence_response,test_theorem_mechanisms,test_financial_terminal_audit,test_financial_annual_walkforward_audit,test_financial_compression_focus,test_exact_fixture_bridge,test_revision_counterexamples,test_resource_optimization,test_safe_compression_complexity,test_raw_dynamic_programming,test_comparative_statics,test_randomized_libraries,test_randomized_design_v2,test_unified_resource_benchmark,test_unified_elasticity_switching_experiment,test_approximate_compression,runtests}.jl`, `julia/README.md` | Julia 1.12.6 runtime and test environments are separately pinned; the productive package retains its prospective-design hashes, while the standalone resource optimizer and exact complexity fixture run through focused full-check gates |
-| Lean project | `formal/lakefile.toml`, `formal/lean-toolchain`, `formal/lake-manifest.json`, `formal/README.md`, `formal/StrategyInnovation.lean`, `formal/StrategyInnovation/Basic/`, `formal/StrategyInnovation/Library/`, `formal/StrategyInnovation/Quotient/`, `formal/StrategyInnovation/Compression/`, `formal/StrategyInnovation/Counterexamples/`, `formal/StrategyInnovation/Optimization/`, `formal/StrategyInnovation/Value/`, `formal/StrategyInnovation/Interaction/`, `formal/StrategyInnovation/Bellman/`, `formal/StrategyInnovation/Coverage/`, `formal/StrategyInnovation/Audit/`, `formal/StrategyInnovation/Fixtures/` | stable Lean/mathlib environment builds; T1--T7, the exact-safe optimization layer, finite PEN/CAP cores, real BEM/CED/IDCV elasticity core, no-independence joint T6 theorem, recursion-stable T7 primitive common-gap corollary, F0, supporting F1--F8, S4--S7, and C2 pass kernel/axiom/linter audits; focused and complete executable axiom gates cover the manuscript-facing declarations; generated exact examples remain distinct from general theorems |
-| manuscript | `manuscript/main.tex`, `manuscript/build.sh`, `manuscript/README.md`, and required subdirectories | Sections 1--11 state the bounded contribution, verified literature boundary, finite model, quotient, safe compression, value decomposition, finite coverage geometry, primitive dynamic control, canonical numerical method, the registered \(N=1024\) raw-realizable structural stress test, financial innovation-safe compression audit, and scoped conclusion; Appendix E contains exact sequential randomized-study diagnostics and the only frozen-pilot comparison; supporting F3--F4, F8, S4--S7, and C2 environments state exact assumptions and scope warnings; the locked terminal and annual walk-forward audits use separately defined descendant-quality estimands while their generated source drafts remain audit artifacts; thirty-one data-linked or publication-supporting SVGs, five generated TikZ figures, and three generated TeX tables are registered; PDF builds with warning gate |
-| bibliography | `manuscript/bibliography/references.bib` | 20 metadata-verified Paper 1 novelty-audit entries; drafted sections cite only ledger-verified entries |
-| test orchestration | `Makefile`, `scripts/{preprint_check,formal_check,check_manuscript_sources,run_financial_licensed,verify}.sh` | the public `make preprint-check`, `canonical`, `randomized`, `formal`, `manuscript`, and `financial-licensed` targets delegate to registered entry points; `make verify` retains the complete gate with Julia 1.12.6 |
-| experiment hierarchy | `experiments/` | exact theorem/geometry/safe- and approximate-compression configs and results plus Float64 dynamic/coverage diagnostics committed |
-| shared interchange hierarchy | `shared/` | version-2 exact JSON Schema, eighteen exact fixture records, and bridge contract adopted |
-| CI hierarchy | `.github/workflows/ci.yml` | three commit-pinned reproducibility jobs plus exact-fixture regeneration/diff gate configured |
-
-## Excluded internal baseline history
-
-Historical revision snapshots, draft PDFs, machine build products, and their
-internal-only reports are not public artifacts or reproduction inputs. The
-public release uses a fresh or squashed source-and-aggregate snapshot rather
-than publishing the internal Git history. Licensed financial rows, dependency
-caches, local runtimes, and Git objects are likewise outside the public
-artifact surface.
 
 ## Exact Lean–Julia bridge artifacts
 
@@ -321,7 +259,6 @@ axiom claim. `expectedFacts` must later become typed propositions.
 
 | Artifact ID | Path | SHA-256 | Producer and validation |
 |---|---|---|---|
-| `JDB-SPEC-v1` | `JOINT_DESCENDANT_BOUND_SPEC.md` | `a38b7206dbb196b1d750395241d6429b7f17cd0f120c5b3f9da1ee31aa9591a6` | revised no-independence theorem, harmful-outcome and comparator corrections, product corollary, exact sign conditions, and explicit Lean claim boundary |
 | `JDB-CONFIG-v1` | `experiments/configs/joint_descendant_bound_gauntlet.toml` | `9110fdb62b04ee24f27a6022edc99dda41180805eb6e2e2d98358c8f85469e89` | committed exact enumeration bounds, rational grids, outcome labels, fixture registry, and output contract |
 | `JDB-CODE-v1` | `julia/scripts/search_joint_descendant_bound.jl` | `58f486dca104eabc28eac2e0d8c4051424456aaa1ecf8a29f7c4d7549543ba15` | deterministic `Rational{BigInt}` enumerator, twelve computed minimal fixtures, result renderer, and nonmutating `--check` |
 | `JDB-TEST-v1` | `julia/test/test_joint_descendant_bound.jl` | `d599975bc725f98fd72913a8ddb0f95b62d05ba56f1dc76df03d7f1b58e749a1` | 37 exact assertions covering all requested failure channels, corrected bounds, artifact drift, and fixture uniqueness |
@@ -369,13 +306,7 @@ MILP solver was invoked; `CMP-CORE-v1` records formulation data only.
 | `RO-TEST-v1` | `julia/test/test_resource_optimization.jl` | `c3a973e532a4a5ff746880da95e6ccb09d113faac7562bd2858d559d74d7f19a` | standalone exact primitive, witness-property, survivor, and artifact-drift checks |
 | `RO-CONFIG-v1` | `experiments/configs/resource_optimization_counterexamples.toml` | `197d39550971181e11a421547bcfc4de393541b4819a101cd2c5833247bd6476` | versioned search bounds, arithmetic declaration, and output paths |
 | `RO-AUDIT-v1` | `experiments/results/resource_optimization_claim_audit.json` | `9eb6008891991c67a955fffcc1c37d8fc3e886a4cb25ad1a791621458f3f0f5f` | Julia 1.12.6 record of 13 exact counterexamples, one surviving claim, search counts, theorem revisions, and per-fixture SHA-256 manifest |
-| `PEN-SPEC-v1` | `PENALIZED_ENVELOPE_SPEC.md` | `95ceb2946b16557cdf339d6fc9804a36162181140cc1cbebef72f136e0ba8734` | complete human proof plus Lean-verified finite envelope, including local affine slope away from the actual non-locally-affine breakpoint set; active-face one-sided extensions remain open |
-| `CAP-SPEC-v1` | `CAPACITY_VALUE_SPEC.md` | `af77dde525d5c4cd30eab24d2a4dd215e207b890679a16f9b331e4fe59651d50` | complete human proof of the finite capacity-value step theorem; requested finite CAP core and exact joint-capability boundary Lean verified, sorted additive-unit grid result separately verified, and stronger packaging/submodular boundary retained at human/Julia status |
-| `CPEL-SPEC-v1` | `CAPACITY_ELASTICITY_SPEC.md` | `d81789f916f948068060e712af7f7f92052a49f6ecc23ec805670977afb6aa6b` | complete human deduction of forward capacity and price-demand arc elasticities; direct exact rational examples and reused registered breakpoint evidence, no Lean declaration or reusable Julia implementation |
-| `REP-SPEC-v1` | `REPLACEMENT_OPTIMIZATION_SPEC.md` | `94689c0c1a760d2e5acf8bd7990870293749aee69010e8ac4954884205776850` | complete human proof of the supporting replacement opportunity-cost proposition; existing capacity-release fixture plus direct channel and rejection examples, no Lean declaration |
 | `BEM-SPEC-v1` | `BRIDGE_ELASTICITY_SPEC.md` | `5253b0313c0e07f395291f46bf0443a234717a5483d5663139a20f3a11bda7ad` | complete human algebra plus Lean-verified named-coordinate derivatives, elasticities, corrected normalized-margin and fixed-threshold divergence, boundary, and exact example; no reusable Julia implementation |
-| `CED-SPEC-v1` | `CHANNEL_ELASTICITY_SPEC.md` | `02bf7e2b8c9476950f64f3b103373b3f623bd6fce6b9de9cd2ceb325ed31b9a0` | complete human proof plus Lean-verified conditional real-path derivative/contribution decomposition, positive weighted average, and three exact examples; no T5 path adapter or reusable Julia implementation |
-| `IDCV-SPEC-v1` | `INNOVATION_DURATION_SPEC.md` | `0eabb0255372cee37804439813f638051024d41fc62f70e4130bd47b318677f2` | complete human proof plus Lean-verified finite polynomial/quotient derivative, duration/variance, nonnegativity, and four-example core; support equality cases/bounds and reusable Julia implementation remain open |
 
 `RO-AUDIT-v1` links 14 committed per-target fixtures under
 `experiments/results/resource_optimization_fixtures/` and records the hash of
@@ -386,9 +317,64 @@ experiment.
 
 | Artifact ID | Path | SHA-256 | Role |
 |---|---|---|---|
-| `SCX-AUDIT-v1` | `COMPLEXITY_AUDIT.md` | `ccae13e1ea1e1d56ff9c41aeafa3c65ce798602a3db8634dfb075c6cf17f4ccf` | identity/general-closure classification, explicit reductions, exact cover formulation, and tractable-case boundaries |
-| `SCX-PROOF-v1` | `SAFE_COMPRESSION_COMPLEXITY_APPENDIX_PROOF.md` | `61dcbe3972891972eecdeaeca09fe43aa2c350069f5e475db50f7c9eb716127b` | appendix-ready human proof of proposed SC-COMP; not a Lean verification or active-manuscript claim |
-| `SCX-CORE-v1` | `julia/src/SafeCompressionComplexity.jl` | `474a227fe9e8d7ed960a86e45d8cfbb1c0f27c7d85a8b11a06226e93e7d769c9` | polynomial-size exact decision-instance…2819 tokens truncated…91f08caf` | all schedule/belief/raw-library burdens, productive/net and channel values, duration, actions, margins, frontiers, and closures |
+| `SCX-CORE-v1` | `julia/src/SafeCompressionComplexity.jl` | `474a227fe9e8d7ed960a86e45d8cfbb1c0f27c7d85a8b11a06226e93e7d769c9` | polynomial-size exact decision-instance and weight-preserving closure-only, frontier-only, and combined constructors |
+| `SCX-CODE-v1` | `julia/scripts/verify_safe_compression_complexity_reductions.jl` | `81cd3a814f0c3e495bdfe62b9eb5da727798216d33592a5e74ae29d299dc168a` | deterministic exact correspondence renderer for the registered weighted-set-cover fixture |
+| `SCX-TEST-v1` | `julia/test/test_safe_compression_complexity.jl` | `5bacfdca5bc7204ce6448ac531e68f1db310239141ed57612b89044c00c677f9` | fixture-mask, exhaustive small-incidence, optimizer, and artifact-drift checks |
+| `SCX-FIXTURE-v1` | `experiments/results/safe_compression_complexity_reduction_fixture.json` | `e9b9dd98c7ebad8f3dc7e1b7a1daefcd5df46f44f83d0aaba4a9bda77085b050` | exact closure-only, frontier-only, and combined feasibility/weight/optimizer correspondence record |
+
+The constructors are polynomial in their explicitly listed incidence input.
+Exhaustive optimizer enumeration is used only to validate small fixtures. The
+artifact is not a universal proof; SC-COMP has no Lean declaration or axiom
+audit.
+
+## Finite discounted dynamic-program artifacts
+
+| Artifact ID | Path | SHA-256 | Producer and validation |
+|---|---|---|---|
+| `DP-CORE-v1` | `julia/src/DynamicProgramming.jl` | `a3203810d833a53ddfa02496fcdbab988333fc813ebdf0f696801a8d71a15925` | exact dense and explicit Float64 sparse F5/F8 compatibility process, Bellman, value-iteration, residual/bound, DI, and exact policy solvers; package tests and Aqua pass |
+| `DP-CODE-v1` | `julia/scripts/solve_canonical_model.jl` | `af079f24aa6362654a8f6bea189bba6868c216994b0f04dc9283c9adcfc6c191` | deprecated primitive F5/F8 exact/Float64 regression solver and exact arbitrary-loss fixture under Julia 1.12.6 |
+| `DP-TEST-v1` | `julia/test/test_dynamic_programming.jl` | `c6e2e61cbd0d9026aad82b94474335a7defbc572c08ae999a0a512cbd0b62bb4` | 226 validation, exact fixture, edge, contraction, equivalence, seeded property, and output checks |
+| `DP-CONFIG-v1` | `experiments/configs/canonical_discounted_dp.toml` | `750c43a04d98478aa4260f808fce7a7ee8f073077c088f70f55123b3a754de7f` | unchanged legacy state counts, primitive timing, exact horizon, Float64 tolerance, and iteration cap; no randomness |
+| `DP-RESULT-JSON-v1` | `experiments/results/summaries/canonical_model_summary.json` | `7c87a3ac4f93e51fa6bcfd538b4f2b3134305f6b682575b35edd3774253e6561` | unchanged legacy exact horizon/policy and sparse Float64 convergence summary; runtime fields are host-dependent |
+| `DP-RESULT-CONVERGENCE-v1` | `experiments/results/summaries/canonical_model_convergence.csv` | `7219dd39aff5d7efcce7052a25fb12f6cf2d6d5effe561bbcc4e32377f24d874` | 86 deterministic iteration rows with increments, residuals, and both error bounds |
+| `DP-RESULT-POLICY-v1` | `experiments/results/summaries/canonical_model_policy.csv` | `417b6ffe2dffb553ff36f9a3267200a8c719f2b5b4ac00d2964af9ecd23cbcd4` | exact and Float64 action/value rows for all six joint states |
+
+The exact rows are computational counterparts of primitive F5/F8 and do not
+replace Lean verification. They are a legacy timing cross-check; the unified
+S2 selector and policy-evaluation theorem has a separate same-timing exact
+fixture. Float64 rows are numerical diagnostics only.
+
+## Unified positive-duration canonical benchmark artifacts
+
+| Artifact ID | Path | SHA-256 | Producer and validation |
+|---|---|---|---|
+| `UB-SPEC-v1` | `UNIFIED_CANONICAL_BENCHMARK_SPEC.md` | `df37b66321da7d307f0e45df44cdf6eaa13d297fc667831debb1daf6e70605db` | internally checked structural reference specification retained as the D-0084 regression calibration |
+| `UB-CODE-v1` | `julia/scripts/search_unified_benchmark.jl` | `ee3040db45439ce2db0f7c85d488439ba58c6db0838557760dd21e038ebe3951` | exact 972-candidate raw-law search, rational PI/VI diagnostics, perturbation and comparative-static gates, deterministic artifact renderers, and nonmutating `--check` |
+| `UB-TEST-v1` | `julia/test/test_unified_benchmark_search.jl` | `e848fd15c30373cefe8dcb787099a35361972baaaa19d0223b524d09797592e5` | frozen-reference regression, selected exact policy/value/margin, full-path, raw-lift, perturbation, comparative-static, and deep solver checks |
+| `UB-SEARCH-CONFIG-v1` | `experiments/configs/unified_benchmark_search.toml` | `6319fd7ac57d0dfdc8a1978696601c95542b84ab09eda0b6a4086a7867059531` | exact rational grids, fixed raw-law structure, solver/margin gates, perturbations, comparative-static contrasts, ranking rule, and output contract |
+| `UB-SELECTED-CONFIG-v1` | `experiments/configs/unified_benchmark_selected.toml` | `f05dc4ba1ec7590cde8996a1fdfbf4371cd47bb4a69a308f33c5d2357a34f184` | generated C0424 primitives, state counts, policy signature, action gaps, exact residuals, raw/compressed equality, and policy-lift certificates |
+| `UB-SEARCH-v1` | `experiments/results/unified_benchmark_search.csv` | `84209d4d6eba5a958a405993a87335946f70218a1d06e1ac6b14a545481cdac7` | all 972 candidates with primitives, effective success, exact policy, margins, residuals, selection status, and alternative-candidate rejection reasons |
+| `UB-REPORT-v1` | `experiments/results/UNIFIED_BENCHMARK_ACTION_MARGIN_REPORT.md` | `4cb9b97afe2e680c45d8cfb6967b71100d1a145c9ef7dc925bb3fb8979a8bf36` | answer-first exact action-margin, structural, PI/VI, raw-lift, perturbation, comparative-static, and rejection report |
+| `UB-POLICY-v1` | `experiments/results/unified_benchmark_policy_value.csv` | `a4fb291ba4b010a9c8234710a0a22191e9accfd5006341678e34ad87042c5962` | all six selected compressed states with exact values, action Q values, reward blocks, continuation blocks, and gaps |
+| `UB-REJECTIONS-v1` | `experiments/results/unified_benchmark_rejections.csv` | `dbdc59d7e660ddd982262a13c6cb515eb0c634e4f21629e8359ab62bd6869ff5` | aggregate exact-search rejection accounting, including dominated eligible alternatives |
+| `UB-STABILITY-v1` | `experiments/results/unified_benchmark_perturbation_stability.csv` | `018b58be53241e4822fde481ea819fd296b34fd1486d2b7b6d5ed84f9c09e238` | all 11 feasible local rational perturbations with unchanged policy signatures and exact minimum margins |
+| `UB-COMPARATIVES-v1` | `experiments/results/unified_benchmark_comparative_statics.csv` | `cd1a81f6362b07b096e7458e4b860210c7ed0a2c915f5868ec3abfc2092c5c26` | exact low/high cost, duration, discount, admission, and survival comparisons with K1 values, margins, and policies |
+| `UB-CANONICAL-CODE-v1` | `julia/scripts/solve_unified_canonical_benchmark.jl` | `2359e1c97148648e4ddf58361c58af420fb4e452c1ff9c59b8ae074244c3836e` | raw-derived exact finite-horizon and policy-iteration solver, Float64 value iteration and a-posteriori contraction bound, exact rational reevaluation certificate, exact/Float stationary evaluation, equality audit, deterministic renderers, and nonmutating `--check` |
+| `UB-CANONICAL-TEST-v1` | `julia/test/test_unified_canonical_benchmark.jl` | `dafb142ede6289518079e06634546e345b07aaaba4a2b613353a6ceeae860896` | 201 raw-structure, exact/Float solver, full-duration path, operating-block, transition, residual-bound, action-gap, and validation assertions, plus resource-extension test wiring |
+| `UB-CANONICAL-CONFIG-v1` | `experiments/configs/unified_canonical_benchmark.toml` | `8674f9136ce0b7a245de6665e46a8c9b3bc13e3472d2080af5089108a6d2e1c8` | selected C0424 pointer, exact horizon and solver limits, five comparative-static fixtures, output contract, and explicit legacy regression pointer |
+| `UB-CANONICAL-SUMMARY-v1` | `experiments/results/summaries/unified_canonical_summary.json` | `84d0498b6a1f71c1752b7a51c4c55a9fad918d2011b88a55550e33ae9dd5f1d6` | exact zero residuals and action gap, 42-iteration Float64 convergence and a-posteriori contraction bound, exactly re-evaluated residual-based certificate for the rationalized Float64 iterate, equality-audit counts, and legacy exclusion flag |
+| `UB-CANONICAL-VALUES-v1` | `experiments/results/summaries/unified_canonical_values.csv` | `a4baff6bf860365a9b6df4a2ea97ef2ddcdac634982fb92d6463e80ee8280b54` | exact horizons zero through eight plus exact policy-iteration, exact policy-evaluation, Float64 value-iteration, and Float64 policy-evaluation stationary tables |
+| `UB-CANONICAL-POLICIES-v1` | `experiments/results/summaries/unified_canonical_policies.csv` | `3d32879cd592ba2f6bee6558c0b9d8c1f05b30b75dbd63b8b659098cd6572864` | exact horizons one through eight plus identical exact and Float64 stationary action maps |
+| `UB-CANONICAL-TRANSITIONS-v1` | `experiments/results/summaries/unified_canonical_transition_edges.csv` | `7cf1ca735b69f47053b84485e17f51583ad822217309169e2a4708f5e49d6734` | eight programmatically derived compressed Continue, Discover, and Scale edges with exact masses and positive durations |
+| `UB-CANONICAL-PATHS-v1` | `experiments/results/summaries/unified_canonical_duration_paths.csv` | `9ae807813f02501f5b27f09b1cd98fe2d8b0328137c55c15ab114697524e016c` | all 36 positive-mass full belief-path/admitted-outcome atoms, their Markov path masses, and conditional admission masses |
+| `UB-CANONICAL-REWARDS-v1` | `experiments/results/summaries/unified_canonical_operating_rewards.csv` | `c4fba22256f13234c5ee3babe3049204f073138cd310d6241c068aace847c855` | all 12 Continue/research operating blocks, initiation costs, unified operating flags, and exact net reward blocks |
+| `UB-CANONICAL-CONVERGENCE-v1` | `experiments/results/summaries/unified_canonical_convergence.csv` | `3ccc56f2f445ef9ea2497eca1b777eb2587ad8460275bd7b44accfd01fd92db1` | all 42 Float64 iterations with explicitly labeled increments, Bellman residuals, and a-priori and a-posteriori contraction bounds; the exact reevaluation certificate is stored only in the summary artifact |
+| `UB-CANONICAL-COMPARATIVES-v1` | `experiments/results/summaries/unified_canonical_comparative_statics.csv` | `aa0d190b9894e75293be65bad9b00a7bc4383d38adbae05dca17f7789bdbc4b4` | exact low/high cost, duration, discount, admission, and survival fixtures regenerated through the raw source of truth |
+| `UB-RESOURCE-CODE-v1` | `julia/scripts/run_unified_resource_benchmark.jl` | `6a03eb7690dd5f5366808564585568d6d5660b2214ee35bdecd847b35a20606b` | exact C0424 resource evaluator, exhaustive optimizer certificates, analytic fixed-policy discount derivatives, deterministic exact-table/SVG renderer, and nonmutating `--check` |
+| `UB-RESOURCE-TEST-v1` | `julia/test/test_unified_resource_benchmark.jl` | `005116c399899fb9cba05137fba8b64cbecb8bc8a845a8ff8e0a1c91c270817f` | 385 preregistration, channel, exhaustive safe/capacity/penalty, monotonicity, breakpoint, and artifact assertions |
+| `UB-RESOURCE-CONFIG-v1` | `experiments/configs/unified_canonical_resources.toml` | `9a3899ae1baeecb023f4689b47db84a853e3c9ccc6f5fc7f281b1672162c17a1` | D-0131 preregistered equal-active, carrier-heavy, and descendant-heavy exact weights and twelve-output contract |
+| `UB-RESOURCE-SUMMARY-v1` | `experiments/results/summaries/unified_canonical_resource_summary.json` | `ec66b1d64617813a224debc223eedad9a609eb6fad81c31392ac04c7c845d93d` | schedule and artifact counts plus aggregate exact safety, tie, channel, duration, and monotonicity certificates |
+| `UB-RESOURCE-LIBRARIES-v1` | `experiments/results/summaries/unified_canonical_resource_libraries.csv` | `2d0affc8f10fb7bae0c70088fdc1e42eeef7449900ff16d2dec22efb91f08caf` | all schedule/belief/raw-library burdens, productive/net and channel values, duration, actions, margins, frontiers, and closures |
 | `UB-RESOURCE-SAFE-v1` | `experiments/results/summaries/unified_canonical_resource_safe_compression.csv` | `03efd35881ac2c19e221ce3de6e4e349e90b6973b8c4f81edd1b266b8a9c6f32` | every raw source, complete exact-safe set and minimum-weight tie set, burden reduction, productive values, and enumeration certificates |
 | `UB-RESOURCE-CAPACITY-v1` | `experiments/results/summaries/unified_canonical_resource_capacity.csv` | `79eed7b19cb99eef994ee78fb78408e73712e5185b6efac1fb1da8dc341b0ca9` | every attainable total capacity, complete optimizer correspondence, channel values, forward shadows, exact arc elasticities, and certificates |
 | `UB-RESOURCE-PENALTY-v1` | `experiments/results/summaries/unified_canonical_resource_penalized_intervals.csv` | `18133e7bb0087d0e24b31c5eedfbeeb98201cc3aa614a4317492b3de63436db0` | every actual price breakpoint and intervening interval with complete ties, display selection, net/channel values, and library/action distances |
@@ -473,7 +459,6 @@ process. T5's proof artifact is the Lean module listed below.
 | `SYSINT-FIXTURES-v2` | `experiments/results/summaries/system_interaction_exact_fixtures.csv` | `ef0c0631d18bd6e091a3fc21aabb5caaa3c7b630e2716a542405ccd0c88a27f6` | five exact canonical sign fixtures with four corner policies, realizability, and primitive-condition certificates |
 | `SYSINT-RESPONSE-v2` | `experiments/results/summaries/system_interaction_response_surface.csv` | `9459d513fa65c1e8bd16818946c4f0d2dffc8836029abd134e4233426d322c82` | 3,456 exact response rows; 576 four-corner-realizable rows enter sign counts and 2,880 diagnostic rows are excluded |
 | `SYSINT-SUMMARY-v2` | `experiments/results/summaries/system_interaction_summary.json` | `5c4e1be6b789a3647d7b6f12f278402d78a25ce706c82dd776ad7570ac8243db` | five exact witnesses, explicit realizability/aggregation rule, 156/237/183 eligible substitute/separable/complement counts, and 16 passing producer checks |
-| `RRECT-SPEC-v1` | `REALIZABLE_RECTANGLE_CONSTRUCTION.md` | `b331c3f85afea3246401068a2d48f2df188a8b7bb8091128212fe3c9538780e0` | raw-first sufficient construction, corner identities, derived-law protocol, exact fixtures, and consistency gate |
 | `RRECT-CORE-v1` | `julia/src/RealizableRectangles.jl` | `5831c8a0b53e08cb201f1d1be5812f4fae609287e49135afa13c5ddaf723d037` | reusable raw-only rectangle carrier, commuting additions, derived states/menus/transitions/values, and two exact deterministic generators |
 | `RRECT-TEST-v1` | `julia/test/test_realizable_rectangles.jl` | `88d3a607636693f93045c8c8444c9f2408ffa3f64e8f1497278470875330bc70` | 63 exact shared-catalog, plural-addition, raw-edge, nontrivial-closure, derived-law, transition-pushforward, and value-policy checks |
 | `PRIMSUB-CODE-v1` | `julia/scripts/search_primitive_substitution.jl` | `80d1f551a0cac3d9bc5fed9cc0772712e3ccb5b200247df739a8f35b5647b7d2` | exact common-gap counterexample search and nonmutating `--check` producer |

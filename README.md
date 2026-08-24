@@ -47,8 +47,7 @@ constrained, penalized, and dynamic retention problems.
 | Retrospective financial evidence | Mechanism diagnostics in the documented CRSP/WRDS samples. | Causal, prospective, forecasting, alpha, or deployable-performance claims. |
 
 These categories are tracked separately in
-[`THEOREM_LEDGER.md`](THEOREM_LEDGER.md),
-[`PREPRINT_CLAIM_LEDGER.md`](PREPRINT_CLAIM_LEDGER.md), and the manuscript's
+[`THEOREM_LEDGER.md`](THEOREM_LEDGER.md) and the manuscript's
 validation-status appendix.
 
 ## Quick start
@@ -121,7 +120,7 @@ contract, commands, and public outputs available without licensed access.
 See [`REPRODUCIBILITY.md`](REPRODUCIBILITY.md) for environments, registered
 commands, seeds, and validation gates, and
 [`ARTIFACT_MANIFEST.md`](ARTIFACT_MANIFEST.md) for artifact lineage, hashes,
-producers, and manuscript consumers. The release boundary is documented in
-[`PUBLIC_RELEASE_MANIFEST.md`](PUBLIC_RELEASE_MANIFEST.md).
+producers, and manuscript consumers. Run `make public-audit` to check the
+release and licensed-data boundary.
 
 License terms and third-party exclusions are in [`LICENSE`](LICENSE).

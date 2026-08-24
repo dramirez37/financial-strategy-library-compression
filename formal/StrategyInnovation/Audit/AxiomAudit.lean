@@ -9,8 +9,8 @@ file fail to elaborate.  The command output records the complete transitive
 foundational-dependency footprint of each principal theorem.
 
 The declarations are grouped by theorem ID. The active release reconciliation
-is recorded in `PREPRINT_LEAN_AUDIT.md`; historical implementation-only helper
-inventories remain in development history and are omitted from release export.
+is recorded in `THEOREM_LEDGER.md`; historical implementation-only helper
+inventories are not part of the public repository.
 -/
 
 -- F0: finite-library frontier and closure calculus.

@@ -1701,6 +1701,142 @@ function _configured_path(config, key, artifact_root)
     return joinpath(artifact_root, splitpath(config["outputs"][key])...)
 end
 
+const FLOAT64_ARTIFACT_ATOL = 2e-12
+const FLOAT64_ARTIFACT_RTOL = 2e-12
+const FLOAT64_ARTIFACT_NUMBER = r"[-+]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][-+]?\d+)?"
+const PLATFORM_FLOAT64_OUTPUT_KEYS =
+    ("raw", "summary_json", "policy_summary_csv", "policy_figure_data")
+
+function _csv_rows(text)
+    return [split(line, ','; keepempty = true) for line in split(chomp(text), '\n')]
+end
+
+function _float64_csv_equivalent(
+    committed,
+    generated,
+    approximate_columns;
+    atol = FLOAT64_ARTIFACT_ATOL,
+    rtol = FLOAT64_ARTIFACT_RTOL,
+)
+    committed_rows = _csv_rows(committed)
+    generated_rows = _csv_rows(generated)
+    length(committed_rows) == length(generated_rows) || return false
+    isempty(committed_rows) && return true
+    committed_rows[1] == generated_rows[1] || return false
+
+    header = committed_rows[1]
+    approximate_names = Set(string.(approximate_columns))
+    all(name -> name in header, approximate_names) || return false
+    approximate_indices = Set(findall(name -> name in approximate_names, header))
+    for (committed_row, generated_row) in
+        zip(committed_rows[2:end], generated_rows[2:end])
+        length(committed_row) == length(header) || return false
+        length(generated_row) == length(header) || return false
+        for column_index in eachindex(header)
+            committed_cell = committed_row[column_index]
+            generated_cell = generated_row[column_index]
+            committed_cell == generated_cell && continue
+            column_index in approximate_indices || return false
+            committed_value = tryparse(Float64, committed_cell)
+            generated_value = tryparse(Float64, generated_cell)
+            isnothing(committed_value) && return false
+            isnothing(generated_value) && return false
+            isapprox(
+                committed_value,
+                generated_value;
+                atol,
+                rtol,
+                nans = false,
+            ) || return false
+        end
+    end
+    return true
+end
+
+function _float64_numeric_text_equivalent(
+    committed,
+    generated;
+    atol = FLOAT64_ARTIFACT_ATOL,
+    rtol = FLOAT64_ARTIFACT_RTOL,
+)
+    replace(committed, FLOAT64_ARTIFACT_NUMBER => "#") ==
+        replace(generated, FLOAT64_ARTIFACT_NUMBER => "#") || return false
+    committed_numbers = [
+        parse(Float64, match.match) for
+        match in eachmatch(FLOAT64_ARTIFACT_NUMBER, committed)
+    ]
+    generated_numbers = [
+        parse(Float64, match.match) for
+        match in eachmatch(FLOAT64_ARTIFACT_NUMBER, generated)
+    ]
+    length(committed_numbers) == length(generated_numbers) || return false
+    return all(
+        isapprox(
+            committed_number,
+            generated_number;
+            atol,
+            rtol,
+            nans = false,
+        ) for (committed_number, generated_number) in
+            zip(committed_numbers, generated_numbers)
+    )
+end
+
+function _metadata_platform_signature(text, config)
+    platform_paths = Set(config["outputs"][key] for key in PLATFORM_FLOAT64_OUTPUT_KEYS)
+    lines = split(text, '\n'; keepempty = true)
+    for index in eachindex(lines)
+        stripped = lstrip(lines[index])
+        if any(path -> startswith(stripped, "\"$path\":"), platform_paths)
+            lines[index] = replace(
+                lines[index],
+                r"\"[0-9a-f]{64}\"" => "\"<platform-dependent-float64>\"",
+            )
+        end
+    end
+    return join(lines, '\n')
+end
+
+function _artifact_equivalent(key, committed_path, generated_path, config)
+    committed = read(committed_path, String)
+    generated = read(generated_path, String)
+    committed == generated && return true
+    if key == "summary_json"
+        return _float64_numeric_text_equivalent(committed, generated)
+    elseif key == "policy_summary_csv"
+        return _float64_csv_equivalent(
+            committed,
+            generated,
+            (
+                :axis_value,
+                :cost,
+                :persistence,
+                :discount,
+                :cutoff_coordinate,
+                :bellman_residual,
+                :posterior_error_bound,
+            ),
+        )
+    elseif key == "policy_figure_data"
+        return _float64_csv_equivalent(
+            committed,
+            generated,
+            (
+                :axis_value,
+                :coordinate,
+                :success_probability,
+                :continue_value,
+                :research_value,
+                :research_advantage,
+            ),
+        )
+    elseif key == "metadata"
+        return _metadata_platform_signature(committed, config) ==
+               _metadata_platform_signature(generated, config)
+    end
+    return false
+end
+
 function _report_text(result, config)
     lines = String[
         "# Synthetic Theorem-Mechanism Report",
@@ -1887,11 +2023,11 @@ function _check_outputs(result, config, config_path)
             repository_root = REPOSITORY_ROOT,
             artifact_root = temporary_root,
         )
-        tracked_keys = setdiff(collect(keys(generated)), ["raw"])
+        tracked_keys = sort!(setdiff(collect(keys(generated)), ["raw"]))
         for key in tracked_keys
             committed = _configured_path(config, key, REPOSITORY_ROOT)
             isfile(committed) || error("committed experiment artifact is missing: $committed")
-            read(generated[key]) == read(committed) ||
+            _artifact_equivalent(key, committed, generated[key], config) ||
                 error("experiment artifact drift detected: $(config["outputs"][key])")
         end
     end

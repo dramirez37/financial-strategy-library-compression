@@ -94,6 +94,25 @@
 end
 
 @testset "controlled theorem-mechanism artifact generation" begin
+    @test TheoremMechanismExperiments._float64_csv_equivalent(
+        "label,value\nrow,1\n",
+        "label,value\nrow,1.000000000001\n",
+        (:value,),
+    )
+    @test !TheoremMechanismExperiments._float64_csv_equivalent(
+        "label,value\nrow,1\n",
+        "changed,value\nrow,1.000000000001\n",
+        (:value,),
+    )
+    @test TheoremMechanismExperiments._float64_numeric_text_equivalent(
+        "{\"value\": 1}",
+        "{\"value\": 1.000000000001}",
+    )
+    @test !TheoremMechanismExperiments._float64_numeric_text_equivalent(
+        "{\"value\": 1}",
+        "{\"value\": 1.0001}",
+    )
+
     config = load_mechanism_config()
     result = run_theorem_mechanism_experiments(
         config;

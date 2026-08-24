@@ -1,4 +1,4 @@
-Warning: truncated output (original token count: 32805)
+Warning: truncated output (original token count: 32819)
 Total output lines: 809
 
 # Artifact Manifest
@@ -388,7 +388,7 @@ experiment.
 |---|---|---|---|
 | `SCX-AUDIT-v1` | `COMPLEXITY_AUDIT.md` | `ccae13e1ea1e1d56ff9c41aeafa3c65ce798602a3db8634dfb075c6cf17f4ccf` | identity/general-closure classification, explicit reductions, exact cover formulation, and tractable-case boundaries |
 | `SCX-PROOF-v1` | `SAFE_COMPRESSION_COMPLEXITY_APPENDIX_PROOF.md` | `61dcbe3972891972eecdeaeca09fe43aa2c350069f5e475db50f7c9eb716127b` | appendix-ready human proof of proposed SC-COMP; not a Lean verification or active-manuscript claim |
-| `SCX-CORE-v1` | `julia/src/SafeCompressionComplexity.jl` | `474a227fe9e8d7ed960a86e45d8cfbb1c0f27c7d85a8b11a06226e93e7d769c9` | polynomial-size exact decision-instance…2805 tokens truncated…affc8f10fb7bae0c70088fdc1e42eeef7449900ff16d2dec22efb91f08caf` | all schedule/belief/raw-library burdens, productive/net and channel values, duration, actions, margins, frontiers, and closures |
+| `SCX-CORE-v1` | `julia/src/SafeCompressionComplexity.jl` | `474a227fe9e8d7ed960a86e45d8cfbb1c0f27c7d85a8b11a06226e93e7d769c9` | polynomial-size exact decision-instance…2819 tokens truncated…91f08caf` | all schedule/belief/raw-library burdens, productive/net and channel values, duration, actions, margins, frontiers, and closures |
 | `UB-RESOURCE-SAFE-v1` | `experiments/results/summaries/unified_canonical_resource_safe_compression.csv` | `03efd35881ac2c19e221ce3de6e4e349e90b6973b8c4f81edd1b266b8a9c6f32` | every raw source, complete exact-safe set and minimum-weight tie set, burden reduction, productive values, and enumeration certificates |
 | `UB-RESOURCE-CAPACITY-v1` | `experiments/results/summaries/unified_canonical_resource_capacity.csv` | `79eed7b19cb99eef994ee78fb78408e73712e5185b6efac1fb1da8dc341b0ca9` | every attainable total capacity, complete optimizer correspondence, channel values, forward shadows, exact arc elasticities, and certificates |
 | `UB-RESOURCE-PENALTY-v1` | `experiments/results/summaries/unified_canonical_resource_penalized_intervals.csv` | `18133e7bb0087d0e24b31c5eedfbeeb98201cc3aa614a4317492b3de63436db0` | every actual price breakpoint and intervening interval with complete ties, display selection, net/channel values, and library/action distances |
@@ -537,8 +537,8 @@ the finite grid is not its proof and supplies no universal persistence order.
 
 | Artifact ID | Path | SHA-256 | Producer and validation |
 |---|---|---|---|
-| `TM-CODE-v2` | `julia/scripts/run_theorem_mechanism_experiments.jl` | `758006ad46df6b41e66c910697c66e3811361741071581b22834e53e349f90a0` | exact A--F and seeded Float64 G compatibility runner, prospective S4 ranking fixture, gated output producer, and `--check` implementation |
-| `TM-TEST-v2` | `julia/test/test_theorem_mechanisms.jl` | `16001e2c3308e86ae51ed6ad8ba163f933815bb1ffce9f267148cfd2508d3206` | 61 family, exact-ranking, determinism, identity-gate, and artifact-generation checks |
+| `TM-CODE-v2` | `julia/scripts/run_theorem_mechanism_experiments.jl` | `b49112a11b73523235dd615326f972fe94143cfa1737beb73e6aeae82eb76cb0` | exact A--F and seeded Float64 G compatibility runner, prospective S4 ranking fixture, gated output producer, and platform-stable `--check` implementation |
+| `TM-TEST-v2` | `julia/test/test_theorem_mechanisms.jl` | `fc078fe1d2bea0a5a29e962f7adffee824bda1688a706af4cd4e6d2e50eca0ce` | 65 family, exact-ranking, determinism, identity-gate, artifact-generation, and Float64 comparison-boundary checks |
 | `TM-CONFIG-v2` | `experiments/configs/theorem_mechanisms.toml` | `d4d87ac7707ed426f4c8cb8a7c79d62c95250614459205175de32f26f5b797bb` | committed A--G parameters, six prospective candidate gaps, perturbations, expected rankings/selections, seed, and complete output contract |
 | `TM-RAW-v2` | `experiments/results/raw/theorem_mechanism_observations.csv` | `260a08d80b0755335fd0fa6373f2546464f785a5effede049fc1cbe27f130062` | 850 regenerated long-form observations; ignored but checksum-validated by metadata |
 | `TM-REPORT-v2` | `experiments/results/SYNTHETIC_REPORT.md` | `8d199ba68d150d792f80fc3bc5f1a763193f990bfbd42be9e4bb4ef2a33d80ad` | generated answer-first synthetic report with prospective-design and theorem-scope boundaries |
@@ -548,7 +548,7 @@ the finite grid is not its proof and supplies no universal persistence order.
 | `TM-RANKING-SUMMARY-v2` | `experiments/results/summaries/theorem_mechanism_coverage_ranking_summary.csv` | `685fd66cdd981e88934b842bafa2622ea3731e4b31a9499a72a518c2a9437a8a` | exact rank correlations, selected candidates, values, and top-one regrets |
 | `TM-SELECTION-CSV-v2` | `experiments/results/summaries/theorem_mechanism_coverage_selection.csv` | `8cca0cbd6b7bc3c272977ed2f3d6d7a11f3f3c09fec49dce2d040ddb2d6cf18b` | individual and sequential-marginal top-two selections with exact marginal and union values |
 | `TM-POLICY-CSV-v2` | `experiments/results/summaries/theorem_mechanism_policy_summary.csv` | `e8c4c39996029211eece8b9a15c61280384358f8f8a1f454871a38985a748192` | preserved cost/delay/persistence/discount compatibility regions; Appendix-D regression input only |
-| `TM-METADATA-v2` | `experiments/results/summaries/theorem_mechanism_metadata.json` | `6dd85666f941c3a256b6a8a003656da930d3286658377d1ced4fa18799afa834` | command, environment, RNG, arithmetic, source/config/manifest hashes, and full artifact checksum map |
+| `TM-METADATA-v2` | `experiments/results/summaries/theorem_mechanism_metadata.json` | `d2c0ff9f6b9dc8cf3c459e6fee363a0657970a6edfd46f6674f6080baa3e1a9b` | command, environment, RNG, arithmetic, current source/config/manifest hashes, and full artifact checksum map |
 | `TM-FIG-PRUNING-v2` | `manuscript/figures/theorem_mechanism_pruning_loss.svg` | `49f55dd5a0d96f0b7ff751762b809b90798ed5a98ce56242fa8402445440a284` | exact loss-scaling figure generated from committed CSV |
 | `TM-FIG-DECOMPOSITION-v2` | `manuscript/figures/theorem_mechanism_value_decomposition.svg` | `b7e00fd6646913b82ba92e1b7b5599028edb40ec87d6108af256e1ca12a8a397` | exact stacked decomposition figure generated from committed CSV |
 | `TM-FIG-COVERAGE-v2` | `manuscript/figures/theorem_mechanism_coverage_geometry.svg` | `65f1d113de04967729d354a7d155f83bb11dd266a51feae827c4723a23c5a18a` | four-panel exact preservation/failure comparison generated from committed CSV |

@@ -2,7 +2,7 @@
 
 ## Technical summary
 
-Exact enumeration finds a three-strategy compression of the registered six-strategy source (50.0% reduction) with `OpLoss = 0`, `GenLoss = 0`, and `ValueLoss = 0` under \(\epsilon_{op}=1\), \(\epsilon_{gen}=1/4\), horizon four, and reference belief one. In the eight-strategy expanded benchmark, the exact optimum retains two strategies (75.0% reduction), with `OpLoss = 1/2`, `GenLoss = 0`, and `ValueLoss = 2025/8192` (0.2472).
+Exact enumeration finds a three-strategy compression of the registered six-strategy source (50.0% reduction) with `OpLoss = 0`, `GenLoss = 0`, and `ValueLoss = 0` under $\epsilon_{op}=1$, $\epsilon_{gen}=1/4$, horizon four, and reference belief one. In the eight-strategy expanded benchmark, the exact optimum retains two strategies (75.0% reduction), with `OpLoss = 1/2`, `GenLoss = 0`, and `ValueLoss = 2025/8192` (0.2472).
 
 All four greedy scores reach the exact minimum cardinality on both registered benchmarks. A width-16 Pareto beam also reaches the two-strategy expanded optimum after evaluating 121 of 128 subsets, but it does not certify completeness. These are benchmark results, not approximation ratios. The exact three-loss surface contains negative `GenLoss` rows: deletion can lower passive operating value while increasing the measured research-option residual.
 
@@ -20,7 +20,7 @@ The six-strategy benchmark has 5 exact Pareto libraries among 32 subsets. The ex
 
 The deterministic fixture is randomized-library trial 15, reconstructed from its registered raw catalog parameters and exact seed. The base benchmark is its six-strategy source. The expanded benchmark adds both already-declared candidate strategies, giving eight strategies without changing the raw process. All payoffs, probabilities, Bellman values, losses, budgets, and dominance comparisons use `Rational{BigInt}`.
 
-For source \(L\), sublibrary \(L'\), frozen-library operating value \(W_H\), and unified raw-model value \(V_H\):
+For source $L$, sublibrary $L'$, frozen-library operating value $W_H$, and unified raw-model value $V_H$:
 
 - `OpLoss(L′) = max_b [F_L(b) − F_L′(b)]`;
 - `GenLoss(L′) = [V_H(b,L) − V_H(b,L′)] − [W_H(b,L) − W_H(b,L′)]`;

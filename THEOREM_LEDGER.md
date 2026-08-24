@@ -38,10 +38,10 @@ Multiple statuses may eventually apply, but no status implies another.
 
 The resource layer adopts fixed additive rational retention burden as a
 conservative outer layer. Every active strategy has
-\(w_s>0\), the inactive strategy has \(w_{s_0}=0\), and
-\(W(L)=\sum_{s\in L}w_s\). Productive dynamic value \(V\) and every raw
+$w_s>0$, the inactive strategy has $w_{s_0}=0$, and
+$W(L)=\sum_{s\in L}w_s$. Productive dynamic value $V$ and every raw
 transition remain unchanged; the new net objective is
-\(J_\lambda=V-\lambda W\).
+$J_\lambda=V-\lambda W$.
 
 The additive burden, exact safe-feasibility, minimum-attainment, productive
 value-preservation wrapper, and rational capacity predicates now have a
@@ -54,14 +54,14 @@ boundaries stated in their entries below.
 All existing theorem records retain their statements and statuses. In
 particular, the current frontier--closure equivalence and value-factorization
 results concern productive dynamics. They do not imply equality of
-\(W(L)\) or \(J_\lambda\) for two libraries with the same
-\(K_L=(F_L,C_L)\), and the current rechecked-pruning theorem does not imply a
+$W(L)$ or $J_\lambda$ for two libraries with the same
+$K_L=(F_L,C_L)$, and the current rechecked-pruning theorem does not imply a
 global minimum-resource endpoint.
 
 The manuscript and Lean definitions fix four optimization problems without
 changing that status boundary:
 
-- source-relative exact safe compression minimizes \(W\) under frontier and
+- source-relative exact safe compression minimizes $W$ under frontier and
   general-closure equality;
 - its DI form has the same feasible set only under the current T1/UDI
   sufficiency restrictions plus A-T2-OBS/`RawClosureDetectable` for the
@@ -76,7 +76,7 @@ Generic fixed-finite-family penalty and capacity optimizers are also Lean
 verified, while their typed outer-certified eligible-catalog adapters and the
 replacement argmax remain open. CX-OPT-LAGRANGE-UNSUPPORTED-01 is a
 realized two-active-strategy exact fixture: budget one selects the middle
-point, no nonnegative price supports it, and the Lagrangian gap is \(1/2\).
+point, no nonnegative price supports it, and the Lagrangian gap is $1/2$.
 No strong constrained--penalized equivalence may be attributed to the current
 theorem package.
 
@@ -276,8 +276,8 @@ counterexamples later in this ledger.
   2. an admissible finite source library containing the inactive strategy;
   3. exact rational profiles and an extensive, monotone, idempotent finite
      module closure;
-  4. \(w_{s_0}=0\), strictly positive rational active weights, and additive
-     \(W\);
+  4. $w_{s_0}=0$, strictly positive rational active weights, and additive
+     $W$;
   5. the current T1/UDI raw factorization restrictions for all productive
      preservation conclusions;
   6. A-T2-OBS/`RawClosureDetectable` only for the DI-to-frontier--closure
@@ -287,7 +287,7 @@ counterexamples later in this ledger.
 - **Assumption reconciliation:** Feasibility and finite attainment use only
   the finite source-relative domain. The forward
   frontier--closure-to-UDI/value direction does not use detectability.
-  Strict deletion improvement uses only additivity and \(w_s>0\). The
+  Strict deletion improvement uses only additivity and $w_s>0$. The
   equal-weight corollary means equal active weights; the mandatory inactive
   strategy remains the zero-weight exception. No exchange, matroid, greedy,
   uniqueness, or tie-breaking hypothesis is present.
@@ -387,16 +387,16 @@ counterexamples later in this ledger.
   `thm:penalized-envelope` and Appendix B
 - **Informal statement:** For a fixed nonempty finite feasible library family,
   finite productive values, and nonnegative burdens, the real-price extension
-  \[
+  $$
     J^\star(\lambda)
       =\max_L\{V_\theta(b,L)-\lambda W(L)\}
-  \]
+  $$
   is finite, continuous, nonincreasing, convex, and piecewise affine on
-  \(\lambda\ge0\), with finitely many breakpoints. At a unique optimizer its
+  $\lambda\ge0$, with finitely many breakpoints. At a unique optimizer its
   derivative is minus that library's burden. At an interior tied price, the
   left slope is minus the maximum optimal burden and the right slope is minus
   the minimum optimal burden. For any
-  \(\lambda_1<\lambda_2\), every higher-price optimizer has weakly lower
+  $\lambda_1<\lambda_2$, every higher-price optimizer has weakly lower
   burden than every lower-price optimizer. Raw optimizer libraries need not
   be inclusion-nested.
 - **Exact assumptions:**
@@ -499,15 +499,15 @@ counterexamples later in this ledger.
 - **Informal statement:** For the fixed finite outer-certified library family
   with a zero-burden inactive library, the capacity-constrained productive
   value
-  \[
+  $$
     V^\star(B)
     =
     \max\{V_\theta(b,L):W(L)\le B\}
-  \]
-  is finite and attained for every \(B\ge0\), nondecreasing, and a
+  $$
+  is finite and attained for every $B\ge0$, nondecreasing, and a
   right-continuous finite step function. Every strict value breakpoint is an
   attainable library burden. Discrete shadow value is the nonnegative exact
-  finite difference \(V^\star(B+\delta)-V^\star(B)\). Optimal libraries can
+  finite difference $V^\star(B+\delta)-V^\star(B)$. Optimal libraries can
   switch discontinuously, and capacity marginals need not diminish.
 - **Exact assumptions:**
   1. A-FIN, A-RESOURCE-WEIGHT, A-RESOURCE-OUTER, and
@@ -515,12 +515,12 @@ counterexamples later in this ledger.
   2. A-CAPACITY-VALUE, including a fixed capacity-independent finite family,
      finite rational values and burdens, a zero-burden library, and the
      canonical real-capacity extension;
-  3. \(B\in\mathbb R_{\ge0}\) for the analytic step statement, with the
-     original exact problem recovered at rational \(B\); and
+  3. $B\in\mathbb R_{\ge0}$ for the analytic step statement, with the
+     original exact problem recovered at rational $B$; and
   4. no sign, additivity, submodularity, or optimizer-uniqueness assumption on
      productive values.
 - **Assumption reconciliation:** The primary family is
-  \(\mathfrak L(S_\theta^{\mathrm{elig}})\), not a safe-compression family.
+  $\mathfrak L(S_\theta^{\mathrm{elig}})$, not a safe-compression family.
   The inactive-only library guarantees feasibility at every nonnegative
   capacity. Breakpoints mean strict jumps in value, not every threshold where
   a tied optimizer joins. Ordinary real-variable concavity is separated from
@@ -586,7 +586,7 @@ counterexamples later in this ledger.
   containment in the finite attainable-burden set.
 - **Julia implementation validation:** Exact rational enumeration reproduces
   the one-strategy optimizer jump and the two-unit complementarity profile
-  \((0,0,1)\). The general step and breakpoint statements are human proofs;
+  $(0,0,1)$. The general step and breakpoint statements are human proofs;
   no Julia actual-capacity-breakpoint classifier is registered.
 - **Empirical relevance:** Not assessed.
 
@@ -595,22 +595,22 @@ counterexamples later in this ledger.
 - **Theorem ID:** REP
 - **Manuscript role:** supporting result only; no main contribution label
 - **Specification and human proof:** online supplement S3
-- **Informal statement:** For an outer-certified candidate \(c\notin L\),
+- **Informal statement:** For an outer-certified candidate $c\notin L$,
   additive burden turns replacement feasibility into the exact release
   requirement
-  \[
+  $$
     W(D)\ge[W(L)+w_c-B]_+.
-  \]
+  $$
   Conditional replacement minimizes candidate-relative displacement loss
   among deletion sets meeting this requirement, and net admission value
   decomposes as
-  \[
+  $$
     A_c(b,L,B)
     =
     G_c(b,L)-\ell_c^\star(b,L,B).
-  \]
+  $$
   A capacity-sufficient safe deletion attains the unconstrained augmented
-  value. Admission is strictly preferred to retaining a feasible \(L\)
+  value. Admission is strictly preferred to retaining a feasible $L$
   exactly when incremental candidate value exceeds least required
   displacement loss.
 - **Exact assumptions:**
@@ -618,14 +618,14 @@ counterexamples later in this ledger.
      A-OPTIMIZATION-DOMAIN;
   2. A-REPLACEMENT-OPTIMIZATION, including outer eligibility, unrestricted
      active-incumbent deletion, inclusion-monotone productive value, and
-     \(w_c\le B\);
+     $w_c\le B$;
   3. frontier--closure factorization for the implication from structural
      candidate-relative safety to zero loss; and
-  4. \(W(L)\le B\) plus “retain \(L\)” as the outside option only for the
+  4. $W(L)\le B$ plus “retain $L$” as the outside option only for the
      accept/reject criterion.
 - **Assumption reconciliation:** Pre-admission safety
-  \(K_{L\setminus D}=K_L\), candidate-relative safety
-  \(K_{(L\setminus D)\cup\{c\}}=K_{L\cup\{c\}}\), and equality of the single
+  $K_{L\setminus D}=K_L$, candidate-relative safety
+  $K_{(L\setminus D)\cup\{c\}}=K_{L\cup\{c\}}$, and equality of the single
   fixed value objective are distinct. Pre-admission safety implies
   candidate-relative safety, which implies zero loss. The converses and
   strict loss from structural inequality are not assumed.
@@ -670,11 +670,11 @@ counterexamples later in this ledger.
   `eq:bridge-elasticities`, summarized only as bridge-margin sensitivity in
   Section 5; not a complete operational--generative elasticity theorem
 - **Specification and human proof:** BRIDGE_ELASTICITY_SPEC.md
-- **Informal statement:** For fixed \(d\ge1\), let
-  \(A_{\mathrm{br}}=\beta^d\rho^d\pi C\) and
-  \(M_{\mathrm{br}}=A_{\mathrm{br}}-\kappa>0\). Named-coordinate
+- **Informal statement:** For fixed $d\ge1$, let
+  $A_{\mathrm{br}}=\beta^d\rho^d\pi C$ and
+  $M_{\mathrm{br}}=A_{\mathrm{br}}-\kappa>0$. Named-coordinate
   differentiation gives
-  \[
+  $$
     \varepsilon_\beta^M=\varepsilon_\rho^M
       =\frac{dA_{\mathrm{br}}}{M_{\mathrm{br}}},
     \qquad
@@ -683,11 +683,11 @@ counterexamples later in this ledger.
     \qquad
     \varepsilon_\kappa^M
       =-\frac{\kappa}{M_{\mathrm{br}}}.
-  \]
-  With \(m_{\mathrm{br}}=M_{\mathrm{br}}/A_{\mathrm{br}}\), the
+  $$
+  With $m_{\mathrm{br}}=M_{\mathrm{br}}/A_{\mathrm{br}}$, the
   dimensionless amplification factor is
-  \(\mathcal F_{\mathrm{br}}=1/m_{\mathrm{br}}\). Elasticity magnitudes
-  diverge as \(m_{\mathrm{br}}\downarrow0\); \(M_{\mathrm{br}}\downarrow0\)
+  $\mathcal F_{\mathrm{br}}=1/m_{\mathrm{br}}$. Elasticity magnitudes
+  diverge as $m_{\mathrm{br}}\downarrow0$; $M_{\mathrm{br}}\downarrow0$
   alone is insufficient without a positive gross-scale floor.
 - **Exact assumptions:** A-T4-FIXTURE, A-T4-CANONICAL, and
   A-BRIDGE-MARGIN-ELASTICITY. The elasticity domain strengthens the T4 weak
@@ -697,8 +697,8 @@ counterexamples later in this ledger.
   rational scalar pruning-loss identity on its worthwhile-action domain. BEM
   separately embeds that scalar identity in a real-coordinate extension,
   fixes duration during differentiation, and holds every unnamed primitive
-  constant. Realized loss is \([M_{\mathrm{br}}]_+\), so the signed margin
-  equals pruning loss only on \(M_{\mathrm{br}}>0\).
+  constant. Realized loss is $[M_{\mathrm{br}}]_+$, so the signed margin
+  equals pruning loss only on $M_{\mathrm{br}}>0$.
 - **Lean declarations:**
   `StrategyInnovation.Compression.grossBridge`; `bridgeMargin`; `bridgeLoss`;
   `hasDerivAt_max_zero_of_pos`; the five
@@ -725,12 +725,12 @@ counterexamples later in this ledger.
   elasticity, normalized-margin blow-up, boundary, and exact-example form;
   Julia implementation open
 - **Informal mathematical validity:** Power- and product-rule differentiation of the
-  monomial gives gross elasticities \((d,d,1,1)\). Subtracting fixed cost
+  monomial gives gross elasticities $(d,d,1,1)$. Subtracting fixed cost
   leaves the level derivatives unchanged and divides percentage effects by
-  \(m_{\mathrm{br}}\). The cost elasticity is
-  \(-(1-m_{\mathrm{br}})/m_{\mathrm{br}}\). Direct limits prove divergence
+  $m_{\mathrm{br}}$. The cost elasticity is
+  $-(1-m_{\mathrm{br}})/m_{\mathrm{br}}$. Direct limits prove divergence
   exactly when the normalized positive margin tends to zero. The costless
-  path \(A_{\mathrm{br}}=M_{\mathrm{br}}\downarrow0\) supplies the
+  path $A_{\mathrm{br}}=M_{\mathrm{br}}\downarrow0$ supplies the
   counterexample to unqualified level-margin divergence.
 - **Exact boundary record:** CX-BEM-VANISHING-GROSS-SCALE-01 is the direct
   rational costless family; CX-OPT-ELASTICITY-ZERO-MARGIN-01 is the
@@ -750,29 +750,29 @@ counterexamples later in this ledger.
   `prop:channel-elasticity`
 - **Informal statement:** Along one named positive scalar path on which the
   T5 channel values are differentiable,
-  \[
+  $$
     xI'(x)
     =
     x(\Delta^{\mathrm{op}})'(x)
     +
     x(\Delta^{\mathrm{gen}})'(x).
-  \]
-  If \(I>0\), define
-  \[
+  $$
+  If $I>0$, define
+  $$
     C_x^{\mathrm{op}}
       =\frac{x}{I}(\Delta^{\mathrm{op}})',
     \qquad
     C_x^{\mathrm{gen}}
       =\frac{x}{I}(\Delta^{\mathrm{gen}})'.
-  \]
+  $$
   Then
-  \[
+  $$
     \varepsilon_x^I
     =
     C_x^{\mathrm{op}}+C_x^{\mathrm{gen}}.
-  \]
+  $$
   If both channel levels are positive, this is the convex weighted average
-  \[
+  $$
     \varepsilon_x^I
     =
     \frac{\Delta^{\mathrm{op}}}{I}
@@ -780,7 +780,7 @@ counterexamples later in this ledger.
     +
     \frac{\Delta^{\mathrm{gen}}}{I}
       \varepsilon_x^{\mathrm{gen}}.
-  \]
+  $$
 - **Exact assumptions:** A-CHANNEL-ELASTICITY and the existing T5
   operational--generative accounting definitions. BEM and IDCV are separate
   specializations with their own additional assumptions.
@@ -821,11 +821,11 @@ counterexamples later in this ledger.
   axiom gate.
 - **Julia counterpart:** none. The specification contains direct exact
   rational examples but no reusable routine or generated fixture.
-- **Exact examples:** At \(x=1\), the paths
-  \((O,G)=(100+x,1+10x)\) give operational level dominance and generative
-  sensitivity dominance; \((O,G)=(10+4x,10-3x)\) give contributions
-  \(4/21\) and \(-3/21\), hence total elasticity \(1/21\); and
-  \((O,G)=(0,x)\) give zero operational level with unit generative
+- **Exact examples:** At $x=1$, the paths
+  $(O,G)=(100+x,1+10x)$ give operational level dominance and generative
+  sensitivity dominance; $(O,G)=(10+4x,10-3x)$ give contributions
+  $4/21$ and $-3/21$, hence total elasticity $1/21$; and
+  $(O,G)=(0,x)$ give zero operational level with unit generative
   contribution.
 - **Status:** Lean verified for the real-path derivative, signed contribution,
   positive weighted-average, and three exact-example form; model-specific
@@ -848,17 +848,17 @@ counterexamples later in this ledger.
   `eq:innovation-duration`
 - **Specification and human proof:** manuscript Appendix C,
   `eq:innovation-duration`
-- **Informal statement:** For \(H\ge1\), \(\alpha>0\), and a fixed
+- **Informal statement:** For $H\ge1$, $\alpha>0$, and a fixed
   nonnegative nonzero exposure sequence, define
-  \[
+  $$
     \Psi_H(\alpha;z)=\sum_{t<H}\alpha^tz_t,
     \qquad
     \omega_t^\Psi=\frac{\alpha^tz_t}{\Psi_H},
     \qquad
     D_\Psi=\sum_tt\omega_t^\Psi.
-  \]
+  $$
   Then
-  \[
+  $$
     \frac{\partial\log\Psi_H}{\partial\log\alpha}
     =
     \varepsilon_\beta^\Psi
@@ -866,13 +866,13 @@ counterexamples later in this ledger.
     \varepsilon_\rho^\Psi
     =
     D_\Psi
-  \]
-  for \(\alpha=\beta\rho\) with the other primitive fixed. Defining
-  \[
+  $$
+  for $\alpha=\beta\rho$ with the other primitive fixed. Defining
+  $$
     C_\Psi=\sum_t\omega_t^\Psi(t-D_\Psi)^2
-  \]
+  $$
   gives
-  \[
+  $$
     \frac{\partial D_\Psi}{\partial\log\alpha}
     =
     \frac{\partial^2\log\Psi_H}{\partial(\log\alpha)^2}
@@ -880,21 +880,21 @@ counterexamples later in this ledger.
     C_\Psi\ge0,
     \qquad
     0\le D_\Psi\le H-1.
-  \]
+  $$
 - **Exact assumptions:** A-INNOVATION-DURATION. The componentwise S6
   specialization additionally uses A-S6-DISCOUNT-SURVIVAL to derive
-  \(z_t=(P^tg)(b)\ge0\).
-- **Assumption reconciliation:** The sequence \(z\) is fixed under every
-  derivative. Strict positivity of \(\alpha,\beta,\rho,\Psi_H\) makes each
+  $z_t=(P^tg)(b)\ge0$.
+- **Assumption reconciliation:** The sequence $z$ is fixed under every
+  derivative. Strict positivity of $\alpha,\beta,\rho,\Psi_H$ makes each
   logarithm and normalization defined. The theorem concerns a scalar
   component or abstract scalar exposure polynomial. It does not differentiate
-  the S6 vector in Lean and does not identify \(D_\Psi\) with project or
+  the S6 vector in Lean and does not identify $D_\Psi$ with project or
   policy duration.
-- **Equality cases:** \(D_\Psi=0\) exactly for positive support at date zero;
-  \(D_\Psi=H-1\) exactly for positive support at date \(H-1\); and
-  \(C_\Psi=0\) exactly for singleton positive support. With at least two
-  distinct positive-support dates, \(C_\Psi>0\) and \(D_\Psi\) is strictly
-  increasing in \(\log\alpha\).
+- **Equality cases:** $D_\Psi=0$ exactly for positive support at date zero;
+  $D_\Psi=H-1$ exactly for positive support at date $H-1$; and
+  $C_\Psi=0$ exactly for singleton positive support. With at least two
+  distinct positive-support dates, $C_\Psi>0$ and $D_\Psi$ is strictly
+  increasing in $\log\alpha$.
 - **Lean declarations:** `StrategyInnovation.Coverage.innovationPotential`;
   `innovationFirstMoment`; `innovationSecondMoment`;
   `innovationPotentialDerivative`; `innovationFirstMomentDerivative`;
@@ -928,17 +928,17 @@ counterexamples later in this ledger.
 - **Julia counterpart:** none. The specification gives exact rational
   evaluation formulas and direct finite examples, but no reusable routine or
   generated fixture.
-- **Exact examples:** At \(H=3\), \(\alpha=1/2\), exposure sequences
-  \((2,0,0)\) and \((0,0,8)\) both have potential level two and durations
-  zero and two. Sequences \((0,4,0)\) and \((1,0,4)\) both have potential
+- **Exact examples:** At $H=3$, $\alpha=1/2$, exposure sequences
+  $(2,0,0)$ and $(0,0,8)$ both have potential level two and durations
+  zero and two. Sequences $(0,4,0)$ and $(1,0,4)$ both have potential
   level two and duration one, but convexities zero and one.
 - **Status:** Lean verified for the finite derivative, duration, weighted-
   variance, nonnegativity, and four exact-example core; broader support
   equality cases/bounds and Julia implementation open
 - **Informal mathematical validity:** Differentiating the finite exponential
-  sum in \(\theta=\log\alpha\) makes its first log derivative the weighted
+  sum in $\theta=\log\alpha$ makes its first log derivative the weighted
   mean date. Differentiating normalized weights gives
-  \(\partial\omega_t/\partial\theta=(t-D_\Psi)\omega_t\), so the derivative
+  $\partial\omega_t/\partial\theta=(t-D_\Psi)\omega_t$, so the derivative
   of the mean is the variance. Convex-combination bounds and the exact
   pairwise variance identity give the equality cases.
 - **Lean kernel verification:** Established for the listed IDCV declarations
@@ -965,25 +965,25 @@ actual switches.
 - **Informal statement:** For a declared positive increment, positive base
   capacity, and positive capacity value, the forward capacity arc elasticity
   is
-  \[
+  $$
     \varepsilon_{B,\delta}^{V^\star}
     =
     \frac{V^\star(B+\delta)-V^\star(B)}{V^\star(B)}
     \frac B\delta.
-  \]
+  $$
   It is nonnegative, equals zero on a window contained in one value step, and
   is the base-normalized sum of strict capacity jumps crossed by the window.
   A shrinking arc landing on an interior jump with positive left value has an
   unbounded spike. For positive price and base demand and singleton endpoint
   optimal-burden sets,
-  \[
+  $$
     \varepsilon_{\lambda,\delta}^{W^\star}
     =
     \frac{W^\star(\lambda+\delta)-W^\star(\lambda)}
          {W^\star(\lambda)}
     \frac\lambda\delta
     \le0.
-  \]
+  $$
   At an unequal-burden price tie, scalar optimal demand and its elasticity are
   undefined without a selection rule.
 - **Exact assumptions:** A-CAPACITY-VALUE, A-PENALIZED-ENVELOPE, and
@@ -998,17 +998,17 @@ actual switches.
   capacity thresholds and equal-burden price ties need not move either
   elasticity.
 - **Shadow and spike identity:** CAP's jump decomposition gives
-  \[
+  $$
     \varepsilon_{B,\delta}^{V^\star}
     =
     \frac{B}{\delta V^\star(B)}
     \sum_{\omega\in\mathcal B_C\cap(B,B+\delta]}d(\omega).
-  \]
-  If \(B=\omega-\delta\) and the interval reaches one isolated breakpoint,
+  $$
+  If $B=\omega-\delta$ and the interval reaches one isolated breakpoint,
   the elasticity is
-  \([d(\omega)/V^\star(\omega^-)][(\omega-\delta)/\delta]\).
+  $[d(\omega)/V^\star(\omega^-)][(\omega-\delta)/\delta]$.
 - **Tie boundary:** Define
-  \(\mathcal W^\star(\lambda)=\{W(L):L\in\operatorname{Opt}_\lambda\}\).
+  $\mathcal W^\star(\lambda)=\{W(L):L\in\operatorname{Opt}_\lambda\}$.
   A raw optimizer tie does not prevent scalar demand if this image is a
   singleton. An unequal-burden tie makes it non-singleton; report the maximum
   and minimum active burdens or a unique-endpoint cross-breakpoint arc.
@@ -1018,12 +1018,12 @@ actual switches.
 - **Julia counterpart:** none. CAP and PEN have existing exact Julia routines
   and fixtures, but no reusable CPEL reporting API is implemented.
 - **Exact examples:** The positive-baseline two-module profile
-  \(V^\star=(1,1,2)\) on unit capacities has shadows zero then one,
-  \(\varepsilon_{1,1}^{V^\star}=1\), and
-  \(\varepsilon_{3/2,1/2}^{V^\star}=3\). The registered penalized-switch
+  $V^\star=(1,1,2)$ on unit capacities has shadows zero then one,
+  $\varepsilon_{1,1}^{V^\star}=1$, and
+  $\varepsilon_{3/2,1/2}^{V^\star}=3$. The registered penalized-switch
   branches with burden change two to one give zero elasticity inside the
-  low-price cell, cross-breakpoint elasticity \(-3/4\), and incompatible
-  selected values \(-1\) and zero at the tied base, proving the scalar point
+  low-price cell, cross-breakpoint elasticity $-3/4$, and incompatible
+  selected values $-1$ and zero at the tied base, proving the scalar point
   statistic undefined there.
 - **Status:** proposed supporting result; complete human deduction with direct
   exact rational examples and reused registered boundary evidence; Lean proof
@@ -1085,7 +1085,7 @@ S2 derives the unified raw and compressed Bellman contractions from T1,
 proves unique fixed points and geometric iteration, and formalizes stationary
 selector existence and policy evaluation.
 The exact raw-derived canonical fixture separately checks normalized raw and
-compressed laws, update compression, positive duration, \(P^d\) path
+compressed laws, update compression, positive duration, $P^d$ path
 marginals, operating blocks, raw/compressed finite values, the six-state
 stationary fixed point, selector attainment, lifted raw policy evaluation,
 zero exact residual, and unique displayed actions.
@@ -1113,7 +1113,7 @@ claim depends on it.
 | F6 | Lean verified insertion-value decomposition | positivity only under explicit stochastic monotonicity; not T5 |
 | F7 | Lean verified supporting primitive-adapter passive gap-sum identity | no named bridge to unified T5; not T5 or T6 |
 | F8 | Lean verified primitive finite-state Bellman contraction | compatibility result over F5 timing; unified S2 is publication-facing |
-| S2 | Lean verified unified Bellman contraction and stationary selector | finite exact raw model, positive duration, \(0\le\beta<1\); finite-horizon feasibility remains distinct from stationary iteration |
+| S2 | Lean verified unified Bellman contraction and stationary selector | finite exact raw model, positive duration, $0\le\beta<1$; finite-horizon feasibility remains distinct from stationary iteration |
 | S4 | Lean verified finite coverage-potential representation | gross fixed-candidate occupation value only; not T6 |
 | S6 | Lean-verified finite patience--survival complementarity | exact truncated matrix powers; no infinite resolvent derivative |
 | S7 | Lean-verified finite belief-kernel comparative static | scalar persistence has no universal sign; direction requires gap-aligned discounted occupation |
@@ -1121,7 +1121,7 @@ claim depends on it.
 | UDI | Lean-verified unified cost-sensitive dynamic innovation equivalence | five availability-tagged observations; refinement only in the explicitly preserving comparison class |
 | T2 | Lean-verified raw UDI frontier--closure characterization with exact counterexamples | typed raw factorization for forward; A-T2-OBS for converse |
 | T3 | Lean-verified unified deletion theorem with exact examples | A-T2-OBS only for the process-observation converse; recheck redundancy after every deletion |
-| T4 | Lean-verified sharp normalized bridge loss | exact \(\beta^d\rho^d\pi C-\kappa\); arbitrary loss is scaling only |
+| T4 | Lean-verified sharp normalized bridge loss | exact $\beta^d\rho^d\pi C-\kappa$; arbitrary loss is scaling only |
 | T5 | Lean-verified unified raw insertion-value decomposition | no unconditional generative sign or closure-only split; premium monotonicity uses explicit project-action dominance |
 | T6 | Lean-verified joint descendant-event generative-option lower bound | subtract cost; expose the exact operating and continuation blocks; require a zero-premium deleted comparator and use independence only for the product corollary |
 | CS1 | Lean-verified finite sign-definite comparative statics | all directions are one-way and primitive-conditional; continued-operation delay needs no-waiting-gain |
@@ -1500,7 +1500,7 @@ modules. No assumption was silently added during adjudication.
 - **Manuscript label:** Abstract frontier--closure characterization; deprecated
   supporting theorem, not raw T2.
 - **Informal statement:** If the primitive compressed transition factors
-  through a declared modular generator \(g(b,F,C,q)\), equality of frontier and
+  through a declared modular generator $g(b,F,C,q)$, equality of frontier and
   closure implies DI equivalence and hence equality of every abstract
   finite-horizon value. Conversely, if every distinct pair of realizable
   closures at a common frontier is separated by some belief--project transition
@@ -1605,7 +1605,7 @@ modules. No assumption was silently added during adjudication.
      compressed states.
   2. `operationallyRedundant` and `generativelyRedundant` are defined by exact
      equality after deletion, oriented as
-     \(F_{L^{-s}}=F_L\) and \(C_{L^{-s}}=C_L\). They do not assume that the
+     $F_{L^{-s}}=F_L$ and $C_{L^{-s}}=C_L$. They do not assume that the
      deleted identifier is present; deletion of an absent noninactive
      identifier is a no-op.
   3. `compressedStatePreservingDeletion` is exact compressed-state equality.
@@ -1718,10 +1718,10 @@ modules. No assumption was silently added during adjudication.
 - **Informal statement:** In an explicit finite model, a zero-payoff strategy
   is operationally redundant but uniquely carries the module required to
   generate a future strategy. Frontier-only pruning deletes it while preserving
-  the current frontier. With horizon two and discount \(1/2\), pruning loss is
-  exactly half the future reward. Hence reward \(2M\) realizes every natural
-  target loss \(M\). Under reward cap \(C\), the sharp maximum in this
-  construction is \(C/2\).
+  the current frontier. With horizon two and discount $1/2$, pruning loss is
+  exactly half the future reward. Hence reward $2M$ realizes every natural
+  target loss $M$. Under reward cap $C$, the sharp maximum in this
+  construction is $C/2$.
 - **Exact Lean construction and assumptions:**
   1. `FrontierPruningLoss.model` has singleton belief, module, and project
      types and exactly three strategy identifiers: inactive, dominated, and
@@ -1737,11 +1737,11 @@ modules. No assumption was silently added during adjudication.
      mass at the pruned-library state.
   5. `semantics reward` has deterministic constant belief, the generator's
      primitive compressed transition, no project-cost term, and exact discount
-     \(1/2\). Values are compared at horizon two.
+     $1/2$. Values are compared at horizon two.
   6. The exact-loss theorem assumes `0 ≤ reward`. The arbitrary-loss theorem
      quantifies over `target : ℕ` and chooses rational reward `2 * target`.
   7. `RewardsBoundedBy reward cap` requires every profile at every belief to
-     lie in \([0,C]\). The sharp theorem assumes `0 ≤ cap`.
+     lie in $[0,C]$. The sharp theorem assumes `0 ≤ cap`.
 - **Assumption reconciliation:** Items 1--7 are exactly A-F4-SCALED on the
   F0/F1/F3 interfaces. They do not encode raw candidate generation,
   verification, admission, costs, or local raw-library updates. Arbitrary loss
@@ -1779,7 +1779,7 @@ modules. No assumption was silently added during adjudication.
   project maximum; exact rational normalization; and the horizon-two abstract
   recursion.
 - **Relationship to T4:** F4 is now the primitive-transition specialization
-  \(d=1,\beta=1/2,\rho=\pi=1,\kappa=0\) of the normalized raw-law formula.
+  $d=1,\beta=1/2,\rho=\pi=1,\kappa=0$ of the normalized raw-law formula.
   It remains compiled as supporting regression evidence. Its arbitrary-loss
   result is secondary and uses explicit reward scaling.
 - **Manuscript location:** Corollary
@@ -1829,11 +1829,11 @@ modules. No assumption was silently added during adjudication.
      certificate. The certificate is a model-validity condition; the
      monotonicity and equivalence proofs need equality of costs, not their
      sign.
-  5. The rational discount satisfies \(0\le\beta<1\). Nonnegativity is used
+  5. The rational discount satisfies $0\le\beta<1$. Nonnegativity is used
      by Bellman monotonicity; the strict upper bound is recorded for the model
      but is unnecessary for a finite-horizon recursion.
   6. Each project has `researchDelay : ResearchProject → Nat`. A delay `d`
-     multiplies completion continuation by \(\beta^{d+1}\); the recursion
+     multiplies completion continuation by $\beta^{d+1}$; the recursion
      horizon counts decision epochs.
   7. `none` continues, earns the current frontier, retains compressed state,
      and advances belief. `some q` researches, pays negative current cost, and
@@ -1878,7 +1878,7 @@ modules. No assumption was silently added during adjudication.
   not derive its compressed transition from generation, verification,
   admission, or local frontier--closure updates. Its requested action timing
   gives the frontier reward only to Continue and uses delay only in
-  \(\beta^{d+1}\), whereas unified A-TIMING evolves belief and incumbent
+  $\beta^{d+1}$, whereas unified A-TIMING evolves belief and incumbent
   rewards through the full duration and uses a declared joint completion law.
   Its raw factorization theorem evaluates a raw input by applying the supplied
   compression map by definition; it is not the raw-to-compressed simulation
@@ -2046,15 +2046,15 @@ modules. No assumption was silently added during adjudication.
      libraries, insertion, attained operational frontier, and frontier
      monotonicity.
   2. F5 supplies exact finite-support rational belief kernels, exact
-     expectation, rational discount with (0\le\beta<1), and expectation
+     expectation, rational discount with $0\le\beta<1$, and expectation
      monotonicity.
   3. F6 supplies `LibraryDynamics` and `passiveValue`; passive evolution holds
      the raw library fixed and uses the process's common belief kernel.
   4. `frontierGap` is exactly
-     \(\max\{j_s(b)-F_L(b),0\}\).
+     $\max\{j_s(b)-F_L(b),0\}$.
   5. `discountedGapSum` is the finite recursion
-     \(G_0=0\) and
-     \(G_{n+1}(b)=\Delta_{s,L}(b)+\beta E_b[G_n(B')]\).
+     $G_0=0$ and
+     $G_{n+1}(b)=\Delta_{s,L}(b)+\beta E_b[G_n(B')]$.
   6. `BeliefReachableIn` uses a path of exactly the stated length and requires
      nonzero exact rational transition mass at every step.
   7. The zero criterion assumes the gap is zero at every state reachable in
@@ -2093,7 +2093,7 @@ modules. No assumption was silently added during adjudication.
   horizon, exact-support reachability composition, and nonnegative discount.
 - **Exact example:** the candidate ties at the current belief, then a
   deterministic transition reaches a belief with gap two. Thus horizon-two
-  value is (0+(1/2)\cdot2=1>0).
+  value is $0+(1/2)\cdot2=1>0$.
 - **Difference from intended T5/T6:** F7 proves the passive operational
   component for one already-specified candidate. It does not optimize over
   research actions, expose project costs, derive admitted-candidate
@@ -2137,7 +2137,7 @@ modules. No assumption was silently added during adjudication.
 - **Informal statement:** For the primitive finite compressed-state process of
   F5, the real-valued Bellman operator on the finite
   belief--compressed-state product is a sup-norm contraction with modulus
-  \(\beta\). It has a unique fixed point; value iteration converges uniformly
+  $\beta$. It has a unique fixed point; value iteration converges uniformly
   from every initial table with a geometric error bound; the exact rational
   finite-horizon values, cast to reals, converge to that fixed point; and
   cost-sensitive dynamically innovation-equivalent compressed states have
@@ -2145,17 +2145,17 @@ modules. No assumption was silently added during adjudication.
 - **Exact Lean assumptions:**
   1. F5 supplies nonempty finite belief, compressed-state, and project types,
      exact rational frontier/cost tables, normalized rational belief and
-     research kernels, finite project delays, and \(0\le\beta<1\).
+     research kernels, finite project delays, and $0\le\beta<1$.
   2. The state is exactly the product of the model's belief type and the
      process's compressed-state type. Every real function on this finite type
      is used as a value table; mathlib supplies its finite-product sup norm and
      complete-space instance.
   3. Exact rational probabilities, rewards, costs, and discount are cast to
-     \(\mathbb R\) inside the infinite-horizon operators. No floating-point
+     $\mathbb R$ inside the infinite-horizon operators. No floating-point
      value or approximate probability is introduced.
   4. Continue earns the current frontier and has continuation coefficient
-     \(\beta\). Research pays its current cost and has coefficient
-     \(\beta^{d(q)+1}\). Belief and compressed-state draws use the same nested
+     $\beta$. Research pays its current cost and has coefficient
+     $\beta^{d(q)+1}$. Belief and compressed-state draws use the same nested
      exact expectations as F5.
   5. The Bellman operator is the genuine finite maximum over continue and
      every research project.
@@ -2167,7 +2167,7 @@ modules. No assumption was silently added during adjudication.
   the A-FH-VALUE/F5 interface. Finite-state boundedness is proved from the sup
   norm, not assumed separately. Strict discount constructs the contraction;
   delay gives a smaller coefficient because
-  \(\beta^{d+1}\le\beta\). Completeness is the reason the value codomain is
+  $\beta^{d+1}\le\beta$. Completeness is the reason the value codomain is
   real even though all process data and finite-horizon values remain rational.
 - **Lean file:**
   formal/StrategyInnovation/Bellman/Contraction.lean.
@@ -2181,9 +2181,9 @@ modules. No assumption was silently added during adjudication.
 | Lean declaration | Exact role | #print axioms result |
 |---|---|---|
 | StrategyInnovation.BellmanContraction.realValueFunction_bounded | every real table is bounded by its finite-state sup norm | [propext, Classical.choice, Quot.sound] |
-| StrategyInnovation.BellmanContraction.actionOperator_lipschitz | every continue/research action is globally \(\beta\)-Lipschitz | [propext, Classical.choice, Quot.sound] |
+| StrategyInnovation.BellmanContraction.actionOperator_lipschitz | every continue/research action is globally $\beta$-Lipschitz | [propext, Classical.choice, Quot.sound] |
 | StrategyInnovation.BellmanContraction.bellmanOperator_lipschitz | finite maximum preserves the common sup-norm bound | [propext, Classical.choice, Quot.sound] |
-| StrategyInnovation.BellmanContraction.bellmanOperator_contracting | Bellman is a contraction with modulus \(\beta<1\) | [propext, Classical.choice, Quot.sound] |
+| StrategyInnovation.BellmanContraction.bellmanOperator_contracting | Bellman is a contraction with modulus $\beta<1$ | [propext, Classical.choice, Quot.sound] |
 | StrategyInnovation.BellmanContraction.infiniteHorizonValue_isFixedPoint | declared infinite-horizon value satisfies Bellman | [propext, Classical.choice, Quot.sound] |
 | StrategyInnovation.BellmanContraction.exists_bellman_fixedPoint | fixed-point existence | [propext, Classical.choice, Quot.sound] |
 | StrategyInnovation.BellmanContraction.bellman_fixedPoint_unique | fixed-point uniqueness | [propext, Classical.choice, Quot.sound] |
@@ -2197,7 +2197,7 @@ modules. No assumption was silently added during adjudication.
 | StrategyInnovation.BellmanContraction.infiniteHorizonValue_eq_of_dynamicInnovationEquivalent | DI-equivalent states have equal fixed-point value | [propext, Classical.choice, Quot.sound] |
 
 - **Proof dependencies:** finite-support real expectation bounds; evaluation
-  bounded by the finite-product sup norm; \(\beta^{d+1}\le\beta\); a direct
+  bounded by the finite-product sup norm; $\beta^{d+1}\le\beta$; a direct
   two-sided proof that finite maxima preserve a uniform distance bound; and
   mathlib's contraction fixed-point, convergence, uniqueness, and
   geometric-estimate theorems. The rational/real bridge is proved by
@@ -2247,19 +2247,19 @@ modules. No assumption was silently added during adjudication.
 - **Theorem ID:** T1
 - **Manuscript label:** `thm:raw-to-compressed-projection`
 - **Informal statement:** In the unified semi-Markov raw model, admitted
-  outcomes update \(K_L=(F_L,C_L)\) locally; the induced joint
+  outcomes update $K_L=(F_L,C_L)$ locally; the induced joint
   terminal-belief/compressed-state law is a controlled Markov projection; and
-  every finite calendar-horizon optimal value factors through \((b,K_L)\).
-- **Finite target statement:** Use the raw generator \(G\), verification rule
-  \(\nu\), derived admitted law \(\Gamma\), and declared joint
-  belief-path/outcome coupling \(\Lambda_q\). Prove RC1--RC3 and, for every
+  every finite calendar-horizon optimal value factors through $(b,K_L)$.
+- **Finite target statement:** Use the raw generator $G$, verification rule
+  $\nu$, derived admitted law $\Gamma$, and declared joint
+  belief-path/outcome coupling $\Lambda_q$. Prove RC1--RC3 and, for every
   calendar horizon,
   belief, and admissible library,
-  \[
+  $$
     V_h^{\mathrm{raw}}(b,L)=\bar V_h(b,K_L),
     \qquad
     K_{L\oplus o}=\operatorname{addK}(K_L,o).
-  \]
+  $$
   The controlled-Markov statement is for embedded decision epochs. A
   calendar-time theorem with multi-period projects must include the
   in-progress project state.
@@ -2304,7 +2304,7 @@ modules. No assumption was silently added during adjudication.
   models gave 20,462 local-update checks, 10,869 raw/compressed joint-law
   comparisons, and 39,060 raw/compressed calendar-value equalities without
   failure. FX-T1-CORRELATED-01 has dependent terminal belief and admission:
-  the joint value is \(1/4\), the product-law value would be \(1/8\), and the
+  the joint value is $1/4$, the product-law value would be $1/8$, and the
   raw/compressed projection still agrees.
 - **Manuscript location:** Section 3,
   `thm:raw-to-compressed-projection`, with the exact finite calendar timing,
@@ -2333,7 +2333,7 @@ modules. No assumption was silently added during adjudication.
   cost, the full belief clock, non-product completion coupling, raw-derived
   compressed transition pushforwards, and raw/compressed finite
   calendar-horizon values and policies. The correlated fixture retains value
-  \(1/4\), and the complete generated exact-fixture bridge remains byte-stable.
+  $1/4$, and the complete generated exact-fixture bridge remains byte-stable.
 - **Empirical relevance:** Not assessed.
 
 ### T2 — Frontier–closure characterization
@@ -2343,15 +2343,15 @@ modules. No assumption was silently added during adjudication.
   theorem label thm:raw-frontier-closure-characterization.
 - **Informal statement:** Under observable raw closure detectability, final
   cost-sensitive dynamic innovation equivalence is exactly equality of the
-  operational frontier and generative closure, hence equality of \(K\).
+  operational frontier and generative closure, hence equality of $K$.
 - **Finite Lean statement:**
-  \[
+  $$
     L\sim_{\mathrm{DI}}L'
     \iff
     (F_L=F_{L'}\land C_L=C_{L'})
     \iff
     K_L=K_{L'}.
-  \]
+  $$
 - **Exact assumptions:** T1/UDI's finite exact raw Projection.Model. Its field
   types force generation and primitive admission to depend only on project,
   belief, and closure; availability, cost, and completion coupling depend only
@@ -2418,8 +2418,8 @@ modules. No assumption was silently added during adjudication.
 - **Theorem ID:** T3
 - **Manuscript label:** Unified innovation-safe deletion
 - **Informal statement:** For one noninactive raw-library deletion,
-  operational redundancy \(F_{L^{-s}}=F_L\) and generative redundancy
-  \(C_{L^{-s}}=C_L\) are exactly preservation of the realizable compressed
+  operational redundancy $F_{L^{-s}}=F_L$ and generative redundancy
+  $C_{L^{-s}}=C_L$ are exactly preservation of the realizable compressed
   state. T1 then preserves unified process observations, every finite-horizon
   raw value, contraction fixed-point value, pairwise stationary action-value
   comparisons, and optimal actions. Under raw closure detectability, unified
@@ -2431,7 +2431,7 @@ modules. No assumption was silently added during adjudication.
   2. `RedundantDeletion ... ↔
      compressedLibraryState ... L⁻ = compressedLibraryState ... L`.
   3. The conjunction constructs `InnovationSafeDeletion`, whose fields are
-     unified dynamic innovation equivalence of \(L^{-s}\) and \(L\), and raw
+     unified dynamic innovation equivalence of $L^{-s}$ and $L$, and raw
      value equality for every natural horizon and belief.
   4. A `DiscountedContractionModel` gives fixed-point value equality,
      preservation of every pairwise `fixedPointActionValue` comparison, and
@@ -2510,38 +2510,38 @@ modules. No assumption was silently added during adjudication.
 - **Manuscript label:** Sharp normalized frontier-only pruning loss
 - **Informal statement:** In the canonical finite raw construction, an
   operationally dominated bridge uniquely carries the module required for one
-  descendant after delay \(d\). The raw generator assigns survival-gated mass
-  \(\rho^d\), the primitive admission row accepts the descendant with
-  probability \(\pi\), and pruning makes the descendant mass zero. With
-  descendant reward capped at \(C\), discount \(\beta\), and initiation cost
-  difference \(\kappa-0\), exact pruning loss is
-  \[
+  descendant after delay $d$. The raw generator assigns survival-gated mass
+  $\rho^d$, the primitive admission row accepts the descendant with
+  probability $\pi$, and pruning makes the descendant mass zero. With
+  descendant reward capped at $C$, discount $\beta$, and initiation cost
+  difference $\kappa-0$, exact pruning loss is
+  $$
     \beta^d\rho^d\pi C-\kappa
-  \]
+  $$
   whenever the net research opportunity is nonnegative.
-- **Exact assumptions:** `Parameters` requires \(d\ge1\),
-  \(0\le\beta<1\), \(0\le\rho\le1\), \(0\le\pi\le1\), \(C\ge0\),
-  \(\kappa\ge0\), and
-  \(\kappa\le\beta^d\rho^d\pi C\). The exact finite bridge catalog has
+- **Exact assumptions:** `Parameters` requires $d\ge1$,
+  $0\le\beta<1$, $0\le\rho\le1$, $0\le\pi\le1$, $C\ge0$,
+  $\kappa\ge0$, and
+  $\kappa\le\beta^d\rho^d\pi C$. The exact finite bridge catalog has
   singleton belief/module/project types, zero inactive and bridge profiles,
-  one cap-\(C\) descendant, identity closure, and the bridge as unique module
+  one cap-$C$ descendant, identity closure, and the bridge as unique module
   carrier. Candidate generation and admission are explicit raw definitions.
 - **Exact value convention:** `canonicalUnprunedValue` is the one-project
   Bellman envelope between zero-valued Continue and initiation cost plus the
   expectation under `Raw.admittedCandidateDistribution`.
   `canonicalPrunedValue` uses the pruned raw law and is zero. The terminal
-  descendant payoff is discounted by \(\beta^d\), matching T1 timing.
+  descendant payoff is discounted by $\beta^d$, matching T1 timing.
 - **Sharpness and normalization:** For fixed
-  \((\beta,\rho,\pi,d,\kappa)\), every reward \(R\in[0,C]\) has loss bounded
-  by the cap formula, and \(R=C\) attains it. If the net opportunity is
+  $(\beta,\rho,\pi,d,\kappa)$, every reward $R\in[0,C]$ has loss bounded
+  by the cap formula, and $R=C$ attains it. If the net opportunity is
   positive, loss divided by maximum attainable net descendant value is one.
-  If \(C\le1\), loss is at most one, so the primary theorem uses no unbounded
+  If $C\le1$, loss is at most one, so the primary theorem uses no unbounded
   reward.
 - **Operation during research:** Continued operation adds the exact difference
   of incumbent operating-reward blocks. Under operational redundancy and a
   common belief-path law that difference is zero, so the formula is unchanged.
-- **Scaling boundary:** For target \(M\ge0\), the secondary corollary chooses
-  \(d=1,\beta=1/2,\rho=\pi=1,\kappa=0,C=2M\), giving exact loss \(M\).
+- **Scaling boundary:** For target $M\ge0$, the secondary corollary chooses
+  $d=1,\beta=1/2,\rho=\pi=1,\kappa=0,C=2M$, giving exact loss $M$.
   Arbitrary additive loss is therefore reward scaling, not a normalized
   conclusion.
 - **Lean declarations:**
@@ -2559,25 +2559,25 @@ modules. No assumption was silently added during adjudication.
   `formal/StrategyInnovation/Audit/NormalizedPruningLoss.lean`.
 - **Proof dependencies:** exact raw generation, primitive admission, derived
   admitted-candidate mass, rational expectation of a point-supported payoff,
-  unified \(\beta^d\) terminal timing, finite frontier/closure bridge facts,
+  unified $\beta^d$ terminal timing, finite frontier/closure bridge facts,
   and exact ordered-field algebra.
 - **`#print axioms` result:** Every publication-facing T4 declaration reports
   exactly `[propext, Classical.choice, Quot.sound]`; no user-declared axiom or
   placeholder occurs.
 - **Julia test or experiment counterpart:** Existing exact F4 and
   FX-T4-UNIFIED-01 fixtures cover the deterministic specialization
-  \(d=1,\rho=\pi=1,\kappa=0\). No Julia source changed in this proof run.
+  $d=1,\rho=\pi=1,\kappa=0$. No Julia source changed in this proof run.
 - **Manuscript location:** Theorem
   `thm:normalized-frontier-pruning-loss`; scaling Corollary
   `thm:scaled-frontier-pruning-loss`; the deterministic
-  \((d,\beta,\rho,\pi,\kappa,C)=(1,1/2,1,1,0,4)\) specialization is the worked
+  $(d,\beta,\rho,\pi,\kappa,C)=(1,1/2,1,1,0,4)$ specialization is the worked
   bridge library in Section 4.
 - **Status:** Lean verified and numerically validated in the deterministic
   specialization
 - **Falsification classification:** exact normalized formula and cap bound;
   unrestricted normalized arbitrary loss is superseded.
 - **Informal mathematical validity:** Raw descendant mass is
-  \(\rho^d\pi\). Unified discount and cost accounting give the displayed
+  $\rho^d\pi$. Unified discount and cost accounting give the displayed
   Bellman envelope. Monotonicity in the capped reward gives sharpness.
 - **Lean kernel verification:** Focused and comprehensive audits pass with
   only the standard foundations listed above.
@@ -2596,23 +2596,23 @@ modules. No assumption was silently added during adjudication.
   operational effect plus the insertion-induced change in the research-option
   premium.
 - **Finite target statement:** For every exact finite T1 process, horizon
-  \(h\), belief \(b\), raw library \(L\), and catalog strategy \(s\), define
-  \[
+  $h$, belief $b$, raw library $L$, and catalog strategy $s$, define
+  $$
     \Omega_h=U_h-P_h,\quad
     \mathcal I_h=U_h(L\cup\{s\})-U_h(L),\quad
     \Delta_h^{\rm op}=P_h(L\cup\{s\})-P_h(L),
-  \]
+  $$
   and
-  \(\Delta_h^{\rm gen}=\Omega_h(L\cup\{s\})-\Omega_h(L)\).
+  $\Delta_h^{\rm gen}=\Omega_h(L\cup\{s\})-\Omega_h(L)$.
   Then
-  \(\mathcal I_h=\Delta_h^{\rm op}+\Delta_h^{\rm gen}\).
-  Frontier-silent insertion gives \(\Delta_h^{\rm op}=0\);
-  frontier-and-closure-silent insertion gives \(\mathcal I_h=0\); library
+  $\mathcal I_h=\Delta_h^{\rm op}+\Delta_h^{\rm gen}$.
+  Frontier-silent insertion gives $\Delta_h^{\rm op}=0$;
+  frontier-and-closure-silent insertion gives $\mathcal I_h=0$; library
   inclusion weakly lowers a fixed candidate's operational insertion value.
-  Under A-T5-PROJECT-DOMINANCE, closure enrichment cannot lower \(\Omega_h\).
+  Under A-T5-PROJECT-DOMINANCE, closure enrichment cannot lower $\Omega_h$.
 - **Exact assumptions:** T1 assumptions and A-T5-BASELINE. Premium
   monotonicity additionally assumes A-T5-PROJECT-DOMINANCE. The bridge witness
-  specializes to one belief, duration one, \(\beta=1/2\), zero cost, suspended
+  specializes to one belief, duration one, $\beta=1/2$, zero cost, suspended
   operation, a closure-indexed raw generator, and unit primitive admission.
 - **Excluded stronger claims:** No unconditional sign is assigned to
   generative insertion value. Closure inclusion alone is not claimed to raise
@@ -2652,7 +2652,7 @@ modules. No assumption was silently added during adjudication.
   `julia/scripts/search_revision_counterexamples.jl`; 19,468 unified
   premium-recursion checks passed across 512 randomized models with active and
   suspending projects, durations one through three, and exact joint completion
-  laws. CX-T5-SEPARABILITY-01 gives premia \(1/2\) and \(1\) under equal
+  laws. CX-T5-SEPARABILITY-01 gives premia $1/2$ and $1$ under equal
   initial frontier and closure. These tests target the earlier premium
   recursion and remain ancillary; no new Julia implementation was introduced.
 - **Manuscript location:** Section 5 at `def:innovation-components`,
@@ -2684,9 +2684,9 @@ modules. No assumption was silently added during adjudication.
   part of that project's cost-adjusted joint descendant-event gain, including
   the exact unified operating-timing adjustment.
 - **Verified finite statement:** Under A-T6-CARRIER-BOUND, write
-  \(L^+=L\cup\{s\}\). For project \(q\), descendant \(g\), \(d_q\le h\), and
-  \(G\ge0\),
-  \[
+  $L^+=L\cup\{s\}$. For project $q$, descendant $g$, $d_q\le h$, and
+  $G\ge0$,
+  $$
     \Delta_h^{\rm gen}(s\mid b,L)
     \ge
     \max\!\left\{
@@ -2694,29 +2694,28 @@ modules. No assumption was silently added during adjudication.
       +\beta^{d_q}\sum_{b'}
         \eta_{q,g}(b'\mid b,K_{L^+})G(b'),0
     \right\}.
-  \]
-  Here \(\eta_{q,g}\) is the terminal pushforward of the existing joint
+  $$
+  Here $\eta_{q,g}$ is the terminal pushforward of the existing joint
   belief-path/admitted-outcome completion law, with
-  \(0\le\eta_{q,g}(b')\le1\) and
-  \(\sum_{b'}\eta_{q,g}(b')\le1\). No independence is assumed.
+  $0\le\eta_{q,g}(b')\le1$ and
+  $\sum_{b'}\eta_{q,g}(b')\le1$. No independence is assumed.
   The committed-project value is also decomposed exactly into initiation
   cost, expected operating reward during research, discounted frozen passive
   continuation, discounted joint descendant gain, and discounted remaining
   continuation. The remaining term includes every other admitted outcome and
   any surplus above the declared floor on `some g`.
   Under the product specialization
-  \(\eta_{q,g}=\pi\rho^{d_q}\mu_{q,d_q}\), the theorem recovers the earlier
-  adjusted formula and, when \(A^{\rm op}_{q,h}=0\), the requested
-  \(\max\{-\kappa+\beta^{d_q}\pi\rho^{d_q}
-  \mathbb E_b[G(B_{d_q})],0\}\) formula.
+  $\eta_{q,g}=\pi\rho^{d_q}\mu_{q,d_q}$, the theorem recovers the earlier
+  adjusted formula and, when $A^{\rm op}_{q,h}=0$, the requested
+  $\max\{-\kappa+\beta^{d_q}\pi\rho^{d_q}\mathbb E_b[G(B_{d_q})],0\}$ formula.
 - **Exact assumptions:** T1 assumptions plus A-T5-BASELINE and
-  A-T6-CARRIER-BOUND. In particular, frontiers agree; \(q\) is feasible only
+  A-T6-CARRIER-BOUND. In particular, frontiers agree; $q$ is feasible only
   with the carrier and fits the horizon; the deleted comparator premium is
   zero; and the complete successful continuation improvement is at least
-  \(G(B_{d_q})\ge0\) on every length-\(d_q\) path ending in `some g`.
+  $G(B_{d_q})\ge0$ on every length-$d_q$ path ending in `some g`.
   Insertion-only update, passive inclusion monotonicity, and full-over-passive
   dominance derive nonnegativity of every omitted outcome. Raw generation
-  mass \(\rho^{d_q}\), primitive admission \(\pi\), and process-wide
+  mass $\rho^{d_q}$, primitive admission $\pi$, and process-wide
   `ConditionalIndependence` are assumptions only of the product corollary.
 - **Manuscript--Lean assumption reconciliation:**
 
@@ -2724,18 +2723,18 @@ modules. No assumption was silently added during adjudication.
   |---|---|---|
   | finite unified process and declared joint law | `Model` and `process.completion` | exact |
   | frontier silence | `JointGenerativeCarrierCertificate.frontier_silent` | exact |
-  | \(q\) enabled after insertion | `.project_enabled` | exact |
-  | \(q\) unavailable before insertion | `.project_unavailable_without` | exact |
-  | \(d_q\le h\) | `.duration_fits` | exact |
-  | exact initiation cost \(\kappa\) | `.researchCost_eq` | exact |
+  | $q$ enabled after insertion | `.project_enabled` | exact |
+  | $q$ unavailable before insertion | `.project_unavailable_without` | exact |
+  | $d_q\le h$ | `.duration_fits` | exact |
+  | exact initiation cost $\kappa$ | `.researchCost_eq` | exact |
   | zero-premium deleted comparator | `.deleted_premium_zero` | exact |
-  | \(G(b')\ge0\) | `.gain_nonnegative` | exact |
+  | $G(b')\ge0$ | `.gain_nonnegative` | exact |
   | supportwise complete-continuation floor on `some g` | `.descendant_gain` over every full `BeliefPath` | exact, slightly stronger off support |
   | omitted outcomes nonnegative | `library_le_rawLibraryUpdate`, `passiveValue_mono_of_library_inclusion`, `passiveValue_le_fullValue` | derived exactly for the current insertion-only model |
   | no independence in primary theorem | no independence field in `JointGenerativeCarrierCertificate` | exact |
-  | joint event mass \(\eta\) | `jointDescendantMass` | exact terminal pushforward |
-  | \(0\le\eta_{q,g}(b')\le1\) | `jointDescendantMass_nonnegative`, `jointDescendantMass_le_one`, `jointDescendantMass_mem_unitInterval` | derived from completion nonnegativity and unit total mass |
-  | \(\sum_{b'}\eta_{q,g}(b')\le1\) | `jointDescendantEventMass`, `jointDescendantEventMass_nonnegative`, `jointDescendantEventMass_le_one` | exact distinguished-outcome subprobability bound |
+  | joint event mass $\eta$ | `jointDescendantMass` | exact terminal pushforward |
+  | $0\le\eta_{q,g}(b')\le1$ | `jointDescendantMass_nonnegative`, `jointDescendantMass_le_one`, `jointDescendantMass_mem_unitInterval` | derived from completion nonnegativity and unit total mass |
+  | $\sum_{b'}\eta_{q,g}(b')\le1$ | `jointDescendantEventMass`, `jointDescendantEventMass_nonnegative`, `jointDescendantEventMass_le_one` | exact distinguished-outcome subprobability bound |
   | exact operating block | `expectedOperatingBlock` and `operatingResearchAdjustment_eq_exactBlocks` | exact |
   | frozen passive continuation | `expectedFrozenPassiveContinuation` | exact |
   | continuation after other outcomes | `remainingContinuationGain`, `expectedRemainingContinuationGain` | exact residual without double counting |
@@ -2743,22 +2742,22 @@ modules. No assumption was silently added during adjudication.
   | operating adjustment | `operatingResearchAdjustment` | exact benefit-sign convention |
   | product specialization | `expectedJointDescendantGain_eq_independentProduct` plus `GenerativeCarrierCertificate.toJoint` | exact sufficient corollary |
 - **Timing statement:** `operatingResearchAdjustment` is
-  \[
+  $$
     \mathbb E[G^{\rm op}+\beta^{d_q}P_{h-d_q}(B_{d_q},L^+)]
       -P_h(b,L^+).
-  \]
+  $$
   It is never omitted. The simpler formula assumes it is zero. Suspended
   operation can make it negative.
 - **Derived consequences:** the joint scalar guarantee is monotone in
-  pointwise \(\eta\), pointwise \(G\), and the benefit-signed operating
-  adjustment, and antitone in \(\kappa\). The product corollary retains the
-  zero/strict-positive conditions and monotonicities in \(\pi,\rho,G,\kappa\)
+  pointwise $\eta$, pointwise $G$, and the benefit-signed operating
+  adjustment, and antitone in $\kappa$. The product corollary retains the
+  zero/strict-positive conditions and monotonicities in $\pi,\rho,G,\kappa$
   under its fixed-factor assumptions. Zero premia on both libraries imply
   exact zero generative value.
 - **Excluded stronger claims:** Cost cannot be omitted. The conclusion can
   fail if insertion changes the frontier or the deleted state has a positive
   innovation premium. A harmful omitted outcome requires an explicit
-  correction. Terminal \(G\) must be a supportwise floor on complete
+  correction. Terminal $G$ must be a supportwise floor on complete
   continuation, including future project-menu changes. Conditional
   independence is not inferred from T1's two marginals. Duration has no
   unconditional sign when it changes the joint law, belief occupation,
@@ -2869,13 +2868,13 @@ modules. No assumption was silently added during adjudication.
   and product-of-marginals substitution under correlation. The cost-free
   probability-times-gap conjecture remains false.
 - **Informal mathematical validity:** Full value dominates Continue and the
-  forced \(q\) action. Subtracting the retained passive value gives the exact
+  forced $q$ action. Subtracting the retained passive value gives the exact
   operating adjustment plus discounted completion gain. All omitted outcomes
   are nonnegative because raw update is insertion-only, passive value is
   inclusion-monotone, and full value dominates passive value. The primary
   proof retains joint path/outcome mass throughout. Conditional independence
   and the derived admitted law factor that term as
-  \(\rho^{d_q}\pi\) times terminal occupation only in the corollary.
+  $\rho^{d_q}\pi$ times terminal occupation only in the corollary.
 - **Lean kernel verification:** Focused and comprehensive axiom audits pass
   with only the standard foundations listed above. The exact duration
   counterexample proves both longer-higher and longer-lower scalar
@@ -2906,35 +2905,35 @@ modules. No assumption was silently added during adjudication.
   expectations for every order-monotone continuation. Strong calendar-horizon
   induction proves compressed and raw value monotonicity. Under
   `FrontierIndependentPrimitives`, same closure and
-  \(F_0\le F_1\) induce that order, hence
-  \[
+  $F_0\le F_1$ induce that order, hence
+  $$
     V_h(b,F_0,C)\le V_h(b,F_1,C).
-  \]
-- **Frontier saturation statement:** For any fixed catalog strategy \(s\),
-  pointwise \(F_0\le F_1\) implies
-  \[
+  $$
+- **Frontier saturation statement:** For any fixed catalog strategy $s$,
+  pointwise $F_0\le F_1$ implies
+  $$
     \Delta_h^{\mathrm{op}}(s\mid F_1)
       \le \Delta_h^{\mathrm{op}}(s\mid F_0)
-  \]
+  $$
   under the common passive belief recursion.
 - **Cost statement:** `compressedValueWithCost` replaces only the unified
   model's nonnegative research-cost table. If
-  \(\kappa_0\le\kappa_1\) pointwise, then
-  \(V_h^{\kappa_1}\le V_h^{\kappa_0}\) for every horizon, belief, and
+  $\kappa_0\le\kappa_1$ pointwise, then
+  $V_h^{\kappa_1}\le V_h^{\kappa_0}$ for every horizon, belief, and
   compressed state.
 - **Admission and survival statement:** For positive duration and exact
-  \(0\le\pi,\rho\le1\), the otherwise fixed binary law has success mass
-  \(\pi\rho^d\). If its success continuation weakly dominates failure,
-  project return is monotone separately in \(\pi\) and \(\rho\).
+  $0\le\pi,\rho\le1$, the otherwise fixed binary law has success mass
+  $\pi\rho^d$. If its success continuation weakly dominates failure,
+  project return is monotone separately in $\pi$ and $\rho$.
 - **Delay statement:** Unified elapsed return is
-  \[
+  $$
     R_d=-\kappa+\sum_{t<d}\beta^tF_t+\beta^dW.
-  \]
-  For \(0<d_0\le d_1\), \(0\le\beta\le1\), nonnegative \(F_t\) and \(W\),
+  $$
+  For $0<d_0\le d_1$, $0\le\beta\le1$, nonnegative $F_t$ and $W$,
   delay is antitone when every additional date satisfies
-  \(F_t\le(1-\beta)W\). Suspended operation is a corollary. The requested
+  $F_t\le(1-\beta)W$. Suspended operation is a corollary. The requested
   nonnegative-only continued-operation statement is false:
-  \(\beta=1/2,F_t=W=1\) gives \(R_1=3/2<R_2=7/4\).
+  $\beta=1/2,F_t=W=1$ gives $R_1=3/2<R_2=7/4$.
 - **Closure statement:** `GenerativelyDominates` is the existing T5
   closure-enrichment/project-dominance order. It implies weakly larger full
   raw value. Mere closure inclusion has no sign.
@@ -3013,44 +3012,44 @@ modules. No assumption was silently added during adjudication.
   an antitone common descendant gap, nonnegative rich-menu exposure, and zero
   exposure for every feasible poor-menu action.
 - **Finite target statement:** For
-  \[
+  $$
     (F_0,C_0),\ (F_0,C_1),\ (F_1,C_0),\ (F_1,C_1),
     \qquad F_0\le F_1,\ C_0\subseteq C_1,
-  \]
+  $$
   define
-  \[
+  $$
     \Delta_CV_h(F;C_1,C_0)=V_h(F,C_1)-V_h(F,C_0)
-  \]
+  $$
   and
-  \[
+  $$
     J_h=\Delta_CV_h(F_1;C_1,C_0)
        -\Delta_CV_h(F_0;C_1,C_0).
-  \]
+  $$
   Under A-T7-GEN-INDEPENDENCE and A-T7-RELATIVE-SATURATION,
-  \[
+  $$
     J_h\le0
-  \]
+  $$
   for every finite calendar horizon and belief.
 - **Primitive sufficient-condition statement:** Under
   A-T7-COMMON-GAP, each action value has the exact form
-  \[
+  $$
     Q_h(F_i,C_j,a)
       =B_{h,i}+\eta^j_{h,a}+\lambda^j_{h,a}g_{h,i},
-  \]
-  with \(g_{h,1}\le g_{h,0}\), nonnegative rich exposures, and zero feasible
+  $$
+  with $g_{h,1}\le g_{h,0}$, nonnegative rich exposures, and zero feasible
   poor exposures. Therefore every rich/poor relative action difference
   changes by
-  \(\lambda^1_{h,a_1}(g_{h,1}-g_{h,0})\le0\), which supplies
+  $\lambda^1_{h,a_1}(g_{h,1}-g_{h,0})\le0$, which supplies
   A-T7-RELATIVE-SATURATION and invokes unchanged T7.
 - **Recursive preservation statement:** In the canonical specialization,
-  \[
+  $$
     g_{0,i}(b)=\bar g_i(b),\qquad
     g_{h+1,i}(b)
       =s_i(b)+\beta E_{P(b,\cdot)}[g_{h,i}],
-  \]
-  where the process belief kernel \(P\) is common to all four corners,
-  \(\beta\ge0\), \(\bar g_1\le\bar g_0\), and \(s_1\le s_0\). Positivity of
-  rational expectation preserves \(g_{h,1}\le g_{h,0}\) by finite-horizon
+  $$
+  where the process belief kernel $P$ is common to all four corners,
+  $\beta\ge0$, $\bar g_1\le\bar g_0$, and $s_1\le s_0$. Positivity of
+  rational expectation preserves $g_{h,1}\le g_{h,0}$ by finite-horizon
   induction. The resulting common-gap certificate supplies the primitive
   theorem at every horizon.
 - **Exact assumptions:** T1 assumptions plus A-T7-GEN-INDEPENDENCE and
@@ -3069,7 +3068,7 @@ modules. No assumption was silently added during adjudication.
   not imply the cross-difference sign. CX-T7-INDEPENDENT-MENU-SWITCH-02 keeps
   both project rows frontier independent and both candidate premia antitone,
   but fixed differences in success and cost make the optimizer switch,
-  yielding \(J=1/2\). Relative action saturation is therefore additional and
+  yielding $J=1/2$. Relative action saturation is therefore additional and
   explicit. The broader primitive exposure-order proposal is also
   insufficient for the all-pairs premise: CX-T7-RS-CONTINUE-03 shows that
   rich Continue gains relative to a positive-exposure poor project. Zero poor
@@ -3102,13 +3101,13 @@ modules. No assumption was silently added during adjudication.
   `Examples.poorClosure` reports
   `[propext, Quot.sound]`; every other declaration reports
   `[propext, Classical.choice, Quot.sound]`.
-- **Exact examples:** `strict_substitution_example` has increments \(2\) and
-  \(1\), hence \(J=-1\). Frontier-dependent success gives increments \(0\)
-  and \(1/2\), hence \(J=1/2\). `separable_zero_interaction` has two increments
-  \(3/2\), hence \(J=0\). The independent menu-switch boundary has old/new
-  premia \((3,5/2)\) at \(F_0\), \((0,1/2)\) at \(F_1\), and \(J=1/2\).
+- **Exact examples:** `strict_substitution_example` has increments $2$ and
+  $1$, hence $J=-1$. Frontier-dependent success gives increments $0$
+  and $1/2$, hence $J=1/2$. `separable_zero_interaction` has two increments
+  $3/2$, hence $J=0$. The independent menu-switch boundary has old/new
+  premia $(3,5/2)$ at $F_0$, $(0,1/2)$ at $F_1$, and $J=1/2$.
   `added_exposure_order_insufficient_for_allPairs` has equal old/added
-  exposures but rejects \(-1\le-5\) for rich Continue versus the poor old
+  exposures but rejects $-1\le-5$ for rich Continue versus the poor old
   project. The new namespace theorems re-establish the positive project-switch
   and frontier-dependent-success interactions and the separable zero sign as
   explicit boundaries of the recursive primitive theorem.
@@ -3129,7 +3128,7 @@ modules. No assumption was silently added during adjudication.
   weaker passive-baseline premium comparison; they are not evidence for the
   stronger closure cross difference.
   `RealizableRectangles.jl` separately provides a raw-first construction
-  layer: both exact fixtures form \(L_{00},L_{01},L_{10},L_{11}\) by commuting
+  layer: both exact fixtures form $L_{00},L_{01},L_{10},L_{11}$ by commuting
   insertions in one catalog, recompute every compressed image, and derive
   menus, embedded transitions, finite-horizon values, and policies from
   `RawInnovationProcess`. One fixture uses identity closure and a module-only
@@ -3142,7 +3141,7 @@ modules. No assumption was silently added during adjudication.
   `search_primitive_substitution.jl` separately evaluates 2,430 exact
   common-gap action tables. It finds 648 failures among 1,620 rows satisfying
   the broader added-exposure order, zero failures among 810 zero-poor-exposure
-  rows, and preserves all 12 complement rows including the \(J=1/2\)
+  rows, and preserves all 12 complement rows including the $J=1/2$
   optimizer switch. This is finite falsification/validation, not proof.
 - **Manuscript location:** Appendix C states the compact interaction and
   optimizer-switching boundary and gives the general theorem, primitive
@@ -3157,7 +3156,7 @@ modules. No assumption was silently added during adjudication.
   Frontier-dependent success supplies the requested economic complementarity
   mechanism.
 - **Informal mathematical validity:** Choose a maximizing action at
-  \((F_1,C_1)\) and one at \((F_0,C_0)\). Frontier independence transports
+  $(F_1,C_1)$ and one at $(F_0,C_0)$. Frontier independence transports
   them to the other two corners. Relative saturation orders their payoff
   difference, and finite maximum inequalities order the optimized values.
 - **Lean kernel verification:** The Lean build, focused 37-command general-T7
@@ -3198,7 +3197,7 @@ modules. No assumption was silently added during adjudication.
   stationary optimal selector satisfies its unique policy-evaluation equation
   and lifts to raw libraries.
 - **Exact assumptions:** T1 structural assumptions, positive project
-  durations, exact rational primitive data, and \(0\le\beta<1\). Boundedness
+  durations, exact rational primitive data, and $0\le\beta<1$. Boundedness
   is automatic because every carrier is finite.
 - **Lean declarations:**
   `StrategyInnovation.Projection.Model.finiteHorizonAction_attained`;
@@ -3242,7 +3241,7 @@ modules. No assumption was silently added during adjudication.
   and `formal/StrategyInnovation/Fixtures/UnifiedCanonical.lean`.
 - **Proof dependencies:** T1's exact completion law, positive duration,
   raw/compressed Bellman intertwining, nonexpansiveness of finite exact
-  expectation, \(\beta^{d(q)}\le\beta\), preservation of a common bound by a
+  expectation, $\beta^{d(q)}\le\beta$, preservation of a common bound by a
   finite maximum, mathlib's contraction theorem, and unified UDI value
   preservation. The finite-horizon recursion uses only projects whose
   duration fits the remaining calendar horizon; stationary value iteration
@@ -3257,7 +3256,7 @@ modules. No assumption was silently added during adjudication.
   `julia/scripts/search_revision_counterexamples.jl` uses one belief,
   positive duration one, active incumbent operation, a raw bridge module, and
   deterministic admission. Exact policy iteration selects research at the
-  bridge state with value \(2\), Continue at the descendant with value \(4\),
+  bridge state with value $2$, Continue at the descendant with value $4$,
   and has both policy-evaluation and Bellman residual zero.
   `julia/scripts/solve_unified_canonical_benchmark.jl` supplies the
   publication-facing six-state numerical fixture from four raw strategies,
@@ -3287,12 +3286,12 @@ modules. No assumption was silently added during adjudication.
 - **Julia implementation validation:** Reusable exact raw and compressed
   policy iteration agree on every realizable fixture state and return equal
   policies plus zero rational policy-equation and Bellman residuals. The
-  unified Lean fixture selects research at value \(2\) and Continue at value
-  \(4\). The selected canonical fixture checks 32 raw/compressed embedded
+  unified Lean fixture selects research at value $2$ and Continue at value
+  $4$. The selected canonical fixture checks 32 raw/compressed embedded
   transitions, 144 finite-horizon values, 128 finite-horizon actions, 16
   stationary values, and 16 lifted stationary actions. Its exact stationary
   policy is Discover/Continue, Scale/Scale, Continue/Continue across
-  \(K_0,K_1,K_2\), and exact policy iteration and stationary policy evaluation
+  $K_0,K_1,K_2$, and exact policy iteration and stationary policy evaluation
   both have residual zero. Dynamically equivalent distinct raw libraries have
   identical finite and stationary values and policies. The legacy exact and
   Float64 solver remains a warning-emitting primitive compatibility model.
@@ -3347,14 +3346,14 @@ modules. No assumption was silently added during adjudication.
      `Project → LibraryState → Belief → ℚ`, and one fixed project/state/initial
      belief.
   4. `discountedOccupationWeight` is exactly
-     \(\sum_{t<H}\beta^t\rho^t\omega_t(b,b')\), and
+     $\sum_{t<H}\beta^t\rho^t\omega_t(b,b')$, and
      `coveragePotential` is exactly
-     \(\sum_{b'}W_H(b,b')\Delta(q,K,b')\).
+     $\sum_{b'}W_H(b,b')\Delta(q,K,b')$.
   5. `certifiedGap` is
-     \(\max\{j_q(b)-F_K(b),0\}\), so it is nonnegative. Candidate value does
+     $\max\{j_q(b)-F_K(b),0\}$, so it is nonnegative. Candidate value does
      not depend on the compared library state.
-  6. `OneShotModel` requires \(0\le\beta\le1\),
-     \(0\le\rho_q\le1\), and normalized occupation rows. Its gross value is
+  6. `OneShotModel` requires $0\le\beta\le1$,
+     $0\le\rho_q\le1$, and normalized occupation rows. Its gross value is
      the date-first double sum of the same terms.
   7. Discount and survival monotonicity assume nonnegative smaller values;
      occupation monotonicity is pointwise; all three use a nonnegative gap.
@@ -3464,28 +3463,28 @@ modules. No assumption was silently added during adjudication.
   so every potential superlevel set and cost-covering set is an
   interval.
 - **Disposition of desired statement:** False without additional assumptions.
-  CX-SG-KERNEL-01 maps the single-peaked gap \((0,1,0)\) to potential
-  \((1,0,1)\) with a valid deterministic row-stochastic kernel.
+  CX-SG-KERNEL-01 maps the single-peaked gap $(0,1,0)$ to potential
+  $(1,0,1)$ with a valid deterministic row-stochastic kernel.
   CX-SG-COST-01 disconnects the coverage set of increasing potential
-  \((1,2,3)\) using cost \((0,3,0)\).
-- **Verified statement:** Let \(B\) be a nonempty finite linearly ordered grid,
-  \(P\) an exact rational row-stochastic kernel, \(\Delta:B\to\mathbb Q\) an
-  increasing nonnegative gap, \(p:B\to\mathbb Q\) an increasing nonnegative
-  survival factor, \(\beta\ge0\), and \(\kappa:B\to\mathbb Q\) antitone. If
-  \(P\) is first-order stochastically monotone, then
+  $(1,2,3)$ using cost $(0,3,0)$.
+- **Verified statement:** Let $B$ be a nonempty finite linearly ordered grid,
+  $P$ an exact rational row-stochastic kernel, $\Delta:B\to\mathbb Q$ an
+  increasing nonnegative gap, $p:B\to\mathbb Q$ an increasing nonnegative
+  survival factor, $\beta\ge0$, and $\kappa:B\to\mathbb Q$ antitone. If
+  $P$ is first-order stochastically monotone, then
 
-  \[
+  $$
     G(b)=\beta p(b)\sum_{b'}P(b,b')\Delta(b')
-  \]
+  $$
 
   is increasing. Consequently
 
-  \[
+  $$
     \mathcal C=\{b:\kappa(b)\le G(b)\}
-  \]
+  $$
 
   is an upper set, is order-connected, and is either empty or exactly
-  \([b^*,\infty)\cap B\) for some \(b^*\in B\).
+  $[b^*,\infty)\cap B$ for some $b^*\in B$.
 - **Exact Lean assumptions:**
   1. `FiniteOrderedBeliefGrid` supplies `Fintype`, `LinearOrder`, and
      `Nonempty` instances for the belief carrier.
@@ -3623,31 +3622,31 @@ modules. No assumption was silently added during adjudication.
 
 - **Theorem ID:** S6
 - **Manuscript label:** `thm:discount-survival-complementarity`.
-- **Informal statement:** For a finite exact row-stochastic matrix \(P\),
-  nonnegative rational gap vector \(g\), and finite horizon \(H\), define
-  \[
+- **Informal statement:** For a finite exact row-stochastic matrix $P$,
+  nonnegative rational gap vector $g$, and finite horizon $H$, define
+  $$
     U_{\alpha,H}=\sum_{t<H}\alpha^tP^t,\qquad
     \Psi_H(\beta,\rho)=U_{\beta\rho,H}g.
-  \]
+  $$
   The potential equals
-  \(\sum_{t<H}(\beta\rho)^tP^tg\), is monotone in either nonnegative scalar,
+  $\sum_{t<H}(\beta\rho)^tP^tg$, is monotone in either nonnegative scalar,
   and has increasing differences in discount and survival.
 - **Exact interaction:**
-  \[
+  $$
   \begin{split}
    &[\Psi_H(\beta_1,\rho_1)-\Psi_H(\beta_0,\rho_1)]
    -[\Psi_H(\beta_1,\rho_0)-\Psi_H(\beta_0,\rho_0)]\\
    &\quad=\sum_{t<H}
      (\beta_1^t-\beta_0^t)(\rho_1^t-\rho_0^t)P^tg\ge0
   \end{split}
-  \]
-  whenever \(0\le\beta_0\le\beta_1\) and
-  \(0\le\rho_0\le\rho_1\). This is algebraically equivalent to
-  \[
+  $$
+  whenever $0\le\beta_0\le\beta_1$ and
+  $0\le\rho_0\le\rho_1$. This is algebraically equivalent to
+  $$
     \Psi_H(\beta_1,\rho_1)+\Psi_H(\beta_0,\rho_0)
     \ge
     \Psi_H(\beta_1,\rho_0)+\Psi_H(\beta_0,\rho_1).
-  \]
+  $$
 - **Exact Lean assumptions:** finite state type with decidable equality;
   `transition ∈ Matrix.rowStochastic ℚ State`; pointwise `0 ≤ gap`; a finite
   natural-number horizon; nonnegative lower discount and survival; and ordered
@@ -3655,7 +3654,7 @@ modules. No assumption was silently added during adjudication.
 - **Assumption reconciliation:** Exactly A-S6-DISCOUNT-SURVIVAL. Row
   stochasticity is stronger than the sign proof needs but matches the model
   and, through submonoid closure under powers, derives
-  \(P^tg\ge0\). No infinite series, matrix inverse, convergence, or real
+  $P^tg\ge0$. No infinite series, matrix inverse, convergence, or real
   differentiability theorem is used.
 - **Lean file:**
   `formal/StrategyInnovation/Coverage/DiscountSurvivalInteraction.lean`.
@@ -3674,8 +3673,8 @@ modules. No assumption was silently added during adjudication.
   `discountIncrement_le_iff_crossDifference`; and
   `finiteHorizonPotential_crossDifference_nonnegative`.
 - **Exact boundary:** The one-state stochastic example with horizon two,
-  \((\beta_0,\rho_0)=(0,0)\),
-  \((\beta_1,\rho_1)=(1,1)\), and \(g=-1\) reverses the cross inequality.
+  $(\beta_0,\rho_0)=(0,0)$,
+  $(\beta_1,\rho_1)=(1,1)$, and $g=-1$ reverses the cross inequality.
   This is
   `Counterexamples.crossDifference_fails_without_nonnegativeGap`.
 - **`#print axioms` result:** The focused audit prints all 22 definitions and
@@ -3686,26 +3685,26 @@ modules. No assumption was silently added during adjudication.
   `finite_discount_survival_interaction` computes all four finite potentials,
   the two discount increments, their cross difference, and the independently
   factorized sum using `Rational{BigInt}`. On the exact two-state kernel
-  \[
+  $$
     P=\begin{pmatrix}3/4&1/4\\1/2&1/2\end{pmatrix},\quad
     g=(1,3),\quad H=5,
-  \]
-  with \((\beta_0,\beta_1)=(1/4,3/4)\) and
-  \((\rho_0,\rho_1)=(1/3,2/3)\), both cross-difference calculations equal
-  \((43771/55296,24869/27648)\).
+  $$
+  with $(\beta_0,\beta_1)=(1/4,3/4)$ and
+  $(\rho_0,\rho_1)=(1/3,2/3)$, both cross-difference calculations equal
+  $(43771/55296,24869/27648)$.
 - **Analytical boundary:** Julia's exact finite-dimensional solve continues to
-  validate \(U_\alpha=(I-\alpha P)^{-1}\) for \(\alpha<1\). The manuscript
+  validate $U_\alpha=(I-\alpha P)^{-1}$ for $\alpha<1$. The manuscript
   names this only as interpretation. No resolvent derivative is stated as a
   Lean-verified result.
 - **Manuscript location:** Appendix C states the finite
   discount--survival complementarity theorem and its full factorization.
 - **Status:** Lean verified; exact Julia algebra validated
 - **Informal mathematical validity:** Finite distributivity and the identity
-  \[
+  $$
     \beta_1^t\rho_1^t+\beta_0^t\rho_0^t
       -\beta_1^t\rho_0^t-\beta_0^t\rho_1^t
     =(\beta_1^t-\beta_0^t)(\rho_1^t-\rho_0^t)
-  \]
+  $$
   reduce every sign to nonnegative finite factors.
 - **Lean kernel verification:** The clean 3,143-job build, focused 22-command
   S6 audit, comprehensive 387-command audit, and proof-source placeholder scan
@@ -3718,36 +3717,36 @@ modules. No assumption was silently added during adjudication.
 - **Theorem ID:** S7
 - **Manuscript labels:** `prop:no-universal-persistence-sign` and
   `thm:kernel-occupation-alignment`.
-- **Informal statement:** For finite horizon \(H\), effective discount
-  \(\alpha\), rational transition matrix \(P\), and nonnegative gap \(g\),
-  \[
+- **Informal statement:** For finite horizon $H$, effective discount
+  $\alpha$, rational transition matrix $P$, and nonnegative gap $g$,
+  $$
     \Psi^P_{H,\alpha}(b)
       =\sum_{t<H}\alpha^t(P^tg)(b)
       =\sum_{b'}\left[\sum_{t<H}\alpha^t(P^t)(b,b')\right]g(b').
-  \]
-  If \(P_1\) has at least as much discounted occupation as \(P_0\) on every
+  $$
+  If $P_1$ has at least as much discounted occupation as $P_0$ on every
   state with positive gap, from every initial state, then
-  \(\Psi^{P_1}_{H,\alpha}\ge\Psi^{P_0}_{H,\alpha}\) pointwise. In contrast,
+  $\Psi^{P_1}_{H,\alpha}\ge\Psi^{P_0}_{H,\alpha}$ pointwise. In contrast,
   a scalar increase in persistence can raise, lower, or leave coverage
   unchanged.
 - **Gap-tailored order:**
-  \(P_1\succeq_gP_0\) is defined exactly by the displayed pointwise coverage
+  $P_1\succeq_gP_0$ is defined exactly by the displayed pointwise coverage
   inequality. Advantage-region occupation dominance is a transparent
   sufficient condition for this order.
 - **Exact sign family:** on `Fin 2`,
-  \[
+  $$
     P(\theta)=
       \begin{pmatrix}\theta&1-\theta\\1-\theta&\theta\end{pmatrix}.
-  \]
-  At initial state zero, \(H=2\), \(\alpha=1/2\), and
-  \(\theta:1/4\to3/4\), coverage changes as follows:
-  \(9/8\to11/8\) for \(g=(1,0)\);
-  \(3/8\to1/8\) for \(g=(0,1)\); and
-  \(3/2\to3/2\) for \(g=(1,1)\).
+  $$
+  At initial state zero, $H=2$, $\alpha=1/2$, and
+  $\theta:1/4\to3/4$, coverage changes as follows:
+  $9/8\to11/8$ for $g=(1,0)$;
+  $3/8\to1/8$ for $g=(0,1)$; and
+  $3/2\to3/2$ for $g=(1,1)$.
 - **Exact Lean assumptions:** finite state type with decidable equality,
   rational matrices, finite natural-number horizon, and pointwise
   nonnegative gap. The exact family is proved row stochastic for
-  \(0\le\theta\le1\). The alignment implication itself needs only the
+  $0\le\theta\le1$. The alignment implication itself needs only the
   displayed occupation inequalities and gap nonnegativity; stochasticity and
   parameter bounds are contextual Markov assumptions rather than hidden proof
   premises.
@@ -3813,8 +3812,8 @@ modules. No assumption was silently added during adjudication.
 - **`#print axioms` result:** Not run; no declaration exists.
 - **Julia test or experiment counterpart:**
   `multi_gap_additivity_witness()` in
-  `julia/scripts/search_counterexamples.jl`: joint value \(1/4\), each isolated
-  value \(0\).
+  `julia/scripts/search_counterexamples.jl`: joint value $1/4$, each isolated
+  value $0$.
 - **Manuscript location:** Planned coverage appendix; no result text exists in
   the buildable manuscript scaffold.
 - **Status:** revised, numerically validated
@@ -3955,9 +3954,9 @@ modules. No assumption was silently added during adjudication.
   operational and generative insertion value, base-library research
   frequency, optimal reference action, numerical Bellman cutoff,
   frontier-only pruning loss, exact safe-compression ratio, descendant
-  quality, and finite frontier--closure cross-difference \(J\).
+  quality, and finite frontier--closure cross-difference $J$.
 - **Numerical gates:** Every Float64 solve reports the Bellman residual, the
-  residual-based posterior bound using contraction modulus \(\beta\),
+  residual-based posterior bound using contraction modulus $\beta$,
   iterations, convergence, sparse-storage status, and pass/fail gates.
   Exact policy iteration requires zero rational Bellman and policy-equation
   residuals on the S2 fixture.
@@ -3973,9 +3972,9 @@ modules. No assumption was silently added during adjudication.
   FX-S2-UNIFIED-STATIONARY-01 gives base/descendant values two/four with
   Research/Continue and zero residuals; FX-T6-CARRIER-01 gives bound one;
   FX-S6-CROSS-01 reproduces
-  \((43771/55296,24869/27648)\); FX-S7-PERSISTENCE-01 reproduces the
-  raise/lower/no-effect six-tuple; FX-T7-SUBSTITUTION-01 gives \(J=-1\); and
-  CX-T7-INDEPENDENT-MENU-SWITCH-02 gives \(J=1/2\).
+  $(43771/55296,24869/27648)$; FX-S7-PERSISTENCE-01 reproduces the
+  raise/lower/no-effect six-tuple; FX-T7-SUBSTITUTION-01 gives $J=-1$; and
+  CX-T7-INDEPENDENT-MENU-SWITCH-02 gives $J=1/2$.
 - **Generated artifacts:** 78 one-at-a-time sparse Float64 rows, 36
   frontier--closure cells, 11 sign-check rows, eight exact fixture rows, one
   JSON summary, two data-linked publication SVGs, and the compact policy-map
@@ -4010,7 +4009,7 @@ modules. No assumption was silently added during adjudication.
   frontier density, module overlap, module complementarity, project cost,
   duration, admission, and persistence; eight replicates per principal cell;
   four raw libraries per interaction in one catalog and module system; two
-  candidate projects; horizon four; discount \(3/4\); StableRNG master seed
+  candidate projects; horizon four; discount $3/4$; StableRNG master seed
   `6075990691714899803`; all recorded component seeds; exact
   `Rational{BigInt}` arithmetic.  The earlier 90-trial, twelve-factor,
   marginally balanced design with master seed `6073180304494120243` is a
@@ -4030,7 +4029,7 @@ modules. No assumption was silently added during adjudication.
   A second prospective amendment fixed the executable raw generator, audit
   contract, and two extra source tables under aggregate SHA-256
   `8c278c07d998ba118d98c78cc1373a47ab63127f00d606c0042c006dac11e7be`
-  before any registered outcome existed. The complete \(N=1024\) run and its
+  before any registered outcome existed. The complete $N=1024$ run and its
   byte-identical `--check` replay have since passed every hard gate.
 - **Lean declaration name:** None. N5 is randomized economic-relevance
   evidence and must not be cited as proof or validation of a Lean theorem.
@@ -4088,7 +4087,7 @@ modules. No assumption was silently added during adjudication.
   The online supplement indexes the full cumulative, factor-stratified, and
   optimization-extension sources. No theorem statement consumes N5.
 - **Status:** v1 frozen pilot validated and unmodified; v2 exact randomized
-  robustness diagnostic completed at the registered \(N=1024\)
+  robustness diagnostic completed at the registered $N=1024$
 - **Informal mathematical validity:** Every within-trial probability, payoff,
   Bellman value, and decomposition is exact. Randomization selects finite
   instances; it supplies no deductive inference.
@@ -4121,7 +4120,7 @@ modules. No assumption was silently added during adjudication.
   trials and operationally redundant/generatively valuable carriers occur in
   3/360 source-carrier observations. These are generator-conditional
   frequencies, not population estimates. Among 45 genuine closure contrasts,
-  the synthetic \(J\) diagnostic records 13 substitution and zero
+  the synthetic $J$ diagnostic records 13 substitution and zero
   complementarity cases. In the separate v2 run, frontier-only positive loss
   occurs in 398/1024 trials, silent generative assets in 388/5120 asset
   observations, and the realizable rectangles record 256 substitution, 141
@@ -4140,16 +4139,16 @@ modules. No assumption was silently added during adjudication.
   exact and heuristic size--loss trade-off.
 - **Exact assumptions:** The registered benchmarks use the exact trial-15 raw
   catalog, horizon four, reference belief one,
-  \(\epsilon_{\mathrm{op}}=1\), and
-  \(\epsilon_{\mathrm{gen}}=1/4\). The base source has six strategies; the
+  $\epsilon_{\mathrm{op}}=1$, and
+  $\epsilon_{\mathrm{gen}}=1/4$. The base source has six strategies; the
   expanded source admits both already-declared catalog candidates and has
   eight. All probabilities, payoffs, Bellman values, losses, feasibility
   comparisons, and Pareto comparisons use `Rational{BigInt}`.
-- **Definitions:** \(\operatorname{OpLoss}(L')\) is the maximum source-minus-
-  compressed frontier gap over the finite belief space. \(W_H\) is the
+- **Definitions:** $\operatorname{OpLoss}(L')$ is the maximum source-minus-
+  compressed frontier gap over the finite belief space. $W_H$ is the
   frozen-library passive operating value. `ValueLoss` is the source-minus-
   compressed unified raw Bellman value, and `GenLoss` is `ValueLoss` minus
-  the corresponding \(W_H\) loss. `GenLoss` is signed and is never clipped.
+  the corresponding $W_H$ loss. `GenLoss` is signed and is never clipped.
 - **Lean declaration name:** None. N6 is numerical only.
 - **Lean file:** None.
 - **Proof dependencies:** None. Existing compression and value theorems
@@ -4172,8 +4171,8 @@ modules. No assumption was silently added during adjudication.
 - **Numerical result:** The six-strategy source compresses exactly to three
   strategies with zero operational, generative, and total-value loss. The
   expanded eight-strategy source compresses exactly to two strategies with
-  operational loss \(1/2\), generative loss zero, and total-value loss
-  \(2025/8192\). The operational-cover lower bound is two in both cases; 11
+  operational loss $1/2$, generative loss zero, and total-value loss
+  $2025/8192$. The operational-cover lower bound is two in both cases; 11
   generative no-good cuts lift the base optimum from two to three.
 - **Manuscript location:** No theorem statement consumes N6. The standalone
   report and figures are publication-supporting numerical artifacts.
@@ -4237,7 +4236,7 @@ modules. No assumption was silently added during adjudication.
   unified positive-duration raw law: finite raw catalog and raw-library set,
   explicit capability module, raw generation and verification, exact joint
   belief-path/admission laws, deterministic raw updates, active-operation
-  flags, and terminal beliefs generated through \(P^{d(q)}\). Exact small
+  flags, and terminal beliefs generated through $P^{d(q)}$. Exact small
   instances use `Rational{BigInt}`; larger sparse solves use explicit Float64
   tolerances and iteration caps. Primitive F5/F8 timing is retained only in a
   legacy regression fixture.
@@ -4306,7 +4305,7 @@ modules. No assumption was silently added during adjudication.
 - **Informal statement:** A finite 2,400-strategy ETF grammar can be used to
   audit current-frontier preservation, candidate enablement, validation-only
   candidate ranking, and operational--generative accounting without treating
-  backtest profitability as the research claim. Its \(Q_a\) quantity is ex
+  backtest profitability as the research claim. Its $Q_a$ quantity is ex
   post enabled-descendant opportunity quality computed from held-out audit
   outcomes, not a pruning input or forecast.
 - **Exact assumptions:** Fixed 25-ETF universe comprising 24 stable-identifier
@@ -4340,7 +4339,7 @@ modules. No assumption was silently added during adjudication.
   equality up to the configured Float64 tolerance for both the validation
   frontier and module closure; decomposition totals are checked as accounting
   identities. The innovation-safe deletion acceptance test uses only frontier
-  and closure equality, not \(Q_a\). These checks instantiate but do not prove
+  and closure equality, not $Q_a$. These checks instantiate but do not prove
   F3 or F6.
 - **Information-set audit:** The validation frontier and structural closure
   are available at pruning time; only the former enters frontier-only
@@ -4349,7 +4348,7 @@ modules. No assumption was silently added during adjudication.
   Coverage scores are computed after compression from development/validation
   information and fixed in the terminal decision hash. Compression ratio,
   module uniqueness, and descendant dependence are retrospective structural
-  descriptions. Locked net utility, \(Q_a\), generative deletion contribution,
+  descriptions. Locked net utility, $Q_a$, generative deletion contribution,
   support for the best descendant, and rank diagnostics require held-out
   outcomes. See `EMPIRICAL_INFORMATION_SET_AUDIT.md`.
 - **Lean kernel verification:** Not applicable; no Lean claim is added.
@@ -4361,7 +4360,7 @@ modules. No assumption was silently added during adjudication.
   source/frontier-only/safe closure counts are 38/12/38, and the retained-role
   counts are operational-only 3, generative-only 1, both 0, and neither 21.
   The locked
-  outcomes used for \(Q_a\) were first accessed after the library, pruning,
+  outcomes used for $Q_a$ were first accessed after the library, pruning,
   rankings, and decision hash were fixed. Coverage ranking was negative: its
   frozen top-ten candidates underperformed the initial-library locked utility
   by about 0.156, versus about 0.0685 for the best comparator. The safely
@@ -4370,7 +4369,7 @@ modules. No assumption was silently added during adjudication.
   component. It is the audit's only positive ex post generative carrier; 93 of
   2,320 enabled descendants depend on it, including the best enabled
   descendant. Every retained policy has module-uniqueness share
-  \(1/7\), so the requested high-versus-low uniqueness comparison is not
+  $1/7$, so the requested high-versus-low uniqueness comparison is not
   identified. All adverse ranking results are retained. D-0042's prospective
   synthetic S4 construction neither modifies this run nor supplies a post-hoc
   empirical rescue.
@@ -4379,7 +4378,7 @@ modules. No assumption was silently added during adjudication.
   are publishable and reviewers reproduce them with their own CRSP/WRDS
   access. The snapshot is not point-in-time certified, the universe is not
   survivorship-free, the holdout is retrospective, and no market-alpha claim
-  is permitted. \(Q_a\) is neither a forecast, policy score, nor deployable
+  is permitted. $Q_a$ is neither a forecast, policy score, nor deployable
   selection criterion; it is an ex post mechanism diagnostic.
 
 ### E2 — Annual walk-forward financial audit
@@ -4392,7 +4391,7 @@ modules. No assumption was silently added during adjudication.
   frontier-only pruning loss, estimand-aligned marginal coverage, and
   operational--generative accounting across five historical walk-forward
   decisions without using portfolio return as the research claim. Its
-  \(Q_a\) quantity is ex post enabled-descendant opportunity quality computed
+  $Q_a$ quantity is ex post enabled-descendant opportunity quality computed
   from held-out audit outcomes, not a pruning input or forecast.
 - **Exact assumptions:** Same-PERMNO ETF classification at 2008 and 2024
   endpoints; pre-return selection by 2009--2014 median dollar volume after
@@ -4430,14 +4429,14 @@ modules. No assumption was silently added during adjudication.
   target is deliberately aligned with the empirical coverage score, but the
   estimated profiles and transitions remain empirical inputs. The
   innovation-safe deletion acceptance test uses only frontier and closure
-  equality, not \(Q_a\).
+  equality, not $Q_a$.
 - **Information-set audit:** The validation frontier and structural closure
   have the same pruning-time roles as in E1, while the enabled set is
   structurally available but not tested by either rule. Each coverage score
-  uses only trailing information through \(y-1\) and is fixed after
-  compression in the year-\(y\) decision hash. Compression ratio, module
+  uses only trailing information through $y-1$ and is fixed after
+  compression in the year-$y$ decision hash. Compression ratio, module
   uniqueness, and descendant dependence are retrospective structural
-  descriptions. Realized target-year coverage, \(Q_a\), generative deletion
+  descriptions. Realized target-year coverage, $Q_a$, generative deletion
   contribution, support for the best descendant, rank diagnostics, and
   resampling inputs are held out. Greedy-oracle regret is an infeasible
   target-year oracle comparator. See `EMPIRICAL_INFORMATION_SET_AUDIT.md`.
@@ -4460,14 +4459,14 @@ modules. No assumption was silently added during adjudication.
   UNG carrier has operational value zero and generative value 0.0534. It is
   the audit's only positive ex post generative carrier; 94 of 9,398 enabled
   descendants depend on it, including the best enabled descendant. Every
-  retained policy has module-uniqueness share \(1/7\);
+  retained policy has module-uniqueness share $1/7$;
   maximum candidate dependence covers 98 of 100 policies, so neither
   characteristic supports a discriminating comparison.
 - **Empirical relevance:** The broadened illustration supports the registered
   mechanisms but not a universal ranking theorem. Licensed rows are excluded;
   the universe remains survivorship-biased, inference uses only five annual
   units, the lock is retrospective, costs are simplified, and no alpha claim
-  is permitted. \(Q_a\) is neither a forecast, policy score, nor deployable
+  is permitted. $Q_a$ is neither a forecast, policy score, nor deployable
   selection criterion; it is an ex post mechanism diagnostic. The locked
   terminal audit remains separately adverse.
 

@@ -11,3 +11,8 @@ commands in `REPRODUCIBILITY.md`.
 The latest documentation curation removed redundant root-level technical
 notes without changing manuscript source, model code, registered designs,
 seeds, numerical outputs, or theorem statements.
+
+The public Markdown math audit standardized reader-facing formulas on
+GitHub-supported `$...$` and `$$...$$` delimiters and repaired two previously
+undelimited expressions. Mathematical statements and scientific results are
+unchanged.

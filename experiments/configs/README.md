@@ -51,7 +51,7 @@ when this parent lock was frozen.
 `randomized_library_stability_amendment_1.toml` is the prospective precision
 amendment to that untouched parent design. It fixes cumulative snapshots at
 50/100/200/300/500/750/1000/1024, requires the final estimate to use
-\(N=1024\), registers descriptive Wilson intervals, exact-variance mean MCSEs,
+$N=1024$, registers descriptive Wilson intervals, exact-variance mean MCSEs,
 sparse-support warnings, all seven two-level factor slices, and three output
 paths. Its immutable envelope is
 `../randomized_library_v2/DESIGN_LOCK_AMENDMENT_1.json`; no outcome was read or
@@ -65,8 +65,8 @@ raw-witness output paths. Its immutable envelope is
 `../randomized_library_v2/DESIGN_LOCK_AMENDMENT_2.json`, aggregate SHA-256
 `8c278c07d998ba118d98c78cc1373a47ab63127f00d606c0042c006dac11e7be`.
 It was frozen while both parent locks were current and every v2 outcome path
-was absent. The registered \(N=1024\) run has since completed; the v1
-\(N=90\) pilot remains separate and unchanged.
+was absent. The registered $N=1024$ run has since completed; the v1
+$N=90$ pilot remains separate and unchanged.
 
 `approximate_compression.toml` locks the deterministic six- and eight-strategy
 raw-library benchmarks, exact horizon/reference belief, operational and signed

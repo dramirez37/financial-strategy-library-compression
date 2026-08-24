@@ -141,7 +141,7 @@ compute an outcome.
 
 `lock_randomized_library_stability_amendment.jl` verifies the prospective
 sequential-precision amendment against the current parent lock. It fixes the
-requested cumulative snapshots plus \(N=1024\), exact cumulative and
+requested cumulative snapshots plus $N=1024$, exact cumulative and
 factor-stratified estimands, descriptive interval and MCSE conventions,
 sparse-support warnings, and output paths. It also verifies that no v2 outcome
 artifact existed when freezing:
@@ -220,7 +220,7 @@ julia --project=julia julia/scripts/run_system_interaction_surface.jl --check
 
 The committed CSVs and JSON summary are under
 `experiments/results/summaries/`. Every row reports both closure increments,
-\(J\), selected projects at all four corners, corner realizability, and the
+$J$, selected projects at all four corners, corner realizability, and the
 primitive-condition certificate. Aggregate sign counts use only the 576
 rectangles with four realizable corners; 2,880 diagnostic nonrealizable
 rectangles are explicitly excluded. The surface is validation and boundary

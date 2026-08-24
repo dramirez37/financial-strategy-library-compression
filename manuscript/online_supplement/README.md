@@ -65,12 +65,12 @@ S1--S7 supplement.
 - `s7_reproducibility_records.tex` records commands, configuration and
   amendment histories, hashes, and exhaustive artifact-prefix locations.
 - `../../RANDOMIZED_LIBRARY_REPORT_V2.md` reports the registered
-  \(N=1024\) raw-realizable finite-library stress test.
+  $N=1024$ raw-realizable finite-library stress test.
 - `../../RANDOMIZED_LIBRARY_OPTIMIZATION_EXTENSION_V1.md` and the matching
   `../../experiments/results/summaries/randomized_library_v2_optimization_v1_*`
   tables contain the complete global-compression, capacity, breakpoint, and
   elasticity results summarized in Section 7.
-- `../../RANDOMIZED_LIBRARY_REPORT.md` is the frozen \(N=90\) pilot report and
+- `../../RANDOMIZED_LIBRARY_REPORT.md` is the frozen $N=90$ pilot report and
   is not pooled with v2.
 - `../../APPROXIMATE_COMPRESSION_REPORT.md` reports exact and heuristic
   size--loss trade-offs.

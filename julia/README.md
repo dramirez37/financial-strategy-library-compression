@@ -68,7 +68,7 @@ discounting, belief persistence, signal precision, candidate quality, and
 frontier-dependent generation. Its result record reports total/passive value,
 the research-option premium, operational/generative insertion value, policy
 frequency/action/cutoff diagnostics, pruning loss, safe-compression ratio,
-descendant quality, the finite frontier--closure interaction \(J\), and
+descendant quality, the finite frontier--closure interaction $J$, and
 Bellman diagnostics.
 
 Exact runs build `RawInnovationProcess` objects and use exact raw policy
@@ -93,7 +93,7 @@ loss decomposition, frontier-only passive preservation, innovation-safe value
 preservation, and both declared approximation budgets.
 
 This layer is for robustness and economic relevance only. Its randomized
-frequencies, factor contrasts, and synthetic compressed-state \(J\) diagnostic
+frequencies, factor contrasts, and synthetic compressed-state $J$ diagnostic
 do not prove or validate a Lean theorem.
 
 ## Scalable exact-safe compression
@@ -376,7 +376,7 @@ It preserves the 2,430 exact-rational frontier, candidate, success, and cost
 grid, then adds five canonical fixtures and a 3,456-row response surface over
 frontier pairs, closure richness, cost, admission, descendant payoff,
 incumbent reward, duration, and generator-quality frontier dependence. Every
-expanded row reports both closure increments, \(J\), selected projects at the
+expanded row reports both closure increments, $J$, selected projects at the
 four corners, corner realizability, and the primitive-condition certificate.
 Only rectangles with all four corners realizable enter aggregate sign counts.
 Pass `--check` for the non-mutating byte-drift gate.

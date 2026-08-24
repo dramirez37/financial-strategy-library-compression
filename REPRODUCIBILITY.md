@@ -444,7 +444,7 @@ Every experiment must have:
 - **Entry point:** `julia/scripts/run_randomized_library_stress.jl`
 - **Environment:** Julia 1.12.6 with the committed root and test manifests
 - **Arithmetic:** `Rational{BigInt}` for every within-trial profile,
-  probability, Bellman value, pruning loss, decomposition, and \(J\);
+  probability, Bellman value, pruning loss, decomposition, and $J$;
   Float64 is used only to place report labels and Wilson intervals
 - **RNG:** `StableRNGs.StableRNG`
 - **Master seed:** `6073180304494120243`; every trial seed and deletion order
@@ -471,7 +471,7 @@ Every experiment must have:
 - **Scope warning:** The random generator is not an economic population
   model. Frequencies and Wilson intervals are design-conditional robustness
   diagnostics, not theorem evidence, causal effects, or population
-  prevalence estimates. The synthetic \(J\) rectangle need not be realizable
+  prevalence estimates. The synthetic $J$ rectangle need not be realizable
   by four raw libraries and is not a T7 theorem instantiation.
 
 ### randomized-finite-library-stress-v2 — registered exact run complete
@@ -504,7 +504,7 @@ Every experiment must have:
 - **Master seed:** `6075990691714899803`
 - **Recorded derived seeds:** 1,024 trial, 1,024 catalog, 1,024 project, and
   1,024 deletion seeds; all 4,096 are distinct and stored before outcomes
-- **Design:** complete \(2^7\) factorial across frontier density, module
+- **Design:** complete $2^7$ factorial across frontier density, module
   overlap, module complementarity, project cost, duration, admission, and
   persistence; 128 cells, eight replicates per cell, and eight 128-trial
   batches
@@ -514,8 +514,8 @@ Every experiment must have:
 - **Sequential precision prefixes:** 50, 100, 200, 300, 500, 750, 1,000, and
   1,024 in locked `trial_id` order. The early prefixes do not assert balance
   and report actual factor-level denominators. They are snapshots only; every
-  final estimate uses the registered maximum \(N=1024\).
-- **Raw construction:** every source is \(L_{11}\) from a
+  final estimate uses the registered maximum $N=1024$.
+- **Raw construction:** every source is $L_{11}$ from a
   `RealizableRectangle`; all four corners use one catalog and closure, and
   `rectangle_consistency` must derive and validate states, menus, transition
   pushforwards, values, and policies
@@ -528,7 +528,7 @@ Every experiment must have:
   both levels of all seven factors; exact counts, sums, means, and sample
   variances; descriptive Wilson intervals for frequencies; presentation-only
   MCSEs for means; and deterministic sparse-support warnings. Alerts never
-  stop the run, remove rows, select a sign, or change \(N\).
+  stop the run, remove rows, select a sign, or change $N$.
 - **Feasibility evidence:** three nonmutating v1 `--check` measurements were
   18.06, 17.21, and 17.04 seconds on the current arm64 Apple-M1 host. The
   median projects to 195.81 seconds for 1,024 v1-equivalent trials; the
@@ -549,7 +549,7 @@ Every experiment must have:
 - **Independent reconciliation:**
   `./.local_runtime/julia-1.12.6/bin/julia --project=julia
   julia/scripts/audit_randomized_library_v2_results.jl`
-- **Outcome status:** complete at the registered maximum \(N=1024\).
+- **Outcome status:** complete at the registered maximum $N=1024$.
   Frontier-only positive loss is 398/1024; conditional mean positive loss is
   `124909129//78249984`; maximum normalized loss is `84963//222163`;
   innovation-safe positive loss is 0/1024; silent generative assets are
@@ -572,7 +572,7 @@ Every experiment must have:
   because its compressed rectangle did not require four raw witnesses. The
   online supplement indexes the 64 cumulative and 896 factor-stratified
   stability rows.
-- **Pilot boundary:** the v1 \(N=90\) configuration, summary, report, source
+- **Pilot boundary:** the v1 $N=90$ configuration, summary, report, source
   tables, and figures are hash-pinned and excluded from every v2 estimator.
 - **Interpretation boundary:** all intervals and MCSEs are descriptive
   simulation-precision diagnostics under the registered finite generator.
@@ -594,7 +594,7 @@ Every experiment must have:
   reconstructs registered randomized-library trial 15 from seed `731700466`.
 - **Design:** a six-strategy source and an eight-strategy expanded source;
   horizon four; reference belief one; operational budget one; signed
-  generative budget \(1/4\); exact enumeration plus four greedy scores,
+  generative budget $1/4$; exact enumeration plus four greedy scores,
   multistart, Pareto beams of widths 2, 4, 8, and 16, and solver-neutral
   operational 0--1 rows with generative no-good cuts
 - **Commands:**
@@ -696,7 +696,7 @@ Every experiment must have:
   Float64 a-priori contraction bound, and Float64 a-posteriori contraction
   bound
 - **Expected invariants:** every duration is positive; research belief
-  marginals are \(P^d\); 32 embedded transition, 144 finite-value, 128
+  marginals are $P^d$; 32 embedded transition, 144 finite-value, 128
   finite-policy, 16 stationary-value, and 16 stationary-policy projection
   checks pass; exact policy and Bellman residuals are zero; the exactly
   evaluated error of the rationalized Float64 iterate is below its exactly
@@ -788,7 +788,7 @@ Every experiment must have:
 - **Outputs:** historical `canonical_model_summary.json`,
   `canonical_model_convergence.csv`, and `canonical_model_policy.csv`
 - **Boundary:** its primitive transition and
-  \(\beta^{\mathrm{delay}+1}\) convention are not the unified canonical law.
+  $\beta^{\mathrm{delay}+1}$ convention are not the unified canonical law.
 
 ### manuscript-numerical-artifacts-v1
 
@@ -938,8 +938,8 @@ Every experiment must have:
 - **Arithmetic:** `Rational{BigInt}` throughout kernel construction, finite
   matrix powers, discounted occupation, coverage, and output rendering
 - **Randomness:** none
-- **Grid:** persistence \(\theta=0,1/8,\ldots,1\); effective discount
-  \(\alpha=0,1/4,\ldots,1\); horizon two; initial state one in Julia's
+- **Grid:** persistence $\theta=0,1/8,\ldots,1$; effective discount
+  $\alpha=0,1/4,\ldots,1$; horizon two; initial state one in Julia's
   one-based indexing; three exact gap locations
 - **Command:** `./.local_runtime/julia-1.12.6/bin/julia --project=julia
   julia/scripts/run_kernel_persistence_response.jl`; append `--check` for the
@@ -949,9 +949,9 @@ Every experiment must have:
   and
   `experiments/results/summaries/kernel_persistence_response_summary.json`
 - **Expected invariants:** 135 exact rows; at
-  \((\alpha,\theta_0,\theta_1)=(1/2,1/4,3/4)\), current-state gap coverage
-  rises \(9/8\to11/8\), other-state gap coverage falls \(3/8\to1/8\), and
-  constant-gap coverage remains \(3/2\). The associated advantage-region
+  $(\alpha,\theta_0,\theta_1)=(1/2,1/4,3/4)$, current-state gap coverage
+  rises $9/8\to11/8$, other-state gap coverage falls $3/8\to1/8$, and
+  constant-gap coverage remains $3/2$. The associated advantage-region
   occupations move in the same directions.
 - **Validation:** 35 dedicated package checks cover exact witness values,
   every response-surface direction, constant-gap invariance, invalid gaps and
@@ -972,7 +972,7 @@ Every experiment must have:
 - **Randomness:** none
 - **Legacy grid:** six frontiers, two fixed candidate values, three success
   probabilities for each of the old and added projects, three costs for each
-  project, every strict ordered frontier pair, and discount \(1/2\); 2,430
+  project, every strict ordered frontier pair, and discount $1/2$; 2,430
   rows in total. This registered v1 output is preserved byte-for-byte. Its
   incumbent operating reward is the reported frontier, so every legacy
   rectangle is realizable in its constructed one-belief model.
@@ -992,16 +992,16 @@ Every experiment must have:
   `experiments/results/summaries/`
 - **Expected invariants:** 553 substitute, 1,865 separable, and 12 complement
   rows remain in the legacy grid. The five canonical fixtures record primitive
-  strict substitution \(J=-1\), a saturation boundary \(J=0\),
-  frontier-independent optimizer switching \(J=1/2\),
-  frontier-dependent success \(J=1/2\), and a nontrivial separable case
-  \(J=0\), together with all four selected projects, corner realizability, and
+  strict substitution $J=-1$, a saturation boundary $J=0$,
+  frontier-independent optimizer switching $J=1/2$,
+  frontier-dependent success $J=1/2$, and a nontrivial separable case
+  $J=0$, together with all four selected projects, corner realizability, and
   the primitive-condition certificate. Of 3,456 expanded rectangles, 576
   have all four constructed compressed corners realizable and therefore enter
   the sign summary: 156 substitutes, 183 complements, and 237 separable
   cases. The other 2,880 rows are reported but excluded from every aggregate
   interaction-sign count. All 192 primitive-certified response rows have
-  \(J\leq0\).
+  $J\leq0$.
 - **Realizability rule:** a corner is realizable in the constructed one-belief
   model exactly when its reported frontier equals its incumbent operating
   reward. `sign_aggregation_eligible` is true exactly when this holds at all
@@ -1015,7 +1015,7 @@ Every experiment must have:
   primitive frontier independence and individual candidate saturation do not
   imply T7. The general corrected substitution theorem uses relative
   Bellman-action saturation and is proved in Lean; the grid is not its proof.
-  Computed \(J\) values on nonrealizable compressed rectangles are diagnostic
+  Computed $J$ values on nonrealizable compressed rectangles are diagnostic
   only and are never pooled with realizable interaction signs.
 
 ### raw-realizable-rectangle-fixtures-v1
@@ -1035,14 +1035,14 @@ Every experiment must have:
   include("julia/test/test_realizable_rectangles.jl")'`
 - **Expected invariants:** both fixtures share one catalog and closure object
   across their four raw corners; the raw additions commute; the four images
-  are exactly \((F_0,C_0),(F_0,C_1),(F_1,C_0),(F_1,C_1)\); menus equal the
+  are exactly $(F_0,C_0),(F_0,C_1),(F_1,C_0),(F_1,C_1)$; menus equal the
   requirement-derived feasible actions; every raw embedded law pushes forward
   to its compressed counterpart; and two-period raw/compressed values and
   policies agree
 - **Validation:** 63 focused exact checks
 - **Scope warning:** these are two exact realizability witnesses and reusable
   construction infrastructure. They do not prove T7, determine the sign of
-  \(J\), or change the registered D-0090 response surface.
+  $J$, or change the registered D-0090 response surface.
 
 ### primitive-substitution-search-v1
 
@@ -1066,7 +1066,7 @@ Every experiment must have:
 - **Expected invariants:** 1,134 rows satisfy all-pairs relative saturation.
   The broader added-exposure order holds on 1,620 rows but fails on 648.
   Zero poor exposure and nonnegative rich exposure hold on 810 rows, with no
-  relative-saturation failure. The \(J=-1\) strict-substitution and \(J=1/2\)
+  relative-saturation failure. The $J=-1$ strict-substitution and $J=1/2$
   optimizer-switching fixtures are reproduced exactly, and all 12 complement
   rows remain visible.
 - **Validation:** 38 dedicated checks cover exact counts, the broader
@@ -1211,11 +1211,11 @@ Every experiment must have:
 - **Information-set audit:** the pruning calls and decision hash precede the
   first locked-period quality access. Frontier-only deletion accepts on
   frontier equality; innovation-safe deletion accepts on frontier and closure
-  equality. Neither acceptance test reads \(Q_a\). The enabled set is
+  equality. Neither acceptance test reads $Q_a$. The enabled set is
   structurally derivable but not tested by pruning; coverage scores are
   validation-only ranking inputs fixed after compression. Compression ratio,
   module uniqueness, and descendant dependence are retrospective structural
-  summaries. Locked net utility, \(Q_a\), ex post generative contribution,
+  summaries. Locked net utility, $Q_a$, ex post generative contribution,
   support for the best descendant, and rank diagnostics are held out.
 - **Validation result:** frontier-only compression reduced 80 strategies to 3
   and ex post enabled-descendant opportunity quality by about 0.00156;
@@ -1272,10 +1272,10 @@ Every experiment must have:
   routine, and each walk-forward decision hash is fixed before target-year
   outcomes are accessed. Frontier-only deletion accepts on frontier equality;
   innovation-safe deletion accepts on frontier and closure equality. Neither
-  acceptance test reads \(Q_a\). Each coverage score uses only trailing data
+  acceptance test reads $Q_a$. Each coverage score uses only trailing data
   through the prior year. Compression ratio, module uniqueness, and descendant
   dependence are retrospective structural summaries. Realized coverage,
-  \(Q_a\), ex post generative contribution, support for the best descendant,
+  $Q_a$, ex post generative contribution, support for the best descendant,
   rank diagnostics, and resampling inputs are held out; greedy-oracle regret
   is an infeasible target-year comparator.
 - **Validation result:** frontier-only pruning preserves current validation

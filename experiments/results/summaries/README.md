@@ -116,7 +116,7 @@ source, strictly positive duration, and numerical solver gates.
 - `financial_compression_predictor_summary.csv` groups those policy
   characteristics and explicitly flags the unidentifiable within-audit module
   uniqueness contrast.
-- `financial_compression_estimand_metadata.csv` names \(Q_a(L')\) as ex post
+- `financial_compression_estimand_metadata.csv` names $Q_a(L')$ as ex post
   enabled-descendant opportunity quality and records that it is evaluated from
   held-out audit outcomes after pruning decisions are fixed. It marks
   `algorithm_input=false`, `forecast=false`, `policy_score=false`,

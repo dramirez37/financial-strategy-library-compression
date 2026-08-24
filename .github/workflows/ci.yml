@@ -151,7 +151,7 @@ jobs:
           set -o pipefail
           {
             sudo apt-get update
-            sudo apt-get install --no-install-recommends latexmk ripgrep texlive-latex-base
+            sudo apt-get install --no-install-recommends latexmk ripgrep texlive-latex-base texlive-latex-extra lmodern
           } 2>&1 | tee ci-logs/latex-install.log
 
       - name: Compile manuscript

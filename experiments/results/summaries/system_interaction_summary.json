@@ -1,0 +1,93 @@
+{
+  "arithmetic": "Rational{BigInt}",
+  "checks": {
+    "row_count": true,
+    "all_exact": true,
+    "all_three_fixed_primitive_signs": true,
+    "substitution_matches_lean": true,
+    "independent_switch_matches_lean": true,
+    "dependent_success_matches_lean": true,
+    "separable_matches_lean": true,
+    "five_exact_fixtures": true,
+    "fixture_corner_policies_complete": true,
+    "fixture_realizability_complete": true,
+    "response_row_count": true,
+    "response_realizability_partition": true,
+    "response_sign_counts_conditioned_on_realizability": true,
+    "nonrealizable_rows_excluded_from_sign_aggregation": true,
+    "primitive_response_rows_nonpositive": true,
+    "response_reports_all_requested_fields": true
+  },
+  "classification_counts": {
+    "complements": 12,
+    "separable": 1865,
+    "substitutes": 553
+  },
+  "exact_fixtures": {
+    "primitive_strict_substitution": {
+      "closure_increment_high": "1//1",
+      "closure_increment_low": "2//1",
+      "cross_difference_J": "-1//1",
+      "primitive_sufficient_conditions_hold": true,
+      "selected_projects": ["Continue", "Added-1", "Continue", "Added-1"],
+      "all_corners_realizable": true
+    },
+    "saturation_boundary": {
+      "closure_increment_high": "0//1",
+      "closure_increment_low": "0//1",
+      "cross_difference_J": "0//1",
+      "primitive_sufficient_conditions_hold": true,
+      "selected_projects": ["Continue", "Continue", "Continue", "Continue"],
+      "all_corners_realizable": true
+    },
+    "optimizer_switching_complementarity": {
+      "closure_increment_high": "1//2",
+      "closure_increment_low": "0//1",
+      "cross_difference_J": "1//2",
+      "primitive_sufficient_conditions_hold": false,
+      "selected_projects": ["Old", "Old", "Continue", "Added-1"],
+      "all_corners_realizable": true
+    },
+    "frontier_dependent_success_complementarity": {
+      "closure_increment_high": "1//2",
+      "closure_increment_low": "0//1",
+      "cross_difference_J": "1//2",
+      "primitive_sufficient_conditions_hold": false,
+      "selected_projects": ["Continue", "Continue", "Continue", "Added-1"],
+      "all_corners_realizable": true
+    },
+    "separable_zero_interaction": {
+      "closure_increment_high": "3//2",
+      "closure_increment_low": "3//2",
+      "cross_difference_J": "0//1",
+      "primitive_sufficient_conditions_hold": true,
+      "selected_projects": ["Continue", "Added-1", "Continue", "Added-1"],
+      "all_corners_realizable": true
+    }
+  },
+  "experiment_id": "system-interaction-surface-v2",
+  "legacy_grid_realizability": "all rows set incumbent operating reward equal to the reported frontier",
+  "model": "legacy two-project grid plus realizability-gated fixed-continuation response",
+  "randomness": "none",
+  "row_count": 2430,
+  "expanded_response": {
+    "aggregation_rule": "interaction signs are counted only when all four corners are realizable",
+    "excluded_nonrealizable_rectangles": 2880,
+    "realizable_interaction_counts": {
+      "complements": 183,
+      "separable": 237,
+      "substitutes": 156
+    },
+    "realizable_rectangles": 576,
+    "realizability_rule": "each reported frontier equals its constructed incumbent operating reward",
+    "primitive_positive_interactions": 0,
+    "primitive_rows": 192,
+    "total_rows": 3456
+  },
+  "witnesses": {
+    "dependent_success_interaction": "1//2",
+    "independent_switch_interaction": "1//2",
+    "separable_interaction": "0//1",
+    "substitution_interaction": "-1//1"
+  }
+}

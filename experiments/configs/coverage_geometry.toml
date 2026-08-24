@@ -1,0 +1,39 @@
+schema_version = "coverage-potential-geometry-v1"
+experiment_id = "coverage-potential-geometry-v1"
+julia_version = "1.12.6"
+randomness = "none"
+
+[theorem_fixtures]
+arithmetic = "Rational{BigInt}"
+lean_declarations = [
+  "StrategyInnovation.Coverage.discountedOccupationWeight",
+  "StrategyInnovation.Coverage.coveragePotential",
+  "StrategyInnovation.Coverage.grossCoverageValue",
+  "StrategyInnovation.Coverage.DelayedCoverageExample.zero_currentGap_positive_coveragePotential",
+  "StrategyInnovation.Coverage.SingleGapCounterexamples.destructiveKernel_expectedGap",
+  "StrategyInnovation.Counterexamples.MultiGapRegion.coveragePotential_eq",
+]
+
+[geometry]
+arithmetic = "Float64"
+belief_grid_size = 121
+discount = 0.86
+candidate_survival = 0.90
+research_delay = 0
+research_cost = 0.72
+kernel_signal_scale = 0.075
+kernel_persistence = 0.88
+
+[sensitivity]
+costs = [0.55, 0.72, 0.90]
+discounts = [0.72, 0.86, 0.94]
+persistences = [0.0, 0.5, 0.9]
+delays = [0, 1, 3]
+survivals = [0.65, 0.80, 0.95]
+signal_scales = [0.13, 0.075, 0.045]
+
+[outputs]
+summary = "experiments/results/summaries/coverage_geometry_summary.json"
+data_format = "CSV"
+figure_format = "SVG"
+figure_count = 5

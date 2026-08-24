@@ -1,0 +1,11 @@
+relationship,group,observation_count,exact_mean_or_frequency,exact_slope,exact_difference,numerator_count,denominator_count
+action_switching,closure_low,12288,781//4096,,,2343,12288
+action_switching,closure_high,12288,289//1536,,,2312,12288
+action_switching,frontier_poor,12288,41//4096,,,123,12288
+action_switching,frontier_rich,12288,41//1024,,,492,12288
+action_switching,prune_frontier,12288,789//4096,,,2367,12288
+action_switching,prune_safe,12288,0//1,,,0,12288
+frontier_density_signed_loss,dense_minus_sparse,1024,124909129//201326592,423823//25165824,423823//100663296,0,1024
+frontier_density_positive_loss,dense_minus_sparse,1024,124909129//201326592,423823//25165824,423823//100663296,0,1024
+module_uniqueness_generative_value,positive_minus_zero_uniqueness,5120,415733171//16106127360,29222495773//130459631616,2077126759//8053063680,2560,5120
+closure_richness_descendant_quality,strong_minus_weak_complementarity,1024,255//64,19//768,19//384,512,1024

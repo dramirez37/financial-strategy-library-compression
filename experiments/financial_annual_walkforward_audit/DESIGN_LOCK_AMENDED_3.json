@@ -1,0 +1,23 @@
+{
+  "schema_version": "financial-illustration-design-lock-v2",
+  "experiment_id": "larger-100-etf-walk-forward-mechanism-illustration-v2",
+  "locked_at_utc": "2026-07-21T19:48:54Z",
+  "lock_stage": "post-support completed-implementation audit lock",
+  "initial_analytical_design_sha256": "2af8b413e2b37eea94cb9a5ded6b48d6ca268be7d92fcaf0823be9830be994bc",
+  "support_information_read_before_lock": true,
+  "candidate_results_used_to_change_analytical_specification": false,
+  "design_sha256": "12b89f6573c3dc7e38bb5d2e3dc1be17797f5a4427f7eb715092aa2a569f8fdc",
+  "files": {
+    "experiments/configs/financial_universe_audit_v2.toml": "f272a3d67d56d947344df9c29bd5c82df3779f2c3e448a6f480cf4f980873d2b",
+    "experiments/configs/financial_illustration_v2.toml": "5ff7f04091d5917424d144b8492e66576e3875faf741dc3944d677c8f470e0f3",
+    "experiments/financial_illustration_v2/DESIGN_AMENDMENTS.md": "057e892567b1fdf4129575fd49ea9be91af2fd8eea370878e7f873c7caf703e9",
+    "experiments/financial_illustration_v2/DESIGN_LOCK_AMENDED_1.json": "1aa9d0087cff0be3eb855a2d278cf01e3ec049718bd8c31432b3aa547eae8dd5",
+    "experiments/financial_illustration_v2/DESIGN_LOCK_AMENDED_2.json": "be21eddd15443534ca3d2e46f20367794eb120bd1d94e610df022eebbbd2237c",
+    "experiments/financial_illustration_v2/DESIGN_LOCK_INITIAL.json": "f67db5228cf198c4fec0307a2f810044483d9b533522b973507f7a021bd7cd79",
+    "experiments/financial_illustration_v2/universe_selection.toml": "52abd208b146449c626f377f692c828542b62ca1673e1a442d827690f620009d",
+    "julia/scripts/audit_financial_universe_v2.jl": "c842ab8db385370bf2bb5301036cb9f57ae741ce5971492b006c9128254571d6",
+    "julia/scripts/freeze_financial_illustration_v2.jl": "499765ea51f15e2bc67f502a396d666304bc8723ef77682645e92edb8320d45e",
+    "julia/scripts/prepare_financial_illustration_v2_data.jl": "7afd019dc2dc01163b7a40ee9fd4755855f6424dea8540af66baf4b762320e79",
+    "julia/scripts/run_financial_illustration_v2.jl": "65a74b7806f489d54302da29669fee2aefb7ca1706d5838d257b811fa8add4ae"
+  }
+}

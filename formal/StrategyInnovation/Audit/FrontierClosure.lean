@@ -1,0 +1,27 @@
+import StrategyInnovation.Quotient.FrontierClosure
+
+/-!
+# Frontier--closure proof audit
+
+This module records the kernel dependencies of the modular-generator
+factorization, characterization, sufficiency, and counterexample declarations.
+-/
+
+#print axioms StrategyInnovation.currentReward_detects_frontier
+#print axioms StrategyInnovation.frontier_eq_of_operationallyEquivalent
+#print axioms StrategyInnovation.researchTransition_eq_modularGenerator_on_library
+#print axioms StrategyInnovation.frontierClosure_eq_implies_dynamicInnovationEquivalent
+#print axioms StrategyInnovation.dynamicInnovationEquivalent_implies_frontierClosure_eq
+#print axioms StrategyInnovation.dynamicInnovationEquivalent_iff_frontierClosure_eq
+#print axioms StrategyInnovation.dynamicInnovationEquivalent_iff_compressedLibraryState_eq
+#print axioms StrategyInnovation.frontierClosure_eq_preserves_finiteHorizonValue
+#print axioms
+  StrategyInnovation.FrontierClosureCounterexamples.constantSemantics_factors
+#print axioms
+  StrategyInnovation.FrontierClosureCounterexamples.frontier_converse_fails_without_currentReward
+#print axioms
+  StrategyInnovation.FrontierClosureCounterexamples.closure_converse_fails_without_identifiability
+#print axioms
+  StrategyInnovation.FrontierClosureCounterexamples.constantGenerator_not_closureIdentifiable
+
+#lint- only checkType unusedArguments simpNF in StrategyInnovation

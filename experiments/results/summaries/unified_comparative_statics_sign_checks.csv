@@ -1,0 +1,12 @@
+check_id,theorem_id,expected_direction,observed_difference,applicable,passed,boundary_flag,detail
+frontier_value,CS1,nonnegative,0.23520862701,true,true,none,Full-value frontier order requires fixed; frontier-independent opportunities.
+frontier_operational_saturation,CS1,nonpositive,-0.756249999932,true,true,none,A fixed candidate's passive insertion value is antitone in the incumbent frontier.
+research_cost_value,CS1,nonnegative,0.313111370526,true,true,none,Only the research-cost schedule changes.
+research_cost_region,CS1,set_inclusion,1,true,true,none,The higher-cost weak research set must be contained in the lower-cost set.
+admission_value,CS1,nonnegative,0.841451208292,true,true,none,Candidate admission is insertion-only; so success weakly dominates failure.
+survival_value,CS1,nonnegative,0.765228145336,true,true,none,Candidate admission is insertion-only; so success weakly dominates failure.
+closure_value,CS1/T5,nonnegative,0.698408134734,true,true,none,Candidate admission is insertion-only; so success weakly dominates failure.
+discount_survival_cross_difference,S6,nonnegative,0.875103703295,true,true,none,Finite nonnegative-gap patience-survival complementarity.
+persistence_direction,S7,no_universal_sign,0,false,true,persistence_unaligned,A scalar persistence change has no sign without gap-aligned occupation dominance.
+research_duration,CS1,nonpositive,0,false,true,no_waiting_gain_unverified,Active operation and changing terminal occupation do not satisfy the scalar no-waiting-gain certificate automatically.
+frontier_closure_J,T7,nonpositive,-0.1039896875,false,true,relative_saturation_unverified,Frontier-independent primitives alone do not imply J ≤ 0; relative action saturation must be certified.

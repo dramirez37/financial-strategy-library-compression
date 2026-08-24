@@ -1,0 +1,40 @@
+schema_version = "financial-universe-audit-v2"
+audit_id = "crsp-stable-liquid-etf-universe-v2"
+protocol_date = "2026-07-21"
+source_repository_commit = "3146029aa71dfe7639ede9ca79f81602165125e8"
+
+[source]
+repository_root = "../curv-risk/curvrisk/research/bachelier_revision"
+security_history = "data/raw/crsp_a_stock/security_history/stksecurityinfohist.csv"
+daily_files = [
+  "data/raw/crsp_a_stock/daily_security/stkdlysecuritydata_00_10.csv.gz",
+  "data/raw/crsp_a_stock/daily_security/stkdlysecuritydata_10_20.csv.gz",
+  "data/raw/crsp_a_stock/daily_security/stkdlysecuritydata_20_25.csv.gz",
+]
+
+[window]
+classification_start = "2008-01-01"
+analysis_end = "2024-12-31"
+liquidity_start = "2009-01-01"
+liquidity_end = "2014-12-31"
+
+[eligibility]
+security_type = "FUND"
+security_subtype = "ETF"
+require_active_at_both_endpoints = true
+minimum_liquidity_observations = 1450
+minimum_full_window_observations = 4100
+minimum_median_close = 5.0
+minimum_median_dollar_volume = 5000000.0
+maximum_selected = 100
+# CRSP frequently reports only the trust name, not the individual share name.
+# Excluding the two complex-product trust families is therefore fail-closed.
+exclude_name_keywords = ["2X", "3X", "BEAR", "DIREXION", "DOUBLE", "INVERSE", "LEVERAGED", "PROSHARES", "TRIPLE", "ULTRA"]
+required_reference_ticker = "SPY"
+
+[eligibility.allowed_ticker_change]
+QQQQ = "QQQ"
+
+[outputs]
+audit_csv = "experiments/financial_annual_walkforward_audit/universe_audit.csv"
+selection_toml = "experiments/financial_annual_walkforward_audit/universe_selection.toml"

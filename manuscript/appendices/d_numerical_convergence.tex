@@ -1,0 +1,92 @@
+% Page budget: 1.5--2 pages.
+\section{Computational verification}\label{app:numerical-convergence}
+
+\subsection{Exact and floating-point certificates}
+\label{app:residual-bounds}
+
+The canonical solver compiles rewards and discounted transition rows from the
+registered raw embedded laws in
+\path{experiments/configs/unified_canonical_benchmark.toml}.  Its exact mode
+uses \texttt{Rational\{BigInt\}} throughout.  Exact rational policy iteration
+terminates with Bellman residual zero.  The independently compiled
+\texttt{Float64} mode starts from \(v_0=0\), forms
+\(v_{n+1}=\mathsf T v_n\), and stops at the first \(n\) satisfying
+\begin{equation}\label{eq:numerical-stopping-rule}
+  \lVert v_n-v_{n-1}\rVert_\infty\le \tau,
+  \qquad \tau=10^{-12},
+\end{equation}
+subject to the registered cap of 10,000 iterations.  Failure to meet the
+tolerance before the cap raises an error rather than emitting a converged
+row.
+
+At every iteration the solver separately records the Float64 Bellman residual
+\begin{equation}\label{eq:numerical-bellman-residual}
+  r_n^{64}:=\lVert\mathsf T_{64} v_n-v_n\rVert_\infty,
+\end{equation}
+the Float64 a-priori contraction bound
+\begin{equation}\label{eq:numerical-apriori-bound}
+  \lVert v_n-V_\infty\rVert_\infty
+  \le \frac{\beta_{64}^n}{1-\beta_{64}}
+       \lVert v_1-v_0\rVert_\infty,
+\end{equation}
+and the Float64 a-posteriori contraction bound
+\begin{equation}\label{eq:numerical-posterior-bound}
+  \lVert v_n-V_\infty\rVert_\infty
+  \le \frac{r_n^{64}}{1-\beta_{64}}.
+\end{equation}
+Thus the residual is not substituted for the registered stopping rule.
+
+The solver then applies a separate exact check to the final iterate.  It
+converts every binary Float64 value to its exact
+\texttt{Rational\{BigInt\}} representation \(\widehat v_{42}\), evaluates
+\(\widehat r_{42}=\lVert\mathsf T_{\mathbb Q}\widehat v_{42}-
+\widehat v_{42}\rVert_\infty\) with the exact rational Bellman operator, and
+forms \(\widehat r_{42}/(1-\beta_{\mathbb Q})\).  This exactly re-evaluated
+residual-based certificate is distinct from the Float64 a-posteriori
+contraction bound above.
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{@{}p{0.43\linewidth}p{0.47\linewidth}@{}}
+\toprule
+Verification item & Recorded result \\
+\midrule
+Exact stationary solve & \texttt{Rational\{BigInt\}}; Bellman residual \(0\) \\
+Float64 stopping point & \(n=42\); final increment \(5.54223\times10^{-13}\) \\
+Final Float64 diagnostics & \(r_{42}^{64}=2.77112\times10^{-13}\); a-priori
+contraction bound \(2.52953\times10^{-12}\); a-posteriori contraction bound
+\(5.54223\times10^{-13}\) \\
+Exactly evaluated Float64 versus exact & maximum absolute error after exact
+rationalization \(5.5482\times10^{-13}\), below the exactly re-evaluated
+residual-based certificate
+\(5.5489\times10^{-13}\) \\
+Selected actions & agreement on all six compressed state--belief pairs \\
+Outer resource optimization & all eight canonical libraries exhaustively
+evaluated for every belief and registered weight schedule; all optimizer ties
+retained \\
+Envelope bookkeeping & every pairwise crossing candidate recorded separately
+from the subset of globally active breakpoints \\
+\bottomrule
+\end{tabular}
+\caption{Compact verification record for the canonical dynamic program and
+outer resource optimization.}
+\label{tab:canonical-verification-record}
+\end{table}
+
+\subsection{Scope of the retained checks}
+
+The dynamic implementation checks 32 raw/compressed embedded transition rows,
+144 finite-horizon values, 128 finite-horizon actions, 16 stationary values,
+and 16 lifted stationary actions.  It independently evaluates the selected
+stationary policy over exact rationals and records every full-duration belief
+path, admission atom, and operating-reward block.  The resource implementation
+recomputes frontier, closure, burden, productive value, and net value exactly
+for each enumerated library.  Numerical solver status is never used as an
+exact certificate.
+
+The main paper reports the economically relevant stationary solution.  Online
+Supplement~S4 contains the full 42-row convergence history and figure,
+horizon-by-horizon values and actions, stationary action values, path and
+admission atoms, safe-compression correspondences, capacity paths, penalized
+intervals, and all active and inactive pairwise crossing candidates.

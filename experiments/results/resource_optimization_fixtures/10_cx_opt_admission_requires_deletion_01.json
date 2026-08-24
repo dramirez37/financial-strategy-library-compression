@@ -1,0 +1,152 @@
+{
+  "claim": {
+    "arithmetic": "Rational{BigInt}",
+    "assumption_boundary": "The no-deletion shortcut ignores the hard capacity constraint.",
+    "claim_number": 10,
+    "evidence_class": "exact finite Julia search; not Lean proof",
+    "fixture": {
+      "candidate": "s2",
+      "capacity": "1//1",
+      "current_library": {
+        "active_count": 1,
+        "cardinality_with_inactive": 2,
+        "frontier": [
+          "0//1"
+        ],
+        "mask": 1,
+        "modules": [
+          "m1"
+        ],
+        "productive_value": "0//1",
+        "strategies": [
+          "inactive",
+          "s1"
+        ],
+        "weight": "1//1"
+      },
+      "feasible_deletions": [
+        {
+          "deleted": [
+            "s1"
+          ],
+          "final_library": {
+            "active_count": 1,
+            "cardinality_with_inactive": 2,
+            "frontier": [
+              "0//1"
+            ],
+            "mask": 2,
+            "modules": [
+              "m1"
+            ],
+            "productive_value": "0//1",
+            "strategies": [
+              "inactive",
+              "s2"
+            ],
+            "weight": "1//1"
+          }
+        }
+      ],
+      "problem": {
+        "active_strategies": [
+          {
+            "id": "s1",
+            "modules": [
+              "m1"
+            ],
+            "profile": [
+              "0//1"
+            ],
+            "weight": "1//1"
+          },
+          {
+            "id": "s2",
+            "modules": [
+              "m1"
+            ],
+            "profile": [
+              "0//1"
+            ],
+            "weight": "1//1"
+          }
+        ],
+        "belief_count": 1,
+        "closure": "identity",
+        "inactive": {
+          "id": "inactive",
+          "modules": [],
+          "profile": [
+            "0//1"
+          ],
+          "weight": "0//1"
+        },
+        "module_count": 1,
+        "productive_value_monotone_under_inclusion": true,
+        "productive_value_table": [
+          {
+            "mask": 0,
+            "productive_value": "0//1",
+            "strategies": [
+              "inactive"
+            ]
+          },
+          {
+            "mask": 1,
+            "productive_value": "0//1",
+            "strategies": [
+              "inactive",
+              "s1"
+            ]
+          },
+          {
+            "mask": 2,
+            "productive_value": "0//1",
+            "strategies": [
+              "inactive",
+              "s2"
+            ]
+          },
+          {
+            "mask": 3,
+            "productive_value": "0//1",
+            "strategies": [
+              "inactive",
+              "s1",
+              "s2"
+            ]
+          }
+        ]
+      },
+      "without_deletion": {
+        "active_count": 2,
+        "cardinality_with_inactive": 3,
+        "frontier": [
+          "0//1"
+        ],
+        "mask": 3,
+        "modules": [
+          "m1"
+        ],
+        "productive_value": "0//1",
+        "strategies": [
+          "inactive",
+          "s1",
+          "s2"
+        ],
+        "weight": "2//1"
+      },
+      "without_deletion_feasible": false
+    },
+    "id": "CX-OPT-ADMISSION-REQUIRES-DELETION-01",
+    "minimality": {
+      "lexicographic_score": "(1, 1//1, 2//1, 1, (1//1, 1//1))",
+      "one_incumbent_is_minimal": true
+    },
+    "status": "counterexample_found",
+    "theorem_revision": "Use 'capacity-feasible after deletion,' not 'becomes admissible': outer eligibility precedes the replacement optimization.",
+    "title": "An eligible candidate can require capacity-releasing deletion"
+  },
+  "experiment_id": "paper1-resource-optimization-counterexample-audit-v1",
+  "schema_version": "resource-optimization-counterexample-audit-v1"
+}

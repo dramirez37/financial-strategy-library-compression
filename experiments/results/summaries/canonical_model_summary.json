@@ -1,0 +1,31 @@
+{
+  "exact_arithmetic": "Rational{BigInt}",
+  "exact_bellman_residual": "0//1",
+  "exact_finite_horizon_values": [
+    [
+      "2758180464463//549755813888",
+      "37368287853713//4398046511104",
+      "1696154031//134217728"
+    ],
+    [
+      "207285764959//34359738368",
+      "9856806809893//1099511627776",
+      "521642523//33554432"
+    ]
+  ],
+  "exact_horizon": 8,
+  "exact_policy_converged": true,
+  "exact_policy_iterations": 3,
+  "exact_runtime_ns": 91816125,
+  "float_apriori_error_bound": 3.599968057986913e-10,
+  "float_arithmetic": "Float64 sparse",
+  "float_bellman_residual": 6.942890706795879e-11,
+  "float_converged": true,
+  "float_increment": 9.257128397166525e-11,
+  "float_iterations": 86,
+  "float_posterior_error_bound": 2.7771562827183516e-10,
+  "float_runtime_ns": 19182625,
+  "project_count": 2,
+  "schema_version": "canonical-discounted-dp-v1",
+  "state_count": 6
+}

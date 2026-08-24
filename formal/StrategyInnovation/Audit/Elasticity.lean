@@ -1,0 +1,111 @@
+import StrategyInnovation.Compression.BridgeMarginElasticity
+import StrategyInnovation.Coverage.InnovationDuration
+import StrategyInnovation.Value.ChannelElasticity
+
+/-!
+# Real-parameter elasticity audit
+
+This focused gate records the kernel dependencies of the shared elasticity
+algebra, bridge-margin calculus and limit, finite innovation duration and
+convexity identities, channel decomposition, exact examples, and the local
+penalized-envelope slope away from actual breakpoints.
+-/
+
+-- Shared real algebra and local penalized-envelope slope.
+#print axioms StrategyInnovation.Optimization.scaledDerivative
+#print axioms StrategyInnovation.Optimization.pointElasticity
+#print axioms StrategyInnovation.Optimization.normalizedContribution
+#print axioms StrategyInnovation.Optimization.pointElasticity_eq_scaledDerivative_div
+#print axioms StrategyInnovation.Optimization.scaledDerivative_add
+#print axioms StrategyInnovation.Optimization.normalizedContribution_add
+#print axioms StrategyInnovation.Optimization.pointElasticity_eq_contribution_sum
+#print axioms StrategyInnovation.Optimization.FinitePenalizedProblem.exists_hasDerivAt_envelope_of_not_mem_breakpointSet
+
+-- BEM: realized bridge loss, derivatives, elasticities, and blow-up.
+#print axioms StrategyInnovation.Compression.grossBridge
+#print axioms StrategyInnovation.Compression.bridgeMargin
+#print axioms StrategyInnovation.Compression.bridgeLoss
+#print axioms StrategyInnovation.Compression.hasDerivAt_max_zero_of_pos
+#print axioms StrategyInnovation.Compression.hasDerivAt_bridgeMargin_discount
+#print axioms StrategyInnovation.Compression.hasDerivAt_bridgeMargin_survival
+#print axioms StrategyInnovation.Compression.hasDerivAt_bridgeMargin_probability
+#print axioms StrategyInnovation.Compression.hasDerivAt_bridgeMargin_consequence
+#print axioms StrategyInnovation.Compression.hasDerivAt_bridgeMargin_threshold
+#print axioms StrategyInnovation.Compression.hasDerivAt_bridgeLoss_discount
+#print axioms StrategyInnovation.Compression.hasDerivAt_bridgeLoss_survival
+#print axioms StrategyInnovation.Compression.hasDerivAt_bridgeLoss_probability
+#print axioms StrategyInnovation.Compression.hasDerivAt_bridgeLoss_consequence
+#print axioms StrategyInnovation.Compression.hasDerivAt_bridgeLoss_threshold
+#print axioms StrategyInnovation.Compression.normalizedBridgeMargin
+#print axioms StrategyInnovation.Compression.bridgeFragility
+#print axioms StrategyInnovation.Compression.bridgeLoss_discount_elasticity
+#print axioms StrategyInnovation.Compression.bridgeLoss_survival_elasticity
+#print axioms StrategyInnovation.Compression.bridgeLoss_probability_elasticity
+#print axioms StrategyInnovation.Compression.bridgeLoss_consequence_elasticity
+#print axioms StrategyInnovation.Compression.bridgeLoss_threshold_elasticity
+#print axioms StrategyInnovation.Compression.bridgeFragility_eq_inv_normalizedMargin
+#print axioms StrategyInnovation.Compression.normalizedMargin_fragility_tendsto_atTop
+#print axioms StrategyInnovation.Compression.positiveMargin_thresholdElasticity_tendsto_atBot
+#print axioms StrategyInnovation.Compression.fixedGross_fragility_tendsto_atTop
+#print axioms StrategyInnovation.Compression.costless_vanishingGross_fragility_eq_one
+#print axioms StrategyInnovation.Compression.BridgeExample.gross_exact
+#print axioms StrategyInnovation.Compression.BridgeExample.margin_exact
+#print axioms StrategyInnovation.Compression.BridgeExample.loss_exact
+#print axioms StrategyInnovation.Compression.BridgeExample.normalizedMargin_exact
+#print axioms StrategyInnovation.Compression.BridgeExample.fragility_exact
+#print axioms StrategyInnovation.Compression.BridgeExample.discount_elasticity_exact
+#print axioms StrategyInnovation.Compression.BridgeExample.probability_elasticity_exact
+#print axioms StrategyInnovation.Compression.BridgeExample.threshold_elasticity_exact
+
+-- IDCV: finite polynomial duration and variance identities.
+#print axioms StrategyInnovation.Coverage.innovationPotential
+#print axioms StrategyInnovation.Coverage.innovationFirstMoment
+#print axioms StrategyInnovation.Coverage.innovationSecondMoment
+#print axioms StrategyInnovation.Coverage.innovationPotentialDerivative
+#print axioms StrategyInnovation.Coverage.innovationFirstMomentDerivative
+#print axioms StrategyInnovation.Coverage.innovationDuration
+#print axioms StrategyInnovation.Coverage.innovationWeight
+#print axioms StrategyInnovation.Coverage.innovationConvexity
+#print axioms StrategyInnovation.Coverage.innovationTimingVariance
+#print axioms StrategyInnovation.Coverage.hasDerivAt_innovationPotential
+#print axioms StrategyInnovation.Coverage.hasDerivAt_innovationFirstMoment
+#print axioms StrategyInnovation.Coverage.scaled_potentialDerivative_eq_firstMoment
+#print axioms StrategyInnovation.Coverage.scaled_firstMomentDerivative_eq_secondMoment
+#print axioms StrategyInnovation.Coverage.innovationDuration_identity
+#print axioms StrategyInnovation.Coverage.sum_innovationWeight_eq_one
+#print axioms StrategyInnovation.Coverage.sum_time_mul_innovationWeight_eq_duration
+#print axioms StrategyInnovation.Coverage.finite_weighted_variance_identity
+#print axioms StrategyInnovation.Coverage.sum_time_sq_mul_innovationWeight
+#print axioms StrategyInnovation.Coverage.innovationConvexity_eq_timingVariance
+#print axioms StrategyInnovation.Coverage.hasDerivAt_innovationDuration
+#print axioms StrategyInnovation.Coverage.scaled_durationDerivative_eq_timingVariance
+#print axioms StrategyInnovation.Coverage.innovationWeight_nonnegative
+#print axioms StrategyInnovation.Coverage.innovationConvexity_nonnegative
+#print axioms StrategyInnovation.Coverage.InnovationDurationExamples.early_exact
+#print axioms StrategyInnovation.Coverage.InnovationDurationExamples.late_exact
+#print axioms StrategyInnovation.Coverage.InnovationDurationExamples.middle_exact
+#print axioms StrategyInnovation.Coverage.InnovationDurationExamples.spread_exact
+
+-- CED: local channel derivative and contribution decompositions.
+#print axioms StrategyInnovation.Value.ChannelAccountingAt
+#print axioms StrategyInnovation.Value.operational_generative_derivative_decomposition
+#print axioms StrategyInnovation.Value.channel_level_decomposition
+#print axioms StrategyInnovation.Value.operational_generative_scaledDerivative_decomposition
+#print axioms StrategyInnovation.Value.operational_generative_contribution_decomposition
+#print axioms StrategyInnovation.Value.positive_channel_shares
+#print axioms StrategyInnovation.Value.operational_generative_weightedAverage_elasticity
+#print axioms StrategyInnovation.Value.operational_generative_contribution_decomposition_of_hasDerivAt
+#print axioms StrategyInnovation.Value.ChannelElasticityExamples.positive_accounting
+#print axioms StrategyInnovation.Value.ChannelElasticityExamples.deriv_operationalPositive
+#print axioms StrategyInnovation.Value.ChannelElasticityExamples.deriv_generativePositive
+#print axioms StrategyInnovation.Value.ChannelElasticityExamples.deriv_totalPositive
+#print axioms StrategyInnovation.Value.ChannelElasticityExamples.positive_levels_exact
+#print axioms StrategyInnovation.Value.ChannelElasticityExamples.positive_contributions_exact
+#print axioms StrategyInnovation.Value.ChannelElasticityExamples.signed_accounting
+#print axioms StrategyInnovation.Value.ChannelElasticityExamples.signed_contributions_exact
+#print axioms StrategyInnovation.Value.ChannelElasticityExamples.zero_operational_level_exact
+
+#lint- only checkType unusedArguments simpNF in StrategyInnovation.Optimization
+#lint- only checkType unusedArguments simpNF in StrategyInnovation.Compression
+#lint- only checkType unusedArguments simpNF in StrategyInnovation.Coverage
+#lint- only checkType unusedArguments simpNF in StrategyInnovation.Value

@@ -1,0 +1,27 @@
+import StrategyInnovation.Projection.RawToCompressed
+
+/-!
+# T1 raw-to-compressed projection proof audit
+
+This file records the kernel dependencies of every principal T1 declaration.
+The separate `ConditionalIndependence` predicate is not an assumption of any
+declaration below.
+-/
+
+#print axioms StrategyInnovation.Projection.Model.inducedCompressedTransition_nonnegative
+#print axioms StrategyInnovation.Projection.Model.inducedCompressedTransition_totalMass
+#print axioms StrategyInnovation.Projection.Model.inducedCompressedTransition_wellDefined
+#print axioms StrategyInnovation.Projection.Model.rawNextCompressedTransition_eq_induced
+#print axioms StrategyInnovation.Projection.Model.same_compressedState_same_next_probability
+#print axioms StrategyInnovation.Projection.Model.projectedProcess_controlledMarkov
+#print axioms StrategyInnovation.Projection.Model.rawValue_eq_compressedValue
+#print axioms StrategyInnovation.Projection.Model.rawInfiniteActionValue_lift
+#print axioms StrategyInnovation.Projection.Model.rawBellmanOperator_lift
+#print axioms StrategyInnovation.Projection.Model.DiscountedContractionModel.compressedFixedPoint_isFixedPoint
+#print axioms StrategyInnovation.Projection.Model.DiscountedContractionModel.rawFixedPoint_isFixedPoint
+#print axioms StrategyInnovation.Projection.Model.DiscountedContractionModel.rawFixedPoint_eq_lift
+#print axioms StrategyInnovation.Projection.Model.DiscountedContractionModel.raw_fixedPoint_value_eq_compressed
+#print axioms StrategyInnovation.Projection.Model.DiscountedContractionModel.optimalCompressedPolicy_attains
+#print axioms StrategyInnovation.Projection.Model.DiscountedContractionModel.liftedRawPolicy_optimal
+
+#lint- only checkType unusedArguments simpNF in StrategyInnovation.Projection

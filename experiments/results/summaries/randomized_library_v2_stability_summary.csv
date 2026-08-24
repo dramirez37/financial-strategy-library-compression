@@ -1,0 +1,65 @@
+prefix_n,scope,factor,level,estimand,statistic_kind,event_count,non_event_count,observation_count,exact_sum,estimate,exact_sample_variance,interval_kind,interval_low,interval_high,mcse,warning_code,warning,simulation_precision_only
+50,cumulative,,,frontier_positive_loss_frequency,frequency,25,25,50,25//1,1//2,,Wilson descriptive simulation interval,0.366445143168,0.633554856832,,,,true
+50,cumulative,,,mean_positive_frontier_loss,mean,25,25,25,1818477//65536,1818477//1638400,1876580882629//1449551462400,,,,0.227560469071,sparse_mean_support,mean support is below the registered Monte Carlo precision threshold,true
+50,cumulative,,,innovation_safe_loss_frequency,frequency,0,50,50,0//1,0//1,,Wilson descriptive simulation interval,0,0.0713475991334,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+50,cumulative,,,silent_generative_asset_frequency,frequency,25,225,250,25//1,1//10,,Wilson descriptive simulation interval,0.0686549289883,0.143451710608,,,,true
+50,cumulative,,,substitution_frequency,frequency,27,23,50,27//1,27//50,,Wilson descriptive simulation interval,0.403988713992,0.670303478078,,,,true
+50,cumulative,,,complementarity_frequency,frequency,0,50,50,0//1,0//1,,Wilson descriptive simulation interval,0,0.0713475991334,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+50,cumulative,,,frontier_only_mean_compression_ratio,mean,50,0,50,62//3,31//75,26//3675,,,,0.0118952342827,,,true
+50,cumulative,,,innovation_safe_mean_compression_ratio,mean,50,0,50,9//2,9//100,29//1800,,,,0.0179505493571,,,true
+100,cumulative,,,frontier_positive_loss_frequency,frequency,45,55,100,45//1,9//20,,Wilson descriptive simulation interval,0.356145379795,0.547553970026,,,,true
+100,cumulative,,,mean_positive_frontier_loss,mean,45,55,45,1623911//32768,1623911//1474560,4813420608803//4252017623040,,,,0.158607281599,,,true
+100,cumulative,,,innovation_safe_loss_frequency,frequency,0,100,100,0//1,0//1,,Wilson descriptive simulation interval,3.46944695195e-18,0.036993498207,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+100,cumulative,,,silent_generative_asset_frequency,frequency,45,455,500,45//1,9//100,,Wilson descriptive simulation interval,0.0679425478891,0.118309411289,,,,true
+100,cumulative,,,substitution_frequency,frequency,47,53,100,47//1,47//100,,Wilson descriptive simulation interval,0.375108179593,0.567111430299,,,,true
+100,cumulative,,,complementarity_frequency,frequency,0,100,100,0//1,0//1,,Wilson descriptive simulation interval,3.46944695195e-18,0.036993498207,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+100,cumulative,,,frontier_only_mean_compression_ratio,mean,100,0,100,125//3,5//12,25//3564,,,,0.00837531512716,,,true
+100,cumulative,,,innovation_safe_mean_compression_ratio,mean,100,0,100,12//1,3//25,827//44550,,,,0.0136247612444,,,true
+200,cumulative,,,frontier_positive_loss_frequency,frequency,101,99,200,101//1,101//200,,Wilson descriptive simulation interval,0.436270000335,0.573541546401,,,,true
+200,cumulative,,,mean_positive_frontier_loss,mean,101,99,101,5624367//32768,5624367//3309568,192564750945857//65068754534400,,,,0.171175443678,,,true
+200,cumulative,,,innovation_safe_loss_frequency,frequency,0,200,200,0//1,0//1,,Wilson descriptive simulation interval,0,0.0188453263773,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+200,cumulative,,,silent_generative_asset_frequency,frequency,101,899,1000,101//1,101//1000,,Wilson descriptive simulation interval,0.0838240106524,0.121229742619,,,,true
+200,cumulative,,,substitution_frequency,frequency,64,136,200,64//1,8//25,,Wilson descriptive simulation interval,0.259265333155,0.387518984341,,,,true
+200,cumulative,,,complementarity_frequency,frequency,39,161,200,39//1,39//200,,Wilson descriptive simulation interval,0.146055205344,0.255440443746,,,,true
+200,cumulative,,,frontier_only_mean_compression_ratio,mean,200,0,200,250//3,5//12,25//3582,,,,0.00590734337507,,,true
+200,cumulative,,,innovation_safe_mean_compression_ratio,mean,200,0,200,51//2,51//400,9197//477600,,,,0.00981241564741,,,true
+300,cumulative,,,frontier_positive_loss_frequency,frequency,153,147,300,153//1,51//100,,Wilson descriptive simulation interval,0.453664189456,0.566082951119,,,,true
+300,cumulative,,,mean_positive_frontier_loss,mean,153,147,153,55259345//196608,55259345//30081024,1509367159926169//449476917460992,,,,0.148148765183,,,true
+300,cumulative,,,innovation_safe_loss_frequency,frequency,0,300,300,0//1,0//1,,Wilson descriptive simulation interval,8.67361737988e-19,0.0126429712245,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+300,cumulative,,,silent_generative_asset_frequency,frequency,153,1347,1500,153//1,51//500,,Wilson descriptive simulation interval,0.0876866523122,0.118346674541,,,,true
+300,cumulative,,,substitution_frequency,frequency,87,213,300,87//1,29//100,,Wilson descriptive simulation interval,0.241564546103,0.343745501811,,,,true
+300,cumulative,,,complementarity_frequency,frequency,69,231,300,69//1,23//100,,Wilson descriptive simulation interval,0.185971818073,0.280855386388,,,,true
+300,cumulative,,,frontier_only_mean_compression_ratio,mean,300,0,300,374//3,187//450,1406//201825,,,,0.00481886269925,,,true
+300,cumulative,,,innovation_safe_mean_compression_ratio,mean,300,0,300,227//6,227//1800,62171//3229200,,,,0.00801098331471,,,true
+500,cumulative,,,frontier_positive_loss_frequency,frequency,198,302,500,198//1,99//250,,Wilson descriptive simulation interval,0.354081703503,0.439504159313,,,,true
+500,cumulative,,,mean_positive_frontier_loss,mean,198,302,198,63735497//196608,63735497//38928384,4355637550758449//1507765449129984,,,,0.120788719691,,,true
+500,cumulative,,,innovation_safe_loss_frequency,frequency,0,500,500,0//1,0//1,,Wilson descriptive simulation interval,4.33680868994e-19,0.00762434046155,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+500,cumulative,,,silent_generative_asset_frequency,frequency,192,2308,2500,192//1,48//625,,Wilson descriptive simulation interval,0.0669993611041,0.0878992078346,,,,true
+500,cumulative,,,substitution_frequency,frequency,127,373,500,127//1,127//500,,Wilson descriptive simulation interval,0.217820254915,0.293930920592,,,,true
+500,cumulative,,,complementarity_frequency,frequency,69,431,500,69//1,69//500,,Wilson descriptive simulation interval,0.110518008899,0.171002013595,,,,true
+500,cumulative,,,frontier_only_mean_compression_ratio,mean,500,0,500,1249//6,1249//3000,20833//2994000,,,,0.00373048249775,,,true
+500,cumulative,,,innovation_safe_mean_compression_ratio,mean,500,0,500,188//3,47//375,10789//561375,,,,0.00619981970849,,,true
+750,cumulative,,,frontier_positive_loss_frequency,frequency,321,429,750,321//1,107//250,,Wilson descriptive simulation interval,0.393044402684,0.463689398918,,,,true
+750,cumulative,,,mean_positive_frontier_loss,mean,321,429,321,107121079//196608,107121079//63111168,2968306954811243//992652841451520,,,,0.0965168620199,,,true
+750,cumulative,,,innovation_safe_loss_frequency,frequency,0,750,750,0//1,0//1,,Wilson descriptive simulation interval,0,0.00509584445873,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+750,cumulative,,,silent_generative_asset_frequency,frequency,315,3435,3750,315//1,21//250,,Wilson descriptive simulation interval,0.0755419516872,0.0933094677917,,,,true
+750,cumulative,,,substitution_frequency,frequency,192,558,750,192//1,32//125,,Wilson descriptive simulation interval,0.226064532191,0.288422239905,,,,true
+750,cumulative,,,complementarity_frequency,frequency,130,620,750,130//1,13//75,,Wilson descriptive simulation interval,0.147924946377,0.202071005336,,,,true
+750,cumulative,,,frontier_only_mean_compression_ratio,mean,750,0,750,1873//6,1873//4500,140621//20223000,,,,0.00304489042414,,,true
+750,cumulative,,,innovation_safe_mean_compression_ratio,mean,750,0,750,557//6,557//4500,382001//20223000,,,,0.00501855660843,,,true
+1000,cumulative,,,frontier_positive_loss_frequency,frequency,396,604,1000,396//1,99//250,,Wilson descriptive simulation interval,0.366141449836,0.426654515929,,,,true
+1000,cumulative,,,mean_positive_frontier_loss,mean,396,604,396,124655857//196608,124655857//77856768,17103161212332179//6046369059962880,,,,0.0845168448156,,,true
+1000,cumulative,,,innovation_safe_loss_frequency,frequency,0,1000,1000,0//1,0//1,,Wilson descriptive simulation interval,2.16840434497e-19,0.00382675848556,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+1000,cumulative,,,silent_generative_asset_frequency,frequency,388,4612,5000,388//1,97//1250,,Wilson descriptive simulation interval,0.0705043103313,0.0853442442719,,,,true
+1000,cumulative,,,substitution_frequency,frequency,256,744,1000,256//1,32//125,,Wilson descriptive simulation interval,0.229920184724,0.283947273417,,,,true
+1000,cumulative,,,complementarity_frequency,frequency,141,859,1000,141//1,141//1000,,Wilson descriptive simulation interval,0.120801126705,0.163946485888,,,,true
+1000,cumulative,,,frontier_only_mean_compression_ratio,mean,1000,0,1000,1250//3,5//12,125//17982,,,,0.0026365499882,,,true
+1000,cumulative,,,innovation_safe_mean_compression_ratio,mean,1000,0,1000,376//3,47//375,1163//60750,,,,0.00437538945944,,,true
+1024,cumulative,,,frontier_positive_loss_frequency,frequency,398,626,1024,398//1,199//512,,Wilson descriptive simulation interval,0.359285219636,0.418890686733,,,,true
+1024,cumulative,,,mean_positive_frontier_loss,mean,398,626,398,124909129//196608,124909129//78249984,17217589134281953//6107675423145984,,,,0.0841601806819,,,true
+1024,cumulative,,,innovation_safe_loss_frequency,frequency,0,1024,1024,0//1,0//1,,Wilson descriptive simulation interval,0,0.00373740404002,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+1024,cumulative,,,silent_generative_asset_frequency,frequency,388,4732,5120,388//1,97//1280,,Wilson descriptive simulation interval,0.0688459831805,0.0833526094356,,,,true
+1024,cumulative,,,substitution_frequency,frequency,256,768,1024,256//1,1//4,,Wilson descriptive simulation interval,0.224445933365,0.277422768655,,,,true
+1024,cumulative,,,complementarity_frequency,frequency,141,883,1024,141//1,141//1024,,Wilson descriptive simulation interval,0.117940261488,0.160158521518,,,,true
+1024,cumulative,,,frontier_only_mean_compression_ratio,mean,1024,0,1024,1280//3,5//12,64//9207,,,,0.0026054391645,,,true
+1024,cumulative,,,innovation_safe_mean_compression_ratio,mean,1024,0,1024,128//1,1//8,16//837,,,,0.00432063206138,,,true

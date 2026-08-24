@@ -1,0 +1,24 @@
+schema_version = "kernel-persistence-response-surface-v1"
+experiment_id = "kernel-persistence-response-surface-v1"
+julia_version = "1.12.6"
+arithmetic = "Rational{BigInt}"
+randomness = "none"
+
+[grid]
+persistence_numerators = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+persistence_denominator = 8
+effective_discount_numerators = [0, 1, 2, 3, 4]
+effective_discount_denominator = 4
+horizon = 2
+initial_index = 1
+
+[witness]
+low_persistence_numerator = 1
+high_persistence_numerator = 3
+persistence_denominator = 4
+effective_discount_numerator = 1
+effective_discount_denominator = 2
+
+[outputs]
+response_surface = "experiments/results/summaries/kernel_persistence_response_surface.csv"
+summary = "experiments/results/summaries/kernel_persistence_response_summary.json"

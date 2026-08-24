@@ -1,0 +1,116 @@
+{
+  "schema_version": "lean-julia-exact-fixture-v2",
+  "fixture_id": "normalized_pruning_loss",
+  "theorem_family": "T4 sharp normalized pruning loss",
+  "beliefs": ["only"],
+  "transition_rows": [
+    ["1//1"]
+  ],
+  "discount": "1//2",
+  "modules": ["key"],
+  "strategies": [
+    {
+      "id": "inactive",
+      "operational_profile": ["0//1"],
+      "modules": []
+    },
+    {
+      "id": "bridge",
+      "operational_profile": ["0//1"],
+      "modules": ["key"]
+    },
+    {
+      "id": "candidate",
+      "operational_profile": ["2//1"],
+      "modules": []
+    }
+  ],
+  "libraries": [
+    {
+      "id": "pruned",
+      "strategies": ["inactive"]
+    },
+    {
+      "id": "unpruned",
+      "strategies": ["inactive", "bridge"]
+    }
+  ],
+  "projects": [
+    {
+      "id": "innovate",
+      "cost": ["0//1"],
+      "duration": 1,
+      "survival": "1//1",
+      "strict_cost": false,
+      "required_modules": ["key"],
+      "candidate_strategies": ["candidate"]
+    }
+  ],
+  "expected": {
+    "rational_scalars": [
+    {
+      "id": "admission_probability",
+      "value": "1//1"
+    },
+    {
+      "id": "maximum_net_descendant_value",
+      "value": "1//1"
+    },
+    {
+      "id": "normalized_pruning_loss",
+      "value": "1//1"
+    },
+    {
+      "id": "pruned_value",
+      "value": "0//1"
+    },
+    {
+      "id": "research_cost",
+      "value": "0//1"
+    },
+    {
+      "id": "reward_cap",
+      "value": "2//1"
+    },
+    {
+      "id": "unpruned_value",
+      "value": "1//1"
+    },
+    {
+      "id": "value_loss",
+      "value": "1//1"
+    }
+  ],
+    "rational_vectors": [
+    {
+      "id": "frontier_pruned",
+      "values": ["0//1"]
+    },
+    {
+      "id": "frontier_unpruned",
+      "values": ["0//1"]
+    }
+  ],
+    "boolean_scalars": [
+    {
+      "id": "frontier_preserved",
+      "value": true
+    },
+    {
+      "id": "normalization_attained",
+      "value": true
+    }
+  ],
+    "boolean_vectors": [],
+    "string_vectors": [
+    {
+      "id": "modules_pruned",
+      "values": []
+    },
+    {
+      "id": "modules_unpruned",
+      "values": ["key"]
+    }
+  ]
+  }
+}

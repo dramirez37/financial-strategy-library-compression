@@ -1,0 +1,238 @@
+schema_version = "randomized-finite-library-stress-v2-design"
+experiment_id = "randomized-finite-library-stress-v2"
+registration_status = "design_locked_outcomes_not_run"
+registered_date = "2026-07-28"
+julia_version = "1.12.6"
+stable_rng_version = "1.0.4"
+arithmetic = "Rational{BigInt}"
+theorem_evidence = false
+evidence_class = "registered randomized finite-model robustness diagnostic; not theorem evidence"
+
+master_seed = 6075990691714899803
+trial_count = 1024
+principal_factor_count = 7
+principal_cell_count = 128
+replicates_per_principal_cell = 8
+batch_count = 8
+batch_size = 128
+horizon = 4
+discount_factor = "3//4"
+operational_budget_fraction = "1//10"
+generative_budget_fraction = "1//20"
+normalization = "frontier-only positive total dynamic loss divided by positive source total value"
+
+[registry]
+path = "experiments/randomized_library_v2/TRIAL_REGISTRY.csv"
+assignment = "complete 2^7 factorial; one observation from every principal cell in each 128-trial batch"
+execution_order = "within-batch ascending SplitMix64 schedule key"
+seed_derivation = "SplitMix64 with domain-separated UInt64 salts; recorded seeds are masked to nonnegative Int64"
+unrecorded_random_streams_permitted = false
+columns = [
+  "trial_id",
+  "batch_id",
+  "within_batch_order",
+  "principal_cell_id",
+  "canonical_index",
+  "replicate_id",
+  "theorem_regime",
+  "boundary_mechanism",
+  "frontier_density",
+  "module_overlap",
+  "module_complementarity",
+  "project_cost",
+  "duration",
+  "admission",
+  "persistence",
+  "schedule_key",
+  "trial_seed",
+  "catalog_seed",
+  "project_seed",
+  "deletion_seed",
+]
+
+[levels]
+frontier_density = ["sparse", "dense"]
+module_overlap = ["low", "high"]
+module_complementarity = ["weak", "strong"]
+project_cost = ["low", "high"]
+duration = ["short", "long"]
+admission = ["low", "high"]
+persistence = ["low", "high"]
+theorem_regime = ["primitive_eligible", "boundary"]
+
+[primitive_values]
+project_cost = ["1//2", "2//1"]
+duration = [1, 3]
+admission_probability = ["1//4", "3//4"]
+regime_persistence = ["1//4", "3//4"]
+
+[raw_generator]
+belief_count = 3
+module_universe_size = 7
+base_active_strategy_count = 3
+frontier_addition_count = 1
+closure_carrier_count = 1
+candidate_strategy_count = 2
+catalog_strategy_count_including_inactive = 8
+source_library = "L11"
+source_library_size_including_inactive = 6
+rectangle_constructor = "StrategyInnovation.construct_realizable_rectangle"
+rectangle_consistency_gate = "StrategyInnovation.rectangle_consistency"
+frontier_addition_rule = "frontier strategy has modules contained in C0 and raises F0 in at least one belief"
+closure_addition_rule = "carrier profile is pointwise at most F0 and its raw modules strictly enlarge the actual closure"
+corner_rule = "L00=base; L01=base+closure carrier; L10=base+frontier strategy; L11=base+both"
+project_menu_rule = "Continue plus projects whose requirements are subsets of the corner's computed closure"
+transition_rule = "RawInnovationProcess generation, verification, completion, and raw insertion only"
+profile_jitter_support = ["-1//4", "0//1", "1//4"]
+descendant_increment_support = ["1//1", "2//1", "3//1"]
+resampling_after_outcome_evaluation = false
+direct_compressed_state_construction = false
+hand_assigned_actions = false
+hand_assigned_transitions = false
+hand_assigned_values = false
+
+[raw_generator.frontier_density]
+sparse_max_supplier_fraction = "1//2"
+dense_min_supplier_fraction = "3//4"
+denominator = "non-carrier active strategies in source L11"
+gate = "actual unique frontier-supplier fraction satisfies its registered side"
+
+[raw_generator.module_overlap]
+low_max_mean_pairwise_jaccard = "1//4"
+high_min_mean_pairwise_jaccard = "2//3"
+population = "three base active strategies"
+gate = "actual exact mean pairwise Jaccard overlap satisfies its registered side"
+
+[raw_generator.module_complementarity]
+weak = "one supplied expansion module; rich project has a one-module requirement"
+strong = "carrier supplies two triggers; closure derives bridge only from their conjunction; rich project requires bridge"
+gate = "closure table and project requirements are generated from the registered raw module pattern"
+
+[theorem_conditioning]
+assigned_regime_is_not_certificate = true
+eligible_batches = [1, 3, 5, 7]
+boundary_batches = [2, 4, 6, 8]
+boundary_mechanisms = ["frontier_dependent_generator", "positive_poor_exposure"]
+computed_predicate = "all four raw corners realizable; frontier-independent project primitives; frontier-independent menus; menu inclusion; antitone recursive descendant gap; nonnegative rich exposure; zero poor exposure; exact common-gap action-value identities at every registered node"
+eligible_regime_gate = "computed primitive predicate is true"
+boundary_regime_gate = "computed primitive predicate is false for the registered boundary mechanism"
+sign_gate = "among computed-predicate rows, positive interaction count is zero"
+
+[estimands.primary]
+frontier_only_positive_dynamic_loss_frequency = "count(DeltaV_frontier>0)/1024"
+conditional_mean_positive_loss = "sum(DeltaV_frontier | DeltaV_frontier>0)/count(DeltaV_frontier>0)"
+maximum_normalized_loss = "max(DeltaV_frontier/V_source), with V_source>0 a construction gate"
+innovation_safe_loss_frequency = "count(DeltaV_safe>0)/1024"
+mean_compression_ratios = "exact mean retained/source and removed/source ratios for frontier-only and innovation-safe pruning"
+operationally_silent_generative_asset_frequency = "asset-level count of deletions preserving frontier but changing closure and lowering value, with a companion library-level frequency"
+substitution_frequency = "count(J<0)/1024"
+complementarity_frequency = "count(J>0)/1024"
+zero_interaction_frequency = "count(J=0)/1024"
+conditional_frequencies = "repeat all primary frequencies by computed primitive-assumption predicate and by each registered principal factor"
+
+[estimands.secondary]
+action_switching_distribution = "exact counts of policy changes by corner edge, pruning method, belief, and horizon"
+frontier_density_pruning_loss = "dense-minus-sparse exact mean loss contrast and exact rational OLS slope on realized frontier-supplier fraction"
+module_uniqueness_generative_value = "exact asset-level group means and rational OLS slope of deletion generative value on unique closure contribution"
+closure_richness_descendant_quality = "exact trial-level group means and rational OLS slope of best admitted descendant improvement on realized closure size"
+
+[stability]
+fixed_sample_no_outcome_stopping = true
+prefixes = [256, 512, 768, 1024]
+nonoverlapping_batches = 8
+batch_size = 128
+frequency_last_prefix_alert = "1//40"
+mean_compression_last_prefix_alert = "1//100"
+conditional_mean_report_minimum_positive_count = 40
+alert_is_not_exclusion_or_stopping_rule = true
+report_unstable_results_unchanged = true
+
+[precision]
+confidence_level = "0.95"
+interval = "Wilson interval for presentation only; exact rational point estimates remain authoritative"
+overall_worst_case_half_width = "0.030625"
+principal_level_worst_case_half_width = "0.043310"
+pilot_frontier_loss_reference = "8//90"
+pilot_rate_projected_half_width = "0.017431"
+full_factorial_cell_size = 8
+cellwise_inference = false
+
+[feasibility]
+benchmark_command = "./.local_runtime/julia-1.12.6/bin/julia --project=julia julia/scripts/run_randomized_library_stress.jl --check"
+benchmark_host = "arm64 apple-m1; Julia reports 8 CPU threads"
+pilot_exact_seconds = [18.06, 17.21, 17.04]
+pilot_median_seconds = "17.21"
+linear_1024_trial_projection_seconds = "195.81"
+conservative_v2_runtime_budget_seconds = 900
+decision = "N=1024 is practical; no lower-N fallback is invoked"
+
+[pilot]
+experiment_id = "randomized-finite-library-stress-v1"
+trial_count = 90
+status = "frozen_pilot_excluded_from_v2_main_estimate"
+config_path = "experiments/configs/randomized_library_stress.toml"
+config_sha256 = "aa3c04898123b50546dcbf142bd91bbd9da9f926b71ae910e6819b9f5ad31794"
+summary_path = "experiments/results/summaries/randomized_library_summary.json"
+summary_sha256 = "82340ff1a92219cd653f8741996a615d21d93667d37bee81048b37c462805571"
+report_path = "RANDOMIZED_LIBRARY_REPORT.md"
+report_sha256 = "ecaba2b6a19cee7333da7b8a36c5a480d2548f80e2d3d2057e41ff6cc444b559"
+pooled_with_v2 = false
+
+[gates]
+registry_matches_config = true
+all_seeds_recorded_and_unique_by_role = true
+principal_cells_balanced = true
+registered_prefixes_balanced = true
+all_source_libraries_validate = true
+all_rectangles_have_four_raw_libraries = true
+all_rectangles_share_one_catalog_and_closure = true
+all_rectangle_consistency_checks_pass = true
+all_project_laws_follow_actual_closure = true
+all_action_menus_derived = true
+all_transitions_derived = true
+all_values_derived = true
+all_theorem_facing_outputs_exact = true
+frontier_only_preserves_passive_value = true
+innovation_safe_preserves_compressed_state_and_total_value = true
+loss_decomposition_exact = true
+theorem_boundary_false = true
+v1_pilot_hashes_current = true
+
+[outputs]
+trials = "experiments/results/summaries/randomized_library_v2_trials.csv"
+rectangle_corners = "experiments/results/summaries/randomized_library_v2_rectangle_corners.csv"
+rectangle_transitions = "experiments/results/summaries/randomized_library_v2_rectangle_transitions.csv"
+pruning = "experiments/results/summaries/randomized_library_v2_pruning.csv"
+assets = "experiments/results/summaries/randomized_library_v2_assets.csv"
+actions = "experiments/results/summaries/randomized_library_v2_actions.csv"
+profiles = "experiments/results/summaries/randomized_library_v2_profiles.csv"
+modules = "experiments/results/summaries/randomized_library_v2_modules.csv"
+closures = "experiments/results/summaries/randomized_library_v2_closures.csv"
+kernels = "experiments/results/summaries/randomized_library_v2_kernels.csv"
+projects = "experiments/results/summaries/randomized_library_v2_projects.csv"
+method_summary = "experiments/results/summaries/randomized_library_v2_method_summary.csv"
+factor_summary = "experiments/results/summaries/randomized_library_v2_factor_summary.csv"
+relationship_summary = "experiments/results/summaries/randomized_library_v2_relationship_summary.csv"
+stability_summary = "experiments/results/summaries/randomized_library_v2_stability_summary.csv"
+summary = "experiments/results/summaries/randomized_library_v2_summary.json"
+report = "RANDOMIZED_LIBRARY_REPORT_V2.md"
+method_figure = "manuscript/figures/randomized_library_v2_method_comparison.svg"
+prevalence_figure = "manuscript/figures/randomized_library_v2_prevalence.svg"
+factor_figure = "manuscript/figures/randomized_library_v2_factor_contrasts.svg"
+stability_figure = "manuscript/figures/randomized_library_v2_stability.svg"
+
+[design_lock]
+path = "experiments/randomized_library_v2/DESIGN_LOCK.json"
+schema_version = "randomized-finite-library-stress-v2-design-lock"
+lock_stage = "pre-outcome analytical and randomization lock"
+outcomes_read_before_lock = false
+pilot_results_known_before_lock = true
+candidate_v2_results_used_to_change_specification = false
+files = [
+  "RANDOMIZED_DESIGN_V2.md",
+  "experiments/configs/randomized_library_stress_v2.toml",
+  "experiments/randomized_library_v2/TRIAL_REGISTRY.csv",
+  "julia/scripts/lock_randomized_library_design_v2.jl",
+  "julia/src/RealizableRectangles.jl",
+  "julia/test/test_randomized_design_v2.jl",
+]

@@ -1,0 +1,38 @@
+import StrategyInnovation.Compression.SafeDeletion
+
+/-!
+# Innovation-safe deletion proof audit
+
+This module records the kernel dependencies of the abstract single-deletion,
+repeated-deletion, compression, converse, and value-only counterexample
+declarations.
+-/
+
+#print axioms
+  StrategyInnovation.redundantDeletion_iff_compressedStatePreservingDeletion
+#print axioms
+  StrategyInnovation.redundantDeletion_dynamicInnovationEquivalent
+#print axioms StrategyInnovation.redundantDeletion_safelyDeletable
+#print axioms
+  StrategyInnovation.deletionPreservesCurrentRewardAndProjects_iff_dynamicInnovationEquivalent
+#print axioms
+  StrategyInnovation.deletionObservations_imply_operationallyAndGenerativelyRedundant
+#print axioms
+  StrategyInnovation.deletionPreservesCurrentRewardAndProjects_iff_redundant
+#print axioms StrategyInnovation.safeDeletionSequence_sublibrary
+#print axioms
+  StrategyInnovation.safeDeletionSequence_preserves_finiteHorizonValue
+#print axioms
+  StrategyInnovation.safeDeletionSequence_innovationSafeCompression
+#print axioms
+  StrategyInnovation.SafeDeletionCounterexamples.ratProb_dirac_injective
+#print axioms
+  StrategyInnovation.SafeDeletionCounterexamples.revealingSemantics_factors
+#print axioms
+  StrategyInnovation.SafeDeletionCounterexamples.revealingGenerator_closureIdentifiable
+#print axioms
+  StrategyInnovation.SafeDeletionCounterexamples.bridgeLibrary_erase_eq_inactiveLibrary
+#print axioms
+  StrategyInnovation.SafeDeletionCounterexamples.finiteHorizonValuePreservation_does_not_imply_generativeRedundancy
+
+#lint- only checkType unusedArguments simpNF in StrategyInnovation

@@ -1,0 +1,50 @@
+{
+  "action_distance_metric": "half exact Q gap in l-infinity action-value space",
+  "arithmetic_exact": "Rational{BigInt}",
+  "arithmetic_plotting": "Float64 derived from exact Rational{BigInt} rows",
+  "capacity_problem_count": 30,
+  "channel_row_count": 16,
+  "exact_capacity_all_optima_feasible": true,
+  "exact_capacity_ties_complete": true,
+  "exact_channel_identity": true,
+  "exact_duration_contribution_identity": true,
+  "exact_penalized_ties_complete": true,
+  "exact_safe_all_optima_feasible": true,
+  "exact_safe_never_raises_burden": true,
+  "exact_safe_productive_value_preserved": true,
+  "globally_active_pair_count": 36,
+  "library_distance_metric": "exact distance in lambda to nearest globally active breakpoint",
+  "pairwise_comparison_count": 168,
+  "penalized_cell_count": 24,
+  "plot_status": "secondary presentation only",
+  "randomness": "none",
+  "raw_library_count": 8,
+  "reference_schedule": "equal_active",
+  "safe_compression_problem_count": 24,
+  "schedules": [{
+    "carrier_a": "1//1",
+    "carrier_b": "1//1",
+    "descendant": "1//1",
+    "id": "equal_active",
+    "inactive": "1//1",
+    "label": "Equal active"
+  }, {
+    "carrier_a": "2//1",
+    "carrier_b": "2//1",
+    "descendant": "1//1",
+    "id": "carrier_heavy",
+    "inactive": "1//1",
+    "label": "Carrier heavy"
+  }, {
+    "carrier_a": "1//1",
+    "carrier_b": "1//1",
+    "descendant": "2//1",
+    "id": "descendant_heavy",
+    "inactive": "1//1",
+    "label": "Descendant heavy"
+  }],
+  "schema_version": "unified-canonical-resources-v1",
+  "selected_candidate": "C0424",
+  "source_benchmark": "experiments/configs/unified_canonical_benchmark.toml",
+  "weight_choice_timing": "preregistered in D-0131 before resource outputs"
+}

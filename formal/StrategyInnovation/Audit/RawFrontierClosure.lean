@@ -1,0 +1,28 @@
+import StrategyInnovation.Quotient.RawFrontierClosure
+
+/-!
+# T2 raw frontier--closure characterization audit
+
+This file prints the kernel dependencies of every principal T2 declaration,
+including the raw factorization consequences, the detectable-converse
+characterization, and both exact finite boundary counterexamples.
+-/
+
+#print axioms StrategyInnovation.Projection.Model.rawCandidateLaw_eq_of_generativeClosure_eq
+#print axioms StrategyInnovation.Projection.Model.rawAdmissionProbability_eq_of_generativeClosure_eq
+#print axioms StrategyInnovation.Projection.Model.rawAdmittedLaw_eq_of_generativeClosure_eq
+#print axioms StrategyInnovation.Projection.Model.compressedLibraryState_eq_of_frontierClosure_eq
+#print axioms StrategyInnovation.Projection.Model.rawNextCompressedTransition_eq_of_frontierClosure_eq
+#print axioms StrategyInnovation.Projection.Model.RawClosureDetectionWitness
+#print axioms StrategyInnovation.Projection.Model.RawClosureDetectable
+#print axioms StrategyInnovation.Projection.Model.frontierClosure_eq_implies_rawLaws_and_dynamicEquivalence
+#print axioms StrategyInnovation.Projection.Model.frontierClosure_eq_implies_dynamicInnovationEquivalent
+#print axioms StrategyInnovation.Projection.Model.dynamicInnovationEquivalent_implies_frontierClosure_eq
+#print axioms StrategyInnovation.Projection.Model.dynamicInnovationEquivalent_iff_frontierClosure_eq
+#print axioms StrategyInnovation.Projection.Model.dynamicInnovationEquivalent_iff_compressedLibraryState_eq
+#print axioms StrategyInnovation.Projection.Model.RawFrontierClosureCounterexamples.sufficiency_fails_when_generator_uses_raw_identifiers
+#print axioms StrategyInnovation.Projection.Model.RawFrontierClosureCounterexamples.rawIdentifierGenerator_not_factorized
+#print axioms StrategyInnovation.Projection.Model.RawFrontierClosureCounterexamples.converse_fails_when_closure_behaviorally_invisible
+#print axioms StrategyInnovation.Projection.Model.RawFrontierClosureCounterexamples.silentProcess_not_rawClosureDetectable
+
+#lint- only checkType unusedArguments simpNF in StrategyInnovation.Projection.Model

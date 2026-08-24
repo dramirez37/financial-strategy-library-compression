@@ -1,0 +1,140 @@
+{
+  "arithmetic": "Rational{BigInt}",
+  "config_file": "experiments/configs/multi_gap_topology.toml",
+  "experiment_id": "multi-gap-topology-audit-v1",
+  "julia_version": "1.12.6",
+  "kernel": [
+    [
+      "1//1",
+      "0//1",
+      "0//1",
+      "0//1",
+      "0//1"
+    ],
+    [
+      "81//256",
+      "27//64",
+      "27//128",
+      "3//64",
+      "1//256"
+    ],
+    [
+      "1//16",
+      "1//4",
+      "3//8",
+      "1//4",
+      "1//16"
+    ],
+    [
+      "1//256",
+      "3//64",
+      "27//128",
+      "27//64",
+      "81//256"
+    ],
+    [
+      "0//1",
+      "0//1",
+      "0//1",
+      "0//1",
+      "1//1"
+    ]
+  ],
+  "kernel_interpretation": "future state is the success count in four Bernoulli signals with p = current_index/4",
+  "kernel_row_stochastic": true,
+  "multi_gap_witness": {
+    "aggregate_gap": [
+      "4//1",
+      "0//1",
+      "0//1",
+      "0//1",
+      "4//1"
+    ],
+    "components": 2,
+    "cost": [
+      "1//1",
+      "1//1",
+      "1//1",
+      "1//1",
+      "1//1"
+    ],
+    "id": "CX-MULTIGAP-REGION-01",
+    "independent_check": true,
+    "left_gap": [
+      "4//1",
+      "0//1",
+      "0//1",
+      "0//1",
+      "0//1"
+    ],
+    "potential": [
+      "4//1",
+      "41//32",
+      "1//2",
+      "41//32",
+      "4//1"
+    ],
+    "region": [
+      true,
+      true,
+      false,
+      true,
+      true
+    ],
+    "right_gap": [
+      "0//1",
+      "0//1",
+      "0//1",
+      "0//1",
+      "4//1"
+    ]
+  },
+  "schema_version": "multi-gap-topology-v1",
+  "superlevel_component_grid_audit": {
+    "all_hold": true,
+    "checked": 28125
+  },
+  "topology_cost_counterexample": {
+    "cost": [
+      "0//1",
+      "3//1",
+      "0//1",
+      "3//1",
+      "0//1"
+    ],
+    "gap": [
+      "2//1",
+      "2//1",
+      "2//1",
+      "2//1",
+      "2//1"
+    ],
+    "gap_positive_components": 1,
+    "id": "CX-TOPOLOGY-COST-01",
+    "independent_check": true,
+    "potential": [
+      "2//1",
+      "2//1",
+      "2//1",
+      "2//1",
+      "2//1"
+    ],
+    "region": [
+      true,
+      false,
+      true,
+      false,
+      true
+    ],
+    "research_region_components": 3
+  },
+  "total_nonnegative_minor_audit": {
+    "all_nonnegative": true,
+    "checked": 251,
+    "minimum": "0//1"
+  },
+  "variation_diminishing_grid_audit": {
+    "all_hold": true,
+    "checked": 3125
+  }
+}

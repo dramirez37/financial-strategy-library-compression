@@ -1,0 +1,42 @@
+schema_version = "system-interaction-surface-v2"
+experiment_id = "system-interaction-surface-v2"
+julia_version = "1.12.6"
+arithmetic = "Rational{BigInt}"
+randomness = "none"
+
+[grid]
+frontier_numerators = [0, 2, 4, 6, 8, 10]
+frontier_denominator = 1
+candidate_numerators = [4, 10]
+candidate_denominator = 1
+success_numerators = [0, 1, 2]
+success_denominator = 2
+cost_numerators = [0, 1, 2]
+cost_denominator = 1
+include_equal_frontiers = false
+
+[model]
+discount_numerator = 1
+discount_denominator = 2
+
+[response]
+frontier_numerators = [0, 2, 4, 8]
+frontier_denominator = 1
+closure_richness = [1, 2]
+project_cost_numerators = [0, 1]
+project_cost_denominator = 1
+admission_numerators = [1, 2]
+admission_denominator = 2
+descendant_payoff_numerators = [4, 10]
+descendant_payoff_denominator = 1
+incumbent_reward_numerators = [0, 2, 4, 8]
+incumbent_reward_denominator = 1
+durations = [1, 2]
+generator_dependence_numerators = [0, 1, 2]
+generator_dependence_denominator = 1
+
+[outputs]
+response_surface = "experiments/results/summaries/system_interaction_surface.csv"
+exact_fixtures = "experiments/results/summaries/system_interaction_exact_fixtures.csv"
+expanded_response_surface = "experiments/results/summaries/system_interaction_response_surface.csv"
+summary = "experiments/results/summaries/system_interaction_summary.json"

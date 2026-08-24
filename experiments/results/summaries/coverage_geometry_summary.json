@@ -1,0 +1,95 @@
+{
+  "arithmetic": {
+    "geometry": "Float64",
+    "theorem_fixtures": "Rational{BigInt}"
+  },
+  "baseline": {
+    "boundary_diagnostics": [
+      {
+        "kind": "crossing",
+        "left_index": 45,
+        "location": 0.371771058086917,
+        "right_index": 46,
+        "slope": 3.5072667124294976,
+        "transverse": true
+      }
+    ],
+    "component_count": 1,
+    "cutoff_coordinate": 0.375,
+    "threshold_kind": "upper"
+  },
+  "checks": {
+    "baseline_boundary_count": 1,
+    "baseline_component_count": 1,
+    "baseline_transverse": true,
+    "disconnected_component_count": 2,
+    "exact_fixtures": true
+  },
+  "data_files": {
+    "boundaries": "coverage_research_boundaries.csv",
+    "frontier_gap": "coverage_frontier_gap.csv",
+    "occupation": "coverage_occupation_distribution.csv",
+    "potential": "coverage_potential.csv",
+    "sensitivity": "coverage_sensitivity.csv",
+    "topology": "coverage_connected_disconnected.csv"
+  },
+  "exact_fixtures": {
+    "delayed_coverage": {
+      "passed": true,
+      "potential": [
+        "1//1",
+        "3//1"
+      ]
+    },
+    "destructive_single_gap": {
+      "passed": true,
+      "potential": [
+        "1//1",
+        "0//1",
+        "1//1"
+      ],
+      "region": [
+        true,
+        false,
+        true
+      ]
+    },
+    "disconnected_multi_gap": {
+      "components": 2,
+      "passed": true,
+      "potential": [
+        "4//1",
+        "41//32",
+        "1//2",
+        "41//32",
+        "4//1"
+      ],
+      "region": [
+        true,
+        true,
+        false,
+        true,
+        true
+      ]
+    }
+  },
+  "experiment_id": "coverage-potential-geometry-v1",
+  "figure_files": {
+    "boundaries": "coverage_research_region_boundaries.svg",
+    "frontier_gap": "coverage_frontier_candidate_gap.svg",
+    "occupation": "coverage_discounted_occupation.svg",
+    "potential": "coverage_potential.svg",
+    "topology": "coverage_connected_disconnected.svg"
+  },
+  "julia_version": "1.12.6",
+  "parameters": {
+    "candidate_survival": 0.9,
+    "cost": 0.72,
+    "discount": 0.86,
+    "grid_size": 121,
+    "research_delay": 0
+  },
+  "randomness": "none",
+  "schema_version": "coverage-potential-geometry-v1",
+  "sensitivity_scenarios": 19
+}

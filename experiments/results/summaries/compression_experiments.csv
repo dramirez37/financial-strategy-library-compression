@@ -1,0 +1,9 @@
+experiment_id,arithmetic,algorithm,belief_count,strategy_count,source_size,compressed_size,compression_ratio,frontier_preserved,generative_closure_preserved,compressed_state_preserved,dynamic_innovation_preserved,dynamic_value_preserved,dynamic_value_loss,minimum_size,optimality_gap,frontier_only_failure,runtime_ns
+lean-f4-scaled-loss,Rational{BigInt},frontier_only_prune,1,3,2,1,1//2,true,false,false,false,false,5//1,,,true,43333
+lean-f4-scaled-loss,Rational{BigInt},innovation_safe_prune_fixed_point,1,3,2,2,0//1,true,true,true,true,true,0//1,,,false,12083
+small-exact-minimum,Rational{BigInt},minimum_safe_compression,2,4,4,3,1//4,true,true,true,true,true,0//1,3,0,false,75084
+small-exact-minimum,Rational{BigInt},safe_greedy_fixed_point,2,4,4,3,1//4,true,true,true,true,true,0//1,3,0,false,119042
+float64-scaling-16,Float64,innovation_safe_prune_fixed_point,8,16,16,7,9//16,true,true,true,,true,0.0,,,false,3307500
+float64-scaling-32,Float64,innovation_safe_prune_fixed_point,8,32,32,8,3//4,true,true,true,,true,0.0,,,false,14610167
+float64-scaling-64,Float64,innovation_safe_prune_fixed_point,8,64,64,7,57//64,true,true,true,,true,0.0,,,false,71741666
+float64-scaling-128,Float64,innovation_safe_prune_fixed_point,8,128,128,6,61//64,true,true,true,,true,0.0,,,false,348588500

@@ -1,0 +1,285 @@
+% Page budget: Section 4, together with the next source fragment, 6--7 pages.
+\section{Optimal Innovation-Safe Compression}
+\label{sec:compression}
+
+Starting from a verified source library \(L\), compression asks how little
+resource burden can be retained without changing what the controller can
+operate now or help generate later.  Section~3 showed that these productive
+requirements are summarized by \(K_L=(F_L,C_L)\).  Throughout this section,
+\emph{safe} means source-relative preservation of that exact pair,
+\emph{global minimum} means minimum burden over every safe sublibrary of the
+source, and an \emph{optimizer} in the capacity or penalized problems means a
+maximizer over the full outer-certified family \(\mathfrak L_\theta\).  The
+sequence moves from exact representation and certified deletion to the
+local--global boundary, the frontier-only loss, and the two outer selection
+problems.
+
+\subsection{Minimum-resource safe representation}
+
+\emph{Economic question.}  Among all retained sublibraries that preserve both
+current operating capability and future generative capability, what is the
+minimum retention burden and which representations attain it?
+
+Recall the source-relative family
+\[
+ \mathcal P_{\mathrm{safe}}(L)
+ =\{L'\subseteq L:s_0\in L',\ K_{L'}=K_L\}.
+\]
+It is a projection fiber restricted to sublibraries of \(L\).  Its global
+minimum-weight correspondence is
+\begin{equation}\label{eq:global-safe-optimizer}
+ \mathcal M_{\mathrm{safe}}(L)
+ :=\operatorname*{arg\,min}_{L'\in\mathcal P_{\mathrm{safe}}(L)}W(L').
+\end{equation}
+
+\begin{theorem}[Minimum-resource innovation-safe representation]
+\label{thm:minimum-safe-compression}
+For every finite source library, \(\mathcal P_{\mathrm{safe}}(L)\) is
+nonempty and finite, so \(\mathcal M_{\mathrm{safe}}(L)\ne\varnothing\).
+Every two safe-feasible libraries have the same compressed state and hence
+the same finite-horizon productive values.  Under the discounted contraction,
+they also have the same stationary productive value and the same complete set
+of optimal stationary actions.
+\end{theorem}
+
+The theorem proves existence and productive preservation.  The source itself
+makes the feasible family nonempty, finiteness makes the minimum attained, and
+\(K_{L'}=K_L\) carries every feasible representation to the same productive
+process.  Contraction is needed only for stationary value and action
+preservation; detectability and probabilistic independence are not used.
+This is not a uniqueness or pruning theorem: it neither singles out one
+minimum-weight representation nor says that a deletion rule reaches one.
+Appendix~B gives the finite argument.
+
+For identity closure, exact safe feasibility has a useful binary cover form.
+Let
+\(x_s\in\{0,1\}\) indicate retention, fix \(x_{s_0}=1\), and define the source
+attainers and module carriers by
+\[
+ A_b:=\{s\in L:j_s(b)=F_L(b)\},\qquad
+ R_m:=\{s\in L:m\in\mods(s)\}.
+\]
+Safe feasibility is then equivalent to
+\begin{equation}\label{eq:identity-safe-cover}
+ \sum_{s\in A_b}x_s\ge1\quad(b\in B),\qquad
+ \sum_{s\in R_m}x_s\ge1\quad(m\in C_L),
+\end{equation}
+with objective \(\min\sum_sw_sx_s\).  For general closure, the second family
+of rows is replaced by the exact equality
+\(\cl(\bigcup_{s:x_s=1}\mods(s))=C_L\); independent carrier rows would miss
+closure complementarities.
+
+\subsection{Innovation-safe deletion certificate}
+
+\emph{Economic question.}  When can one retained strategy be removed without
+changing either current operating opportunities or future research
+opportunities?
+
+\begin{definition}[Deletion redundancy]
+\label{def:deletion-redundancy}
+For \(s\in L\setminus\{s_0\}\), write \(L^{-s}=L\setminus\{s\}\).  Deletion
+has two distinct certificates:
+\begin{align}
+ F_{L^{-s}}=F_L
+   &\quad\text{(operational redundancy)},
+   \label{eq:operational-redundancy}\\
+ C_{L^{-s}}=C_L
+   &\quad\text{(generative redundancy)}.
+   \label{eq:generative-redundancy}
+\end{align}
+The first compares the entire belief-indexed frontier, not only the current
+payoff.  The second compares closed capabilities, not only duplicated raw
+module rows.
+\end{definition}
+
+To state the observable converse, let \(L\sim_{\DI}L'\) mean that the two
+libraries have the same frontier and, for every belief and project, the same
+availability-tagged cost, duration, joint terminal-belief/next-compressed-state
+law, and incumbent operating-reward block.
+\begin{definition}[Dynamic innovation equivalence]
+\label{def:dynamic-innovation-equivalence}
+With \(\langle z\rangle_{A(K)}=\operatorname{some}(z)\) when \(q\in A(K)\)
+and \(\operatorname{none}\) otherwise, \(L\sim_{\DI}L'\) means equality of
+the five observations
+\begin{equation}\label{eq:di-definition}
+ \left(F_L(b),
+ \langle\kappa_q(b,K_L)\rangle_{A(K_L)},
+ \langle d_q\rangle_{A(K_L)},
+ \langle\overline{\mathcal Q}_q(b,K_L)\rangle_{A(K_L)},
+ \langle R_q^{\op}(b,K_L)\rangle_{A(K_L)}\right)
+\end{equation}
+with their \(L'\) counterparts for every \(b,q\).
+\end{definition}
+
+\begin{assumption}[Observable raw closure detectability]
+\label{asm:raw-closure-detectability}
+If two realizable states have the same frontier but different closures, some
+project changes an availability-tagged cost, duration, or joint terminal law
+after generation, admission, raw update, and projection.
+\end{assumption}
+
+Detectability is used only for necessity.  Without it, a module may be
+present but behaviorally silent in every available experiment.
+
+\begin{theorem}[Frontier--closure characterization and safe deletion]
+\label{thm:raw-frontier-closure-characterization}
+\label{thm:unified-safe-deletion}
+Under the raw factorization of Section~3,
+\[
+ K_L=K_{L'}\quad\Longrightarrow\quad L\sim_{\DI}L'.
+\]
+Under \cref{asm:raw-closure-detectability}, the implication is an
+equivalence.  Consequently, for every \(s\in L\setminus\{s_0\}\),
+\begin{equation}\label{eq:t3-state}
+ K_{L^{-s}}=K_L
+ \quad\Longleftrightarrow\quad
+ \left\{
+ \begin{array}{l}
+ F_{L^{-s}}=F_L,\\[-2pt]
+ C_{L^{-s}}=C_L.
+ \end{array}\right.
+\end{equation}
+The two equalities certify innovation-safe deletion and preserve every
+finite-horizon productive value.  Under detectability they are also necessary
+for dynamic innovation equivalence; under the discounted contraction they
+preserve stationary value, all stationary action comparisons, and the full
+optimal-action correspondence.
+\end{theorem}
+
+The theorem proves that the two deletion tests are exactly compressed-state
+preservation.  Under the Section~3 factorization, they are sufficient for
+dynamic innovation equivalence and productive-value preservation; under
+detectability, they are also necessary for the observable equivalence.  The
+certificate is local to one candidate in the current library.  If generation
+could inspect hidden raw identifiers, sufficiency would fail; without
+detectability, only the necessity direction would fail.  Neither direction
+factors the joint completion law, and contraction enters only after state
+equality to obtain the stationary clauses.  The bridge in
+\cref{thm:normalized-frontier-pruning-loss} shows where the operational-only
+test fails: operational redundancy alone does not imply generative redundancy.
+Appendix~A records the assumption-boundary examples and quotient refinement.
+
+\subsection{Rechecked pruning}
+\label{subsec:safe-deletion}
+
+\emph{Economic question.}  How can repeated deletions remain certified when
+removing one strategy may make another strategy essential?
+
+The deletion certificate yields the following reduction routine.
+\begin{center}
+\fbox{\begin{minipage}{0.91\linewidth}
+\textbf{Rechecked innovation-safe pruning.}
+Start at \(L_0=L\).  At step \(i\), choose an active \(s\in L_i\), recompute
+\(F_{L_i^{-s}}\) and \(C_{L_i^{-s}}\), and erase \(s\) only if both equal
+their current values.  Restart the scan after every accepted deletion and
+stop only after no retained active strategy passes both tests.  Return the
+endpoint and the complete deletion trace.
+\end{minipage}}
+\end{center}
+
+\begin{corollary}[Rechecked pruning certificate]
+\label{cor:stepwise-safe-compression}
+For every rechecked trace
+\(L_0\supseteq L_1\supseteq\cdots\supseteq L_m\),
+\[
+ K_{L_m}=K_{L_0},\qquad L_m\sim_{\DI}L_0.
+\]
+Every accepted deletion is safe, the endpoint remains in
+\(\mathcal P_{\mathrm{safe}}(L_0)\), and all productive values are preserved.
+If the final scan is complete, its failure to find another safe erasure is a
+certificate of one-deletion irreducibility.
+\end{corollary}
+
+The corollary proves feasibility of the entire path by composing the
+rechecked compressed-state equalities.  A valid trace alone does not prove
+that the endpoint is irreducible; that conclusion additionally requires the
+complete final scan specified above.
+
+Call a safe library \(E\) \emph{one-deletion irreducible} when no retained
+active \(s\) satisfies \(K_{E^{-s}}=K_L\).  Call \(E\)
+\emph{inclusion-wise irreducible} when no proper sublibrary of \(E\) belongs
+to \(\mathcal P_{\mathrm{safe}}(L)\).  In this monotone exact-safe fiber the
+two notions coincide: any proper safe sublibrary implies a safe one-element
+deletion by frontier and closure monotonicity.  A complete rechecked scan
+therefore certifies both notions.  This remains a local certificate: neither
+notion implies global minimum weight.
+
+\begin{proposition}[Certified pruning specification]
+\label{prop:certified-pruning}
+A pruning output is certified only together with its rechecked trace; the
+trace certifies each deletion and endpoint productive-value preservation.
+\end{proposition}
+
+\begin{example}[Why deletion certificates must be rechecked]
+\label{ex:t3-deletion-classes}
+If two strategies are the only carriers of a module, each may be redundant
+initially, but after deleting one the survivor is essential.  Applying both
+stale certificates would remove the module from closure.
+\end{example}
+
+\subsection{Local versus global optimality}
+
+\emph{Economic question.}  Does the absence of another certified
+one-strategy deletion imply that the retained library has minimum burden?
+
+A library is globally minimum weight precisely when it belongs to
+\(\mathcal M_{\mathrm{safe}}(L)\) in
+\eqref{eq:global-safe-optimizer}; it must be compared with every safe
+sublibrary, not only its one-deletion neighbors.
+
+\begin{theorem}[Local/global boundary]
+\label{thm:local-global-safe-compression}
+With strictly positive active weights, every global minimum is one-deletion
+irreducible.  Every rechecked deletion trace is safe, but a one-deletion-
+irreducible endpoint need not be globally minimum weight.  Even deleting the
+unique heaviest currently safe strategy can lead to a strictly heavier
+endpoint than another safe representation.
+\end{theorem}
+
+The theorem proves only the forward local implication: a global
+minimum-weight safe representation cannot contain a safely deletable
+positive-weight strategy.  Its converse is false, and the following exact
+\((2,2,3)\) construction shows that even a uniquely determined
+heaviest-safe-first step can terminate above the global minimum.
+
+\begin{example}[Worked example: certified greedy endpoint versus global minimum]
+\label{ex:worked-safe-greedy-global}
+Take one belief, identity closure, and three zero-profile active strategies.
+Strategies \(s_1\) and \(s_2\) carry \(\{m_1\}\) and \(\{m_2\}\) with weights
+\(2\) and \(2\); the bundle \(s_{12}\) carries
+\(\{m_1,m_2\}\) with weight \(3\).  The inactive strategy has zero profile,
+no modules, and zero weight.  The current library is
+\(L=\{s_0,s_1,s_2,s_{12}\}\).
+
+\begin{center}
+\small
+\input{tables/main_greedy_global_comparison}
+\end{center}
+
+All displayed values are exact rationals; denominator-one values are rendered
+as integers.
+
+At the source, \(s_{12}\) is the unique heaviest safely deletable strategy.
+Deleting it first saves \(3\) units and leaves the inclusion-wise irreducible
+pair \(\{s_1,s_2\}\); neither singleton can then be removed.  Complete
+enumeration of the five safe sublibraries shows that
+\(\{s_0,s_{12}\}\) is the minimum-weight safe representation.  It saves
+\(4\) units relative to the current library, one more than the greedy endpoint.
+Both endpoints have exactly the source frontier and closure, so their
+productive values agree; only resource burden differs.  Deleting the two
+singletons before the bundle reaches the global solution, making the order
+dependence explicit.
+\end{example}
+
+The registered counterexample establishes the clean separation
+\[
+ \text{certified one-deletion irreducibility}
+ \;\not\Longrightarrow\;
+ \text{global minimum-weight compression}.
+\]
+It does not provide a greedy approximation ratio or imply deletion-order
+invariance.  Appendix~B gives the exhaustive five-library comparison and the
+general minimum-attainment and global-to-local arguments.  Those arguments
+use finiteness for attainment and positive active weights for the
+global-to-local implication; they use neither detectability nor probabilistic
+independence.

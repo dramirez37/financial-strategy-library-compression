@@ -1,0 +1,198 @@
+{
+  "claim": {
+    "arithmetic": "Rational{BigInt}",
+    "assumption_boundary": "Unit weights do not prevent complementarity in productive value.",
+    "claim_number": 6,
+    "evidence_class": "exact finite Julia search; not Lean proof",
+    "fixture": {
+      "capacity_profile": [
+        {
+          "budget": "0//1",
+          "optimizers": [
+            {
+              "active_count": 0,
+              "cardinality_with_inactive": 1,
+              "frontier": [
+                "0//1"
+              ],
+              "mask": 0,
+              "modules": [],
+              "productive_value": "0//1",
+              "strategies": [
+                "inactive"
+              ],
+              "weight": "0//1"
+            }
+          ],
+          "value": "0//1"
+        },
+        {
+          "budget": "1//1",
+          "optimizers": [
+            {
+              "active_count": 0,
+              "cardinality_with_inactive": 1,
+              "frontier": [
+                "0//1"
+              ],
+              "mask": 0,
+              "modules": [],
+              "productive_value": "0//1",
+              "strategies": [
+                "inactive"
+              ],
+              "weight": "0//1"
+            },
+            {
+              "active_count": 1,
+              "cardinality_with_inactive": 2,
+              "frontier": [
+                "0//1"
+              ],
+              "mask": 1,
+              "modules": [
+                "m1"
+              ],
+              "productive_value": "0//1",
+              "strategies": [
+                "inactive",
+                "s1"
+              ],
+              "weight": "1//1"
+            },
+            {
+              "active_count": 1,
+              "cardinality_with_inactive": 2,
+              "frontier": [
+                "0//1"
+              ],
+              "mask": 2,
+              "modules": [
+                "m2"
+              ],
+              "productive_value": "0//1",
+              "strategies": [
+                "inactive",
+                "s2"
+              ],
+              "weight": "1//1"
+            }
+          ],
+          "value": "0//1"
+        },
+        {
+          "budget": "2//1",
+          "optimizers": [
+            {
+              "active_count": 2,
+              "cardinality_with_inactive": 3,
+              "frontier": [
+                "0//1"
+              ],
+              "mask": 3,
+              "modules": [
+                "m1",
+                "m2"
+              ],
+              "productive_value": "1//1",
+              "strategies": [
+                "inactive",
+                "s1",
+                "s2"
+              ],
+              "weight": "2//1"
+            }
+          ],
+          "value": "1//1"
+        }
+      ],
+      "left_marginal": "0//1",
+      "marginals": [
+        "0//1",
+        "1//1"
+      ],
+      "problem": {
+        "active_strategies": [
+          {
+            "id": "s1",
+            "modules": [
+              "m1"
+            ],
+            "profile": [
+              "0//1"
+            ],
+            "weight": "1//1"
+          },
+          {
+            "id": "s2",
+            "modules": [
+              "m2"
+            ],
+            "profile": [
+              "0//1"
+            ],
+            "weight": "1//1"
+          }
+        ],
+        "belief_count": 1,
+        "closure": "identity",
+        "inactive": {
+          "id": "inactive",
+          "modules": [],
+          "profile": [
+            "0//1"
+          ],
+          "weight": "0//1"
+        },
+        "module_count": 2,
+        "productive_value_monotone_under_inclusion": true,
+        "productive_value_table": [
+          {
+            "mask": 0,
+            "productive_value": "0//1",
+            "strategies": [
+              "inactive"
+            ]
+          },
+          {
+            "mask": 1,
+            "productive_value": "0//1",
+            "strategies": [
+              "inactive",
+              "s1"
+            ]
+          },
+          {
+            "mask": 2,
+            "productive_value": "0//1",
+            "strategies": [
+              "inactive",
+              "s2"
+            ]
+          },
+          {
+            "mask": 3,
+            "productive_value": "1//1",
+            "strategies": [
+              "inactive",
+              "s1",
+              "s2"
+            ]
+          }
+        ]
+      },
+      "right_marginal": "1//1",
+      "violating_middle_budget": 1
+    },
+    "id": "CX-OPT-CAPACITY-INCREASING-RETURNS-01",
+    "minimality": {
+      "lexicographic_score": "(2, 1//1, 1//1, 1, (0//1, 0//1, 0//1, 1//1))",
+      "two_active_strategies_are_minimal_under_unit_weights": true
+    },
+    "status": "counterexample_found",
+    "theorem_revision": "Permit strict increases in discrete shadow values; rule them out only under a proved diminishing-returns condition.",
+    "title": "Capacity value can exhibit increasing marginal returns"
+  },
+  "experiment_id": "paper1-resource-optimization-counterexample-audit-v1",
+  "schema_version": "resource-optimization-counterexample-audit-v1"
+}

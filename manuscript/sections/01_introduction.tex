@@ -1,0 +1,205 @@
+% Page budget: approximately 3--4 pages.
+\section{Introduction}\label{sec:introduction}
+
+Financial strategy research is cumulative. New signals, transformations,
+execution rules, and risk controls produce candidate strategies; candidates
+that survive verification enter a library and may contribute components to
+later research. A successful research program therefore creates a growing
+stock of executable policies, documented procedures, and reusable modules.
+Growth is productive because it expands both the menu that can be operated
+today and the material from which future strategies can be constructed.
+
+Retention is not free. Every strategy must be stored, indexed, validated,
+maintained, monitored, retrieved, documented, and governed. These activities
+consume computing capacity and scarce human attention even when the strategy
+is not currently selected. As libraries expand, the retention problem becomes
+an economic decision rather than a housekeeping exercise: which strategies
+can be removed, and which apparent redundancies are worth paying to keep?
+
+This paper is organized around one question:
+\begin{quote}
+\emph{How much of a growing strategy library can be removed while preserving
+both what the library can operate now and what it can help generate later?}
+\end{quote}
+The question separates two roles that are easy to conflate. A strategy is an
+operating asset when its payoff profile improves the action available at a
+current belief. It is a generative asset when it carries a signal,
+transformation, execution component, risk control, or other module needed to
+produce and verify a descendant. A strategy can matter through either role,
+through both, or through neither.
+
+Conventional current-performance pruning is tempting because the operating
+role is directly visible. One can retain enough strategies to reproduce the
+best current payoff at every belief and delete strategies that never attain
+that envelope. Such a rule can be entirely correct as a statement about the
+current action menu. It is incomplete as a statement about a research
+library. A strategy that is dominated at every current belief may still be the
+only carrier of a module used by a future project. Removing it changes what
+can be generated even though it changes no payoff available today. Current
+redundancy and generative redundancy are therefore different properties.
+
+The distinction leads to a compact description of the library. For a raw
+library \(L\), let \(F_L\) be its pointwise operating frontier: at each belief,
+it records the highest current expected payoff among retained strategies. Let
+\(C_L\) be its generative closure: the closed set of modules that can be
+assembled from retained carriers. Alongside the filtered belief, the pair
+\begin{equation}\label{eq:introduction-productive-state}
+  K_L=(F_L,C_L)
+\end{equation}
+is the productive library state. The frontier records what can be operated
+now; the closure records what the modeled research process can use to produce
+later candidates. In the finite model, the raw generation, verification,
+admission, and library-update process projects onto this pair. Projects may
+have positive duration, and their terminal beliefs and admitted candidates may
+be correlated; neither feature requires the raw strategy identifiers once the
+frontier and closure are fixed.
+
+This state reduction turns the organizing question into an exact
+source-relative compression problem. Give each active strategy a positive,
+fixed retention weight and write \(W(L)\) for total burden. For a specified
+source library \(L\), exact safe compression solves
+\begin{equation}\label{eq:introduction-safe-compression}
+  \min_{L'\subseteq L} W(L')
+  \quad\text{subject to}\quad
+  F_{L'}=F_L,\qquad C_{L'}=C_L,
+  \qquad s_0\in L'.
+\end{equation}
+The constraint is semantic rather than statistical: the retained sublibrary
+must reproduce both productive objects exactly. Because the feasible family
+is finite and contains the source, a minimum is attained. Every feasible
+sublibrary has the same modeled current operating rewards, research menus,
+candidate laws, future compressed updates, productive values, and available
+optimal actions as the source. Compression changes the raw representation and
+its burden, not the productive control process.
+
+The exact constraint also gives a practical deletion certificate. Starting
+from the source, delete a proposed strategy only when recomputing the library
+shows that both its frontier and closure are unchanged. Rechecking after every
+accepted deletion produces a certified safe path: each intermediate library
+remains in the source's productive state. This certificate answers a local
+feasibility question, however, not the global minimization in
+\eqref{eq:introduction-safe-compression}. Earlier deletions can change which
+remaining strategies are redundant. An endpoint at which no single further
+deletion is safe can therefore have greater burden than another safe
+sublibrary reached by a different deletion order or found by complete search.
+Certified stepwise pruning and global minimum-resource compression are
+distinct decisions.
+
+A simple bridge illustrates why the closure constraint is economically
+substantive. Suppose a strategy is dominated at every current belief but is
+the unique carrier of a module required by a research project. If retained,
+that project can combine the module with other capabilities, survive and pass
+verification, and admit a valuable descendant after \(d\) periods. If the
+carrier is deleted, the present operating frontier is unchanged, but the
+project becomes unavailable and the descendant cannot be reached. When the
+discounted, survival-adjusted descendant payoff exceeds research cost, that
+difference is a positive delayed bridge margin. In the sharp construction,
+frontier-only pruning removes the complete attainable margin, so normalized
+loss equals one. The example does not say that every dominated strategy is
+valuable; it shows why current-payoff preservation alone cannot certify that
+a deletion is harmless.
+
+Exact preservation is the primary problem. Two secondary variants ask what to
+retain when scarcity is allowed to change productive opportunities. Over a
+finite eligible catalog \(\mathfrak L_\theta\), a hard capacity \(B\) selects
+the most productive library whose burden fits the constraint, while a resource
+price \(\lambda\) selects value net of burden:
+\begin{equation}\label{eq:introduction-resource-extensions}
+\begin{aligned}
+ V_\theta^\star(b;B)
+   &=\max_{L'\in\mathfrak L_\theta:\,W(L')\le B}V_\theta(b,L'),\\
+ P_\theta(b;\lambda)
+   &=\max_{L'\in\mathfrak L_\theta}
+      \{V_\theta(b,L')-\lambda W(L')\}.
+\end{aligned}
+\end{equation}
+These are outer, one-time retention choices, not repeated eviction decisions
+inside the Bellman problem. Their geometry is finite. Capacity value is
+attained, monotone, and constant between attainable burdens, but complementary
+modules can generate increasing unit increments. Penalized value is the
+continuous convex piecewise-affine upper envelope of finitely many
+value--burden lines, and selected burden falls weakly as the resource price
+rises. Optimal library composition can change discretely; no concavity,
+divisibility, or smooth policy path is imposed.
+
+Productive value provides the link between exact compression and these
+resource variants. The value of inserting a strategy separates into the
+change in passive operating value and the change in the research-option
+premium. Along a named parameter path and within a fixed selected policy, the
+same accounting separates operational and generative sensitivity. Innovation
+duration summarizes the discount exposure of future invention value. These
+objects explain why a library is valuable without treating resource burden as
+itself an operating or generative payoff.
+
+The results are organized in four groups.
+\begin{enumerate}
+\item \emph{Raw-to-compressed state and exact safe compression.}
+The finite raw research process projects onto belief, operating frontier, and
+generative closure without changing productive values or available optimal
+actions. Within a source library, a minimum-resource sublibrary preserving the
+frontier and closure is attained
+(\cref{thm:raw-to-compressed-projection,thm:minimum-safe-compression}).
+
+\item \emph{Safe deletion, local versus global compression, and sharp loss.}
+Frontier--closure equality characterizes safe deletion under the stated
+detectability condition, and rechecking supplies a certified sequential path.
+A deletion-irreducible endpoint need not minimize global burden, while
+frontier-only pruning can attain the complete normalized delayed-bridge loss
+(\cref{thm:local-global-safe-compression,%
+thm:normalized-frontier-pruning-loss}).
+
+\item \emph{Finite resource optimization and productive-value interpretation.}
+Hard-capacity and resource-price selection have finite, potentially
+complementary and discrete geometry. Operational and generative value explain
+why the two safe-compression constraints matter, while named-path sensitivity
+and fixed-exposure timing remain auxiliary comparative statics
+(\cref{thm:capacity-value,thm:penalized-envelope,%
+thm:value-decomposition,prop:channel-elasticity}).
+
+\item \emph{Layered finite and financial evidence.}
+Exact fixtures and complete small-library enumeration check identities and
+boundary cases; registered randomized stress tests exercise the mechanisms in
+frozen finite generators; and retrospective financial audits compare
+stepwise-safe, HiGHS-reported minimum-resource, and frontier-only libraries
+without
+using held-out descendant quality in a pruning rule or objective
+(\cref{sec:experiments}).
+\end{enumerate}
+
+The evidence levels are not interchangeable. Exact fixtures establish
+machine-rechecked facts about specified finite instances, not universal
+claims. Registered randomized results report frequencies for their frozen
+synthetic generators, not population estimates. Mixed-integer solver status
+is numerical global-search evidence and is reported separately from exact
+rechecks of selected libraries, frontiers, closures, and burdens. The
+financial exercises are retrospective information audits: structural and
+validation inputs are fixed before held-out descendant quality is read, and
+that quality is used only as an ex post opportunity diagnostic.
+
+The scope is correspondingly narrow and explicit. States, beliefs, strategy
+catalogs, project menus, and retained libraries are finite. Retention weights
+are fixed and additive, and retention is chosen once outside the productive
+dynamic program. The generator and verifier factor through the modeled belief
+and frontier--closure state; provenance, age, multiplicity, time-varying
+maintenance burdens, endogenous eviction, and endogenous verification are not
+part of the primary model. Exact compression is source-relative and allows no
+frontier or closure tolerance. Sensitivities are reported only on named paths
+and, for elasticities, with positive denominators and a fixed selected policy;
+finite changes replace derivatives at discrete changes.
+
+The remainder of the paper follows this dependency order.
+\Cref{sec:literature-boundary} fixes the boundary with partial-information
+control, policy compression, resource-constrained selection, maintained
+libraries, and generated financial strategies. \Cref{sec:model} defines the
+raw process, the frontier--closure state, and retention burden.
+\Cref{sec:compression} develops exact global and certified local compression;
+\cref{sec:value} interprets productive value and finite capacity shadows;
+\cref{sec:control} solves the canonical finite control and resource problems;
+and \cref{sec:experiments} reports the controlled evidence. The primary
+appendices contain proofs, core sensitivities, computational verification,
+experiment-design information, and the verification-status summary. The
+Online Supplement contains extended comparative statics, complete numerical
+records, full randomized-study diagnostics, detailed financial-audit results,
+and reproducibility records.
+
+\clearpage

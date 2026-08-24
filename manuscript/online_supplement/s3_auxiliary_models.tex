@@ -1,0 +1,69 @@
+\subsection{Auxiliary finite-model illustration}
+
+The following exact construction isolates the distinction between operating
+profiles and generative modules in the main paper's finite model.  It is an
+illustration rather than an additional assumption or theorem.
+
+\begin{example}[A two-module generator]\label{ex:modular-generator}
+Let \(X=\{\mathrm{down},\mathrm{up}\}\), let
+\(\mu_{b^-}=(3/4,1/4)\) and \(\mu_{b^+}=(1/4,3/4)\), and take identity
+closure.  Strategies \(s_T\) and \(s_H\) carry modules \(m_T\) and \(m_H\).
+A project \(q\) requires both.  When
+\(\{m_T,m_H\}\subseteq C\), set
+\[
+  G(q,b,C)(\operatorname{some}(c))=\frac23,\qquad
+  G(q,b,C)(\operatorname{none})=\frac13,\qquad
+  \nu(q,b,C,c)=\frac34;
+\]
+otherwise set \(G(q,b,C)=\delta_{\operatorname{none}}\).  Retaining both
+modules therefore admits \(c\) with probability \(1/2\), while deleting the
+sole carrier of either module makes admission impossible.  If
+\(u_c(\mathrm{down})=-1\) and \(u_c(\mathrm{up})=2\), then
+\(j_c(b^-)=-1/4\) and \(j_c(b^+)=5/4\): current operating payoff depends on
+the filtered state, while candidate availability depends on retained closure.
+For a positive-duration instance, take \(d_q=2\), initiation cost \(1/10\),
+and operation flag \(o_q=1\).
+\end{example}
+
+\subsection{Conditional replacement under a capacity bound}
+\label{app:conditional-replacement}
+
+The supporting question is what an incumbent should release when an
+outer-certified candidate \(c\notin L\) becomes available for retention and
+capacity binds.  This formulation is conditional on outer certification and
+is separate from the raw generation, verification, and admission law in the
+main paper.
+
+Let the incumbent satisfy \(W(L)\le B\), let \(w_c\le B\), and permit deletion
+of active incumbents \(D\subseteq L\setminus\{s_0\}\).  Additivity makes the
+required release
+\[
+ r_c(B):=[W(L)+w_c-B]_+,
+\]
+so the feasible deletion family is
+\[
+ \mathcal D_c(B)
+ :=\{D\subseteq L\setminus\{s_0\}:W(D)\ge r_c(B)\}.
+\]
+The conditional replacement problem is
+\begin{equation}\label{eq:optional-replacement-problem}
+ \operatorname*{maximize}_{D\in\mathcal D_c(B)}
+ V_\theta\bigl(b,(L\setminus D)\cup\{c\}\bigr).
+\end{equation}
+
+For interpretation, define the unconstrained candidate gain and displacement
+loss
+\begin{align*}
+ G_c(b,L)&:=V_\theta(b,L\cup\{c\})-V_\theta(b,L),\\
+ \ell_c(D)&:=V_\theta(b,L\cup\{c\})
+ -V_\theta\bigl(b,(L\setminus D)\cup\{c\}\bigr).
+\end{align*}
+Then the best net admission value is the definition-level identity
+\[
+ A_c(b,L,B)=G_c(b,L)-\min_{D\in\mathcal D_c(B)}\ell_c(D).
+\]
+Under common insertion and the productive factorization, a deletion safe
+before admission is sufficient for zero displacement loss, but it is not
+necessary: the candidate may replace a capability carried by a deleted
+incumbent.  This supporting formulation is not part of the Lean-verified
+theorem set, and it makes no constrained--penalized equivalence claim.

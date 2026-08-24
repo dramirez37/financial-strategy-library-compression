@@ -1,0 +1,100 @@
+{
+  "schema_version": "lean-julia-exact-fixture-v2",
+  "fixture_id": "frontier_pruning_loss",
+  "theorem_family": "F4 arbitrary frontier-pruning loss compatibility fixture",
+  "beliefs": ["only"],
+  "transition_rows": [
+    ["1//1"]
+  ],
+  "discount": "1//2",
+  "modules": ["key"],
+  "strategies": [
+    {
+      "id": "inactive",
+      "operational_profile": ["0//1"],
+      "modules": []
+    },
+    {
+      "id": "bridge",
+      "operational_profile": ["0//1"],
+      "modules": ["key"]
+    },
+    {
+      "id": "future",
+      "operational_profile": ["10//1"],
+      "modules": []
+    }
+  ],
+  "libraries": [
+    {
+      "id": "pruned",
+      "strategies": ["inactive"]
+    },
+    {
+      "id": "unpruned",
+      "strategies": ["inactive", "bridge"]
+    }
+  ],
+  "projects": [
+    {
+      "id": "innovate",
+      "cost": ["0//1"],
+      "duration": 1,
+      "survival": "1//1",
+      "strict_cost": false,
+      "required_modules": ["key"],
+      "candidate_strategies": ["future"]
+    }
+  ],
+  "expected": {
+    "rational_scalars": [
+    {
+      "id": "pruned_research_value",
+      "value": "0//1"
+    },
+    {
+      "id": "research_value_loss",
+      "value": "5//1"
+    },
+    {
+      "id": "unpruned_research_value",
+      "value": "5//1"
+    }
+  ],
+    "rational_vectors": [
+    {
+      "id": "frontier_pruned",
+      "values": ["0//1"]
+    },
+    {
+      "id": "frontier_unpruned",
+      "values": ["0//1"]
+    }
+  ],
+    "boolean_scalars": [
+    {
+      "id": "frontier_preserved",
+      "value": true
+    },
+    {
+      "id": "generative_closure_preserved",
+      "value": false
+    },
+    {
+      "id": "loss_positive",
+      "value": true
+    }
+  ],
+    "boolean_vectors": [],
+    "string_vectors": [
+    {
+      "id": "modules_pruned",
+      "values": []
+    },
+    {
+      "id": "modules_unpruned",
+      "values": ["key"]
+    }
+  ]
+  }
+}

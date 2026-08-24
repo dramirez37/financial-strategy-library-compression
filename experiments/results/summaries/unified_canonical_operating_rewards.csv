@@ -1,0 +1,13 @@
+compressed_state,belief,action,duration,operates_during_research,initiation_cost,expected_incumbent_reward,expected_net_reward_block
+K0,low,continue,1,false,0//1,0//1,0//1
+K0,low,discover,1,true,1//32,0//1,-1//32
+K0,high,continue,1,false,0//1,0//1,0//1
+K0,high,discover,1,true,1//1,0//1,-1//1
+K1,low,continue,1,false,0//1,0//1,0//1
+K1,low,scale,2,true,3//16,0//1,-3//16
+K1,high,continue,1,false,0//1,0//1,0//1
+K1,high,scale,2,true,3//16,0//1,-3//16
+K2,low,continue,1,false,0//1,2//1,2//1
+K2,low,scale,2,true,3//16,13//4,49//16
+K2,high,continue,1,false,0//1,4//1,4//1
+K2,high,scale,2,true,3//16,23//4,89//16

@@ -1,0 +1,103 @@
+{
+  "schema_version": "lean-julia-exact-fixture-v2",
+  "fixture_id": "discount_survival_complementarity",
+  "theorem_family": "S6 discount-survival complementarity",
+  "beliefs": ["low", "high"],
+  "transition_rows": [
+    ["3//4", "1//4"],
+    ["1//2", "1//2"]
+  ],
+  "discount": "3//4",
+  "modules": ["marker"],
+  "strategies": [
+    {
+      "id": "inactive",
+      "operational_profile": ["0//1", "0//1"],
+      "modules": []
+    },
+    {
+      "id": "candidate",
+      "operational_profile": ["1//1", "3//1"],
+      "modules": ["marker"]
+    }
+  ],
+  "libraries": [
+    {
+      "id": "current",
+      "strategies": ["inactive"]
+    }
+  ],
+  "projects": [
+    {
+      "id": "innovate",
+      "cost": ["0//1", "0//1"],
+      "duration": 1,
+      "survival": "2//3",
+      "strict_cost": false,
+      "required_modules": [],
+      "candidate_strategies": ["candidate"]
+    }
+  ],
+  "expected": {
+    "rational_scalars": [
+    {
+      "id": "beta_high",
+      "value": "3//4"
+    },
+    {
+      "id": "beta_low",
+      "value": "1//4"
+    },
+    {
+      "id": "horizon",
+      "value": "5//1"
+    },
+    {
+      "id": "survival_high",
+      "value": "2//3"
+    },
+    {
+      "id": "survival_low",
+      "value": "1//3"
+    }
+  ],
+    "rational_vectors": [
+    {
+      "id": "cross_difference",
+      "values": ["43771//55296", "24869//27648"]
+    },
+    {
+      "id": "factorized_cross_difference",
+      "values": ["43771//55296", "24869//27648"]
+    },
+    {
+      "id": "potential_high_beta_high_survival",
+      "values": ["5053//2048", "4867//1024"]
+    },
+    {
+      "id": "potential_high_beta_low_survival",
+      "values": ["49445//32768", "59675//16384"]
+    },
+    {
+      "id": "potential_low_beta_high_survival",
+      "values": ["24037//18432", "281267//82944"]
+    },
+    {
+      "id": "potential_low_beta_low_survival",
+      "values": ["1006231//884736", "4220027//1327104"]
+    }
+  ],
+    "boolean_scalars": [
+    {
+      "id": "cross_difference_nonnegative",
+      "value": true
+    },
+    {
+      "id": "factorization_holds",
+      "value": true
+    }
+  ],
+    "boolean_vectors": [],
+    "string_vectors": []
+  }
+}

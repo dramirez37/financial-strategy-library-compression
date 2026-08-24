@@ -1,0 +1,128 @@
+% Page budget: 2.5--3.5 pages.
+\section{Experiment Design and Information Set}\label{app:protocol}
+
+\subsection{Registered randomized design}\label{app:protocol-randomized}
+
+The registered synthetic study fixes \(N=1024\) horizon-four trials in a
+complete \(2^7\) factorial with eight replications in each of 128 cells.  The
+master seed and all derived trial seeds were fixed before outcomes.  Profiles,
+kernels, project laws, losses, and values use exact
+\texttt{Rational\{BigInt\}} arithmetic.
+
+Raw realizability is a failure gate, not a post hoc filter.  Each interaction
+observation must be generated from four realizable raw-corner libraries in one
+catalog and module system.  Every enumerated compressed state must have a raw
+witness, and raw and compressed values must agree exactly at every registered
+belief and remaining horizon.  The design also requires exact frontier,
+closure, operational, generative, total-loss, and decomposition agreement
+under innovation-safe pruning.  The experiment is a synthetic structural
+stress test of the registered finite generator, not a population sample or a
+population-frequency estimate.  Full estimand equations, response grids,
+factor slices, sequential diagnostics, and the frozen pilot are in Online
+Supplement~S5.
+
+\subsection{Financial information set}\label{app:protocol-financial}
+
+The terminal financial audit uses one fixed development--validation--holdout
+split.  The annual walk-forward financial audit uses five target-year
+decisions, each based on information through the preceding year.  Their
+held-out outcomes and resampling units differ, so the two protocols are
+defined and reported separately throughout the paper and supplement.
+
+The validation frontier is known at pruning time, and structural closure is
+known at the same time.  Held-out descendant quality is first read only after
+pruning is fixed.  For annual target year \(y\), scores and selected sets use
+information only through \(y-1\); target-year outcomes remain held out until
+after the decision hash is fixed.  The greedy oracle uses target-year outcomes
+and is therefore infeasible.  No held-out quantity enters either compression
+rule.
+
+\begingroup
+\normalsize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.05}
+\begin{longtable}{@{}
+  >{\raggedright\arraybackslash}p{0.22\textwidth}
+  >{\raggedright\arraybackslash}p{0.25\textwidth}
+  >{\raggedright\arraybackslash}p{0.47\textwidth}@{}}
+\caption{Empirical information-set classification.  ``Available'' records the
+locked pipeline's information set, not a claim that every available quantity
+was used.}
+\label{tab:financial-information-sets}\\
+\toprule
+Quantity & Classification & Timing and decision role \\
+\midrule
+\endfirsthead
+\toprule
+Quantity & Classification & Timing and decision role \\
+\midrule
+\endhead
+Current frontier &
+Available at pruning time &
+Validation-derived; frontier equality is used by both deletion rules. \\
+Module closure &
+Available at pruning time &
+Structural; closure equality is used only by innovation-safe deletion. \\
+Compression ratio &
+Retrospective descriptive statistic &
+Computed from final library size after pruning; outcome-blind and unused in
+deletion. \\
+Enabled candidate set &
+Available at pruning time &
+Structurally derivable from catalog requirements and closure; neither deletion
+rule tests candidate-set equality. \\
+Ex post enabled-descendant opportunity quality &
+Available only in the held-out audit &
+Computed from locked utility or realized annual coverage after pruning; never
+an algorithm input. \\
+Coverage ranking score &
+Available during validation &
+Computed after compression from validation or pre-target trailing data; used
+for candidate selection, not pruning. \\
+Locked net utility &
+Available only in the held-out audit &
+First accessed after the terminal pruning, rankings, selections, and decision
+hash are fixed. \\
+Annual realized coverage &
+Available only in the held-out audit &
+Target-year outcome first accessed after that year's score, selection, and
+decision hash are fixed. \\
+Greedy-oracle regret &
+Oracle comparator &
+Constructed from target-year realized gaps and occupation; infeasible at
+pruning and selection time. \\
+Module uniqueness &
+Retrospective descriptive statistic &
+Post-compression structural summary; uses no held-out outcome and is not a
+deletion condition. \\
+Descendant dependence &
+Retrospective descriptive statistic &
+Post-compression structural count of candidates disabled by a one-policy
+removal; uses no candidate quality and is not a deletion condition. \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+The table records actual pipeline use as well as logical availability.
+Frontier and closure are the only pruning inputs: frontier equality is common
+to both deletion rules, and closure equality is the additional
+innovation-safe gate.  Coverage scores are post-compression selection inputs,
+whereas descendant quality, realized coverage, rank diagnostics, intervals,
+and oracle regret are retrospective or held-out quantities.  The full
+code-level audit and secondary-test formulas are in Online Supplement~S6.
+
+\subsection{Data and optimization qualifications}
+\label{app:protocol-qualifications}
+
+Both financial audits use a licensed CRSP/WRDS source.  Raw and row-level data
+are nonredistributable.  The ETF universes are retrospective and are not
+survivorship-free; neither audit is prospective.
+
+For the reported mixed-integer searches, \texttt{OPTIMAL} is the status
+reported by HiGHS and is numerical global-search evidence, not an exact
+enumeration certificate.  Every displayed selected library, integer burden,
+frontier, and closure is rechecked exactly after the solve.  The financial
+audits support no causal, forecasting, alpha, or deployable-performance claim.
+Full financial formulas, secondary results, resampling details, and the mixed
+or adverse outcomes are in Online Supplement~S6; configuration histories,
+hashes, amendments, and artifact paths are in Online Supplement~S7.

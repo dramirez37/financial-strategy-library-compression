@@ -1,0 +1,216 @@
+{
+  "arithmetic": "Rational{BigInt}",
+  "checks": {
+    "comparator_corrected_bound_survives": true,
+    "correlated_joint_bound_survives": true,
+    "enabled_both_zero_comparator_survives": true,
+    "every_counterexample_has_revision": true,
+    "every_requested_channel_preserved": true,
+    "harmful_corrected_bound_survives": true,
+    "harmful_naive_bound_falsified": true,
+    "multiple_descendant_sum_survives": true,
+    "negative_adjustment_survives_when_included": true,
+    "positive_comparator_naive_bound_falsified": true,
+    "primary_joint_bound_survives": true
+  },
+  "counts": {
+    "comparator_corrected_checks": 9,
+    "comparator_corrected_failures": 0,
+    "comparator_naive_failures": 4,
+    "correlated_checks": 419904,
+    "correlated_failures": 0,
+    "correlated_joint_laws": 4,
+    "counterexample_fixtures": 8,
+    "enabled_both_zero_comparator_checks": 3,
+    "enabled_both_zero_comparator_failures": 0,
+    "harmful_corrected_checks": 171072,
+    "harmful_corrected_failures": 0,
+    "harmful_naive_failures": 20736,
+    "harmful_rows": 2376,
+    "joint_laws": 21,
+    "multiple_checks": 2204496,
+    "multiple_failures": 0,
+    "negative_adjustment_checks": 734832,
+    "negative_adjustment_failures": 0,
+    "preserved_fixtures": 12,
+    "single_checks": 2204496,
+    "single_failures": 0,
+    "survivor_fixtures": 4
+  },
+  "experiment_id": "joint-descendant-bound-gauntlet-v1",
+  "fixtures": [
+    {
+      "actual": "0//1",
+      "attacked_bound": "1//2",
+      "channel": "harmful_non_g_outcome",
+      "classification": "counterexample",
+      "detail": "one belief; masses g=1/2, r=1/2; gains 2 and -2",
+      "id": "CX-T6-JOINT-HARMFUL-NONG-01",
+      "missing_assumption": "nonnegative omitted outcomes",
+      "revised_bound": "0//1",
+      "revision": "subtract the expected harmful-outcome correction"
+    },
+    {
+      "actual": "0//1",
+      "attacked_bound": "1//2",
+      "channel": "negative_operating_adjustment",
+      "classification": "counterexample_to_omitting_adjustment",
+      "detail": "one belief; g certain; G=1; beta=1/2; Aop=-1/2",
+      "id": "CX-T6-JOINT-OPERATING-ADJUSTMENT-01",
+      "missing_assumption": "the exact operating adjustment must be retained",
+      "revised_bound": "0//1",
+      "revision": "use Aop=-1/2 rather than silently setting Aop=0"
+    },
+    {
+      "actual": "0//1",
+      "attacked_bound": "1//1",
+      "channel": "project_enabled_in_both_libraries",
+      "classification": "counterexample",
+      "detail": "one belief; the same unit-premium project is feasible on both sides",
+      "id": "CX-T6-JOINT-ENABLED-BOTH-01",
+      "missing_assumption": "project unavailable without insertion, or zero comparator premium",
+      "revised_bound": "0//1",
+      "revision": "retain post-insertion-only enablement and the zero-premium comparator"
+    },
+    {
+      "actual": "0//1",
+      "attacked_bound": "1//1",
+      "channel": "positive_comparator_premium",
+      "classification": "counterexample",
+      "detail": "q is new with premium 1; a retained old project already has premium 1",
+      "id": "CX-T6-JOINT-POSITIVE-COMPARATOR-01",
+      "missing_assumption": "deleted comparator has zero research-option premium",
+      "revised_bound": "0//1",
+      "revision": "otherwise subtract the comparator premium from the project certificate"
+    },
+    {
+      "actual": "1//2",
+      "attacked_bound": "1//1",
+      "channel": "full_path_dependent_gain",
+      "classification": "counterexample",
+      "detail": "two equiprobable g paths share one terminal belief; gains 0 and 2",
+      "id": "CX-T6-JOINT-PATH-FLOOR-01",
+      "missing_assumption": "G(b') is a supportwise floor over every success path ending at b'",
+      "revised_bound": "1//2",
+      "revision": "use path-level joint masses and floors, or take the terminal-path minimum"
+    },
+    {
+      "actual": "0//1",
+      "attacked_bound": "1//1",
+      "channel": "admission_changes_future_menus",
+      "classification": "counterexample",
+      "detail": "g has direct gain 2 but removes a future option worth 4",
+      "id": "CX-T6-JOINT-MENU-DISPLACEMENT-01",
+      "missing_assumption": "G lower-bounds complete continuation gain, including menu changes",
+      "revised_bound": "0//1",
+      "revision": "do not substitute a direct operating gain for the complete continuation floor"
+    },
+    {
+      "actual": "0//1",
+      "attacked_bound": "1//1",
+      "channel": "horizon_shorter_than_duration",
+      "classification": "counterexample",
+      "detail": "h=1; d=2; beta=1/2; g certain; G=4",
+      "id": "CX-T6-JOINT-HORIZON-01",
+      "missing_assumption": "project duration fits the remaining horizon",
+      "revised_bound": "0//1",
+      "revision": "require d<=h before using the committed-project comparison"
+    },
+    {
+      "actual": "0//1",
+      "attacked_bound": "1//4",
+      "channel": "correlated_admission_and_terminal_belief",
+      "classification": "counterexample_to_product_shortcut",
+      "detail": "terminal marginals 1/2,1/2; g occurs only at zero-gain belief",
+      "id": "CX-T6-JOINT-PRODUCT-SHORTCUT-01",
+      "missing_assumption": "event-specific terminal independence for the product formula",
+      "revised_bound": "0//1",
+      "revision": "use eta directly; reserve pi*rho^d*mu for the independence corollary"
+    },
+    {
+      "actual": "3//2",
+      "attacked_bound": "1//2",
+      "channel": "multiple_descendants",
+      "classification": "survives",
+      "detail": "one belief; masses g=1/2,r=1/2; gains 2 and 4; beta=1/2",
+      "id": "FX-T6-JOINT-MULTIPLE-DESCENDANTS-01",
+      "missing_assumption": "none beyond distinct outcome events and nonnegative omitted gains",
+      "revised_bound": "3//2",
+      "revision": "single-g bound remains valid; disjoint descendant events may be summed"
+    },
+    {
+      "actual": "1//1",
+      "attacked_bound": "1//1",
+      "channel": "correlated_admission_and_terminal_belief",
+      "classification": "survives_joint_bound",
+      "detail": "terminal marginals 1/2,1/2; g occurs only at gain-2 belief",
+      "id": "FX-T6-JOINT-CORRELATED-01",
+      "missing_assumption": "none for the joint-law theorem",
+      "revised_bound": "1//1",
+      "revision": "retain the non-product eta term"
+    },
+    {
+      "actual": "1//1",
+      "attacked_bound": "1//1",
+      "channel": "project_enabled_in_both_libraries",
+      "classification": "survives_with_zero_comparator",
+      "detail": "q is feasible on both sides but has zero poor-library premium",
+      "id": "FX-T6-JOINT-ENABLED-BOTH-ZERO-PREMIUM-01",
+      "missing_assumption": "post-insertion-only enablement is mechanism-facing, not sign-bearing once comparator premium is zero",
+      "revised_bound": "1//1",
+      "revision": "retain the condition for the carrier interpretation"
+    },
+    {
+      "actual": "2//1",
+      "attacked_bound": "1//1",
+      "channel": "admission_changes_future_menus",
+      "classification": "survives",
+      "detail": "g direct gain 2 plus an additional future-menu gain 2",
+      "id": "FX-T6-JOINT-MENU-EXPANSION-01",
+      "missing_assumption": "none when G is a lower bound on the complete continuation gain",
+      "revised_bound": "1//1",
+      "revision": "positive menu effects may be omitted from a lower bound"
+    }
+  ],
+  "grid": {
+    "belief_count": 2,
+    "comparator_premia": [
+      "0//1",
+      "1//1",
+      "2//1"
+    ],
+    "costs": [
+      "0//1",
+      "1//1"
+    ],
+    "discounts": [
+      "0//1",
+      "1//2",
+      "3//4"
+    ],
+    "durations": [
+      1,
+      2
+    ],
+    "joint_mass_units": 2,
+    "nonnegative_gains": [
+      "0//1",
+      "1//1",
+      "2//1"
+    ],
+    "operating_adjustments": [
+      "-1//1",
+      "0//1",
+      "1//1"
+    ],
+    "outcome_count": 3,
+    "signed_gains": [
+      "-2//1",
+      "0//1",
+      "2//1"
+    ]
+  },
+  "lean_gate_open": true,
+  "model": "exact one-project Bellman subclass with joint terminal belief/outcome law",
+  "randomness": "none"
+}

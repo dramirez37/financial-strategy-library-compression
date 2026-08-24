@@ -1,0 +1,91 @@
+{
+  "schema_version": "lean-julia-exact-fixture-v2",
+  "fixture_id": "generative_lower_bound",
+  "theorem_family": "T6 retained-carrier generative lower bound",
+  "beliefs": ["only"],
+  "transition_rows": [
+    ["1//1"]
+  ],
+  "discount": "1//2",
+  "modules": ["key"],
+  "strategies": [
+    {
+      "id": "inactive",
+      "operational_profile": ["0//1"],
+      "modules": []
+    },
+    {
+      "id": "bridge",
+      "operational_profile": ["0//1"],
+      "modules": ["key"]
+    },
+    {
+      "id": "candidate",
+      "operational_profile": ["2//1"],
+      "modules": []
+    }
+  ],
+  "libraries": [
+    {
+      "id": "current",
+      "strategies": ["inactive", "bridge"]
+    }
+  ],
+  "projects": [
+    {
+      "id": "innovate",
+      "cost": ["0//1"],
+      "duration": 1,
+      "survival": "1//1",
+      "strict_cost": false,
+      "required_modules": ["key"],
+      "candidate_strategies": ["candidate"]
+    }
+  ],
+  "expected": {
+    "rational_scalars": [
+    {
+      "id": "admission_probability",
+      "value": "1//1"
+    },
+    {
+      "id": "expected_completion_gain",
+      "value": "2//1"
+    },
+    {
+      "id": "lower_bound",
+      "value": "1//1"
+    },
+    {
+      "id": "operating_adjustment",
+      "value": "0//1"
+    },
+    {
+      "id": "research_cost",
+      "value": "0//1"
+    },
+    {
+      "id": "survival_factor",
+      "value": "1//1"
+    }
+  ],
+    "rational_vectors": [
+    {
+      "id": "completion_gains",
+      "values": ["2//1"]
+    },
+    {
+      "id": "occupation_weights",
+      "values": ["1//1"]
+    }
+  ],
+    "boolean_scalars": [
+    {
+      "id": "lower_bound_positive",
+      "value": true
+    }
+  ],
+    "boolean_vectors": [],
+    "string_vectors": []
+  }
+}

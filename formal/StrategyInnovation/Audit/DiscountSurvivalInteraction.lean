@@ -1,0 +1,34 @@
+import Mathlib.Tactic.Linter
+import StrategyInnovation.Coverage.DiscountSurvivalInteraction
+
+/-!
+# Focused axiom audit for finite discount-survival interaction
+-/
+
+open StrategyInnovation.Coverage.DiscountSurvivalInteraction
+
+#print axioms effectiveDiscount
+#print axioms matrixPowerGap
+#print axioms finiteResolvent
+#print axioms finiteEffectivePotential
+#print axioms finiteHorizonPotential
+#print axioms finiteHorizonPotential_eq_sum
+#print axioms finiteResolvent_mulVec_eq_finiteEffectivePotential
+#print axioms matrixPowerGap_nonnegative
+#print axioms finiteEffectivePotential_nonnegative
+#print axioms finiteEffectivePotential_mono
+#print axioms finiteHorizonPotential_mono_discount
+#print axioms finiteHorizonPotential_mono_survival
+#print axioms finiteHorizonPotential_crossDifference_eq_factorized
+#print axioms discountIncrement
+#print axioms discountIncrement_difference_eq_factorized
+#print axioms discountIncrement_mono_survival
+#print axioms discountIncrement_le_iff_crossDifference
+#print axioms finiteHorizonPotential_crossDifference_nonnegative
+#print axioms Counterexamples.oneStateTransition
+#print axioms Counterexamples.oneStateTransition_eq_one
+#print axioms Counterexamples.oneStateTransition_stochastic
+#print axioms Counterexamples.crossDifference_fails_without_nonnegativeGap
+
+#lint- only checkType unusedArguments simpNF in
+  StrategyInnovation.Coverage.DiscountSurvivalInteraction

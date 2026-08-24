@@ -1,0 +1,37 @@
+schema_version = "resource-optimization-counterexample-audit-v1"
+experiment_id = "paper1-resource-optimization-counterexample-audit-v1"
+arithmetic = "Rational{BigInt}"
+
+[compression_search]
+max_active = 3
+max_modules = 2
+max_weight = 3
+
+[capacity_search]
+max_active = 2
+max_weight = 3
+max_value = 3
+
+[penalized_search]
+max_active = 2
+max_weight = 3
+max_value = 3
+audit_max_active = 3
+audit_max_weight = 2
+audit_max_value = 2
+
+[replacement_search]
+max_incumbents = 2
+max_weight = 3
+
+[unsupported_search]
+max_active = 2
+max_value = 3
+
+[elasticity_search]
+max_value = 3
+maximum_denominator = 16
+
+[outputs]
+summary = "experiments/results/resource_optimization_claim_audit.json"
+fixture_directory = "experiments/results/resource_optimization_fixtures"

@@ -1,0 +1,285 @@
+% Online supplement: full validation matrix and formal correspondence.
+\clearpage
+\begin{landscape}
+\section{Full validation matrix and formal correspondence}
+\label{supp:validation-matrix}
+
+\subsection{Status categories}
+
+\begingroup
+\footnotesize
+The evidence columns are independent.  \emph{Human-readable proof} means a
+mathematical derivation in the manuscript or proof appendices.  \emph{Formal
+verification} means an exact machine-checked counterpart that builds under
+the recorded assumptions and axiom audit.  \emph{Exact rational validation}
+means selected finite calculations performed without rounding.
+\emph{Floating-point validation} means numerical output accompanied by stated
+residual, error, tolerance, or drift gates.  \emph{Synthetic experiment}
+means a controlled fixture, response surface, or registered randomized
+finite-library design.  \emph{Retrospective financial audit} means one of the two
+locked retrospective audits; it is descriptive rather than causal.
+
+The matrix uses a controlled status vocabulary.  \textbf{Complete} means the
+channel covers the displayed result under its stated assumptions.
+\textbf{Supporting} means it covers a consequence, implementation, or special
+case but not the whole result.  \textbf{Stress-tested} means the mechanism was
+exercised across a registered synthetic design.  \textbf{Illustrated} means
+the mechanism appears in a locked financial audit.  \textbf{Adverse} marks a
+prespecified financial estimand with the opposite sign to the proposed
+ranking; \textbf{Mixed} marks heterogeneous or noisy signs.
+\textbf{Not assessed} means the channel is relevant but has no registered
+result, while \textbf{N/A} means the channel is not applicable.
+\endgroup
+
+\subsection{Result-by-result evidence matrix}
+
+\begingroup
+\fontsize{6.4}{7.2}\selectfont
+\setlength{\tabcolsep}{2.2pt}
+\renewcommand{\arraystretch}{1.00}
+\begin{center}
+\begin{tabular}{@{}
+  >{\raggedright\arraybackslash}p{0.15\linewidth}
+  >{\raggedright\arraybackslash}p{0.13\linewidth}
+  >{\raggedright\arraybackslash}p{0.14\linewidth}
+  >{\raggedright\arraybackslash}p{0.13\linewidth}
+  >{\raggedright\arraybackslash}p{0.13\linewidth}
+  >{\raggedright\arraybackslash}p{0.14\linewidth}
+  >{\raggedright\arraybackslash}p{0.13\linewidth}@{}}
+\toprule
+Result &
+Human-readable proof &
+Formal verification &
+Exact rational validation &
+Floating-point validation &
+Synthetic experiment &
+Retrospective financial audit \\
+\midrule
+Raw-to-compressed projection &
+\textbf{Complete}: \cref{sec:model,app:structural-proofs} &
+\textbf{Complete}: laws, values, and selectors &
+\textbf{Supporting}: exact projection fixtures &
+\textbf{Not assessed} &
+\textbf{Stress-tested}: raw/compressed fibers &
+\textbf{N/A} \\
+
+Innovation equivalence and safe deletion &
+\textbf{Complete}: \cref{sec:compression,app:structural-proofs,app:optimization-proofs} &
+\textbf{Complete}: characterization and rechecked deletion &
+\textbf{Supporting}: exact deletion classes &
+\textbf{Not assessed} &
+\textbf{Stress-tested}: safe/stale certificates &
+\textbf{Illustrated}: both compression audits \\
+
+Minimum-resource safe compression and local/global boundary &
+\textbf{Complete}: \cref{sec:compression,app:optimization-proofs} &
+\textbf{Complete}: finite attainment, value/action preservation, and exact
+local/global counterexamples &
+\textbf{Complete}: exhaustive exact safe-family fixtures &
+\textbf{Not assessed} &
+\textbf{Stress-tested}: registered safe-optimization designs &
+\textbf{Illustrated}: solver-reported optima with exact certificates \\
+
+Normalized pruning loss &
+\textbf{Complete}: \cref{sec:compression,app:optimization-proofs} &
+\textbf{Complete}: sharp construction, cap, and scaling boundary &
+\textbf{Supporting}: capped and scaled fixtures &
+\textbf{N/A} &
+\textbf{Stress-tested}: frontier-only deletions &
+\textbf{Illustrated}: opportunity loss; not a pruning input \\
+
+Capacity-constrained retention &
+\textbf{Complete}: \cref{sec:compression,app:optimization-proofs} &
+\textbf{Complete}: attainment, monotonicity, steps, shadows, and failure of
+diminishing unit increments &
+\textbf{Complete}: exact capacity profiles &
+\textbf{Not assessed} &
+\textbf{Stress-tested}: registered capacity paths &
+\textbf{N/A} \\
+
+Penalized finite envelope &
+\textbf{Complete}: \cref{sec:compression,app:optimization-proofs} &
+\textbf{Complete}: finite envelope, candidate crossings, burden order, and
+strict-branch derivative &
+\textbf{Complete}: exact active breakpoints and ties &
+\textbf{Not assessed} &
+\textbf{Stress-tested}: registered resource-price paths &
+\textbf{N/A} \\
+
+Policy value, occupancy, and joint descendant-event lower bound &
+\textbf{Complete}: \cref{sec:value,app:comparative-statics} &
+\textbf{Complete}: decomposition and event bound;
+\textbf{Supporting}: passive gap-sum &
+\textbf{Supporting}: exact gauntlet and carrier cases &
+\textbf{Not assessed} &
+\textbf{Stress-tested}: cost, gain, and omitted-outcome cases &
+\textbf{Illustrated}: two carriers; bound not identified \\
+
+Bridge, channel, and fixed-exposure sensitivity &
+\textbf{Complete}: \cref{sec:value,app:comparative-statics} &
+\textbf{Complete}: positive-margin bridge derivatives, same-path channel
+accounting, and scaled fixed-exposure derivative/variance identities &
+\textbf{Supporting}: exact rational sensitivity fixtures &
+\textbf{Not assessed} &
+\textbf{Stress-tested}: registered fixed-branch surfaces &
+\textbf{N/A} \\
+
+Coverage and comparative statics &
+\textbf{Complete}: \cref{sec:value,app:comparative-statics} &
+\textbf{Complete}: finite occupation, threshold, and sign results &
+\textbf{Supporting}: thresholds and persistence signs &
+\textbf{Supporting}: converged surfaces &
+\textbf{Stress-tested}: threshold/disconnection designs &
+\textbf{Adverse}: terminal; \textbf{Mixed}: annual ranking \\
+
+Primitive frontier--closure substitution condition &
+\textbf{Complete}: \cref{sec:value,app:comparative-statics} &
+\textbf{Complete}: recursive gap condition and substitution &
+\textbf{Supporting}: exact sign/boundary surfaces &
+\textbf{Not assessed} &
+\textbf{Stress-tested}: exact and randomized rectangles &
+\textbf{Not assessed} \\
+
+Unified positive-duration canonical benchmark &
+\textbf{Supporting}: \cref{sec:control,app:numerical-convergence} &
+\textbf{Complete}: law, value, action, and lift certificates &
+\textbf{Complete}: six-state solution; zero residual &
+\textbf{Supporting}: residual/error certificates &
+\textbf{Stress-tested}: policy maps and response surfaces &
+\textbf{N/A} \\
+
+Realizable randomized interaction rectangles &
+\textbf{N/A} &
+\textbf{N/A} &
+\textbf{Complete}: four raw corners and witness gates &
+\textbf{N/A} &
+\textbf{Stress-tested}: 1,024 raw-derived rectangles &
+\textbf{N/A} \\
+
+Larger randomized-library stress test &
+\textbf{N/A} &
+\textbf{N/A} &
+\textbf{Complete}: exact trial outputs and hard gates &
+\textbf{Supporting}: intervals and MCSE diagnostics &
+\textbf{Stress-tested}: registered \(N=1024\) design &
+\textbf{N/A} \\
+
+Ex post financial opportunity-quality diagnostic &
+\textbf{N/A} &
+\textbf{N/A} &
+\textbf{Supporting}: exact closures and enabled sets &
+\textbf{Complete}: locked values, tolerances, and drift gates &
+\textbf{N/A} &
+\textbf{Illustrated}: both audits; safe zero change \\
+\bottomrule
+\end{tabular}
+\end{center}
+\endgroup
+\end{landscape}
+
+\begin{landscape}
+\subsection{One-page manuscript-to-formal correspondence summary}
+\label{app:formal-correspondence-summary}
+
+This summary states correspondence at the economic-result level and omits
+declaration names.  It does not strengthen any theorem: each formal
+counterpart is limited to its encoded finite statement and displayed
+assumptions.
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.02}
+\begin{center}
+\begin{tabular}{@{}
+  >{\raggedright\arraybackslash}p{0.18\linewidth}
+  >{\raggedright\arraybackslash}p{0.20\linewidth}
+  >{\raggedright\arraybackslash}p{0.32\linewidth}
+  >{\raggedright\arraybackslash}p{0.25\linewidth}@{}}
+\toprule
+Manuscript result &
+Statement and proof location &
+Formal counterpart, in words &
+Correspondence boundary \\
+\midrule
+Raw-to-compressed projection &
+\Cref{sec:model,app:structural-proofs} &
+Raw generation, verification, admission, and update induce the compressed
+transition; finite and discounted values and lifted stationary selectors
+agree. &
+Finite carriers, exact rational laws, raw factorization, and declared joint
+timing. \\
+
+Dynamic innovation equivalence and safe deletion &
+\Cref{sec:compression,app:structural-proofs,app:optimization-proofs} &
+Equality of the availability-tagged operating and research observations is
+characterized by frontier--closure equality; single and rechecked sequential
+deletions preserve state, value, and actions. &
+The converse characterization requires observable closure detectability;
+redundancy must be recomputed after each deletion. \\
+
+Normalized pruning loss &
+\Cref{sec:compression} &
+The bridge construction loses exactly the discounted surviving admitted
+descendant value net of research cost; the unit cap is sharp and arbitrary
+loss follows only by reward scaling. &
+The theorem is a construction with the displayed delay, survival, admission,
+gain, and cost terms, not an unrestricted upper bound. \\
+
+Policy-value decomposition and operational occupancy &
+\Cref{sec:value} &
+Total insertion value equals operational insertion value plus the change in
+research-option premium; a frozen-library recursion equals discounted
+frontier-gap occupancy. &
+The decomposition is an identity.  The occupancy equation is a supporting
+passive recursion and is not an unconditional bridge for every unified
+research process. \\
+
+Joint descendant-event generative-option lower bound &
+\Cref{sec:value} &
+A retained module carrier has a cost-adjusted lower bound from an enabled
+joint terminal-belief/descendant event.  Project commitment is decomposed
+exactly into initiation cost, the operating block, frozen passive
+continuation, joint descendant gain, and remaining continuation. &
+Terminal masses lie in \([0,1]\), with total at most one.  Requires the
+pathwise gain floor, insertion-only omitted outcomes, \(d\le h\), and a
+zero-premium comparator.  Independence is only for the product corollary;
+duration has no unconditional sign when the joint law or operating block
+changes. \\
+
+Coverage and comparative statics &
+\Cref{sec:value,app:comparative-statics} &
+Finite discounted occupation represents coverage; monotone gaps yield an
+upper threshold; exact counterexamples give both persistence directions and
+multi-gap disconnection. &
+Finite-grid results only.  Threshold and sign conclusions retain their
+kernel, cost, alignment, and timing assumptions. \\
+
+Frontier--closure interaction &
+\Cref{sec:value,app:interaction-proof} &
+Relative action saturation gives substitution; exact project switching and
+frontier-dependent success show complementarity can occur.  A
+fixed-continuation common-gap subclass derives relative saturation from
+primitive exposure orders, while a common belief kernel with ordered current
+and terminal gaps preserves the gap order by finite-horizon induction. &
+Frontier-independent primitives alone do not determine the interaction sign;
+the primitive corollary requires zero poor-menu gap exposure and does not
+cover action-dependent optimized successor closures. \\
+
+Dynamic research control &
+\Cref{sec:control,app:structural-proofs,app:numerical-convergence} &
+The unified finite Bellman operators are monotone contractions with unique
+fixed points, geometric iteration, attained actions, and stationary optimal
+selectors. &
+Standard finite discounted solution theory with positive project durations
+and discount strictly below one. \\
+\bottomrule
+\end{tabular}
+\end{center}
+\endgroup
+
+\smallskip
+\noindent The complete theorem-to-declaration table, assumption
+reconciliation, comprehensive \texttt{\#print axioms} audit, theorem ledger,
+and formal-to-Julia implementation map are online-supplement artifacts.
+\end{landscape}

@@ -1,0 +1,22 @@
+import StrategyInnovation.Quotient.UnifiedDynamicInnovation
+
+/-!
+# Unified dynamic innovation equivalence audit
+
+This file prints the kernel dependencies of the publication-facing
+cost-sensitive equivalence, value-preservation, quotient, compressed-state
+sufficiency, and restricted refinement declarations.
+-/
+
+#print axioms StrategyInnovation.Projection.Model.dynamicInnovationEquivalent_refl
+#print axioms StrategyInnovation.Projection.Model.dynamicInnovationEquivalent_symm
+#print axioms StrategyInnovation.Projection.Model.dynamicInnovationEquivalent_trans
+#print axioms StrategyInnovation.Projection.Model.dynamicInnovationQuotientFinite
+#print axioms StrategyInnovation.Projection.Model.compressedState_eq_implies_dynamicInnovationEquivalent
+#print axioms StrategyInnovation.Projection.Model.rawValue_eq_of_dynamicInnovationEquivalent
+#print axioms StrategyInnovation.Projection.Model.finiteHorizonValue_depends_only_on_dynamicInnovationClass
+#print axioms StrategyInnovation.Projection.Model.DiscountedContractionModel.compressedFixedPoint_eq_of_equivalent
+#print axioms StrategyInnovation.Projection.Model.DiscountedContractionModel.rawFixedPoint_eq_of_dynamicInnovationEquivalent
+#print axioms StrategyInnovation.Projection.Model.representation_refines_dynamicInnovationEquivalent
+
+#lint- only checkType unusedArguments simpNF in StrategyInnovation.Projection.Model

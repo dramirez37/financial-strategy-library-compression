@@ -1,0 +1,38 @@
+{
+  "schema_version": "financial-audit-resource-optimization-design-lock-v1",
+  "experiment_id": "locked-financial-audits-resource-optimization-v1",
+  "locked_at_utc": "2026-08-04T23:55:34Z",
+  "lock_stage": "post-parent-outcome, pre-resource-optimization extension lock",
+  "resource_optimization_results_read_before_lock": false,
+  "parent_outcomes_used_to_define_weights": false,
+  "locked_parent_outcomes_already_exist": true,
+  "implementation_amendment_count": 2,
+  "resource_milp_solved_before_current_lock": false,
+  "outputs_absent_at_freeze": true,
+  "design_sha256": "f658371ede7d6656a52761678511b90eacf719595e65a6e13d6824568f1a3c94",
+  "files": {
+    "experiments/configs/financial_audit_resource_optimization_v1.toml": "13ea54cf6ac1466f75fe63d367cb41c42dca4f941f2e9685797e7833e4e3514e",
+    "experiments/configs/financial_illustration.toml": "68871e6bc7d61dd85f1d4863dcefa9444034047ea6c7b476f607edab98a206f2",
+    "experiments/configs/financial_illustration_v2.toml": "96c2c0443c4093d4328d8ab73126347e6550e2ad69037694344ba8501855984b",
+    "experiments/results/summaries/financial_illustration_status.json": "9f99d650b0bce4a83b650f7793dc1f17bfe3ad408ad0221b968a8bf81dc28640",
+    "experiments/results/summaries/financial_illustration_v2_status.json": "cf9ae840c4c1152a6b710e2e4cec9e4a9df6c95301f890abb4312ec0a3afea01",
+    "experiments/financial_illustration_v2/DESIGN_LOCK.json": "45350297243e447b7bb26a888dbe8b67c55085878f987de642fdd37c4a1a2451",
+    "experiments/financial_audit_resource_optimization_v1/DESIGN_LOCK_INITIAL.json": "39bfd301453ac0aa7390bb138ab82f3ae055dfec211ae3c59bda47c502d95d51",
+    "experiments/financial_audit_resource_optimization_v1/DESIGN_LOCK_AMENDMENT_1.json": "9305e9906931b2039da3d07f41db1feb1cadf9a97bf6d98d36390e999d8d9e12",
+    "experiments/financial_audit_resource_optimization_v1/IMPLEMENTATION_AMENDMENTS.md": "147889459743a95bf69fd3e10371167d6c8818d7eaab76c0a645ad0a6159d95a",
+    "julia/scripts/run_financial_illustration.jl": "4c1047b50aef360dae85b86dde86cca2866bbe8c755aef791769ac01eda3b918",
+    "julia/scripts/run_financial_illustration_v2.jl": "53726a86d7f36d2cc750dc35cf1e4b4079ea25292c99464c1e81ef294eb96730",
+    "julia/scripts/run_financial_audit_resource_optimization.jl": "5e6285d115de5207b9e0474a77b1b1c579ecba965e9c577569ac0b0bb0297055",
+    "julia/scripts/lock_financial_audit_resource_optimization.jl": "f6df903e913f6f543cd6d3ac817ac24eb73d5fe22a030096bf24addb58893f48",
+    "julia/test/test_financial_audit_resource_optimization.jl": "4b88503ade1120b37b9fdfea83dbe472f730c37a6a15d4655598568626cee1de"
+  },
+  "outputs_absent_at_freeze_paths": [
+    "experiments/results/summaries/financial_audit_resource_optimization_v1_weights.csv",
+    "experiments/results/summaries/financial_audit_resource_optimization_v1_solutions.csv",
+    "experiments/results/summaries/financial_audit_resource_optimization_v1_libraries.csv",
+    "experiments/results/summaries/financial_audit_resource_optimization_v1_frontier_certificates.csv",
+    "experiments/results/summaries/financial_audit_resource_optimization_v1_summary.csv",
+    "experiments/results/summaries/financial_audit_resource_optimization_v1_status.json",
+    "FINANCIAL_AUDIT_RESOURCE_OPTIMIZATION_V1.md"
+  ]
+}

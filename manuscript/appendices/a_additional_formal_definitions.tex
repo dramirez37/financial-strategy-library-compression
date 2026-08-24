@@ -1,0 +1,185 @@
+% Page budget: 4--5 pages across the three Appendix A source fragments.
+\clearpage
+\section{Proofs of Structural and Value Results}
+\label{app:structural-proofs}
+
+This appendix gives the proof support for the structural projection, safe
+deletion, value decomposition, and descendant-event bound.  Throughout,
+expectations are conditional on the displayed initial state and action, and
+the joint completion law remains unfactorized unless a result explicitly
+imposes a product specialization.  Finiteness is used for finite sums,
+attained maxima, termination, and finite quotients.  Observable closure
+detectability is used only for the converse from dynamic observations to
+closure equality; contraction is used only for stationary fixed points,
+policy evaluation, and stationary action comparisons.
+
+\subsection{Auxiliary finite-model facts}
+\label{app:ratprob}
+
+For a finite carrier \(A\), every probability law in the model is a table
+\[
+  \Delta_{\Q}(A)
+  :=\left\{p:A\to\Q:p(a)\ge0\ \text{for every }a,
+  \ \sum_{a\in A}p(a)=1\right\}.
+\]
+Thus beliefs, belief-kernel rows, and generation rows are normalized exact
+rational tables.  At fixed \((q,b,C)\), admission assigns verified mass to
+accepted candidates and all rejected mass to the null outcome:
+\begin{align}
+  \Gamma(q,b,C)(\operatorname{some}(s))
+    &=G(q,b,C)(\operatorname{some}(s))\nu(q,b,C,s),
+    \label{eq:admitted-law-some}\\
+  \Gamma(q,b,C)(\operatorname{none})
+    &=G(q,b,C)(\operatorname{none})
+      +\sum_{s\in S}G(q,b,C)(\operatorname{some}(s))
+        \bigl(1-\nu(q,b,C,s)\bigr).
+    \label{eq:admitted-law-none}
+\end{align}
+Nonnegativity is immediate, and summing these rows recovers the unit mass of
+\(G\), so \(\Gamma(q,b,C)\) is normalized.
+
+Conditional on the fixed initial belief \(b\), state \((F,C)\), and project
+\(q\), the joint completion law on
+\(\mathbf b=(b_0,\ldots,b_{d_q})\) and admitted outcome \(o\) has marginals
+\begin{align}
+  \sum_o\Lambda_q(\mathbf b,o\mid b;F,C)
+    &=\one\{b_0=b\}\prod_{t=0}^{d_q-1}P_B(b_t,b_{t+1}),
+    \label{eq:completion-path-marginal}\\
+  \sum_{\mathbf b}\Lambda_q(\mathbf b,o\mid b;F,C)
+    &=\Gamma(q,b,C)(o).
+    \label{eq:completion-outcome-marginal}
+\end{align}
+The raw terminal law is therefore
+\[
+  \mathcal Q_q^{\rm raw}(b',L'\mid b,L)
+  =\sum_{\substack{\mathbf b,o:\ b_{d_q}=b'\\L\oplus o=L'}}
+    \Lambda_q(\mathbf b,o\mid b;F_L,C_L).
+\]
+For realizable \(K=(F,C)\), deterministic pushforward gives
+\begin{align}
+  \overline T_q(K'\mid b,K)
+    &:=\sum_{o:\operatorname{addK}(K,o)=K'}\Gamma(q,b,C)(o),
+    \label{eq:induced-compressed-marginal}\\
+  \overline{\mathcal Q}_q(b',K'\mid b,K)
+    &:=\sum_{\substack{\mathbf b,o:\ b_{d_q}=b'\\
+        \operatorname{addK}(K,o)=K'}}
+        \Lambda_q(\mathbf b,o\mid b,K).
+    \label{eq:induced-compressed-joint}
+\end{align}
+These pushforwards preserve nonnegativity and total mass and are supported on
+realizable compressed states by
+\eqref{eq:raw-compressed-local-update}.
+
+\begin{lemma}[Finite-library frontier and closure calculus]
+\label{lem:frontier-closure-calculus}
+For every raw library \(L\) and belief \(b\),
+\[
+  j_s(b)\le F_L(b)\quad(s\in L),
+  \qquad F_L(b)\ge0,
+  \qquad \exists s^\star\in L:\ j_{s^\star}(b)=F_L(b).
+\]
+If \(L\subseteq L'\), then \(F_L(b)\le F_{L'}(b)\) for every \(b\) and
+\(C_L\subseteq C_{L'}\).
+\end{lemma}
+
+\begin{proof}
+The inactive strategy makes \(L\) nonempty and gives the nonnegative row.
+The finite maximum defining \(F_L(b)\) is attained and bounds every represented
+profile.  Library inclusion enlarges the maximizing set and the raw module
+union; closure monotonicity gives the closure inclusion.
+\end{proof}
+
+A belief is reachable at date \(t\) exactly when its transition mass is
+positive; finite occupation is the date-by-date mass weighted by the relevant
+discount and survival powers.  On a finite linear order, every nonempty upper
+set has a least member \(b^\star\) and equals
+\(\{b:b^\star\le b\}\).  These two facts supply the occupation and cutoff
+conventions used in the supporting coverage results.
+
+\subsection{Projection and dynamic equivalence}
+\label{app:di-quotient}\label{app:proofs-quotient}
+
+\begin{proof}[Proof of \cref{thm:raw-to-compressed-projection}.]
+Fix an initial belief \(b\), raw library \(L\), and feasible project \(q\).
+The admitted law is normalized by \eqref{eq:admitted-law-some}--
+\eqref{eq:admitted-law-none}; pushing the joint completion law through the
+deterministic raw update gives the normalized laws
+\eqref{eq:induced-compressed-marginal}--
+\eqref{eq:induced-compressed-joint}.  The pointwise identity
+\[
+ K_{L\oplus o}=\operatorname{addK}(K_L,o)
+\]
+shows that the next compressed state is realizable and that its law depends
+on \(L\) only through \(K_L\).  Libraries in the same fiber therefore have
+identical project availability, cost, duration, incumbent-reward blocks, and
+joint terminal belief--compressed-state laws.  This proves the controlled
+semi-Markov projection at decision epochs; an unfinished project additionally
+records its identity and remaining duration.
+
+For finite-horizon values, compare corresponding actions.  Continue reduces
+the horizon by one and each research action by \(d_q>0\), so strong induction
+identifies every raw and compressed action value and then their attained
+maxima.  For the stationary clause, Bellman intertwining maps a compressed
+fixed point to a raw fixed point; discounted contraction supplies fixed-point
+and policy-evaluation uniqueness.  A maximizing compressed selector exists
+by finite attainment and lifts through the same action-value identity.
+\end{proof}
+
+\begin{proof}[Proof of \cref{thm:finite-state-contraction}.]
+Fix a decision state and a remaining finite calendar horizon.  The feasible
+action set consists of Continue and every available project whose positive
+duration fits the remaining horizon.  The project and state carriers are
+finite, so this action set is finite and its maximum is attained.  This proves
+finite-horizon attainment without contraction.
+
+For the stationary claim, cast the exact rational probabilities and payoffs
+to reals and condition each expectation on the current state and chosen
+action.  Expectation under either the belief kernel or the joint completion
+law is nonexpansive in the finite-product sup norm.  No independence between
+the belief path and admitted outcome is needed.  Continue has modulus
+\(\beta\).  A positive-duration project has modulus
+\(\beta^{d(q)}\le\beta\); its cost and incumbent operating block cancel when
+two continuation tables are compared.  Maximization over the finite feasible
+action set preserves this common pointwise bound, so both raw and compressed
+Bellman operators are contractions.
+
+This is the only place in the argument where contraction is used.  Banach's
+theorem gives a unique fixed point for each Bellman operator, uniform value-
+iteration convergence, and \eqref{eq:control-geometric-bound}.  Bellman
+intertwining maps the compressed fixed point to a raw fixed point; fixed-point
+uniqueness gives raw/compressed value equality.  Finiteness supplies at least
+one maximizing stationary action at each state, defining a selector
+\(\pi^\star\); the selector itself need not be unique.  Its fixed-action
+operator obeys the same contraction bound, and
+\(\mathsf T_{\pi^\star}V_\infty=V_\infty\).  Uniqueness of policy evaluation
+then yields \(V^{\pi^\star}=V_\infty\), and the projection identity lifts the
+selector to the raw state space.  Detectability is not used.
+\end{proof}
+
+\begin{proof}[Proof of the characterization clause of
+\cref{thm:raw-frontier-closure-characterization}.]
+If \(K_L=K_{L'}\), raw factorization identifies generation, verification,
+availability, cost, duration, incumbent rewards, and the conditional joint
+completion law.  The admitted laws and compressed pushforwards agree, giving
+all five observations in \eqref{eq:di-definition}.  Conversely, dynamic
+innovation equivalence gives frontier equality.  If the closures differed,
+observable closure detectability would supply a project with a different
+availability-tagged cost, duration, or joint terminal observation, a
+contradiction.  Thus the closures and compressed states agree.
+\end{proof}
+
+The five componentwise equalities in \eqref{eq:di-definition} make
+\(\sim_{\DI}\) an equivalence relation.
+\label{prop:di-equivalence-relation}
+The proof of \cref{thm:raw-to-compressed-projection} applies verbatim to any
+pair \(L\sim_{\DI}L'\): finite-horizon and stationary values agree, the finite
+raw-library carrier has a finite quotient, and value is well defined on each
+class.  Equality of compressed states implies this equivalence by the forward
+characterization just proved.
+\label{thm:di-quotient-sufficiency}
+Finally, if a representation \(r\) has the property that \(r(L)=r(L')\)
+forces equality of all five availability-tagged observations, then equality
+of \(r\) implies \(L\sim_{\DI}L'\).
+\label{prop:di-refinement-minimality}
+This restricted refinement is definitional; it is not a generic
+coarsest-bisimulation or full-abstraction result.

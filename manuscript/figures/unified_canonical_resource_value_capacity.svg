@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="450" viewBox="0 0 980 450" role="img" aria-labelledby="title desc">
+<title id="title">Productive value by exact capacity</title>
+<desc id="desc">Two belief panels show the exact right-continuous capacity-value step function for each preregistered weight schedule.</desc>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#172a3a}.title{font-size:20px;font-weight:650}.subtitle{font-size:12px;fill:#66717e}.axis{font-size:11px;fill:#66717e}.label{font-size:12px}.small{font-size:10px;fill:#66717e}</style>
+<text x="55" y="35" class="title">Value–capacity curve</text>
+<text x="55" y="55" class="subtitle">Exact right-continuous steps; markers identify attainable Rational{BigInt} capacities.</text>
+<text x="65" y="90" class="label" font-weight="600">Initial belief: low</text>
+<line x1="65" y1="380" x2="465" y2="380" stroke="#66717e"/>
+<line x1="65" y1="100" x2="65" y2="380" stroke="#66717e"/>
+<line x1="65.0" y1="100" x2="65.0" y2="380" stroke="#e7edf2"/>
+<line x1="65" y1="100.0" x2="465" y2="100.0" stroke="#e7edf2"/>
+<text x="65.0" y="396" text-anchor="middle" class="axis">1</text>
+<text x="58" y="104.0" text-anchor="end" class="axis">7.3</text>
+<line x1="165.0" y1="100" x2="165.0" y2="380" stroke="#e7edf2"/>
+<line x1="65" y1="170.0" x2="465" y2="170.0" stroke="#e7edf2"/>
+<text x="165.0" y="396" text-anchor="middle" class="axis">2.2</text>
+<text x="58" y="174.0" text-anchor="end" class="axis">5.5</text>
+<line x1="265.0" y1="100" x2="265.0" y2="380" stroke="#e7edf2"/>
+<line x1="65" y1="240.0" x2="465" y2="240.0" stroke="#e7edf2"/>
+<text x="265.0" y="396" text-anchor="middle" class="axis">3.5</text>
+<text x="58" y="244.0" text-anchor="end" class="axis">3.7</text>
+<line x1="365.0" y1="100" x2="365.0" y2="380" stroke="#e7edf2"/>
+<line x1="65" y1="310.0" x2="465" y2="310.0" stroke="#e7edf2"/>
+<text x="365.0" y="396" text-anchor="middle" class="axis">4.8</text>
+<text x="58" y="314.0" text-anchor="end" class="axis">1.8</text>
+<line x1="465.0" y1="100" x2="465.0" y2="380" stroke="#e7edf2"/>
+<line x1="65" y1="380.0" x2="465" y2="380.0" stroke="#e7edf2"/>
+<text x="465.0" y="396" text-anchor="middle" class="axis">6</text>
+<text x="58" y="384.0" text-anchor="end" class="axis">0</text>
+<polyline points="65.0,364.7537878787879 145.0,364.7537878787879 145.0,201.81818181818178 225.0,201.81818181818178 225.0,201.81818181818178 305.0,201.81818181818178 305.0,201.81818181818178" fill="none" stroke="#2f5d8a" stroke-width="2.4" stroke-dasharray=""/>
+<circle cx="65.0" cy="364.7537878787879" r="3.2" fill="#2f5d8a"><title>equal_active, B=1//1, V=115//288, opt=I</title></circle>
+<circle cx="145.0" cy="201.81818181818178" r="3.2" fill="#2f5d8a"><title>equal_active, B=2//1, V=14//3, opt=I+D</title></circle>
+<circle cx="225.0" cy="201.81818181818178" r="3.2" fill="#2f5d8a"><title>equal_active, B=3//1, V=14//3, opt=I+D;I+A+D;I+B+D</title></circle>
+<circle cx="305.0" cy="201.81818181818178" r="3.2" fill="#2f5d8a"><title>equal_active, B=4//1, V=14//3, opt=I+D;I+A+D;I+B+D;I+A+B+D</title></circle>
+<polyline points="65.0,364.7537878787879 145.0,364.7537878787879 145.0,201.81818181818178 225.0,201.81818181818178 225.0,201.81818181818178 305.0,201.81818181818178 305.0,201.81818181818178 385.0,201.81818181818178 385.0,201.81818181818178 465.0,201.81818181818178 465.0,201.81818181818178" fill="none" stroke="#d39b2a" stroke-width="2.4" stroke-dasharray="9 5"/>
+<circle cx="65.0" cy="364.7537878787879" r="3.2" fill="#d39b2a"><title>carrier_heavy, B=1//1, V=115//288, opt=I</title></circle>
+<circle cx="145.0" cy="201.81818181818178" r="3.2" fill="#d39b2a"><title>carrier_heavy, B=2//1, V=14//3, opt=I+D</title></circle>
+<circle cx="225.0" cy="201.81818181818178" r="3.2" fill="#d39b2a"><title>carrier_heavy, B=3//1, V=14//3, opt=I+D</title></circle>
+<circle cx="305.0" cy="201.81818181818178" r="3.2" fill="#d39b2a"><title>carrier_heavy, B=4//1, V=14//3, opt=I+D;I+A+D;I+B+D</title></circle>
+<circle cx="385.0" cy="201.81818181818178" r="3.2" fill="#d39b2a"><title>carrier_heavy, B=5//1, V=14//3, opt=I+D;I+A+D;I+B+D</title></circle>
+<circle cx="465.0" cy="201.81818181818178" r="3.2" fill="#d39b2a"><title>carrier_heavy, B=6//1, V=14//3, opt=I+D;I+A+D;I+B+D;I+A+B+D</title></circle>
+<polyline points="65.0,364.7537878787879 145.0,364.7537878787879 145.0,341.8181818181818 225.0,341.8181818181818 225.0,201.81818181818178 305.0,201.81818181818178 305.0,201.81818181818178 385.0,201.81818181818178 385.0,201.81818181818178" fill="none" stroke="#c65d32" stroke-width="2.4" stroke-dasharray="2 4"/>
+<circle cx="65.0" cy="364.7537878787879" r="3.2" fill="#c65d32"><title>descendant_heavy, B=1//1, V=115//288, opt=I</title></circle>
+<circle cx="145.0" cy="341.8181818181818" r="3.2" fill="#c65d32"><title>descendant_heavy, B=2//1, V=1//1, opt=I+A;I+B</title></circle>
+<circle cx="225.0" cy="201.81818181818178" r="3.2" fill="#c65d32"><title>descendant_heavy, B=3//1, V=14//3, opt=I+D</title></circle>
+<circle cx="305.0" cy="201.81818181818178" r="3.2" fill="#c65d32"><title>descendant_heavy, B=4//1, V=14//3, opt=I+D;I+A+D;I+B+D</title></circle>
+<circle cx="385.0" cy="201.81818181818178" r="3.2" fill="#c65d32"><title>descendant_heavy, B=5//1, V=14//3, opt=I+D;I+A+D;I+B+D;I+A+B+D</title></circle>
+<text x="530" y="90" class="label" font-weight="600">Initial belief: high</text>
+<line x1="530" y1="380" x2="930" y2="380" stroke="#66717e"/>
+<line x1="530" y1="100" x2="530" y2="380" stroke="#66717e"/>
+<line x1="530.0" y1="100" x2="530.0" y2="380" stroke="#e7edf2"/>
+<line x1="530" y1="100.0" x2="930" y2="100.0" stroke="#e7edf2"/>
+<text x="530.0" y="396" text-anchor="middle" class="axis">1</text>
+<text x="523" y="104.0" text-anchor="end" class="axis">7.3</text>
+<line x1="630.0" y1="100" x2="630.0" y2="380" stroke="#e7edf2"/>
+<line x1="530" y1="170.0" x2="930" y2="170.0" stroke="#e7edf2"/>
+<text x="630.0" y="396" text-anchor="middle" class="axis">2.2</text>
+<text x="523" y="174.0" text-anchor="end" class="axis">5.5</text>
+<line x1="730.0" y1="100" x2="730.0" y2="380" stroke="#e7edf2"/>
+<line x1="530" y1="240.0" x2="930" y2="240.0" stroke="#e7edf2"/>
+<text x="730.0" y="396" text-anchor="middle" class="axis">3.5</text>
+<text x="523" y="244.0" text-anchor="end" class="axis">3.7</text>
+<line x1="830.0" y1="100" x2="830.0" y2="380" stroke="#e7edf2"/>
+<line x1="530" y1="310.0" x2="930" y2="310.0" stroke="#e7edf2"/>
+<text x="830.0" y="396" text-anchor="middle" class="axis">4.8</text>
+<text x="523" y="314.0" text-anchor="end" class="axis">1.8</text>
+<line x1="930.0" y1="100" x2="930.0" y2="380" stroke="#e7edf2"/>
+<line x1="530" y1="380.0" x2="930" y2="380.0" stroke="#e7edf2"/>
+<text x="930.0" y="396" text-anchor="middle" class="axis">6</text>
+<text x="523" y="384.0" text-anchor="end" class="axis">0</text>
+<polyline points="530.0,376.95075757575756 610.0,376.95075757575756 610.0,100.0 690.0,100.0 690.0,100.0 770.0,100.0 770.0,100.0" fill="none" stroke="#2f5d8a" stroke-width="2.4" stroke-dasharray=""/>
+<circle cx="530.0" cy="376.95075757575756" r="3.2" fill="#2f5d8a"><title>equal_active, B=1//1, V=23//288, opt=I</title></circle>
+<circle cx="610.0" cy="100.0" r="3.2" fill="#2f5d8a"><title>equal_active, B=2//1, V=22//3, opt=I+D</title></circle>
+<circle cx="690.0" cy="100.0" r="3.2" fill="#2f5d8a"><title>equal_active, B=3//1, V=22//3, opt=I+D;I+A+D;I+B+D</title></circle>
+<circle cx="770.0" cy="100.0" r="3.2" fill="#2f5d8a"><title>equal_active, B=4//1, V=22//3, opt=I+D;I+A+D;I+B+D;I+A+B+D</title></circle>
+<polyline points="530.0,376.95075757575756 610.0,376.95075757575756 610.0,100.0 690.0,100.0 690.0,100.0 770.0,100.0 770.0,100.0 850.0,100.0 850.0,100.0 930.0,100.0 930.0,100.0" fill="none" stroke="#d39b2a" stroke-width="2.4" stroke-dasharray="9 5"/>
+<circle cx="530.0" cy="376.95075757575756" r="3.2" fill="#d39b2a"><title>carrier_heavy, B=1//1, V=23//288, opt=I</title></circle>
+<circle cx="610.0" cy="100.0" r="3.2" fill="#d39b2a"><title>carrier_heavy, B=2//1, V=22//3, opt=I+D</title></circle>
+<circle cx="690.0" cy="100.0" r="3.2" fill="#d39b2a"><title>carrier_heavy, B=3//1, V=22//3, opt=I+D</title></circle>
+<circle cx="770.0" cy="100.0" r="3.2" fill="#d39b2a"><title>carrier_heavy, B=4//1, V=22//3, opt=I+D;I+A+D;I+B+D</title></circle>
+<circle cx="850.0" cy="100.0" r="3.2" fill="#d39b2a"><title>carrier_heavy, B=5//1, V=22//3, opt=I+D;I+A+D;I+B+D</title></circle>
+<circle cx="930.0" cy="100.0" r="3.2" fill="#d39b2a"><title>carrier_heavy, B=6//1, V=22//3, opt=I+D;I+A+D;I+B+D;I+A+B+D</title></circle>
+<polyline points="530.0,376.95075757575756 610.0,376.95075757575756 610.0,335.45454545454544 690.0,335.45454545454544 690.0,100.0 770.0,100.0 770.0,100.0 850.0,100.0 850.0,100.0" fill="none" stroke="#c65d32" stroke-width="2.4" stroke-dasharray="2 4"/>
+<circle cx="530.0" cy="376.95075757575756" r="3.2" fill="#c65d32"><title>descendant_heavy, B=1//1, V=23//288, opt=I</title></circle>
+<circle cx="610.0" cy="335.45454545454544" r="3.2" fill="#c65d32"><title>descendant_heavy, B=2//1, V=7//6, opt=I+A;I+B</title></circle>
+<circle cx="690.0" cy="100.0" r="3.2" fill="#c65d32"><title>descendant_heavy, B=3//1, V=22//3, opt=I+D</title></circle>
+<circle cx="770.0" cy="100.0" r="3.2" fill="#c65d32"><title>descendant_heavy, B=4//1, V=22//3, opt=I+D;I+A+D;I+B+D</title></circle>
+<circle cx="850.0" cy="100.0" r="3.2" fill="#c65d32"><title>descendant_heavy, B=5//1, V=22//3, opt=I+D;I+A+D;I+B+D;I+A+B+D</title></circle>
+<text x="490" y="425" text-anchor="middle" class="axis">Total resource capacity B (including inactive policy)</text>
+<line x1="550" y1="55" x2="572" y2="55" stroke="#2f5d8a" stroke-width="3" stroke-dasharray=""/>
+<text x="577" y="59" class="small">equal active</text>
+<line x1="685" y1="55" x2="707" y2="55" stroke="#d39b2a" stroke-width="3" stroke-dasharray="9 5"/>
+<text x="712" y="59" class="small">carrier heavy</text>
+<line x1="820" y1="55" x2="842" y2="55" stroke="#c65d32" stroke-width="3" stroke-dasharray="2 4"/>
+<text x="847" y="59" class="small">descendant heavy</text>
+</svg>

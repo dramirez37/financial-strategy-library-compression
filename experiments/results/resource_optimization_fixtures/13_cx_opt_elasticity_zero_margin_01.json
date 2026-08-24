@@ -1,0 +1,155 @@
+{
+  "claim": {
+    "arithmetic": "Rational{BigInt}",
+    "assumption_boundary": "A uniform elasticity bound requires the innovation margin to be bounded away from zero.",
+    "claim_number": 13,
+    "evidence_class": "exact finite Julia search; not Lean proof",
+    "fixture": {
+      "elasticity_formula": "ε(x)=x/μ(x)",
+      "exact_family": [
+        {
+          "cost": "1//1",
+          "identity_check": true,
+          "innovation_margin": "1//1",
+          "level_elasticity": "2//1",
+          "n": 1,
+          "quality": "2//1"
+        },
+        {
+          "cost": "1//1",
+          "identity_check": true,
+          "innovation_margin": "1//2",
+          "level_elasticity": "3//1",
+          "n": 2,
+          "quality": "3//2"
+        },
+        {
+          "cost": "1//1",
+          "identity_check": true,
+          "innovation_margin": "1//3",
+          "level_elasticity": "4//1",
+          "n": 3,
+          "quality": "4//3"
+        },
+        {
+          "cost": "1//1",
+          "identity_check": true,
+          "innovation_margin": "1//4",
+          "level_elasticity": "5//1",
+          "n": 4,
+          "quality": "5//4"
+        },
+        {
+          "cost": "1//1",
+          "identity_check": true,
+          "innovation_margin": "1//5",
+          "level_elasticity": "6//1",
+          "n": 5,
+          "quality": "6//5"
+        },
+        {
+          "cost": "1//1",
+          "identity_check": true,
+          "innovation_margin": "1//6",
+          "level_elasticity": "7//1",
+          "n": 6,
+          "quality": "7//6"
+        },
+        {
+          "cost": "1//1",
+          "identity_check": true,
+          "innovation_margin": "1//7",
+          "level_elasticity": "8//1",
+          "n": 7,
+          "quality": "8//7"
+        },
+        {
+          "cost": "1//1",
+          "identity_check": true,
+          "innovation_margin": "1//8",
+          "level_elasticity": "9//1",
+          "n": 8,
+          "quality": "9//8"
+        },
+        {
+          "cost": "1//1",
+          "identity_check": true,
+          "innovation_margin": "1//9",
+          "level_elasticity": "10//1",
+          "n": 9,
+          "quality": "10//9"
+        },
+        {
+          "cost": "1//1",
+          "identity_check": true,
+          "innovation_margin": "1//10",
+          "level_elasticity": "11//1",
+          "n": 10,
+          "quality": "11//10"
+        },
+        {
+          "cost": "1//1",
+          "identity_check": true,
+          "innovation_margin": "1//11",
+          "level_elasticity": "12//1",
+          "n": 11,
+          "quality": "12//11"
+        },
+        {
+          "cost": "1//1",
+          "identity_check": true,
+          "innovation_margin": "1//12",
+          "level_elasticity": "13//1",
+          "n": 12,
+          "quality": "13//12"
+        },
+        {
+          "cost": "1//1",
+          "identity_check": true,
+          "innovation_margin": "1//13",
+          "level_elasticity": "14//1",
+          "n": 13,
+          "quality": "14//13"
+        },
+        {
+          "cost": "1//1",
+          "identity_check": true,
+          "innovation_margin": "1//14",
+          "level_elasticity": "15//1",
+          "n": 14,
+          "quality": "15//14"
+        },
+        {
+          "cost": "1//1",
+          "identity_check": true,
+          "innovation_margin": "1//15",
+          "level_elasticity": "16//1",
+          "n": 15,
+          "quality": "16//15"
+        },
+        {
+          "cost": "1//1",
+          "identity_check": true,
+          "innovation_margin": "1//16",
+          "level_elasticity": "17//1",
+          "n": 16,
+          "quality": "17//16"
+        }
+      ],
+      "margin_formula": "μ(x)=x-1 on x>1",
+      "maximum_tested_denominator": 16,
+      "unbounded_family_identity": "x_n=1+1/n, μ_n=1/n, ε_n=n+1"
+    },
+    "id": "CX-OPT-ELASTICITY-ZERO-MARGIN-01",
+    "minimality": {
+      "active_strategy_count": 1,
+      "parametric_family_is_size_minimal": true,
+      "project_count": 1
+    },
+    "status": "counterexample_found",
+    "theorem_revision": "State level elasticity only on a domain with a positive innovation-margin floor, or use exact level changes or semielasticities near zero.",
+    "title": "Level elasticity diverges near a zero innovation margin"
+  },
+  "experiment_id": "paper1-resource-optimization-counterexample-audit-v1",
+  "schema_version": "resource-optimization-counterexample-audit-v1"
+}

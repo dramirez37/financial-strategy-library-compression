@@ -1,0 +1,43 @@
+import StrategyInnovation.Bellman.Unified
+
+/-!
+# Axiom audit for the unified Bellman and stationary-policy layer
+
+Every publication-facing declaration is printed separately so that the build
+log records its complete proof dependency footprint.
+-/
+
+#print axioms StrategyInnovation.Projection.Model.compressedValue_succ_eq_actionMaximum
+#print axioms StrategyInnovation.Projection.Model.finiteHorizonAction_attained
+#print axioms StrategyInnovation.Projection.Model.rawValue_succ_eq_actionMaximum
+#print axioms StrategyInnovation.Projection.Model.rawFiniteHorizonAction_attained
+#print axioms StrategyInnovation.Projection.Model.compressedInfiniteActionValue_mono
+#print axioms StrategyInnovation.Projection.Model.compressedBellmanOperator_mono
+#print axioms StrategyInnovation.Projection.Model.rawInfiniteActionValue_mono
+#print axioms StrategyInnovation.Projection.Model.rawBellmanOperator_mono
+#print axioms StrategyInnovation.Projection.Model.projectDiscount_le_discount
+#print axioms StrategyInnovation.Projection.Model.compressedInfiniteActionValue_dist_le
+#print axioms StrategyInnovation.Projection.Model.rawInfiniteActionValue_dist_le
+#print axioms StrategyInnovation.Projection.Model.compressedBellmanOperator_contracting
+#print axioms StrategyInnovation.Projection.Model.rawBellmanOperator_contracting
+#print axioms StrategyInnovation.Projection.Model.contractionModel
+#print axioms StrategyInnovation.Projection.Model.infiniteHorizonValue_isFixedPoint
+#print axioms StrategyInnovation.Projection.Model.rawInfiniteHorizonValue_isFixedPoint
+#print axioms StrategyInnovation.Projection.Model.infiniteHorizonValue_unique
+#print axioms StrategyInnovation.Projection.Model.rawInfiniteHorizonValue_unique
+#print axioms StrategyInnovation.Projection.Model.valueIteration_tendsto_infiniteHorizonValue
+#print axioms StrategyInnovation.Projection.Model.valueIteration_geometric_error_bound
+#print axioms StrategyInnovation.Projection.Model.rawValueIteration_tendsto_rawInfiniteHorizonValue
+#print axioms StrategyInnovation.Projection.Model.rawValueIteration_geometric_error_bound
+#print axioms StrategyInnovation.Projection.Model.finiteHorizon_rawValue_eq_compressedValue
+#print axioms StrategyInnovation.Projection.Model.rawInfiniteHorizonValue_eq_compressed
+#print axioms StrategyInnovation.Projection.Model.finiteHorizonValue_eq_of_dynamicInnovationEquivalent
+#print axioms StrategyInnovation.Projection.Model.infiniteHorizonValue_eq_of_dynamicInnovationEquivalent
+#print axioms StrategyInnovation.Projection.Model.policyOperator_contracting
+#print axioms StrategyInnovation.Projection.Model.stationaryPolicyValue_isFixedPoint
+#print axioms StrategyInnovation.Projection.Model.stationaryOptimalSelector_attains
+#print axioms StrategyInnovation.Projection.Model.exists_stationaryOptimalSelector
+#print axioms StrategyInnovation.Projection.Model.stationaryOptimalSelector_policyEvaluationEquation
+#print axioms StrategyInnovation.Projection.Model.stationaryOptimalSelector_value_eq_infiniteHorizonValue
+#print axioms StrategyInnovation.Projection.Model.liftedRawStationarySelector_attains
+#print axioms StrategyInnovation.Projection.Model.liftedRawStationarySelector_policyEvaluationEquation

@@ -1,0 +1,176 @@
+schema_version = "randomized-library-v2-optimization-extension-v1"
+experiment_id = "randomized-library-v2-optimization-extension-v1"
+registration_status = "locked_before_optimization_extension_outcomes"
+registered_date = "2026-08-04"
+julia_version = "1.12.6"
+arithmetic = "Rational{BigInt}"
+randomness = "none beyond the frozen parent registry"
+theorem_evidence = false
+evidence_class = "registered exact optimization extension of the randomized finite-model study; not theorem evidence"
+sample_size = 1024
+horizon = 4
+parent_experiment = "randomized-finite-library-stress-v2"
+parent_config = "experiments/configs/randomized_library_stress_v2.toml"
+parent_registry = "experiments/randomized_library_v2/TRIAL_REGISTRY.csv"
+parent_design_lock = "experiments/randomized_library_v2/DESIGN_LOCK.json"
+parent_stability_lock = "experiments/randomized_library_v2/DESIGN_LOCK_AMENDMENT_1.json"
+parent_execution_lock = "experiments/randomized_library_v2/DESIGN_LOCK_AMENDMENT_2.json"
+parent_outcomes_are_inputs = false
+pooled_with_parent_results = false
+source_library_rule = "the frozen parent L11 source library, size six including inactive"
+sublibrary_rule = "enumerate all 2^5=32 inactive-containing source sublibraries"
+
+[weights]
+rule_id = "raw-module-count-v1"
+inactive_weight = "0//1"
+active_base_weight = "1//1"
+raw_module_surcharge = "1//1"
+formula = "w_s = 0 for inactive; w_s = 1 + cardinality(raw supplied module set of s) otherwise"
+applies_to = "every catalog strategy; optimization domain remains the frozen source library"
+allowed_information = "strategy identity only to detect inactive and raw module incidence from the generated catalog"
+forbidden_information = "profiles, frontier attainment, closure contribution, dynamic values, actions, trial outcomes, pruning outcomes, and deletion order"
+positive_active_weights = true
+
+[capacity]
+registered_fraction_ids = ["B0", "B25", "B50", "B75", "B100"]
+registered_source_burden_fractions = ["0//1", "1//4", "1//2", "3//4", "1//1"]
+absolute_budget_rule = "B = registered fraction times exact source burden"
+diagnostic_curve = "also report every distinct attainable sublibrary burden"
+shadow_rule = "forward exact difference quotient between consecutive registered budgets and between consecutive attainable burdens"
+nonconcavity_rule = "event if a later adjacent exact shadow is strictly larger than its predecessor"
+
+[penalty]
+lambda_ids = ["L0", "L025", "L050", "L100", "L200", "L400"]
+lambda_grid = ["0//1", "1//4", "1//2", "1//1", "2//1", "4//1"]
+breakpoint_rule = "filter all nonnegative pairwise intersections to prices having globally optimal libraries with unequal burdens"
+tie_rule = "retain the complete optimizer correspondence; use no hidden scalar tie breaker in estimands"
+
+[[elasticity.intervals]]
+id = "E025_050"
+lower_lambda = "1//4"
+upper_lambda = "1//2"
+
+[[elasticity.intervals]]
+id = "E050_100"
+lower_lambda = "1//2"
+upper_lambda = "1//1"
+
+[[elasticity.intervals]]
+id = "E100_200"
+lower_lambda = "1//1"
+upper_lambda = "2//1"
+
+[[elasticity.intervals]]
+id = "E200_400"
+lower_lambda = "2//1"
+upper_lambda = "4//1"
+
+[elasticity.definitions]
+resource_demand = "((W_high-W_low)/W_low)*(lambda_low/(lambda_high-lambda_low)); defined only for positive W_low and singleton exact optimal-burden sets at both endpoints"
+operational_contribution = "((Vop_high-Vop_low)/Vtotal_low)*(lambda_low/(lambda_high-lambda_low)); defined only for a unique exact (burden,Vop,Vgen) optimizer triple at both endpoints and positive Vtotal_low"
+generative_contribution = "((Vgen_high-Vgen_low)/Vtotal_low)*(lambda_low/(lambda_high-lambda_low)); same domain; operational plus generative equals productive-value arc elasticity exactly"
+
+[estimands.primary]
+greedy_optimality_gap = "rechecked safe-pruning endpoint burden minus global minimum exact-safe burden; report positive frequency, exact mean, and maximum"
+safe_compression_ratio = "source-normalized removed resource burden for minimum-weight safe compression, plus source-normalized removed cardinality for minimum-cardinality safe compression"
+frontier_only_value_loss = "source total productive value minus each global minimum-weight frontier-preserving optimizer's total productive value; retain the full tie correspondence and report the correspondence-mean loss, positive-any frequency, and exact source-normalized mean"
+value_capacity_curve = "exact mean V*(fraction*W_source)/V(source) at every registered capacity fraction"
+capacity_shadow_values = "exact mean forward shadows on registered budget intervals; retain all trial and attainable-burden shadows"
+nonconcavity_events = "frequency of at least one strict adjacent shadow increase on the registered grid and on the full attainable-burden grid"
+lambda_breakpoints = "exact mean and distribution of total and strictly positive globally active breakpoints"
+resource_demand_elasticity = "exact conditional mean and defined-count for each registered positive-price interval"
+channel_elasticity_contributions = "exact conditional means of total-normalized operational and generative resource-price arc contributions on the same intervals"
+
+[factor_slices]
+overall = true
+principal_factors = [
+  "frontier_density",
+  "module_overlap",
+  "module_complementarity",
+  "project_cost",
+  "duration",
+  "admission",
+  "persistence",
+]
+cell_size = 512
+interactions = "not primary; no unregistered post-outcome subgroup selection"
+
+[factor_slices.levels]
+frontier_density = ["sparse", "dense"]
+module_overlap = ["low", "high"]
+module_complementarity = ["weak", "strong"]
+project_cost = ["low", "high"]
+duration = ["short", "long"]
+admission = ["low", "high"]
+persistence = ["low", "high"]
+
+[methods]
+minimum_weight_safe = "global enumeration over all 32 source sublibraries"
+minimum_cardinality_safe = "global enumeration over all 32 source sublibraries"
+rechecked_pruning_endpoint = "current innovation_safe_prune_fixed_point using the frozen parent deletion order"
+frontier_only = "global minimum-weight optimization over all frontier-preserving sublibraries; retain the complete optimizer correspondence"
+capacity = "global enumeration for each registered and attainable exact budget"
+penalized = "global enumeration for each registered lambda and every breakpoint candidate"
+
+[gates]
+parent_trial_registry_unchanged = true
+parent_v2_outputs_not_overwritten = true
+all_32_sublibraries_enumerated_per_trial = true
+every_global_optimizer_verified_by_complete_enumeration = true
+all_safe_optima_preserve_exact_frontier_and_general_closure = true
+all_exact_safe_productive_values_equal_source = true
+all_value_channel_decompositions_close_exactly = true
+all_capacity_optima_feasible_and_complete = true
+all_penalized_optima_complete = true
+all_theorem_facing_numbers_rational_bigint = true
+no_pooling_without_explicit_version = true
+
+[visualization]
+exact_tables_primary = true
+float64_coordinates_secondary = true
+surface = "standalone static SVG committed beside the manuscript figures"
+value_capacity_contract = "ordered five-point line with exact point labels; x is registered source-burden fraction and y is the exact across-trial mean source-normalized capacity value"
+resource_demand_contract = "four-category zero-baseline bars with exact labels and defined counts for registered price intervals"
+greedy_gap_contract = "zero-baseline horizontal bars for positive-gap frequency over the fourteen preregistered factor levels"
+channel_contract = "paired zero-baseline bars for exact conditional mean operational and generative contributions over the four registered price intervals; signed labels and zero line retained"
+palette = "single blue root plus gold for the second channel and charcoal neutrals; marker shape and direct labels avoid color-only encoding"
+qa = "inspect every exported SVG in final form; exact labels must agree with the factor-summary table"
+
+[outputs]
+trials = "experiments/results/summaries/randomized_library_v2_optimization_v1_trials.csv"
+sublibraries = "experiments/results/summaries/randomized_library_v2_optimization_v1_sublibraries.csv"
+compression = "experiments/results/summaries/randomized_library_v2_optimization_v1_compression.csv"
+capacity = "experiments/results/summaries/randomized_library_v2_optimization_v1_capacity.csv"
+penalized = "experiments/results/summaries/randomized_library_v2_optimization_v1_penalized.csv"
+breakpoints = "experiments/results/summaries/randomized_library_v2_optimization_v1_breakpoints.csv"
+elasticities = "experiments/results/summaries/randomized_library_v2_optimization_v1_elasticities.csv"
+factor_summary = "experiments/results/summaries/randomized_library_v2_optimization_v1_factor_summary.csv"
+summary = "experiments/results/summaries/randomized_library_v2_optimization_v1_summary.json"
+report = "RANDOMIZED_LIBRARY_OPTIMIZATION_EXTENSION_V1.md"
+value_capacity_figure = "manuscript/figures/randomized_library_v2_optimization_v1_value_capacity.svg"
+resource_demand_figure = "manuscript/figures/randomized_library_v2_optimization_v1_resource_demand.svg"
+greedy_gap_figure = "manuscript/figures/randomized_library_v2_optimization_v1_greedy_gap.svg"
+channel_figure = "manuscript/figures/randomized_library_v2_optimization_v1_channel_contributions.svg"
+
+[design_lock]
+path = "experiments/randomized_library_v2_optimization/DESIGN_LOCK.json"
+schema_version = "randomized-library-v2-optimization-extension-lock-v1"
+lock_stage = "pre-extension-outcome analytical lock"
+extension_outcomes_read_before_lock = false
+parent_outcomes_used_to_change_extension_specification = false
+required_absent_outputs = [
+  "experiments/results/summaries/randomized_library_v2_optimization_v1_trials.csv",
+  "experiments/results/summaries/randomized_library_v2_optimization_v1_sublibraries.csv",
+  "experiments/results/summaries/randomized_library_v2_optimization_v1_compression.csv",
+  "experiments/results/summaries/randomized_library_v2_optimization_v1_capacity.csv",
+  "experiments/results/summaries/randomized_library_v2_optimization_v1_penalized.csv",
+  "experiments/results/summaries/randomized_library_v2_optimization_v1_breakpoints.csv",
+  "experiments/results/summaries/randomized_library_v2_optimization_v1_elasticities.csv",
+  "experiments/results/summaries/randomized_library_v2_optimization_v1_factor_summary.csv",
+  "experiments/results/summaries/randomized_library_v2_optimization_v1_summary.json",
+  "RANDOMIZED_LIBRARY_OPTIMIZATION_EXTENSION_V1.md",
+  "manuscript/figures/randomized_library_v2_optimization_v1_value_capacity.svg",
+  "manuscript/figures/randomized_library_v2_optimization_v1_resource_demand.svg",
+  "manuscript/figures/randomized_library_v2_optimization_v1_greedy_gap.svg",
+  "manuscript/figures/randomized_library_v2_optimization_v1_channel_contributions.svg",
+]

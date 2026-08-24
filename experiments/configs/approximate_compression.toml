@@ -1,0 +1,41 @@
+schema_version = "approximate-library-compression-v1"
+experiment_id = "approximate-library-compression-v1"
+julia_version = "1.12.6"
+arithmetic = "Rational{BigInt}"
+evidence_class = "numerical extension; not theorem evidence"
+horizon = 4
+reference_belief_id = 1
+epsilon_operational = "1//1"
+epsilon_generative = "1//4"
+exact_max_optional = 20
+beam_widths = [2, 4, 8, 16]
+
+[fixture]
+trial_id = 15
+seed = 731700466
+belief_count = 4
+strategy_count = 6
+module_count = 3
+module_overlap = "low"
+closure_structure = "identity"
+frontier_density = "1//2"
+candidate_quality = "5//4"
+generator_complementarity = 2
+research_cost = "0//1"
+project_delay = 2
+admission_probability = "1//4"
+regime_persistence = "1//4"
+
+[benchmarks]
+base = "registered six-strategy source library"
+expanded = "eight-strategy source formed by admitting both catalog candidates"
+
+[outputs]
+subsets = "experiments/results/summaries/approximate_compression_subsets.csv"
+pareto = "experiments/results/summaries/approximate_compression_pareto.csv"
+algorithms = "experiments/results/summaries/approximate_compression_algorithms.csv"
+ip = "experiments/results/summaries/approximate_compression_ip.csv"
+summary = "experiments/results/summaries/approximate_compression_summary.json"
+report = "APPROXIMATE_COMPRESSION_REPORT.md"
+pareto_figure = "manuscript/figures/approximate_compression_pareto.svg"
+search_figure = "manuscript/figures/approximate_compression_search.svg"

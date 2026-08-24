@@ -1,0 +1,31 @@
+{
+  "arithmetic": "Rational{BigInt}",
+  "checks": {
+    "row_count": true,
+    "all_exact": true,
+    "broad_candidate_falsified": true,
+    "primitive_class_survives": true,
+    "strict_substitution_matches_lean": true,
+    "broad_counterexample_is_separable": true,
+    "optimizer_switch_preserved": true
+  },
+  "counts": {
+    "all_rows": 2430,
+    "relative_saturation_rows": 1134,
+    "broad_rows": 1620,
+    "broad_failures": 648,
+    "primitive_rows": 810,
+    "primitive_failures": 0,
+    "substitutes": 553,
+    "complements": 12,
+    "separable": 1865
+  },
+  "experiment_id": "primitive-substitution-search-v1",
+  "model": "fixed-continuation common-gap menu expansion",
+  "randomness": "none",
+  "witnesses": {
+    "broad_counterexample_interaction": "0//1",
+    "optimizer_switch_interaction": "1//2",
+    "strict_substitution_interaction": "-1//1"
+  }
+}

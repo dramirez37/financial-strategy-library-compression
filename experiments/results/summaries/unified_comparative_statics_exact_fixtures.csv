@@ -1,0 +1,9 @@
+fixture_id,theorem_id,observed,expected,passed,detail
+FX-T4-UNIFIED-01,T4,1//1,1//1,true,Two-calendar-period raw frontier-only pruning loss.
+FX-S2-UNIFIED-STATIONARY-01/base,S2,2//1,2//1,true,Raw stationary base value and Research selector.
+FX-S2-UNIFIED-STATIONARY-01/descendant,S2,4//1,4//1,true,Raw descendant value; Continue selector; and zero exact residuals.
+FX-T6-CARRIER-01,T6,1//1,1//1,true,Cost-adjusted retained-carrier lower bound.
+FX-S6-CROSS-01,S6,43771//55296;24869//27648,43771//55296;24869//27648,true,Factorized finite discount-survival cross difference.
+FX-S7-PERSISTENCE-01,S7,9//8;11//8;3//8;1//8;3//2;3//2,9//8;11//8;3//8;1//8;3//2;3//2,true,Higher persistence raises; lowers; or leaves coverage unchanged by gap location.
+FX-T7-SUBSTITUTION-01,T7,-1//1,-1//1,true,Strict relative-saturation substitution witness.
+CX-T7-INDEPENDENT-MENU-SWITCH-02,T7 boundary,1//2,1//2,true,Frontier-independent project switching violates the rejected primitive-only sign.

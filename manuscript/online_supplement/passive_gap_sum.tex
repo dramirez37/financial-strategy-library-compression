@@ -1,0 +1,39 @@
+% Online-supplement fragment; not input by manuscript/main.tex.
+\section{Extended passive gap-sum illustration}
+
+For the supporting frozen-library adapter in the main text, define the finite
+discounted occupancy weight
+\[
+  w_n(b,b'):=\sum_{t=0}^{n-1}\beta^t
+    \Pr(B_t=b'\mid B_0=b).
+\]
+This is the discounted expected number of decision dates spent at \(b'\), not
+a normalized probability.  Early, likely states receive more weight, and a
+persistent state can receive weight above one.  In financial language it
+records which posterior market regimes the strategy is likely to face soon.
+The passive operational insertion value is
+\[
+  \Delta_n^{\op,\mathrm{aux}}(s\mid b,L)
+  =\sum_{b'}w_n(b,b')\max\{j_s(b')-F_L(b'),0\}.
+\]
+
+\begin{figure}[ht]
+  \centering
+  \input{figures/strategy_innovation_equation}
+  \caption{Canonical exact illustration of the estimand
+  \(\Delta_n^{\op,\mathrm{aux}}\), the discounted finite-belief gap sum.  The
+  candidate has no gap at current belief \(b_2\), but the four-period
+  discounted belief occupancy reaches \(b_4\) and \(b_5\), where the
+  candidate lies above the existing frontier.  The Julia-generated exact
+  rational rows give \(3891/2048\); the five plotted beliefs are discrete and
+  joined frontier segments are visual guides only.  The generative arm is a
+  model schematic rather than an additional numerical result.}
+\end{figure}
+
+The simplest delayed-benefit specialization has two beliefs.  The current
+gap is zero, the transition to the second belief is deterministic, and the
+second-belief gap is two.  At horizon two with \(\beta=1/2\), the recursion
+therefore gives \(0+(1/2)\cdot2=1\).  This example isolates why a strategy can
+have zero current payoff advantage yet positive operational value: the
+relevant object is discounted belief occupation, not the current belief
+alone.

@@ -1,0 +1,457 @@
+% Online supplement only; excluded from the main manuscript PDF.
+\providecommand{\LeanName}[1]{\nolinkurl{#1}}
+\section{Full Lean theorem correspondence}\label{supp:lean-correspondence}
+
+The table lists the exact Lean declaration attached to every active
+definition, assumption, lemma, proposition, theorem, corollary, example, and
+counterexample environment in the final manuscript.  A result without an
+exact counterpart is marked explicitly rather than being assigned a
+supporting declaration.  The theorem ledger records the corresponding
+assumptions and axiom audits.  Candidate Theorems T1--T7 and the active
+optimization, capacity, envelope, and elasticity results are included.
+Superseded primitive-transition declarations and compatibility aliases are
+deliberately excluded; their migration-only record is maintained in the Lean
+\texttt{MIGRATION.md} files.
+
+\small
+\setlength{\LTpre}{0pt}
+\setlength{\LTpost}{0pt}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.22\textwidth}
+                       >{\centering\arraybackslash}p{0.07\textwidth}
+                       >{\raggedright\arraybackslash}p{0.62\textwidth}@{}}
+\caption{Complete manuscript-to-Lean correspondence for active result environments.}
+\label{tab:manuscript-lean-correspondence}\\
+\toprule
+Manuscript label & Ledger & Lean declaration or definition \\
+\midrule
+\endfirsthead
+\multicolumn{3}{@{}l}{\tablename\ \thetable\ (continued)}\\
+\toprule
+Manuscript label & Ledger & Lean declaration or definition \\
+\midrule
+\endhead
+\midrule
+\multicolumn{3}{r@{}}{Continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+
+\cref{def:finite-library-state} & F0 &
+\LeanName{StrategyInnovation.FiniteModel};
+\LeanName{StrategyInnovation.StrategyCatalog};
+\LeanName{StrategyInnovation.Library};
+\LeanName{StrategyInnovation.operationalFrontier};
+\LeanName{StrategyInnovation.rawModuleUnion};
+\LeanName{StrategyInnovation.generativeClosure};
+\LeanName{StrategyInnovation.InnovationState};
+\LeanName{StrategyInnovation.compressedLibraryState} \\
+
+\cref{lem:frontier-closure-calculus} & F0 &
+\LeanName{StrategyInnovation.operationalProfile_le_frontier};
+\LeanName{StrategyInnovation.zero_le_operationalFrontier};
+\LeanName{StrategyInnovation.exists_profile_eq_operationalFrontier};
+\LeanName{StrategyInnovation.operationalFrontier_mono};
+\LeanName{StrategyInnovation.rawModuleUnion_mono};
+\LeanName{StrategyInnovation.generativeClosure_mono} \\
+
+\cref{ex:modular-generator} & F0 example &
+\emph{No exact Lean counterpart claimed; human exact calculation only.} \\
+
+\cref{thm:raw-to-compressed-projection} & T1 &
+\LeanName{StrategyInnovation.Projection.Model.inducedCompressedTransition_wellDefined};
+\LeanName{StrategyInnovation.Projection.Model.same_compressedState_same_next_probability};
+\LeanName{StrategyInnovation.Projection.Model.projectedProcess_controlledMarkov};
+\LeanName{StrategyInnovation.Projection.Model.rawValue_eq_compressedValue};
+\LeanName{StrategyInnovation.Projection.Model.DiscountedContractionModel.raw_fixedPoint_value_eq_compressed};
+\LeanName{StrategyInnovation.Projection.Model.DiscountedContractionModel.liftedRawPolicy_optimal} \\
+
+\cref{thm:minimum-safe-compression} & OPT-FND/OPT-T2T4 &
+\LeanName{StrategyInnovation.Optimization.exactSafeCompressionFeasible_source};
+\LeanName{StrategyInnovation.Optimization.exactSafeCompressionFeasibleSet_finite};
+\LeanName{StrategyInnovation.Optimization.exists_minimumWeight_exactSafeCompression};
+\LeanName{StrategyInnovation.Optimization.exists_minimumWeightSafeCompression};
+\LeanName{StrategyInnovation.Optimization.SafeCompressionFeasible.preserves_finiteHorizonValue};
+\LeanName{StrategyInnovation.Optimization.SafeCompressionFeasible.preserves_infiniteHorizonValue};
+\LeanName{StrategyInnovation.Optimization.SafeCompressionFeasible.preserves_optimalActions} \\
+
+\cref{def:dynamic-innovation-equivalence} & UDI &
+\LeanName{StrategyInnovation.Projection.Model.DynamicInnovationEquivalent} \\
+
+\cref{prop:di-equivalence-relation} & UDI &
+\LeanName{StrategyInnovation.Projection.Model.dynamicInnovationEquivalent_refl};
+\LeanName{StrategyInnovation.Projection.Model.dynamicInnovationEquivalent_symm};
+\LeanName{StrategyInnovation.Projection.Model.dynamicInnovationEquivalent_trans} \\
+
+\cref{thm:di-quotient-sufficiency} & UDI &
+\LeanName{StrategyInnovation.Projection.Model.rawValue_eq_of_dynamicInnovationEquivalent};
+\LeanName{StrategyInnovation.Projection.Model.finiteHorizonValue_depends_only_on_dynamicInnovationClass};
+\LeanName{StrategyInnovation.Projection.Model.dynamicInnovationQuotientFinite};
+\LeanName{StrategyInnovation.Projection.Model.compressedState_eq_implies_dynamicInnovationEquivalent};
+\LeanName{StrategyInnovation.Projection.Model.DiscountedContractionModel.rawFixedPoint_eq_of_dynamicInnovationEquivalent} \\
+
+\cref{asm:raw-closure-detectability} & T2 &
+\LeanName{StrategyInnovation.Projection.Model.RawClosureDetectionWitness};
+\LeanName{StrategyInnovation.Projection.Model.RawClosureDetectable} \\
+
+\cref{thm:raw-frontier-closure-characterization} & T2 &
+\LeanName{StrategyInnovation.Projection.Model.frontierClosure_eq_implies_rawLaws_and_dynamicEquivalence};
+\LeanName{StrategyInnovation.Projection.Model.frontierClosure_eq_implies_dynamicInnovationEquivalent};
+\LeanName{StrategyInnovation.Projection.Model.dynamicInnovationEquivalent_implies_frontierClosure_eq};
+\LeanName{StrategyInnovation.Projection.Model.dynamicInnovationEquivalent_iff_frontierClosure_eq};
+\LeanName{StrategyInnovation.Projection.Model.dynamicInnovationEquivalent_iff_compressedLibraryState_eq} \\
+
+\cref{prop:di-refinement-minimality} & UDI &
+\LeanName{StrategyInnovation.Projection.Model.representation_refines_dynamicInnovationEquivalent} \\
+
+\cref{def:deletion-redundancy} & T3 &
+\LeanName{StrategyInnovation.Projection.Model.operationallyRedundant};
+\LeanName{StrategyInnovation.Projection.Model.generativelyRedundant};
+\LeanName{StrategyInnovation.Projection.Model.InnovationSafeDeletion} \\
+
+\cref{thm:unified-safe-deletion} & T3 &
+\LeanName{StrategyInnovation.Projection.Model.redundantDeletion_iff_compressedLibraryState_eq};
+\LeanName{StrategyInnovation.Projection.Model.redundantDeletion_innovationSafe};
+\LeanName{StrategyInnovation.Projection.Model.deletionProcessObservations_iff_redundant};
+\LeanName{StrategyInnovation.Projection.Model.innovationSafeDeletion_iff_redundant};
+\LeanName{StrategyInnovation.Projection.Model.DiscountedContractionModel.redundantDeletion_preserves_infiniteHorizonValue};
+\LeanName{StrategyInnovation.Projection.Model.DiscountedContractionModel.redundantDeletion_preserves_actionValueComparison};
+\LeanName{StrategyInnovation.Projection.Model.DiscountedContractionModel.redundantDeletion_preserves_optimalAction} \\
+
+\cref{cor:stepwise-safe-compression} & T3 &
+\LeanName{StrategyInnovation.Projection.Model.RedundantDeletionSequence.compressedLibraryState_final_eq_initial};
+\LeanName{StrategyInnovation.Projection.Model.RedundantDeletionSequence.everyDeletion_innovationSafe};
+\LeanName{StrategyInnovation.Projection.Model.RedundantDeletionSequence.dynamicInnovationEquivalent};
+\LeanName{StrategyInnovation.Projection.Model.RedundantDeletionSequence.preserves_finiteHorizonValue};
+\LeanName{StrategyInnovation.Projection.Model.RedundantDeletionSequence.preserves_infiniteHorizonValue} \\
+
+\cref{prop:certified-pruning} & T3 &
+\LeanName{StrategyInnovation.Projection.Model.PruningAlgorithmSpec};
+\LeanName{StrategyInnovation.Projection.Model.PruningAlgorithmSpec.everyDeletion_safe};
+\LeanName{StrategyInnovation.Projection.Model.PruningAlgorithmSpec.output_dynamicInnovationEquivalent};
+\LeanName{StrategyInnovation.Projection.Model.PruningAlgorithmSpec.output_preserves_finiteHorizonValue} \\
+
+\cref{ex:t3-deletion-classes} & T3 &
+\LeanName{StrategyInnovation.Projection.Model.UnifiedSafeDeletionExamples.duplicateLeft_innovationSafe};
+\LeanName{StrategyInnovation.Projection.Model.UnifiedSafeDeletionExamples.moduleOnly_operationallyRedundant_generativelyEssential};
+\LeanName{StrategyInnovation.Projection.Model.UnifiedSafeDeletionExamples.operationalOnly_generativelyRedundant_operationallyEssential};
+\LeanName{StrategyInnovation.Projection.Model.UnifiedSafeDeletionExamples.duplicateEncoding_orderChangesRawRepresentative};
+\LeanName{StrategyInnovation.Projection.Model.UnifiedSafeDeletionExamples.staleOriginalRedundancyChecks_doNotCompose} \\
+
+\cref{thm:local-global-safe-compression} & OPT-T2T4 &
+\LeanName{StrategyInnovation.Optimization.MinimumWeightSafeCompression.oneDeletionIrreducible};
+\LeanName{StrategyInnovation.Optimization.recheckedSafeDeletionEndpoint_feasible};
+\LeanName{StrategyInnovation.Optimization.SafeCompressionCounterexample.recheckedEndpoint_need_not_be_globallyMinimum};
+\LeanName{StrategyInnovation.Optimization.SafeCompressionCounterexample.strictHeaviestFirst_greedy_not_globallyOptimal} \\
+
+\cref{ex:worked-safe-greedy-global} & OPT-T2T4 &
+\LeanName{StrategyInnovation.Optimization.SafeCompressionCounterexample.greedy_pair_weight_eq_four};
+\LeanName{StrategyInnovation.Optimization.SafeCompressionCounterexample.greedy_bundle_weight_eq_three};
+\LeanName{StrategyInnovation.Optimization.SafeCompressionCounterexample.bundle_is_uniqueHeaviestSafeDeletion};
+\LeanName{StrategyInnovation.Optimization.SafeCompressionCounterexample.strictHeaviestFirst_greedy_not_globallyOptimal} \\
+
+\cref{thm:normalized-frontier-pruning-loss} & T4 &
+\LeanName{StrategyInnovation.Projection.Model.NormalizedPruningLoss.canonicalConstruction_certificate};
+\LeanName{StrategyInnovation.Projection.Model.NormalizedPruningLoss.canonicalPruningLoss_exact};
+\LeanName{StrategyInnovation.Projection.Model.NormalizedPruningLoss.rewardCap_sharp};
+\LeanName{StrategyInnovation.Projection.Model.NormalizedPruningLoss.destroys_all_attainable_descendant_value};
+\LeanName{StrategyInnovation.Projection.Model.NormalizedPruningLoss.unitRewardCap_loss_le_one};
+\LeanName{StrategyInnovation.Projection.Model.NormalizedPruningLoss.canonicalPruningLossWithOperation_exact};
+\LeanName{StrategyInnovation.Projection.Model.NormalizedPruningLoss.continuedOperation_cancels_under_operationalRedundancy} \\
+
+\cref{thm:scaled-frontier-pruning-loss} & T4 &
+\LeanName{StrategyInnovation.Projection.Model.NormalizedPruningLoss.arbitraryLoss_by_rewardScaling} \\
+
+\cref{thm:capacity-value} & CAP &
+\LeanName{StrategyInnovation.Optimization.FiniteCapacityProblem.exists_capacityOptimizer_of_inactive_feasible};
+\LeanName{StrategyInnovation.Optimization.FiniteCapacityProblem.capacityValue_mono};
+\LeanName{StrategyInnovation.Optimization.FiniteCapacityProblem.capacityValue_constant_between_attainableBurdens};
+\LeanName{StrategyInnovation.Optimization.FiniteCapacityProblem.capacityBreakpointSet_subset_attainableBurdens};
+\LeanName{StrategyInnovation.Optimization.FiniteCapacityProblem.capacityBreakpointSet_finite};
+\LeanName{StrategyInnovation.Optimization.FiniteCapacityProblem.discreteShadowValue_nonnegative};
+\LeanName{StrategyInnovation.Optimization.CapacityComplementarityCounterexample.capacityValue_zero};
+\LeanName{StrategyInnovation.Optimization.CapacityComplementarityCounterexample.capacityValue_one};
+\LeanName{StrategyInnovation.Optimization.CapacityComplementarityCounterexample.capacityValue_two};
+\LeanName{StrategyInnovation.Optimization.CapacityComplementarityCounterexample.increasing_marginal_capacity_value};
+\LeanName{StrategyInnovation.Optimization.CapacityComplementarityCounterexample.diminishing_capacity_returns_fail} \\
+
+\cref{thm:penalized-envelope} & PEN &
+\LeanName{StrategyInnovation.Optimization.FinitePenalizedProblem.envelope_is_finite_maximum};
+\LeanName{StrategyInnovation.Optimization.FinitePenalizedProblem.envelope_antitone};
+\LeanName{StrategyInnovation.Optimization.FinitePenalizedProblem.envelope_convex};
+\LeanName{StrategyInnovation.Optimization.FinitePenalizedProblem.continuous_envelope};
+\LeanName{StrategyInnovation.Optimization.FinitePenalizedProblem.pairwiseSwitchingPriceSet_finite};
+\LeanName{StrategyInnovation.Optimization.FinitePenalizedProblem.breakpointSet_subset_pairwiseSwitchingPrices};
+\LeanName{StrategyInnovation.Optimization.FinitePenalizedProblem.breakpointSet_finite};
+\LeanName{StrategyInnovation.Optimization.FinitePenalizedProblem.optimalBurden_antitone};
+\LeanName{StrategyInnovation.Optimization.FinitePenalizedProblem.hasDerivAt_envelope_of_strictlyDominatesOn} \\
+
+\cref{def:innovation-components} & T5 &
+\LeanName{StrategyInnovation.Projection.Model.UnifiedDecomposition.compressedPassiveValue};
+\LeanName{StrategyInnovation.Projection.Model.UnifiedDecomposition.passiveValue};
+\LeanName{StrategyInnovation.Projection.Model.UnifiedDecomposition.fullValue};
+\LeanName{StrategyInnovation.Projection.Model.UnifiedDecomposition.compressedFullValue};
+\LeanName{StrategyInnovation.Projection.Model.UnifiedDecomposition.researchOptionPremium};
+\LeanName{StrategyInnovation.Projection.Model.UnifiedDecomposition.totalInsertionValue};
+\LeanName{StrategyInnovation.Projection.Model.UnifiedDecomposition.operationalInsertionValue};
+\LeanName{StrategyInnovation.Projection.Model.UnifiedDecomposition.generativeInsertionValue} \\
+
+\cref{thm:value-decomposition} & T5 &
+\LeanName{StrategyInnovation.Projection.Model.UnifiedDecomposition.passiveValue_eq_compressedPassiveValue};
+\LeanName{StrategyInnovation.Projection.Model.UnifiedDecomposition.fullValue_eq_compressedFullValue};
+\LeanName{StrategyInnovation.Projection.Model.UnifiedDecomposition.totalInsertionValue_eq_operational_add_generative} \\
+
+\cref{cor:frontier-silent-insertion} & T5 &
+\LeanName{StrategyInnovation.Projection.Model.UnifiedDecomposition.operationalInsertionValue_eq_zero_of_frontier_eq};
+\LeanName{StrategyInnovation.Projection.Model.UnifiedDecomposition.totalInsertionValue_eq_zero_of_frontier_closure_eq} \\
+
+\cref{prop:premium-monotonicity} & T5 &
+\LeanName{StrategyInnovation.Projection.Model.UnifiedDecomposition.ClosureEnrichmentProjectDominance};
+\LeanName{StrategyInnovation.Projection.Model.UnifiedDecomposition.compressedValue_mono_of_closureEnrichmentProjectDominance};
+\LeanName{StrategyInnovation.Projection.Model.UnifiedDecomposition.fullValue_mono_of_closureEnrichmentProjectDominance};
+\LeanName{StrategyInnovation.Projection.Model.UnifiedDecomposition.researchOptionPremium_mono_of_closureEnrichmentProjectDominance} \\
+
+\cref{ex:operational-zero-generative-positive} & T5 &
+\LeanName{StrategyInnovation.Projection.Model.UnifiedDecomposition.BridgeExample.bridge_operational_zero_generative_positive} \\
+
+\cref{thm:generative-carrier-lower-bound} & T6 &
+\LeanName{StrategyInnovation.Projection.Model.GenerativeLowerBound.jointDescendantMass};
+\LeanName{StrategyInnovation.Projection.Model.GenerativeLowerBound.jointDescendantMass_nonnegative};
+\LeanName{StrategyInnovation.Projection.Model.GenerativeLowerBound.jointDescendantMass_le_one};
+\LeanName{StrategyInnovation.Projection.Model.GenerativeLowerBound.jointDescendantMass_mem_unitInterval};
+\LeanName{StrategyInnovation.Projection.Model.GenerativeLowerBound.jointDescendantEventMass};
+\LeanName{StrategyInnovation.Projection.Model.GenerativeLowerBound.jointDescendantEventMass_nonnegative};
+\LeanName{StrategyInnovation.Projection.Model.GenerativeLowerBound.jointDescendantEventMass_le_one};
+\LeanName{StrategyInnovation.Projection.Model.GenerativeLowerBound.expectedJointDescendantGain};
+\LeanName{StrategyInnovation.Projection.Model.GenerativeLowerBound.expectedJointDescendantGain_eq_terminalWeighted};
+\LeanName{StrategyInnovation.Projection.Model.GenerativeLowerBound.JointGenerativeCarrierCertificate};
+\LeanName{StrategyInnovation.Projection.Model.GenerativeLowerBound.expectedOperatingBlock};
+\LeanName{StrategyInnovation.Projection.Model.GenerativeLowerBound.expectedFrozenPassiveContinuation};
+\LeanName{StrategyInnovation.Projection.Model.GenerativeLowerBound.remainingContinuationGain};
+\LeanName{StrategyInnovation.Projection.Model.GenerativeLowerBound.expectedRemainingContinuationGain};
+\LeanName{StrategyInnovation.Projection.Model.GenerativeLowerBound.operatingResearchAdjustment_eq_exactBlocks};
+\LeanName{StrategyInnovation.Projection.Model.GenerativeLowerBound.projectCommitmentValue_eq_cost_operating_joint_remaining};
+\LeanName{StrategyInnovation.Projection.Model.GenerativeLowerBound.expectedRemainingContinuationGain_nonnegative};
+\LeanName{StrategyInnovation.Projection.Model.GenerativeLowerBound.generalizedGenerativeOptionLowerBound} \\
+
+\cref{cor:t6-independent-product} & T6 &
+\LeanName{StrategyInnovation.Projection.Model.GenerativeLowerBound.expectedJointDescendantGain_eq_independentProduct};
+\LeanName{StrategyInnovation.Projection.Model.GenerativeLowerBound.generalizedJointDescendantGain_eq_independentProduct};
+\LeanName{StrategyInnovation.Projection.Model.GenerativeLowerBound.GenerativeCarrierCertificate};
+\LeanName{StrategyInnovation.Projection.Model.GenerativeLowerBound.GenerativeCarrierCertificate.toJoint};
+\LeanName{StrategyInnovation.Projection.Model.GenerativeLowerBound.generalizedGenerativeOptionLowerBound_of_independence} \\
+
+\cref{cor:t6-comparative-statics} & T6 &
+\LeanName{StrategyInnovation.Projection.Model.GenerativeLowerBound.jointGenerativeLowerBound_eq_zero_iff};
+\LeanName{StrategyInnovation.Projection.Model.GenerativeLowerBound.jointGenerativeLowerBound_pos_iff};
+\LeanName{StrategyInnovation.Projection.Model.GenerativeLowerBound.generativeInsertionValue_pos_joint};
+\LeanName{StrategyInnovation.Projection.Model.GenerativeLowerBound.generalizedGenerativeOptionLowerBound_mono_jointMass};
+\LeanName{StrategyInnovation.Projection.Model.GenerativeLowerBound.generalizedGenerativeOptionLowerBound_mono_gain};
+\LeanName{StrategyInnovation.Projection.Model.GenerativeLowerBound.generalizedGenerativeOptionLowerBound_antitone_cost};
+\LeanName{StrategyInnovation.Projection.Model.GenerativeLowerBound.jointGenerativeLowerBound_mono_operatingAdjustment};
+\LeanName{StrategyInnovation.Projection.Model.GenerativeLowerBound.no_unconditional_duration_monotonicity} \\
+
+\cref{ex:t6-exact-carrier} & T6 &
+\LeanName{StrategyInnovation.Projection.Model.GenerativeLowerBound.CarrierExample.jointCertificate};
+\LeanName{StrategyInnovation.Projection.Model.GenerativeLowerBound.CarrierExample.operatingResearchAdjustment_eq_zero};
+\LeanName{StrategyInnovation.Projection.Model.GenerativeLowerBound.CarrierExample.expectedJointDescendantGain_eq_two};
+\LeanName{StrategyInnovation.Projection.Model.GenerativeLowerBound.CarrierExample.exact_joint_carrier_lowerBound_one};
+\LeanName{StrategyInnovation.Projection.Model.GenerativeLowerBound.OneBeliefExample.exact_lowerBound_one};
+\LeanName{StrategyInnovation.Projection.Model.GenerativeLowerBound.TwoBeliefExample.completionLaw};
+\LeanName{StrategyInnovation.Projection.Model.GenerativeLowerBound.TwoBeliefExample.jointMass_exact};
+\LeanName{StrategyInnovation.Projection.Model.GenerativeLowerBound.TwoBeliefExample.expectedJointGain_eq_two};
+\LeanName{StrategyInnovation.Projection.Model.GenerativeLowerBound.TwoBeliefExample.exact_lowerBound_one} \\
+
+\cref{def:frontier-closure-interaction} & T7 &
+\LeanName{StrategyInnovation.Projection.Model.SystemInteraction.closureIncrement};
+\LeanName{StrategyInnovation.Projection.Model.SystemInteraction.interactionCrossDifference};
+\LeanName{StrategyInnovation.Projection.Model.SystemInteraction.compressedClosureIncrement};
+\LeanName{StrategyInnovation.Projection.Model.SystemInteraction.compressedInteractionCrossDifference};
+\LeanName{StrategyInnovation.Projection.Model.SystemInteraction.AreSubstitutes};
+\LeanName{StrategyInnovation.Projection.Model.SystemInteraction.AreComplements} \\
+
+\cref{thm:frontier-closure-substitution} & T7 &
+\LeanName{StrategyInnovation.Projection.Model.SystemInteraction.FrontierClosureRectangle};
+\LeanName{StrategyInnovation.Projection.Model.SystemInteraction.RelativeActionSaturation};
+\LeanName{StrategyInnovation.Projection.Model.SystemInteraction.SubstitutionAssumptions};
+\LeanName{StrategyInnovation.Projection.Model.SystemInteraction.compressedInteractionCrossDifference_nonpositive} \\
+
+\cref{prop:primitive-frontier-saturation} & T7 primitive corollary &
+\LeanName{StrategyInnovation.Projection.Model.SystemInteraction.CommonGapActionDecomposition};
+\LeanName{StrategyInnovation.Projection.Model.SystemInteraction.relativeActionSaturation_of_commonGap};
+\LeanName{StrategyInnovation.Projection.Model.SystemInteraction.PrimitiveSubstitutionAssumptions};
+\LeanName{StrategyInnovation.Projection.Model.SystemInteraction.relativeActionSaturation_of_primitiveSaturation};
+\LeanName{StrategyInnovation.Projection.Model.SystemInteraction.PrimitiveSubstitutionAssumptions.toSubstitutionAssumptions};
+\LeanName{StrategyInnovation.Projection.Model.SystemInteraction.compressedInteractionCrossDifference_nonpositive_of_primitiveSaturation};
+\LeanName{StrategyInnovation.Interaction.PrimitiveSubstitution.recursiveGapValue};
+\LeanName{StrategyInnovation.Interaction.PrimitiveSubstitution.recursiveGapValue_antitone};
+\LeanName{StrategyInnovation.Interaction.PrimitiveSubstitution.RecursiveCommonGapActionDecomposition};
+\LeanName{StrategyInnovation.Interaction.PrimitiveSubstitution.RecursiveCommonGapActionDecomposition.toCommonGap};
+\LeanName{StrategyInnovation.Interaction.PrimitiveSubstitution.recursive_primitives_imply_relativeActionSaturation};
+\LeanName{StrategyInnovation.Interaction.PrimitiveSubstitution.CanonicalPrimitiveSubstitutionAssumptions};
+\LeanName{StrategyInnovation.Interaction.PrimitiveSubstitution.CanonicalPrimitiveSubstitutionAssumptions.toSubstitutionAssumptions};
+\LeanName{StrategyInnovation.Interaction.PrimitiveSubstitution.relative_saturation_implies_crossDifference_nonpositive};
+\LeanName{StrategyInnovation.Interaction.PrimitiveSubstitution.canonical_frontier_closure_substitutes} \\
+
+\cref{prop:t7-interaction-examples} & T7 &
+\LeanName{StrategyInnovation.Projection.Model.SystemInteraction.Examples.strict_substitution_example};
+\LeanName{StrategyInnovation.Projection.Model.SystemInteraction.Examples.independent_menu_switch_individual_saturation};
+\LeanName{StrategyInnovation.Projection.Model.SystemInteraction.Examples.independent_menu_switch_crossDifference_positive};
+\LeanName{StrategyInnovation.Projection.Model.SystemInteraction.Examples.added_exposure_order_insufficient_for_allPairs};
+\LeanName{StrategyInnovation.Projection.Model.SystemInteraction.Examples.frontier_dependent_success_strict_complementarity};
+\LeanName{StrategyInnovation.Projection.Model.SystemInteraction.Examples.separable_zero_interaction};
+\LeanName{StrategyInnovation.Interaction.PrimitiveSubstitution.Examples.project_switching_complementarity_outside_primitive_subclass};
+\LeanName{StrategyInnovation.Interaction.PrimitiveSubstitution.Examples.frontier_dependent_success_complementarity_exact};
+\LeanName{StrategyInnovation.Interaction.PrimitiveSubstitution.Examples.separable_zero_interaction_exact} \\
+
+\cref{prop:channel-elasticity} & CED &
+\LeanName{StrategyInnovation.Value.ChannelAccountingAt};
+\LeanName{StrategyInnovation.Value.operational_generative_derivative_decomposition};
+\LeanName{StrategyInnovation.Value.operational_generative_scaledDerivative_decomposition};
+\LeanName{StrategyInnovation.Value.operational_generative_contribution_decomposition};
+\LeanName{StrategyInnovation.Value.positive_channel_shares};
+\LeanName{StrategyInnovation.Value.operational_generative_weightedAverage_elasticity} \\
+
+\cref{def:frontier-gap-sum} & F7 &
+\LeanName{StrategyInnovation.InnovationEquation.frontierGap};
+\LeanName{StrategyInnovation.InnovationEquation.discountedGapSum};
+\LeanName{StrategyInnovation.InnovationEquation.passiveOperationalInnovation} \\
+
+\cref{thm:passive-innovation-equation} & F7 &
+\LeanName{StrategyInnovation.InnovationEquation.passiveOperationalInnovation_eq_discountedGapSum} \\
+
+\cref{prop:diminishing-operational-innovation} & T5 &
+\LeanName{StrategyInnovation.Projection.Model.UnifiedDecomposition.operationalInsertionValue_antitone_of_library_inclusion} \\
+
+\cref{cor:zero-current-gap-positive-future-value} & F7 &
+\LeanName{StrategyInnovation.InnovationEquation.DelayedBenefitExample.zero_currentGap_positive_passiveOperationalInnovation} \\
+
+\cref{def:dynamic-control-operators} & S2/T1 &
+\LeanName{StrategyInnovation.Projection.Model.compressedInfiniteActionValue};
+\LeanName{StrategyInnovation.Projection.Model.compressedBellmanOperator};
+\LeanName{StrategyInnovation.Projection.Model.rawBellmanOperator} \\
+
+\cref{prop:finite-horizon-action-attainment} & S2 &
+\LeanName{StrategyInnovation.Projection.Model.finiteHorizonAction_attained};
+\LeanName{StrategyInnovation.Projection.Model.rawFiniteHorizonAction_attained} \\
+
+\cref{thm:finite-state-contraction} & S2 &
+\LeanName{StrategyInnovation.Projection.Model.compressedBellmanOperator_mono};
+\LeanName{StrategyInnovation.Projection.Model.rawBellmanOperator_mono};
+\LeanName{StrategyInnovation.Projection.Model.compressedBellmanOperator_contracting};
+\LeanName{StrategyInnovation.Projection.Model.rawBellmanOperator_contracting};
+\LeanName{StrategyInnovation.Projection.Model.infiniteHorizonValue_isFixedPoint};
+\LeanName{StrategyInnovation.Projection.Model.infiniteHorizonValue_unique};
+\LeanName{StrategyInnovation.Projection.Model.valueIteration_tendsto_infiniteHorizonValue};
+\LeanName{StrategyInnovation.Projection.Model.valueIteration_geometric_error_bound};
+\LeanName{StrategyInnovation.Projection.Model.finiteHorizon_rawValue_eq_compressedValue};
+\LeanName{StrategyInnovation.Projection.Model.rawInfiniteHorizonValue_eq_compressed};
+\LeanName{StrategyInnovation.Projection.Model.finiteHorizonValue_eq_of_dynamicInnovationEquivalent};
+\LeanName{StrategyInnovation.Projection.Model.infiniteHorizonValue_eq_of_dynamicInnovationEquivalent};
+\LeanName{StrategyInnovation.Projection.Model.exists_stationaryOptimalSelector};
+\LeanName{StrategyInnovation.Projection.Model.stationaryOptimalSelector_attains};
+\LeanName{StrategyInnovation.Projection.Model.stationaryOptimalSelector_policyEvaluationEquation};
+\LeanName{StrategyInnovation.Projection.Model.stationaryOptimalSelector_value_eq_infiniteHorizonValue};
+\LeanName{StrategyInnovation.Projection.Model.liftedRawStationarySelector_policyEvaluationEquation} \\
+
+\cref{def:coverage-potential} & S4/S5 &
+\LeanName{StrategyInnovation.Coverage.certifiedGap};
+\LeanName{StrategyInnovation.Coverage.expectedGap};
+\LeanName{StrategyInnovation.Coverage.discountedOccupationWeight};
+\LeanName{StrategyInnovation.Coverage.coveragePotential} \\
+
+\cref{thm:coverage-potential-representation} & S4 &
+\LeanName{StrategyInnovation.Coverage.coveragePotential_eq_oneShotGrossOperationalResearchValue} \\
+
+\cref{thm:discount-survival-complementarity} & S6 &
+\LeanName{StrategyInnovation.Coverage.DiscountSurvivalInteraction.finiteHorizonPotential_eq_sum};
+\LeanName{StrategyInnovation.Coverage.DiscountSurvivalInteraction.finiteResolvent_mulVec_eq_finiteEffectivePotential};
+\LeanName{StrategyInnovation.Coverage.DiscountSurvivalInteraction.finiteHorizonPotential_mono_discount};
+\LeanName{StrategyInnovation.Coverage.DiscountSurvivalInteraction.finiteHorizonPotential_mono_survival};
+\LeanName{StrategyInnovation.Coverage.DiscountSurvivalInteraction.discountIncrement_difference_eq_factorized};
+\LeanName{StrategyInnovation.Coverage.DiscountSurvivalInteraction.discountIncrement_mono_survival};
+\LeanName{StrategyInnovation.Coverage.DiscountSurvivalInteraction.finiteHorizonPotential_crossDifference_nonnegative} \\
+
+\cref{prop:no-universal-persistence-sign} & S7 &
+\LeanName{StrategyInnovation.Coverage.KernelComparativeStatics.persistenceKernel_stochastic};
+\LeanName{StrategyInnovation.Coverage.KernelComparativeStatics.higherPersistence_raises_coverage};
+\LeanName{StrategyInnovation.Coverage.KernelComparativeStatics.higherPersistence_lowers_coverage};
+\LeanName{StrategyInnovation.Coverage.KernelComparativeStatics.higherPersistence_no_effect};
+\LeanName{StrategyInnovation.Coverage.KernelComparativeStatics.no_universal_persistence_increase};
+\LeanName{StrategyInnovation.Coverage.KernelComparativeStatics.no_universal_persistence_decrease} \\
+
+\cref{thm:kernel-occupation-alignment} & S7 &
+\LeanName{StrategyInnovation.Coverage.KernelComparativeStatics.finiteEffectivePotential_eq_discountedOccupation};
+\LeanName{StrategyInnovation.Coverage.KernelComparativeStatics.coverage_mono_of_occupationDominatesOnAdvantage};
+\LeanName{StrategyInnovation.Coverage.KernelComparativeStatics.gapOccupationDominates_of_occupationDominatesOnAdvantage};
+\LeanName{StrategyInnovation.Coverage.KernelComparativeStatics.gapOccupationDominates_iff} \\
+
+\end{longtable}
+\newpage
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.22\textwidth}
+                       >{\centering\arraybackslash}p{0.07\textwidth}
+                       >{\raggedright\arraybackslash}p{0.62\textwidth}@{}}
+\multicolumn{3}{@{}l}{\addtocounter{table}{-1}\tablename\ \thetable\ (continued)}\\
+\toprule
+Manuscript label & Ledger & Lean declaration or definition \\
+\midrule
+\endfirsthead
+\multicolumn{3}{@{}l}{\tablename\ \thetable\ (continued)}\\
+\toprule
+Manuscript label & Ledger & Lean declaration or definition \\
+\midrule
+\endhead
+\midrule
+\multicolumn{3}{r@{}}{Continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+
+\cref{cor:coverage-potential-bounds} & S4 &
+\LeanName{StrategyInnovation.Coverage.minimumGapOn_mul_regionOccupation_le_coveragePotential};
+\LeanName{StrategyInnovation.Coverage.coveragePotential_le_maximumGap_mul_totalOccupation};
+\LeanName{StrategyInnovation.Coverage.coveragePotential_le_maxGap_mul_regionOccupation} \\
+
+\cref{ex:delayed-coverage} & S4 &
+\LeanName{StrategyInnovation.Coverage.DelayedCoverageExample.zero_currentGap_positive_coveragePotential} \\
+
+\cref{def:single-gap-region} & S5 &
+\LeanName{StrategyInnovation.Coverage.grossCoverageValue};
+\LeanName{StrategyInnovation.Coverage.oneShotCostCoveringSet} \\
+
+\cref{thm:finite-monotone-coverage} & S5 &
+\LeanName{StrategyInnovation.Coverage.monotoneGap_upperThreshold} \\
+
+\cref{prop:one-shot-cutoff-comparative-statics} & S5 &
+\LeanName{StrategyInnovation.Coverage.oneShotCostCoveringSet_antitone_cost};
+\LeanName{StrategyInnovation.Coverage.oneShotCostCoveringSet_mono_survival};
+\LeanName{StrategyInnovation.Coverage.oneShotCostCoveringSet_mono_admissionProbability};
+\LeanName{StrategyInnovation.Coverage.oneShotCostCoveringSet_antitone_frontier};
+\LeanName{StrategyInnovation.Coverage.cost_cutoff_mono};
+\LeanName{StrategyInnovation.Coverage.survival_cutoff_antitone};
+\LeanName{StrategyInnovation.Coverage.admissionProbability_cutoff_antitone};
+\LeanName{StrategyInnovation.Coverage.frontier_cutoff_mono} \\
+
+\cref{cx:raw-identifier-generator} & T2 &
+\LeanName{StrategyInnovation.Projection.Model.RawFrontierClosureCounterexamples.sufficiency_fails_when_generator_uses_raw_identifiers};
+\LeanName{StrategyInnovation.Projection.Model.RawFrontierClosureCounterexamples.rawIdentifierGenerator_not_factorized} \\
+
+\cref{cx:raw-closure-invisible} & T2 &
+\LeanName{StrategyInnovation.Projection.Model.RawFrontierClosureCounterexamples.converse_fails_when_closure_behaviorally_invisible};
+\LeanName{StrategyInnovation.Projection.Model.RawFrontierClosureCounterexamples.silentProcess_not_rawClosureDetectable} \\
+
+\cref{cx:single-peaked-disconnected} & S5 &
+\LeanName{StrategyInnovation.Coverage.SingleGapCounterexamples.nonmonotoneKernel_disconnectedCostCoveringSet};
+\LeanName{StrategyInnovation.Coverage.SingleGapCounterexamples.singlePeakedGap_disconnectedPotential};
+\LeanName{StrategyInnovation.Coverage.SingleGapCounterexamples.destructiveKernel_not_stochasticallyMonotone} \\
+
+\cref{cx:arbitrary-cost-disconnected} & S5 &
+\LeanName{StrategyInnovation.Coverage.SingleGapCounterexamples.nonAntitoneCost_disconnectedCostCoveringSet} \\
+
+\cref{cx:multi-gap-disconnection} & C2 &
+\LeanName{StrategyInnovation.Counterexamples.MultiGapRegion.separatedMultiGap_disconnectedCostCoveringSet} \\
+
+\cref{cx:arbitrary-cost-components} & C2 &
+\LeanName{StrategyInnovation.Counterexamples.MultiGapRegion.unrestrictedCost_defeats_generalComponentBound} \\
+
+\end{longtable}
+\normalsize

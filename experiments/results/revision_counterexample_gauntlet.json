@@ -1,0 +1,385 @@
+{
+  "arithmetic": "Rational{BigInt}",
+  "bounds": {
+    "belief_states": "1-3",
+    "calendar_horizon": 4,
+    "discounts": [
+      "0//1",
+      "1//4",
+      "1//2",
+      "3//4",
+      "9//10"
+    ],
+    "durations": "1-3 calendar periods",
+    "modules": "1-3",
+    "operation_flags": [
+      false,
+      true
+    ],
+    "projects": "1-3 plus Continue",
+    "random_trials": 512,
+    "strategies": "2-5 including inactive baseline",
+    "t6_trials": 512,
+    "t7_trials": 512
+  },
+  "config_file": "experiments/configs/revision_counterexample_gauntlet.toml",
+  "experiment_id": "paper1-unified-semi-markov-falsification-v1",
+  "fixtures": {
+    "batch_deletion": {
+      "batch_unsafe": true,
+      "belief_count": 1,
+      "first_safe": true,
+      "id": "CX-T3-BATCH-01",
+      "module_count": 1,
+      "second_safe": true,
+      "strategy_count": 3
+    },
+    "conditional_dependence": {
+      "admitted_marginal": [
+        "none:1//2",
+        "candidate:1//2"
+      ],
+      "belief_count": 2,
+      "belief_kernel": [
+        "1//2,1//2",
+        "1//2,1//2"
+      ],
+      "dependent": true,
+      "discount": "1//2",
+      "duration": 1,
+      "id": "FX-T1-CORRELATED-01",
+      "joint_nonzero": [
+        "belief1:none:1//2",
+        "belief2:candidate:1//2"
+      ],
+      "joint_value": "1//4",
+      "payoff_rows": [
+        "0//1,0//1",
+        "0//1,1//1"
+      ],
+      "product_value": "1//8",
+      "projection": {
+        "holds": true,
+        "joint_transitions": 4,
+        "local_updates": 6,
+        "values": 16
+      },
+      "strategy_count": 2
+    },
+    "delay": {
+      "operator_negative": {
+        "continuation": "0//1",
+        "cost": "0//1",
+        "discount": "1//2",
+        "duration_one": "-1//1",
+        "duration_two": "-3//2",
+        "frontier": "-1//1",
+        "id": "CX-DELAY-OPERATOR-NEGATIVE-01",
+        "longer_is_lower": true,
+        "violates_assumption": "A-LIBRARY/A-PROFILE zero inactive baseline"
+      },
+      "operator_positive": {
+        "continuation": "0//1",
+        "cost": "0//1",
+        "discount": "1//2",
+        "duration_one": "1//1",
+        "duration_two": "3//2",
+        "frontier": "1//1",
+        "id": "CX-DELAY-OPERATOR-POSITIVE-01",
+        "longer_is_higher": true
+      },
+      "value_consistent": {
+        "candidate": "1//1",
+        "cost": "0//1",
+        "discount": "1//2",
+        "duration_one": "3//4",
+        "duration_two": "1//4",
+        "frontier": "0//1",
+        "horizon": 3,
+        "id": "FX-DELAY-FIXED-GENERATOR-01",
+        "shorter_is_higher": true
+      }
+    },
+    "information": {
+      "decreasing": {
+        "candidate_state_payoffs": [
+          "3//4",
+          "3//4"
+        ],
+        "cost": "1//16",
+        "demand_less": true,
+        "demand_more": false,
+        "discount": "1//2",
+        "holds": true,
+        "id": "CX-INFORMATION-DECREASE-01",
+        "incumbent_state_payoffs": [
+          [
+            "1//1",
+            "0//1"
+          ],
+          [
+            "0//1",
+            "1//1"
+          ]
+        ],
+        "less_expected_gap": "1//4",
+        "less_net": "1//16",
+        "less_posterior_law": [
+          "1//2@1//1"
+        ],
+        "more_expected_gap": "0//1",
+        "more_net": "-1//16",
+        "more_posterior_law": [
+          "0//1@1//2",
+          "1//1@1//2"
+        ],
+        "prior": "1//2"
+      },
+      "increasing": {
+        "candidate_state_payoffs": [
+          "-1//1",
+          "1//1"
+        ],
+        "cost": "1//8",
+        "demand_less": false,
+        "demand_more": true,
+        "discount": "1//2",
+        "holds": true,
+        "id": "CX-INFORMATION-INCREASE-01",
+        "less_expected_gap": "0//1",
+        "less_net": "-1//8",
+        "less_posterior_law": [
+          "1//2@1//1"
+        ],
+        "more_expected_gap": "1//2",
+        "more_net": "1//8",
+        "more_posterior_law": [
+          "0//1@1//2",
+          "1//1@1//2"
+        ],
+        "prior": "1//2"
+      }
+    },
+    "persistence": {
+      "decreasing": {
+        "discount": "1//2",
+        "gap": [
+          "0//1",
+          "1//1"
+        ],
+        "high": "1//8",
+        "high_persistence": "3//4",
+        "holds": true,
+        "id": "CX-PERSISTENCE-DECREASE-01",
+        "low": "3//8",
+        "low_persistence": "1//4"
+      },
+      "increasing": {
+        "discount": "1//2",
+        "gap": [
+          "1//1",
+          "0//1"
+        ],
+        "high": "3//8",
+        "high_persistence": "3//4",
+        "holds": true,
+        "id": "CX-PERSISTENCE-INCREASE-01",
+        "low": "1//8",
+        "low_persistence": "1//4"
+      }
+    },
+    "raw_dependence": {
+      "belief_count": 1,
+      "id": "CX-T1-RAW-01",
+      "project_count": 1,
+      "strategy_count": 3,
+      "value_with_identifier": "1//2",
+      "value_without_identifier": "0//1",
+      "violates_assumption": "A-GEN-FACTOR"
+    },
+    "silent_module": {
+      "belief_count": 1,
+      "different_closure": true,
+      "id": "CX-T1-MIN-T2-SILENT-01",
+      "module_count": 1,
+      "same_frontier": true,
+      "same_signature": true,
+      "strategy_count": 2,
+      "violates_assumption": "A-T2-OBS"
+    },
+    "t4_unified": [
+      {
+        "discount": "8//9",
+        "formula": "1736//729",
+        "holds": true,
+        "horizon": 4,
+        "id": "FX-T4-UNIFIED-01",
+        "loss": "1736//729",
+        "lower": "3//2",
+        "n": 3,
+        "target": "1//1"
+      },
+      {
+        "discount": "24//25",
+        "formula": "43272024//9765625",
+        "holds": true,
+        "horizon": 6,
+        "id": "FX-T4-UNIFIED-01",
+        "loss": "43272024//9765625",
+        "lower": "5//2",
+        "n": 5,
+        "target": "2//1"
+      },
+      {
+        "discount": "120//121",
+        "formula": "852229478164771333598520//81402749386839761113321",
+        "holds": true,
+        "horizon": 12,
+        "id": "FX-T4-UNIFIED-01",
+        "loss": "852229478164771333598520//81402749386839761113321",
+        "lower": "11//2",
+        "n": 11,
+        "target": "5//1"
+      },
+      {
+        "discount": "440//441",
+        "formula": "699239032258902850320416085536588503796288462764337506040//34135823067412405261341512451566463326809746506282585241",
+        "holds": true,
+        "horizon": 22,
+        "id": "FX-T4-UNIFIED-01",
+        "loss": "699239032258902850320416085536588503796288462764337506040//34135823067412405261341512451566463326809746506282585241",
+        "lower": "21//2",
+        "n": 21,
+        "target": "10//1"
+      }
+    ],
+    "t5_separability": {
+      "belief_count": 1,
+      "high_premium": "1//1",
+      "id": "CX-T5-SEPARABILITY-01",
+      "low_premium": "1//2",
+      "same_closure": true,
+      "same_initial_frontier": true
+    },
+    "t6_cost_boundary": {
+      "actual": "0//1",
+      "belief_count": 1,
+      "carrier_payoff": "0//1",
+      "cost": "3//4",
+      "descendant_payoff": "1//1",
+      "discount": "1//2",
+      "duration": 1,
+      "horizon": 2,
+      "id": "CX-T6-COST-01",
+      "module_count": 1,
+      "naive_bound_fails": true,
+      "probability_gap_without_cost": "1//2",
+      "project_count": 1,
+      "revised_bound": "0//1",
+      "revised_bound_holds": true,
+      "strategy_count": 3,
+      "success": "1//1"
+    },
+    "t7_complementarity": {
+      "belief_count": 1,
+      "candidate": "2//1",
+      "complementarity": true,
+      "cost": "0//1",
+      "discount": "1//2",
+      "duration": 1,
+      "high_frontier": "1//1",
+      "high_premium": "1//2",
+      "high_success": "1//1",
+      "id": "CX-T7-FRONTIER-GENERATOR-01",
+      "low_frontier": "0//1",
+      "low_premium": "0//1",
+      "low_success": "0//1",
+      "project_count": 1,
+      "violates_assumption": "A-T7-GEN-INDEPENDENCE"
+    },
+    "unified_stationary_policy": {
+      "bellman_residual": "0//1",
+      "bridge_action": 1,
+      "bridge_value": "2//1",
+      "candidate_action": 0,
+      "candidate_value": "4//1",
+      "converged": true,
+      "id": "FX-S2-UNIFIED-STATIONARY-01",
+      "iterations": 2,
+      "policy_equation_residual": "0//1",
+      "projection": {
+        "holds": true,
+        "joint_transitions": 2,
+        "local_updates": 16,
+        "values": 20
+      }
+    }
+  },
+  "julia_version": "1.12.6",
+  "lean_changes_made": true,
+  "lean_formalization_gate_open": true,
+  "lean_unified_bellman_verified": true,
+  "principal_t1_t7_survived": true,
+  "random_failures": {},
+  "rng": "StableRNGs.StableRNG",
+  "run_date": "2026-07-23",
+  "schema_version": "revision-counterexample-gauntlet-v1",
+  "search_counts": {
+    "models": 512,
+    "stationary_policy_states": 4,
+    "t1_joint_transitions": 10869,
+    "t1_local_updates": 20462,
+    "t1_value_factorizations": 39060,
+    "t2_applicable_models": 473,
+    "t2_signature_checks": 21848,
+    "t3_configurations": 361584,
+    "t3_deletion_checks": 1413936,
+    "t5_recursion_checks": 19468,
+    "t6_lower_bound_checks": 512,
+    "t7_correlated_substitution_checks": 10,
+    "t7_substitution_checks": 5230
+  },
+  "seed": "6073180304494120242",
+  "theorems": {
+    "S2": {
+      "boundary": "The exact fixture validates one finite raw/compressed instance; the general selector, policy equation, contraction, and uniqueness results are Lean theorems.",
+      "classification": "unified stationary selector fixture satisfies exact policy evaluation",
+      "survived_search": true
+    },
+    "T1": {
+      "boundary": "Raw provenance dependence still falsifies projection; conditional belief/outcome independence is unnecessary and changes value in FX-T1-CORRELATED-01.",
+      "classification": "survives only with primitive raw-factorization and joint-coupling assumptions",
+      "survived_search": true
+    },
+    "T2": {
+      "boundary": "The one-belief silent-module fixture remains the minimal failure without closure observability.",
+      "classification": "survives with the full semi-Markov signature and A-T2-OBS",
+      "survived_search": true
+    },
+    "T3": {
+      "boundary": "The simultaneous batch inference is false even with one belief and one module.",
+      "classification": "survives for one deletion",
+      "survived_search": true
+    },
+    "T4": {
+      "boundary": "The exact normalized loss is sum(beta^t,t=1:H-1); unboundedness varies horizon and discount, never fixed parameters.",
+      "classification": "survives under active duration-one research",
+      "survived_search": true
+    },
+    "T5": {
+      "boundary": "Closure-only additive separability is false; suspending research requires subtracting foregone incumbent rewards.",
+      "classification": "survives after adding the suspension prefix term",
+      "survived_search": true
+    },
+    "T6": {
+      "boundary": "The naive probability-times-gap lower bound is false unless cost is subtracted; a marginal carrier-value interpretation also requires unchanged frontier and zero deleted-state premium.",
+      "classification": "revised descendant-event lower bound survives",
+      "survived_search": true
+    },
+    "T7": {
+      "boundary": "If admitted quality depends on frontier, one belief and one project suffice for strict complementarity.",
+      "classification": "frontier antitonicity of innovation premium survives primitive generator independence",
+      "survived_search": true
+    }
+  }
+}

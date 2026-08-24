@@ -1,0 +1,43 @@
+schema_version = "randomized-finite-library-stress-v1"
+experiment_id = "randomized-finite-library-stress-v1"
+julia_version = "1.12.6"
+master_seed = 6073180304494120243
+trial_count = 90
+horizon = 4
+discount_factor = "3//4"
+operational_budget_fraction = "1//10"
+generative_budget_fraction = "1//20"
+arithmetic = "Rational{BigInt}"
+randomness = "StableRNG with independently shuffled, marginally balanced factor columns"
+evidence_class = "randomized finite-model robustness diagnostic; not theorem evidence"
+
+[levels]
+belief_count = [2, 3, 4]
+strategy_count = [4, 5, 6]
+module_count = [3, 4, 5]
+module_overlap = ["low", "medium", "high"]
+closure_structure = ["identity", "blocks", "hierarchy"]
+frontier_density = ["1//4", "1//2", "3//4"]
+candidate_quality = ["3//4", "1//1", "5//4"]
+generator_complementarity = [1, 2, 3]
+research_cost = ["0//1", "2//1", "4//1"]
+project_delay = [1, 2, 3]
+admission_probability = ["1//4", "1//2", "3//4"]
+regime_persistence = ["1//4", "1//2", "3//4"]
+
+[outputs]
+trials = "experiments/results/summaries/randomized_library_trials.csv"
+pruning = "experiments/results/summaries/randomized_library_pruning.csv"
+carriers = "experiments/results/summaries/randomized_library_carriers.csv"
+profiles = "experiments/results/summaries/randomized_library_profiles.csv"
+modules = "experiments/results/summaries/randomized_library_modules.csv"
+closures = "experiments/results/summaries/randomized_library_closures.csv"
+kernels = "experiments/results/summaries/randomized_library_kernels.csv"
+projects = "experiments/results/summaries/randomized_library_projects.csv"
+method_summary = "experiments/results/summaries/randomized_library_method_summary.csv"
+factor_summary = "experiments/results/summaries/randomized_library_factor_summary.csv"
+summary = "experiments/results/summaries/randomized_library_summary.json"
+report = "RANDOMIZED_LIBRARY_REPORT.md"
+method_figure = "manuscript/figures/randomized_library_method_comparison.svg"
+prevalence_figure = "manuscript/figures/randomized_library_prevalence.svg"
+factor_figure = "manuscript/figures/randomized_library_factor_contrasts.svg"

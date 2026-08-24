@@ -1,0 +1,260 @@
+% Online-supplement fragment; not input by manuscript/main.tex.
+\section{Source-by-source four-claim boundary audit}
+\label{supp:literature-novelty-audit}
+
+This supplement preserves the granular comparison removed from the main
+literature review.  The audit asks whether each source entails any of the
+paper's four joint finite-model claims:
+\begin{enumerate}
+\item[\textbf{C1.}] minimum resource burden among raw sublibraries preserving
+  both the current operating frontier and the future descendant-generating
+  closure;
+\item[\textbf{C2.}] process-safe deletion if and only if both frontier and
+  closure are preserved, under closure detectability for necessity;
+\item[\textbf{C3.}] a sharp normalized dynamic loss from retaining the
+  frontier while dropping the closure constraint; and
+\item[\textbf{C4.}] capacity and resource-price optimized value envelopes
+  together with operational and generative value-channel elasticities.
+\end{enumerate}
+The audit concedes broad overlap and makes no priority inference from an
+absence.  ``Does not entail'' means only that the cited result does not prove
+the stated claim under this paper's raw generation, verification, admission,
+and deletion semantics.
+
+\subsection{Partial-information and semi-Markov control}
+
+\paragraph{Li, Nystr\"om, and Olofsson; Dai, Zhang, and Zhu.}
+Partial-information switching and hidden-regime trading derive filtered
+control formulations, numerical schemes, and posterior-indexed policy regions
+\cite{LiNystromOlofsson2015,DaiZhangZhu2010}.  The control menu is fixed: a
+retention decision changes neither future candidates nor their admission.
+Consequently the models have no raw sublibrary resource problem (C1),
+frontier--closure deletion test (C2), closure-relaxation loss (C3), or
+dual-channel optimized library value (C4).
+
+\paragraph{White.}
+The partially observed semi-Markov model gives dynamic programming on a
+sufficient statistic, concavity, and finite-control piecewise linearity
+\cite{White1976}.  It is the closest timing and belief-state precedent, but
+its fixed control set has no retained generative parents.  It therefore
+supplies the control architecture but none of C1--C4.
+
+\subsection{POMDP reduction, policy compression, and runtime safety}
+
+\paragraph{Smallwood and Sondik; Cassandra, Littman, and Zhang.}
+Alpha-vector envelopes and incremental pruning preserve a fixed POMDP value
+backup \cite{SmallwoodSondik1973,CassandraLittmanZhang1997}.  Their vectors do
+not carry modules used to generate later policies.  The results establish
+neither minimum resource retention of raw parents (C1) nor a process-level
+frontier--closure iff (C2); without a deleted carrier they imply neither C3
+nor C4.
+
+\paragraph{Givan, Dean, and Greig.}
+Stochastic bisimulation gives behavior-preserving state equivalence and model
+minimization within a specified comparison class \cite{GivanDeanGreig2003}.
+It is generic reduction machinery, not a derivation of this model's raw
+frontier--closure statistic.  Applied to a fully encoded innovation model it
+could support reduction, but it does not itself formulate C1--C4.
+
+\paragraph{Mutti, Del Col, and Restelli.}
+Reward-free policy-space compression constructs finite representatives with
+R\'enyi-divergence coverage guarantees and an NP-hard set-cover formulation
+\cite{MuttiDelColRestelli2022}.  This directly overlaps with compact policy
+sets and static coverage.  Representatives do not generate descendants, so
+the preserved object differs from C1 and C2; the paper has no
+carrier-deletion witness for C3 and no operational--generative envelope or
+elasticity result for C4.
+
+\paragraph{Sim\~ao, Suilen, and Jansen.}
+Safe policy improvement for POMDPs uses behavior-controller memory and offline
+data to improve one finite-state controller with a high-probability guarantee
+\cite{SimaoSuilenJansen2023}.  It overlaps with partial information and
+verification-aware admission, but contains no evolving parent library,
+resource-minimal subset, deletion semantics, closure loss, or dual-channel
+library value; hence none of C1--C4 follows.
+
+\paragraph{Kim et al.}
+Policy Library CBF gives a sufficient language-metric coverage condition for
+finite-horizon runtime safety using a static fallback-policy library
+\cite{KimEtAl2026PLCBF}.  Runtime certification is a preservation objective,
+but the library is nongenerative.  Static safety coverage is not C1 or C2,
+and no deletion-induced descendant channel appears in C3 or C4.
+
+\subsection{Resource selection and generative action sets}
+
+\paragraph{Dey et al.}
+Efficient optimization of control libraries selects and orders compact
+maneuver or trajectory libraries using submodular-sequence structure and
+approximation guarantees \cite{DeyEtAl2012}.  This is direct overlap with a
+resource-valued library decision.  Its objective evaluates static control
+coverage or usefulness, not simultaneous preservation of current operation
+and parent-conditioned descendants (C1--C2).  It contains neither the
+closure-relaxation construction (C3) nor the optimized dual-channel value and
+elasticity system (C4).
+
+\paragraph{Russell and Wefald; Hay et al.}
+Metareasoning and computation selection value costly computation by its effect
+on a later decision \cite{RussellWefald1991,HayEtAl2012}.  Research cost and
+option value are therefore prior ideas.  The decision object is a computation,
+not a compressed library of executable generative parents, so these sources
+do not formulate C1--C3 or the particular optimized envelope and channel
+elasticities in C4.
+
+\paragraph{Golovin and Krause.}
+Adaptive submodularity provides greedy guarantees under adaptive monotonicity
+and diminishing returns \cite{GolovinKrause2011}.  It is relevant to
+resource-constrained stochastic selection, but the present generator can
+create complementarities and locally irreducible nonminimal libraries.  The
+general theory does not entail the paper's preservation constraint (C1--C2),
+loss witness (C3), or finite optimized value system (C4).
+
+\paragraph{Xu et al.}
+Generative Action Sets lets an online agent pay once to create a permanently
+reusable action and proves an optimal sublinear regret rate for balancing
+creation, exploration, and reuse \cite{XuEtAl2026GenerativeActions}.  This
+establishes costly endogenous action expansion.  Its generation oracle is not
+conditioned on which retained parents survive, so there is no deletion-based
+resource minimum or iff (C1--C2), no carrier loss (C3), and a regret objective
+rather than C4's optimized operational--generative value.
+
+\paragraph{Mayorqu\'in Posadas and Vega.}
+The B* expansion system iteratively proposes, validates, and retains reusable
+actions in a fully observable environment and reports empirical task gains
+\cite{MayorquinPosadasVega2026}.  It overlaps with validated menu expansion,
+but has neither parent-conditioned deletion nor partial-information library
+value, and thus does not entail C1--C4.
+
+\subsection{Maintained skill libraries}
+
+\paragraph{Shen et al.: SkillFoundry.}
+SkillFoundry builds validated executable scientific skill packages and uses
+closed-loop tests to expand, repair, merge, and prune a persistent library
+\cite{ShenEtAl2026SkillFoundry}.  It is the closest end-to-end validated
+library lifecycle.  Its maintenance objective is procedural and empirical:
+it does not minimize burden subject to semantic frontier--closure preservation
+(C1), prove the deletion iff (C2), quantify normalized closure loss (C3), or
+derive C4.
+
+\paragraph{Pu, Song, and Zhao: SkillOps.}
+SkillOps represents typed contracts and dependency or compatibility links,
+then combines utility, risk, compatibility, and validator signals in merge,
+repair, retirement, adaptation, and validator-insertion rules
+\cite{PuSongZhao2026SkillOps}.  It makes explicit that a local change can alter
+later retrieval, composition, and execution.  The ecosystem graph is not a
+probabilistic descendant closure, however, and its rule-based maintenance
+does not establish C1--C4.
+
+\paragraph{Shi, Yuan, and Liu: Programmatic Skill Networks.}
+Executable symbolic programs and invocation links support planning and new
+skill generation; maintenance includes duplicate removal, link redirection,
+branch pruning, and recent-success rollback validation
+\cite{ShiYuanLiu2026PSN}.  This is the closest system-level overlap with
+executable parents plus validated refactoring.  Finite-task validation does
+not certify every current frontier action and every feasible future admitted
+descendant.  The source therefore does not entail the global resource problem
+(C1), the semantic iff (C2), the normalized carrier loss (C3), or the
+optimized value and elasticity result (C4).
+
+\paragraph{Xia et al.: SkillRL.}
+A hierarchical SkillBank and agent policy co-evolve through recursive
+reinforcement learning \cite{XiaEtAl2026SkillRL}.  This establishes that a
+library can shape later learning, but there is no executable-policy frontier,
+all-descendant closure, certified deletion, or resource/value theorem; none
+of C1--C4 follows.
+
+\paragraph{Li et al.: SkillGraph.}
+Graph-linked skills encode prerequisite, enhancement, and co-occurrence
+relations and guide composition, merge, split, deprecation, or retrieval
+removal \cite{LiEtAl2026SkillGraph}.  Dependency-aware retirement is direct
+conceptual overlap.  Structural heuristics do not prove preservation of all
+current controls and descendants, and the system has no counterparts to C1,
+C3, or C4.
+
+\paragraph{Wang et al.: AutoSkills.}
+AutoSkills constructs and refines hierarchical strategic, functional, and
+atomic skills with validated exploratory expansion
+\cite{WangEtAl2026AutoSkills}.  Automated persistent library construction is
+prior art, but the source states no minimum-resource preservation, semantic
+deletion iff, normalized dynamic loss, or value-envelope theorem.
+
+\paragraph{Pan et al.: Anything2Skill.}
+Structured skill contracts, a taxonomy, and a versioned SkillBank support
+creation, revision, merge, split, deprecation, and discard
+\cite{PanEtAl2026Anything2Skill}.  This is provenance-aware lifecycle
+maintenance.  Its operations have no certificate preserving current control
+and every future descendant, so they imply none of C1--C4.
+
+\paragraph{Hernandez Cano et al.}
+Prospective Compression selects reusable helper abstractions under uncertainty
+about future tasks and gives a computational complexity result
+\cite{HernandezCanoEtAl2026}.  It directly values future generation rather
+than retrospective fit.  Helpers are not simultaneously executable controls
+in a belief-state admission process, so the formal objective is distinct from
+C1--C2 and supplies neither C3 nor C4.
+
+\paragraph{Chun et al.: Functional Cache Grafting.}
+Validated cached function skeletons are retrieved, stitched, and patched into
+composite embodied code policies \cite{ChunEtAl2026FCGraft}.  The source
+shows policies built from reusable validated components but has no evolving
+library deletion semantics, belief-state resource problem, normalized loss,
+or dual-channel optimized value; it does not entail C1--C4.
+
+\paragraph{Song and Wei: Skill Shadowing.}
+Skill Shadowing decomposes the pass-rate decline from expanding a skill
+library into context overhead and selection shadowing and gives component
+bounds \cite{SongWei2026SkillShadowing}.  This is an exact static library-loss
+decomposition, but not deletion of a generative carrier.  It entails neither
+C1--C2 nor C3's delayed bridge loss, and its decomposition is not C4's
+operational--generative insertion value and elasticity system.
+
+\subsection{Generated financial strategies}
+
+\paragraph{Allen and Karjalainen; Moody and Saffell.}
+Genetic search for technical trading rules and direct reinforcement learning
+for trading policies establish automated financial-strategy construction
+\cite{AllenKarjalainen1999,MoodySaffell2001}.  They do not maintain a
+resource-minimized persistent parent library, so none of C1--C4 is implied.
+
+\paragraph{Wang et al.: FactorMiner.}
+Formulaic alpha factors, evaluation skills, and experience memory guide later
+factor generation, while information-coefficient and correlation screens
+support admission and replacement \cite{WangEtAl2026FactorMiner}.  This is
+the closest financial self-evolving library with explicit screening.  Factors
+are not belief-dependent executable parents and memory is not a formal
+descendant closure, so the source does not establish C1--C4.
+
+\paragraph{Pan et al.: ReCAP.}
+Regime-specific portfolio-policy vectors are composed through a regime gate
+and maintained with similarity, attention, and norm-based merge or discard
+rules \cite{PanEtAl2026ReCAP}.  It directly overlaps with financial
+policy-library compression, but the policies do not parent later generated
+strategies.  The source therefore has no closure-preserving minimum or iff
+(C1--C2), descendant-loss construction (C3), or dual-channel optimized value
+(C4).
+
+\paragraph{Sharma and Shroff: AlgoEvolve.}
+Executable trading programs and synthesis-prompt genomes evolve in nested
+loops; selected programs parent later mutations and walk-forward performance
+supplies the fitness signal \cite{SharmaShroff2026AlgoEvolve}.  This is direct
+overlap with strategies that both execute and generate variants.  Population
+selection is not semantic compression of a persistent admitted library under
+partial belief, and the system reports no results matching C1--C4.
+
+\paragraph{Mao et al.: EvoQuant.}
+Typed strategy genomes, provenance, controlled edits, distilled experience,
+hard gates, out-of-sample checks, and adopt/incubate/reject decisions define a
+verifier-guided optimization system \cite{MaoEtAl2026EvoQuant}.  It evolves
+an incumbent and its history rather than a retained parent library.  It hence
+does not entail minimum-resource frontier--closure preservation (C1), a
+library deletion iff (C2), normalized deletion loss (C3), or C4's optimized
+library-value and elasticity statements.
+
+\paragraph{Audit conclusion.}
+The closest sources establish belief-state control, fixed-model reduction,
+static or reward-free library coverage, compact control-library selection,
+costly action creation, dependency-aware skill maintenance, executable parent
+programs, and verifier-gated financial evolution.  Those ingredients are
+prior art.  The claimed boundary is their joint use in C1--C4 under one finite
+raw library law; the manuscript makes no broader claim to have introduced
+compression, pruning, evolving libraries, generated actions, or automated
+trading strategies.

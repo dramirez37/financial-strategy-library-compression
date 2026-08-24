@@ -1,0 +1,51 @@
+import Mathlib.Tactic.Linter
+import StrategyInnovation.Value.ComparativeStatics
+
+/-!
+# Focused axiom audit for finite sign-definite comparative statics
+-/
+
+open StrategyInnovation.Projection.Model.ComparativeStatics
+
+#print axioms GenerativeDominanceOrder
+#print axioms StateMonotone
+#print axioms compressedValue_mono_of_generativeDominanceOrder
+#print axioms rawValue_mono_of_generativeDominanceOrder
+#print axioms SameClosureFrontierLE
+#print axioms sameClosureFrontierLE_add
+#print axioms incumbentReward_mono_of_sameClosureFrontierLE
+#print axioms FrontierIndependentPrimitives
+#print axioms frontierGenerativeDominanceOrder
+#print axioms compressedValue_mono_of_frontier_le
+#print axioms operationalInsertionValue_antitone_of_frontier_le
+#print axioms ResearchCostSchedule
+#print axioms compressedValueWithCost
+#print axioms compressedValueWithCost_antitone
+#print axioms admittedSurvivingMass
+#print axioms binaryCandidateContinuation
+#print axioms binaryCandidateProjectValue
+#print axioms binaryCandidateProjectValue_mono_admission
+#print axioms binaryCandidateProjectValue_mono_survival
+#print axioms unifiedElapsedProjectValue
+#print axioms unifiedElapsedProjectValue_succ
+#print axioms DelayAntitoneCertificate
+#print axioms unifiedElapsedProjectValue_antitone_duration
+#print axioms unifiedElapsedProjectValue_antitone_duration_of_suspendedOperation
+#print axioms GenerativelyDominates
+#print axioms fullValue_mono_of_generativeDominance
+#print axioms exactFiniteActionRegion
+#print axioms mem_exactFiniteActionRegion_iff
+#print axioms exactFiniteActionRegion_mono
+#print axioms binaryCandidateResearchReturn
+#print axioms exactFiniteActionRegion_subset_of_lower_cost
+#print axioms exactFiniteActionRegion_subset_of_higher_survival
+#print axioms Counterexamples.frontier_mono_fails_without_fixed_opportunities
+#print axioms Counterexamples.admission_mono_fails_without_successDominance
+#print axioms Counterexamples.survival_mono_fails_without_successDominance
+#print axioms Counterexamples.delay_antitone_fails_without_noWaitingGain
+#print axioms Counterexamples.delay_antitone_fails_with_negativeContinuation
+#print axioms Counterexamples.closure_mono_fails_without_generativeDominance
+#print axioms Counterexamples.lower_cost_region_fails_when_returns_change
+
+#lint- only checkType unusedArguments simpNF in
+  StrategyInnovation.Projection.Model.ComparativeStatics

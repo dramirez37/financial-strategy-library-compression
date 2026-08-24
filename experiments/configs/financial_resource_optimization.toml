@@ -1,0 +1,103 @@
+schema_version = "financial-audit-resource-optimization-v1"
+experiment_id = "locked-financial-audits-resource-optimization-v1"
+registration_status = "locked_before_resource_optimization_outcomes"
+protocol_date = "2026-08-04"
+arithmetic = "Rational{BigInt}"
+solver = "JuMP + HiGHS"
+module_closure = "identity union of modules carried by retained strategies"
+frontier_rule = "exact equality after lossless Rational{BigInt} conversion of each frozen Float64 validation-profile coordinate"
+inactive_policy_rule = "synthetic zero-weight inactive policy is mandatory in the MILP and excluded from reported financial-library sizes"
+solver_tolerances_are_proof = false
+locked_parent_outcomes_are_modified = false
+pruning_rules_redefined = false
+
+[[audits]]
+audit_id = "locked_terminal_v1"
+reader_label = "Terminal financial audit"
+config = "experiments/configs/financial_terminal_audit.toml"
+status = "experiments/results/summaries/financial_terminal_audit_status.json"
+runner = "julia/scripts/run_financial_terminal_audit.jl"
+quality_timing = "locked 2020-2024 net-utility opportunity quality, first accessed after the frozen validation decision hash"
+
+[[audits]]
+audit_id = "annual_walk_forward_v2"
+reader_label = "Annual walk-forward financial audit"
+config = "experiments/configs/financial_annual_walkforward_audit.toml"
+status = "experiments/results/summaries/financial_annual_walkforward_audit_status.json"
+runner = "julia/scripts/run_financial_annual_walkforward_audit.jl"
+quality_timing = "mean 2020-2024 next-year realized opportunity quality, with every annual selection hashed before target-year statistics were read"
+
+[primary_resource]
+schedule_id = "uniform_cardinality"
+description = "one fixed maintenance unit for every active strategy"
+formula = "w_s = 1"
+objective = "minimum cardinality exact safe compression"
+
+[[secondary_resources]]
+schedule_id = "nonshared_modules"
+description = "fixed maintenance plus source-local nonshared-module burden"
+formula = "w_s = 1 + number of modules carried by s that have exactly one carrier in the frozen source library"
+
+[[secondary_resources]]
+schedule_id = "validation_computation"
+description = "documented rolling-computation burden in five-session units"
+formula = "w_s = 1 + signal lookback/5 + 20*I(trend_100) + 4*I(vol_target_10) + I(signal_flip)"
+directional_lookbacks = { momentum_20 = 20, momentum_60 = 60, mean_reversion_5 = 5 }
+trend_lookback_units = 20
+volatility_lookback_units = 4
+signal_flip_units = 1
+
+[[secondary_resources]]
+schedule_id = "documented_complexity"
+description = "fixed maintenance plus one unit per nonbaseline documented grammar choice"
+formula = "w_s = 1 + I(signal != momentum_20) + I(filter != always) + I(horizon != 5) + I(sizing != unit) + I(exit != horizon) + I(risk != notional_cap_1)"
+baseline = { directional_signal = "momentum_20", entry_filter = "always", holding_horizon = 5, sizing_rule = "unit", exit_rule = "horizon", risk_constraint = "notional_cap_1" }
+
+[comparators]
+stepwise_safe = "existing rechecked innovation-safe pruning endpoint under its frozen ascending-development-utility order"
+frontier_only = "existing rechecked frontier-only pruning endpoint under its frozen ascending-validation-utility order"
+
+[quality]
+may_define_weights = false
+reported_ex_post_only = true
+safe_quality_identity_required = true
+
+[gates]
+parent_artifact_hashes_unchanged = true
+global_milp_status_optimal = true
+all_returned_libraries_exactly_verified = true
+all_safe_frontiers_exactly_preserved = true
+all_safe_identity_closures_exactly_preserved = true
+all_safe_opportunity_quality_equalities_close = true
+solver_tolerances_never_used_as_proof = true
+
+[design_lock]
+path = "experiments/financial_resource_optimization/DESIGN_LOCK.json"
+registered_lock_path = "experiments/financial_resource_optimization/DESIGN_LOCK_REGISTERED.json"
+taxonomy_migration_record = "FINANCIAL_AUDIT_TAXONOMY.md"
+taxonomy_migration_only = true
+schema_version = "financial-audit-resource-optimization-design-lock-v1"
+lock_stage = "post-parent-outcome, pre-resource-optimization extension lock"
+resource_optimization_results_read_before_lock = false
+parent_outcomes_used_to_define_weights = false
+locked_parent_outcomes_already_exist = true
+implementation_amendment_count = 8
+resource_milp_solved_before_current_lock = false
+required_absent_outputs = [
+  "experiments/results/summaries/financial_resource_optimization_weights.csv",
+  "experiments/results/summaries/financial_resource_optimization_solutions.csv",
+  "experiments/results/summaries/financial_resource_optimization_libraries.csv",
+  "experiments/results/summaries/financial_resource_optimization_frontier_certificates.csv",
+  "experiments/results/summaries/financial_resource_optimization_summary.csv",
+  "experiments/results/summaries/financial_resource_optimization_status.json",
+  "FINANCIAL_RESOURCE_OPTIMIZATION.md",
+]
+
+[outputs]
+weights_csv = "experiments/results/summaries/financial_resource_optimization_weights.csv"
+solutions_csv = "experiments/results/summaries/financial_resource_optimization_solutions.csv"
+libraries_csv = "experiments/results/summaries/financial_resource_optimization_libraries.csv"
+frontier_certificates_csv = "experiments/results/summaries/financial_resource_optimization_frontier_certificates.csv"
+summary_csv = "experiments/results/summaries/financial_resource_optimization_summary.csv"
+status_json = "experiments/results/summaries/financial_resource_optimization_status.json"
+report_md = "FINANCIAL_RESOURCE_OPTIMIZATION.md"

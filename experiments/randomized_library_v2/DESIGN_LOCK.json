@@ -1,0 +1,22 @@
+{
+  "schema_version": "randomized-finite-library-stress-v2-design-lock",
+  "experiment_id": "randomized-finite-library-stress-v2",
+  "locked_at_utc": "2026-07-28T19:39:59Z",
+  "lock_stage": "pre-outcome analytical and randomization lock",
+  "outcomes_read_before_lock": false,
+  "outcome_files_absent_at_lock": true,
+  "pilot_results_known_before_lock": true,
+  "candidate_v2_results_used_to_change_specification": false,
+  "trial_count": 1024,
+  "master_seed": 6075990691714899803,
+  "registered_component_seed_count": 4096,
+  "design_sha256": "0b012dfc14f4ea57b0d34877a68d9a546cd499d2270903e772d78b21425d14db",
+  "files": {
+    "RANDOMIZED_DESIGN_V2.md": "61e3a821d2b0f0af8385a9e19629abda04b8a72de5da4cb9f29182520611bcf9",
+    "experiments/configs/randomized_library_stress_v2.toml": "a1e99be2a59e4208e425f5050f397ebfa72e381c0adb762084d856f459b5033d",
+    "experiments/randomized_library_v2/TRIAL_REGISTRY.csv": "669c055f54c86706bd9b2003c6c9f4628c647245909940eea393f3bd40af115c",
+    "julia/scripts/lock_randomized_library_design_v2.jl": "f5bf8aeba3406c12dd6084955fd7315e639daa6f95b12260a475ca295ad11f4c",
+    "julia/src/RealizableRectangles.jl": "5831c8a0b53e08cb201f1d1be5812f4fae609287e49135afa13c5ddaf723d037",
+    "julia/test/test_randomized_design_v2.jl": "7eaa3417aedf3e6558036ebd154965cee87bae59d84b38f04a9cb16685593fef"
+  }
+}

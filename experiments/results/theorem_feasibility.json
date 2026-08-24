@@ -1,0 +1,179 @@
+{
+  "all_current_t1_t6_survived": true,
+  "arithmetic": "Rational{BigInt}",
+  "bounds": {
+    "belief_states": "1-4",
+    "discounts": [
+      "0//1",
+      "1//4",
+      "1//2",
+      "3//4",
+      "9//10",
+      "15//16"
+    ],
+    "modules": "1-6",
+    "projects": "1-3 plus idle",
+    "random_trials": 2048,
+    "single_gap_trials": 4096,
+    "strategies": "1-6 total, including baseline-only models"
+  },
+  "config_file": "experiments/configs/theorem_feasibility.toml",
+  "exhaustive": {
+    "t1_configurations": 35808,
+    "t1_update_checks": 951012,
+    "t3_configurations": 361584,
+    "t3_deletion_checks": 1413936
+  },
+  "experiment_id": "paper1-theorem-falsification-v1",
+  "julia_version": "1.12.6",
+  "main_novelty_collapsed": false,
+  "random_failures": {},
+  "randomized": {
+    "models": 2048,
+    "t1_update_comparisons": 610325,
+    "t1_value_comparisons": 795992,
+    "t2_applicable_models": 2024,
+    "t2_comparisons": 236703,
+    "t3_deletions": 43718,
+    "t5_recursion_checks": 159390,
+    "t6_grid_checks": 10174
+  },
+  "rng": "StableRNGs.StableRNG",
+  "run_date": "2026-07-20",
+  "schema_version": "theorem-feasibility-v1",
+  "seed": "6073180304494120241",
+  "theorems": {
+    "T1": {
+      "boundary_finding": "Generic minimality is false: a silent module changes K while all searched values and signatures remain equal. Raw-library dependence also falsifies sufficiency when A-GEN-FACTOR is removed.",
+      "classification": "survives as stated",
+      "current_statement_holds_in_search": true
+    },
+    "T2": {
+      "boundary_finding": "The converse fails without the already-recorded A-T2-OBS assumption.",
+      "classification": "survives as stated",
+      "current_statement_holds_in_search": true
+    },
+    "T3": {
+      "boundary_finding": "The single-deletion converse survived; the analogous batch-deletion inference is false.",
+      "classification": "survives as stated",
+      "current_statement_holds_in_search": true
+    },
+    "T4": {
+      "boundary_finding": "Unbounded loss requires varying horizon and discount; fixed-parameter unboundedness remains false.",
+      "classification": "survives as stated",
+      "current_statement_holds_in_search": true
+    },
+    "T5": {
+      "boundary_finding": "The exact premium recursion survived; any closure-only or interaction-free decomposition is false.",
+      "classification": "survives as stated",
+      "current_statement_holds_in_search": true
+    },
+    "T6": {
+      "boundary_finding": "The exact finite-grid identity survived, but coverage can be disconnected and need not be a threshold interval.",
+      "classification": "survives as stated",
+      "current_statement_holds_in_search": true
+    },
+    "optional_multi_gap_component_bound": {
+      "boundary_finding": "A two-project compositional fixture has positive joint premium and zero isolated component premia.",
+      "classification": "false and should be removed",
+      "current_statement_holds_in_search": false
+    }
+  },
+  "witnesses": {
+    "batch_deletion": {
+      "batch_unsafe": true,
+      "first_individually_safe": true,
+      "id": "CX-T3-BATCH-01",
+      "independent_check": true,
+      "second_individually_safe": true
+    },
+    "multi_gap_additivity": {
+      "first_value": "0//1",
+      "id": "CX-MULTIGAP-ADDITIVITY-01",
+      "independent_check": true,
+      "joint_value": "1//4",
+      "second_value": "0//1",
+      "violates_additive_upper_bound": true
+    },
+    "raw_library_dependence": {
+      "id": "CX-T1-RAW-01",
+      "independent_check": true,
+      "value_with_identifier": "1//2",
+      "value_without_identifier": "0//1",
+      "violates_assumption": "A-GEN-FACTOR"
+    },
+    "silent_module": {
+      "different_closure": true,
+      "id": "CX-T1-MIN-T2-SILENT-01",
+      "independent_check": true,
+      "same_frontier": true,
+      "same_signature": true,
+      "same_values_through_h4": true
+    },
+    "t4_targets": [
+      {
+        "closure_changed": true,
+        "discount": "8//9",
+        "frontier_preserved": true,
+        "horizon": 4,
+        "independent_check": true,
+        "loss": "1736//729",
+        "n": 3,
+        "target": "1//1"
+      },
+      {
+        "closure_changed": true,
+        "discount": "24//25",
+        "frontier_preserved": true,
+        "horizon": 6,
+        "independent_check": true,
+        "loss": "43272024//9765625",
+        "n": 5,
+        "target": "2//1"
+      },
+      {
+        "closure_changed": true,
+        "discount": "120//121",
+        "frontier_preserved": true,
+        "horizon": 12,
+        "independent_check": true,
+        "loss": "852229478164771333598520//81402749386839761113321",
+        "n": 11,
+        "target": "5//1"
+      },
+      {
+        "closure_changed": true,
+        "discount": "440//441",
+        "frontier_preserved": true,
+        "horizon": 22,
+        "independent_check": true,
+        "loss": "699239032258902850320416085536588503796288462764337506040//34135823067412405261341512451566463326809746506282585241",
+        "n": 21,
+        "target": "10//1"
+      }
+    ],
+    "t5_separability": {
+      "high_premium": "1//1",
+      "id": "CX-T5-SEPARABILITY-01",
+      "independent_check": true,
+      "low_premium": "1//2",
+      "same_closure": true,
+      "same_initial_frontier": true
+    },
+    "t6_disconnected": {
+      "direct_region": [
+        true,
+        false,
+        true
+      ],
+      "disconnected": true,
+      "id": "CX-T6-DISCONNECTED-01",
+      "independent_check": true,
+      "region": [
+        true,
+        false,
+        true
+      ]
+    }
+  }
+}

@@ -1,0 +1,27 @@
+schema_version = "theorem-feasibility-v1"
+experiment_id = "paper1-theorem-falsification-v1"
+seed = 6073180304494120241
+random_trials = 2048
+single_gap_trials = 4096
+exhaustive = true
+arithmetic = "Rational{BigInt}"
+dynamic_horizon = 3
+
+[bounds]
+belief_states = [1, 4]
+strategies = [1, 6]
+modules = [1, 6]
+projects = [1, 3]
+discounts = ["0//1", "1//4", "1//2", "3//4", "9//10", "15//16"]
+
+[exhaustive_t1]
+belief_states = [1, 2]
+strategies = [2, 3]
+modules = [1, 2]
+payoff_grid = ["0//1", "1//1"]
+
+[exhaustive_t3]
+belief_states = [1, 2]
+strategies = [2, 3]
+modules = [1, 2]
+payoff_grid = ["-1//1", "0//1", "1//1"]

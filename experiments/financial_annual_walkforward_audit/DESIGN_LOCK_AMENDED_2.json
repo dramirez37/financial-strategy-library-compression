@@ -1,0 +1,19 @@
+{
+  "schema_version": "financial-illustration-design-lock-v2",
+  "experiment_id": "larger-100-etf-walk-forward-mechanism-illustration-v2",
+  "locked_at_utc": "2026-07-21T19:41:17Z",
+  "outcomes_read_before_lock": false,
+  "design_sha256": "11fea985cf3b64faa37b01aa8ac128f199b0dbe4f7d63c95123f3ddd94edccb7",
+  "files": {
+    "experiments/configs/financial_universe_audit_v2.toml": "f272a3d67d56d947344df9c29bd5c82df3779f2c3e448a6f480cf4f980873d2b",
+    "experiments/configs/financial_illustration_v2.toml": "b337d1ff3a87c92b2b06ec74a9059c3ce85a6f1dcf5c745f2bb683f91b7d64c1",
+    "experiments/financial_illustration_v2/DESIGN_AMENDMENTS.md": "0c7147dddb8e32ecd05a19f228692f8856dd49bf722f91d8bf229aa785533fa0",
+    "experiments/financial_illustration_v2/DESIGN_LOCK_AMENDED_1.json": "1aa9d0087cff0be3eb855a2d278cf01e3ec049718bd8c31432b3aa547eae8dd5",
+    "experiments/financial_illustration_v2/DESIGN_LOCK_INITIAL.json": "f67db5228cf198c4fec0307a2f810044483d9b533522b973507f7a021bd7cd79",
+    "experiments/financial_illustration_v2/universe_selection.toml": "52abd208b146449c626f377f692c828542b62ca1673e1a442d827690f620009d",
+    "julia/scripts/audit_financial_universe_v2.jl": "c842ab8db385370bf2bb5301036cb9f57ae741ce5971492b006c9128254571d6",
+    "julia/scripts/freeze_financial_illustration_v2.jl": "18f528380846c95ddb36ae53a0bf70a37a30136abea36e66f1977f77ad4f182c",
+    "julia/scripts/prepare_financial_illustration_v2_data.jl": "7afd019dc2dc01163b7a40ee9fd4755855f6424dea8540af66baf4b762320e79",
+    "julia/scripts/run_financial_illustration_v2.jl": "bf3d77ed78e287e54d4499bd0fc083ce45376143b242d2561db8dea1dde206f3"
+  }
+}

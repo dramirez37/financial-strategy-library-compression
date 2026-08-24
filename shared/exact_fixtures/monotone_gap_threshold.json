@@ -1,0 +1,94 @@
+{
+  "schema_version": "lean-julia-exact-fixture-v2",
+  "fixture_id": "monotone_gap_threshold",
+  "theorem_family": "S5 monotone-gap threshold",
+  "beliefs": ["b1", "b2", "b3", "b4"],
+  "transition_rows": [
+    ["1//1", "0//1", "0//1", "0//1"],
+    ["0//1", "1//1", "0//1", "0//1"],
+    ["0//1", "0//1", "1//1", "0//1"],
+    ["0//1", "0//1", "0//1", "1//1"]
+  ],
+  "discount": "1//1",
+  "modules": ["marker"],
+  "strategies": [
+    {
+      "id": "inactive",
+      "operational_profile": ["0//1", "0//1", "0//1", "0//1"],
+      "modules": []
+    },
+    {
+      "id": "candidate",
+      "operational_profile": ["0//1", "1//2", "3//2", "3//1"],
+      "modules": ["marker"]
+    }
+  ],
+  "libraries": [
+    {
+      "id": "current",
+      "strategies": ["inactive"]
+    }
+  ],
+  "projects": [
+    {
+      "id": "innovate",
+      "cost": ["2//1", "1//1", "1//2", "0//1"],
+      "duration": 1,
+      "survival": "1//1",
+      "strict_cost": false,
+      "required_modules": [],
+      "candidate_strategies": ["candidate"]
+    }
+  ],
+  "expected": {
+    "rational_scalars": [
+    {
+      "id": "connected_components",
+      "value": "1//1"
+    },
+    {
+      "id": "threshold_cutoff_index",
+      "value": "3//1"
+    }
+  ],
+    "rational_vectors": [
+    {
+      "id": "candidate_gap",
+      "values": ["0//1", "1//2", "3//2", "3//1"]
+    },
+    {
+      "id": "coverage_potential",
+      "values": ["0//1", "1//2", "3//2", "3//1"]
+    },
+    {
+      "id": "research_cost",
+      "values": ["2//1", "1//1", "1//2", "0//1"]
+    }
+  ],
+    "boolean_scalars": [
+    {
+      "id": "cost_antitone",
+      "value": true
+    },
+    {
+      "id": "gap_monotone",
+      "value": true
+    },
+    {
+      "id": "kernel_stochastically_monotone",
+      "value": true
+    },
+    {
+      "id": "upper_threshold",
+      "value": true
+    }
+  ],
+    "boolean_vectors": [
+    {
+      "id": "research_region",
+      "values": [false, false, true, true]
+    }
+  ],
+    "string_vectors": []
+  }
+}

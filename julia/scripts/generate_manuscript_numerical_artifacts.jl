@@ -1,0 +1,992 @@
+module ManuscriptNumericalArtifacts
+
+using Printf
+using TOML
+
+export check_manuscript_numerical_artifacts,
+       financial_compression_analysis,
+       generate_manuscript_numerical_artifacts,
+       main
+
+const REPOSITORY_ROOT = normpath(joinpath(@__DIR__, "..", ".."))
+const SUMMARY_ROOT = joinpath(REPOSITORY_ROOT, "experiments", "results", "summaries")
+const OUTPUTS = Dict(
+    "convergence" => joinpath(
+        REPOSITORY_ROOT,
+        "manuscript",
+        "figures",
+        "unified_canonical_convergence.tex",
+    ),
+    "numerical_table" => joinpath(REPOSITORY_ROOT, "manuscript", "tables", "numerical_mechanism_summary.tex"),
+    "financial_figure" => joinpath(REPOSITORY_ROOT, "manuscript", "figures", "financial_coverage_comparison.tex"),
+    "financial_compression_figure" => joinpath(REPOSITORY_ROOT, "manuscript", "figures", "financial_innovation_safe_compression.tex"),
+    "financial_table" => joinpath(REPOSITORY_ROOT, "manuscript", "tables", "financial_design_summary.tex"),
+    "financial_policy_data" => joinpath(SUMMARY_ROOT, "financial_compression_policy_characteristics.csv"),
+    "financial_predictor_data" => joinpath(SUMMARY_ROOT, "financial_compression_predictor_summary.csv"),
+    "financial_estimand_metadata" => joinpath(SUMMARY_ROOT, "financial_compression_estimand_metadata.csv"),
+)
+
+function _parse_csv(path::AbstractString)
+    lines = readlines(path)
+    isempty(lines) && error("empty CSV: $path")
+    header = split(first(lines), ',')
+    length(unique(header)) == length(header) || error("duplicate CSV header: $path")
+    rows = Dict{String,String}[]
+    for line in Iterators.drop(lines, 1)
+        isempty(strip(line)) && continue
+        fields = split(line, ',')
+        length(fields) == length(header) || error(
+            "quoted or malformed CSV is outside this deterministic renderer's contract: $path",
+        )
+        push!(rows, Dict(header .=> fields))
+    end
+    return rows
+end
+
+_csv(name::AbstractString) = _parse_csv(joinpath(SUMMARY_ROOT, name))
+
+function _only_row(rows, key::AbstractString, value::AbstractString)
+    selected = filter(row -> row[key] == value, rows)
+    length(selected) == 1 || error("expected one row with $key=$value")
+    return only(selected)
+end
+
+_float(row, key) = parse(Float64, row[key])
+_integer(row, key) = parse(Int, row[key])
+_decimal(value::Real; digits::Integer = 6) = string(round(Float64(value); digits))
+
+function _validate_convergence()
+    rows = _csv("unified_canonical_convergence.csv")
+    length(rows) == 42 ||
+        error("unified canonical convergence log must contain 42 rows")
+    iterations = _integer.(rows, Ref("iteration"))
+    iterations == collect(1:42) ||
+        error("unified canonical convergence iterations are not consecutive")
+    for key in (
+        "float64_iteration_increment",
+        "float64_bellman_residual",
+        "float64_apriori_contraction_bound",
+        "float64_aposteriori_contraction_bound",
+    )
+        all(_float(row, key) > 0 for row in rows) || error("nonpositive convergence diagnostic: $key")
+    end
+    _float(last(rows), "float64_iteration_increment") <= 1e-12 ||
+        error("registered stopping rule failed")
+    _float(last(rows), "float64_bellman_residual") <=
+        _float(last(rows), "float64_aposteriori_contraction_bound") ||
+        error("residual exceeds its Float64 a-posteriori contraction bound")
+    return rows
+end
+
+function _series_path(rows, key::AbstractString)
+    points = String[]
+    denominator = length(rows) - 1
+    for row in rows
+        iteration = _integer(row, "iteration")
+        x = 10 * (iteration - 1) / denominator
+        level = -log10(_float(row, key))
+        push!(points, "($(_decimal(x)),$(_decimal(level)))")
+    end
+    return join(points, " -- ")
+end
+
+function _series_markers(rows, key::AbstractString, color::AbstractString)
+    commands = String[]
+    denominator = length(rows) - 1
+    for row in rows
+        iteration = _integer(row, "iteration")
+        x = 10 * (iteration - 1) / denominator
+        level = -log10(_float(row, key))
+        push!(
+            commands,
+            "  \\fill[$color] ($(_decimal(x)),$(_decimal(level))) circle (0.024);",
+        )
+    end
+    return join(commands, '\n')
+end
+
+function _convergence_source(rows)
+    residual = _series_path(rows, "float64_bellman_residual")
+    apriori = _series_path(rows, "float64_apriori_contraction_bound")
+    posterior = _series_path(rows, "float64_aposteriori_contraction_bound")
+    residual_markers =
+        _series_markers(rows, "float64_bellman_residual", "blue!72!black")
+    apriori_markers = _series_markers(
+        rows,
+        "float64_apriori_contraction_bound",
+        "orange!85!black",
+    )
+    posterior_markers = _series_markers(
+        rows,
+        "float64_aposteriori_contraction_bound",
+        "black!72",
+    )
+    return """% Generated by julia/scripts/generate_manuscript_numerical_artifacts.jl.
+% Source: experiments/results/summaries/unified_canonical_convergence.csv.
+\\begin{tikzpicture}[x=0.92cm,y=0.43cm,font=\\scriptsize]
+  \\draw[black!18] (0,-1) grid[xstep=2.5,ystep=2] (10,13);
+  \\draw[->,black!70] (0,-1.25) -- (10.35,-1.25);
+  \\draw[->,black!70] (0,-1.25) -- (0,13.55);
+  \\foreach \\x/\\label in {0/1,2.195/10,4.634/20,7.073/30,10/42} {
+    \\draw[black!65] (\\x,-1.25) -- (\\x,-1.45);
+    \\node[anchor=north] at (\\x,-1.5) {\\label};
+  }
+  \\foreach \\y/\\label in {0/{\$10^{0}\$},2/{\$10^{-2}\$},4/{\$10^{-4}\$},6/{\$10^{-6}\$},8/{\$10^{-8}\$},10/{\$10^{-10}\$},12/{\$10^{-12}\$}} {
+    \\draw[black!65] (0,\\y) -- (-0.16,\\y);
+    \\node[anchor=east] at (-0.22,\\y) {\\label};
+  }
+  \\draw[blue!72!black,line width=1.15pt] $residual;
+  \\draw[orange!85!black,line width=1.05pt,dashed] $apriori;
+  \\draw[black!72,line width=1.05pt,densely dotted] $posterior;
+$residual_markers
+$apriori_markers
+$posterior_markers
+  \\fill[white,opacity=0.94] (4.95,9.35) rectangle (10.15,13.45);
+  \\draw[blue!72!black,line width=1.15pt] (5.15,13.0) -- (5.65,13.0);
+  \\node[anchor=west] at (5.75,13.0) {Float64 Bellman residual};
+  \\draw[orange!85!black,line width=1.05pt,dashed] (5.15,11.75) -- (5.65,11.75);
+  \\node[anchor=west,align=left] at (5.75,11.75) {Float64 a-priori\\\\contraction bound};
+  \\draw[black!72,line width=1.05pt,densely dotted] (5.15,10.15) -- (5.65,10.15);
+  \\node[anchor=west,align=left] at (5.75,10.15) {Float64 a-posteriori\\\\contraction bound};
+  \\node[anchor=north] at (5,-2.25) {value-iteration step};
+  \\node[rotate=90] at (-1.75,4.6) {diagnostic magnitude (log scale)};
+\\end{tikzpicture}
+"""
+end
+
+function _validate_numerical_fixtures()
+    compression = _csv("compression_experiments.csv")
+    safe = _only_row(compression, "algorithm", "minimum_safe_compression")
+    safe["arithmetic"] == "Rational{BigInt}" || error("safe minimum must be exact")
+    safe["source_size"] == "4" && safe["compressed_size"] == "3" ||
+        error("unexpected safe-compression fixture")
+    safe["dynamic_value_loss"] == "0//1" && safe["minimum_size"] == "3" ||
+        error("safe-compression identity or minimum failed")
+
+    losses = _csv("theorem_mechanism_pruning_loss.csv")
+    maximum_loss = _only_row(losses, "future_reward", "40//1")
+    maximum_loss["pruning_loss"] == "20//1" || error("scaled pruning fixture failed")
+    all(row["pruning_loss"] == row["expected_loss"] for row in losses) ||
+        error("scaled pruning losses differ from their exact targets")
+
+    decomposition = _csv("theorem_mechanism_decomposition.csv")
+    expected = Dict(
+        "operational-only" => ("3//1", "3//1", "0//1"),
+        "generative-only" => ("4//1", "0//1", "4//1"),
+        "both-components" => ("4//1", "3//1", "1//1"),
+    )
+    for (case_id, values) in expected
+        row = _only_row(decomposition, "case_id", case_id)
+        (row["total"], row["operational"], row["generative"]) == values ||
+            error("unexpected decomposition row: $case_id")
+    end
+
+    geometry = _csv("theorem_mechanism_coverage_geometry.csv")
+    expected_components = Dict(
+        "monotone-gap" => (1, "true"),
+        "single-peak-preserved" => (1, "true"),
+        "single-peak-destroyed" => (2, "false"),
+        "two-gap-candidate" => (2, "true"),
+    )
+    for (case_id, (component_count, assumption)) in expected_components
+        selected = filter(row -> row["case_id"] == case_id, geometry)
+        isempty(selected) && error("missing coverage fixture: $case_id")
+        all(row["component_count"] == string(component_count) for row in selected) ||
+            error("coverage component mismatch: $case_id")
+        all(row["kernel_preservation_assumption"] == assumption for row in selected) ||
+            error("coverage assumption mismatch: $case_id")
+    end
+    return (; safe, maximum_loss, decomposition, geometry)
+end
+
+function _numerical_table_source(fixtures)
+    return """% Generated by julia/scripts/generate_manuscript_numerical_artifacts.jl.
+% Sources: compression_experiments.csv and theorem_mechanism_{pruning_loss,decomposition,coverage_geometry}.csv.
+\\begin{tabular}{@{}p{0.22\\linewidth}p{0.36\\linewidth}p{0.34\\linewidth}@{}}
+\\toprule
+Mechanism & Registered exact input & Computed diagnostic \\\\
+\\midrule
+Safe compression & Four-strategy, two-belief library & Minimum and greedy sizes both 3; frontier, closure, and value loss all zero \\\\
+Frontier-only loss & Future rewards \\(0,2,4,10,20,40\\) & Loss \\(R/2\\) in all six cases; largest displayed loss 20 \\\\
+Value decomposition & Operational-only, generative-only, and joint insertions & \\((\\Delta^{\\op},\\Delta^{\\gen})=(3,0),(0,4),(3,1)\\) \\\\
+Monotone single gap & Potential \\((0,1/2,3/2,3)\\) & Upper-grid research set; one component \\\\
+Single peak, bad kernel & Gap \\((0,1,0)\\), potential \\((1,0,1)\\) & Preservation assumption fails; two components \\\\
+Separated multi-gap & Potential \\((4,41/32,1/2,41/32,4)\\) & Constant-cost research set has two components \\\\
+\\bottomrule
+\\end{tabular}
+"""
+end
+
+function _validate_financial_inputs()
+    n2_config = TOML.parsefile(joinpath(REPOSITORY_ROOT, "experiments", "configs", "financial_terminal_audit.toml"))
+    n3_config = TOML.parsefile(joinpath(REPOSITORY_ROOT, "experiments", "configs", "financial_annual_walkforward_audit.toml"))
+    n2_config["grammar"] == n3_config["grammar"] || error("the two runs do not share the declared grammar")
+    n2_grammar = _csv("financial_terminal_audit_strategy_grammar.csv")
+    n3_grammar = _csv("financial_annual_walkforward_audit_strategy_grammar.csv")
+    length(n2_grammar) == 2400 || error("locked-terminal grammar is not complete")
+    length(n3_grammar) == 9600 || error("annual walk-forward grammar is not complete")
+    n2_candidates = _csv("financial_terminal_audit_candidate_audit.csv")
+    n3_candidates = _csv("financial_annual_walkforward_audit_candidate_audit.csv")
+    length(n2_candidates) == length(n2_grammar) ||
+        error("locked-terminal grammar and candidate audit differ")
+    length(n3_candidates) == length(n3_grammar) ||
+        error("annual walk-forward grammar and candidate audit differ")
+    n2_decomposition = _csv("financial_terminal_audit_decomposition.csv")
+    n3_decomposition = _csv("financial_annual_walkforward_audit_decomposition.csv")
+    n3_episode_rankings = _csv("financial_annual_walkforward_audit_episode_rankings.csv")
+    length(n3_episode_rankings) == 46_990 ||
+        error("annual walk-forward ranking table is incomplete")
+
+    n2_mechanism = _csv("financial_terminal_audit_mechanism_summary.csv")
+    n3_mechanism = _csv("financial_annual_walkforward_audit_mechanism_summary.csv")
+    _only_row(n2_mechanism, "mechanism", "innovation-safe compression")["locked_candidate_quality_change"] == "0.0" ||
+        error("locked-terminal safe-compression future identity failed")
+    _only_row(n3_mechanism, "mechanism", "innovation-safe compression")["future_candidate_quality_change"] == "0.0" ||
+        error("annual walk-forward safe-compression future identity failed")
+
+    n2_uncertainty = _csv("financial_terminal_audit_uncertainty.csv")
+    n3_uncertainty = _csv("financial_annual_walkforward_audit_uncertainty.csv")
+    methods_n2 = Set(row["method"] for row in n2_uncertainty)
+    methods_n3 = Set(row["method"] for row in n3_uncertainty)
+    methods_n2 == Set(["coverage_potential", "current_belief_improvement", "average_validation_score", "raw_parameter_novelty"]) ||
+        error("unexpected locked-terminal uncertainty methods")
+    methods_n3 == Set(["coverage_marginal", "current_belief_improvement", "average_trailing_score", "raw_parameter_novelty"]) ||
+        error("unexpected annual walk-forward uncertainty methods")
+    n2_coverage = _only_row(n2_uncertainty, "method", "coverage_potential")
+    n2_comparator =
+        _only_row(n2_uncertainty, "method", "average_validation_score")
+    n3_coverage = _only_row(n3_uncertainty, "method", "coverage_marginal")
+    n3_comparator =
+        _only_row(n3_uncertainty, "method", "average_trailing_score")
+    n2_coverage["estimate"] == "-0.15595198121182413" &&
+        n2_comparator["estimate"] == "-0.06851304664937993" ||
+        error("locked-terminal coverage-ranking outcome drift")
+    n3_coverage["estimate"] == "0.07041676796323539" &&
+        n3_coverage["lower"] == "0.01896425917898783" &&
+        n3_coverage["upper"] == "0.11868611893554308" &&
+        n3_comparator["estimate"] == "0.011906696885721975" ||
+        error("annual walk-forward coverage-ranking outcome drift")
+    return (;
+        n2_config,
+        n3_config,
+        n2_grammar,
+        n3_grammar,
+        n2_candidates,
+        n3_candidates,
+        n2_decomposition,
+        n3_decomposition,
+        n3_episode_rankings,
+        n2_mechanism,
+        n3_mechanism,
+        n2_uncertainty,
+        n3_uncertainty,
+    )
+end
+
+_boolean(row, key) = row[key] == "true"
+
+function _row_index(rows)
+    index = Dict{String,Dict{String,String}}()
+    for row in rows
+        id = row["strategy_id"]
+        haskey(index, id) && error("duplicate strategy row: $id")
+        index[id] = row
+    end
+    return index
+end
+
+function _module_map(grammar)
+    result = Dict{String,Vector{String}}()
+    for row in grammar
+        modules = split(row["modules"], ';')
+        length(modules) == 7 || error("every financial policy must have seven modules")
+        result[row["strategy_id"]] = modules
+    end
+    return result
+end
+
+function _module_union(ids, modules)
+    result = Set{String}()
+    for id in ids
+        union!(result, modules[id])
+    end
+    return result
+end
+
+function _mean_target_quality(rows)
+    totals = Dict{String,Tuple{Float64,Int}}()
+    for row in rows
+        id = row["strategy_id"]
+        total, count = get(totals, id, (0.0, 0))
+        totals[id] = (
+            total + _float(row, "realized_coverage_target"),
+            count + 1,
+        )
+    end
+    quality = Dict{String,Float64}()
+    for (id, (total, count)) in totals
+        count == 5 || error("annual descendant quality must have five target years")
+        quality[id] = total / count
+    end
+    return quality
+end
+
+function _audit_characteristics(
+    audit::String,
+    grammar,
+    candidates,
+    decomposition,
+    mechanism,
+    candidate_quality::Dict{String,Float64};
+    tolerance::Float64 = 1.0e-12,
+)
+    grammar_index = _row_index(grammar)
+    candidate_index = _row_index(candidates)
+    modules = _module_map(grammar)
+    initial_ids = sort([
+        id for (id, row) in candidate_index if _boolean(row, "in_initial_library")
+    ])
+    safe_ids = sort([
+        id for (id, row) in candidate_index if _boolean(row, "in_safe_library")
+    ])
+    frontier_ids = sort([
+        id for (id, row) in candidate_index if _boolean(row, "in_frontier_only_library")
+    ])
+    enabled_candidate_ids = sort([
+        id for (id, row) in candidate_index if
+        !_boolean(row, "in_initial_library") &&
+        _boolean(row, "enabled_initial")
+    ])
+    isempty(initial_ids) && error("$audit initial library is empty")
+    isempty(safe_ids) && error("$audit safe library is empty")
+    all(haskey(candidate_quality, id) for id in enabled_candidate_ids) ||
+        error("$audit descendant-quality map is incomplete")
+
+    initial_closure = _module_union(initial_ids, modules)
+    frontier_closure = _module_union(frontier_ids, modules)
+    safe_closure = _module_union(safe_ids, modules)
+    initial_closure == safe_closure ||
+        error("$audit innovation-safe library changed module closure")
+    module_carriers = Dict(
+        module_id => count(id -> module_id in modules[id], safe_ids) for
+        module_id in safe_closure
+    )
+    best_quality = maximum(candidate_quality[id] for id in enabled_candidate_ids)
+    best_descendants = Set(
+        id for id in enabled_candidate_ids if
+        isapprox(candidate_quality[id], best_quality; atol = tolerance, rtol = 0)
+    )
+
+    rows = NamedTuple[]
+    for row in decomposition
+        id = row["strategy_id"]
+        id in safe_ids || error("$audit decomposition contains a non-safe policy")
+        reduced_ids = [other for other in safe_ids if other != id]
+        reduced_closure = _module_union(reduced_ids, modules)
+        dependent_candidates = [
+            candidate_id for candidate_id in enabled_candidate_ids if
+            !all(module_id -> module_id in reduced_closure, modules[candidate_id])
+        ]
+        operational = _float(row, "operational")
+        generative = _float(row, "generative")
+        total = _float(row, "total")
+        isapprox(total, operational + generative; atol = tolerance, rtol = 0) ||
+            error("$audit operational--generative decomposition failed for $id")
+        operationally_active = operational > tolerance
+        generatively_valuable = generative > tolerance
+        role = operationally_active && generatively_valuable ? "both" :
+               operationally_active ? "operational_only" :
+               generatively_valuable ? "generative_only" : "neither"
+        unique_module_count =
+            count(module_id -> module_carriers[module_id] == 1, modules[id])
+        grammar_row = grammar_index[id]
+        push!(rows, (
+            audit,
+            strategy_id = id,
+            ticker = grammar_row["ticker"],
+            directional_signal = grammar_row["directional_signal"],
+            entry_filter = grammar_row["entry_filter"],
+            holding_horizon = parse(Int, grammar_row["holding_horizon"]),
+            sizing_rule = grammar_row["sizing_rule"],
+            exit_rule = grammar_row["exit_rule"],
+            risk_constraint = grammar_row["risk_constraint"],
+            operational_value = operational,
+            generative_value = generative,
+            total_retention_value = total,
+            policy_role = role,
+            sparse_frontier_indicator = !operationally_active,
+            unique_module_count,
+            module_count = length(modules[id]),
+            module_uniqueness_share = unique_module_count / length(modules[id]),
+            dependent_candidate_count = length(dependent_candidates),
+            enabled_candidate_count = length(enabled_candidate_ids),
+            dependent_candidate_share =
+                length(dependent_candidates) / length(enabled_candidate_ids),
+            supports_best_descendant =
+                any(candidate_id -> candidate_id in best_descendants, dependent_candidates),
+            generatively_valuable,
+            theorem_evidence = false,
+        ))
+    end
+    length(rows) == length(safe_ids) ||
+        error("$audit decomposition does not cover the safe library")
+
+    frontier_mechanism =
+        _only_row(mechanism, "mechanism", "frontier-only pruning")
+    safe_mechanism =
+        _only_row(mechanism, "mechanism", "innovation-safe compression")
+    future_key =
+        audit == "locked_terminal" ? "locked_candidate_quality_change" :
+        "future_candidate_quality_change"
+    summary = (
+        audit,
+        source_library_size = length(initial_ids),
+        frontier_only_library_size = length(frontier_ids),
+        innovation_safe_library_size = length(safe_ids),
+        frontier_only_reduction =
+            (length(initial_ids) - length(frontier_ids)) / length(initial_ids),
+        innovation_safe_reduction =
+            (length(initial_ids) - length(safe_ids)) / length(initial_ids),
+        frontier_only_current_change =
+            _float(frontier_mechanism, "current_validation_value_change"),
+        innovation_safe_current_change =
+            _float(safe_mechanism, "current_validation_value_change"),
+        source_closure_size = length(initial_closure),
+        frontier_only_closure_size = length(frontier_closure),
+        innovation_safe_closure_size = length(safe_closure),
+        frontier_only_descendant_change =
+            _float(frontier_mechanism, future_key),
+        innovation_safe_descendant_change =
+            _float(safe_mechanism, future_key),
+        operational_only_count =
+            count(row -> row.policy_role == "operational_only", rows),
+        generative_only_count =
+            count(row -> row.policy_role == "generative_only", rows),
+        both_count = count(row -> row.policy_role == "both", rows),
+        neither_count = count(row -> row.policy_role == "neither", rows),
+        sparse_policy_count =
+            count(row -> row.sparse_frontier_indicator, rows),
+        generatively_valuable_count =
+            count(row -> row.generatively_valuable, rows),
+        uniqueness_minimum = minimum(row.module_uniqueness_share for row in rows),
+        uniqueness_maximum = maximum(row.module_uniqueness_share for row in rows),
+        dependence_minimum = minimum(row.dependent_candidate_count for row in rows),
+        dependence_maximum = maximum(row.dependent_candidate_count for row in rows),
+        best_descendant_support_count =
+            count(row -> row.supports_best_descendant, rows),
+    )
+    return (; rows, summary)
+end
+
+function _predictor_group(audit, characteristic, group, rows; identified = true)
+    values = [row.generative_value for row in rows]
+    return (
+        audit,
+        characteristic,
+        group,
+        policy_count = length(rows),
+        generatively_valuable_policy_count =
+            count(row -> row.generatively_valuable, rows),
+        mean_generative_value = isempty(values) ? 0.0 : sum(values) / length(values),
+        maximum_generative_value = isempty(values) ? 0.0 : maximum(values),
+        comparison_identified = identified,
+        theorem_evidence = false,
+    )
+end
+
+function _predictor_rows(audit_rows, summary)
+    maximum_dependence = summary.dependence_maximum
+    uniqueness_varies =
+        !isapprox(
+            summary.uniqueness_minimum,
+            summary.uniqueness_maximum;
+            atol = 1.0e-12,
+            rtol = 0,
+        )
+    groups = NamedTuple[
+        _predictor_group(
+            summary.audit,
+            "frontier_coverage",
+            "operationally_silent",
+            filter(row -> row.sparse_frontier_indicator, audit_rows),
+        ),
+        _predictor_group(
+            summary.audit,
+            "frontier_coverage",
+            "operationally_active",
+            filter(row -> !row.sparse_frontier_indicator, audit_rows),
+        ),
+        _predictor_group(
+            summary.audit,
+            "module_uniqueness",
+            uniqueness_varies ? "above_audit_median" : "no_within_audit_variation",
+            uniqueness_varies ? filter(
+                row ->
+                    row.module_uniqueness_share >
+                    sort(getfield.(audit_rows, :module_uniqueness_share))[
+                        cld(length(audit_rows), 2)
+                    ],
+                audit_rows,
+            ) : audit_rows;
+            identified = uniqueness_varies,
+        ),
+        _predictor_group(
+            summary.audit,
+            "candidate_module_constraint",
+            "maximum_dependent_candidate_count",
+            filter(
+                row -> row.dependent_candidate_count == maximum_dependence,
+                audit_rows,
+            ),
+        ),
+        _predictor_group(
+            summary.audit,
+            "candidate_module_constraint",
+            "below_maximum_dependent_candidate_count",
+            filter(
+                row -> row.dependent_candidate_count < maximum_dependence,
+                audit_rows,
+            ),
+        ),
+        _predictor_group(
+            summary.audit,
+            "best_descendant_support",
+            "supports_best_descendant",
+            filter(row -> row.supports_best_descendant, audit_rows),
+        ),
+        _predictor_group(
+            summary.audit,
+            "best_descendant_support",
+            "does_not_support_best_descendant",
+            filter(row -> !row.supports_best_descendant, audit_rows),
+        ),
+    ]
+    return groups
+end
+
+"""
+    financial_compression_analysis()
+
+Recompute the publication-facing innovation-safe compression diagnostics from
+the already committed aggregate financial artifacts. The locked scoring
+engines, universes, candidate scores, comparator sets, and decision hashes are
+not rerun or modified.
+"""
+function financial_compression_analysis()
+    inputs = _validate_financial_inputs()
+    n2_candidate_index = _row_index(inputs.n2_candidates)
+    n2_quality = Dict(
+        id => _float(row, "locked_net_utility") for
+        (id, row) in n2_candidate_index if
+        !_boolean(row, "in_initial_library") && _boolean(row, "enabled_initial")
+    )
+    n3_quality = _mean_target_quality(inputs.n3_episode_rankings)
+    locked = _audit_characteristics(
+        "locked_terminal",
+        inputs.n2_grammar,
+        inputs.n2_candidates,
+        inputs.n2_decomposition,
+        inputs.n2_mechanism,
+        n2_quality,
+    )
+    annual = _audit_characteristics(
+        "annual_walk_forward",
+        inputs.n3_grammar,
+        inputs.n3_candidates,
+        inputs.n3_decomposition,
+        inputs.n3_mechanism,
+        n3_quality,
+    )
+    summaries = [locked.summary, annual.summary]
+    policy_rows = vcat(locked.rows, annual.rows)
+    predictor_rows = vcat(
+        _predictor_rows(locked.rows, locked.summary),
+        _predictor_rows(annual.rows, annual.summary),
+    )
+
+    locked.summary.source_library_size == 80 || error("locked source size drift")
+    locked.summary.frontier_only_library_size == 3 ||
+        error("locked frontier-only size drift")
+    locked.summary.innovation_safe_library_size == 25 ||
+        error("locked safe size drift")
+    annual.summary.source_library_size == 202 || error("annual source size drift")
+    annual.summary.frontier_only_library_size == 5 ||
+        error("annual frontier-only size drift")
+    annual.summary.innovation_safe_library_size == 100 ||
+        error("annual safe size drift")
+    all(
+        summary.frontier_only_current_change == 0.0 &&
+        summary.innovation_safe_current_change == 0.0 &&
+        summary.source_closure_size == summary.innovation_safe_closure_size
+        for summary in summaries
+    ) || error("financial compression preservation gate failed")
+    locked.summary.frontier_only_descendant_change < 0 &&
+        annual.summary.frontier_only_descendant_change < 0 ||
+        error("locked frontier-only descendant-quality losses changed sign")
+    all(summary.innovation_safe_descendant_change == 0.0 for summary in summaries) ||
+        error("innovation-safe descendant-quality identity failed")
+    all(summary.generatively_valuable_count == 1 for summary in summaries) ||
+        error("generative-carrier count drift")
+    all(summary.best_descendant_support_count == 1 for summary in summaries) ||
+        error("best-descendant support count drift")
+    all(
+        isapprox(summary.uniqueness_minimum, 1 / 7; atol = 1.0e-12, rtol = 0) &&
+        isapprox(summary.uniqueness_maximum, 1 / 7; atol = 1.0e-12, rtol = 0)
+        for summary in summaries
+    ) || error("module-uniqueness identification boundary drift")
+    all(
+        !row.generatively_valuable ||
+        (row.sparse_frontier_indicator && row.supports_best_descendant)
+        for row in policy_rows
+    ) || error("generative carriers lost their registered structural traits")
+
+    return (; inputs, summaries, policy_rows, predictor_rows)
+end
+
+_csv_value(value::AbstractFloat) = @sprintf("%.10f", value)
+_csv_value(value::Bool) = value ? "true" : "false"
+_csv_value(value) = string(value)
+
+function _csv_source(rows, columns)
+    isempty(rows) && error("cannot render an empty CSV")
+    header = join(string.(columns), ',')
+    body = String[]
+    for row in rows
+        values = [_csv_value(getfield(row, column)) for column in columns]
+        all(!occursin(',', value) for value in values) ||
+            error("generated CSV fields may not contain commas")
+        push!(body, join(values, ','))
+    end
+    return string(header, '\n', join(body, '\n'), '\n')
+end
+
+const FINANCIAL_POLICY_COLUMNS = (
+    :audit,
+    :strategy_id,
+    :ticker,
+    :directional_signal,
+    :entry_filter,
+    :holding_horizon,
+    :sizing_rule,
+    :exit_rule,
+    :risk_constraint,
+    :operational_value,
+    :generative_value,
+    :total_retention_value,
+    :policy_role,
+    :sparse_frontier_indicator,
+    :unique_module_count,
+    :module_count,
+    :module_uniqueness_share,
+    :dependent_candidate_count,
+    :enabled_candidate_count,
+    :dependent_candidate_share,
+    :supports_best_descendant,
+    :generatively_valuable,
+    :theorem_evidence,
+)
+
+const FINANCIAL_PREDICTOR_COLUMNS = (
+    :audit,
+    :characteristic,
+    :group,
+    :policy_count,
+    :generatively_valuable_policy_count,
+    :mean_generative_value,
+    :maximum_generative_value,
+    :comparison_identified,
+    :theorem_evidence,
+)
+
+const FINANCIAL_ESTIMAND_METADATA_COLUMNS = (
+    :audit,
+    :estimand_symbol,
+    :estimand_name,
+    :evaluation_timing,
+    :outcome_source,
+    :algorithm_input,
+    :forecast,
+    :policy_score,
+    :deployable_selection_criterion,
+    :diagnostic_role,
+    :innovation_safe_acceptance_test,
+    :frontier_only_acceptance_test,
+    :theorem_evidence,
+)
+
+function _financial_estimand_metadata_rows()
+    return [
+        (
+            audit,
+            estimand_symbol = "Q_a(L')",
+            estimand_name = "ex post enabled-descendant opportunity quality",
+            evaluation_timing = "after pruning decisions are fixed",
+            outcome_source = "held-out audit outcomes",
+            algorithm_input = false,
+            forecast = false,
+            policy_score = false,
+            deployable_selection_criterion = false,
+            diagnostic_role = "whether retained modules preserve access to high-quality held-out candidates",
+            innovation_safe_acceptance_test = "frontier equality and closure equality",
+            frontier_only_acceptance_test = "frontier equality",
+            theorem_evidence = false,
+        ) for audit in ("locked_terminal", "annual_walk_forward")
+    ]
+end
+
+function _financial_compression_figure_source(analysis)
+    locked = only(filter(
+        summary -> summary.audit == "locked_terminal",
+        analysis.summaries,
+    ))
+    annual = only(filter(
+        summary -> summary.audit == "annual_walk_forward",
+        analysis.summaries,
+    ))
+    bar_origin, bar_width = 3.20, 3.70
+    locked_frontier_end = bar_origin +
+        bar_width * locked.frontier_only_library_size / locked.source_library_size
+    locked_safe_end = bar_origin +
+        bar_width * locked.innovation_safe_library_size / locked.source_library_size
+    annual_frontier_end = bar_origin +
+        bar_width * annual.frontier_only_library_size / annual.source_library_size
+    annual_safe_end = bar_origin +
+        bar_width * annual.innovation_safe_library_size / annual.source_library_size
+    locked_frontier_closure_end = bar_origin +
+        bar_width * locked.frontier_only_closure_size / locked.source_closure_size
+    annual_frontier_closure_end = bar_origin +
+        bar_width * annual.frontier_only_closure_size / annual.source_closure_size
+    full_end = bar_origin + bar_width
+    return """% Generated by julia/scripts/generate_manuscript_numerical_artifacts.jl.
+% Sources: registered financial mechanism, decomposition, grammar, candidate-audit,
+% and annual episode-ranking CSVs. The locked scoring engines are not rerun here.
+\\begin{tikzpicture}[x=1cm,y=1cm,font=\\scriptsize]
+  \\tikzset{
+    panel/.style={draw=black!30,rounded corners=2pt,fill=black!1},
+    frontier/.style={draw=blue!72!black,fill=blue!60},
+    safe/.style={draw=orange!85!black,fill=orange!70},
+    title/.style={font=\\bfseries\\footnotesize,anchor=north west},
+    note/.style={font=\\scriptsize,anchor=west,text=black!65},
+    card/.style={draw=black!25,rounded corners=1pt,align=center,inner sep=3pt}
+  }
+
+  % Shared legend and exact zero-frontier-change qualification.
+  \\draw[frontier] (7.75,6.35) rectangle (8.15,6.55);
+  \\node[anchor=west] at (8.25,6.45) {frontier-only \\(L^F\\)};
+  \\draw[safe] (11.00,6.35) rectangle (11.40,6.55);
+  \\node[anchor=west] at (11.50,6.45) {innovation-safe \\(L^S\\)};
+  \\node[anchor=west,text=black!65] at (0.25,6.45)
+    {Both rules have exact validation-frontier change zero.};
+
+  % (a) Fraction of source strategies retained.
+  \\draw[panel] (0,2.70) rectangle (7.75,6.10);
+  \\node[title] at (0.30,5.85) {(a) Strategies retained from the source};
+  \\foreach \\x/\\label in {$bar_origin/0,$(_decimal(bar_origin + bar_width / 2))/50,$(_decimal(full_end))/100\\%} {
+    \\draw[black!18] (\\x,3.20) -- (\\x,5.35);
+    \\node[anchor=north] at (\\x,3.12) {\\label};
+  }
+  \\node[anchor=east] at (3.00,5.15) {Locked \\(L^F\\): $(locked.frontier_only_library_size)/$(locked.source_library_size)};
+  \\draw[frontier] ($bar_origin,5.06) rectangle ($(_decimal(locked_frontier_end)),5.24);
+  \\node[anchor=east] at (3.00,4.75) {Locked \\(L^S\\): $(locked.innovation_safe_library_size)/$(locked.source_library_size)};
+  \\draw[safe] ($bar_origin,4.66) rectangle ($(_decimal(locked_safe_end)),4.84);
+  \\node[anchor=east] at (3.00,4.20) {Annual \\(L^F\\): $(annual.frontier_only_library_size)/$(annual.source_library_size)};
+  \\draw[frontier] ($bar_origin,4.11) rectangle ($(_decimal(annual_frontier_end)),4.29);
+  \\node[anchor=east] at (3.00,3.80) {Annual \\(L^S\\): $(annual.innovation_safe_library_size)/$(annual.source_library_size)};
+  \\draw[safe] ($bar_origin,3.71) rectangle ($(_decimal(annual_safe_end)),3.89);
+
+  % (b) Fraction of source modules retained.
+  \\draw[panel] (8.15,2.70) rectangle (15.90,6.10);
+  \\node[title] at (8.45,5.85) {(b) Modules retained from the source};
+  \\foreach \\x/\\label in {$(_decimal(8.15 + bar_origin))/0,$(_decimal(8.15 + bar_origin + bar_width / 2))/50,$(_decimal(8.15 + full_end))/100\\%} {
+    \\draw[black!18] (\\x,3.20) -- (\\x,5.35);
+    \\node[anchor=north] at (\\x,3.12) {\\label};
+  }
+  \\node[anchor=east] at (11.15,5.15) {Locked \\(L^F\\): $(locked.frontier_only_closure_size)/$(locked.source_closure_size)};
+  \\draw[frontier] ($(_decimal(8.15 + bar_origin)),5.06) rectangle ($(_decimal(8.15 + locked_frontier_closure_end)),5.24);
+  \\node[anchor=east] at (11.15,4.75) {Locked \\(L^S\\): $(locked.innovation_safe_closure_size)/$(locked.source_closure_size)};
+  \\draw[safe] ($(_decimal(8.15 + bar_origin)),4.66) rectangle ($(_decimal(8.15 + full_end)),4.84);
+  \\node[anchor=east] at (11.15,4.20) {Annual \\(L^F\\): $(annual.frontier_only_closure_size)/$(annual.source_closure_size)};
+  \\draw[frontier] ($(_decimal(8.15 + bar_origin)),4.11) rectangle ($(_decimal(8.15 + annual_frontier_closure_end)),4.29);
+  \\node[anchor=east] at (11.15,3.80) {Annual \\(L^S\\): $(annual.innovation_safe_closure_size)/$(annual.source_closure_size)};
+  \\draw[safe] ($(_decimal(8.15 + bar_origin)),3.71) rectangle ($(_decimal(8.15 + full_end)),3.89);
+
+  % (c) Ex post enabled-descendant quality; audit units are not pooled.
+  \\draw[panel] (0,0) rectangle (15.90,2.45);
+  \\node[title] at (0.30,2.20) {(c) Ex post enabled-descendant opportunity quality \\(Q_a\\)};
+  \\node[card,text width=5.60cm,minimum height=1.25cm] at (4.10,1.12)
+    {Locked audit unit\\\\frontier-only: \\(\\Delta Q_{\\mathrm T}=$(@sprintf("%.4f", locked.frontier_only_descendant_change))\\)\\\\
+     innovation-safe: \\(\\Delta Q_{\\mathrm T}=0\\)};
+  \\node[card,text width=5.60cm,minimum height=1.25cm] at (11.80,1.12)
+    {Annual audit unit\\\\frontier-only: \\(\\Delta Q_{\\mathrm A}=$(@sprintf("%.4f", annual.frontier_only_descendant_change))\\)\\\\
+     innovation-safe: \\(\\Delta Q_{\\mathrm A}=0\\)};
+  \\node[note] at (0.35,0.20) {Held out after pruning; separate audit-specific scales and no pooled magnitude.};
+\\end{tikzpicture}
+"""
+end
+
+const METHOD_ROWS = [
+    ("coverage", "coverage_potential", "coverage_marginal", "blue!72!black", "circle"),
+    ("current belief", "current_belief_improvement", "current_belief_improvement", "black!72", "square"),
+    ("average score", "average_validation_score", "average_trailing_score", "black!72", "triangle"),
+    ("module novelty", "raw_parameter_novelty", "raw_parameter_novelty", "black!72", "diamond"),
+]
+
+function _map_x(value, minimum, maximum, origin, width)
+    minimum <= value <= maximum || error("financial interval is outside the plotting contract")
+    return origin + width * (value - minimum) / (maximum - minimum)
+end
+
+function _marker_command(marker, color, x, y)
+    xs, ys = _decimal(x), _decimal(y)
+    marker == "circle" && return "  \\fill[$color] ($xs,$ys) circle (0.095);"
+    marker == "square" && return "  \\fill[$color] ($(_decimal(x - 0.09)),$(_decimal(y - 0.09))) rectangle ($(_decimal(x + 0.09)),$(_decimal(y + 0.09)));"
+    marker == "triangle" && return "  \\fill[$color] ($xs,$(_decimal(y + 0.12))) -- ($(_decimal(x - 0.11)),$(_decimal(y - 0.09))) -- ($(_decimal(x + 0.11)),$(_decimal(y - 0.09))) -- cycle;"
+    marker == "diamond" && return "  \\fill[$color] ($xs,$(_decimal(y + 0.13))) -- ($(_decimal(x - 0.11)),$ys) -- ($xs,$(_decimal(y - 0.13))) -- ($(_decimal(x + 0.11)),$ys) -- cycle;"
+    error("unknown marker: $marker")
+end
+
+function _financial_panel(rows, method_index, xminimum, xmaximum, origin, width)
+    commands = String[]
+    for (row_index, (label, n2_method, n3_method, color, marker)) in enumerate(METHOD_ROWS)
+        method = method_index == 2 ? n2_method : n3_method
+        row = _only_row(rows, "method", method)
+        estimate = _float(row, "estimate")
+        lower = _float(row, "lower")
+        upper = _float(row, "upper")
+        y = 4.25 - row_index
+        xl = _map_x(lower, xminimum, xmaximum, origin, width)
+        xe = _map_x(estimate, xminimum, xmaximum, origin, width)
+        xu = _map_x(upper, xminimum, xmaximum, origin, width)
+        push!(commands, "  \\draw[$color,line width=0.9pt] ($(_decimal(xl)),$(_decimal(y))) -- ($(_decimal(xu)),$(_decimal(y)));" )
+        push!(commands, "  \\draw[$color] ($(_decimal(xl)),$(_decimal(y - 0.1))) -- ($(_decimal(xl)),$(_decimal(y + 0.1)));" )
+        push!(commands, "  \\draw[$color] ($(_decimal(xu)),$(_decimal(y - 0.1))) -- ($(_decimal(xu)),$(_decimal(y + 0.1)));" )
+        push!(commands, _marker_command(marker, color, xe, y))
+        push!(commands, "  \\node[anchor=east] at ($(_decimal(origin - 0.18)),$(_decimal(y))) {$label};" )
+    end
+    return join(commands, '\n')
+end
+
+function _financial_figure_source(inputs)
+    n2_origin, n2_width = 2.0, 4.1
+    n3_origin, n3_width = 9.1, 4.1
+    n2_panel = _financial_panel(inputs.n2_uncertainty, 2, -0.5, 0.05, n2_origin, n2_width)
+    n3_panel = _financial_panel(inputs.n3_uncertainty, 3, -0.005, 0.125, n3_origin, n3_width)
+    n2_zero = _map_x(0.0, -0.5, 0.05, n2_origin, n2_width)
+    n3_zero = _map_x(0.0, -0.005, 0.125, n3_origin, n3_width)
+    return """% Generated by julia/scripts/generate_manuscript_numerical_artifacts.jl.
+% Sources: financial_terminal_audit_uncertainty.csv and financial_annual_walkforward_audit_uncertainty.csv.
+\\begin{tikzpicture}[x=0.92cm,y=0.48cm,font=\\scriptsize]
+  \\node[font=\\bfseries] at (4.05,5.45) {(a) Locked terminal audit};
+  \\node at (4.05,4.85) {locked utility};
+  \\node[font=\\bfseries] at (11.15,5.45) {(b) Annual walk-forward audit};
+  \\node at (11.15,4.85) {realized coverage};
+  \\draw[black!55,densely dashed] ($(_decimal(n2_zero)),0.05) -- ($(_decimal(n2_zero)),4.55);
+  \\draw[black!55,densely dashed] ($(_decimal(n3_zero)),0.05) -- ($(_decimal(n3_zero)),4.55);
+$n2_panel
+$n3_panel
+  \\draw[->,black!70] ($(_decimal(n2_origin)),0) -- ($(_decimal(n2_origin + n2_width + 0.2)),0);
+  \\draw[->,black!70] ($(_decimal(n3_origin)),0) -- ($(_decimal(n3_origin + n3_width + 0.2)),0);
+  \\foreach \\value/\\label in {-0.5/{-0.50},-0.25/{-0.25},0/{0}} {
+    \\pgfmathsetmacro{\\xp}{$n2_origin+$n2_width*(\\value+0.5)/0.55}
+    \\draw[black!60] (\\xp,0) -- (\\xp,-0.13);
+    \\node[anchor=north] at (\\xp,-0.18) {\\label};
+  }
+  \\foreach \\value/\\label in {0/{0},0.05/{0.05},0.10/{0.10}} {
+    \\pgfmathsetmacro{\\xp}{$n3_origin+$n3_width*(\\value+0.005)/0.13}
+    \\draw[black!60] (\\xp,0) -- (\\xp,-0.13);
+    \\node[anchor=north] at (\\xp,-0.18) {\\label};
+  }
+  \\node[anchor=north] at (4.05,-0.75) {estimate and 95\\% block interval};
+  \\node[anchor=north] at (11.15,-0.75) {estimate and 95\\% annual interval};
+\\end{tikzpicture}
+"""
+end
+
+function _financial_table_source(inputs)
+    n2_frontier = _only_row(inputs.n2_mechanism, "mechanism", "frontier-only pruning")
+    n3_frontier = _only_row(inputs.n3_mechanism, "mechanism", "frontier-only pruning")
+    n2_safe = _only_row(inputs.n2_mechanism, "mechanism", "innovation-safe compression")
+    n3_safe = _only_row(inputs.n3_mechanism, "mechanism", "innovation-safe compression")
+    return """% Generated by julia/scripts/generate_manuscript_numerical_artifacts.jl.
+% Sources: financial_terminal_audit*.toml and registered financial summary CSVs.
+\\begin{tabular}{@{}p{0.20\\linewidth}p{0.37\\linewidth}p{0.37\\linewidth}@{}}
+\\toprule
+Design or diagnostic & Locked terminal audit & Annual walk-forward audit \\\\
+\\midrule
+Universe and grammar & 25 surviving ETFs; 3 belief states; 2,400 strategies & 100 endpoint-stable surviving ETFs; 5 belief states; 9,600 strategies \\\\
+Split & Development 2009--2014; validation 2015--2019; locked 2020--2024 & Same initial split; five trailing-five-year decisions for 2020--2024 \\\\
+Timing and costs & Signal through close \\(t\\); two-return-index lag; 5 bp one-way base cost & Same lag and 5 bp base cost; 1 and 10 bp sensitivities in both runs \\\\
+Pruning information & Validation frontier; innovation-safe also uses structural closure & Validation frontier; innovation-safe also uses structural closure \\\\
+Ranking information & Development/validation score fixed after compression and before locked outcomes & Trailing-through-\\(y-1\\) score fixed after compression and before target \\(y\\) \\\\
+Frontier-only pruning & \\(80\\to3\\); current change 0; ex post \\(\\Delta Q_a=-0.0016\\) & \\(202\\to5\\); current change 0; ex post \\(\\Delta Q_a=-0.1020\\) \\\\
+Innovation-safe pruning & \\(80\\to25\\); frontier and closure changes 0; ex post \\(\\Delta Q_a=0\\) & \\(202\\to100\\); frontier and closure changes 0; ex post \\(\\Delta Q_a=0\\) \\\\
+\\(Q_a\\) information status & Ex post held-out outcome; not an input, forecast, policy score, or deployable criterion & Ex post held-out outcome; not an input, forecast, policy score, or deployable criterion \\\\
+Post-decision diagnostics & Compression, uniqueness, and dependence are retrospective; locked utility is held out & Compression, uniqueness, and dependence are retrospective; realized coverage and oracle regret are held out \\\\
+Ex post generative carrier & GLD: operational 0, generative 0.0016 & UNG: operational 0, generative 0.0534 \\\\
+Coverage outcome & Top-10 improvement \\(-0.1560\\); best comparator \\(-0.0685\\) & Mean top-5 set coverage 0.0704; best comparator 0.0119; positive in 3/5 years \\\\
+\\bottomrule
+\\end{tabular}
+"""
+end
+
+function _expected_outputs()
+    convergence = _validate_convergence()
+    fixtures = _validate_numerical_fixtures()
+    analysis = financial_compression_analysis()
+    financial = analysis.inputs
+    return Dict(
+        "convergence" => _convergence_source(convergence),
+        "numerical_table" => _numerical_table_source(fixtures),
+        "financial_figure" => _financial_figure_source(financial),
+        "financial_compression_figure" =>
+            _financial_compression_figure_source(analysis),
+        "financial_table" => _financial_table_source(financial),
+        "financial_policy_data" =>
+            _csv_source(analysis.policy_rows, FINANCIAL_POLICY_COLUMNS),
+        "financial_predictor_data" =>
+            _csv_source(analysis.predictor_rows, FINANCIAL_PREDICTOR_COLUMNS),
+        "financial_estimand_metadata" => _csv_source(
+            _financial_estimand_metadata_rows(),
+            FINANCIAL_ESTIMAND_METADATA_COLUMNS,
+        ),
+    )
+end
+
+function generate_manuscript_numerical_artifacts()
+    expected = _expected_outputs()
+    for key in sort!(collect(keys(OUTPUTS)))
+        path = OUTPUTS[key]
+        mkpath(dirname(path))
+        write(path, expected[key])
+    end
+    return OUTPUTS
+end
+
+function check_manuscript_numerical_artifacts()
+    expected = _expected_outputs()
+    for key in sort!(collect(keys(OUTPUTS)))
+        path = OUTPUTS[key]
+        isfile(path) || error("missing generated manuscript artifact: $path")
+        read(path, String) == expected[key] || error("generated manuscript artifact drift: $path")
+    end
+    return OUTPUTS
+end
+
+function main()
+    check_only = ARGS == ["--check"]
+    isempty(ARGS) || check_only || throw(
+        ArgumentError("usage: generate_manuscript_numerical_artifacts.jl [--check]"),
+    )
+    outputs = check_only ? check_manuscript_numerical_artifacts() :
+              generate_manuscript_numerical_artifacts()
+    for key in sort!(collect(keys(outputs)))
+        println(check_only ? "checked " : "wrote ", outputs[key])
+    end
+    return outputs
+end
+
+if abspath(PROGRAM_FILE) == @__FILE__
+    main()
+end
+
+end

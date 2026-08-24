@@ -1,0 +1,177 @@
+% Page budget: 2.5--3 pages.
+\section{Literature boundary}\label{sec:literature-boundary}
+
+The paper draws on established ideas from partial-information and semi-Markov
+control, state and policy reduction, compact control libraries, generative
+action sets, evolving skill libraries, and automated financial-strategy
+construction.  We treat each of those ingredients as prior art.  The claimed
+boundary is narrower: their joint use in a finite model where a retained
+strategy can be both a current control and a carrier needed to generate later
+verified descendants.  This section first locates the broad ingredients and
+then concentrates on the closest compression and library comparisons.
+
+\subsection{Control and representation}
+
+Belief-state reduction is standard in partially observable Markov decision
+processes.  Finite-horizon POMDP values admit piecewise-linear convex
+representations, and incremental pruning removes redundant alpha vectors from
+fixed-model dynamic-programming backups
+\cite{SmallwoodSondik1973,CassandraLittmanZhang1997}.  Bisimulation and related
+equivalence relations support state aggregation and model minimization when
+states agree on the behavior relevant to a specified comparison class
+\cite{GivanDeanGreig2003}.  Semi-Markov control likewise accommodates random
+decision durations.  White develops a sufficient-statistic dynamic program
+for a finite-horizon, partially observed semi-Markov problem
+\cite{White1976}; partial-information switching and regime-switching trading
+models use filtered beliefs to govern costly changes of operating mode
+\cite{LiNystromOlofsson2015,DaiZhangZhu2010}.
+
+These results supply the control architecture used here.  The paper's
+frontier--closure statistic is a model-specific reduction of an augmented raw
+process, not a new general theory of POMDP sufficiency or semi-Markov timing.
+The additional issue is that the library is endogenous state: two libraries
+can have the same current payoff envelope but different parent-conditioned
+candidate laws.  The operating frontier records current control value, while
+the generative closure records the modules available to the modeled research
+process.  Standard alpha-vector pruning or MDP aggregation could be applied to
+a fully encoded augmented model; the present reduction identifies the smaller
+statistic implied by the paper's finite generation, verification, and
+admission law.
+
+Safety and statistical validation provide other preservation criteria.
+Finite-state-controller methods give high-probability policy improvement for
+POMDPs, while static policy libraries can support finite-horizon runtime-safety
+coverage \cite{SimaoSuilenJansen2023,KimEtAl2026PLCBF}.  Reality-check and
+high-confidence policy-improvement methods address selection bias or the
+performance of evaluated policies
+\cite{White2000,ThomasTheocharousGhavamzadeh2015}.  Those criteria remain
+important but distinct from exact equality of a source library's current
+frontier and attainable descendant closure.
+
+\subsection{Compression and resource-limited libraries}
+
+\paragraph{Reward-free policy-space compression.}
+Mutti, Del Col, and Restelli compress a parametric policy space into finitely
+many representatives whose induced state--action distributions provide
+reward-free R\'enyi-divergence coverage.  Their formulation is related to set
+cover and is NP-hard in general \cite{MuttiDelColRestelli2022}.  This is the
+closest policy-compression comparison because it selects a compact policy set
+before downstream rewards are specified.  Its preserved object is
+distributional representativeness.  Here the feasible sets are sublibraries
+of a named source, and feasibility requires exact equality of two semantic
+objects.  A currently dominated strategy can therefore be retained when it is
+the unique carrier of a module required by an attainable descendant.  The two
+problems impose different covering relations even though both value compact
+policy sets.
+
+\paragraph{Control-library optimization.}
+Dey et al. select and order compact libraries of maneuvers or trajectories,
+using submodular-sequence structure to improve expected task performance or
+reduce search depth \cite{DeyEtAl2012}.  This is the closest classical
+control-library optimization problem: the library itself is the decision
+variable and computation is scarce.  Its candidates are evaluated through
+static task usefulness.  In the present model, retaining a candidate can also
+change the future candidate set, so module complementarities can matter even
+when current operating value does not.  Consequently, exact safe compression
+is a finite combinatorial minimization under frontier--closure equality;
+rechecked single deletions certify feasibility but do not generally solve the
+global minimum-burden problem.
+
+Metareasoning prices computations by their effect on later decisions, and
+adaptive-submodular formulations obtain greedy guarantees under diminishing
+stochastic marginal benefits
+\cite{RussellWefald1991,HayEtAl2012,GolovinKrause2011}.  These are the natural
+resource-allocation antecedents.  The paper does not assume the diminishing
+returns needed for a generic greedy guarantee.  Its hard-capacity and
+resource-price variants instead optimize over finitely many eligible
+libraries; complementarities and discrete changes in the selected library
+can produce nonconcave capacity increments and piecewise-affine penalized
+value.
+
+\paragraph{Generative action sets.}
+Xu et al. study online decision making when an agent can pay once to generate
+a new action that remains available, and derive a sublinear-regret algorithm
+for the creation--exploration--exploitation trade-off
+\cite{XuEtAl2026GenerativeActions}.  This establishes costly generation and
+persistent reuse as prior art.  In that model, action generation expands the
+menu but is not conditioned on retaining particular existing actions as
+parents.  Here that dependency changes the deletion problem: removal can
+leave every current action value unchanged while removing the modules needed
+to reach a later action.  The distinction is parent-conditioned reachability,
+not the broad idea that actions can be generated.
+
+\subsection{Maintained and evolving skill libraries}
+
+Maintained skill libraries make parent and dependency structure operational.
+SkillFoundry builds validated executable skills from heterogeneous scientific
+resources and expands, repairs, merges, or prunes the resulting library
+\cite{ShenEtAl2026SkillFoundry}.  SkillOps represents skills by typed contracts
+and organizes dependency, compatibility, validation, and maintenance signals
+in a library-level ecosystem graph \cite{PuSongZhao2026SkillOps}.
+Programmatic Skill Networks link executable programs through invocations and
+use duplicate removal, link redirection, branch pruning, and rollback
+validation during evolution \cite{ShiYuanLiu2026PSN}.  These systems are the
+closest dependency-aware comparisons because removing one entry can affect
+later composition, retrieval, or construction rather than only present task
+performance.
+
+Related systems recursively evolve skill banks, maintain typed skill graphs,
+construct hierarchical or versioned registries, compile external knowledge
+into reusable procedures, and synthesize code policies from validated
+components
+\cite{XiaEtAl2026SkillRL,LiEtAl2026SkillGraph,WangEtAl2026AutoSkills,%
+PanEtAl2026Anything2Skill,ChunEtAl2026FCGraft}.  Together they establish
+maintained, evolving, compositional skill libraries as prior art.  Their
+maintenance objectives are benchmark success, retrieval quality, validation,
+latency, compatibility, or lifecycle health.  The present abstraction takes a
+fixed finite generation--verification--admission law as primitive and asks a
+different audit question: which source entries can be removed while exactly
+preserving both the operating frontier and every modeled feasible admitted
+descendant?  It is not a replacement for engineering criteria concerning
+tests, provenance, repair, retrieval, or rollback.
+
+\subsection{Generated financial strategies}
+
+Automated financial-rule construction also has a long history.  Genetic
+search has been used to generate technical trading rules, and direct
+reinforcement learning to construct trading policies
+\cite{AllenKarjalainen1999,MoodySaffell2001}.  More recent systems add
+persistent libraries, reusable experience, and verification.  FactorMiner
+combines formulaic factors with reusable evaluation skills and experience
+memory; ReCAP maintains regime-specific portfolio policies and combines them
+through a regime gate
+\cite{WangEtAl2026FactorMiner,PanEtAl2026ReCAP}.  These are substantive
+financial library precedents: one uses retained experience to guide later
+generation, while the other maintains a regime-specific operating policy
+library.
+
+AlgoEvolve and EVOQUANT are the closest generated-strategy systems.
+AlgoEvolve evolves executable trading programs and uses selected programs as
+parents of later mutations; EVOQUANT applies controlled edits, provenance,
+verification gates, and retained optimization experience
+\cite{SharmaShroff2026AlgoEvolve,MaoEtAl2026EvoQuant}.  They demonstrate that
+financial strategies can be generated, empirically screened, retained, and
+used in later search.  The present paper begins after the finite generator and
+admission law have been specified and studies source-relative retention under
+partial information.  Its retrospective financial audits are therefore
+compression diagnostics, not evidence of causal improvement, forecasting
+ability, market alpha, or deployable performance.
+
+\paragraph{Joint claim boundary.}
+This paper does not claim novelty for belief-state or semi-Markov control,
+policy or control-library compression, generated actions, evolving skill
+libraries, or automated financial-strategy generation.  Its claim concerns
+the joint finite-model treatment.  The raw partial-information process
+projects to belief, operating frontier, and generative closure; exact
+source-relative compression then minimizes retention burden while preserving
+both productive objects and the modeled control process.  Rechecked
+frontier--closure equality certifies sequential deletion, although a
+deletion-irreducible endpoint need not be globally minimum-resource, and a
+sharp bridge construction shows that frontier-only pruning can lose the
+complete attainable delayed-descendant margin.  Over finite eligible
+libraries, hard-capacity and resource-price selection yield attained but
+potentially nonconcave, complementary, and discrete geometry, while productive
+value separates operational and generative channels within fixed regimes.
+Exact fixtures, registered synthetic stress tests, and retrospective financial
+audits examine these mechanisms at distinct evidence levels.  The claimed
+boundary is this package as a unit, not any ingredient in isolation.

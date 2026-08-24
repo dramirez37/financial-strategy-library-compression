@@ -1,0 +1,88 @@
+{
+  "schema_version": "lean-julia-exact-fixture-v2",
+  "fixture_id": "safe_deletion",
+  "theorem_family": "T3 safe deletion",
+  "beliefs": ["low", "high"],
+  "transition_rows": [
+    ["1//1", "0//1"],
+    ["0//1", "1//1"]
+  ],
+  "discount": "1//2",
+  "modules": ["signal"],
+  "strategies": [
+    {
+      "id": "inactive",
+      "operational_profile": ["0//1", "0//1"],
+      "modules": []
+    },
+    {
+      "id": "leader",
+      "operational_profile": ["2//1", "1//1"],
+      "modules": ["signal"]
+    },
+    {
+      "id": "duplicate",
+      "operational_profile": ["1//1", "1//1"],
+      "modules": ["signal"]
+    }
+  ],
+  "libraries": [
+    {
+      "id": "after",
+      "strategies": ["inactive", "leader"]
+    },
+    {
+      "id": "before",
+      "strategies": ["inactive", "leader", "duplicate"]
+    }
+  ],
+  "projects": [
+    {
+      "id": "observe",
+      "cost": ["0//1", "0//1"],
+      "duration": 1,
+      "survival": "1//1",
+      "strict_cost": false,
+      "required_modules": ["signal"],
+      "candidate_strategies": ["leader"]
+    }
+  ],
+  "expected": {
+    "rational_scalars": [],
+    "rational_vectors": [
+    {
+      "id": "frontier_after",
+      "values": ["2//1", "1//1"]
+    },
+    {
+      "id": "frontier_before",
+      "values": ["2//1", "1//1"]
+    }
+  ],
+    "boolean_scalars": [
+    {
+      "id": "compressed_state_equal",
+      "value": true
+    },
+    {
+      "id": "generatively_redundant",
+      "value": true
+    },
+    {
+      "id": "operationally_redundant",
+      "value": true
+    }
+  ],
+    "boolean_vectors": [],
+    "string_vectors": [
+    {
+      "id": "modules_after",
+      "values": ["signal"]
+    },
+    {
+      "id": "modules_before",
+      "values": ["signal"]
+    }
+  ]
+  }
+}

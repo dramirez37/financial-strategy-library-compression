@@ -1,0 +1,161 @@
+schema_version = "financial-illustration-v2"
+experiment_id = "larger-100-etf-walk-forward-mechanism-illustration-v2"
+status = "ready_with_reviewer_supplied_licensed_crsp"
+protocol_date = "2026-07-21"
+protocol_base_commit = "c5ce906"
+julia_version = "1.12.6"
+seed = 6075990691714899802
+
+[source]
+repository_root = "../curv-risk/curvrisk/research/bachelier_revision"
+repository_commit = "3146029aa71dfe7639ede9ca79f81602165125e8"
+provider = "CRSP/WRDS"
+dataset_name = "CRSP US Stock Database daily security and security history extracts"
+security_history = "data/raw/crsp_a_stock/security_history/stksecurityinfohist.csv"
+daily_files = [
+  "data/raw/crsp_a_stock/daily_security/stkdlysecuritydata_00_10.csv.gz",
+  "data/raw/crsp_a_stock/daily_security/stkdlysecuritydata_10_20.csv.gz",
+  "data/raw/crsp_a_stock/daily_security/stkdlysecuritydata_20_25.csv.gz",
+]
+extract_start = "2008-01-01"
+extract_end = "2024-12-31"
+license_reference = "docs/license_notes.md; LICENSE_DATA; docs/data_sources.md in the source repository"
+raw_redistribution_permitted = false
+aggregate_outputs_publishable = true
+reviewer_replication_access = "reviewer supplies an independently licensed CRSP/WRDS extract"
+
+[universe]
+selection_manifest = "experiments/financial_annual_walkforward_audit/universe_selection.toml"
+selection_manifest_sha256 = "52abd208b146449c626f377f692c828542b62ca1673e1a442d827690f620009d"
+audit_config = "experiments/configs/financial_annual_universe_audit.toml"
+audit_csv = "experiments/financial_annual_walkforward_audit/universe_audit.csv"
+expected_count = 100
+selection_rule = "top development-period median dollar volume after endpoint identity, history, price, liquidity, and complex-product gates"
+survivorship_boundary = "same-PERMNO ETFs classified at both 2008 and 2024 endpoints; larger and liquid but still a surviving-universe audit"
+
+[data]
+path = "experiments/financial_annual_walkforward_audit/data/etf_daily.csv"
+provenance_path = "experiments/financial_annual_walkforward_audit/data/provenance.toml"
+source_extract_audit_path = "experiments/financial_annual_walkforward_audit/data/source_extract_audit.csv"
+required_columns = ["date", "ticker", "total_return_index", "close", "volume"]
+date_format = "YYYY-MM-DD"
+exchange_timezone = "America/New_York"
+maximum_cross_section_missing_share = 0.03
+minimum_warmup_sessions = 120
+require_exact_universe = true
+
+[periods]
+development_start = "2009-01-01"
+development_end = "2014-12-31"
+validation_start = "2015-01-01"
+validation_end = "2019-12-31"
+locked_start = "2020-01-01"
+locked_end = "2024-12-31"
+minimum_development_sessions = 1450
+minimum_validation_sessions = 1000
+minimum_locked_sessions = 1000
+walk_forward_years = [2020, 2021, 2022, 2023, 2024]
+trailing_estimation_years = 5
+locked_period_is_prospective = false
+
+[grammar]
+directional_signal = ["momentum_20", "momentum_60", "mean_reversion_5"]
+entry_filter = ["always", "trend_100"]
+holding_horizon = [5, 20]
+sizing_rule = ["unit", "half"]
+exit_rule = ["horizon", "signal_flip"]
+risk_constraint = ["notional_cap_1", "vol_target_10"]
+
+[backtest]
+annualization_sessions = 252
+volatility_lookback = 20
+trend_filter_lookback = 100
+belief_signal_ticker = "SPY"
+belief_lookback = 60
+belief_quantiles = [0.2, 0.4, 0.6, 0.8]
+decision_to_first_return_lag_sessions = 2
+one_way_transaction_cost_bps = 5.0
+cost_sensitivity_bps = [1.0, 5.0, 10.0]
+risk_aversion = 3.0
+frontier_tolerance = 1.0e-10
+minimum_profile_observations = 25
+minimum_target_profile_observations = 1
+target_empty_state_policy = "zero only when realized discounted occupation is exactly zero"
+
+[library]
+top_development_strategies_per_ticker = 2
+module_carrier_rule = "best development net utility for every represented module value"
+safe_deletion_order = "ascending development net utility then strategy id"
+frontier_only_order = "ascending validation net utility then strategy id"
+module_closure = "identity union of modules carried by retained strategies"
+candidate_enablement = "all candidate modules must belong to retained closure"
+
+[ranking]
+primary_method = "coverage_marginal"
+top_k = 5
+occupation_horizon_sessions = 252
+daily_discount = 0.997
+candidate_survival = 1.0
+transition_pseudocount = 1.0
+score_estimand = "trailing state-profile positive gap integrated against predicted discounted belief occupation"
+target_estimand = "next-year state-profile positive gap integrated against realized discounted belief occupation"
+set_aggregation = "pointwise maximum candidate gap"
+selection_rule = "sequential greedy marginal set coverage with strategy-id tie break"
+comparators = ["current_belief_improvement", "average_trailing_score", "raw_parameter_novelty"]
+bootstrap_replications = 2000
+bootstrap_unit = "walk_forward_year"
+uncertainty_level = 0.95
+expected_pattern_is_hard_gate = false
+
+[design_lock]
+path = "experiments/financial_annual_walkforward_audit/DESIGN_LOCK.json"
+registered_lock_path = "experiments/financial_annual_walkforward_audit/DESIGN_LOCK_REGISTERED.json"
+taxonomy_migration_record = "FINANCIAL_AUDIT_TAXONOMY.md"
+taxonomy_migration_only = true
+schema_version = "financial-illustration-design-lock-v2"
+lock_stage = "post-support completed-implementation audit lock"
+initial_analytical_design_sha256 = "2af8b413e2b37eea94cb9a5ded6b48d6ca268be7d92fcaf0823be9830be994bc"
+support_information_read_before_lock = true
+candidate_results_used_to_change_analytical_specification = false
+files = [
+  "experiments/configs/financial_annual_universe_audit.toml",
+  "experiments/configs/financial_annual_walkforward_audit.toml",
+  "experiments/financial_annual_walkforward_audit/DESIGN_AMENDMENTS.md",
+  "experiments/financial_annual_walkforward_audit/DESIGN_LOCK_AMENDED_1.json",
+  "experiments/financial_annual_walkforward_audit/DESIGN_LOCK_AMENDED_2.json",
+  "experiments/financial_annual_walkforward_audit/DESIGN_LOCK_AMENDED_3.json",
+  "experiments/financial_annual_walkforward_audit/DESIGN_LOCK_AMENDED_4.json",
+  "experiments/financial_annual_walkforward_audit/DESIGN_LOCK_AMENDED_5.json",
+  "experiments/financial_annual_walkforward_audit/DESIGN_LOCK_AMENDED_6.json",
+  "experiments/financial_annual_walkforward_audit/DESIGN_LOCK_INITIAL.json",
+  "experiments/financial_annual_walkforward_audit/DESIGN_LOCK_REGISTERED.json",
+  "experiments/financial_annual_walkforward_audit/universe_selection.toml",
+  "FINANCIAL_AUDIT_TAXONOMY.md",
+  "julia/scripts/audit_financial_annual_universe.jl",
+  "julia/scripts/freeze_financial_annual_walkforward_audit.jl",
+  "julia/scripts/prepare_financial_annual_walkforward_audit_data.jl",
+  "julia/scripts/run_financial_annual_walkforward_audit.jl",
+]
+
+[outputs]
+status_json = "experiments/results/summaries/financial_annual_walkforward_audit_status.json"
+grammar_csv = "experiments/results/summaries/financial_annual_walkforward_audit_strategy_grammar.csv"
+candidate_audit_csv = "experiments/results/summaries/financial_annual_walkforward_audit_candidate_audit.csv"
+pruning_audit_csv = "experiments/results/summaries/financial_annual_walkforward_audit_pruning_audit.csv"
+episode_ranking_csv = "experiments/results/summaries/financial_annual_walkforward_audit_episode_rankings.csv"
+selection_audit_csv = "experiments/results/summaries/financial_annual_walkforward_audit_selection_audit.csv"
+ranking_summary_csv = "experiments/results/summaries/financial_annual_walkforward_audit_ranking_summary.csv"
+decomposition_csv = "experiments/results/summaries/financial_annual_walkforward_audit_decomposition.csv"
+mechanism_summary_csv = "experiments/results/summaries/financial_annual_walkforward_audit_mechanism_summary.csv"
+uncertainty_csv = "experiments/results/summaries/financial_annual_walkforward_audit_uncertainty.csv"
+cost_sensitivity_csv = "experiments/results/summaries/financial_annual_walkforward_audit_cost_sensitivity.csv"
+universe_figure_data = "experiments/results/summaries/financial_annual_walkforward_audit_universe_figure.csv"
+ranking_figure_data = "experiments/results/summaries/financial_annual_walkforward_audit_ranking_figure.csv"
+mechanism_figure_data = "experiments/results/summaries/financial_annual_walkforward_audit_mechanism_figure.csv"
+universe_figure = "manuscript/figures/financial_annual_walkforward_audit_universe.svg"
+ranking_figure = "manuscript/figures/financial_annual_walkforward_audit_ranking.svg"
+mechanism_figure = "manuscript/figures/financial_annual_walkforward_audit_mechanisms.svg"
+data_audit_md = "experiments/financial_annual_walkforward_audit/DATA_AUDIT.md"
+draft_results_md = "experiments/financial_annual_walkforward_audit/DRAFT_RESULTS.md"
+limitations_md = "experiments/financial_annual_walkforward_audit/EMPIRICAL_LIMITATIONS.md"
+manuscript_section = "manuscript/sections/financial_annual_walkforward_audit.tex"

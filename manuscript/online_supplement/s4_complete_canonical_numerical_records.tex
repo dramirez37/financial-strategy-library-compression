@@ -1,0 +1,404 @@
+\section{Complete Canonical Numerical Records}
+\label{sec:supp-canonical-records}
+
+This section collects the full numerical records referenced by the main
+paper's Appendix~D.  The tables below are typeset directly from the committed
+CSV files; compilation does not rerun either numerical solver.  Exact rational
+fields retain their machine-readable \texttt{numerator//denominator} form.
+The compact stationary table is duplicated from the main paper to make the
+record self-contained.
+
+\newcommand{\recordfield}[1]{{\ttfamily\expandafter\detokenize\expandafter{#1}}}
+
+\clearpage
+\subsection{Convergence history and stationary solution}
+
+\begin{figure}[htbp]
+  \centering
+  \input{../figures/unified_canonical_convergence}
+  \caption{Complete Float64 convergence history for the unified six-state
+  benchmark.  Markers are the 42 committed iterations; joining segments are
+  visual guides.  The dotted series is the Float64 a-posteriori contraction
+  bound.  Exact rational policy iteration is a separate calculation with
+  Bellman residual zero.}
+  \label{fig:supp-canonical-convergence}
+\end{figure}
+
+The final convergence-row bound is
+\(r_{42}^{64}/(1-\beta_{64})=5.54223\times10^{-13}\), computed in Float64.
+The canonical summary separately converts the binary iterate exactly to
+\texttt{Rational\{BigInt\}}, records maximum exact error
+\(937/1688849860263936\approx5.5482\times10^{-13}\), and evaluates the exact
+rational Bellman residual to obtain the exactly re-evaluated residual-based
+certificate
+\(2499/4503599627370496\approx5.5489\times10^{-13}\).  The latter is not the
+residual-bound column in the convergence table.
+
+\begin{landscape}
+\scriptsize
+\csvreader[
+  longtable={@{}rllll@{}},
+  table head={\caption{Full 42-row Float64 convergence record.}
+    \label{tab:supp-convergence-history}\\
+    \toprule
+    Iter. & Float64 increment & Float64 Bellman residual &
+    \shortstack{Float64 a-priori\\contraction bound} &
+    \shortstack{Float64 a-posteriori\\contraction bound}\\
+    \midrule\endfirsthead
+    \toprule
+    Iter. & Float64 increment & Float64 Bellman residual &
+    \shortstack{Float64 a-priori\\contraction bound} &
+    \shortstack{Float64 a-posteriori\\contraction bound}\\
+    \midrule\endhead
+    \bottomrule\endfoot}
+]{../../experiments/results/summaries/unified_canonical_convergence.csv}{
+  iteration=\iteration,
+  float64_iteration_increment=\increment,
+  float64_bellman_residual=\bellmanresidual,
+  float64_apriori_contraction_bound=\aprioribound,
+  float64_aposteriori_contraction_bound=\residualbound
+}{\recordfield{\iteration} & \recordfield{\increment} &
+  \recordfield{\bellmanresidual} & \recordfield{\aprioribound} &
+  \recordfield{\residualbound}}
+\end{landscape}
+
+\setlength{\tabcolsep}{1pt}
+\begin{landscape}
+\begin{center}
+\small
+\input{../tables/main_canonical_stationary_solution}
+\refstepcounter{table}\label{tab:supp-stationary-solution}
+
+\smallskip
+Table~\thetable: Exact rational stationary solution, duplicated from the main
+paper.
+\end{center}
+
+\tiny
+\csvreader[
+  longtable={@{}lllllllrrrrr@{}},
+  table head={\caption{Complete stationary action-value record.}
+    \label{tab:supp-action-values}\\
+    \toprule
+    State & Belief & Value & Chosen & Second & Continue (Q) & Research &
+    Research (Q) & Margin & Duration & Reward block & Discounted continuation\\
+    \midrule\endfirsthead
+    \toprule
+    State & Belief & Value & Chosen & Second & Continue (Q) & Research &
+    Research (Q) & Margin & Duration & Reward block & Discounted continuation\\
+    \midrule\endhead
+    \bottomrule\endfoot}
+]{../../experiments/results/unified_benchmark_policy_value.csv}{
+  compressed_state=\state,
+  belief=\belief,
+  value=\stationaryvalue,
+  chosen_action=\chosen,
+  second_action=\second,
+  continue_q=\continueq,
+  research_action=\research,
+  research_q=\researchq,
+  action_margin=\margin,
+  project_duration=\duration,
+  expected_project_reward_block=\rewardblock,
+  discounted_project_continuation=\continuationblock
+}{\recordfield{\state} & \recordfield{\belief} & \recordfield{\stationaryvalue} &
+  \recordfield{\chosen} & \recordfield{\second} & \recordfield{\continueq} &
+  \recordfield{\research} & \recordfield{\researchq} &
+  \recordfield{\margin} & \recordfield{\duration} &
+  \recordfield{\rewardblock} & \recordfield{\continuationblock}}
+\end{landscape}
+
+\setlength{\tabcolsep}{2pt}
+\begin{landscape}
+\subsection{Horizon-by-horizon values and actions}
+
+The value record includes horizons zero through eight and all four stationary
+solution/evaluation outputs.  The policy record includes every positive
+finite horizon and both stationary policy outputs.  This retains the exact
+and floating-point rows together rather than presenting a selectively rounded
+comparison.
+
+\scriptsize
+\csvreader[
+  longtable={@{}p{0.27\linewidth}p{0.06\linewidth}p{0.16\linewidth}p{0.08\linewidth}p{0.08\linewidth}p{0.27\linewidth}@{}},
+  table head={\caption{Complete horizon-by-horizon and stationary value record.}
+    \label{tab:supp-horizon-values}\\
+    \toprule
+    Solution & Horizon & Arithmetic & State & Belief & Value\\
+    \midrule\endfirsthead
+    \toprule
+    Solution & Horizon & Arithmetic & State & Belief & Value\\
+    \midrule\endhead
+    \bottomrule\endfoot}
+]{../../experiments/results/summaries/unified_canonical_values.csv}{
+  solution=\solution,
+  horizon=\horizon,
+  arithmetic=\arithmetic,
+  compressed_state=\state,
+  belief=\belief,
+  value=\recordvalue
+}{\recordfield{\solution} & \recordfield{\horizon} &
+  \recordfield{\arithmetic} & \recordfield{\state} &
+  \recordfield{\belief} & \recordfield{\recordvalue}}
+\end{landscape}
+
+\begin{landscape}
+\scriptsize
+\csvreader[
+  longtable={@{}p{0.34\linewidth}p{0.08\linewidth}p{0.12\linewidth}p{0.12\linewidth}p{0.25\linewidth}@{}},
+  table head={\caption{Complete horizon-by-horizon and stationary action record.}
+    \label{tab:supp-horizon-actions}\\
+    \toprule
+    Solution & Horizon & State & Belief & Action\\
+    \midrule\endfirsthead
+    \toprule
+    Solution & Horizon & State & Belief & Action\\
+    \midrule\endhead
+    \bottomrule\endfoot}
+]{../../experiments/results/summaries/unified_canonical_policies.csv}{
+  solution=\solution,
+  horizon=\horizon,
+  compressed_state=\state,
+  belief=\belief,
+  action=\action
+}{\recordfield{\solution} & \recordfield{\horizon} &
+  \recordfield{\state} & \recordfield{\belief} & \recordfield{\action}}
+\end{landscape}
+
+\begin{landscape}
+\subsection{Path, admission, and operating-reward atoms}
+
+\tiny
+\csvreader[
+  longtable={@{}llllllllll@{}},
+  table head={\caption{Complete positive-duration path and admission-atom record.}
+    \label{tab:supp-path-admission-atoms}\\
+    \toprule
+    Project & Start state & Start belief & Duration & Path & Terminal belief &
+    Admitted & Joint mass & Path mass & Conditional admission\\
+    \midrule\endfirsthead
+    \toprule
+    Project & Start state & Start belief & Duration & Path & Terminal belief &
+    Admitted & Joint mass & Path mass & Conditional admission\\
+    \midrule\endhead
+    \bottomrule\endfoot}
+]{../../experiments/results/summaries/unified_canonical_duration_paths.csv}{
+  project=\project,
+  start_state=\startstate,
+  start_belief=\startbelief,
+  duration=\duration,
+  path=\beliefpath,
+  terminal_belief=\terminalbelief,
+  admitted=\admitted,
+  joint_mass=\jointmass,
+  path_mass=\pathmass,
+  conditional_admission_mass=\conditionalmass
+}{\recordfield{\project} & \recordfield{\startstate} &
+  \recordfield{\startbelief} & \recordfield{\duration} &
+  \recordfield{\beliefpath} & \recordfield{\terminalbelief} &
+  \recordfield{\admitted} & \recordfield{\jointmass} &
+  \recordfield{\pathmass} & \recordfield{\conditionalmass}}
+
+\tiny
+\csvreader[
+  longtable={@{}llllllll@{}},
+  table head={\caption{Complete operating-reward block record.}
+    \label{tab:supp-operating-rewards}\\
+    \toprule
+    State & Belief & Action & Duration & Operates & Initiation cost &
+    Incumbent reward & Net reward block\\
+    \midrule\endfirsthead
+    \toprule
+    State & Belief & Action & Duration & Operates & Initiation cost &
+    Incumbent reward & Net reward block\\
+    \midrule\endhead
+    \bottomrule\endfoot}
+]{../../experiments/results/summaries/unified_canonical_operating_rewards.csv}{
+  compressed_state=\state,
+  belief=\belief,
+  action=\action,
+  duration=\duration,
+  operates_during_research=\operates,
+  initiation_cost=\cost,
+  expected_incumbent_reward=\incumbentreward,
+  expected_net_reward_block=\netreward
+}{\recordfield{\state} & \recordfield{\belief} & \recordfield{\action} &
+  \recordfield{\duration} & \recordfield{\operates} & \recordfield{\cost} &
+  \recordfield{\incumbentreward} & \recordfield{\netreward}}
+\end{landscape}
+
+\begin{landscape}
+\subsection{Safe compression and capacity correspondences}
+
+The following tables retain every source and every optimizer tie.  Masks use
+the coordinate order \((I,A,B,D)\); semicolon-separated entries are tied
+solutions, not a sequence of selections.
+
+\tiny
+\csvreader[
+  longtable={@{}llllllllllll@{}},
+  table head={\caption{Complete safe-compression optimizer correspondence.}
+    \label{tab:supp-safe-compression}\\
+    \toprule
+    Schedule & Source mask & Source library & Burden & Feasible masks & Objective &
+    Optimal masks & Optimal libraries & Reduction & Frontier & Closure & Ties complete\\
+    \midrule\endfirsthead
+    \toprule
+    Schedule & Source mask & Source library & Burden & Feasible masks & Objective &
+    Optimal masks & Optimal libraries & Reduction & Frontier & Closure & Ties complete\\
+    \midrule\endhead
+    \bottomrule\endfoot}
+]{../../experiments/results/summaries/unified_canonical_resource_safe_compression.csv}{
+  schedule=\schedule,
+  source_mask=\sourcemask,
+  source_library=\sourcelibrary,
+  source_burden=\sourceburden,
+  feasible_masks=\feasiblemasks,
+  optimal_objective=\objective,
+  optimal_masks=\optimalmasks,
+  optimal_libraries=\optimallibraries,
+  burden_reduction=\reduction,
+  frontier=\frontier,
+  closure=\closure,
+  ties_complete=\tiescomplete
+}{\recordfield{\schedule} & \recordfield{\sourcemask} &
+  \recordfield{\sourcelibrary} & \recordfield{\sourceburden} &
+  \recordfield{\feasiblemasks} & \recordfield{\objective} &
+  \recordfield{\optimalmasks} & \recordfield{\optimallibraries} &
+  \recordfield{\reduction} & \recordfield{\frontier} &
+  \recordfield{\closure} & \recordfield{\tiescomplete}}
+
+\newpage
+\tiny
+\csvreader[
+  longtable={@{}llllllllllll@{}},
+  table head={\caption{Complete capacity paths and value certificates.}
+    \label{tab:supp-capacity-paths}\\
+    \toprule
+    Schedule & Belief & Capacity & Objective & Optimal masks & Optimal libraries &
+    Optimal burdens & Selected library & Op. value & Gen. value & Total value & Ties complete\\
+    \midrule\endfirsthead
+    \toprule
+    Schedule & Belief & Capacity & Objective & Optimal masks & Optimal libraries &
+    Optimal burdens & Selected library & Op. value & Gen. value & Total value & Ties complete\\
+    \midrule\endhead
+    \bottomrule\endfoot}
+]{../../experiments/results/summaries/unified_canonical_resource_capacity.csv}{
+  schedule=\schedule,
+  belief=\belief,
+  capacity=\capacity,
+  optimal_objective=\objective,
+  optimal_masks=\optimalmasks,
+  optimal_libraries=\optimallibraries,
+  optimal_burdens=\optimalburdens,
+  selected_library=\selectedlibrary,
+  operational_value=\operationalvalue,
+  generative_value=\generativevalue,
+  total_value=\totalvalue,
+  ties_complete=\tiescomplete
+}{\recordfield{\schedule} & \recordfield{\belief} &
+  \recordfield{\capacity} & \recordfield{\objective} &
+  \recordfield{\optimalmasks} & \recordfield{\optimallibraries} &
+  \recordfield{\optimalburdens} & \recordfield{\selectedlibrary} &
+  \recordfield{\operationalvalue} & \recordfield{\generativevalue} &
+  \recordfield{\totalvalue} & \recordfield{\tiescomplete}}
+\end{landscape}
+
+\setlength{\tabcolsep}{1pt}
+\begin{landscape}
+\subsection{Penalized intervals and pairwise crossings}
+
+The interval record retains breakpoint ties and the open and terminal cells of
+each finite affine envelope.  The crossing record then lists every pair of
+branches, including coincident and parallel pairs, nonnegative intersections
+that never reach the upper envelope, and the globally active breakpoints.
+
+\tiny
+\csvreader[
+  longtable={@{}llllllllllllll@{}},
+  table head={\caption{Complete penalized-envelope interval and breakpoint record.}
+    \label{tab:supp-penalized-intervals}\\
+    \toprule
+    Schedule & Belief & Cell & Lower & Upper & Low incl. & Up incl. & Probe &
+    Optimal masks & Optimal libraries & Optimal burdens & Selected & Net value & Ties complete\\
+    \midrule\endfirsthead
+    \toprule
+    Schedule & Belief & Cell & Lower & Upper & Low incl. & Up incl. & Probe &
+    Optimal masks & Optimal libraries & Optimal burdens & Selected & Net value & Ties complete\\
+    \midrule\endhead
+    \bottomrule\endfoot}
+]{../../experiments/results/summaries/unified_canonical_resource_penalized_intervals.csv}{
+  schedule=\schedule,
+  belief=\belief,
+  cell_kind=\cellkind,
+  lower_price=\lowerprice,
+  upper_price=\upperprice,
+  lower_inclusive=\lowerinclusive,
+  upper_inclusive=\upperinclusive,
+  probe_price=\probeprice,
+  optimal_masks=\optimalmasks,
+  optimal_libraries=\optimallibraries,
+  optimal_burdens=\optimalburdens,
+  selected_library=\selectedlibrary,
+  net_value=\netvalue,
+  ties_complete=\tiescomplete
+}{\recordfield{\schedule} & \recordfield{\belief} &
+  \recordfield{\cellkind} & \recordfield{\lowerprice} &
+  \recordfield{\upperprice} & \recordfield{\lowerinclusive} &
+  \recordfield{\upperinclusive} & \recordfield{\probeprice} &
+  \recordfield{\optimalmasks} & \recordfield{\optimallibraries} &
+  \recordfield{\optimalburdens} & \recordfield{\selectedlibrary} &
+  \recordfield{\netvalue} & \recordfield{\tiescomplete}}
+\end{landscape}
+
+\setlength{\tabcolsep}{2pt}
+\begin{landscape}
+\scriptsize
+\csvreader[
+  longtable={@{}llllllllllll@{}},
+  table head={\caption{All pairwise resource-price relationships and crossing candidates.}
+    \label{tab:supp-pairwise-crossings}\\
+    \toprule
+    Schedule & Belief & Left library & Left value & Left burden & Right library &
+    Right value & Right burden & Relation & Price & Nonnegative & Globally active\\
+    \midrule\endfirsthead
+    \toprule
+    Schedule & Belief & Left library & Left value & Left burden & Right library &
+    Right value & Right burden & Relation & Price & Nonnegative & Globally active\\
+    \midrule\endhead
+    \bottomrule\endfoot}
+]{../../experiments/results/summaries/unified_canonical_resource_switching_prices.csv}{
+  schedule=\schedule,
+  belief=\belief,
+  left_mask=\leftmask,
+  left_library=\leftlibrary,
+  left_value=\leftvalue,
+  left_burden=\leftburden,
+  right_mask=\rightmask,
+  right_library=\rightlibrary,
+  right_value=\rightvalue,
+  right_burden=\rightburden,
+  relationship=\relationship,
+  switching_price=\switchingprice,
+  nonnegative_candidate=\nonnegative,
+  globally_active=\globallyactive
+}{\recordfield{\schedule} & \recordfield{\belief} &
+  \recordfield{\leftlibrary} &
+  \recordfield{\leftvalue} & \recordfield{\leftburden} &
+  \recordfield{\rightlibrary} &
+  \recordfield{\rightvalue} & \recordfield{\rightburden} &
+  \recordfield{\relationship} & \recordfield{\switchingprice} &
+  \recordfield{\nonnegative} & \recordfield{\globallyactive}}
+
+\normalsize
+The committed CSV files retain additional machine-oriented counts and
+certificate fields not repeated as display columns above.  In particular,
+they record feasible and enumerated counts, all-optima-feasible flags,
+productive-value preservation, capacity shadow increments, and optimizer
+fragility diagnostics.  These fields remain part of the reproducibility
+record; the tables here preserve every numerical row and every optimizer or
+crossing candidate needed to reconstruct the reported correspondences.
+\end{landscape}
+
+\let\recordfield\relax
+\setlength{\tabcolsep}{6pt}

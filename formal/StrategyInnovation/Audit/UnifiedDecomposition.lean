@@ -1,0 +1,50 @@
+import Mathlib.Tactic.Linter
+import StrategyInnovation.Value.UnifiedDecomposition
+
+/-!
+# Focused axiom audit for unified operational--generative decomposition (T5)
+-/
+
+#print axioms
+  StrategyInnovation.Projection.Model.UnifiedDecomposition.compressedPassiveValue
+#print axioms
+  StrategyInnovation.Projection.Model.UnifiedDecomposition.passiveValue
+#print axioms
+  StrategyInnovation.Projection.Model.UnifiedDecomposition.passiveValue_eq_compressedPassiveValue
+#print axioms
+  StrategyInnovation.Projection.Model.UnifiedDecomposition.fullValue
+#print axioms
+  StrategyInnovation.Projection.Model.UnifiedDecomposition.compressedFullValue
+#print axioms
+  StrategyInnovation.Projection.Model.UnifiedDecomposition.fullValue_eq_compressedFullValue
+#print axioms
+  StrategyInnovation.Projection.Model.UnifiedDecomposition.researchOptionPremium
+#print axioms
+  StrategyInnovation.Projection.Model.UnifiedDecomposition.totalInsertionValue
+#print axioms
+  StrategyInnovation.Projection.Model.UnifiedDecomposition.operationalInsertionValue
+#print axioms
+  StrategyInnovation.Projection.Model.UnifiedDecomposition.generativeInsertionValue
+#print axioms
+  StrategyInnovation.Projection.Model.UnifiedDecomposition.totalInsertionValue_eq_operational_add_generative
+#print axioms
+  StrategyInnovation.Projection.Model.UnifiedDecomposition.passiveValue_eq_of_frontier_eq
+#print axioms
+  StrategyInnovation.Projection.Model.UnifiedDecomposition.operationalInsertionValue_eq_zero_of_frontier_eq
+#print axioms
+  StrategyInnovation.Projection.Model.UnifiedDecomposition.totalInsertionValue_eq_zero_of_frontier_closure_eq
+#print axioms
+  StrategyInnovation.Projection.Model.UnifiedDecomposition.operationalInsertionValue_antitone_of_library_inclusion
+#print axioms
+  StrategyInnovation.Projection.Model.UnifiedDecomposition.ClosureEnrichmentProjectDominance
+#print axioms
+  StrategyInnovation.Projection.Model.UnifiedDecomposition.compressedValue_mono_of_closureEnrichmentProjectDominance
+#print axioms
+  StrategyInnovation.Projection.Model.UnifiedDecomposition.fullValue_mono_of_closureEnrichmentProjectDominance
+#print axioms
+  StrategyInnovation.Projection.Model.UnifiedDecomposition.researchOptionPremium_mono_of_closureEnrichmentProjectDominance
+#print axioms
+  StrategyInnovation.Projection.Model.UnifiedDecomposition.BridgeExample.bridge_operational_zero_generative_positive
+
+#lint- only checkType unusedArguments simpNF in
+  StrategyInnovation.Projection.Model.UnifiedDecomposition

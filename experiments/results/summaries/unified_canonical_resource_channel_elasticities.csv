@@ -1,0 +1,17 @@
+mask,library,strategies,compressed_state,belief,productive_value,operational_value,generative_value,productive_discount_derivative,operational_discount_derivative,generative_discount_derivative,productive_scaled_sensitivity,operational_scaled_sensitivity,generative_scaled_sensitivity,innovation_duration,operational_elasticity,generative_elasticity,operational_contribution,generative_contribution,action,second_action,action_margin,action_tie_distance_linf
+0,I,inactive,K0,low,115//288,0//1,115//288,10777//2592,0//1,10777//2592,10777//5184,0//1,10777//5184,10777//2070,,10777//2070,0//1,10777//2070,research:discover,continue,23//96,23//192
+0,I,inactive,K0,high,23//288,0//1,23//288,14089//12960,0//1,14089//12960,14089//25920,0//1,14089//25920,14089//2070,,14089//2070,0//1,14089//2070,continue,research:discover,245//384,245//768
+1,I+A,inactive|carrier_a,K1,low,1//1,0//1,1//1,112//15,0//1,112//15,56//15,0//1,56//15,56//15,,56//15,0//1,56//15,research:scale,continue,23//48,23//96
+1,I+A,inactive|carrier_a,K1,high,7//6,0//1,7//6,371//45,0//1,371//45,371//90,0//1,371//90,53//15,,53//15,0//1,53//15,research:scale,continue,29//48,29//96
+2,I+B,inactive|carrier_b,K1,low,1//1,0//1,1//1,112//15,0//1,112//15,56//15,0//1,56//15,56//15,,56//15,0//1,56//15,research:scale,continue,23//48,23//96
+2,I+B,inactive|carrier_b,K1,high,7//6,0//1,7//6,371//45,0//1,371//45,371//90,0//1,371//90,53//15,,53//15,0//1,53//15,research:scale,continue,29//48,29//96
+3,I+A+B,inactive|carrier_a|carrier_b,K1,low,1//1,0//1,1//1,112//15,0//1,112//15,56//15,0//1,56//15,56//15,,56//15,0//1,56//15,research:scale,continue,23//48,23//96
+3,I+A+B,inactive|carrier_a|carrier_b,K1,high,7//6,0//1,7//6,371//45,0//1,371//45,371//90,0//1,371//90,53//15,,53//15,0//1,53//15,research:scale,continue,29//48,29//96
+4,I+D,inactive|descendant,K2,low,14//3,14//3,0//1,100//9,100//9,0//1,50//9,50//9,0//1,25//21,25//21,,25//21,0//1,continue,research:scale,3//16,3//32
+4,I+D,inactive|descendant,K2,high,22//3,22//3,0//1,116//9,116//9,0//1,58//9,58//9,0//1,29//33,29//33,,29//33,0//1,continue,research:scale,3//16,3//32
+5,I+A+D,inactive|carrier_a|descendant,K2,low,14//3,14//3,0//1,100//9,100//9,0//1,50//9,50//9,0//1,25//21,25//21,,25//21,0//1,continue,research:scale,3//16,3//32
+5,I+A+D,inactive|carrier_a|descendant,K2,high,22//3,22//3,0//1,116//9,116//9,0//1,58//9,58//9,0//1,29//33,29//33,,29//33,0//1,continue,research:scale,3//16,3//32
+6,I+B+D,inactive|carrier_b|descendant,K2,low,14//3,14//3,0//1,100//9,100//9,0//1,50//9,50//9,0//1,25//21,25//21,,25//21,0//1,continue,research:scale,3//16,3//32
+6,I+B+D,inactive|carrier_b|descendant,K2,high,22//3,22//3,0//1,116//9,116//9,0//1,58//9,58//9,0//1,29//33,29//33,,29//33,0//1,continue,research:scale,3//16,3//32
+7,I+A+B+D,inactive|carrier_a|carrier_b|descendant,K2,low,14//3,14//3,0//1,100//9,100//9,0//1,50//9,50//9,0//1,25//21,25//21,,25//21,0//1,continue,research:scale,3//16,3//32
+7,I+A+B+D,inactive|carrier_a|carrier_b|descendant,K2,high,22//3,22//3,0//1,116//9,116//9,0//1,58//9,58//9,0//1,29//33,29//33,,29//33,0//1,continue,research:scale,3//16,3//32

@@ -1,0 +1,26 @@
+schema_version = "joint-descendant-bound-gauntlet-v1"
+experiment_id = "joint-descendant-bound-gauntlet-v1"
+julia_version = "1.12.6"
+arithmetic = "Rational{BigInt}"
+randomness = "none"
+
+[grid]
+joint_mass_units = 2
+belief_count = 2
+outcome_count = 3
+discounts = ["0//1", "1//2", "3//4"]
+durations = [1, 2]
+costs = ["0//1", "1//1"]
+operating_adjustments = ["-1//1", "0//1", "1//1"]
+nonnegative_gains = ["0//1", "1//1", "2//1"]
+signed_gains = ["-2//1", "0//1", "2//1"]
+comparator_premia = ["0//1", "1//1", "2//1"]
+
+[outcomes]
+failure = 1
+distinguished = 2
+other_descendant = 3
+
+[outputs]
+counterexamples = "experiments/results/summaries/joint_descendant_bound_counterexamples.csv"
+summary = "experiments/results/summaries/joint_descendant_bound_summary.json"

@@ -1,0 +1,102 @@
+% Continuation of Appendix A.
+\subsection{Safe deletion and rechecking}
+
+\begin{proof}[Proof of the deletion clauses of
+\cref{thm:raw-frontier-closure-characterization}.]
+For an active \(s\in L\), equation \eqref{eq:t3-state} is componentwise
+equality of
+\(K_{L^{-s}}=(F_{L^{-s}},C_{L^{-s}})\) and
+\(K_L=(F_L,C_L)\).  The two redundancy equalities therefore imply dynamic
+equivalence and finite-horizon value preservation by the forward projection
+argument.  Under detectability, the converse characterization in A.2 makes
+them necessary for dynamic innovation equivalence.  Compressed-state equality
+also preserves the stationary value and complete action comparison under the
+discounted contraction.
+\end{proof}
+
+\begin{proof}[Proof of \cref{cor:stepwise-safe-compression}.]
+At each accepted deletion, apply the sufficient direction to the current
+library, then compose the resulting compressed-state equalities along the
+trace.  Every endpoint remains source-feasible and has the source's productive
+values.  Each step removes an active strategy, so the procedure terminates.
+If a complete final scan finds no certified deletion, the endpoint is
+one-deletion irreducible.  The trace certifies feasibility and value
+preservation, not minimum resource burden.
+\end{proof}
+
+\subsection{Operational/generative value and descendant bound}
+\label{app:proofs-value}
+
+\begin{proof}[Proof of \cref{thm:value-decomposition}.]
+Substitute \(\Omega_n=U_n-P_n\) into the definition of
+\(\Delta_n^{\gen}\).  The two passive-value differences combine into
+\(\Delta_n^{\op}\), and the remaining full-value difference is
+\(\mathcal I_n\).  This is the pointwise identity
+\eqref{eq:value-decomposition} at fixed \((n,b,L,s)\).
+\end{proof}
+
+\begin{proof}[Proof of \cref{cor:frontier-silent-insertion}.]
+Equal frontiers make the passive recursions identical.  If closure is also
+unchanged, the two realizable compressed states coincide, so
+\cref{thm:raw-to-compressed-projection} identifies their full values.
+\end{proof}
+
+\begin{proposition}[Research-premium monotonicity under project dominance]
+\label{prop:premium-monotonicity}
+Let \(L^-\) and \(L^+\) have the same frontier and
+\(C_{L^-}\subseteq C_{L^+}\).  Suppose every old project remains feasible and
+its complete action value---including cost, duration, operating rewards,
+completion law, and continuation value---is weakly higher at \(L^+\).  Then
+\[
+  \Omega_n(b,L^-)\le\Omega_n(b,L^+)
+\]
+for every finite horizon and belief.  Hence a frontier-silent insertion
+satisfying this project-dominance certificate has nonnegative generative
+insertion value.
+\end{proposition}
+
+\begin{proof}
+Induct on the finite horizon.  Continue has the same passive reward because
+the frontiers agree.  Every old research action remains feasible and has a
+weakly higher complete action value by hypothesis, while closure enrichment
+may add actions.  Maximization therefore weakly raises full value.  Subtracting
+the common passive value gives the premium order.
+\end{proof}
+
+\begin{proof}[Proof of \cref{thm:generative-carrier-lower-bound}.]
+Condition on \((B_0,K_0,q)=(b,K_{L^+},q)\).  Full value at \(L^+\) dominates
+both Continue and commitment to the enabled project \(q\).  Subtracting
+passive value from the commitment value leaves initiation cost, the exact
+operating adjustment \(A^{\op}_{q,h}\), and discounted continuation gain.
+Insertion-only updates and retention of the passive policy make every omitted
+outcome's continuation contribution nonnegative.  On the distinguished event
+the gain is at least \(G(B_d)\), whose contribution under the joint completion
+law is
+\[
+ \sum_{b'}\eta_{q,g}(b'\mid b,K_{L^+})G(b').
+\]
+Frontier silence removes operational insertion value, and the zero-premium
+deleted comparator converts the retained premium into generative insertion
+value.  Maximizing research against Continue yields
+\eqref{eq:t6-lower-bound-adjusted}; setting \(A^{\op}=0\) gives
+\eqref{eq:t6-lower-bound}.  Under the product specialization, substitution of
+\(\eta_{q,g}=\pi\rho^d\mu_{q,d}\) gives
+\(\pi\rho^d\overline G_{q,d}(b)\).  The sign comparisons in
+\cref{cor:t6-comparative-statics} follow termwise from nonnegative joint mass
+and gain, subject to its stated qualification when duration changes other
+terms.
+\end{proof}
+
+\begin{example}[Exact one-belief retained carrier]
+\label{ex:t6-exact-carrier}
+Let \(d=1\), \(\beta=1/2\), \(\kappa=0\), and \(\pi=\rho=1\).  A zero-profile
+bridge uniquely enables a descendant with gain \(G=2\); deletion leaves no
+research project.  Operation continues against a zero frontier, so
+\(A^{\op}=0\), and the bound gives
+\[
+  1\le\Delta^{\gen}_2.
+\]
+\end{example}
+
+The extended gap-sum, coverage, and comparative-static arguments are in
+Online Supplements~S1 and S3.

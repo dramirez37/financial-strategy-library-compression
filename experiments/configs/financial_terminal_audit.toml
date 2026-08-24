@@ -1,0 +1,148 @@
+schema_version = "financial-illustration-v1"
+experiment_id = "limited-25-etf-mechanism-illustration-v1"
+status = "ready_with_reviewer_supplied_licensed_crsp"
+protocol_date = "2026-07-20"
+protocol_base_commit = "cbbedfd"
+julia_version = "1.12.6"
+seed = 6075990691714899801
+
+[source]
+repository_root = "../curv-risk/curvrisk/research/bachelier_revision"
+repository_commit = "3146029aa71dfe7639ede9ca79f81602165125e8"
+provider = "CRSP/WRDS"
+dataset_name = "CRSP US Stock Database daily security and security history extracts"
+release_note = "Local licensed extract supplied to the sibling curv-risk project; observations end 2025-12-31"
+security_history = "data/raw/crsp_a_stock/security_history/stksecurityinfohist.csv"
+daily_files = [
+  "data/raw/crsp_a_stock/daily_security/stkdlysecuritydata_00_10.csv.gz",
+  "data/raw/crsp_a_stock/daily_security/stkdlysecuritydata_10_20.csv.gz",
+  "data/raw/crsp_a_stock/daily_security/stkdlysecuritydata_20_25.csv.gz",
+]
+orats_inventory_root = "../../data/exp_pro/orats_smv_master_parquet"
+orats_inventory_required = false
+extract_start = "2008-01-01"
+extract_end = "2024-12-31"
+license_reference = "docs/license_notes.md; LICENSE_DATA; docs/data_sources.md in the source repository"
+redistribution_status = "restricted_nonredistributable_raw_and_row_level_data"
+aggregate_outputs_publishable = true
+derived_output_publication_status = "aggregate_outputs_publishable_raw_data_excluded"
+reviewer_replication_access = "reviewer supplies an independently licensed CRSP/WRDS extract; ORATS access is optional for re-auditing the frozen inventory"
+
+[source.permno]
+DIA = 85765
+EEM = 89730
+EFA = 89129
+EMB = 92491
+EWZ = 88396
+FXE = 91047
+FXI = 90383
+GDX = 91232
+GLD = 90448
+HYG = 91933
+IEF = 89469
+IWM = 88222
+IYR = 88294
+KRE = 91315
+LQD = 89467
+QQQ = 86755
+SHY = 89470
+SLV = 91202
+SPY = 84398
+TLT = 89468
+UNG = 91947
+USO = 91208
+UUP = 91758
+XLE = 86454
+XLF = 86455
+
+[source.ticker_aliases]
+QQQ = ["QQQQ", "QQQ"]
+
+[data]
+path = "experiments/financial_terminal_audit/data/etf_daily.csv"
+provenance_path = "experiments/financial_terminal_audit/data/provenance.toml"
+required_columns = ["date", "ticker", "total_return_index", "close", "volume"]
+date_format = "YYYY-MM-DD"
+exchange_timezone = "America/New_York"
+maximum_cross_section_missing_share = 0.02
+minimum_warmup_sessions = 120
+require_exact_universe = true
+
+[universe]
+tickers = ["DIA", "EEM", "EFA", "EMB", "EWZ", "FXE", "FXI", "GDX", "GLD", "HYG", "IEF", "IWM", "IYR", "KRE", "LQD", "QQQ", "SHY", "SLV", "SPY", "TLT", "UNG", "USO", "UUP", "XLE", "XLF"]
+orats_covered_tickers = ["DIA", "EEM", "EFA", "EMB", "EWZ", "FXE", "FXI", "GDX", "GLD", "HYG", "IEF", "IWM", "IYR", "KRE", "LQD", "QQQ", "SLV", "SPY", "TLT", "UNG", "USO", "UUP", "XLE", "XLF"]
+crsp_only_additions = ["SHY"]
+excluded_orats_tickers = ["SMH"]
+exclusion_reason = "SMH maps to two noncontinuous CRSP funds across 2011-12-20/21 and is excluded rather than spliced"
+rationale = "all 24 stable-identifier ETFs in the local ORATS master plus liquid short-Treasury ETF SHY; fixed before CRSP return extraction"
+survivorship_boundary = "fixed surviving universe chosen ex post from locally covered ETFs; not survivorship-free and not a historical all-ETF opportunity set"
+
+[periods]
+development_start = "2009-01-01"
+development_end = "2014-12-31"
+validation_start = "2015-01-01"
+validation_end = "2019-12-31"
+locked_start = "2020-01-01"
+locked_end = "2024-12-31"
+minimum_development_sessions = 1450
+minimum_validation_sessions = 1000
+minimum_locked_sessions = 1000
+locked_period_is_prospective = false
+
+[grammar]
+directional_signal = ["momentum_20", "momentum_60", "mean_reversion_5"]
+entry_filter = ["always", "trend_100"]
+holding_horizon = [5, 20]
+sizing_rule = ["unit", "half"]
+exit_rule = ["horizon", "signal_flip"]
+risk_constraint = ["notional_cap_1", "vol_target_10"]
+
+[backtest]
+annualization_sessions = 252
+volatility_lookback = 20
+trend_filter_lookback = 100
+belief_signal_ticker = "SPY"
+belief_lookback = 60
+belief_quantiles = [0.3333333333333333, 0.6666666666666666]
+decision_to_first_return_lag_sessions = 2
+one_way_transaction_cost_bps = 5.0
+cost_sensitivity_bps = [1.0, 5.0, 10.0]
+risk_aversion = 3.0
+frontier_tolerance = 1.0e-12
+
+[library]
+top_development_strategies_per_ticker = 3
+module_carrier_rule = "best development net utility for every represented module value"
+safe_deletion_order = "ascending development net utility then strategy id"
+frontier_only_order = "ascending validation net utility then strategy id"
+module_closure = "identity union of modules carried by retained strategies"
+candidate_enablement = "all candidate modules must belong to retained closure"
+
+[ranking]
+top_k = 10
+bootstrap_replications = 500
+bootstrap_block_sessions = 20
+uncertainty_level = 0.95
+comparators = ["current_belief_improvement", "average_validation_score", "raw_parameter_novelty"]
+target = "locked_period_net_utility_improvement"
+
+[outputs]
+status_json = "experiments/results/summaries/financial_terminal_audit_status.json"
+grammar_csv = "experiments/results/summaries/financial_terminal_audit_strategy_grammar.csv"
+candidate_audit_csv = "experiments/results/summaries/financial_terminal_audit_candidate_audit.csv"
+pruning_audit_csv = "experiments/results/summaries/financial_terminal_audit_pruning_audit.csv"
+ranking_csv = "experiments/results/summaries/financial_terminal_audit_candidate_rankings.csv"
+ranking_summary_csv = "experiments/results/summaries/financial_terminal_audit_ranking_summary.csv"
+decomposition_csv = "experiments/results/summaries/financial_terminal_audit_decomposition.csv"
+mechanism_summary_csv = "experiments/results/summaries/financial_terminal_audit_mechanism_summary.csv"
+uncertainty_csv = "experiments/results/summaries/financial_terminal_audit_uncertainty.csv"
+cost_sensitivity_csv = "experiments/results/summaries/financial_terminal_audit_cost_sensitivity.csv"
+frontier_pruning_figure_data = "experiments/results/summaries/financial_terminal_audit_frontier_pruning_figure.csv"
+candidate_ranking_figure_data = "experiments/results/summaries/financial_terminal_audit_candidate_ranking_figure.csv"
+decomposition_figure_data = "experiments/results/summaries/financial_terminal_audit_decomposition_figure.csv"
+frontier_pruning_figure = "manuscript/figures/financial_terminal_audit_frontier_pruning.svg"
+candidate_ranking_figure = "manuscript/figures/financial_terminal_audit_candidate_ranking.svg"
+decomposition_figure = "manuscript/figures/financial_terminal_audit_decomposition.svg"
+draft_results_md = "experiments/financial_terminal_audit/DRAFT_RESULTS.md"
+limitations_md = "experiments/financial_terminal_audit/EMPIRICAL_LIMITATIONS.md"
+manuscript_section = "manuscript/sections/financial_terminal_audit.tex"

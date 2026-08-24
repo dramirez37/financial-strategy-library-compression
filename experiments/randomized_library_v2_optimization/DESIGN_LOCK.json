@@ -1,0 +1,39 @@
+{
+  "schema_version": "randomized-library-v2-optimization-extension-lock-v1",
+  "experiment_id": "randomized-library-v2-optimization-extension-v1",
+  "locked_at_utc": "2026-08-04T21:24:42Z",
+  "lock_stage": "pre-extension-outcome analytical lock",
+  "extension_outcomes_read_before_lock": false,
+  "parent_outcomes_used_to_change_extension_specification": false,
+  "outputs_absent_at_freeze": true,
+  "parent_outcomes_are_inputs": false,
+  "pooled_with_parent_results": false,
+  "trial_count": 1024,
+  "sublibraries_per_trial": 32,
+  "design_sha256": "a8d22fa21a4b92265f47542174d81b314cca895b111475c9d3aa74268dc9b7a3",
+  "files": {
+    "experiments/configs/randomized_library_optimization_extension_v1.toml": "ef641456f027ad1a885c89d87e939844a588556b78f12719ab2e1c9441754243",
+    "experiments/configs/randomized_library_stress_v2.toml": "a1e99be2a59e4208e425f5050f397ebfa72e381c0adb762084d856f459b5033d",
+    "experiments/randomized_library_v2/TRIAL_REGISTRY.csv": "669c055f54c86706bd9b2003c6c9f4628c647245909940eea393f3bd40af115c",
+    "experiments/randomized_library_v2/DESIGN_LOCK.json": "3ad48c4c1fc7965705a41cfc1d9dd8b73414d0aca57f5f68d5afb7d79d2be63d",
+    "experiments/randomized_library_v2/DESIGN_LOCK_AMENDMENT_1.json": "caca056dcba81aa6caaff75adeb6b6ab7b8db6a0b03050a7c7eca5ffa6406f25",
+    "experiments/randomized_library_v2/DESIGN_LOCK_AMENDMENT_2.json": "7e6d19c1f29312a3ca42d1182687d744af35b75a1d6d1b709fc20c50162141f0",
+    "julia/scripts/randomized_library_v2_core.jl": "edb755cdbc2f0f4777f781b0df75a3361ed24257ebac6ab838aeb63c4cc39e17"
+  },
+  "outputs_absent_at_freeze_paths": [
+    "experiments/results/summaries/randomized_library_v2_optimization_v1_trials.csv",
+    "experiments/results/summaries/randomized_library_v2_optimization_v1_sublibraries.csv",
+    "experiments/results/summaries/randomized_library_v2_optimization_v1_compression.csv",
+    "experiments/results/summaries/randomized_library_v2_optimization_v1_capacity.csv",
+    "experiments/results/summaries/randomized_library_v2_optimization_v1_penalized.csv",
+    "experiments/results/summaries/randomized_library_v2_optimization_v1_breakpoints.csv",
+    "experiments/results/summaries/randomized_library_v2_optimization_v1_elasticities.csv",
+    "experiments/results/summaries/randomized_library_v2_optimization_v1_factor_summary.csv",
+    "experiments/results/summaries/randomized_library_v2_optimization_v1_summary.json",
+    "RANDOMIZED_LIBRARY_OPTIMIZATION_EXTENSION_V1.md",
+    "manuscript/figures/randomized_library_v2_optimization_v1_value_capacity.svg",
+    "manuscript/figures/randomized_library_v2_optimization_v1_resource_demand.svg",
+    "manuscript/figures/randomized_library_v2_optimization_v1_greedy_gap.svg",
+    "manuscript/figures/randomized_library_v2_optimization_v1_channel_contributions.svg"
+  ]
+}

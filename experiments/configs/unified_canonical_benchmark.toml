@@ -1,0 +1,39 @@
+schema_version = "unified-canonical-benchmark-v1"
+experiment_id = "unified-canonical-benchmark-v1"
+julia_version = "1.12.6"
+arithmetic_exact = "Rational{BigInt}"
+arithmetic_numerical = "Float64"
+randomness = "none"
+selected_candidate = "C0424"
+selected_configuration = "experiments/configs/unified_benchmark_selected.toml"
+structural_specification = "UNIFIED_CANONICAL_BENCHMARK_SPEC.md"
+legacy_regression_fixture = "experiments/configs/canonical_discounted_dp.toml"
+
+[solver]
+finite_horizon = 8
+policy_iteration_limit = 32
+value_iteration_tolerance = 1.0e-12
+value_iteration_limit = 10000
+
+[comparative_statics]
+cost_low = "1//16"
+cost_high = "1//4"
+duration_low = 1
+duration_high = 3
+discount_low = "2//5"
+discount_high = "3//5"
+admission_low = "2//3"
+admission_high = "4//5"
+survival_low = "3//4"
+survival_high = "1//1"
+
+[outputs]
+summary = "experiments/results/summaries/unified_canonical_summary.json"
+values = "experiments/results/summaries/unified_canonical_values.csv"
+policies = "experiments/results/summaries/unified_canonical_policies.csv"
+transition_edges = "experiments/results/summaries/unified_canonical_transition_edges.csv"
+transition_diagram = "manuscript/figures/unified_canonical_transition.tex"
+duration_paths = "experiments/results/summaries/unified_canonical_duration_paths.csv"
+operating_rewards = "experiments/results/summaries/unified_canonical_operating_rewards.csv"
+convergence = "experiments/results/summaries/unified_canonical_convergence.csv"
+comparative_statics = "experiments/results/summaries/unified_canonical_comparative_statics.csv"

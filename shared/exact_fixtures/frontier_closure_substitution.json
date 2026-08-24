@@ -1,0 +1,115 @@
+{
+  "schema_version": "lean-julia-exact-fixture-v2",
+  "fixture_id": "frontier_closure_substitution",
+  "theorem_family": "T7 frontier-closure substitution",
+  "beliefs": ["only"],
+  "transition_rows": [
+    ["1//1"]
+  ],
+  "discount": "1//2",
+  "modules": ["old", "added"],
+  "strategies": [
+    {
+      "id": "inactive",
+      "operational_profile": ["0//1"],
+      "modules": []
+    },
+    {
+      "id": "frontier_high",
+      "operational_profile": ["2//1"],
+      "modules": []
+    },
+    {
+      "id": "candidate",
+      "operational_profile": ["4//1"],
+      "modules": []
+    }
+  ],
+  "libraries": [
+    {
+      "id": "frontier_low",
+      "strategies": ["inactive"]
+    },
+    {
+      "id": "frontier_high",
+      "strategies": ["inactive", "frontier_high"]
+    }
+  ],
+  "projects": [
+    {
+      "id": "old_project",
+      "cost": ["0//1"],
+      "duration": 1,
+      "survival": "0//1",
+      "strict_cost": false,
+      "required_modules": ["old"],
+      "candidate_strategies": ["candidate"]
+    },
+    {
+      "id": "added_project",
+      "cost": ["0//1"],
+      "duration": 1,
+      "survival": "1//1",
+      "strict_cost": false,
+      "required_modules": ["added"],
+      "candidate_strategies": ["candidate"]
+    }
+  ],
+  "expected": {
+    "rational_scalars": [
+    {
+      "id": "added_cost",
+      "value": "0//1"
+    },
+    {
+      "id": "added_success",
+      "value": "1//1"
+    },
+    {
+      "id": "candidate_quality",
+      "value": "4//1"
+    },
+    {
+      "id": "closure_increment_high_frontier",
+      "value": "1//1"
+    },
+    {
+      "id": "closure_increment_low_frontier",
+      "value": "2//1"
+    },
+    {
+      "id": "cross_difference",
+      "value": "-1//1"
+    },
+    {
+      "id": "frontier_high",
+      "value": "2//1"
+    },
+    {
+      "id": "frontier_low",
+      "value": "0//1"
+    },
+    {
+      "id": "old_cost",
+      "value": "0//1"
+    },
+    {
+      "id": "old_success",
+      "value": "0//1"
+    }
+  ],
+    "rational_vectors": [],
+    "boolean_scalars": [
+    {
+      "id": "is_complementarity",
+      "value": false
+    },
+    {
+      "id": "is_substitution",
+      "value": true
+    }
+  ],
+    "boolean_vectors": [],
+    "string_vectors": []
+  }
+}

@@ -1,0 +1,24 @@
+import Mathlib.Tactic.Linter
+import StrategyInnovation.Interaction.PrimitiveSubstitution
+
+/-!
+# Focused axiom audit for primitive frontier--closure substitution
+-/
+
+open StrategyInnovation.Interaction.PrimitiveSubstitution
+
+#print axioms recursiveGapValue
+#print axioms recursiveGapValue_antitone
+#print axioms RecursiveCommonGapActionDecomposition
+#print axioms RecursiveCommonGapActionDecomposition.toCommonGap
+#print axioms recursive_primitives_imply_relativeActionSaturation
+#print axioms CanonicalPrimitiveSubstitutionAssumptions
+#print axioms CanonicalPrimitiveSubstitutionAssumptions.toSubstitutionAssumptions
+#print axioms relative_saturation_implies_crossDifference_nonpositive
+#print axioms canonical_frontier_closure_substitutes
+#print axioms Examples.project_switching_complementarity_outside_primitive_subclass
+#print axioms Examples.frontier_dependent_success_complementarity_exact
+#print axioms Examples.separable_zero_interaction_exact
+
+#lint- only checkType unusedArguments simpNF in
+  StrategyInnovation.Interaction.PrimitiveSubstitution

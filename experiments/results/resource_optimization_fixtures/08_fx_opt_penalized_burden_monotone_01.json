@@ -1,0 +1,101 @@
+{
+  "claim": {
+    "arithmetic": "Rational{BigInt}",
+    "assumption_boundary": "No raw-inclusion nesting, uniqueness, or differentiability assumption is needed.",
+    "claim_number": 8,
+    "evidence_class": "exact finite Julia search; not Lean proof",
+    "fixture": {
+      "general_algebra": "optimality at λ1 and λ2 implies (λ2-λ1)(W1-W2) >= 0",
+      "higher_optimizer": {
+        "active_count": 0,
+        "cardinality_with_inactive": 1,
+        "frontier": [
+          "0//1"
+        ],
+        "mask": 0,
+        "modules": [],
+        "productive_value": "0//1",
+        "strategies": [
+          "inactive"
+        ],
+        "weight": "0//1"
+      },
+      "higher_price": "2//1",
+      "lower_optimizer": {
+        "active_count": 1,
+        "cardinality_with_inactive": 2,
+        "frontier": [
+          "0//1"
+        ],
+        "mask": 1,
+        "modules": [
+          "m1"
+        ],
+        "productive_value": "1//1",
+        "strategies": [
+          "inactive",
+          "s1"
+        ],
+        "weight": "1//1"
+      },
+      "lower_price": "0//1",
+      "strict_example_problem": {
+        "active_strategies": [
+          {
+            "id": "s1",
+            "modules": [
+              "m1"
+            ],
+            "profile": [
+              "0//1"
+            ],
+            "weight": "1//1"
+          }
+        ],
+        "belief_count": 1,
+        "closure": "identity",
+        "inactive": {
+          "id": "inactive",
+          "modules": [],
+          "profile": [
+            "0//1"
+          ],
+          "weight": "0//1"
+        },
+        "module_count": 1,
+        "productive_value_monotone_under_inclusion": true,
+        "productive_value_table": [
+          {
+            "mask": 0,
+            "productive_value": "0//1",
+            "strategies": [
+              "inactive"
+            ]
+          },
+          {
+            "mask": 1,
+            "productive_value": "1//1",
+            "strategies": [
+              "inactive",
+              "s1"
+            ]
+          }
+        ]
+      }
+    },
+    "id": "FX-OPT-PENALIZED-BURDEN-MONOTONE-01",
+    "minimality": {
+      "active_bound": 3,
+      "optimizer_pair_count": 158136,
+      "price_pair_count": 76709,
+      "problem_count": 1246,
+      "value_bound": 2,
+      "weight_bound": 2
+    },
+    "status": "survived_exhaustive_search",
+    "theorem_revision": "Promote only the set-valued burden-order statement: for λ₁<λ₂, every low-price optimizer has burden at least every high-price optimizer.",
+    "title": "Penalized-optimal resource burden is antitone in price"
+  },
+  "experiment_id": "paper1-resource-optimization-counterexample-audit-v1",
+  "schema_version": "resource-optimization-counterexample-audit-v1"
+}

@@ -1,0 +1,25 @@
+{
+  "schema_version": "randomized-library-v2-execution-amendment-lock-v1",
+  "experiment_id": "randomized-finite-library-stress-v2",
+  "amendment_id": "randomized-library-v2-execution-amendment-2",
+  "locked_at_utc": "2026-07-28T20:38:25Z",
+  "lock_stage": "pre-outcome executable implementation and output extension",
+  "parent_design_sha256": "0b012dfc14f4ea57b0d34877a68d9a546cd499d2270903e772d78b21425d14db",
+  "parent_stability_sha256": "d9122d258b8fe62d5872c41b0a418b1351a5798b25ddb99ec73b726e324d244f",
+  "outcomes_read_before_lock": false,
+  "outcome_files_absent_at_lock": true,
+  "candidate_results_used_to_change_implementation": false,
+  "maximum_n_selected_after_outcomes": false,
+  "registered_maximum_n": 1024,
+  "design_sha256": "8c278c07d998ba118d98c78cc1373a47ab63127f00d606c0042c006dac11e7be",
+  "files": {
+    "experiments/randomized_library_v2/DESIGN_LOCK.json": "3ad48c4c1fc7965705a41cfc1d9dd8b73414d0aca57f5f68d5afb7d79d2be63d",
+    "experiments/randomized_library_v2/DESIGN_LOCK_AMENDMENT_1.json": "caca056dcba81aa6caaff75adeb6b6ab7b8db6a0b03050a7c7eca5ffa6406f25",
+    "RANDOMIZED_DESIGN_V2_AMENDMENT_2.md": "c4da5f5c4ba12e85026ad50e2042570f06bbb6341fce3bfda06e1f6bac614bee",
+    "experiments/configs/randomized_library_execution_amendment_2.toml": "a585a51b872b4eb813246ef87220f03de5130013f09f980b59669fe2a3155bf5",
+    "julia/scripts/randomized_library_v2_core.jl": "edb755cdbc2f0f4777f781b0df75a3361ed24257ebac6ab838aeb63c4cc39e17",
+    "julia/scripts/run_randomized_library_stress_v2.jl": "f974da631598162193d3460f5874b6502a169ef34a564ee9a2825c1fa7a7f2b2",
+    "julia/scripts/lock_randomized_library_execution_amendment.jl": "c4f86a221d8fbe0e0efe2d7a0469bd70e4ae86b012c2ccb9fdd58f1954c858d0",
+    "julia/test/test_randomized_libraries_v2_execution.jl": "7162cbaf8e2ef9dc8df76ff27256eccf52f5b2166d29bd4fa0cdae80211f3f32"
+  }
+}

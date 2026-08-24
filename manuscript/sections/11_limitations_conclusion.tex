@@ -1,0 +1,68 @@
+% Page budget: one page.
+\clearpage
+\section{Conclusion}\label{sec:conclusion}
+
+Strategy libraries grow because research keeps producing new policies,
+modules, and recombinations worth retaining. That growth is productive, but
+it is not free: storage, validation, monitoring, governance, and operational
+attention are scarce resources. The economic difficulty is that a
+strategy is both an operational asset and a generative asset. It can improve
+the action frontier available today, and it can supply modules that create
+descendants unavailable from the current frontier alone. A compression rule
+that recognizes only the first role can therefore discard the source of
+future invention.
+
+This paper formulates compression as a finite combinatorial optimization
+problem. Given a current library and additive resource weights, exact safe
+compression minimizes retained burden while preserving both the operational
+frontier and the descendant-generating closure. The projection theorem makes
+these two objects the sufficient productive state and hence the correct exact
+constraint: every safe-feasible library has the same productive value even
+when its resource burden differs. The innovation-safe deletion certificate is
+a useful local feasibility test. Rechecking that certificate after each
+deletion produces a certified safe endpoint, but stepwise pruning need not
+solve the global minimum-resource problem. Inclusion-wise irreducibility and
+global optimality are distinct notions, so deletion order and a complete
+search over feasible sublibraries can matter.
+
+Preserving closure is economically substantive rather than a formal
+refinement. Frontier-only compression may leave all immediately available
+actions unchanged while severing the modules needed for a valuable
+descendant. In the sharp bridge construction, dropping closure destroys all
+attainable descendant value, so normalized bridge loss reaches one. Static
+coverage or current payoff equivalence is consequently not a sufficient
+safety criterion when retained strategies participate in later research.
+
+Scarcity also determines which imperfectly retained library is optimal. A
+hard capacity constraint expands the feasible set only when the budget can
+support another relevant combination, while a resource penalty selects the
+upper envelope of finitely many value--burden lines. Capacity changes and
+resource-price changes therefore alter the optimal retained library at
+discrete breakpoints. The resulting selections need not be nested. Moreover,
+generative modules can be complements: a module may be unproductive alone
+but valuable with its bridge partners. That complementarity can make the
+value of capacity nonconcave even though capacity value remains monotone.
+
+The value decomposition supplies the second step in the paper's hierarchy:
+it interprets why the compression constraints matter.  Operational value
+rewards actions already available, while generative value rewards future
+descendants and is exposed to the delay before innovation arrives.  The
+core elasticity, duration, and switching results are in Appendix~C; extended
+belief-occupation and interaction results are in Online Supplements~S1--S3.
+Innovation duration measures timing exposure and channel elasticities are used
+only when their value denominator is positive; contribution or finite-change
+measures replace them at zero and at switching thresholds.
+
+The exact fixtures, randomized study, and financial audits illustrate these
+optimization mechanisms at different evidentiary levels. In particular, the
+financial comparisons between a stepwise safe library, HiGHS-reported
+minimum-resource candidates, and a frontier-only library expose the
+safety--compression trade-off. Held-out outcomes are retrospective opportunity
+diagnostics only: they make no causal, forecasting, or alpha claim. Natural
+extensions are approximate compression with an explicit safety tolerance,
+endogenous information processing, continuous belief spaces, and endogenous
+verification of newly generated strategies. Each would enlarge the choice set
+while preserving the paper's organizing question: how much resource burden
+can be removed without sacrificing the operational and inventive capacity of
+the library?
+\clearpage

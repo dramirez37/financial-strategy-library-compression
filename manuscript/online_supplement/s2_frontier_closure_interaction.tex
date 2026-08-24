@@ -1,0 +1,246 @@
+\section{Frontier--Closure Interaction}
+\label{supp:frontier-closure-interaction}\label{app:interaction-proof}
+
+The main paper's compressed state has two economically different margins.  A
+higher frontier improves current operation and makes further operational
+improvement harder.  A richer closure expands the menu of policies that
+research can generate.  This section gives the complete finite interaction
+theory, its primitive sufficient conditions, and the exact mechanisms that
+make the sign ambiguous outside those conditions.
+
+The results use the main paper's finite-horizon unified action value,
+including cost, positive duration, operation during research, the joint
+completion law, compressed updating, and lower-horizon optimized
+continuation.  They add no path--outcome independence assumption.
+
+\subsection{Closure increments and relative saturation}
+
+\begin{definition}[Closure increment and interaction]
+\label{def:frontier-closure-interaction}
+For \(F_0\le F_1\) and \(C_0\subseteq C_1\), define
+\[
+ \Delta_CV_h(F;C_1,C_0):=V_h(F,C_1)-V_h(F,C_0)
+\]
+and
+\[
+ J_h:=\Delta_CV_h(F_1;C_1,C_0)
+      -\Delta_CV_h(F_0;C_1,C_0).
+\]
+The two margins are substitutes on the rectangle when \(J_h\le0\) and
+complements when \(J_h\ge0\).
+\end{definition}
+
+Frontier independence holds project availability, initiation cost, duration,
+operation during research, and the complete joint completion law fixed across
+the two frontiers.  Closure expansion makes every closure-poor action
+available under the rich closure.  These restrictions make each fixed
+opportunity saturate, but they do not compare saturation across projects.
+The theorem therefore needs a relative condition at the action level.
+
+\begin{theorem}[Frontier--closure substitution under relative saturation]
+\label{thm:frontier-closure-substitution}
+Consider the four realizable compressed states
+\[
+ (F_0,C_0),\quad(F_0,C_1),\quad(F_1,C_0),\quad(F_1,C_1),
+ \qquad F_0\le F_1,\quad C_0\subseteq C_1.
+\]
+Suppose research primitives are frontier independent and the closure-rich
+menu contains the closure-poor menu.  Suppose also that, at every finite
+Bellman node, every action \(a_1\) feasible with \(C_1\) and every action
+\(a_0\) feasible with \(C_0\) satisfy
+\begin{equation}\label{eq:t7-relative-saturation}
+ Q_h(F_1,C_1,a_1)-Q_h(F_1,C_0,a_0)
+ \le
+ Q_h(F_0,C_1,a_1)-Q_h(F_0,C_0,a_0).
+\end{equation}
+Here \(Q_h\) is the unified action value, including cost, positive duration,
+operation during research, the joint completion law, compressed updating,
+and lower-horizon optimized continuation.  Then, for every finite horizon and
+belief,
+\[
+ \Delta_CV_h(F_1;C_1,C_0)
+ \le
+ \Delta_CV_h(F_0;C_1,C_0),
+ \qquad\text{equivalently }J_h\le0.
+\]
+\end{theorem}
+
+At a fixed finite horizon and belief, for the four realizable corners choose
+\(a_{11}\) maximizing at \((F_1,C_1)\) and \(a_{00}\) maximizing at
+\((F_0,C_0)\).  Finiteness of the action menus supplies these maximizers.
+Frontier independence transports them to the comparison corners; no
+probabilistic independence is asserted.  Relative action saturation and
+finite maximum attainment give
+\[
+\begin{aligned}
+ V_h(F_1,C_1)-V_h(F_1,C_0)
+ &\le Q_h(F_1,C_1,a_{11})-Q_h(F_1,C_0,a_{00})\\
+ &\le Q_h(F_0,C_1,a_{11})-Q_h(F_0,C_0,a_{00})\\
+ &\le V_h(F_0,C_1)-V_h(F_0,C_0).
+\end{aligned}
+\]
+This is exactly \(J_h\le0\).  Neither detectability nor contraction is used.
+Without the middle inequality, individual project saturation does not control
+optimizer switching.
+
+\subsection{Primitive common-gap sufficient conditions}
+
+\begin{proposition}[Primitive common-gap frontier saturation]
+\label{prop:primitive-frontier-saturation}
+Maintain the realizable rectangle, frontier-independent primitives, and menu
+inclusion of \cref{thm:frontier-closure-substitution}.  Suppose that at every
+finite Bellman node and belief the four action-value tables admit
+\begin{equation}\label{eq:primitive-common-gap}
+\begin{aligned}
+ Q_h(F_i,C_1,a)
+   &=B_{h,i}+\eta^1_{h,a}+\lambda^1_{h,a}g_{h,i},\\
+ Q_h(F_i,C_0,a)
+   &=B_{h,i}+\eta^0_{h,a}+\lambda^0_{h,a}g_{h,i},
+ \qquad i\in\{0,1\},
+\end{aligned}
+\end{equation}
+where \(g_{h,1}\le g_{h,0}\), every rich-menu exposure satisfies
+\(\lambda^1_{h,a}\ge0\), and every feasible poor-menu action satisfies
+\(\lambda^0_{h,a}=0\).  Then relative action saturation
+\eqref{eq:t7-relative-saturation} holds.  Consequently
+\[
+ \Delta_CV_h(F_1;C_1,C_0)
+ \le
+ \Delta_CV_h(F_0;C_1,C_0)
+\]
+for every finite horizon and belief.
+\end{proposition}
+
+The subclass is economically narrow but primitive.  A fixed descendant
+profile supplies the common positive-part gap \(g\); frontier-independent
+cost, duration, operation, candidate, admission, and fixed-continuation terms
+enter the intercepts and nonnegative exposures.  The poor closure is
+Continue-only in the leading case; more generally its feasible actions may
+have fixed payoffs but no exposure to the descendant gap.  The shared
+decomposition across frontiers is the required fixed-continuation
+factorization.  It is an assumption defining this subclass, not a claim that
+arbitrary unified continuation preserves the form.
+
+There is a transition-level sufficient condition for the displayed gap order.
+Let the low- and high-frontier gaps share the process belief kernel \(P\) and
+discount \(\beta\ge0\), and let
+\[
+\begin{aligned}
+ g_{0,i}(b)&=\bar g_i(b),\\
+ g_{h+1,i}(b)
+   &=s_i(b)+\beta\sum_{b'}P(b,b')g_{h,i}(b'),
+ \qquad i\in\{0,1\}.
+\end{aligned}
+\]
+If \(\bar g_1\le\bar g_0\) and \(s_1\le s_0\) pointwise, positivity of the
+fixed transition operator gives \(g_{h,1}\le g_{h,0}\) by finite-horizon
+induction.  Thus the common-gap proposition is recursion stable when the
+descendant continuation uses this fixed kernel and remains outside the
+action-dependent optimizer.
+
+The induction makes this preservation step explicit.  Assume
+\(\beta\ge0\), \(P(b,b')\ge0\), \(\bar g_1(b)\le\bar g_0(b)\), and
+\(s_1(b)\le s_0(b)\) pointwise.  The terminal order is the induction base.
+If \(g_{h,1}(b')\le g_{h,0}(b')\) for every \(b'\), then
+\[
+\begin{aligned}
+ g_{h+1,1}(b)-g_{h+1,0}(b)
+   ={}&s_1(b)-s_0(b)\\
+     &+\beta\sum_{b'}P(b,b')
+       \bigl(g_{h,1}(b')-g_{h,0}(b')\bigr)
+   \le0.
+\end{aligned}
+\]
+Hence \(g_{h,1}\le g_{h,0}\) for every finite \(h\).  Row mass one gives the
+kernel its probability interpretation; positivity, rather than normalization,
+is the sign-bearing property in the induction.
+
+At each node, fixed project and continuation primitives give
+\[
+ Q_h(F_i,C_j,a)=B_{h,i}+\eta^j_{h,a}
+                  +\lambda^j_{h,a}g_{h,i}.
+\]
+Take a rich action \(a_1\) and a feasible poor action \(a_0\).  The
+frontier-specific base cancels within their relative payoff.  Because every
+poor action has \(\lambda^0_{h,a_0}=0\), its change from the low to the high
+frontier is
+\[
+\begin{aligned}
+ &\bigl[Q_h(F_1,C_1,a_1)-Q_h(F_1,C_0,a_0)\bigr]\\
+ &\quad-
+ \bigl[Q_h(F_0,C_1,a_1)-Q_h(F_0,C_0,a_0)\bigr]
+ =\lambda^1_{h,a_1}(g_{h,1}-g_{h,0})\le0,
+\end{aligned}
+\]
+using \(\lambda^1_{h,a_1}\ge0\).  This is precisely relative action
+saturation.  Frontier independence transports the high-rich and low-poor
+maximizers to the other corners, and the finite-max comparison above then
+yields \(J_h\le0\).
+
+\subsection{Complementarity and sign-ambiguous cases}
+
+The zero-exposure restriction cannot be replaced by merely ordering the added
+project's exposure above the incumbent project's.  Because Continue is always
+available and has zero exposure, its advantage over a positive-exposure poor
+project rises when the common gap shrinks.  An exact 2,430-row rational search
+finds 648 failures of all-pairs relative saturation under the broader exposure
+order and none among the 810 zero-poor-exposure rows.  This is finite
+falsification and validation, not proof; the proposition is separately kernel
+checked.
+
+The substitution theorem is sharp.  Exact rational finite examples attain
+all three interaction signs:
+\[
+\begin{array}{lccc}
+\toprule
+\text{construction}
+  &\Delta_CV(F_0)&\Delta_CV(F_1)&J\\
+\midrule
+\text{fixed opportunity with saturation}&2&1&-1\\
+\text{frontier-dependent success }0\to1&0&1/2&1/2\\
+\text{separable closure bonus}&3/2&3/2&0\\
+\bottomrule
+\end{array}
+\]
+
+\begin{proposition}[Complementarity from project switching]
+\label{prop:t7-interaction-examples}
+Frontier independence and individual project saturation do not imply
+substitution.  Let \(\beta=1/2\), the descendant payoff be \(10\), and
+\((F_0,F_1)=(0,8)\).  The old project has fixed
+\((\pi,\kappa)=(1,2)\), while closure adds a project with fixed
+\((\pi,\kappa)=(1/2,0)\).  Their premia fall respectively
+\[
+  3\to0
+  \qquad\text{and}\qquad
+  5/2\to1/2.
+\]
+Nevertheless, optimization gives
+\[
+  \Delta_CV(F_0)=0,\qquad
+  \Delta_CV(F_1)=1/2,\qquad
+  J=1/2.
+\]
+\end{proposition}
+
+The added project's advantage over the old project rises from
+\(-1/2\) to \(1/2\), violating relative action saturation.  This produces
+strict complementarity even though both project premia decline individually.
+The example remains outside
+\cref{prop:primitive-frontier-saturation}: its poor-menu project has positive
+common-gap exposure.  Frontier-dependent success provides a second exact
+complementarity mechanism; the fixed-opportunity and separable examples show
+that substitution and zero interaction are also attainable.  Hence neither
+closure enrichment nor frontier improvement has an unconditional interaction
+sign.
+
+The numerical interaction response remains evidence separate from the
+theory.  It preserves the registered 2,430-row frontier--project boundary grid
+and five canonical four-corner fixtures: primitive strict substitution, the
+saturation boundary, optimizer-switching complementarity,
+frontier-dependent-success complementarity, and nonconstant separability.
+Every row reports the two closure increments, their cross difference, the
+four selected projects, four realizability flags, and the primitive
+sufficient-condition certificate.  Only jointly realizable four-corner rows
+enter any sign frequency; nonrealizable diagnostic rows remain recorded but
+are not aggregated.

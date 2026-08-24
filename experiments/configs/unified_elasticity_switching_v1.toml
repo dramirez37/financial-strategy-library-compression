@@ -1,0 +1,129 @@
+schema_version = "unified-elasticity-switching-v1"
+experiment_id = "unified-elasticity-switching-v1"
+registration_status = "locked_before_extension_outcomes"
+registered_date = "2026-08-04"
+julia_version = "1.12.6"
+arithmetic_exact = "Rational{BigInt}"
+arithmetic_plotting = "Float64 coordinates derived only from exact source rows"
+randomness = "none"
+theorem_evidence = false
+evidence_class = "registered exact finite-model Julia experiment; not new theorem evidence"
+source_resource_experiment = "experiments/configs/unified_canonical_resources.toml"
+source_comparative_specification = "experiments/configs/unified_comparative_statics.toml"
+bridge_specification = "BRIDGE_ELASTICITY_SPEC.md"
+
+[bridge]
+gross_descendant_value = "1//1"
+normalized_margins = [
+  "1//16", "1//8", "1//4", "3//8", "1//2",
+  "5//8", "3//4", "7//8", "1//1",
+]
+durations = [1, 2, 3, 4, 5]
+figure_reference_duration = 3
+definition = "A=1, M=m*A, kappa=A-M; on M>0 report exact elasticities d/m for discount and survival, 1/m for admission and descendant payoff, and -(1-m)/m for research cost"
+boundary = "normalized margin m=M/A, not the unqualified net level M, is the registered boundary coordinate"
+
+[dynamic]
+belief_count = 5
+finite_horizon = 4
+max_iterations = 10000
+operates_during_research = true
+
+[dynamic.baseline]
+frontier_level = "1//1"
+frontier_density = "1//2"
+closure_richness = "3//4"
+module_overlap = "1//4"
+research_cost = "1//4"
+research_duration = 1
+admission_probability = "3//4"
+candidate_survival = "9//10"
+discount_factor = "4//5"
+belief_kernel_persistence = "3//4"
+signal_precision_proxy = "1//2"
+candidate_profile_quality = "2//1"
+generator_frontier_dependence = "0//1"
+
+[duration]
+grid = [1, 2, 3, 4, 5]
+belief_coordinates = ["0//1", "1//4", "1//2", "3//4", "1//1"]
+innovation_duration = "D_beta = beta*(partial V / partial beta)/V on the locally fixed exact optimal policy branch"
+belief_convexity = "uniform-grid second difference D[i+1]-2D[i]+D[i-1], with scaled curvature equal to the second difference divided by (1/4)^2"
+tie_boundary = "a zero action gap is retained and flags a nondifferentiable Bellman envelope"
+
+[robustness]
+design = "one primitive at a time; every row is exact and every baseline value is included"
+parameters = [
+  "admission_probability",
+  "candidate_survival",
+  "discount_factor",
+  "research_cost",
+  "descendant_payoff_scale",
+]
+admission_probability = ["1//2", "3//4", "1//1"]
+candidate_survival = ["3//4", "9//10", "1//1"]
+discount_factor = ["1//2", "4//5", "9//10"]
+research_cost = ["0//1", "1//4", "1//2"]
+descendant_payoff_scale = ["1//2", "1//1", "3//2"]
+descendant_payoff_rule = "candidate_profile_quality equals baseline candidate_profile_quality times the registered scale"
+
+[resource_paths]
+weight_schedules = ["equal_active", "carrier_heavy", "descendant_heavy"]
+beliefs = ["low", "high"]
+capacity_grid = "every distinct attainable total burden, including the mandatory inactive policy"
+penalty_grid = "every exact globally active nonnegative library breakpoint plus every intervening open cell and the terminal cell"
+display_selection = "minimum burden then lowest bit mask; tables retain the complete exact optimizer correspondence"
+capacity_elasticity = "forward exact arc elasticity between adjacent attainable total burdens when the lower capacity and value are positive"
+library_switch = "globally active exact pairwise affine intersection only"
+
+[breakpoints]
+bellman_exact_metric = "half the exact winning-versus-runner-up Q gap in l-infinity action-value perturbation space"
+primitive_switches = "adjacent registered primitive values with different optimal actions form an exact bracketing interval, not an asserted exact primitive root"
+library_exact_metric = "exact lambda value at a globally active penalized-envelope intersection"
+
+[gates]
+resource_source_artifacts_recompute_exactly = true
+bridge_identities_close_exactly = true
+fixed_policy_value_reconstruction_closes_exactly = true
+fixed_policy_derivative_system_closes_exactly = true
+all_policy_and_bellman_residuals_zero = true
+operational_plus_generative_equals_total = true
+operational_plus_generative_scaled_sensitivity_equals_total = true
+capacity_values_weakly_increasing = true
+selected_burden_weakly_decreasing_in_lambda = true
+all_capacity_and_penalized_optima_verified_by_enumeration = true
+all_figure_marks_have_machine_readable_exact_source_rows = true
+
+[outputs]
+bridge = "experiments/results/summaries/unified_elasticity_switching_v1_bridge.csv"
+duration_convexity = "experiments/results/summaries/unified_elasticity_switching_v1_duration_convexity.csv"
+channel_contributions = "experiments/results/summaries/unified_elasticity_switching_v1_channel_contributions.csv"
+capacity = "experiments/results/summaries/unified_elasticity_switching_v1_capacity.csv"
+penalized_path = "experiments/results/summaries/unified_elasticity_switching_v1_penalized_path.csv"
+library_breakpoints = "experiments/results/summaries/unified_elasticity_switching_v1_library_breakpoints.csv"
+bellman_breakpoints = "experiments/results/summaries/unified_elasticity_switching_v1_bellman_breakpoints.csv"
+robustness = "experiments/results/summaries/unified_elasticity_switching_v1_robustness.csv"
+summary = "experiments/results/summaries/unified_elasticity_switching_v1_summary.json"
+margin_elasticity_figure = "manuscript/figures/unified_elasticity_switching_v1_margin_elasticity.svg"
+value_capacity_figure = "manuscript/figures/unified_elasticity_switching_v1_value_capacity.svg"
+penalized_envelope_figure = "manuscript/figures/unified_elasticity_switching_v1_penalized_envelope.svg"
+selected_burden_figure = "manuscript/figures/unified_elasticity_switching_v1_selected_burden.svg"
+innovation_duration_figure = "manuscript/figures/unified_elasticity_switching_v1_innovation_duration.svg"
+switching_map_figure = "manuscript/figures/unified_elasticity_switching_v1_switching_map.svg"
+
+[figure_contracts]
+margin_elasticity = "three directly labeled exact curves at registered duration three: discount/survival, admission/payoff, and absolute cost elasticity against exact positive net margin M with A=1"
+value_capacity = "two belief panels with exact right-continuous stairs for all three registered burden schedules"
+penalized_envelope = "two belief panels with exact affine envelope segments; Float64 is used only to position endpoints"
+selected_burden = "six directly labeled right-continuous burden paths over exact lambda cells"
+innovation_duration = "five-by-five heat map of exact D_beta by registered project duration and belief coordinate, with signed local convexity symbols"
+switching_map = "six lambda-path rows showing selected library and Bellman action, plus exact library switch markers and exact half-Q-gap metadata"
+palette = "blue, gold, orange, olive, rose, and charcoal; direct labels, line dashes, action glyphs, and text prevent color-only encoding"
+qa = "render and inspect every final SVG; reject NaN, clipped titles, illegible labels, and any mark without an exact source-table row"
+
+[design_lock]
+path = "experiments/unified_elasticity_switching_v1/DESIGN_LOCK.json"
+schema_version = "unified-elasticity-switching-lock-v1"
+lock_stage = "pre-extension-outcome analytical lock"
+extension_outcomes_read_before_lock = false
+

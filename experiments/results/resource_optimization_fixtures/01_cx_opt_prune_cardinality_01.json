@@ -1,0 +1,370 @@
+{
+  "claim": {
+    "arithmetic": "Rational{BigInt}",
+    "assumption_boundary": "The failed claim lacks an exchange or matroid-type property for the safe-feasible set.",
+    "claim_number": 1,
+    "evidence_class": "exact finite Julia search; not Lean proof",
+    "fixture": {
+      "greedy_trace": {
+        "actual_deletions": [
+          "s3"
+        ],
+        "all_steps_source_safe": true,
+        "deletion_order": [
+          "s3",
+          "s1",
+          "s2"
+        ],
+        "endpoint": {
+          "active_count": 2,
+          "cardinality_with_inactive": 3,
+          "frontier": [
+            "0//1"
+          ],
+          "mask": 3,
+          "modules": [
+            "m1",
+            "m2"
+          ],
+          "productive_value": "0//1",
+          "strategies": [
+            "inactive",
+            "s1",
+            "s2"
+          ],
+          "weight": "2//1"
+        },
+        "endpoint_irreducible": true,
+        "libraries": [
+          {
+            "active_count": 3,
+            "cardinality_with_inactive": 4,
+            "frontier": [
+              "0//1"
+            ],
+            "mask": 7,
+            "modules": [
+              "m1",
+              "m2"
+            ],
+            "productive_value": "0//1",
+            "strategies": [
+              "inactive",
+              "s1",
+              "s2",
+              "s3"
+            ],
+            "weight": "3//1"
+          },
+          {
+            "active_count": 2,
+            "cardinality_with_inactive": 3,
+            "frontier": [
+              "0//1"
+            ],
+            "mask": 3,
+            "modules": [
+              "m1",
+              "m2"
+            ],
+            "productive_value": "0//1",
+            "strategies": [
+              "inactive",
+              "s1",
+              "s2"
+            ],
+            "weight": "2//1"
+          }
+        ]
+      },
+      "problem": {
+        "active_strategies": [
+          {
+            "id": "s1",
+            "modules": [
+              "m1"
+            ],
+            "profile": [
+              "0//1"
+            ],
+            "weight": "1//1"
+          },
+          {
+            "id": "s2",
+            "modules": [
+              "m2"
+            ],
+            "profile": [
+              "0//1"
+            ],
+            "weight": "1//1"
+          },
+          {
+            "id": "s3",
+            "modules": [
+              "m1",
+              "m2"
+            ],
+            "profile": [
+              "0//1"
+            ],
+            "weight": "1//1"
+          }
+        ],
+        "belief_count": 1,
+        "closure": "identity",
+        "inactive": {
+          "id": "inactive",
+          "modules": [],
+          "profile": [
+            "0//1"
+          ],
+          "weight": "0//1"
+        },
+        "module_count": 2,
+        "productive_value_monotone_under_inclusion": true,
+        "productive_value_table": [
+          {
+            "mask": 0,
+            "productive_value": "0//1",
+            "strategies": [
+              "inactive"
+            ]
+          },
+          {
+            "mask": 1,
+            "productive_value": "0//1",
+            "strategies": [
+              "inactive",
+              "s1"
+            ]
+          },
+          {
+            "mask": 2,
+            "productive_value": "0//1",
+            "strategies": [
+              "inactive",
+              "s2"
+            ]
+          },
+          {
+            "mask": 3,
+            "productive_value": "0//1",
+            "strategies": [
+              "inactive",
+              "s1",
+              "s2"
+            ]
+          },
+          {
+            "mask": 4,
+            "productive_value": "0//1",
+            "strategies": [
+              "inactive",
+              "s3"
+            ]
+          },
+          {
+            "mask": 5,
+            "productive_value": "0//1",
+            "strategies": [
+              "inactive",
+              "s1",
+              "s3"
+            ]
+          },
+          {
+            "mask": 6,
+            "productive_value": "0//1",
+            "strategies": [
+              "inactive",
+              "s2",
+              "s3"
+            ]
+          },
+          {
+            "mask": 7,
+            "productive_value": "0//1",
+            "strategies": [
+              "inactive",
+              "s1",
+              "s2",
+              "s3"
+            ]
+          }
+        ]
+      },
+      "safe_set": {
+        "feasible_libraries": [
+          {
+            "active_count": 2,
+            "cardinality_with_inactive": 3,
+            "frontier": [
+              "0//1"
+            ],
+            "mask": 3,
+            "modules": [
+              "m1",
+              "m2"
+            ],
+            "productive_value": "0//1",
+            "strategies": [
+              "inactive",
+              "s1",
+              "s2"
+            ],
+            "weight": "2//1"
+          },
+          {
+            "active_count": 1,
+            "cardinality_with_inactive": 2,
+            "frontier": [
+              "0//1"
+            ],
+            "mask": 4,
+            "modules": [
+              "m1",
+              "m2"
+            ],
+            "productive_value": "0//1",
+            "strategies": [
+              "inactive",
+              "s3"
+            ],
+            "weight": "1//1"
+          },
+          {
+            "active_count": 2,
+            "cardinality_with_inactive": 3,
+            "frontier": [
+              "0//1"
+            ],
+            "mask": 5,
+            "modules": [
+              "m1",
+              "m2"
+            ],
+            "productive_value": "0//1",
+            "strategies": [
+              "inactive",
+              "s1",
+              "s3"
+            ],
+            "weight": "2//1"
+          },
+          {
+            "active_count": 2,
+            "cardinality_with_inactive": 3,
+            "frontier": [
+              "0//1"
+            ],
+            "mask": 6,
+            "modules": [
+              "m1",
+              "m2"
+            ],
+            "productive_value": "0//1",
+            "strategies": [
+              "inactive",
+              "s2",
+              "s3"
+            ],
+            "weight": "2//1"
+          },
+          {
+            "active_count": 3,
+            "cardinality_with_inactive": 4,
+            "frontier": [
+              "0//1"
+            ],
+            "mask": 7,
+            "modules": [
+              "m1",
+              "m2"
+            ],
+            "productive_value": "0//1",
+            "strategies": [
+              "inactive",
+              "s1",
+              "s2",
+              "s3"
+            ],
+            "weight": "3//1"
+          }
+        ],
+        "minimum_cardinality_libraries": [
+          {
+            "active_count": 1,
+            "cardinality_with_inactive": 2,
+            "frontier": [
+              "0//1"
+            ],
+            "mask": 4,
+            "modules": [
+              "m1",
+              "m2"
+            ],
+            "productive_value": "0//1",
+            "strategies": [
+              "inactive",
+              "s3"
+            ],
+            "weight": "1//1"
+          }
+        ],
+        "minimum_weight_libraries": [
+          {
+            "active_count": 1,
+            "cardinality_with_inactive": 2,
+            "frontier": [
+              "0//1"
+            ],
+            "mask": 4,
+            "modules": [
+              "m1",
+              "m2"
+            ],
+            "productive_value": "0//1",
+            "strategies": [
+              "inactive",
+              "s3"
+            ],
+            "weight": "1//1"
+          }
+        ],
+        "source": {
+          "active_count": 3,
+          "cardinality_with_inactive": 4,
+          "frontier": [
+            "0//1"
+          ],
+          "mask": 7,
+          "modules": [
+            "m1",
+            "m2"
+          ],
+          "productive_value": "0//1",
+          "strategies": [
+            "inactive",
+            "s1",
+            "s2",
+            "s3"
+          ],
+          "weight": "3//1"
+        }
+      }
+    },
+    "id": "CX-OPT-PRUNE-CARDINALITY-01",
+    "minimality": {
+      "exhaustive_active_bound": 3,
+      "exhaustive_module_bound": 2,
+      "lexicographic_score": "(3, 2, 4, (0x0000000000000001, 0x0000000000000002, 0x0000000000000003), (3, 1, 2))",
+      "no_smaller_active_witness": true
+    },
+    "status": "counterexample_found",
+    "theorem_revision": "Replace any minimum-cardinality claim for rechecked pruning by safety plus complete-trace inclusion irreducibility; exact global enumeration is separate.",
+    "title": "Stepwise safe pruning can miss the global minimum cardinality"
+  },
+  "experiment_id": "paper1-resource-optimization-counterexample-audit-v1",
+  "schema_version": "resource-optimization-counterexample-audit-v1"
+}

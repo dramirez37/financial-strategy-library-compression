@@ -1,0 +1,81 @@
+% Page budget: 1.5--2 pages within Section 7.
+\subsection{Cross-audit financial resource optimization}
+\label{sec:financial-compression-audit}
+
+The two licensed-data exercises are complementary retrospective protocols
+with different decision timing and held-out outcome units.  The terminal
+financial audit makes one fixed holdout evaluation after development and
+validation; the annual walk-forward financial audit makes five target-year
+decisions using trailing information through the preceding year.  Neither
+protocol supersedes the other, and their held-out quality levels are not
+pooled.  Both compare a current stepwise safe library with HiGHS-reported
+minimum-cardinality and minimum-validation-resource candidates.  The terminal
+audit starts from $80$ strategies, $38$ modules, and validation-computation
+burden $1558$; the annual walk-forward audit starts from $202$ strategies,
+$113$ modules, and burden $3508$.  Validation frontiers and structural
+closure are available at compression time.  Held-out descendant quality is
+read only after each decision and is used solely as an ex post opportunity
+diagnostic; neither pruning rule tests candidate-set equality.  Appendix~E
+gives the complete information set and solver
+qualifications; Online Supplement~S6 gives the formulas and secondary tests.
+
+\begin{table}[htbp]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3.2pt}
+\input{tables/main_financial_resource_compression}
+\caption{Cross-audit financial resource optimization.  \(|L|\) is a strategy count and
+\(W_v\) is measured in prespecified validation-computation units.  ``HiGHS''
+means the mixed-integer solver reported \texttt{OPTIMAL}; it does not mean
+exact global optimality was established by enumeration.  Selected libraries,
+burdens, frontiers, and closures are rechecked exactly.}
+\label{tab:financial-resource-compression}
+\end{table}
+
+HiGHS reports that the stepwise endpoints already match its minimum-cardinality
+candidates: both retain $25$ and $100$ strategies, respectively, although
+distinct HiGHS-reported minimizing libraries can use different identities.
+The HiGHS-reported minimum-weight safe candidates keep those cardinalities but
+lower burden from
+$450$ to $338$ and from $1566$ to $1170$.  Relative to the source, the savings
+are $1220$ units
+$(78.31\%)$ and $2338$ units $(66.65\%)$; relative to the current
+stepwise endpoints, the HiGHS-reported weight candidates save a further $24.89\%$
+and $25.29\%$.  Every safe library in the comparison preserves the complete
+frontier and all $38$ or $113$ source modules, and its ex post
+enabled-descendant opportunity quality is unchanged.
+
+Frontier-only compression retains just $3$ and $5$ strategies and only
+$12/38$ and $14/113$ modules.  Its ex post opportunity diagnostic falls by
+$0.0016$ and $0.1020$ in the audits' distinct units.  The resulting
+safety--compression trade-off is stark: minimum-cardinality safe compression
+removes $68.75\%$ and $50.50\%$ of strategies while preserving closure;
+frontier-only compression removes $96.25\%$ and $97.52\%$, but breaks
+closure and loses the best held-out enabled opportunity in both audits.
+
+\begin{figure}[htbp]
+  \centering
+  \input{figures/financial_innovation_safe_compression}
+  \caption{Financial safety--compression trade-off for the current stepwise
+  endpoints.  Panels (a)--(b) report exact retained fractions of each fixed
+  source library and module closure.  Panel (c) reports
+  \(\Delta Q_a=Q_a(L')-Q_a(L)\), the held-out change in the best enabled
+  descendant's audit-specific opportunity quality; the two audit units are
+  not pooled.  Both rules preserve the validation frontier, but only the safe
+  rule preserves closure and \(Q_a\).  The displayed \(Q_a\) values are
+  rendered audit decimals and are not pruning inputs.  \Cref{tab:financial-resource-compression}
+  adds the HiGHS-reported minimum-cardinality and minimum-weight comparisons.}
+  \label{fig:financial-safe-compression}
+\end{figure}
+
+\clearpage
+The secondary coverage-ranking stress test is adverse in the terminal audit
+and mixed in the five annual targets.
+Coverage scores are post-compression ranking inputs, never pruning inputs.
+The terminal coverage-ranked set has
+locked utility $-0.1560$, versus $-0.0685$ for the strongest comparator,
+with Spearman association $-0.0982$.  Annual marginal coverage averages
+$0.0704$, versus $0.0119$, but is positive in only three of five targets;
+mean Spearman association is $0.1279$ and greedy-oracle regret is $0.315$.
+These retrospective quantities neither identify expected return nor establish
+market alpha.  The secondary figure and full estimates are online.

@@ -1,0 +1,83 @@
+{
+  "schema_version": "lean-julia-exact-fixture-v2",
+  "fixture_id": "current_zero_future_positive",
+  "theorem_family": "F7 current-zero future-positive compatibility fixture",
+  "beliefs": ["current", "future"],
+  "transition_rows": [
+    ["0//1", "1//1"],
+    ["0//1", "1//1"]
+  ],
+  "discount": "1//2",
+  "modules": ["marker"],
+  "strategies": [
+    {
+      "id": "inactive",
+      "operational_profile": ["0//1", "0//1"],
+      "modules": []
+    },
+    {
+      "id": "candidate",
+      "operational_profile": ["0//1", "2//1"],
+      "modules": ["marker"]
+    }
+  ],
+  "libraries": [
+    {
+      "id": "current",
+      "strategies": ["inactive"]
+    }
+  ],
+  "projects": [
+    {
+      "id": "innovate",
+      "cost": ["0//1", "0//1"],
+      "duration": 1,
+      "survival": "1//1",
+      "strict_cost": false,
+      "required_modules": [],
+      "candidate_strategies": ["candidate"]
+    }
+  ],
+  "expected": {
+    "rational_scalars": [
+    {
+      "id": "current_gap",
+      "value": "0//1"
+    },
+    {
+      "id": "future_gap",
+      "value": "2//1"
+    },
+    {
+      "id": "initial_innovation_value",
+      "value": "1//1"
+    }
+  ],
+    "rational_vectors": [
+    {
+      "id": "candidate_gap",
+      "values": ["0//1", "2//1"]
+    },
+    {
+      "id": "discounted_gap_sum_horizon_two",
+      "values": ["1//1", "3//1"]
+    }
+  ],
+    "boolean_scalars": [
+    {
+      "id": "current_gap_zero",
+      "value": true
+    },
+    {
+      "id": "future_gap_positive",
+      "value": true
+    },
+    {
+      "id": "innovation_value_positive",
+      "value": true
+    }
+  ],
+    "boolean_vectors": [],
+    "string_vectors": []
+  }
+}

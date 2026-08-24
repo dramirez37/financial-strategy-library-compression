@@ -1,0 +1,98 @@
+{
+  "claim": {
+    "arithmetic": "Rational{BigInt}",
+    "assumption_boundary": "Uniqueness fails at affine-envelope intersections.",
+    "claim_number": 9,
+    "evidence_class": "exact finite Julia search; not Lean proof",
+    "fixture": {
+      "breakpoint": "1//1",
+      "optimized_value": "0//1",
+      "optimizers": [
+        {
+          "active_count": 0,
+          "cardinality_with_inactive": 1,
+          "frontier": [
+            "0//1"
+          ],
+          "mask": 0,
+          "modules": [],
+          "productive_value": "0//1",
+          "strategies": [
+            "inactive"
+          ],
+          "weight": "0//1"
+        },
+        {
+          "active_count": 1,
+          "cardinality_with_inactive": 2,
+          "frontier": [
+            "0//1"
+          ],
+          "mask": 1,
+          "modules": [
+            "m1"
+          ],
+          "productive_value": "1//1",
+          "strategies": [
+            "inactive",
+            "s1"
+          ],
+          "weight": "1//1"
+        }
+      ],
+      "problem": {
+        "active_strategies": [
+          {
+            "id": "s1",
+            "modules": [
+              "m1"
+            ],
+            "profile": [
+              "0//1"
+            ],
+            "weight": "1//1"
+          }
+        ],
+        "belief_count": 1,
+        "closure": "identity",
+        "inactive": {
+          "id": "inactive",
+          "modules": [],
+          "profile": [
+            "0//1"
+          ],
+          "weight": "0//1"
+        },
+        "module_count": 1,
+        "productive_value_monotone_under_inclusion": true,
+        "productive_value_table": [
+          {
+            "mask": 0,
+            "productive_value": "0//1",
+            "strategies": [
+              "inactive"
+            ]
+          },
+          {
+            "mask": 1,
+            "productive_value": "1//1",
+            "strategies": [
+              "inactive",
+              "s1"
+            ]
+          }
+        ]
+      }
+    },
+    "id": "CX-OPT-PENALIZED-BREAKPOINT-TIE-01",
+    "minimality": {
+      "lexicographic_score": "(1, 1//1, 1//1, 1//1, 1//1, 1//1, (1//1,), (0//1, 1//1))",
+      "one_active_strategy_is_minimal": true
+    },
+    "status": "counterexample_found",
+    "theorem_revision": "Keep optimizer correspondences set-valued and place any deterministic tie breaker outside the value definition.",
+    "title": "Penalized retention can have multiple optimal libraries at a breakpoint"
+  },
+  "experiment_id": "paper1-resource-optimization-counterexample-audit-v1",
+  "schema_version": "resource-optimization-counterexample-audit-v1"
+}

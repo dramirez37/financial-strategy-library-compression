@@ -1,0 +1,48 @@
+schema_version = "unified-canonical-resources-v1"
+experiment_id = "unified-canonical-resources-v1"
+julia_version = "1.12.6"
+arithmetic_exact = "Rational{BigInt}"
+arithmetic_plotting = "Float64 derived from exact results"
+randomness = "none"
+source_benchmark = "experiments/configs/unified_canonical_benchmark.toml"
+reference_schedule = "equal_active"
+
+[interpretation]
+inactive = "mandatory policy-maintenance resource"
+carrier = "capability-maintenance resource; the two symmetric carriers receive the same weight"
+descendant = "resource required to retain the profitable capability-bearing descendant"
+
+[weight_schedules.equal_active]
+label = "Equal active"
+inactive = "1//1"
+carrier_a = "1//1"
+carrier_b = "1//1"
+descendant = "1//1"
+
+[weight_schedules.carrier_heavy]
+label = "Carrier heavy"
+inactive = "1//1"
+carrier_a = "2//1"
+carrier_b = "2//1"
+descendant = "1//1"
+
+[weight_schedules.descendant_heavy]
+label = "Descendant heavy"
+inactive = "1//1"
+carrier_a = "1//1"
+carrier_b = "1//1"
+descendant = "2//1"
+
+[outputs]
+summary = "experiments/results/summaries/unified_canonical_resource_summary.json"
+libraries = "experiments/results/summaries/unified_canonical_resource_libraries.csv"
+safe_compression = "experiments/results/summaries/unified_canonical_resource_safe_compression.csv"
+capacity = "experiments/results/summaries/unified_canonical_resource_capacity.csv"
+penalized_intervals = "experiments/results/summaries/unified_canonical_resource_penalized_intervals.csv"
+switching_prices = "experiments/results/summaries/unified_canonical_resource_switching_prices.csv"
+channel_elasticities = "experiments/results/summaries/unified_canonical_resource_channel_elasticities.csv"
+channel_elasticities_tex = "manuscript/tables/unified_canonical_resource_channel_elasticities.tex"
+value_capacity_figure = "manuscript/figures/unified_canonical_resource_value_capacity.svg"
+value_price_figure = "manuscript/figures/unified_canonical_resource_value_price.svg"
+library_path_figure = "manuscript/figures/unified_canonical_resource_library_path.svg"
+switching_figure = "manuscript/figures/unified_canonical_resource_switching.svg"

@@ -1,0 +1,125 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,longtable,array}
+\usepackage{pdflscape}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage[hidelinks]{hyperref}
+\usepackage[capitalise,noabbrev]{cleveref}
+
+\numberwithin{equation}{section}
+\allowdisplaybreaks
+\setcounter{tocdepth}{1}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{assumption}[definition]{Assumption}
+\newtheorem{example}[definition]{Example}
+\newtheorem{counterexample}[definition]{Counterexample}
+
+\theoremstyle{plain}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+
+\crefname{assumption}{Assumption}{Assumptions}
+\Crefname{assumption}{Assumption}{Assumptions}
+\crefname{counterexample}{Counterexample}{Counterexamples}
+\Crefname{counterexample}{Counterexample}{Counterexamples}
+
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Fin}{\operatorname{Fin}}
+\newcommand{\cl}{\operatorname{cl}}
+\newcommand{\mods}{\operatorname{mods}}
+\newcommand{\DI}{\mathrm{DI}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\gen}{\mathrm{gen}}
+\newcommand{\one}{\mathbf{1}}
+\newcommand{\powersetfin}{\mathcal{P}_{\mathrm{fin}}}
+\title{Financial Strategy Library Compression\\
+under Partial Information:\\
+Resource Constraints and Generative Value}
+\author{David Ramirez\\
+\href{https://orcid.org/0009-0000-3128-5123}{ORCID: 0009-0000-3128-5123}\\
+Corresponding email: \href{mailto:ramirezdavv@gmail.com}{\texttt{ramirezdavv@gmail.com}}}
+\date{\textit{Release v0.1.0-preprint --- August 23, 2026}}
+\hypersetup{
+  pdftitle={Financial Strategy Library Compression under Partial Information: Resource Constraints and Generative Value},
+  pdfauthor={David Ramirez},
+  pdfsubject={Preprint release v0.1.0-preprint}
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Growing financial strategy libraries consume storage, validation, maintenance,
+monitoring, and governance resources. Yet a retained strategy can be both an
+operating asset, contributing to current payoff, and a generative asset,
+carrying modules needed to produce future descendants. We study a finite
+partial-information process whose raw library dynamics project onto a
+sufficient productive state comprising the operating frontier and the
+generative closure. This reduction defines exact, source-relative compression
+as the
+minimum-resource sublibrary preserving both objects, and therefore productive
+value and available optimal actions. Rechecking frontier and closure after
+every deletion certifies a safe stepwise path, but an irreducible endpoint need
+not be globally resource-minimal. The distinction is economically sharp: a
+deletion that preserves every current payoff can eliminate the complete
+attainable delayed descendant margin in the sharp bridge construction. Beyond
+exact preservation, selection under a hard capacity or resource penalty
+operates over finitely many library value--burden points. Capacity value is
+stepwise and
+can have increasing unit increments, while penalized value forms a convex
+piecewise-affine envelope with discrete changes in the selected library. Exact
+finite fixtures, registered synthetic stress tests, and retrospective
+financial audits examine these mechanisms. The audits use held-out descendant
+quality only after compression and support no causal, forecasting, alpha, or
+deployable performance claim.
+\end{abstract}
+
+\input{sections/01_introduction}
+\input{sections/02_literature_boundary}
+\input{sections/03_model}
+\input{sections/04_dynamic_innovation_equivalence}
+\input{sections/05_innovation_safe_compression}
+\input{sections/06_operational_generative_value}
+\input{sections/07_belief_space_coverage}
+\input{sections/08_dynamic_research_control}
+\input{sections/09_canonical_finite_model}
+\input{sections/10_financial_compression_audit}
+\input{sections/11_limitations_conclusion}
+
+\section*{Data and Code Availability}
+The project repository provides the formal and computational source code
+together with the synthetic and exact experiment materials.  It is available
+at
+\begin{center}
+\url{https://github.com/dramirez37/financial-strategy-library-compression}
+\end{center}
+The financial audits use licensed CRSP/WRDS source data; raw and row-level
+licensed data cannot be redistributed.  Users with independent licensed access
+can reproduce the licensed-data portions using the supplied procedures.
+Online Supplement~S7 provides reproducibility commands and artifact records.
+
+\bibliographystyle{plain}
+\bibliography{bibliography/references}
+
+\appendix
+\input{appendices/a_additional_formal_definitions}
+\input{appendices/b_long_proofs}
+\input{appendices/a_structural_counterexamples}
+\input{appendices/b_optimization_proofs}
+\input{appendices/c_comparative_statics}
+\input{appendices/d_numerical_convergence}
+\input{appendices/e_experiment_protocol}
+\input{appendices/f_validation_status}
+
+\end{document}

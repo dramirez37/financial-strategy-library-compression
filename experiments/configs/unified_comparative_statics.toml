@@ -1,0 +1,66 @@
+schema_version = "unified-comparative-statics-v1"
+experiment_id = "unified-comparative-statics-v1"
+julia_version = "1.12.6"
+randomness = "none"
+model = "raw-derived unified positive-duration semi-Markov model"
+
+[exact_fixture]
+belief_count = 1
+reference_index = 1
+finite_horizon = 2
+
+[float_solver]
+belief_count = 41
+reference_index = 21
+finite_horizon = 6
+value_tolerance = 1.0e-10
+residual_gate = 1.0e-9
+error_gate = 1.0e-7
+max_iterations = 20000
+frontier_step = 0.25
+closure_step = 0.25
+parameter_step = 0.10
+operates_during_research = true
+
+[baseline]
+frontier_level = 1.0
+frontier_density = 0.50
+closure_richness = 0.75
+module_overlap = 0.25
+research_cost = 2.50
+research_duration = 1
+admission_probability = 0.75
+candidate_survival = 0.90
+discount_factor = 0.80
+belief_kernel_persistence = 0.75
+signal_precision_proxy = 0.50
+candidate_profile_quality = 2.0
+generator_frontier_dependence = 0.0
+
+[surface]
+frontier_level = [0.25, 0.50, 0.75, 1.00, 1.25, 1.50]
+frontier_density = [0.00, 0.20, 0.40, 0.60, 0.80, 1.00]
+closure_richness = [0.00, 0.20, 0.40, 0.60, 0.80, 1.00]
+module_overlap = [0.00, 0.20, 0.40, 0.60, 0.80, 1.00]
+research_cost = [0.00, 0.75, 1.50, 2.25, 3.00, 3.75, 4.50]
+research_duration = [1, 2, 3, 4, 5]
+admission_probability = [0.00, 0.20, 0.40, 0.60, 0.80, 1.00]
+candidate_survival = [0.00, 0.20, 0.40, 0.60, 0.80, 1.00]
+discount_factor = [0.50, 0.58, 0.66, 0.74, 0.82, 0.90]
+belief_kernel_persistence = [0.00, 0.20, 0.40, 0.60, 0.80, 1.00]
+signal_precision_proxy = [0.00, 0.20, 0.40, 0.60, 0.80, 1.00]
+candidate_profile_quality = [0.50, 0.80, 1.10, 1.40, 1.70, 2.00, 2.30]
+generator_frontier_dependence = [-0.50, -0.25, 0.00, 0.25, 0.50]
+
+[interaction_surface]
+frontier_level = [0.25, 0.50, 0.75, 1.00, 1.25, 1.50]
+closure_richness = [0.00, 0.20, 0.40, 0.60, 0.80, 1.00]
+
+[outputs]
+response_surface = "experiments/results/summaries/unified_comparative_statics_surface.csv"
+interaction_surface = "experiments/results/summaries/unified_comparative_statics_interaction.csv"
+sign_checks = "experiments/results/summaries/unified_comparative_statics_sign_checks.csv"
+exact_fixtures = "experiments/results/summaries/unified_comparative_statics_exact_fixtures.csv"
+summary = "experiments/results/summaries/unified_comparative_statics_summary.json"
+value_figure = "manuscript/figures/unified_comparative_statics_value.svg"
+policy_figure = "manuscript/figures/unified_comparative_statics_policy.svg"

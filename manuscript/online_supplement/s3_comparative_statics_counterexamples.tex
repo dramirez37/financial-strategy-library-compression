@@ -1,0 +1,166 @@
+\section{Additional Comparative Statics and Counterexamples}
+\label{supp:additional-comparative-statics}\label{app:counterexamples}
+
+This section records the supporting one-way comparative statics and the exact
+counterexamples that delimit the coverage results in
+\cref{supp:belief-occupation-coverage}.  Every comparison holds conditional
+on the displayed current state and fixed action or on the stated one-shot
+problem.  Unnamed primitives are held fixed.  These results do not promote a
+one-shot cost-covering region to an optimized Bellman research region.
+
+\subsection{Cost, admission, survival, and delay}
+
+The supporting order comparisons are compact because every nondisplayed
+primitive is held fixed:
+\begin{center}
+\small
+\renewcommand{\arraystretch}{1.08}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.18\textwidth}
+                    >{\raggedright\arraybackslash}p{0.25\textwidth}
+                    >{\raggedright\arraybackslash}p{0.43\textwidth}@{}}
+\toprule
+Change & Direction & Required boundary \\
+\midrule
+higher initiation cost
+  & optimized value weakly falls
+  & the same project actions change; Continue and other primitives are fixed \\
+higher admission or survival
+  & project value weakly rises
+  & successful completion weakly dominates failure \\
+longer duration
+  & project value weakly falls
+  & every added operating date satisfies
+    \(F_t\le(1-\beta)W\); suspended operation is \(F_t=0\) \\
+higher incumbent frontier
+  & fixed-candidate operating gain weakly falls
+  & candidate profile and research opportunities are fixed \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{proposition}[One-shot cutoff comparative statics]
+\label{prop:one-shot-cutoff-comparative-statics}
+Holding all other one-shot primitives fixed, higher cost shrinks
+\(\mathcal C\); higher nonnegative survival or admission expands it; and a
+higher operating frontier shrinks it for a fixed candidate.  When both
+compared nonempty regions have upper-threshold representations, higher cost
+or frontier raises the cutoff, while higher survival or admission lowers it.
+\end{proposition}
+
+These set inclusions concern the one-shot cost-covering region in
+\cref{def:single-gap-region}.  Cost and survival also order an exact finite
+weak-research region for a fixed research action versus Continue when all
+other unified-model returns are unchanged.  Neither result, by itself, orders
+the full optimal research region when opportunity menus, continuation laws,
+or competing actions also change.
+
+The cutoff directions are pointwise set comparisons.  Raising \(\kappa\)
+removes weakly covered beliefs.  Raising a nonnegative survival or admission
+factor raises \(G\) and adds beliefs.  Raising the frontier lowers the
+positive-part gap and removes beliefs.  If two nonempty regions are
+\(\operatorname{Ici}(b_0^*)\) and \(\operatorname{Ici}(b_1^*)\), set
+inclusion reverses the cutoff order, yielding the directions in
+\cref{prop:one-shot-cutoff-comparative-statics}.
+
+At a fixed finite horizon and conditional on the current decision state,
+holding every nondisplayed primitive fixed, a higher initiation cost subtracts
+the same nonnegative increment from each affected project action and leaves
+Continue unchanged.  Backward induction and maximization over the finite
+action menu therefore make optimized value antitone in the cost schedule.
+
+For a binary completion law, condition on the fixed current state and chosen
+project, with success continuation \(W^+\) and failure continuation \(W^-\).
+The binary specialization assumes the conditional success mass
+\(m=\pi\rho^d\); it is not inferred from unrelated marginals.  The completion
+component is
+\[
+  mW^+ +(1-m)W^-.
+\]
+For two admission--survival configurations its exact difference is
+\[
+  \bigl[m_1W^+ +(1-m_1)W^-\bigr]
+  -
+  \bigl[m_0W^+ +(1-m_0)W^-\bigr]
+  =(m_1-m_0)(W^+-W^-).
+\]
+Thus greater admission or survival raises project value when
+\(W^+\ge W^-\), and reverses sign if success is harmful.
+
+For continued operation, keep the initial state, belief path, and terminal
+continuation \(W\) fixed while comparing durations.  Write the elapsed return
+at duration \(d\) as
+\[
+  R_d=-\kappa+\sum_{t<d}\beta^tF_t+\beta^dW .
+\]
+The one-date increment is
+\[
+  R_{d+1}-R_d
+  =\beta^d\!\left[F_d-(1-\beta)W\right].
+\]
+Consequently, for \(d_0<d_1\),
+\[
+  R_{d_1}-R_{d_0}
+  =\sum_{t=d_0}^{d_1-1}
+    \beta^t\!\left[F_t-(1-\beta)W\right].
+\]
+Longer delay is therefore harmful when every added date satisfies
+\(F_t\le(1-\beta)W\).  Suspended operation is the special case \(F_t=0\).
+Nonnegativity alone is insufficient: with \(\beta=1/2\) and \(F_t=W=1\),
+\(R_1=3/2<R_2=7/4\).
+
+\subsection{Threshold and multi-gap counterexamples}
+
+The assumptions of the positive threshold theorem have exact finite
+boundaries.  The following examples preserve the original rational values
+and isolate the failed condition in each case.
+
+\begin{counterexample}[A nonmonotone kernel defeats the upper threshold]
+\label{cx:single-peaked-disconnected}
+On \(B=\{0,1,2\}\), take deterministic destinations \((1,0,1)\).
+The resulting row-stochastic kernel maps the increasing nonnegative gap
+\(\Delta=(0,1,2)\) to \(P\Delta=(1,0,1)\).  With unit survival and
+antitone constant unit cost, the weak cost-covering set is \(\{0,2\}\), which
+is neither upper nor order-connected.  Thus the stochastic-monotonicity
+assumption is independently necessary.  The same kernel also maps the
+single-peaked gap \((0,1,0)\) to \((1,0,1)\), retaining the earlier boundary
+against unrestricted single-peaked preservation.
+\end{counterexample}
+
+\begin{counterexample}[Non-antitone cost disconnects a monotone covering set]
+\label{cx:arbitrary-cost-disconnected}
+The increasing potential \((1,2,3)\) and cost \((0,3,0)\) produce the
+cost-covering set \(\{1,3\}\).  Antitonicity of research cost cannot be dropped
+from \cref{thm:finite-monotone-coverage}.
+\end{counterexample}
+
+\begin{counterexample}[One-project multi-gap disconnection]
+\label{cx:multi-gap-disconnection}
+Let \(B=\{0,1,2,3,4\}\).  One project supplies candidates with certified gaps
+\[
+  \Delta^L=(4,0,0,0,0),\qquad
+  \Delta^R=(0,0,0,0,4)
+\]
+over the zero frontier.  Under the degree-four Bernstein/binomial kernel
+\[
+  P_{ij}=\binom{4}{j}(i/4)^j(1-i/4)^{4-j},
+  \qquad i,j\in B,
+\]
+their aggregate one-shot coverage potential is
+\(P(\Delta^L+\Delta^R)=(4,41/32,1/2,41/32,4)\).  Constant strict cost one
+therefore gives the one-shot cost-covering set
+\(\{0,1\}\cup\{3,4\}\), which is not order-connected.
+\end{counterexample}
+
+\begin{counterexample}[Arbitrary cost defeats a component bound]
+\label{cx:arbitrary-cost-components}
+With the same five-state kernel, constant gap and potential
+\((2,2,2,2,2)\), and cost \((0,3,0,3,0)\), the strict cost-covering set is
+\(\{0,2,4\}\).  A kernel-only variation-diminishing condition cannot control
+net-region components under unrestricted belief-dependent cost.
+\end{counterexample}
+
+The multi-gap example shows that the upper-threshold conclusion does not
+extend to separated candidate gaps.  Separately, the first two examples show
+that neither monotone gaps alone nor a well-behaved gross-value profile alone
+ensures connected cost covering.  The arbitrary-cost example rules out a
+kernel-only component bound when belief-dependent cost is unrestricted.

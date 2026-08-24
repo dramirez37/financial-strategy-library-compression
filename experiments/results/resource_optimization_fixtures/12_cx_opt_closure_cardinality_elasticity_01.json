@@ -1,0 +1,126 @@
+{
+  "claim": {
+    "arithmetic": "Rational{BigInt}",
+    "assumption_boundary": "The failed shortcut assumes exchangeable modules and value sufficiency of closure cardinality.",
+    "claim_number": 12,
+    "evidence_class": "exact finite Julia search; not Lean proof",
+    "fixture": {
+      "different_productive_value": true,
+      "equal_closure_cardinality": true,
+      "left_library": {
+        "active_count": 1,
+        "cardinality_with_inactive": 2,
+        "frontier": [
+          "0//1"
+        ],
+        "mask": 1,
+        "modules": [
+          "m1"
+        ],
+        "productive_value": "0//1",
+        "strategies": [
+          "inactive",
+          "s1"
+        ],
+        "weight": "1//1"
+      },
+      "problem": {
+        "active_strategies": [
+          {
+            "id": "s1",
+            "modules": [
+              "m1"
+            ],
+            "profile": [
+              "0//1"
+            ],
+            "weight": "1//1"
+          },
+          {
+            "id": "s2",
+            "modules": [
+              "m2"
+            ],
+            "profile": [
+              "0//1"
+            ],
+            "weight": "1//1"
+          }
+        ],
+        "belief_count": 1,
+        "closure": "identity",
+        "inactive": {
+          "id": "inactive",
+          "modules": [],
+          "profile": [
+            "0//1"
+          ],
+          "weight": "0//1"
+        },
+        "module_count": 2,
+        "productive_value_monotone_under_inclusion": true,
+        "productive_value_table": [
+          {
+            "mask": 0,
+            "productive_value": "0//1",
+            "strategies": [
+              "inactive"
+            ]
+          },
+          {
+            "mask": 1,
+            "productive_value": "0//1",
+            "strategies": [
+              "inactive",
+              "s1"
+            ]
+          },
+          {
+            "mask": 2,
+            "productive_value": "1//1",
+            "strategies": [
+              "inactive",
+              "s2"
+            ]
+          },
+          {
+            "mask": 3,
+            "productive_value": "1//1",
+            "strategies": [
+              "inactive",
+              "s1",
+              "s2"
+            ]
+          }
+        ]
+      },
+      "right_library": {
+        "active_count": 1,
+        "cardinality_with_inactive": 2,
+        "frontier": [
+          "0//1"
+        ],
+        "mask": 2,
+        "modules": [
+          "m2"
+        ],
+        "productive_value": "1//1",
+        "strategies": [
+          "inactive",
+          "s2"
+        ],
+        "weight": "1//1"
+      }
+    },
+    "id": "CX-OPT-CLOSURE-CARDINALITY-ELASTICITY-01",
+    "minimality": {
+      "lexicographic_score": "(1//1, 2//1, (0//1, 0//1, 1//1, 1//1))",
+      "two_active_strategies_are_minimal": true
+    },
+    "status": "counterexample_found",
+    "theorem_revision": "Define elasticity along a named module/library perturbation with held-fixed primitives; do not differentiate with respect to |C| as a sufficient scalar state.",
+    "title": "Closure cardinality alone cannot identify productive value or elasticity"
+  },
+  "experiment_id": "paper1-resource-optimization-counterexample-audit-v1",
+  "schema_version": "resource-optimization-counterexample-audit-v1"
+}

@@ -1,0 +1,46 @@
+{
+  "arithmetic": {
+    "exact": "Rational{BigInt}",
+    "response_surface": "sparse Float64"
+  },
+  "baseline": {
+    "total_value": 4.13054197089,
+    "passive_value": 3.78124999966,
+    "research_option_premium": 0.349291971233,
+    "operational_innovation": 6.21875000034,
+    "generative_innovation": -0.349291971322,
+    "research_frequency": 0.707317073171,
+    "pruning_loss": 0.349291971233,
+    "descendant_quality": 1.2484375,
+    "frontier_closure_cross_difference": -0.1039896875,
+    "bellman_residual": 1.7918111439e-11,
+    "value_error_bound": 8.95905571952e-11
+  },
+  "baseline_flags": {
+    "frontier_dependent_generator": false,
+    "persistence_has_no_universal_sign": true,
+    "bellman_cutoff_is_numerical_only": true,
+    "delay_no_waiting_gain_unverified": true,
+    "relative_saturation_unverified": true,
+    "research_set_disconnected": false,
+    "bellman_gate_failed": false
+  },
+  "checks": {
+    "exact_fixtures": true,
+    "sparse_float64": true,
+    "raw_source_of_truth": true,
+    "baseline_gate": true,
+    "response_gates": true,
+    "interaction_gates": true,
+    "applicable_signs": true,
+    "boundary_flags": true,
+    "deterministic": true
+  },
+  "exact_fixture_count": 8,
+  "experiment_id": "unified-comparative-statics-v1",
+  "interaction_row_count": 36,
+  "model": "raw-derived unified positive-duration semi-Markov model",
+  "randomness": "none",
+  "response_row_count": 78,
+  "sign_check_count": 11
+}

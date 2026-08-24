@@ -1,0 +1,28 @@
+{
+  "arithmetic": "Rational{BigInt}",
+  "checks": {
+    "current_advantage_raises": true,
+    "other_advantage_lowers": true,
+    "constant_advantage_no_effect": true,
+    "constant_surface_invariant": true,
+    "current_alignment_raises_occupation": true,
+    "other_alignment_lowers_occupation": true,
+    "all_exact": true
+  },
+  "experiment_id": "kernel-persistence-response-surface-v1",
+  "horizon": 2,
+  "kernel_family": "theta*I + (1-theta)*P_switch",
+  "randomness": "none",
+  "row_count": 135,
+  "witness": {
+    "low_persistence": "1//4",
+    "high_persistence": "3//4",
+    "effective_discount": "1//2",
+    "current_low": "9//8",
+    "current_high": "11//8",
+    "other_low": "3//8",
+    "other_high": "1//8",
+    "constant_low": "3//2",
+    "constant_high": "3//2"
+  }
+}

@@ -1,0 +1,75 @@
+import Mathlib.Tactic.Linter
+import StrategyInnovation.Value.GenerativeLowerBound
+
+/-!
+# Focused axiom audit for the generative strategy lower bound (T6)
+-/
+
+open StrategyInnovation.Projection.Model.GenerativeLowerBound
+
+#print axioms rawProjectActionValue
+#print axioms operatingResearchAdjustment
+#print axioms completionContinuationGain
+#print axioms rawProjectActionValue_le_fullValue
+#print axioms passiveValue_mono_of_library_inclusion
+#print axioms passiveValue_nonnegative
+#print axioms passiveValue_le_fullValue
+#print axioms library_le_rawLibraryUpdate
+#print axioms completionContinuationGain_nonnegative
+#print axioms rawProjectActionValue_sub_passive
+#print axioms expectedTerminalGain
+#print axioms terminalOccupationWeight
+#print axioms markovPathMass_nonnegative
+#print axioms expectedTerminalGain_mono
+#print axioms expectedTerminalGain_eq_occupationWeighted
+#print axioms jointDescendantMass
+#print axioms expectedJointDescendantGain
+#print axioms expectedJointDescendantGain_eq_terminalWeighted
+#print axioms expectedJointDescendantGain_mono
+#print axioms expected_success_gain_eq
+#print axioms expectedJointDescendantGain_eq_independentProduct
+#print axioms JointGenerativeCarrierCertificate
+#print axioms GenerativeCarrierCertificate
+#print axioms GenerativeCarrierCertificate.toJoint
+#print axioms jointGenerativeLowerBound
+#print axioms generativeLowerBound
+#print axioms jointDescendant_expectedGain_le
+#print axioms generativeInsertionValue_lowerBound_joint
+#print axioms generativeInsertionValue_lowerBound_joint_terminalWeighted
+#print axioms jointDescendantMass_nonnegative
+#print axioms jointTerminalWeightedGain_mono_mass
+#print axioms jointTerminalWeightedGain_mono_gain
+#print axioms expectedJointDescendantGain_nonnegative
+#print axioms jointGenerativeLowerBound_eq_zero_iff
+#print axioms jointGenerativeLowerBound_pos_iff
+#print axioms generativeInsertionValue_pos_joint
+#print axioms jointGenerativeLowerBound_mono_expectedJointGain
+#print axioms jointGenerativeLowerBound_antitone_researchCost
+#print axioms jointGenerativeLowerBound_mono_operatingAdjustment
+#print axioms jointGenerativeLowerBound_mono_mass
+#print axioms jointGenerativeLowerBound_mono_gainFunction
+#print axioms successEvent_expectedGain_le
+#print axioms generativeInsertionValue_lowerBound_with_operatingAdjustment
+#print axioms generativeInsertionValue_lowerBound
+#print axioms generativeInsertionValue_lowerBound_occupationWeighted
+#print axioms generativeLowerBound_eq_zero_iff
+#print axioms generativeInsertionValue_eq_zero_of_premia_zero
+#print axioms generativeInsertionValue_pos_with_operatingAdjustment
+#print axioms generativeInsertionValue_pos
+#print axioms generativeLowerBound_mono_admission
+#print axioms generativeLowerBound_mono_survival
+#print axioms generativeLowerBound_mono_expectedGain
+#print axioms generativeLowerBound_mono_gainFunction
+#print axioms generativeLowerBound_antitone_researchCost
+#print axioms generativeLowerBound_antitone_duration
+#print axioms CarrierExample.conditionalIndependence
+#print axioms CarrierExample.certificate
+#print axioms CarrierExample.jointCertificate
+#print axioms CarrierExample.operatingResearchAdjustment_eq_zero
+#print axioms CarrierExample.expectedTerminalGain_eq_two
+#print axioms CarrierExample.expectedJointDescendantGain_eq_two
+#print axioms CarrierExample.exact_joint_carrier_lowerBound_one
+#print axioms CarrierExample.exact_carrier_lowerBound_one
+
+#lint- only checkType unusedArguments simpNF in
+  StrategyInnovation.Projection.Model.GenerativeLowerBound

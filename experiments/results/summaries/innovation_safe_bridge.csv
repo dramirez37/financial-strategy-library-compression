@@ -1,0 +1,6 @@
+entity_id,entity_type,profile_b_minus,profile_b_plus,module_id,requires_module,role
+s_L,strategy,3//1,1//1,,,frontier-active at b_minus
+s_R,strategy,1//1,3//1,,,frontier-active at b_plus
+s_M,strategy,1//1,1//1,m,,operationally dominated unique carrier
+q,project,,,,m,requires m
+c,descendant,4//1,4//1,,,enabled descendant

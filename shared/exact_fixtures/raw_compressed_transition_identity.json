@@ -1,0 +1,78 @@
+{
+  "schema_version": "lean-julia-exact-fixture-v2",
+  "fixture_id": "raw_compressed_transition_identity",
+  "theorem_family": "T1 raw-to-compressed transition identity",
+  "beliefs": ["only"],
+  "transition_rows": [
+    ["1//1"]
+  ],
+  "discount": "1//2",
+  "modules": ["key"],
+  "strategies": [
+    {
+      "id": "inactive",
+      "operational_profile": ["0//1"],
+      "modules": []
+    },
+    {
+      "id": "bridge",
+      "operational_profile": ["0//1"],
+      "modules": ["key"]
+    },
+    {
+      "id": "candidate",
+      "operational_profile": ["2//1"],
+      "modules": []
+    }
+  ],
+  "libraries": [
+    {
+      "id": "base",
+      "strategies": ["inactive", "bridge"]
+    },
+    {
+      "id": "candidate_library",
+      "strategies": ["inactive", "bridge", "candidate"]
+    }
+  ],
+  "projects": [
+    {
+      "id": "innovate",
+      "cost": ["0//1"],
+      "duration": 1,
+      "survival": "1//1",
+      "strict_cost": false,
+      "required_modules": ["key"],
+      "candidate_strategies": ["candidate"]
+    }
+  ],
+  "expected": {
+    "rational_scalars": [],
+    "rational_vectors": [
+    {
+      "id": "compressed_probabilities",
+      "values": ["1//2", "1//2"]
+    },
+    {
+      "id": "compressed_terminal_frontiers",
+      "values": ["0//1", "2//1"]
+    },
+    {
+      "id": "raw_projected_probabilities",
+      "values": ["1//2", "1//2"]
+    },
+    {
+      "id": "raw_projected_terminal_frontiers",
+      "values": ["0//1", "2//1"]
+    }
+  ],
+    "boolean_scalars": [
+    {
+      "id": "transition_law_equal",
+      "value": true
+    }
+  ],
+    "boolean_vectors": [],
+    "string_vectors": []
+  }
+}

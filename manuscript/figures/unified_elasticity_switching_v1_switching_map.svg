@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="500" viewBox="0 0 1000 500" role="img" aria-labelledby="title desc">
+<title id="title">Exact action and library switching map</title>
+<desc id="desc">Library-price cells are exact; R and C report the Bellman action of the displayed selected library, with exact half-Q gaps in tooltips.</desc>
+<metadata data-experiment="unified-elasticity-switching-v1" data-sources="experiments/results/summaries/unified_elasticity_switching_v1_penalized_path.csv;experiments/results/summaries/unified_elasticity_switching_v1_bellman_breakpoints.csv;experiments/results/summaries/unified_elasticity_switching_v1_library_breakpoints.csv">Exact Rational{BigInt} source rows; Float64 coordinates are secondary.</metadata>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#172a3a}.title{font-size:20px;font-weight:650}.subtitle{font-size:12px;fill:#66717e}.axis{font-size:11px;fill:#66717e}.label{font-size:12px}.small{font-size:10px;fill:#66717e}</style>
+<text x="55" y="35" class="title">Action and library switching map</text>
+<text x="55" y="55" class="subtitle">R=research, C=continue; dots are globally active exact lambda switches.</text>
+<text x="240" y="110" text-anchor="end" class="label">equal active · low</text>
+<rect x="255.0" y="88" width="316.0383862852883" height="34" fill="#c65d32" stroke="#ffffff"><title>lambda in (0//1,1229//288): I+D, action=continue, half-Q-gap=3//32</title></rect>
+<text x="413.01919314264416" y="110" text-anchor="middle" font-size="11" fill="#ffffff">I+D · C</text>
+<rect x="571.0383862852883" y="88" width="373.9616137147117" height="34" fill="#c8d0d8" stroke="#ffffff"><title>lambda in (1229//288,infinity): I, action=research:discover, half-Q-gap=23//192</title></rect>
+<text x="758.0191931426441" y="110" text-anchor="middle" font-size="11" fill="#ffffff">I · R</text>
+<circle cx="255.0" cy="105" r="4" fill="#172a3a"><title>exact library breakpoint lambda=0//1; optimizers=I+D;I+A+D;I+B+D;I+A+B+D</title></circle>
+<circle cx="571.0383862852883" cy="105" r="4" fill="#172a3a"><title>exact library breakpoint lambda=1229//288; optimizers=I;I+D</title></circle>
+<text x="240" y="162" text-anchor="end" class="label">equal active · high</text>
+<rect x="255.0" y="140" width="537.188111432032" height="34" fill="#c65d32" stroke="#ffffff"><title>lambda in (0//1,2089//288): I+D, action=continue, half-Q-gap=3//32</title></rect>
+<text x="523.594055716016" y="162" text-anchor="middle" font-size="11" fill="#ffffff">I+D · C</text>
+<rect x="792.188111432032" y="140" width="152.81188856796803" height="34" fill="#c8d0d8" stroke="#ffffff"><title>lambda in (2089//288,infinity): I, action=continue, half-Q-gap=245//768</title></rect>
+<text x="868.594055716016" y="162" text-anchor="middle" font-size="11" fill="#ffffff">I · C</text>
+<circle cx="255.0" cy="157" r="4" fill="#172a3a"><title>exact library breakpoint lambda=0//1; optimizers=I+D;I+A+D;I+B+D;I+A+B+D</title></circle>
+<circle cx="792.188111432032" cy="157" r="4" fill="#172a3a"><title>exact library breakpoint lambda=2089//288; optimizers=I;I+D</title></circle>
+<text x="240" y="214" text-anchor="end" class="label">carrier heavy · low</text>
+<rect x="255.0" y="192" width="316.0383862852883" height="34" fill="#c65d32" stroke="#ffffff"><title>lambda in (0//1,1229//288): I+D, action=continue, half-Q-gap=3//32</title></rect>
+<text x="413.01919314264416" y="214" text-anchor="middle" font-size="11" fill="#ffffff">I+D · C</text>
+<rect x="571.0383862852883" y="192" width="373.9616137147117" height="34" fill="#c8d0d8" stroke="#ffffff"><title>lambda in (1229//288,infinity): I, action=research:discover, half-Q-gap=23//192</title></rect>
+<text x="758.0191931426441" y="214" text-anchor="middle" font-size="11" fill="#ffffff">I · R</text>
+<circle cx="255.0" cy="209" r="4" fill="#172a3a"><title>exact library breakpoint lambda=0//1; optimizers=I+D;I+A+D;I+B+D;I+A+B+D</title></circle>
+<circle cx="571.0383862852883" cy="209" r="4" fill="#172a3a"><title>exact library breakpoint lambda=1229//288; optimizers=I;I+D</title></circle>
+<text x="240" y="266" text-anchor="end" class="label">carrier heavy · high</text>
+<rect x="255.0" y="244" width="537.188111432032" height="34" fill="#c65d32" stroke="#ffffff"><title>lambda in (0//1,2089//288): I+D, action=continue, half-Q-gap=3//32</title></rect>
+<text x="523.594055716016" y="266" text-anchor="middle" font-size="11" fill="#ffffff">I+D · C</text>
+<rect x="792.188111432032" y="244" width="152.81188856796803" height="34" fill="#c8d0d8" stroke="#ffffff"><title>lambda in (2089//288,infinity): I, action=continue, half-Q-gap=245//768</title></rect>
+<text x="868.594055716016" y="266" text-anchor="middle" font-size="11" fill="#ffffff">I · C</text>
+<circle cx="255.0" cy="261" r="4" fill="#172a3a"><title>exact library breakpoint lambda=0//1; optimizers=I+D;I+A+D;I+B+D;I+A+B+D</title></circle>
+<circle cx="792.188111432032" cy="261" r="4" fill="#172a3a"><title>exact library breakpoint lambda=2089//288; optimizers=I;I+D</title></circle>
+<text x="240" y="318" text-anchor="end" class="label">descendant heavy · low</text>
+<rect x="255.0" y="296" width="158.01919314264416" height="34" fill="#c65d32" stroke="#ffffff"><title>lambda in (0//1,1229//576): I+D, action=continue, half-Q-gap=3//32</title></rect>
+<text x="334.00959657132205" y="318" text-anchor="middle" font-size="11" fill="#ffffff">I+D · C</text>
+<rect x="413.01919314264416" y="296" width="531.9808068573559" height="34" fill="#c8d0d8" stroke="#ffffff"><title>lambda in (1229//576,infinity): I, action=research:discover, half-Q-gap=23//192</title></rect>
+<text x="679.0095965713222" y="318" text-anchor="middle" font-size="11" fill="#ffffff">I · R</text>
+<circle cx="255.0" cy="313" r="4" fill="#172a3a"><title>exact library breakpoint lambda=0//1; optimizers=I+D;I+A+D;I+B+D;I+A+B+D</title></circle>
+<circle cx="413.01919314264416" cy="313" r="4" fill="#172a3a"><title>exact library breakpoint lambda=1229//576; optimizers=I;I+D</title></circle>
+<text x="240" y="370" text-anchor="end" class="label">descendant heavy · high</text>
+<rect x="255.0" y="348" width="268.594055716016" height="34" fill="#c65d32" stroke="#ffffff"><title>lambda in (0//1,2089//576): I+D, action=continue, half-Q-gap=3//32</title></rect>
+<text x="389.297027858008" y="370" text-anchor="middle" font-size="11" fill="#ffffff">I+D · C</text>
+<rect x="523.594055716016" y="348" width="421.405944283984" height="34" fill="#c8d0d8" stroke="#ffffff"><title>lambda in (2089//576,infinity): I, action=continue, half-Q-gap=245//768</title></rect>
+<text x="734.297027858008" y="370" text-anchor="middle" font-size="11" fill="#ffffff">I · C</text>
+<circle cx="255.0" cy="365" r="4" fill="#172a3a"><title>exact library breakpoint lambda=0//1; optimizers=I+D;I+A+D;I+B+D;I+A+B+D</title></circle>
+<circle cx="523.594055716016" cy="365" r="4" fill="#172a3a"><title>exact library breakpoint lambda=2089//576; optimizers=I;I+D</title></circle>
+<text x="255.0" y="412" text-anchor="end" class="axis" transform="rotate(-28 255.0 412)">0//1</text>
+<text x="413.01919314264416" y="412" text-anchor="end" class="axis" transform="rotate(-28 413.01919314264416 412)">1229//576</text>
+<text x="523.594055716016" y="412" text-anchor="end" class="axis" transform="rotate(-28 523.594055716016 412)">2089//576</text>
+<text x="571.0383862852883" y="412" text-anchor="end" class="axis" transform="rotate(-28 571.0383862852883 412)">1229//288</text>
+<text x="792.188111432032" y="412" text-anchor="end" class="axis" transform="rotate(-28 792.188111432032 412)">2089//288</text>
+<text x="600.0" y="475" text-anchor="middle" class="axis">Resource price lambda</text>
+</svg>

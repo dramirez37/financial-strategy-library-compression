@@ -1,0 +1,33 @@
+{
+  "schema_version": "financial-illustration-design-lock-v2",
+  "experiment_id": "larger-100-etf-walk-forward-mechanism-illustration-v2",
+  "locked_at_utc": "2026-08-24T00:15:51Z",
+  "lock_stage": "post-support completed-implementation audit lock",
+  "initial_analytical_design_sha256": "2af8b413e2b37eea94cb9a5ded6b48d6ca268be7d92fcaf0823be9830be994bc",
+  "support_information_read_before_lock": true,
+  "candidate_results_used_to_change_analytical_specification": false,
+  "taxonomy_migration_only": true,
+  "registered_design_lock_path": "experiments/financial_annual_walkforward_audit/DESIGN_LOCK_REGISTERED.json",
+  "registered_design_lock_sha256": "45350297243e447b7bb26a888dbe8b67c55085878f987de642fdd37c4a1a2451",
+  "taxonomy_migration_record": "FINANCIAL_AUDIT_TAXONOMY.md",
+  "design_sha256": "a74d3922ff91e198882cf0a88988f98eb66e09b53aff6d08ed18624dfc897bf9",
+  "files": {
+    "experiments/configs/financial_annual_universe_audit.toml": "fc78e1ee7b454c5c00689fddd76827e054a8f38a679d62c82d4bf06e45f93194",
+    "experiments/configs/financial_annual_walkforward_audit.toml": "fb7e965acf29100a04b382bb24e55b3a9adbf95a1466782ae67b00458d9b18fd",
+    "experiments/financial_annual_walkforward_audit/DESIGN_AMENDMENTS.md": "728460069ea61721c072ff467872657c63874775f43fe91c4d95792ccff22a4e",
+    "experiments/financial_annual_walkforward_audit/DESIGN_LOCK_AMENDED_1.json": "1aa9d0087cff0be3eb855a2d278cf01e3ec049718bd8c31432b3aa547eae8dd5",
+    "experiments/financial_annual_walkforward_audit/DESIGN_LOCK_AMENDED_2.json": "be21eddd15443534ca3d2e46f20367794eb120bd1d94e610df022eebbbd2237c",
+    "experiments/financial_annual_walkforward_audit/DESIGN_LOCK_AMENDED_3.json": "a0328b3e31f4fd75b52f6c1530857aba8fd9a807302ad643859bcc9c9f5c6e73",
+    "experiments/financial_annual_walkforward_audit/DESIGN_LOCK_AMENDED_4.json": "c9eed8a6da4801883702b6f81bc6ac0ab2eb76399f1847c382cae202185d1ec7",
+    "experiments/financial_annual_walkforward_audit/DESIGN_LOCK_AMENDED_5.json": "636a7c62bb08058e46b56f238f937613b08b816f67a12f6793b6653ac6770140",
+    "experiments/financial_annual_walkforward_audit/DESIGN_LOCK_AMENDED_6.json": "6acc35241a96fe2f2a868567d3c7c241d3a20add7d935a2e018cbd8850184eaa",
+    "experiments/financial_annual_walkforward_audit/DESIGN_LOCK_INITIAL.json": "f67db5228cf198c4fec0307a2f810044483d9b533522b973507f7a021bd7cd79",
+    "experiments/financial_annual_walkforward_audit/DESIGN_LOCK_REGISTERED.json": "45350297243e447b7bb26a888dbe8b67c55085878f987de642fdd37c4a1a2451",
+    "experiments/financial_annual_walkforward_audit/universe_selection.toml": "52abd208b146449c626f377f692c828542b62ca1673e1a442d827690f620009d",
+    "FINANCIAL_AUDIT_TAXONOMY.md": "1d0249a82582ec79d41425ea268c8a5353968497dad12f35b448cf5971d8681e",
+    "julia/scripts/audit_financial_annual_universe.jl": "ed59c143c0490c421e219573cf7e1bc0842a60bf65d49b68405d563513f4f5ff",
+    "julia/scripts/freeze_financial_annual_walkforward_audit.jl": "2df27f535184860ac5c727c76530a84720f543667b5dd7d172bcfabe2842b0e1",
+    "julia/scripts/prepare_financial_annual_walkforward_audit_data.jl": "e3e15350d361c3e8f61b0582230bdbc58f618983a07abf6a94dfc8225bfbd40c",
+    "julia/scripts/run_financial_annual_walkforward_audit.jl": "3033e7ee2e77ed7baeb279b1cb720132b98bd988d52c5214dbbe324e0c257512"
+  }
+}

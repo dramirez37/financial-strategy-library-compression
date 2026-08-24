@@ -1,0 +1,27 @@
+schema_version = "canonical-discounted-dp-v1"
+experiment_id = "canonical-discounted-dp-v1"
+julia_version = "1.12.6"
+randomness = "none"
+
+[state_space]
+belief_count = 2
+compressed_state_count = 3
+project_count = 2
+
+[exact_solver]
+arithmetic = "Rational{BigInt}"
+finite_horizon = 8
+discount = "3//4"
+method = "finite-horizon Bellman recursion and exact stationary policy iteration"
+maximum_iterations = 10000
+
+[float_solver]
+arithmetic = "Float64"
+storage = "sparse transition matrices"
+discount = 0.75
+sup_norm_tolerance = 1.0e-10
+maximum_iterations = 10000
+
+[timing]
+continue = "frontier now plus beta times belief continuation in the same compressed state"
+research = "negative cost now plus beta^(delay+1) times belief-candidate continuation"

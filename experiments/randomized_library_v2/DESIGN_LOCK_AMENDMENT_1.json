@@ -1,0 +1,26 @@
+{
+  "schema_version": "randomized-library-v2-stability-amendment-lock-v1",
+  "experiment_id": "randomized-finite-library-stress-v2",
+  "amendment_id": "randomized-library-v2-stability-amendment-1",
+  "locked_at_utc": "2026-07-28T20:04:12Z",
+  "lock_stage": "pre-outcome sequential-precision amendment",
+  "parent_design_sha256": "0b012dfc14f4ea57b0d34877a68d9a546cd499d2270903e772d78b21425d14db",
+  "outcomes_read_before_lock": false,
+  "outcome_files_absent_at_lock": true,
+  "candidate_v2_results_used_to_change_specification": false,
+  "maximum_n_selected_after_outcomes": false,
+  "registered_maximum_n": 1024,
+  "reported_prefixes": [50, 100, 200, 300, 500, 750, 1000, 1024],
+  "design_sha256": "d9122d258b8fe62d5872c41b0a418b1351a5798b25ddb99ec73b726e324d244f",
+  "files": {
+    "experiments/randomized_library_v2/DESIGN_LOCK.json": "3ad48c4c1fc7965705a41cfc1d9dd8b73414d0aca57f5f68d5afb7d79d2be63d",
+    "RANDOMIZED_DESIGN_V2_AMENDMENT_1.md": "c71d8bcce6165921de3b06e83b37bd9d69c28fdd7fe0106d9676e16ac16672e0",
+    "experiments/configs/randomized_library_stability_amendment_1.toml": "b34cb219d7395d98a953f2b475e00ef3c64e5bad30cf126c25a1f5a302ac5d49",
+    "julia/src/RandomizedStability.jl": "edafb7a71cea8c1b0a489bbd2d13eb278ad734e77c995cf60c83f0361788781b",
+    "julia/src/StrategyInnovation.jl": "70a44cc89b99a0273826499124a466ef4e18c0167130ea7a5a57c6fd52055a5f",
+    "julia/scripts/lock_randomized_library_stability_amendment.jl": "fbd7fd12ac666a72aea6f3a0e0521377643d141ef033c29ff542169290d1a19e",
+    "julia/test/test_randomized_stability.jl": "85a103c417ad03efaaa2d6faa77fcd6b529caa837bff25b28d7957ff029c7943",
+    "julia/test/test_randomized_stability_amendment.jl": "2af2ba99fadc06ce8de10b0fb85e4eb7400d51c677fe91ace3d5372c68ad5b53",
+    "julia/test/runtests.jl": "6cf86195bcda128035359e81adb4cc780599a2c4f239e04eeca6dca41e43a86d"
+  }
+}

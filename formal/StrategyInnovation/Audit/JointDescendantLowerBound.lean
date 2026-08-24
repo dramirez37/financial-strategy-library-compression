@@ -1,0 +1,46 @@
+import StrategyInnovation.Value.JointDescendantLowerBound
+
+/-!
+# Focused axiom audit for the joint descendant-event lower bound
+
+Every publication-facing declaration added by the dedicated joint-law module
+is printed here.  This file is also a compile-time guard against renaming or
+silently dropping any part of the theorem interface.
+-/
+
+open StrategyInnovation
+open StrategyInnovation.Projection
+open StrategyInnovation.Projection.Model
+open StrategyInnovation.Projection.Model.GenerativeLowerBound
+
+#print axioms jointDescendantMass
+#print axioms jointDescendantMass_nonnegative
+#print axioms jointDescendantMass_le_one
+#print axioms jointDescendantMass_mem_unitInterval
+#print axioms jointDescendantEventMass
+#print axioms jointDescendantEventMass_nonnegative
+#print axioms jointDescendantEventMass_le_one
+#print axioms expectedOperatingBlock
+#print axioms expectedFrozenPassiveContinuation
+#print axioms remainingContinuationGain
+#print axioms expectedRemainingContinuationGain
+#print axioms operatingResearchAdjustment_eq_exactBlocks
+#print axioms completionContinuationGain_eq_joint_add_remaining
+#print axioms expectedCompletionContinuationGain_eq_joint_add_remaining
+#print axioms projectCommitmentValue_eq_cost_operating_joint_remaining
+#print axioms remainingContinuationGain_nonnegative
+#print axioms expectedRemainingContinuationGain_nonnegative
+#print axioms generalizedGenerativeOptionLowerBound
+#print axioms generalizedJointDescendantGain_eq_independentProduct
+#print axioms generalizedGenerativeOptionLowerBound_of_independence
+#print axioms generalizedGenerativeOptionLowerBound_mono_jointMass
+#print axioms generalizedGenerativeOptionLowerBound_mono_gain
+#print axioms generalizedGenerativeOptionLowerBound_antitone_cost
+#print axioms no_unconditional_duration_monotonicity
+#print axioms OneBeliefExample.exact_lowerBound_one
+#print axioms TwoBeliefExample.completionLaw
+#print axioms TwoBeliefExample.jointMass
+#print axioms TwoBeliefExample.jointMass_exact
+#print axioms TwoBeliefExample.gain
+#print axioms TwoBeliefExample.expectedJointGain_eq_two
+#print axioms TwoBeliefExample.exact_lowerBound_one

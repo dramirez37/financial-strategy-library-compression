@@ -1,0 +1,29 @@
+import StrategyInnovation.Optimization.Capacity
+
+/-!
+# Resource-optimization foundation audit
+
+This focused audit records kernel dependencies for the exact additive burden,
+source-relative safe-compression, finite-attainment, value-preservation, and
+capacity-feasibility foundations.  Penalized-envelope and elasticity theorems
+are deliberately outside this module.
+-/
+
+#print axioms StrategyInnovation.Optimization.resourceBurden_empty
+#print axioms StrategyInnovation.Optimization.libraryBurden_inactiveOnly
+#print axioms StrategyInnovation.Optimization.libraryBurden_nonnegative
+#print axioms StrategyInnovation.Optimization.libraryBurden_mono
+#print axioms StrategyInnovation.Optimization.libraryBurden_erase_lt
+#print axioms StrategyInnovation.Optimization.exactSafeCompressionFeasible_source
+#print axioms StrategyInnovation.Optimization.sublibrarySet_finite
+#print axioms StrategyInnovation.Optimization.exactSafeCompressionFeasibleSet_finite
+#print axioms StrategyInnovation.Optimization.exactSafeDeletion_preserves_frontier_and_closure
+#print axioms StrategyInnovation.Optimization.exactSafeDeletion_produces_feasible_lowerWeight
+#print axioms StrategyInnovation.Optimization.exists_minimumWeight_exactSafeCompression
+#print axioms StrategyInnovation.Optimization.equalCompressedStates_preserve_dynamicValue
+#print axioms StrategyInnovation.Optimization.ExactSafeCompressionFeasible.preserves_dynamicValue
+#print axioms StrategyInnovation.Optimization.inactiveOnly_capacityFeasible
+#print axioms StrategyInnovation.Optimization.CapacityFeasible.mono_budget
+#print axioms StrategyInnovation.Optimization.CapacityFeasible.of_sublibrary
+
+#lint- only checkType unusedArguments simpNF in StrategyInnovation.Optimization

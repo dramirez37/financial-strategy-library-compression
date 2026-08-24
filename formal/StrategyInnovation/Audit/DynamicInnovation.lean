@@ -1,0 +1,22 @@
+import StrategyInnovation.Quotient.DynamicInnovation
+
+/-!
+# Legacy primitive dynamic innovation proof audit
+
+This module records kernel dependencies for the deprecated cost-free primitive
+dynamic innovation equivalence, value-preservation, quotient-sufficiency, and
+refinement declarations retained for F1--F4.
+-/
+
+#print axioms StrategyInnovation.RatProb.ext
+#print axioms StrategyInnovation.dynamicInnovationEquivalent_refl
+#print axioms StrategyInnovation.dynamicInnovationEquivalent_symm
+#print axioms StrategyInnovation.dynamicInnovationEquivalent_trans
+#print axioms StrategyInnovation.compressedFiniteHorizonValue_eq_of_frontier_and_transition_eq
+#print axioms StrategyInnovation.finiteHorizonValue_eq_of_dynamicInnovationEquivalent
+#print axioms StrategyInnovation.quotientFiniteHorizonValue_mk
+#print axioms StrategyInnovation.finiteHorizonValue_depends_only_on_dynamicInnovationClass
+#print axioms StrategyInnovation.representation_refines_dynamicInnovationEquivalent
+#print axioms StrategyInnovation.representationQuotientToDynamicInnovationQuotient_mk
+
+#lint- only checkType unusedArguments simpNF in StrategyInnovation

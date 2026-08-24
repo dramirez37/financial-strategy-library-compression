@@ -1,0 +1,67 @@
+Repository License and Data-Rights Notice
+
+Copyright (c) 2026 David Ramirez
+
+1. Original software
+
+Unless a file states otherwise, original Julia, Lean, shell, and continuous-
+integration source code in this repository is licensed under the MIT License
+set out below.
+
+2. Original manuscript and documentation
+
+Unless a file states otherwise, original manuscript text, documentation,
+experiment configurations, synthetic outputs, exact fixtures, and project-
+authored figures and tables are licensed under the Creative Commons
+Attribution 4.0 International License (CC BY 4.0):
+
+https://creativecommons.org/licenses/by/4.0/legalcode
+
+Attribution should identify David Ramirez and, where applicable, cite
+"Financial Strategy Library Compression under Partial Information: Resource
+Constraints and Generative Value."
+
+3. Licensed data and third-party exclusions
+
+No license is granted by this repository to:
+
+- CRSP or WRDS source data;
+- ORATS data;
+- raw, row-level, security-date-level, or otherwise restricted vendor data;
+- cached vendor downloads, completed licensed-data provenance records, or
+  row-level source-extraction audits;
+- third-party software, publications, quotations, trademarks, or other
+  material governed by separate rights.
+
+Those materials remain subject to their owners' terms and are not distributed
+as part of the public repository. Project-authored aggregate financial tables,
+figures, reports, and metadata are covered by Section 2 only to the extent that
+the copyright holder has rights in their original selection, analysis, and
+presentation. Nothing in this license grants any right to reconstruct,
+redistribute, sublicense, or otherwise use underlying CRSP, WRDS, ORATS, or
+other third-party data outside the applicable provider agreement.
+
+Dependency source or binary material obtained through Julia, Lean, Lake,
+mathlib, TeX, or other package systems retains its upstream license. A package
+manifest or lockfile records dependency identity and does not relicense that
+dependency.
+
+MIT License
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of the software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

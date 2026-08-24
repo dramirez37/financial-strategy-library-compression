@@ -1,0 +1,17 @@
+benchmark,source_size,retained_size,removed_count,compression_ratio,retained_ids,epsilon_operational,epsilon_generative,operational_loss,operating_value_loss,generative_loss,value_loss,operational_loss_decimal,operating_value_loss_decimal,generative_loss_decimal,value_loss_decimal,feasible,pareto,decomposition_gate,theorem_evidence
+base,6,1,5,5//6,inactive,1//1,1//4,4//1,175//16,10071//32768,368471//32768,4.0000000000,10.9375000000,0.3073425293,11.2448425293,false,true,true,false
+base,6,2,4,2//3,inactive;strategy_3,1//1,1//4,0//1,0//1,10071//32768,10071//32768,0.0000000000,0.0000000000,0.3073425293,0.3073425293,false,true,true,false
+base,6,3,3,1//2,inactive;strategy_2;strategy_3,1//1,1//4,0//1,0//1,0//1,0//1,0.0000000000,0.0000000000,0.0000000000,0.0000000000,true,true,true,false
+base,6,3,3,1//2,inactive;strategy_3;strategy_4,1//1,1//4,0//1,0//1,0//1,0//1,0.0000000000,0.0000000000,0.0000000000,0.0000000000,true,true,true,false
+base,6,3,3,1//2,inactive;strategy_2;strategy_5,1//1,1//4,1//1,1765//1024,-549//4096,6511//4096,1.0000000000,1.7236328125,-0.1340332031,1.5895996094,true,true,true,false
+expanded,8,1,7,7//8,inactive,1//1,1//4,11//2,1925//128,0//1,1925//128,5.5000000000,15.0390625000,0.0000000000,15.0390625000,false,true,true,false
+expanded,8,2,6,3//4,inactive;candidate_1,1//1,1//4,1//2,2025//8192,0//1,2025//8192,0.5000000000,0.2471923828,0.0000000000,0.2471923828,true,true,true,false
+expanded,8,3,5,5//8,inactive;candidate_1;candidate_2,1//1,1//4,0//1,0//1,0//1,0//1,0.0000000000,0.0000000000,0.0000000000,0.0000000000,true,true,true,false
+expanded,8,3,5,5//8,inactive;strategy_1;candidate_1,1//1,1//4,1//2,2025//8192,-2025//32768,6075//32768,0.5000000000,0.2471923828,-0.0617980957,0.1853942871,true,true,true,false
+expanded,8,3,5,5//8,inactive;strategy_2;strategy_3,1//1,1//4,3//2,525//128,-10071//32768,124329//32768,1.5000000000,4.1015625000,-0.3073425293,3.7942199707,false,true,true,false
+expanded,8,3,5,5//8,inactive;strategy_3;strategy_4,1//1,1//4,3//2,525//128,-10071//32768,124329//32768,1.5000000000,4.1015625000,-0.3073425293,3.7942199707,false,true,true,false
+expanded,8,3,5,5//8,inactive;strategy_2;strategy_5,1//1,1//4,5//2,5965//1024,-14463//32768,176417//32768,2.5000000000,5.8251953125,-0.4413757324,5.3838195801,false,true,true,false
+expanded,8,4,4,1//2,inactive;strategy_2;strategy_3;candidate_2,1//1,1//4,1//1,11857//8192,-2385//32768,45043//32768,1.0000000000,1.4473876953,-0.0727844238,1.3746032715,true,true,true,false
+expanded,8,4,4,1//2,inactive;strategy_2;strategy_5;candidate_2,1//1,1//4,1//1,11857//8192,-2385//32768,45043//32768,1.0000000000,1.4473876953,-0.0727844238,1.3746032715,true,true,true,false
+expanded,8,4,4,1//2,inactive;strategy_3;strategy_4;candidate_2,1//1,1//4,1//1,11857//8192,-2385//32768,45043//32768,1.0000000000,1.4473876953,-0.0727844238,1.3746032715,true,true,true,false
+expanded,8,4,4,1//2,inactive;strategy_4;strategy_5;candidate_2,1//1,1//4,1//1,11857//8192,-2385//32768,45043//32768,1.0000000000,1.4473876953,-0.0727844238,1.3746032715,true,true,true,false

@@ -1,0 +1,94 @@
+{
+  "schema_version": "lean-julia-exact-fixture-v2",
+  "fixture_id": "operational_generative_decomposition",
+  "theorem_family": "T5 operational-generative decomposition",
+  "beliefs": ["only"],
+  "transition_rows": [
+    ["1//1"]
+  ],
+  "discount": "1//2",
+  "modules": ["key"],
+  "strategies": [
+    {
+      "id": "inactive",
+      "operational_profile": ["0//1"],
+      "modules": []
+    },
+    {
+      "id": "bridge",
+      "operational_profile": ["0//1"],
+      "modules": ["key"]
+    },
+    {
+      "id": "candidate",
+      "operational_profile": ["2//1"],
+      "modules": []
+    }
+  ],
+  "libraries": [
+    {
+      "id": "baseline",
+      "strategies": ["inactive"]
+    },
+    {
+      "id": "inserted",
+      "strategies": ["inactive", "bridge"]
+    }
+  ],
+  "projects": [
+    {
+      "id": "innovate",
+      "cost": ["0//1"],
+      "duration": 1,
+      "survival": "1//1",
+      "strict_cost": false,
+      "required_modules": ["key"],
+      "candidate_strategies": ["candidate"]
+    }
+  ],
+  "expected": {
+    "rational_scalars": [
+    {
+      "id": "full_baseline",
+      "value": "0//1"
+    },
+    {
+      "id": "full_inserted",
+      "value": "1//1"
+    },
+    {
+      "id": "generative_component",
+      "value": "1//1"
+    },
+    {
+      "id": "operational_component",
+      "value": "0//1"
+    },
+    {
+      "id": "passive_baseline",
+      "value": "0//1"
+    },
+    {
+      "id": "passive_inserted",
+      "value": "0//1"
+    },
+    {
+      "id": "total_increment",
+      "value": "1//1"
+    }
+  ],
+    "rational_vectors": [],
+    "boolean_scalars": [
+    {
+      "id": "decomposition_identity",
+      "value": true
+    },
+    {
+      "id": "generative_component_positive",
+      "value": true
+    }
+  ],
+    "boolean_vectors": [],
+    "string_vectors": []
+  }
+}

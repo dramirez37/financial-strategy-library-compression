@@ -1,0 +1,135 @@
+{
+  "claim": {
+    "arithmetic": "Rational{BigInt}",
+    "assumption_boundary": "Positive lumpy weights alone violate discrete unit-budget concavity.",
+    "claim_number": 5,
+    "evidence_class": "exact finite Julia search; not Lean proof",
+    "fixture": {
+      "capacity_profile": [
+        {
+          "budget": "0//1",
+          "optimizers": [
+            {
+              "active_count": 0,
+              "cardinality_with_inactive": 1,
+              "frontier": [
+                "0//1"
+              ],
+              "mask": 0,
+              "modules": [],
+              "productive_value": "0//1",
+              "strategies": [
+                "inactive"
+              ],
+              "weight": "0//1"
+            }
+          ],
+          "value": "0//1"
+        },
+        {
+          "budget": "1//1",
+          "optimizers": [
+            {
+              "active_count": 0,
+              "cardinality_with_inactive": 1,
+              "frontier": [
+                "0//1"
+              ],
+              "mask": 0,
+              "modules": [],
+              "productive_value": "0//1",
+              "strategies": [
+                "inactive"
+              ],
+              "weight": "0//1"
+            }
+          ],
+          "value": "0//1"
+        },
+        {
+          "budget": "2//1",
+          "optimizers": [
+            {
+              "active_count": 1,
+              "cardinality_with_inactive": 2,
+              "frontier": [
+                "0//1"
+              ],
+              "mask": 1,
+              "modules": [
+                "m1"
+              ],
+              "productive_value": "1//1",
+              "strategies": [
+                "inactive",
+                "s1"
+              ],
+              "weight": "2//1"
+            }
+          ],
+          "value": "1//1"
+        }
+      ],
+      "left_marginal": "0//1",
+      "marginals": [
+        "0//1",
+        "1//1"
+      ],
+      "problem": {
+        "active_strategies": [
+          {
+            "id": "s1",
+            "modules": [
+              "m1"
+            ],
+            "profile": [
+              "0//1"
+            ],
+            "weight": "2//1"
+          }
+        ],
+        "belief_count": 1,
+        "closure": "identity",
+        "inactive": {
+          "id": "inactive",
+          "modules": [],
+          "profile": [
+            "0//1"
+          ],
+          "weight": "0//1"
+        },
+        "module_count": 1,
+        "productive_value_monotone_under_inclusion": true,
+        "productive_value_table": [
+          {
+            "mask": 0,
+            "productive_value": "0//1",
+            "strategies": [
+              "inactive"
+            ]
+          },
+          {
+            "mask": 1,
+            "productive_value": "1//1",
+            "strategies": [
+              "inactive",
+              "s1"
+            ]
+          }
+        ]
+      },
+      "right_marginal": "1//1",
+      "violating_middle_budget": 1
+    },
+    "id": "CX-OPT-CAPACITY-NONCONCAVE-01",
+    "minimality": {
+      "lexicographic_score": "(1, 2//1, 2//1, 1//1, 1//1, 1, (2//1,), (0//1, 1//1))",
+      "one_active_strategy_is_minimal": true
+    },
+    "status": "counterexample_found",
+    "theorem_revision": "Retain capacity monotonicity; state concavity only under an additional discrete-concavity or convexification assumption.",
+    "title": "Discrete capacity value need not be concave"
+  },
+  "experiment_id": "paper1-resource-optimization-counterexample-audit-v1",
+  "schema_version": "resource-optimization-counterexample-audit-v1"
+}

@@ -1,0 +1,12 @@
+scenario,parameter,baseline,perturbed,policy_signature,stable,minimum_action_margin
+discover_cost_low_down,discover_cost_low,1//32,1//64,research:discover|continue|research:scale|research:scale|continue|continue,true,3//16
+discover_cost_low_up,discover_cost_low,1//32,3//64,research:discover|continue|research:scale|research:scale|continue|continue,true,3//16
+discover_cost_high_down,discover_cost_high,1//1,15//16,research:discover|continue|research:scale|research:scale|continue|continue,true,3//16
+discover_cost_high_up,discover_cost_high,1//1,17//16,research:discover|continue|research:scale|research:scale|continue|continue,true,3//16
+scale_cost_down,scale_cost,3//16,11//64,research:discover|continue|research:scale|research:scale|continue|continue,true,11//64
+scale_cost_up,scale_cost,3//16,13//64,research:discover|continue|research:scale|research:scale|continue|continue,true,13//64
+discount_down,discount,1//2,15//32,research:discover|continue|research:scale|research:scale|continue|continue,true,277950131//1558704128
+discount_up,discount,1//2,17//32,research:discover|continue|research:scale|research:scale|continue|continue,true,3//16
+scale_admission_down,scale_admission,3//4,23//32,research:discover|continue|research:scale|research:scale|continue|continue,true,3//16
+scale_admission_up,scale_admission,3//4,25//32,research:discover|continue|research:scale|research:scale|continue|continue,true,3//16
+survival_down,survival,1//1,31//32,research:discover|continue|research:scale|research:scale|continue|continue,true,3//16

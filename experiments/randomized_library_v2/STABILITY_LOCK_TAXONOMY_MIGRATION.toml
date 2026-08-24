@@ -1,0 +1,42 @@
+schema_version = "randomized-stability-lock-taxonomy-migration-v1"
+recorded_date = "2026-08-23"
+taxonomy_migration_only = true
+registered_lock_path = "experiments/randomized_library_v2/DESIGN_LOCK_AMENDMENT_1.json"
+registered_lock_sha256 = "caca056dcba81aa6caaff75adeb6b6ab7b8db6a0b03050a7c7eca5ffa6406f25"
+registered_design_sha256 = "d9122d258b8fe62d5872c41b0a418b1351a5798b25ddb99ec73b726e324d244f"
+allowed_changed_files = [
+  "julia/scripts/lock_randomized_library_stability_amendment.jl",
+  "julia/test/runtests.jl",
+]
+
+[registered_files]
+"julia/scripts/lock_randomized_library_stability_amendment.jl" = "fbd7fd12ac666a72aea6f3a0e0521377643d141ef033c29ff542169290d1a19e"
+"julia/test/runtests.jl" = "6cf86195bcda128035359e81adb4cc780599a2c4f239e04eeca6dca41e43a86d"
+
+[current_files]
+"julia/scripts/lock_randomized_library_stability_amendment.jl" = "1486c3db118d4d258f822d1efa40f8ea5118e0b185ece833f58d935becb13857"
+"julia/test/runtests.jl" = "98033b8b93775b7b05592b39523e99a63ab5504b14ea96a51799ecec8e643c3f"
+
+[[runtests_substitutions]]
+current = "run_financial_terminal_audit.jl"
+registered = "run_financial_illustration.jl"
+
+[[runtests_substitutions]]
+current = "FinancialTerminalAudit"
+registered = "FinancialIllustration"
+
+[[runtests_substitutions]]
+current = "test_financial_terminal_audit.jl"
+registered = "test_financial_illustration.jl"
+
+[[runtests_substitutions]]
+current = "run_financial_annual_walkforward_audit.jl"
+registered = "run_financial_illustration_v2.jl"
+
+[[runtests_substitutions]]
+current = "FinancialAnnualWalkforwardAudit"
+registered = "FinancialIllustrationV2"
+
+[[runtests_substitutions]]
+current = "test_financial_annual_walkforward_audit.jl"
+registered = "test_financial_illustration_v2.jl"

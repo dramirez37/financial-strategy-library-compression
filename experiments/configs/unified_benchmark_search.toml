@@ -1,0 +1,78 @@
+schema_version = "unified-benchmark-search-v1"
+experiment_id = "unified-positive-duration-benchmark-search-v1"
+julia_version = "1.12.6"
+arithmetic = "Rational{BigInt}"
+randomness = "none"
+legacy_fixture = "experiments/configs/canonical_discounted_dp.toml"
+specification = "UNIFIED_CANONICAL_BENCHMARK_SPEC.md"
+
+[grid]
+discount = ["2//5", "1//2", "3//5"]
+discover_cost_low = ["1//32", "1//16", "3//32"]
+discover_cost_high = ["3//4", "1//1"]
+scale_cost = ["1//16", "1//8", "3//16"]
+scale_duration = [1, 2, 3]
+scale_admission = ["2//3", "3//4", "4//5"]
+survival = ["7//8", "1//1"]
+
+[fixed]
+belief_kernel = [["3//4", "1//4"], ["1//4", "3//4"]]
+discover_duration = 1
+discover_operates = true
+scale_operates = true
+discover_carrier_a_generation = "1//2"
+discover_carrier_b_generation = "1//2"
+discover_carrier_a_admission = "1//1"
+discover_carrier_b_admission = "1//2"
+frontier_k0 = ["0//1", "0//1"]
+frontier_k1 = ["0//1", "0//1"]
+frontier_k2 = ["2//1", "4//1"]
+
+[gates]
+minimum_action_margin = "1//16"
+policy_iteration_limit = 32
+value_iteration_limit = 128
+value_iteration_residual_tolerance = "1//1000000000000"
+require_all_three_actions = true
+require_exact_policy_residual = true
+require_exact_bellman_residual = true
+require_raw_compressed_equality = true
+require_policy_lift = true
+
+[perturbations]
+discover_cost_low = "1//64"
+discover_cost_high = "1//16"
+scale_cost = "1//64"
+discount = "1//32"
+scale_admission = "1//32"
+survival = "1//32"
+
+[comparative_statics]
+cost_low = "1//16"
+cost_high = "1//4"
+duration_low = 1
+duration_high = 3
+discount_low = "2//5"
+discount_high = "3//5"
+admission_low = "2//3"
+admission_high = "4//5"
+survival_low = "3//4"
+survival_high = "1//1"
+
+[selection_reference]
+discount = "1//2"
+discover_cost_low = "1//16"
+discover_cost_high = "1//1"
+scale_cost = "1//8"
+scale_duration = 2
+scale_admission = "3//4"
+survival = "1//1"
+
+[outputs]
+search = "experiments/results/unified_benchmark_search.csv"
+selected = "experiments/configs/unified_benchmark_selected.toml"
+action_margin_report = "experiments/results/UNIFIED_BENCHMARK_ACTION_MARGIN_REPORT.md"
+policy_value = "experiments/results/unified_benchmark_policy_value.csv"
+rejections = "experiments/results/unified_benchmark_rejections.csv"
+perturbation_stability = "experiments/results/unified_benchmark_perturbation_stability.csv"
+comparative_statics = "experiments/results/unified_benchmark_comparative_statics.csv"

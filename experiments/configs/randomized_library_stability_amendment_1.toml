@@ -1,0 +1,106 @@
+schema_version = "randomized-library-v2-stability-amendment-v1"
+amendment_id = "randomized-library-v2-stability-amendment-1"
+experiment_id = "randomized-finite-library-stress-v2"
+registration_status = "pre-outcome_amendment_locked_outcomes_not_run"
+registered_date = "2026-07-28"
+theorem_evidence = false
+evidence_class = "simulation precision diagnostic; not statistical inference about a real population"
+
+[parent]
+config_path = "experiments/configs/randomized_library_stress_v2.toml"
+lock_path = "experiments/randomized_library_v2/DESIGN_LOCK.json"
+lock_file_sha256 = "3ad48c4c1fc7965705a41cfc1d9dd8b73414d0aca57f5f68d5afb7d79d2be63d"
+design_sha256 = "0b012dfc14f4ea57b0d34877a68d9a546cd499d2270903e772d78b21425d14db"
+registered_maximum_n = 1024
+maximum_n_selected_after_outcomes = false
+outcomes_read_before_amendment = false
+
+[sequential]
+requested_prefixes = [50, 100, 200, 300, 500, 750, 1000]
+reported_prefixes = [50, 100, 200, 300, 500, 750, 1000, 1024]
+original_balance_checkpoints = [256, 512, 768, 1024]
+final_estimate_n = 1024
+stopping_rule = "none; all prefixes are descriptive snapshots and the final estimate always uses N=1024"
+early_prefix_balance = "not asserted; report actual factor-level denominators"
+ordering = "locked TRIAL_REGISTRY.csv trial_id order"
+
+[estimands]
+frontier_positive_loss_frequency = "count(frontier_only_signed_total_dynamic_loss > 0) / cumulative trials"
+mean_positive_frontier_loss = "exact mean frontier-only signed total dynamic loss conditional on positive loss"
+innovation_safe_loss_frequency = "count(innovation_safe_signed_total_dynamic_loss > 0) / cumulative trials"
+silent_generative_asset_frequency = "sum silent-generative assets / sum active source assets"
+substitution_frequency = "count(frontier_closure_J < 0) / cumulative realizable rectangles"
+complementarity_frequency = "count(frontier_closure_J > 0) / cumulative realizable rectangles"
+frontier_only_mean_compression_ratio = "exact mean frontier-only removed/source ratio"
+innovation_safe_mean_compression_ratio = "exact mean innovation-safe removed/source ratio"
+
+[intervals]
+frequency_method = "Wilson score interval"
+confidence_level = "0.95"
+z_value = 1.959963984540054
+role = "descriptive finite-simulation precision only"
+used_for_stopping_or_sample_selection = false
+used_for_means = false
+
+[mcse]
+method = "sample standard deviation divided by square root of the supporting observation count"
+reported_for = [
+  "mean_positive_frontier_loss",
+  "frontier_only_mean_compression_ratio",
+  "innovation_safe_mean_compression_ratio",
+]
+arithmetic_boundary = "exact rational sums, means, and sample variances; Float64 square root for presentation-only MCSE"
+exact_sample_variance_output = true
+used_for_stopping_or_sample_selection = false
+
+[warnings]
+sparse_event_threshold = 20
+sparse_nonevent_threshold = 20
+conditional_mean_minimum_positive_count = 40
+empty_denominator_warning = true
+factor_slice_warnings = true
+warning_changes_estimate_or_denominator = false
+warning_changes_final_n = false
+
+[factors]
+frontier_density = ["sparse", "dense"]
+module_overlap = ["low", "high"]
+module_complementarity = ["weak", "strong"]
+project_cost = ["low", "high"]
+duration = ["short", "long"]
+admission = ["low", "high"]
+persistence = ["low", "high"]
+
+[input_contract]
+trial_id = "consecutive locked execution order, 1 through 1024"
+frontier_only_signed_total_dynamic_loss = "exact Rational"
+innovation_safe_signed_total_dynamic_loss = "exact Rational"
+silent_generative_asset_count = "nonnegative integer"
+active_asset_count = "positive integer at least silent_generative_asset_count"
+frontier_closure_J = "exact Rational from four consistent raw corners"
+frontier_only_compression_ratio = "exact Rational in [0,1]"
+innovation_safe_compression_ratio = "exact Rational in [0,1]"
+factor_columns = "the seven locked registry factors"
+
+[outputs]
+cumulative = "experiments/results/summaries/randomized_library_v2_stability_summary.csv"
+factor_stratified = "experiments/results/summaries/randomized_library_v2_stability_factor_summary.csv"
+figure = "manuscript/figures/randomized_library_v2_stability.svg"
+
+[design_lock]
+path = "experiments/randomized_library_v2/DESIGN_LOCK_AMENDMENT_1.json"
+schema_version = "randomized-library-v2-stability-amendment-lock-v1"
+lock_stage = "pre-outcome sequential-precision amendment"
+outcomes_read_before_lock = false
+candidate_v2_results_used_to_change_specification = false
+files = [
+  "experiments/randomized_library_v2/DESIGN_LOCK.json",
+  "RANDOMIZED_DESIGN_V2_AMENDMENT_1.md",
+  "experiments/configs/randomized_library_stability_amendment_1.toml",
+  "julia/src/RandomizedStability.jl",
+  "julia/src/StrategyInnovation.jl",
+  "julia/scripts/lock_randomized_library_stability_amendment.jl",
+  "julia/test/test_randomized_stability.jl",
+  "julia/test/test_randomized_stability_amendment.jl",
+  "julia/test/runtests.jl",
+]

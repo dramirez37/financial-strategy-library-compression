@@ -1,0 +1,897 @@
+prefix_n,scope,factor,level,estimand,statistic_kind,event_count,non_event_count,observation_count,exact_sum,estimate,exact_sample_variance,interval_kind,interval_low,interval_high,mcse,warning_code,warning,simulation_precision_only
+50,factor,frontier_density,sparse,frontier_positive_loss_frequency,frequency,15,9,24,15//1,5//8,,Wilson descriptive simulation interval,0.427099624427,0.788406324405,,sparse_events;sparse_nonevents,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,frontier_density,sparse,mean_positive_frontier_loss,mean,15,9,15,3135635//196608,627127//589824,1006277993963//811748818944,,,,0.287476616964,sparse_mean_support,mean support is below the registered Monte Carlo precision threshold,true
+50,factor,frontier_density,sparse,innovation_safe_loss_frequency,frequency,0,24,24,0//1,0//1,,Wilson descriptive simulation interval,1.38777878078e-17,0.137976204675,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,frontier_density,sparse,silent_generative_asset_frequency,frequency,15,105,120,15//1,1//8,,Wilson descriptive simulation interval,0.077234972734,0.19602940208,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,frontier_density,sparse,substitution_frequency,frequency,15,9,24,15//1,5//8,,Wilson descriptive simulation interval,0.427099624427,0.788406324405,,sparse_events;sparse_nonevents,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,frontier_density,sparse,complementarity_frequency,frequency,0,24,24,0//1,0//1,,Wilson descriptive simulation interval,1.38777878078e-17,0.137976204675,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,frontier_density,sparse,frontier_only_mean_compression_ratio,mean,24,0,24,12//1,1//2,0//1,,,,0,,,true
+50,factor,frontier_density,sparse,innovation_safe_mean_compression_ratio,mean,24,0,24,8//3,1//9,16//621,,,,0.0327648791455,,,true
+50,factor,frontier_density,dense,frontier_positive_loss_frequency,frequency,10,16,26,10//1,5//13,,Wilson descriptive simulation interval,0.224285944357,0.574651499149,,sparse_events;sparse_nonevents,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,frontier_density,dense,mean_positive_frontier_loss,mean,10,16,10,579949//49152,579949//491520,36597434701//24159191040,,,,0.389210123827,sparse_mean_support,mean support is below the registered Monte Carlo precision threshold,true
+50,factor,frontier_density,dense,innovation_safe_loss_frequency,frequency,0,26,26,0//1,0//1,,Wilson descriptive simulation interval,0,0.128728921859,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,frontier_density,dense,silent_generative_asset_frequency,frequency,10,120,130,10//1,1//13,,Wilson descriptive simulation interval,0.0423174370861,0.135814653155,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,frontier_density,dense,substitution_frequency,frequency,12,14,26,12//1,6//13,,Wilson descriptive simulation interval,0.287558535304,0.645420612531,,sparse_events;sparse_nonevents,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,frontier_density,dense,complementarity_frequency,frequency,0,26,26,0//1,0//1,,Wilson descriptive simulation interval,0,0.128728921859,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,frontier_density,dense,frontier_only_mean_compression_ratio,mean,26,0,26,26//3,1//3,0//1,,,,0,,,true
+50,factor,frontier_density,dense,innovation_safe_mean_compression_ratio,mean,26,0,26,11//6,11//156,11//1560,,,,0.0164682468957,,,true
+50,factor,module_overlap,low,frontier_positive_loss_frequency,frequency,13,18,31,13//1,13//31,,Wilson descriptive simulation interval,0.264155430673,0.592337375046,,sparse_events;sparse_nonevents,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,module_overlap,low,mean_positive_frontier_loss,mean,13,18,13,1243321//65536,1243321//851968,2578392986027//1507533520896,,,,0.362718235873,sparse_mean_support,mean support is below the registered Monte Carlo precision threshold,true
+50,factor,module_overlap,low,innovation_safe_loss_frequency,frequency,0,31,31,0//1,0//1,,Wilson descriptive simulation interval,0,0.11025539546,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,module_overlap,low,silent_generative_asset_frequency,frequency,13,142,155,13//1,13//155,,Wilson descriptive simulation interval,0.0496683287198,0.138201129558,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,module_overlap,low,substitution_frequency,frequency,15,16,31,15//1,15//31,,Wilson descriptive simulation interval,0.319702515624,0.65159604552,,sparse_events;sparse_nonevents,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,module_overlap,low,complementarity_frequency,frequency,0,31,31,0//1,0//1,,Wilson descriptive simulation interval,0,0.11025539546,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,module_overlap,low,frontier_only_mean_compression_ratio,mean,31,0,31,13//1,13//31,2//279,,,,0.0152065974449,,,true
+50,factor,module_overlap,low,innovation_safe_mean_compression_ratio,mean,31,0,31,0//1,0//1,0//1,,,,0,,,true
+50,factor,module_overlap,high,frontier_positive_loss_frequency,frequency,12,7,19,12//1,12//19,,Wilson descriptive simulation interval,0.410395331648,0.808504872549,,sparse_events;sparse_nonevents,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,module_overlap,high,mean_positive_frontier_loss,mean,12,7,12,143789//16384,143789//196608,69956002433//106300440576,,,,0.234182445451,sparse_mean_support,mean support is below the registered Monte Carlo precision threshold,true
+50,factor,module_overlap,high,innovation_safe_loss_frequency,frequency,0,19,19,0//1,0//1,,Wilson descriptive simulation interval,0,0.168179224053,,sparse_events;sparse_nonevents,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,module_overlap,high,silent_generative_asset_frequency,frequency,12,83,95,12//1,12//95,,Wilson descriptive simulation interval,0.0737565419814,0.20792140119,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,module_overlap,high,substitution_frequency,frequency,12,7,19,12//1,12//19,,Wilson descriptive simulation interval,0.410395331648,0.808504872549,,sparse_events;sparse_nonevents,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,module_overlap,high,complementarity_frequency,frequency,0,19,19,0//1,0//1,,Wilson descriptive simulation interval,0,0.168179224053,,sparse_events;sparse_nonevents,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,module_overlap,high,frontier_only_mean_compression_ratio,mean,19,0,19,23//3,23//57,11//1539,,,,0.0193954666103,,,true
+50,factor,module_overlap,high,innovation_safe_mean_compression_ratio,mean,19,0,19,9//2,9//38,11//1539,,,,0.0193954666103,,,true
+50,factor,module_complementarity,weak,frontier_positive_loss_frequency,frequency,10,16,26,10//1,5//13,,Wilson descriptive simulation interval,0.224285944357,0.574651499149,,sparse_events;sparse_nonevents,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,module_complementarity,weak,mean_positive_frontier_loss,mean,10,16,10,38741//6144,38741//61440,3307044817//4529848320,,,,0.270195561258,sparse_mean_support,mean support is below the registered Monte Carlo precision threshold,true
+50,factor,module_complementarity,weak,innovation_safe_loss_frequency,frequency,0,26,26,0//1,0//1,,Wilson descriptive simulation interval,0,0.128728921859,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,module_complementarity,weak,silent_generative_asset_frequency,frequency,10,120,130,10//1,1//13,,Wilson descriptive simulation interval,0.0423174370861,0.135814653155,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,module_complementarity,weak,substitution_frequency,frequency,12,14,26,12//1,6//13,,Wilson descriptive simulation interval,0.287558535304,0.645420612531,,sparse_events;sparse_nonevents,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,module_complementarity,weak,complementarity_frequency,frequency,0,26,26,0//1,0//1,,Wilson descriptive simulation interval,0,0.128728921859,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,module_complementarity,weak,frontier_only_mean_compression_ratio,mean,26,0,26,11//1,11//26,7//975,,,,0.0166172838421,,,true
+50,factor,module_complementarity,weak,innovation_safe_mean_compression_ratio,mean,26,0,26,13//6,1//12,29//1800,,,,0.0248929331269,,,true
+50,factor,module_complementarity,strong,frontier_positive_loss_frequency,frequency,15,9,24,15//1,5//8,,Wilson descriptive simulation interval,0.427099624427,0.788406324405,,sparse_events;sparse_nonevents,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,module_complementarity,strong,mean_positive_frontier_loss,mean,15,9,15,4215719//196608,4215719//2949120,5992440915067//4058744094720,,,,0.313733154266,sparse_mean_support,mean support is below the registered Monte Carlo precision threshold,true
+50,factor,module_complementarity,strong,innovation_safe_loss_frequency,frequency,0,24,24,0//1,0//1,,Wilson descriptive simulation interval,1.38777878078e-17,0.137976204675,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,module_complementarity,strong,silent_generative_asset_frequency,frequency,15,105,120,15//1,1//8,,Wilson descriptive simulation interval,0.077234972734,0.19602940208,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,module_complementarity,strong,substitution_frequency,frequency,15,9,24,15//1,5//8,,Wilson descriptive simulation interval,0.427099624427,0.788406324405,,sparse_events;sparse_nonevents,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,module_complementarity,strong,complementarity_frequency,frequency,0,24,24,0//1,0//1,,Wilson descriptive simulation interval,1.38777878078e-17,0.137976204675,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,module_complementarity,strong,frontier_only_mean_compression_ratio,mean,24,0,24,29//3,29//72,35//4968,,,,0.0171331654096,,,true
+50,factor,module_complementarity,strong,innovation_safe_mean_compression_ratio,mean,24,0,24,7//3,7//72,83//4968,,,,0.026384121105,,,true
+50,factor,project_cost,low,frontier_positive_loss_frequency,frequency,20,6,26,20//1,10//13,,Wilson descriptive simulation interval,0.579484459211,0.889661505942,,sparse_nonevents,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,project_cost,low,mean_positive_frontier_loss,mean,20,6,20,194351//8192,194351//163840,352167324691//229512314880,,,,0.27698518107,sparse_mean_support,mean support is below the registered Monte Carlo precision threshold,true
+50,factor,project_cost,low,innovation_safe_loss_frequency,frequency,0,26,26,0//1,0//1,,Wilson descriptive simulation interval,0,0.128728921859,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,project_cost,low,silent_generative_asset_frequency,frequency,20,110,130,20//1,2//13,,Wilson descriptive simulation interval,0.101853890614,0.225708728674,,,,true
+50,factor,project_cost,low,substitution_frequency,frequency,21,5,26,21//1,21//26,,Wilson descriptive simulation interval,0.621237428807,0.914929388511,,sparse_nonevents,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,project_cost,low,complementarity_frequency,frequency,0,26,26,0//1,0//1,,Wilson descriptive simulation interval,0,0.128728921859,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,project_cost,low,frontier_only_mean_compression_ratio,mean,26,0,26,67//6,67//156,11//1560,,,,0.0164682468957,,,true
+50,factor,project_cost,low,innovation_safe_mean_compression_ratio,mean,26,0,26,3//1,3//26,19//975,,,,0.0273771237232,,,true
+50,factor,project_cost,high,frontier_positive_loss_frequency,frequency,5,19,24,5//1,5//24,,Wilson descriptive simulation interval,0.0924482535285,0.404704532532,,sparse_events;sparse_nonevents,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,project_cost,high,mean_positive_frontier_loss,mean,5,19,5,263669//65536,263669//327680,64455555379//193273528320,,,,0.258261094811,sparse_mean_support,mean support is below the registered Monte Carlo precision threshold,true
+50,factor,project_cost,high,innovation_safe_loss_frequency,frequency,0,24,24,0//1,0//1,,Wilson descriptive simulation interval,1.38777878078e-17,0.137976204675,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,project_cost,high,silent_generative_asset_frequency,frequency,5,115,120,5//1,1//24,,Wilson descriptive simulation interval,0.0179267168801,0.093840852337,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,project_cost,high,substitution_frequency,frequency,6,18,24,6//1,1//4,,Wilson descriptive simulation interval,0.119993662286,0.448994440052,,sparse_events;sparse_nonevents,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,project_cost,high,complementarity_frequency,frequency,0,24,24,0//1,0//1,,Wilson descriptive simulation interval,1.38777878078e-17,0.137976204675,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,project_cost,high,frontier_only_mean_compression_ratio,mean,24,0,24,19//2,19//48,5//736,,,,0.0168244344393,,,true
+50,factor,project_cost,high,innovation_safe_mean_compression_ratio,mean,24,0,24,3//2,1//16,77//6624,,,,0.0220079494494,,,true
+50,factor,duration,short,frontier_positive_loss_frequency,frequency,21,8,29,21//1,21//29,,Wilson descriptive simulation interval,0.542828675831,0.853012448979,,sparse_nonevents,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,duration,short,mean_positive_frontier_loss,mean,21,8,21,5350571//196608,5350571//4128768,5379264489269//4058744094720,,,,0.251221015563,sparse_mean_support,mean support is below the registered Monte Carlo precision threshold,true
+50,factor,duration,short,innovation_safe_loss_frequency,frequency,0,29,29,0//1,0//1,,Wilson descriptive simulation interval,0,0.1169697985,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,duration,short,silent_generative_asset_frequency,frequency,21,124,145,21//1,21//145,,Wilson descriptive simulation interval,0.0967181994183,0.211270308514,,,,true
+50,factor,duration,short,substitution_frequency,frequency,22,7,29,22//1,22//29,,Wilson descriptive simulation interval,0.578923983822,0.877815775575,,sparse_nonevents,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,duration,short,complementarity_frequency,frequency,0,29,29,0//1,0//1,,Wilson descriptive simulation interval,0,0.1169697985,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,duration,short,frontier_only_mean_compression_ratio,mean,29,0,29,37//3,37//87,13//1827,,,,0.0156640262958,,,true
+50,factor,duration,short,innovation_safe_mean_compression_ratio,mean,29,0,29,5//2,5//58,125//7308,,,,0.0242860418025,,,true
+50,factor,duration,long,frontier_positive_loss_frequency,frequency,4,17,21,4//1,4//21,,Wilson descriptive simulation interval,0.0766756505276,0.400005646902,,sparse_events;sparse_nonevents,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,duration,long,mean_positive_frontier_loss,mean,4,17,4,26215//49152,26215//196608,70250353//9663676416,,,,0.0426307595078,sparse_mean_support,mean support is below the registered Monte Carlo precision threshold,true
+50,factor,duration,long,innovation_safe_loss_frequency,frequency,0,21,21,0//1,0//1,,Wilson descriptive simulation interval,0,0.154639018925,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,duration,long,silent_generative_asset_frequency,frequency,4,101,105,4//1,4//105,,Wilson descriptive simulation interval,0.0149124593311,0.0938830212605,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,duration,long,substitution_frequency,frequency,5,16,21,5//1,5//21,,Wilson descriptive simulation interval,0.106280130226,0.45091173683,,sparse_events;sparse_nonevents,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,duration,long,complementarity_frequency,frequency,0,21,21,0//1,0//1,,Wilson descriptive simulation interval,0,0.154639018925,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,duration,long,frontier_only_mean_compression_ratio,mean,21,0,21,25//3,25//63,13//1890,,,,0.0180980226206,,,true
+50,factor,duration,long,innovation_safe_mean_compression_ratio,mean,21,0,21,2//1,2//21,13//840,,,,0.0271470339309,,,true
+50,factor,admission,low,frontier_positive_loss_frequency,frequency,10,18,28,10//1,5//14,,Wilson descriptive simulation interval,0.207058295077,0.541696934856,,sparse_events;sparse_nonevents,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,admission,low,mean_positive_frontier_loss,mean,10,18,10,259799//49152,259799//491520,6163869983//72477573120,,,,0.0922199565625,sparse_mean_support,mean support is below the registered Monte Carlo precision threshold,true
+50,factor,admission,low,innovation_safe_loss_frequency,frequency,0,28,28,0//1,0//1,,Wilson descriptive simulation interval,6.93889390391e-18,0.120643304766,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,admission,low,silent_generative_asset_frequency,frequency,10,130,140,10//1,1//14,,Wilson descriptive simulation interval,0.0392583843739,0.126489787371,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,admission,low,substitution_frequency,frequency,10,18,28,10//1,5//14,,Wilson descriptive simulation interval,0.207058295077,0.541696934856,,sparse_events;sparse_nonevents,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,admission,low,complementarity_frequency,frequency,0,28,28,0//1,0//1,,Wilson descriptive simulation interval,6.93889390391e-18,0.120643304766,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,admission,low,frontier_only_mean_compression_ratio,mean,28,0,28,71//6,71//168,65//9072,,,,0.0159965431514,,,true
+50,factor,admission,low,innovation_safe_mean_compression_ratio,mean,28,0,28,17//6,17//168,523//27216,,,,0.0261974898417,,,true
+50,factor,admission,high,frontier_positive_loss_frequency,frequency,15,7,22,15//1,15//22,,Wilson descriptive simulation interval,0.47318597741,0.836394068186,,sparse_events;sparse_nonevents,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,admission,high,mean_positive_frontier_loss,mean,15,7,15,4416235//196608,883247//589824,1430539020707//811748818944,,,,0.342762571227,sparse_mean_support,mean support is below the registered Monte Carlo precision threshold,true
+50,factor,admission,high,innovation_safe_loss_frequency,frequency,0,22,22,0//1,0//1,,Wilson descriptive simulation interval,0,0.148654874609,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,admission,high,silent_generative_asset_frequency,frequency,15,95,110,15//1,3//22,,Wilson descriptive simulation interval,0.0844115644499,0.212856752131,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,admission,high,substitution_frequency,frequency,17,5,22,17//1,17//22,,Wilson descriptive simulation interval,0.565600468248,0.898769600148,,sparse_events;sparse_nonevents,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,admission,high,complementarity_frequency,frequency,0,22,22,0//1,0//1,,Wilson descriptive simulation interval,0,0.148654874609,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,admission,high,frontier_only_mean_compression_ratio,mean,22,0,22,53//6,53//132,13//1848,,,,0.0178817225561,,,true
+50,factor,admission,high,innovation_safe_mean_compression_ratio,mean,22,0,22,5//3,5//66,26//2079,,,,0.0238422967415,,,true
+50,factor,persistence,low,frontier_positive_loss_frequency,frequency,11,15,26,11//1,11//26,,Wilson descriptive simulation interval,0.255444433137,0.610513862534,,sparse_events;sparse_nonevents,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,persistence,low,mean_positive_frontier_loss,mean,11,15,11,87795//8192,87795//90112,18373404721//14763950080,,,,0.336354462668,sparse_mean_support,mean support is below the registered Monte Carlo precision threshold,true
+50,factor,persistence,low,innovation_safe_loss_frequency,frequency,0,26,26,0//1,0//1,,Wilson descriptive simulation interval,0,0.128728921859,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,persistence,low,silent_generative_asset_frequency,frequency,11,119,130,11//1,11//130,,Wilson descriptive simulation interval,0.0479038816401,0.145171261506,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,persistence,low,substitution_frequency,frequency,12,14,26,12//1,6//13,,Wilson descriptive simulation interval,0.287558535304,0.645420612531,,sparse_events;sparse_nonevents,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,persistence,low,complementarity_frequency,frequency,0,26,26,0//1,0//1,,Wilson descriptive simulation interval,0,0.128728921859,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,persistence,low,frontier_only_mean_compression_ratio,mean,26,0,26,21//2,21//52,11//1560,,,,0.0164682468957,,,true
+50,factor,persistence,low,innovation_safe_mean_compression_ratio,mean,26,0,26,7//3,7//78,9//650,,,,0.0230769230769,,,true
+50,factor,persistence,high,frontier_positive_loss_frequency,frequency,14,10,24,14//1,7//12,,Wilson descriptive simulation interval,0.388346658652,0.755323973902,,sparse_events;sparse_nonevents,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,persistence,high,mean_positive_frontier_loss,mean,14,10,14,1116117//65536,1116117//917504,9883952757629//7035156430848,,,,0.316784871656,sparse_mean_support,mean support is below the registered Monte Carlo precision threshold,true
+50,factor,persistence,high,innovation_safe_loss_frequency,frequency,0,24,24,0//1,0//1,,Wilson descriptive simulation interval,1.38777878078e-17,0.137976204675,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,persistence,high,silent_generative_asset_frequency,frequency,14,106,120,14//1,7//60,,Wilson descriptive simulation interval,0.0707811780783,0.186333516176,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,persistence,high,substitution_frequency,frequency,15,9,24,15//1,5//8,,Wilson descriptive simulation interval,0.427099624427,0.788406324405,,sparse_events;sparse_nonevents,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,persistence,high,complementarity_frequency,frequency,0,24,24,0//1,0//1,,Wilson descriptive simulation interval,1.38777878078e-17,0.137976204675,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+50,factor,persistence,high,frontier_only_mean_compression_ratio,mean,24,0,24,61//6,61//144,143//19872,,,,0.0173157620277,,,true
+50,factor,persistence,high,innovation_safe_mean_compression_ratio,mean,24,0,24,13//6,13//144,383//19872,,,,0.0283382467086,,,true
+100,factor,frontier_density,sparse,frontier_positive_loss_frequency,frequency,24,26,50,24//1,12//25,,Wilson descriptive simulation interval,0.347971352866,0.6148825511,,,,true
+100,factor,frontier_density,sparse,mean_positive_frontier_loss,mean,24,26,24,5241631//196608,5241631//4718592,25459574562071//21337397526528,,,,0.222971433526,sparse_mean_support,mean support is below the registered Monte Carlo precision threshold,true
+100,factor,frontier_density,sparse,innovation_safe_loss_frequency,frequency,0,50,50,0//1,0//1,,Wilson descriptive simulation interval,0,0.0713475991334,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+100,factor,frontier_density,sparse,silent_generative_asset_frequency,frequency,24,226,250,24//1,12//125,,Wilson descriptive simulation interval,0.0653618807787,0.138865825214,,,,true
+100,factor,frontier_density,sparse,substitution_frequency,frequency,24,26,50,24//1,12//25,,Wilson descriptive simulation interval,0.347971352866,0.6148825511,,,,true
+100,factor,frontier_density,sparse,complementarity_frequency,frequency,0,50,50,0//1,0//1,,Wilson descriptive simulation interval,0,0.0713475991334,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+100,factor,frontier_density,sparse,frontier_only_mean_compression_ratio,mean,50,0,50,25//1,1//2,0//1,,,,0,,,true
+100,factor,frontier_density,sparse,innovation_safe_mean_compression_ratio,mean,50,0,50,23//3,23//150,69//2450,,,,0.0237332110369,,,true
+100,factor,frontier_density,dense,frontier_positive_loss_frequency,frequency,21,29,50,21//1,21//50,,Wilson descriptive simulation interval,0.293750033547,0.557665582314,,,,true
+100,factor,frontier_density,dense,mean_positive_frontier_loss,mean,21,29,21,4501835//196608,4501835//4128768,907589446537//811748818944,,,,0.230740717391,sparse_mean_support,mean support is below the registered Monte Carlo precision threshold,true
+100,factor,frontier_density,dense,innovation_safe_loss_frequency,frequency,0,50,50,0//1,0//1,,Wilson descriptive simulation interval,0,0.0713475991334,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+100,factor,frontier_density,dense,silent_generative_asset_frequency,frequency,21,229,250,21//1,21//250,,Wilson descriptive simulation interval,0.0555960387666,0.124994866414,,,,true
+100,factor,frontier_density,dense,substitution_frequency,frequency,23,27,50,23//1,23//50,,Wilson descriptive simulation interval,0.329696521922,0.596011286008,,,,true
+100,factor,frontier_density,dense,complementarity_frequency,frequency,0,50,50,0//1,0//1,,Wilson descriptive simulation interval,0,0.0713475991334,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+100,factor,frontier_density,dense,frontier_only_mean_compression_ratio,mean,50,0,50,50//3,1//3,0//1,,,,0,,,true
+100,factor,frontier_density,dense,innovation_safe_mean_compression_ratio,mean,50,0,50,13//3,13//150,26//3675,,,,0.0118952342827,,,true
+100,factor,module_overlap,low,frontier_positive_loss_frequency,frequency,22,29,51,22//1,22//51,,Wilson descriptive simulation interval,0.305012361079,0.567346978907,,,,true
+100,factor,module_overlap,low,mean_positive_frontier_loss,mean,22,29,22,5152423//196608,5152423//4325376,8454611953223//5952824672256,,,,0.254082031696,sparse_mean_support,mean support is below the registered Monte Carlo precision threshold,true
+100,factor,module_overlap,low,innovation_safe_loss_frequency,frequency,0,51,51,0//1,0//1,,Wilson descriptive simulation interval,0,0.0700466198985,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+100,factor,module_overlap,low,silent_generative_asset_frequency,frequency,22,233,255,22//1,22//255,,Wilson descriptive simulation interval,0.0576635897247,0.127165606644,,,,true
+100,factor,module_overlap,low,substitution_frequency,frequency,24,27,51,24//1,8//17,,Wilson descriptive simulation interval,0.340529902095,0.604766957899,,,,true
+100,factor,module_overlap,low,complementarity_frequency,frequency,0,51,51,0//1,0//1,,Wilson descriptive simulation interval,0,0.0700466198985,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+100,factor,module_overlap,low,frontier_only_mean_compression_ratio,mean,51,0,51,43//2,43//102,3//425,,,,0.0117647058824,,,true
+100,factor,module_overlap,low,innovation_safe_mean_compression_ratio,mean,51,0,51,0//1,0//1,0//1,,,,0,,,true
+100,factor,module_overlap,high,frontier_positive_loss_frequency,frequency,23,26,49,23//1,23//49,,Wilson descriptive simulation interval,0.337035036932,0.606191360163,,,,true
+100,factor,module_overlap,high,mean_positive_frontier_loss,mean,23,26,23,4591043//196608,4591043//4521984,8728645140139//9779640532992,,,,0.19699175754,sparse_mean_support,mean support is below the registered Monte Carlo precision threshold,true
+100,factor,module_overlap,high,innovation_safe_loss_frequency,frequency,0,49,49,0//1,0//1,,Wilson descriptive simulation interval,6.93889390391e-18,0.0726978192205,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+100,factor,module_overlap,high,silent_generative_asset_frequency,frequency,23,222,245,23//1,23//245,,Wilson descriptive simulation interval,0.0633709415513,0.136923089262,,,,true
+100,factor,module_overlap,high,substitution_frequency,frequency,23,26,49,23//1,23//49,,Wilson descriptive simulation interval,0.337035036932,0.606191360163,,,,true
+100,factor,module_overlap,high,complementarity_frequency,frequency,0,49,49,0//1,0//1,,Wilson descriptive simulation interval,6.93889390391e-18,0.0726978192205,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+100,factor,module_overlap,high,frontier_only_mean_compression_ratio,mean,49,0,49,121//6,121//294,299//42336,,,,0.012005566091,,,true
+100,factor,module_overlap,high,innovation_safe_mean_compression_ratio,mean,49,0,49,12//1,12//49,299//42336,,,,0.012005566091,,,true
+100,factor,module_complementarity,weak,frontier_positive_loss_frequency,frequency,20,30,50,20//1,2//5,,Wilson descriptive simulation interval,0.276083897303,0.538185622524,,,,true
+100,factor,module_complementarity,weak,mean_positive_frontier_loss,mean,20,30,20,84489//4096,84489//81920,132281946137//114756157440,,,,0.240075195483,sparse_mean_support,mean support is below the registered Monte Carlo precision threshold,true
+100,factor,module_complementarity,weak,innovation_safe_loss_frequency,frequency,0,50,50,0//1,0//1,,Wilson descriptive simulation interval,0,0.0713475991334,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+100,factor,module_complementarity,weak,silent_generative_asset_frequency,frequency,20,230,250,20//1,2//25,,Wilson descriptive simulation interval,0.0523823283723,0.120329643204,,,,true
+100,factor,module_complementarity,weak,substitution_frequency,frequency,22,28,50,22//1,11//25,,Wilson descriptive simulation interval,0.311621992113,0.576939719783,,,,true
+100,factor,module_complementarity,weak,complementarity_frequency,frequency,0,50,50,0//1,0//1,,Wilson descriptive simulation interval,0,0.0713475991334,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+100,factor,module_complementarity,weak,frontier_only_mean_compression_ratio,mean,50,0,50,21//1,21//50,26//3675,,,,0.0118952342827,,,true
+100,factor,module_complementarity,weak,innovation_safe_mean_compression_ratio,mean,50,0,50,37//6,37//300,1681//88200,,,,0.0195238095238,,,true
+100,factor,module_complementarity,strong,frontier_positive_loss_frequency,frequency,25,25,50,25//1,1//2,,Wilson descriptive simulation interval,0.366445143168,0.633554856832,,,,true
+100,factor,module_complementarity,strong,mean_positive_frontier_loss,mean,25,25,25,947999//32768,947999//819200,13399495626007//11596411699200,,,,0.214987103532,sparse_mean_support,mean support is below the registered Monte Carlo precision threshold,true
+100,factor,module_complementarity,strong,innovation_safe_loss_frequency,frequency,0,50,50,0//1,0//1,,Wilson descriptive simulation interval,0,0.0713475991334,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+100,factor,module_complementarity,strong,silent_generative_asset_frequency,frequency,25,225,250,25//1,1//10,,Wilson descriptive simulation interval,0.0686549289883,0.143451710608,,,,true
+100,factor,module_complementarity,strong,substitution_frequency,frequency,25,25,50,25//1,1//2,,Wilson descriptive simulation interval,0.366445143168,0.633554856832,,,,true
+100,factor,module_complementarity,strong,complementarity_frequency,frequency,0,50,50,0//1,0//1,,Wilson descriptive simulation interval,0,0.0713475991334,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+100,factor,module_complementarity,strong,frontier_only_mean_compression_ratio,mean,50,0,50,62//3,31//75,26//3675,,,,0.0118952342827,,,true
+100,factor,module_complementarity,strong,innovation_safe_mean_compression_ratio,mean,50,0,50,35//6,7//60,65//3528,,,,0.0191958517817,,,true
+100,factor,project_cost,low,frontier_positive_loss_frequency,frequency,35,14,49,35//1,5//7,,Wilson descriptive simulation interval,0.575911164922,0.821504055412,,sparse_nonevents,event or nonevent support is below the registered sparse-count threshold,true
+100,factor,project_cost,low,mean_positive_frontier_loss,mean,35,14,35,2104505//49152,420901//344064,387152204681//287494373376,,,,0.196151742942,sparse_mean_support,mean support is below the registered Monte Carlo precision threshold,true
+100,factor,project_cost,low,innovation_safe_loss_frequency,frequency,0,49,49,0//1,0//1,,Wilson descriptive simulation interval,6.93889390391e-18,0.0726978192205,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+100,factor,project_cost,low,silent_generative_asset_frequency,frequency,35,210,245,35//1,1//7,,Wilson descriptive simulation interval,0.104544838895,0.192196142976,,,,true
+100,factor,project_cost,low,substitution_frequency,frequency,36,13,49,36//1,36//49,,Wilson descriptive simulation interval,0.597377110287,0.83788717865,,sparse_nonevents,event or nonevent support is below the registered sparse-count threshold,true
+100,factor,project_cost,low,complementarity_frequency,frequency,0,49,49,0//1,0//1,,Wilson descriptive simulation interval,6.93889390391e-18,0.0726978192205,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+100,factor,project_cost,low,frontier_only_mean_compression_ratio,mean,49,0,49,125//6,125//294,11//1568,,,,0.0119653463261,,,true
+100,factor,project_cost,low,innovation_safe_mean_compression_ratio,mean,49,0,49,19//3,19//147,47//2352,,,,0.0201944593317,,,true
+100,factor,project_cost,high,frontier_positive_loss_frequency,frequency,10,41,51,10//1,10//51,,Wilson descriptive simulation interval,0.110153425125,0.324580794814,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+100,factor,project_cost,high,mean_positive_frontier_loss,mean,10,41,10,662723//98304,662723//983040,4504135741//24159191040,,,,0.136541459633,sparse_mean_support,mean support is below the registered Monte Carlo precision threshold,true
+100,factor,project_cost,high,innovation_safe_loss_frequency,frequency,0,51,51,0//1,0//1,,Wilson descriptive simulation interval,0,0.0700466198985,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+100,factor,project_cost,high,silent_generative_asset_frequency,frequency,10,245,255,10//1,2//51,,Wilson descriptive simulation interval,0.0214383183279,0.0706700283385,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+100,factor,project_cost,high,substitution_frequency,frequency,11,40,51,11//1,11//51,,Wilson descriptive simulation interval,0.124939384082,0.34626359586,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+100,factor,project_cost,high,complementarity_frequency,frequency,0,51,51,0//1,0//1,,Wilson descriptive simulation interval,0,0.0700466198985,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+100,factor,project_cost,high,frontier_only_mean_compression_ratio,mean,51,0,51,125//6,125//306,161//22950,,,,0.0117283388529,,,true
+100,factor,project_cost,high,innovation_safe_mean_compression_ratio,mean,51,0,51,17//3,1//9,47//2700,,,,0.0184748941505,,,true
+100,factor,duration,short,frontier_positive_loss_frequency,frequency,36,14,50,36//1,18//25,,Wilson descriptive simulation interval,0.58334876304,0.825258293341,,sparse_nonevents,event or nonevent support is below the registered sparse-count threshold,true
+100,factor,duration,short,mean_positive_frontier_loss,mean,36,14,36,1587097//32768,1587097//1179648,215672520823//193273528320,,,,0.176059704803,sparse_mean_support,mean support is below the registered Monte Carlo precision threshold,true
+100,factor,duration,short,innovation_safe_loss_frequency,frequency,0,50,50,0//1,0//1,,Wilson descriptive simulation interval,0,0.0713475991334,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+100,factor,duration,short,silent_generative_asset_frequency,frequency,36,214,250,36//1,18//125,,Wilson descriptive simulation interval,0.105862568678,0.192912340563,,,,true
+100,factor,duration,short,substitution_frequency,frequency,37,13,50,37//1,37//50,,Wilson descriptive simulation interval,0.604468427352,0.841284725064,,sparse_nonevents,event or nonevent support is below the registered sparse-count threshold,true
+100,factor,duration,short,complementarity_frequency,frequency,0,50,50,0//1,0//1,,Wilson descriptive simulation interval,0,0.0713475991334,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+100,factor,duration,short,frontier_only_mean_compression_ratio,mean,50,0,50,125//6,5//12,25//3528,,,,0.0119047619048,,,true
+100,factor,duration,short,innovation_safe_mean_compression_ratio,mean,50,0,50,17//3,17//150,137//7350,,,,0.019307747555,,,true
+100,factor,duration,long,frontier_positive_loss_frequency,frequency,9,41,50,9//1,9//50,,Wilson descriptive simulation interval,0.0977019267023,0.307960536743,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+100,factor,duration,long,mean_positive_frontier_loss,mean,9,41,9,18407//16384,18407//147456,16127761//4831838208,,,,0.0192579295179,sparse_mean_support,mean support is below the registered Monte Carlo precision threshold,true
+100,factor,duration,long,innovation_safe_loss_frequency,frequency,0,50,50,0//1,0//1,,Wilson descriptive simulation interval,0,0.0713475991334,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+100,factor,duration,long,silent_generative_asset_frequency,frequency,9,241,250,9//1,9//250,,Wilson descriptive simulation interval,0.01905327953,0.0669904224018,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+100,factor,duration,long,substitution_frequency,frequency,10,40,50,10//1,1//5,,Wilson descriptive simulation interval,0.112437500158,0.330371059322,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+100,factor,duration,long,complementarity_frequency,frequency,0,50,50,0//1,0//1,,Wilson descriptive simulation interval,0,0.0713475991334,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+100,factor,duration,long,frontier_only_mean_compression_ratio,mean,50,0,50,125//6,5//12,25//3528,,,,0.0119047619048,,,true
+100,factor,duration,long,innovation_safe_mean_compression_ratio,mean,50,0,50,19//3,19//150,23//1225,,,,0.0193780856661,,,true
+100,factor,admission,low,frontier_positive_loss_frequency,frequency,13,40,53,13//1,13//53,,Wilson descriptive simulation interval,0.149329021081,0.375665576874,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+100,factor,admission,low,mean_positive_frontier_loss,mean,13,40,13,92117//12288,92117//159744,2340833147//31406948352,,,,0.0757182700456,sparse_mean_support,mean support is below the registered Monte Carlo precision threshold,true
+100,factor,admission,low,innovation_safe_loss_frequency,frequency,0,53,53,0//1,0//1,,Wilson descriptive simulation interval,0,0.0675819885765,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+100,factor,admission,low,silent_generative_asset_frequency,frequency,13,252,265,13//1,13//265,,Wilson descriptive simulation interval,0.0288899870748,0.0821102245428,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+100,factor,admission,low,substitution_frequency,frequency,13,40,53,13//1,13//53,,Wilson descriptive simulation interval,0.149329021081,0.375665576874,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+100,factor,admission,low,complementarity_frequency,frequency,0,53,53,0//1,0//1,,Wilson descriptive simulation interval,0,0.0675819885765,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+100,factor,admission,low,frontier_only_mean_compression_ratio,mean,53,0,53,67//3,67//159,175//24804,,,,0.0115377261903,,,true
+100,factor,admission,low,innovation_safe_mean_compression_ratio,mean,53,0,53,41//6,41//318,19//954,,,,0.0193849496949,,,true
+100,factor,admission,high,frontier_positive_loss_frequency,frequency,32,15,47,32//1,32//47,,Wilson descriptive simulation interval,0.538326568969,0.796046212504,,sparse_nonevents,event or nonevent support is below the registered sparse-count threshold,true
+100,factor,admission,high,mean_positive_frontier_loss,mean,32,15,32,4134797//98304,4134797//3145728,13570378484327//9586367004672,,,,0.21032648569,sparse_mean_support,mean support is below the registered Monte Carlo precision threshold,true
+100,factor,admission,high,innovation_safe_loss_frequency,frequency,0,47,47,0//1,0//1,,Wilson descriptive simulation interval,0,0.075557604164,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+100,factor,admission,high,silent_generative_asset_frequency,frequency,32,203,235,32//1,32//235,,Wilson descriptive simulation interval,0.0981341755267,0.185909721859,,,,true
+100,factor,admission,high,substitution_frequency,frequency,34,13,47,34//1,34//47,,Wilson descriptive simulation interval,0.582414363751,0.830634366303,,sparse_nonevents,event or nonevent support is below the registered sparse-count threshold,true
+100,factor,admission,high,complementarity_frequency,frequency,0,47,47,0//1,0//1,,Wilson descriptive simulation interval,0,0.075557604164,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+100,factor,admission,high,frontier_only_mean_compression_ratio,mean,47,0,47,58//3,58//141,275//38916,,,,0.012261774376,,,true
+100,factor,admission,high,innovation_safe_mean_compression_ratio,mean,47,0,47,31//6,31//282,671//38916,,,,0.0191535038693,,,true
+100,factor,persistence,low,frontier_positive_loss_frequency,frequency,24,28,52,24//1,6//13,,Wilson descriptive simulation interval,0.333404746818,0.59496388673,,,,true
+100,factor,persistence,low,mean_positive_frontier_loss,mean,24,28,24,1266403//49152,1266403//1179648,1622046207119//1333587345408,,,,0.225120610138,sparse_mean_support,mean support is below the registered Monte Carlo precision threshold,true
+100,factor,persistence,low,innovation_safe_loss_frequency,frequency,0,52,52,0//1,0//1,,Wilson descriptive simulation interval,6.93889390391e-18,0.0687922361239,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+100,factor,persistence,low,silent_generative_asset_frequency,frequency,24,236,260,24//1,6//65,,Wilson descriptive simulation interval,0.0628154822265,0.133671677344,,,,true
+100,factor,persistence,low,substitution_frequency,frequency,25,27,52,25//1,25//52,,Wilson descriptive simulation interval,0.351041144455,0.613143172319,,,,true
+100,factor,persistence,low,complementarity_frequency,frequency,0,52,52,0//1,0//1,,Wilson descriptive simulation interval,6.93889390391e-18,0.0687922361239,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+100,factor,persistence,low,frontier_only_mean_compression_ratio,mean,52,0,52,43//2,43//104,25//3536,,,,0.0116603665883,,,true
+100,factor,persistence,low,innovation_safe_mean_compression_ratio,mean,52,0,52,37//6,37//312,601//31824,,,,0.0190571600464,,,true
+100,factor,persistence,high,frontier_positive_loss_frequency,frequency,21,27,48,21//1,7//16,,Wilson descriptive simulation interval,0.307012690407,0.577249825802,,,,true
+100,factor,persistence,high,mean_positive_frontier_loss,mean,21,27,21,2338927//98304,2338927//2064384,1769195687471//1623497637888,,,,0.227799338248,sparse_mean_support,mean support is below the registered Monte Carlo precision threshold,true
+100,factor,persistence,high,innovation_safe_loss_frequency,frequency,0,48,48,0//1,0//1,,Wilson descriptive simulation interval,6.93889390391e-18,0.0741001296661,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+100,factor,persistence,high,silent_generative_asset_frequency,frequency,21,219,240,21//1,7//80,,Wilson descriptive simulation interval,0.0579418359566,0.130055147995,,,,true
+100,factor,persistence,high,substitution_frequency,frequency,22,26,48,22//1,11//24,,Wilson descriptive simulation interval,0.325752422929,0.597089254544,,,,true
+100,factor,persistence,high,complementarity_frequency,frequency,0,48,48,0//1,0//1,,Wilson descriptive simulation interval,6.93889390391e-18,0.0741001296661,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+100,factor,persistence,high,frontier_only_mean_compression_ratio,mean,48,0,48,121//6,121//288,575//81216,,,,0.0121448597981,,,true
+100,factor,persistence,high,innovation_safe_mean_compression_ratio,mean,48,0,48,35//6,35//288,1511//81216,,,,0.019687511075,,,true
+200,factor,frontier_density,sparse,frontier_positive_loss_frequency,frequency,50,50,100,50//1,1//2,,Wilson descriptive simulation interval,0.403831530366,0.596168469634,,,,true
+200,factor,frontier_density,sparse,mean_positive_frontier_loss,mean,50,50,50,4764657//65536,4764657//3276800,69744384230803//31568009625600,,,,0.210206441267,,,true
+200,factor,frontier_density,sparse,innovation_safe_loss_frequency,frequency,0,100,100,0//1,0//1,,Wilson descriptive simulation interval,3.46944695195e-18,0.036993498207,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+200,factor,frontier_density,sparse,silent_generative_asset_frequency,frequency,50,450,500,50//1,1//10,,Wilson descriptive simulation interval,0.0766775627373,0.129421909632,,,,true
+200,factor,frontier_density,sparse,substitution_frequency,frequency,32,68,100,32//1,8//25,,Wilson descriptive simulation interval,0.23669147325,0.416626186105,,,,true
+200,factor,frontier_density,sparse,complementarity_frequency,frequency,18,82,100,18//1,9//50,,Wilson descriptive simulation interval,0.117002254989,0.266673583863,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+200,factor,frontier_density,sparse,frontier_only_mean_compression_ratio,mean,100,0,100,50//1,1//2,0//1,,,,0,,,true
+200,factor,frontier_density,sparse,innovation_safe_mean_compression_ratio,mean,100,0,100,17//1,17//100,833//29700,,,,0.0167472797932,,,true
+200,factor,frontier_density,dense,frontier_positive_loss_frequency,frequency,51,49,100,51//1,51//100,,Wilson descriptive simulation interval,0.41348011934,0.605780010696,,,,true
+200,factor,frontier_density,dense,mean_positive_frontier_loss,mean,51,49,51,6484077//65536,2161359//1114112,1326828374523//365072220160,,,,0.266951824664,,,true
+200,factor,frontier_density,dense,innovation_safe_loss_frequency,frequency,0,100,100,0//1,0//1,,Wilson descriptive simulation interval,3.46944695195e-18,0.036993498207,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+200,factor,frontier_density,dense,silent_generative_asset_frequency,frequency,51,449,500,51//1,51//500,,Wilson descriptive simulation interval,0.0784343521032,0.131634622904,,,,true
+200,factor,frontier_density,dense,substitution_frequency,frequency,32,68,100,32//1,8//25,,Wilson descriptive simulation interval,0.23669147325,0.416626186105,,,,true
+200,factor,frontier_density,dense,complementarity_frequency,frequency,21,79,100,21//1,21//100,,Wilson descriptive simulation interval,0.141656540619,0.299799688341,,,,true
+200,factor,frontier_density,dense,frontier_only_mean_compression_ratio,mean,100,0,100,100//3,1//3,0//1,,,,0,,,true
+200,factor,frontier_density,dense,innovation_safe_mean_compression_ratio,mean,100,0,100,17//2,17//200,833//118800,,,,0.00837363989659,,,true
+200,factor,module_overlap,low,frontier_positive_loss_frequency,frequency,51,47,98,51//1,51//98,,Wilson descriptive simulation interval,0.422608063008,0.616668672089,,,,true
+200,factor,module_overlap,low,mean_positive_frontier_loss,mean,51,47,51,16771355//196608,16771355//10027008,163631729265121//49284749721600,,,,0.25514813267,,,true
+200,factor,module_overlap,low,innovation_safe_loss_frequency,frequency,0,98,98,0//1,0//1,,Wilson descriptive simulation interval,0,0.0377199901217,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+200,factor,module_overlap,low,silent_generative_asset_frequency,frequency,51,439,490,51//1,51//490,,Wilson descriptive simulation interval,0.0800534280811,0.134269320506,,,,true
+200,factor,module_overlap,low,substitution_frequency,frequency,32,66,98,32//1,16//49,,Wilson descriptive simulation interval,0.24176256274,0.424385188935,,,,true
+200,factor,module_overlap,low,complementarity_frequency,frequency,21,77,98,21//1,3//14,,Wilson descriptive simulation interval,0.144645434499,0.305480274142,,,,true
+200,factor,module_overlap,low,frontier_only_mean_compression_ratio,mean,98,0,98,245//6,5//12,49//6984,,,,0.00846121804278,,,true
+200,factor,module_overlap,low,innovation_safe_mean_compression_ratio,mean,98,0,98,0//1,0//1,0//1,,,,0,,,true
+200,factor,module_overlap,high,frontier_positive_loss_frequency,frequency,50,52,102,50//1,25//51,,Wilson descriptive simulation interval,0.395314027264,0.58578978572,,,,true
+200,factor,module_overlap,high,mean_positive_frontier_loss,mean,50,52,50,16974847//196608,16974847//9830400,250984882823041//94704028876800,,,,0.230226097713,,,true
+200,factor,module_overlap,high,innovation_safe_loss_frequency,frequency,0,102,102,0//1,0//1,,Wilson descriptive simulation interval,0,0.0362944621465,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+200,factor,module_overlap,high,silent_generative_asset_frequency,frequency,50,460,510,50//1,5//51,,Wilson descriptive simulation interval,0.0751577556007,0.126930762245,,,,true
+200,factor,module_overlap,high,substitution_frequency,frequency,32,70,102,32//1,16//51,,Wilson descriptive simulation interval,0.231829747002,0.40914269968,,,,true
+200,factor,module_overlap,high,complementarity_frequency,frequency,18,84,102,18//1,3//17,,Wilson descriptive simulation interval,0.114643151845,0.261782676602,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+200,factor,module_overlap,high,frontier_only_mean_compression_ratio,mean,102,0,102,85//2,5//12,17//2424,,,,0.00829197658508,,,true
+200,factor,module_overlap,high,innovation_safe_mean_compression_ratio,mean,102,0,102,51//2,1//4,17//2424,,,,0.00829197658508,,,true
+200,factor,module_complementarity,weak,frontier_positive_loss_frequency,frequency,49,48,97,49//1,49//97,,Wilson descriptive simulation interval,0.407374790702,0.60254176556,,,,true
+200,factor,module_complementarity,weak,mean_positive_frontier_loss,mean,49,48,49,1374745//16384,1374745//802816,8848212644809//2841120866304,,,,0.25210698623,,,true
+200,factor,module_complementarity,weak,innovation_safe_loss_frequency,frequency,0,97,97,0//1,0//1,,Wilson descriptive simulation interval,0,0.0380940425259,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+200,factor,module_complementarity,weak,silent_generative_asset_frequency,frequency,49,436,485,49//1,49//485,,Wilson descriptive simulation interval,0.0772672854396,0.131065000996,,,,true
+200,factor,module_complementarity,weak,substitution_frequency,frequency,32,65,97,32//1,32//97,,Wilson descriptive simulation interval,0.244380917226,0.428372726107,,,,true
+200,factor,module_complementarity,weak,complementarity_frequency,frequency,19,78,97,19//1,19//97,,Wilson descriptive simulation interval,0.129139403568,0.285783776937,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+200,factor,module_complementarity,weak,frontier_only_mean_compression_ratio,mean,97,0,97,40//1,40//97,391//55872,,,,0.00849386595072,,,true
+200,factor,module_complementarity,weak,innovation_safe_mean_compression_ratio,mean,97,0,97,71//6,71//582,1019//55872,,,,0.0137121045528,,,true
+200,factor,module_complementarity,strong,frontier_positive_loss_frequency,frequency,52,51,103,52//1,52//103,,Wilson descriptive simulation interval,0.409875439229,0.599484223312,,,,true
+200,factor,module_complementarity,strong,mean_positive_frontier_loss,mean,52,51,52,2874877//32768,2874877//1703936,73585798157881//25628069855232,,,,0.234983506973,,,true
+200,factor,module_complementarity,strong,innovation_safe_loss_frequency,frequency,0,103,103,0//1,0//1,,Wilson descriptive simulation interval,0,0.0359547582286,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+200,factor,module_complementarity,strong,silent_generative_asset_frequency,frequency,52,463,515,52//1,52//515,,Wilson descriptive simulation interval,0.0778326387994,0.13001786541,,,,true
+200,factor,module_complementarity,strong,substitution_frequency,frequency,32,71,103,32//1,32//103,,Wilson descriptive simulation interval,0.229473363216,0.405499797666,,,,true
+200,factor,module_complementarity,strong,complementarity_frequency,frequency,20,83,103,20//1,20//103,,Wilson descriptive simulation interval,0.129363088452,0.280978171435,,,,true
+200,factor,module_complementarity,strong,frontier_only_mean_compression_ratio,mean,103,0,103,130//3,130//309,49//7004,,,,0.00824150182162,,,true
+200,factor,module_complementarity,strong,innovation_safe_mean_compression_ratio,mean,103,0,103,41//3,41//309,962//47277,,,,0.0140554245615,,,true
+200,factor,project_cost,low,frontier_positive_loss_frequency,frequency,76,29,105,76//1,76//105,,Wilson descriptive simulation interval,0.631542069445,0.800278677073,,,,true
+200,factor,project_cost,low,mean_positive_frontier_loss,mean,76,29,76,409961//3072,409961//233472,87143330081//26895974400,,,,0.206474602401,,,true
+200,factor,project_cost,low,innovation_safe_loss_frequency,frequency,0,105,105,0//1,0//1,,Wilson descriptive simulation interval,0,0.0352940769291,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+200,factor,project_cost,low,silent_generative_asset_frequency,frequency,76,449,525,76//1,76//525,,Wilson descriptive simulation interval,0.117242922909,0.177441724486,,,,true
+200,factor,project_cost,low,substitution_frequency,frequency,48,57,105,48//1,16//35,,Wilson descriptive simulation interval,0.365055346415,0.552255574464,,,,true
+200,factor,project_cost,low,complementarity_frequency,frequency,29,76,105,29//1,29//105,,Wilson descriptive simulation interval,0.199721322927,0.368457930555,,,,true
+200,factor,project_cost,low,frontier_only_mean_compression_ratio,mean,105,0,105,131//3,131//315,53//7560,,,,0.00817113503253,,,true
+200,factor,project_cost,low,innovation_safe_mean_compression_ratio,mean,105,0,105,77//6,11//90,529//28080,,,,0.0133947506914,,,true
+200,factor,project_cost,high,frontier_positive_loss_frequency,frequency,25,70,95,25//1,5//19,,Wilson descriptive simulation interval,0.185065247699,0.359660209241,,,,true
+200,factor,project_cost,high,mean_positive_frontier_loss,mean,25,70,25,3754349//98304,3754349//2457600,8368588596541//3865470566400,,,,0.294276051006,sparse_mean_support,mean support is below the registered Monte Carlo precision threshold,true
+200,factor,project_cost,high,innovation_safe_loss_frequency,frequency,0,95,95,0//1,0//1,,Wilson descriptive simulation interval,0,0.0388648535395,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+200,factor,project_cost,high,silent_generative_asset_frequency,frequency,25,450,475,25//1,1//19,,Wilson descriptive simulation interval,0.0359008613754,0.0765402354195,,,,true
+200,factor,project_cost,high,substitution_frequency,frequency,16,79,95,16//1,16//95,,Wilson descriptive simulation interval,0.10641255003,0.256203089685,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+200,factor,project_cost,high,complementarity_frequency,frequency,10,85,95,10//1,2//19,,Wilson descriptive simulation interval,0.0581885242516,0.183020570648,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+200,factor,project_cost,high,frontier_only_mean_compression_ratio,mean,95,0,95,119//3,119//285,2//285,,,,0.00859470085187,,,true
+200,factor,project_cost,high,innovation_safe_mean_compression_ratio,mean,95,0,95,38//3,2//15,14//705,,,,0.0144579812336,,,true
+200,factor,duration,short,frontier_positive_loss_frequency,frequency,76,22,98,76//1,38//49,,Wilson descriptive simulation interval,0.683418344617,0.846817579193,,,,true
+200,factor,duration,short,mean_positive_frontier_loss,mean,76,22,76,15858901//98304,834679//393216,9211061787263//2899102924800,,,,0.204463708951,,,true
+200,factor,duration,short,innovation_safe_loss_frequency,frequency,0,98,98,0//1,0//1,,Wilson descriptive simulation interval,0,0.0377199901217,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+200,factor,duration,short,silent_generative_asset_frequency,frequency,76,414,490,76//1,38//245,,Wilson descriptive simulation interval,0.125744864838,0.18982495223,,,,true
+200,factor,duration,short,substitution_frequency,frequency,48,50,98,48//1,24//49,,Wilson descriptive simulation interval,0.393092103454,0.587269528997,,,,true
+200,factor,duration,short,complementarity_frequency,frequency,29,69,98,29//1,29//98,,Wilson descriptive simulation interval,0.214631806715,0.392600842315,,,,true
+200,factor,duration,short,frontier_only_mean_compression_ratio,mean,98,0,98,81//2,81//196,799//114072,,,,0.00845416702652,,,true
+200,factor,duration,short,innovation_safe_mean_compression_ratio,mean,98,0,98,37//3,37//294,90//4753,,,,0.0139003043629,,,true
+200,factor,duration,long,frontier_positive_loss_frequency,frequency,25,77,102,25//1,25//102,,Wilson descriptive simulation interval,0.171881554928,0.336817582637,,,,true
+200,factor,duration,long,mean_positive_frontier_loss,mean,25,77,25,126775//12288,5071//12288,3189652747//28991029248,,,,0.0663391466851,sparse_mean_support,mean support is below the registered Monte Carlo precision threshold,true
+200,factor,duration,long,innovation_safe_loss_frequency,frequency,0,102,102,0//1,0//1,,Wilson descriptive simulation interval,0,0.0362944621465,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+200,factor,duration,long,silent_generative_asset_frequency,frequency,25,485,510,25//1,5//102,,Wilson descriptive simulation interval,0.0334208369887,0.0713614025454,,,,true
+200,factor,duration,long,substitution_frequency,frequency,16,86,102,16//1,8//51,,Wilson descriptive simulation interval,0.0989228924381,0.239710561976,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+200,factor,duration,long,complementarity_frequency,frequency,10,92,102,10//1,5//51,,Wilson descriptive simulation interval,0.054128020525,0.171128311789,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+200,factor,duration,long,frontier_only_mean_compression_ratio,mean,102,0,102,257//6,257//612,2597//370872,,,,0.00828559814061,,,true
+200,factor,duration,long,innovation_safe_mean_compression_ratio,mean,102,0,102,79//6,79//612,7325//370872,,,,0.0139152721803,,,true
+200,factor,admission,low,frontier_positive_loss_frequency,frequency,27,71,98,27//1,27//98,,Wilson descriptive simulation interval,0.196795526096,0.371160387836,,,,true
+200,factor,admission,low,mean_positive_frontier_loss,mean,27,71,27,405941//16384,405941//442368,1673659451//3623878656,,,,0.130787079352,sparse_mean_support,mean support is below the registered Monte Carlo precision threshold,true
+200,factor,admission,low,innovation_safe_loss_frequency,frequency,0,98,98,0//1,0//1,,Wilson descriptive simulation interval,0,0.0377199901217,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+200,factor,admission,low,silent_generative_asset_frequency,frequency,27,463,490,27//1,27//490,,Wilson descriptive simulation interval,0.0381426317178,0.0789829311274,,,,true
+200,factor,admission,low,substitution_frequency,frequency,16,82,98,16//1,8//49,,Wilson descriptive simulation interval,0.103068035218,0.24886583568,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+200,factor,admission,low,complementarity_frequency,frequency,11,87,98,11//1,11//98,,Wilson descriptive simulation interval,0.0638426994589,0.189899333697,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+200,factor,admission,low,frontier_only_mean_compression_ratio,mean,98,0,98,247//6,247//588,799//114072,,,,0.00845416702652,,,true
+200,factor,admission,low,innovation_safe_mean_compression_ratio,mean,98,0,98,79//6,79//588,6793//342216,,,,0.0142320550219,,,true
+200,factor,admission,high,frontier_positive_loss_frequency,frequency,74,28,102,74//1,37//51,,Wilson descriptive simulation interval,0.631894370845,0.80271793054,,,,true
+200,factor,admission,high,mean_positive_frontier_loss,mean,74,28,74,4812485//32768,4812485//2424832,46734396434455//13050794999808,,,,0.219980393872,,,true
+200,factor,admission,high,innovation_safe_loss_frequency,frequency,0,102,102,0//1,0//1,,Wilson descriptive simulation interval,0,0.0362944621465,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+200,factor,admission,high,silent_generative_asset_frequency,frequency,74,436,510,74//1,37//255,,Wilson descriptive simulation interval,0.117183442148,0.178319102877,,,,true
+200,factor,admission,high,substitution_frequency,frequency,48,54,102,48//1,8//17,,Wilson descriptive simulation interval,0.37655914506,0.56675229389,,,,true
+200,factor,admission,high,complementarity_frequency,frequency,28,74,102,28//1,14//51,,Wilson descriptive simulation interval,0.19728206946,0.368105629155,,,,true
+200,factor,admission,high,frontier_only_mean_compression_ratio,mean,102,0,102,253//6,253//612,2597//370872,,,,0.00828559814061,,,true
+200,factor,admission,high,innovation_safe_mean_compression_ratio,mean,102,0,102,37//3,37//306,871//46359,,,,0.0135719409673,,,true
+200,factor,persistence,low,frontier_positive_loss_frequency,frequency,52,47,99,52//1,52//99,,Wilson descriptive simulation interval,0.427793082378,0.620825442265,,,,true
+200,factor,persistence,low,mean_positive_frontier_loss,mean,52,47,52,4128631//49152,317587//196608,1307131689175//492847497216,,,,0.225840445691,,,true
+200,factor,persistence,low,innovation_safe_loss_frequency,frequency,0,99,99,0//1,0//1,,Wilson descriptive simulation interval,0,0.0373532120678,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+200,factor,persistence,low,silent_generative_asset_frequency,frequency,52,443,495,52//1,52//495,,Wilson descriptive simulation interval,0.0810135779905,0.135170255397,,,,true
+200,factor,persistence,low,substitution_frequency,frequency,32,67,99,32//1,32//99,,Wilson descriptive simulation interval,0.239200006434,0.420470321065,,,,true
+200,factor,persistence,low,complementarity_frequency,frequency,21,78,99,21//1,7//33,,Wilson descriptive simulation interval,0.143135354898,0.302613464171,,,,true
+200,factor,persistence,low,frontier_only_mean_compression_ratio,mean,99,0,99,41//1,41//99,34//4851,,,,0.00841407199833,,,true
+200,factor,persistence,low,innovation_safe_mean_compression_ratio,mean,99,0,99,25//2,25//198,125//6468,,,,0.0139718013932,,,true
+200,factor,persistence,high,frontier_positive_loss_frequency,frequency,49,52,101,49//1,49//101,,Wilson descriptive simulation interval,0.390024631693,0.581360734042,,,,true
+200,factor,persistence,high,mean_positive_frontier_loss,mean,49,52,49,8615839//98304,8615839//4816896,50483580563693//15152644620288,,,,0.260755102802,,,true
+200,factor,persistence,high,innovation_safe_loss_frequency,frequency,0,101,101,0//1,0//1,,Wilson descriptive simulation interval,0,0.0366406463999,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+200,factor,persistence,high,silent_generative_asset_frequency,frequency,49,456,505,49//1,49//505,,Wilson descriptive simulation interval,0.0741740758244,0.125969715636,,,,true
+200,factor,persistence,high,substitution_frequency,frequency,32,69,101,32//1,32//101,,Wilson descriptive simulation interval,0.234235263117,0.412850914277,,,,true
+200,factor,persistence,high,complementarity_frequency,frequency,18,83,101,18//1,18//101,,Wilson descriptive simulation interval,0.1158106742,0.264205583384,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+200,factor,persistence,high,frontier_only_mean_compression_ratio,mean,101,0,101,127//3,127//303,637//90900,,,,0.00832965641196,,,true
+200,factor,persistence,high,innovation_safe_mean_compression_ratio,mean,101,0,101,13//1,13//101,3523//181800,,,,0.0138515602452,,,true
+300,factor,frontier_density,sparse,frontier_positive_loss_frequency,frequency,77,71,148,77//1,77//148,,Wilson descriptive simulation interval,0.440292653868,0.599222245729,,,,true
+300,factor,frontier_density,sparse,mean_positive_frontier_loss,mean,77,71,77,29452247//196608,2677477//1376256,18726498086803//5141075853312,,,,0.217498325076,,,true
+300,factor,frontier_density,sparse,innovation_safe_loss_frequency,frequency,0,148,148,0//1,0//1,,Wilson descriptive simulation interval,0,0.0252991432678,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+300,factor,frontier_density,sparse,silent_generative_asset_frequency,frequency,77,663,740,77//1,77//740,,Wilson descriptive simulation interval,0.0840616796062,0.128136036653,,,,true
+300,factor,frontier_density,sparse,substitution_frequency,frequency,43,105,148,43//1,43//148,,Wilson descriptive simulation interval,0.223431738803,0.368247632026,,,,true
+300,factor,frontier_density,sparse,complementarity_frequency,frequency,34,114,148,34//1,17//74,,Wilson descriptive simulation interval,0.169310091226,0.303824580811,,,,true
+300,factor,frontier_density,sparse,frontier_only_mean_compression_ratio,mean,148,0,148,74//1,1//2,0//1,,,,0,,,true
+300,factor,frontier_density,sparse,innovation_safe_mean_compression_ratio,mean,148,0,148,76//3,19//111,152//5439,,,,0.0137414134518,,,true
+300,factor,frontier_density,dense,frontier_positive_loss_frequency,frequency,76,76,152,76//1,1//2,,Wilson descriptive simulation interval,0.421498746263,0.578501253737,,,,true
+300,factor,frontier_density,dense,mean_positive_frontier_loss,mean,76,76,76,4301183//32768,4301183//2490368,170219929524221//55082955571200,,,,0.201646082688,,,true
+300,factor,frontier_density,dense,innovation_safe_loss_frequency,frequency,0,152,152,0//1,0//1,,Wilson descriptive simulation interval,0,0.0246497873529,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+300,factor,frontier_density,dense,silent_generative_asset_frequency,frequency,76,684,760,76//1,1//10,,Wilson descriptive simulation interval,0.080641847971,0.123381456893,,,,true
+300,factor,frontier_density,dense,substitution_frequency,frequency,44,108,152,44//1,11//38,,Wilson descriptive simulation interval,0.223270776984,0.366055449269,,,,true
+300,factor,frontier_density,dense,complementarity_frequency,frequency,35,117,152,35//1,35//152,,Wilson descriptive simulation interval,0.170480290665,0.303343936722,,,,true
+300,factor,frontier_density,dense,frontier_only_mean_compression_ratio,mean,152,0,152,152//3,1//3,0//1,,,,0,,,true
+300,factor,frontier_density,dense,innovation_safe_mean_compression_ratio,mean,152,0,152,25//2,25//304,1925//275424,,,,0.00678098341704,,,true
+300,factor,module_overlap,low,frontier_positive_loss_frequency,frequency,74,75,149,74//1,74//149,,Wilson descriptive simulation interval,0.417462448318,0.575994824285,,,,true
+300,factor,module_overlap,low,mean_positive_frontier_loss,mean,74,75,74,26900899//196608,26900899//14548992,245976358032635//69604239998976,,,,0.218530961069,,,true
+300,factor,module_overlap,low,innovation_safe_loss_frequency,frequency,0,149,149,0//1,0//1,,Wilson descriptive simulation interval,0,0.02513361787,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+300,factor,module_overlap,low,silent_generative_asset_frequency,frequency,74,671,745,74//1,74//745,,Wilson descriptive simulation interval,0.0798631840214,0.122905315281,,,,true
+300,factor,module_overlap,low,substitution_frequency,frequency,40,109,149,40//1,40//149,,Wilson descriptive simulation interval,0.203779120795,0.344772688823,,,,true
+300,factor,module_overlap,low,complementarity_frequency,frequency,36,113,149,36//1,36//149,,Wilson descriptive simulation interval,0.179932173819,0.316277816623,,,,true
+300,factor,module_overlap,low,frontier_only_mean_compression_ratio,mean,149,0,149,185//3,185//447,77//11026,,,,0.00684609993353,,,true
+300,factor,module_overlap,low,innovation_safe_mean_compression_ratio,mean,149,0,149,0//1,0//1,0//1,,,,0,,,true
+300,factor,module_overlap,high,frontier_positive_loss_frequency,frequency,79,72,151,79//1,79//151,,Wilson descriptive simulation interval,0.443931996964,0.601275533715,,,,true
+300,factor,module_overlap,high,mean_positive_frontier_loss,mean,79,72,79,14179223//98304,14179223//7766016,385420513381621//119095148150784,,,,0.202398287048,,,true
+300,factor,module_overlap,high,innovation_safe_loss_frequency,frequency,0,151,151,0//1,0//1,,Wilson descriptive simulation interval,0,0.0248089810697,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+300,factor,module_overlap,high,silent_generative_asset_frequency,frequency,79,676,755,79//1,79//755,,Wilson descriptive simulation interval,0.0847677005483,0.128506702081,,,,true
+300,factor,module_overlap,high,substitution_frequency,frequency,47,104,151,47//1,47//151,,Wilson descriptive simulation interval,0.24286279733,0.38901873857,,,,true
+300,factor,module_overlap,high,complementarity_frequency,frequency,33,118,151,33//1,33//151,,Wilson descriptive simulation interval,0.160060566759,0.290990846426,,,,true
+300,factor,module_overlap,high,frontier_only_mean_compression_ratio,mean,151,0,151,63//1,63//151,19//2718,,,,0.00680398896575,,,true
+300,factor,module_overlap,high,innovation_safe_mean_compression_ratio,mean,151,0,151,227//6,227//906,19//2718,,,,0.00680398896575,,,true
+300,factor,module_complementarity,weak,frontier_positive_loss_frequency,frequency,74,75,149,74//1,74//149,,Wilson descriptive simulation interval,0.417462448318,0.575994824285,,,,true
+300,factor,module_complementarity,weak,mean_positive_frontier_loss,mean,74,75,74,8859089//65536,8859089//4849664,703297853785553//208812719996928,,,,0.21334148361,,,true
+300,factor,module_complementarity,weak,innovation_safe_loss_frequency,frequency,0,149,149,0//1,0//1,,Wilson descriptive simulation interval,0,0.02513361787,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+300,factor,module_complementarity,weak,silent_generative_asset_frequency,frequency,74,671,745,74//1,74//745,,Wilson descriptive simulation interval,0.0798631840214,0.122905315281,,,,true
+300,factor,module_complementarity,weak,substitution_frequency,frequency,42,107,149,42//1,42//149,,Wilson descriptive simulation interval,0.215823367168,0.358899352037,,,,true
+300,factor,module_complementarity,weak,complementarity_frequency,frequency,34,115,149,34//1,34//149,,Wilson descriptive simulation interval,0.168137865773,0.301901215083,,,,true
+300,factor,module_complementarity,weak,frontier_only_mean_compression_ratio,mean,149,0,149,62//1,62//149,25//3576,,,,0.00684980353127,,,true
+300,factor,module_complementarity,weak,innovation_safe_mean_compression_ratio,mean,149,0,149,58//3,58//447,2575//132312,,,,0.011428674543,,,true
+300,factor,module_complementarity,strong,frontier_positive_loss_frequency,frequency,79,72,151,79//1,79//151,,Wilson descriptive simulation interval,0.443931996964,0.601275533715,,,,true
+300,factor,module_complementarity,strong,mean_positive_frontier_loss,mean,79,72,79,14341039//98304,14341039//7766016,14959790923167//4410931412992,,,,0.207197286685,,,true
+300,factor,module_complementarity,strong,innovation_safe_loss_frequency,frequency,0,151,151,0//1,0//1,,Wilson descriptive simulation interval,0,0.0248089810697,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+300,factor,module_complementarity,strong,silent_generative_asset_frequency,frequency,79,676,755,79//1,79//755,,Wilson descriptive simulation interval,0.0847677005483,0.128506702081,,,,true
+300,factor,module_complementarity,strong,substitution_frequency,frequency,45,106,151,45//1,45//151,,Wilson descriptive simulation interval,0.230808104383,0.375240556843,,,,true
+300,factor,module_complementarity,strong,complementarity_frequency,frequency,35,116,151,35//1,35//151,,Wilson descriptive simulation interval,0.171645269501,0.305239018357,,,,true
+300,factor,module_complementarity,strong,frontier_only_mean_compression_ratio,mean,151,0,151,188//3,188//453,2849//407700,,,,0.00680279517875,,,true
+300,factor,module_complementarity,strong,innovation_safe_mean_compression_ratio,mean,151,0,151,37//2,37//302,7807//407700,,,,0.0112611634041,,,true
+300,factor,project_cost,low,frontier_positive_loss_frequency,frequency,113,39,152,113//1,113//152,,Wilson descriptive simulation interval,0.668588687173,0.806252863721,,,,true
+300,factor,project_cost,low,mean_positive_frontier_loss,mean,113,39,113,1273087//6144,1273087//694272,7764275983943//2183990870016,,,,0.177372321845,,,true
+300,factor,project_cost,low,innovation_safe_loss_frequency,frequency,0,152,152,0//1,0//1,,Wilson descriptive simulation interval,0,0.0246497873529,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+300,factor,project_cost,low,silent_generative_asset_frequency,frequency,113,647,760,113//1,113//760,,Wilson descriptive simulation interval,0.125158830419,0.175743216945,,,,true
+300,factor,project_cost,low,substitution_frequency,frequency,67,85,152,67//1,67//152,,Wilson descriptive simulation interval,0.36428646019,0.520211540944,,,,true
+300,factor,project_cost,low,complementarity_frequency,frequency,48,104,152,48//1,6//19,,Wilson descriptive simulation interval,0.247209698492,0.39345074948,,,,true
+300,factor,project_cost,low,frontier_only_mean_compression_ratio,mean,152,0,152,127//2,127//304,1925//275424,,,,0.00678098341704,,,true
+300,factor,project_cost,low,innovation_safe_mean_compression_ratio,mean,152,0,152,39//2,39//304,16255//826272,,,,0.0113765393923,,,true
+300,factor,project_cost,high,frontier_positive_loss_frequency,frequency,40,108,148,40//1,10//37,,Wilson descriptive simulation interval,0.205206403838,0.346958067393,,,,true
+300,factor,project_cost,high,mean_positive_frontier_loss,mean,40,108,40,4840187//65536,4840187//2621440,173558991621079//60301340835840,,,,0.268244038505,,,true
+300,factor,project_cost,high,innovation_safe_loss_frequency,frequency,0,148,148,0//1,0//1,,Wilson descriptive simulation interval,0,0.0252991432678,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+300,factor,project_cost,high,silent_generative_asset_frequency,frequency,40,700,740,40//1,2//37,,Wilson descriptive simulation interval,0.0399446220297,0.0727695293886,,,,true
+300,factor,project_cost,high,substitution_frequency,frequency,20,128,148,20//1,5//37,,Wilson descriptive simulation interval,0.0892114857935,0.199520321456,,,,true
+300,factor,project_cost,high,complementarity_frequency,frequency,21,127,148,21//1,21//148,,Wilson descriptive simulation interval,0.0947158924766,0.207187547972,,,,true
+300,factor,project_cost,high,frontier_only_mean_compression_ratio,mean,148,0,148,367//6,367//888,781//111888,,,,0.00686756697947,,,true
+300,factor,project_cost,high,innovation_safe_mean_compression_ratio,mean,148,0,148,55//3,55//444,3709//195804,,,,0.0113132342376,,,true
+300,factor,duration,short,frontier_positive_loss_frequency,frequency,114,34,148,114//1,57//74,,Wilson descriptive simulation interval,0.696175419189,0.830689908774,,,,true
+300,factor,duration,short,mean_positive_frontier_loss,mean,114,34,114,52064597//196608,52064597//22413312,1764812465983565//497949918363648,,,,0.176320992981,,,true
+300,factor,duration,short,innovation_safe_loss_frequency,frequency,0,148,148,0//1,0//1,,Wilson descriptive simulation interval,0,0.0252991432678,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+300,factor,duration,short,silent_generative_asset_frequency,frequency,114,626,740,114//1,57//370,,Wilson descriptive simulation interval,0.129836459474,0.181844821627,,,,true
+300,factor,duration,short,substitution_frequency,frequency,63,85,148,63//1,63//148,,Wilson descriptive simulation interval,0.34888857577,0.50622345904,,,,true
+300,factor,duration,short,complementarity_frequency,frequency,53,95,148,53//1,53//148,,Wilson descriptive simulation interval,0.285354439084,0.438041263735,,,,true
+300,factor,duration,short,frontier_only_mean_compression_ratio,mean,148,0,148,371//6,371//888,1825//261072,,,,0.00687258988523,,,true
+300,factor,duration,short,innovation_safe_mean_compression_ratio,mean,148,0,148,115//6,115//888,5113//261072,,,,0.0115034177225,,,true
+300,factor,duration,long,frontier_positive_loss_frequency,frequency,39,113,152,39//1,39//152,,Wilson descriptive simulation interval,0.193747136279,0.331411312827,,,,true
+300,factor,duration,long,mean_positive_frontier_loss,mean,39,113,39,266229//16384,88743//212992,5675610583//49727668224,,,,0.0540972195078,sparse_mean_support,mean support is below the registered Monte Carlo precision threshold,true
+300,factor,duration,long,innovation_safe_loss_frequency,frequency,0,152,152,0//1,0//1,,Wilson descriptive simulation interval,0,0.0246497873529,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+300,factor,duration,long,silent_generative_asset_frequency,frequency,39,721,760,39//1,39//760,,Wilson descriptive simulation interval,0.0377633493981,0.0693812129657,,,,true
+300,factor,duration,long,substitution_frequency,frequency,24,128,152,24//1,3//19,,Wilson descriptive simulation interval,0.108460067619,0.224195050043,,,,true
+300,factor,duration,long,complementarity_frequency,frequency,16,136,152,16//1,2//19,,Wilson descriptive simulation interval,0.0658378388639,0.164148835362,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+300,factor,duration,long,frontier_only_mean_compression_ratio,mean,152,0,152,377//6,377//912,5767//826272,,,,0.00677628500427,,,true
+300,factor,duration,long,innovation_safe_mean_compression_ratio,mean,152,0,152,56//3,7//57,983//51642,,,,0.0111906016954,,,true
+300,factor,admission,low,frontier_positive_loss_frequency,frequency,41,106,147,41//1,41//147,,Wilson descriptive simulation interval,0.212753451075,0.356330536125,,,,true
+300,factor,admission,low,mean_positive_frontier_loss,mean,41,106,41,1011175//24576,1011175//1007616,153126064813//247631708160,,,,0.122808805097,,,true
+300,factor,admission,low,innovation_safe_loss_frequency,frequency,0,147,147,0//1,0//1,,Wilson descriptive simulation interval,1.73472347598e-18,0.0254668633592,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+300,factor,admission,low,silent_generative_asset_frequency,frequency,41,694,735,41//1,41//735,,Wilson descriptive simulation interval,0.0413831080015,0.0748007603993,,,,true
+300,factor,admission,low,substitution_frequency,frequency,21,126,147,21//1,1//7,,Wilson descriptive simulation interval,0.0953740448455,0.208530857554,,,,true
+300,factor,admission,low,complementarity_frequency,frequency,21,126,147,21//1,1//7,,Wilson descriptive simulation interval,0.0953740448455,0.208530857554,,,,true
+300,factor,admission,low,frontier_only_mean_compression_ratio,mean,147,0,147,184//3,184//441,37//5292,,,,0.0068965561568,,,true
+300,factor,admission,low,innovation_safe_mean_compression_ratio,mean,147,0,147,55//3,55//441,7621//386316,,,,0.0115844645693,,,true
+300,factor,admission,high,frontier_positive_loss_frequency,frequency,112,41,153,112//1,112//153,,Wilson descriptive simulation interval,0.656795652019,0.795890777538,,,,true
+300,factor,admission,high,mean_positive_frontier_loss,mean,112,41,112,15723315//65536,15723315//7340032,1934258051438431//480555300814848,,,,0.189573011515,,,true
+300,factor,admission,high,innovation_safe_loss_frequency,frequency,0,153,153,0//1,0//1,,Wilson descriptive simulation interval,1.73472347598e-18,0.0244926236314,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+300,factor,admission,high,silent_generative_asset_frequency,frequency,112,653,765,112//1,112//765,,Wilson descriptive simulation interval,0.123121425529,0.173222451621,,,,true
+300,factor,admission,high,substitution_frequency,frequency,66,87,153,66//1,22//51,,Wilson descriptive simulation interval,0.355525177602,0.510581653093,,,,true
+300,factor,admission,high,complementarity_frequency,frequency,48,105,153,48//1,16//51,,Wilson descriptive simulation interval,0.24552712989,0.391048553424,,,,true
+300,factor,admission,high,frontier_only_mean_compression_ratio,mean,153,0,153,190//3,190//459,2923//418608,,,,0.00675561560689,,,true
+300,factor,admission,high,innovation_safe_mean_compression_ratio,mean,153,0,153,39//2,13//102,55//2907,,,,0.0111202131925,,,true
+300,factor,persistence,low,frontier_positive_loss_frequency,frequency,75,69,144,75//1,25//48,,Wilson descriptive simulation interval,0.439762977396,0.600821037723,,,,true
+300,factor,persistence,low,mean_positive_frontier_loss,mean,75,69,75,2259257//16384,2259257//1228800,623807631547//186227097600,,,,0.211335897579,,,true
+300,factor,persistence,low,innovation_safe_loss_frequency,frequency,0,144,144,0//1,0//1,,Wilson descriptive simulation interval,0,0.025983637143,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+300,factor,persistence,low,silent_generative_asset_frequency,frequency,75,645,720,75//1,5//48,,Wilson descriptive simulation interval,0.0839146319532,0.128620111596,,,,true
+300,factor,persistence,low,substitution_frequency,frequency,42,102,144,42//1,7//24,,Wilson descriptive simulation interval,0.223612580528,0.370547268282,,,,true
+300,factor,persistence,low,complementarity_frequency,frequency,34,110,144,34//1,17//72,,Wilson descriptive simulation interval,0.174167516339,0.311768292153,,,,true
+300,factor,persistence,low,frontier_only_mean_compression_ratio,mean,144,0,144,60//1,5//12,1//143,,,,0.00696868341673,,,true
+300,factor,persistence,low,innovation_safe_mean_compression_ratio,mean,144,0,144,107//6,107//864,14039//741312,,,,0.0114679641283,,,true
+300,factor,persistence,high,frontier_positive_loss_frequency,frequency,78,78,156,78//1,1//2,,Wilson descriptive simulation interval,0.422487208415,0.577512791585,,,,true
+300,factor,persistence,high,mean_positive_frontier_loss,mean,78,78,78,28148261//196608,28148261//15335424,791590052079329//232160162217984,,,,0.209078325539,,,true
+300,factor,persistence,high,innovation_safe_loss_frequency,frequency,0,156,156,0//1,0//1,,Wilson descriptive simulation interval,0,0.0240329314374,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+300,factor,persistence,high,silent_generative_asset_frequency,frequency,78,702,780,78//1,1//10,,Wilson descriptive simulation interval,0.0808672957041,0.123053353072,,,,true
+300,factor,persistence,high,substitution_frequency,frequency,45,111,156,45//1,15//52,,Wilson descriptive simulation interval,0.223127811684,0.363963043924,,,,true
+300,factor,persistence,high,complementarity_frequency,frequency,35,121,156,35//1,35//156,,Wilson descriptive simulation interval,0.165974645362,0.295992227097,,,,true
+300,factor,persistence,high,frontier_only_mean_compression_ratio,mean,156,0,156,194//3,97//234,76//10881,,,,0.00669129368597,,,true
+300,factor,persistence,high,innovation_safe_mean_compression_ratio,mean,156,0,156,20//1,5//39,23//1170,,,,0.0112255773817,,,true
+500,factor,frontier_density,sparse,frontier_positive_loss_frequency,frequency,97,152,249,97//1,97//249,,Wilson descriptive simulation interval,0.331104777646,0.451367605418,,,,true
+500,factor,frontier_density,sparse,mean_positive_frontier_loss,mean,97,152,97,32488483//196608,32488483//19070976,72794383398865//22497038696448,,,,0.182641889336,,,true
+500,factor,frontier_density,sparse,innovation_safe_loss_frequency,frequency,0,249,249,0//1,0//1,,Wilson descriptive simulation interval,8.67361737988e-19,0.015193152415,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+500,factor,frontier_density,sparse,silent_generative_asset_frequency,frequency,97,1148,1245,97//1,97//1245,,Wilson descriptive simulation interval,0.0642878257337,0.094132170194,,,,true
+500,factor,frontier_density,sparse,substitution_frequency,frequency,63,186,249,63//1,21//83,,Wilson descriptive simulation interval,0.203047342467,0.310481805111,,,,true
+500,factor,frontier_density,sparse,complementarity_frequency,frequency,34,215,249,34//1,34//249,,Wilson descriptive simulation interval,0.0993858161601,0.18475057174,,,,true
+500,factor,frontier_density,sparse,frontier_only_mean_compression_ratio,mean,249,0,249,249//2,1//2,0//1,,,,0,,,true
+500,factor,frontier_density,sparse,innovation_safe_mean_compression_ratio,mean,249,0,249,42//1,14//83,287//10292,,,,0.0105825757553,,,true
+500,factor,frontier_density,dense,frontier_positive_loss_frequency,frequency,101,150,251,101//1,101//251,,Wilson descriptive simulation interval,0.343637006649,0.464086586573,,,,true
+500,factor,frontier_density,dense,mean_positive_frontier_loss,mean,101,150,101,15623507//98304,15623507//9928704,502905848776859//195206263603200,,,,0.159711350466,,,true
+500,factor,frontier_density,dense,innovation_safe_loss_frequency,frequency,0,251,251,0//1,0//1,,Wilson descriptive simulation interval,8.67361737988e-19,0.0150739163026,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+500,factor,frontier_density,dense,silent_generative_asset_frequency,frequency,95,1160,1255,95//1,19//251,,Wilson descriptive simulation interval,0.0623227520096,0.0916612604031,,,,true
+500,factor,frontier_density,dense,substitution_frequency,frequency,64,187,251,64//1,64//251,,Wilson descriptive simulation interval,0.20503431176,0.312312667145,,,,true
+500,factor,frontier_density,dense,complementarity_frequency,frequency,35,216,251,35//1,35//251,,Wilson descriptive simulation interval,0.102000907198,0.187753590216,,,,true
+500,factor,frontier_density,dense,frontier_only_mean_compression_ratio,mean,251,0,251,251//3,1//3,0//1,,,,0,,,true
+500,factor,frontier_density,dense,innovation_safe_mean_compression_ratio,mean,251,0,251,62//3,62//753,3937//564750,,,,0.00527008629785,,,true
+500,factor,module_overlap,low,frontier_positive_loss_frequency,frequency,102,148,250,102//1,51//125,,Wilson descriptive simulation interval,0.348917681912,0.469866845195,,,,true
+500,factor,module_overlap,low,mean_positive_frontier_loss,mean,102,148,102,32236255//196608,32236255//20054016,11403588201073//3942779977728,,,,0.168391205439,,,true
+500,factor,module_overlap,low,innovation_safe_loss_frequency,frequency,0,250,250,0//1,0//1,,Wilson descriptive simulation interval,0,0.0151332994954,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+500,factor,module_overlap,low,silent_generative_asset_frequency,frequency,96,1154,1250,96//1,48//625,,Wilson descriptive simulation interval,0.0633010904442,0.0928920689404,,,,true
+500,factor,module_overlap,low,substitution_frequency,frequency,63,187,250,63//1,63//250,,Wilson descriptive simulation interval,0.202211935125,0.309294181424,,,,true
+500,factor,module_overlap,low,complementarity_frequency,frequency,36,214,250,36//1,18//125,,Wilson descriptive simulation interval,0.105862568678,0.192912340563,,,,true
+500,factor,module_overlap,low,frontier_only_mean_compression_ratio,mean,250,0,250,623//6,623//1500,5207//747000,,,,0.00528035940524,,,true
+500,factor,module_overlap,low,innovation_safe_mean_compression_ratio,mean,250,0,250,0//1,0//1,0//1,,,,0,,,true
+500,factor,module_overlap,high,frontier_positive_loss_frequency,frequency,96,154,250,96//1,48//125,,Wilson descriptive simulation interval,0.325899194521,0.445611730962,,,,true
+500,factor,module_overlap,high,mean_positive_frontier_loss,mean,96,154,96,15749621//98304,15749621//9437184,256780077999287//88132728913920,,,,0.174211346652,,,true
+500,factor,module_overlap,high,innovation_safe_loss_frequency,frequency,0,250,250,0//1,0//1,,Wilson descriptive simulation interval,0,0.0151332994954,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+500,factor,module_overlap,high,silent_generative_asset_frequency,frequency,96,1154,1250,96//1,48//625,,Wilson descriptive simulation interval,0.0633010904442,0.0928920689404,,,,true
+500,factor,module_overlap,high,substitution_frequency,frequency,64,186,250,64//1,32//125,,Wilson descriptive simulation interval,0.205878182225,0.313506867928,,,,true
+500,factor,module_overlap,high,complementarity_frequency,frequency,33,217,250,33//1,33//250,,Wilson descriptive simulation interval,0.0955580165238,0.179580091905,,,,true
+500,factor,module_overlap,high,frontier_only_mean_compression_ratio,mean,250,0,250,313//3,313//750,217//31125,,,,0.0052808664252,,,true
+500,factor,module_overlap,high,innovation_safe_mean_compression_ratio,mean,250,0,250,188//3,94//375,217//31125,,,,0.0052808664252,,,true
+500,factor,module_complementarity,weak,frontier_positive_loss_frequency,frequency,99,150,249,99//1,33//83,,Wilson descriptive simulation interval,0.338802544143,0.459490029243,,,,true
+500,factor,module_complementarity,weak,mean_positive_frontier_loss,mean,99,150,99,10624021//65536,10624021//6488064,19546420819319//6944962117632,,,,0.168609128799,,,true
+500,factor,module_complementarity,weak,innovation_safe_loss_frequency,frequency,0,249,249,0//1,0//1,,Wilson descriptive simulation interval,8.67361737988e-19,0.015193152415,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+500,factor,module_complementarity,weak,silent_generative_asset_frequency,frequency,95,1150,1245,95//1,19//249,,Wilson descriptive simulation interval,0.0628266081022,0.0923904192087,,,,true
+500,factor,module_complementarity,weak,substitution_frequency,frequency,63,186,249,63//1,21//83,,Wilson descriptive simulation interval,0.203047342467,0.310481805111,,,,true
+500,factor,module_complementarity,weak,complementarity_frequency,frequency,34,215,249,34//1,34//249,,Wilson descriptive simulation interval,0.0993858161601,0.18475057174,,,,true
+500,factor,module_complementarity,weak,frontier_only_mean_compression_ratio,mean,249,0,249,623//6,623//1494,125//17928,,,,0.00529162928408,,,true
+500,factor,module_complementarity,weak,innovation_safe_mean_compression_ratio,mean,249,0,249,31//1,31//249,399//20584,,,,0.00882311394073,,,true
+500,factor,module_complementarity,strong,frontier_positive_loss_frequency,frequency,99,152,251,99//1,99//251,,Wilson descriptive simulation interval,0.335988883473,0.456038676543,,,,true
+500,factor,module_complementarity,strong,mean_positive_frontier_loss,mean,99,152,99,15931717//98304,15931717//9732096,561156006953089//187513977176064,,,,0.173863087701,,,true
+500,factor,module_complementarity,strong,innovation_safe_loss_frequency,frequency,0,251,251,0//1,0//1,,Wilson descriptive simulation interval,8.67361737988e-19,0.0150739163026,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+500,factor,module_complementarity,strong,silent_generative_asset_frequency,frequency,97,1158,1255,97//1,97//1255,,Wilson descriptive simulation interval,0.0637722057014,0.0933893315473,,,,true
+500,factor,module_complementarity,strong,substitution_frequency,frequency,64,187,251,64//1,64//251,,Wilson descriptive simulation interval,0.20503431176,0.312312667145,,,,true
+500,factor,module_complementarity,strong,complementarity_frequency,frequency,35,216,251,35//1,35//251,,Wilson descriptive simulation interval,0.102000907198,0.187753590216,,,,true
+500,factor,module_complementarity,strong,frontier_only_mean_compression_ratio,mean,251,0,251,313//3,313//753,3937//564750,,,,0.00527008629785,,,true
+500,factor,module_complementarity,strong,innovation_safe_mean_compression_ratio,mean,251,0,251,95//3,95//753,5402//282375,,,,0.00873026260109,,,true
+500,factor,project_cost,low,frontier_positive_loss_frequency,frequency,145,102,247,145//1,145//247,,Wilson descriptive simulation interval,0.524766313537,0.646656704819,,,,true
+500,factor,project_cost,low,mean_positive_frontier_loss,mean,145,102,145,11700883//49152,11700883//7127040,77582216369683//25222195445760,,,,0.145648376058,,,true
+500,factor,project_cost,low,innovation_safe_loss_frequency,frequency,0,247,247,0//1,0//1,,Wilson descriptive simulation interval,0,0.0153142899055,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+500,factor,project_cost,low,silent_generative_asset_frequency,frequency,141,1094,1235,141//1,141//1235,,Wilson descriptive simulation interval,0.0976171766163,0.133115704323,,,,true
+500,factor,project_cost,low,substitution_frequency,frequency,96,151,247,96//1,96//247,,Wilson descriptive simulation interval,0.330022930566,0.45071506921,,,,true
+500,factor,project_cost,low,complementarity_frequency,frequency,48,199,247,48//1,48//247,,Wilson descriptive simulation interval,0.149823378414,0.248202766427,,,,true
+500,factor,project_cost,low,frontier_only_mean_compression_ratio,mean,247,0,247,103//1,103//247,31//4446,,,,0.00531309573145,,,true
+500,factor,project_cost,low,innovation_safe_mean_compression_ratio,mean,247,0,247,31//1,31//247,3539//182286,,,,0.00886574319031,,,true
+500,factor,project_cost,high,frontier_positive_loss_frequency,frequency,53,200,253,53//1,53//253,,Wilson descriptive simulation interval,0.163874186496,0.263788307422,,,,true
+500,factor,project_cost,high,mean_positive_frontier_loss,mean,53,200,53,16931965//196608,16931965//10420224,129218004960103//53266184404992,,,,0.213942854906,,,true
+500,factor,project_cost,high,innovation_safe_loss_frequency,frequency,0,253,253,0//1,0//1,,Wilson descriptive simulation interval,0,0.0149565371507,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+500,factor,project_cost,high,silent_generative_asset_frequency,frequency,51,1214,1265,51//1,51//1265,,Wilson descriptive simulation interval,0.0307957853341,0.0526200410364,,,,true
+500,factor,project_cost,high,substitution_frequency,frequency,31,222,253,31//1,31//253,,Wilson descriptive simulation interval,0.0876790918961,0.168671495439,,,,true
+500,factor,project_cost,high,complementarity_frequency,frequency,21,232,253,21//1,21//253,,Wilson descriptive simulation interval,0.0549289028826,0.123552636006,,,,true
+500,factor,project_cost,high,frontier_only_mean_compression_ratio,mean,253,0,253,631//6,631//1518,1000//143451,,,,0.00524913750257,,,true
+500,factor,project_cost,high,innovation_safe_mean_compression_ratio,mean,253,0,253,95//3,95//759,29//1518,,,,0.00868966136909,,,true
+500,factor,duration,short,frontier_positive_loss_frequency,frequency,150,99,249,150//1,50//83,,Wilson descriptive simulation interval,0.540509970757,0.661197455857,,,,true
+500,factor,duration,short,mean_positive_frontier_loss,mean,150,99,150,60313253//196608,60313253//29491200,2673697268566841//863932671590400,,,,0.143638392971,,,true
+500,factor,duration,short,innovation_safe_loss_frequency,frequency,0,249,249,0//1,0//1,,Wilson descriptive simulation interval,8.67361737988e-19,0.015193152415,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+500,factor,duration,short,silent_generative_asset_frequency,frequency,145,1100,1245,145//1,29//249,,Wilson descriptive simulation interval,0.0998153409568,0.135475901775,,,,true
+500,factor,duration,short,substitution_frequency,frequency,95,154,249,95//1,95//249,,Wilson descriptive simulation interval,0.32342387591,0.443228316831,,,,true
+500,factor,duration,short,complementarity_frequency,frequency,53,196,249,53//1,53//249,,Wilson descriptive simulation interval,0.166572413478,0.267855782487,,,,true
+500,factor,duration,short,frontier_only_mean_compression_ratio,mean,249,0,249,207//2,69//166,287//41168,,,,0.00529128787763,,,true
+500,factor,duration,short,innovation_safe_mean_compression_ratio,mean,249,0,249,94//3,94//747,691//35856,,,,0.0087974828836,,,true
+500,factor,duration,long,frontier_positive_loss_frequency,frequency,48,203,251,48//1,48//251,,Wilson descriptive simulation interval,0.147381028876,0.244397684378,,,,true
+500,factor,duration,long,mean_positive_frontier_loss,mean,48,203,48,285187//16384,285187//786432,194499724405//1816771166208,,,,0.0472268263767,,,true
+500,factor,duration,long,innovation_safe_loss_frequency,frequency,0,251,251,0//1,0//1,,Wilson descriptive simulation interval,8.67361737988e-19,0.0150739163026,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+500,factor,duration,long,silent_generative_asset_frequency,frequency,47,1208,1255,47//1,47//1255,,Wilson descriptive simulation interval,0.0282789467311,0.0494444696174,,,,true
+500,factor,duration,long,substitution_frequency,frequency,32,219,251,32//1,32//251,,Wilson descriptive simulation interval,0.0917736691149,0.174436778489,,,,true
+500,factor,duration,long,complementarity_frequency,frequency,16,235,251,16//1,16//251,,Wilson descriptive simulation interval,0.0396147392149,0.101027442738,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+500,factor,duration,long,frontier_only_mean_compression_ratio,mean,251,0,251,314//3,314//753,7//1004,,,,0.00527042093838,,,true
+500,factor,duration,long,innovation_safe_mean_compression_ratio,mean,251,0,251,94//3,94//753,483//25100,,,,0.00875588086687,,,true
+500,factor,admission,low,frontier_positive_loss_frequency,frequency,53,195,248,53//1,53//248,,Wilson descriptive simulation interval,0.167260933092,0.268892269542,,,,true
+500,factor,admission,low,mean_positive_frontier_loss,mean,53,195,53,2357251//49152,2357251//2605056,582550086719//1109712175104,,,,0.0995230152521,,,true
+500,factor,admission,low,innovation_safe_loss_frequency,frequency,0,248,248,0//1,0//1,,Wilson descriptive simulation interval,8.67361737988e-19,0.0152534806568,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+500,factor,admission,low,silent_generative_asset_frequency,frequency,51,1189,1240,51//1,51//1240,,Wilson descriptive simulation interval,0.0314193748442,0.0536730282673,,,,true
+500,factor,admission,low,substitution_frequency,frequency,32,216,248,32//1,4//31,,Wilson descriptive simulation interval,0.0929026499679,0.176478964713,,,,true
+500,factor,admission,low,complementarity_frequency,frequency,21,227,248,21//1,21//248,,Wilson descriptive simulation interval,0.0560498748549,0.125975193755,,,,true
+500,factor,admission,low,frontier_only_mean_compression_ratio,mean,248,0,248,310//3,5//12,31//4446,,,,0.0053023730248,,,true
+500,factor,admission,low,innovation_safe_mean_compression_ratio,mean,248,0,248,187//6,187//1488,2245//116064,,,,0.00883148153629,,,true
+500,factor,admission,high,frontier_positive_loss_frequency,frequency,145,107,252,145//1,145//252,,Wilson descriptive simulation interval,0.513686895901,0.634842588629,,,,true
+500,factor,admission,high,mean_positive_frontier_loss,mean,145,107,145,54306493//196608,54306493//28508160,469859536147691//134518375710720,,,,0.155206253035,,,true
+500,factor,admission,high,innovation_safe_loss_frequency,frequency,0,252,252,0//1,0//1,,Wilson descriptive simulation interval,1.73472347598e-18,0.0150149973284,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+500,factor,admission,high,silent_generative_asset_frequency,frequency,141,1119,1260,141//1,47//420,,Wilson descriptive simulation interval,0.0956641530419,0.130504609524,,,,true
+500,factor,admission,high,substitution_frequency,frequency,95,157,252,95//1,95//252,,Wilson descriptive simulation interval,0.319417907443,0.438244512534,,,,true
+500,factor,admission,high,complementarity_frequency,frequency,48,204,252,48//1,4//21,,Wilson descriptive simulation interval,0.146782848409,0.24346453089,,,,true
+500,factor,admission,high,frontier_only_mean_compression_ratio,mean,252,0,252,629//6,629//1512,15875//2277072,,,,0.00525978769915,,,true
+500,factor,admission,high,innovation_safe_mean_compression_ratio,mean,252,0,252,63//2,1//8,77//4016,,,,0.00872264585353,,,true
+500,factor,persistence,low,frontier_positive_loss_frequency,frequency,99,149,248,99//1,99//248,,Wilson descriptive simulation interval,0.34022723444,0.461235160854,,,,true
+500,factor,persistence,low,mean_positive_frontier_loss,mean,99,149,99,3912191//24576,3912191//2433024,8350435686253//2929905893376,,,,0.169671982691,,,true
+500,factor,persistence,low,innovation_safe_loss_frequency,frequency,0,248,248,0//1,0//1,,Wilson descriptive simulation interval,8.67361737988e-19,0.0152534806568,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+500,factor,persistence,low,silent_generative_asset_frequency,frequency,96,1144,1240,96//1,12//155,,Wilson descriptive simulation interval,0.0638149565903,0.0936339348515,,,,true
+500,factor,persistence,low,substitution_frequency,frequency,64,184,248,64//1,8//31,,Wilson descriptive simulation interval,0.207586984366,0.315922764339,,,,true
+500,factor,persistence,low,complementarity_frequency,frequency,34,214,248,34//1,17//124,,Wilson descriptive simulation interval,0.0997936843063,0.185470938751,,,,true
+500,factor,persistence,low,frontier_only_mean_compression_ratio,mean,248,0,248,619//6,619//1488,5125//735072,,,,0.00530220059831,,,true
+500,factor,persistence,low,innovation_safe_mean_compression_ratio,mean,248,0,248,94//3,47//372,443//22971,,,,0.00881832441221,,,true
+500,factor,persistence,high,frontier_positive_loss_frequency,frequency,99,153,252,99//1,11//28,,Wilson descriptive simulation interval,0.334599613523,0.454332171618,,,,true
+500,factor,persistence,high,mean_positive_frontier_loss,mean,99,153,99,32437969//196608,32437969//19464192,34634772021925//11719623573504,,,,0.172775332738,,,true
+500,factor,persistence,high,innovation_safe_loss_frequency,frequency,0,252,252,0//1,0//1,,Wilson descriptive simulation interval,1.73472347598e-18,0.0150149973284,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+500,factor,persistence,high,silent_generative_asset_frequency,frequency,96,1164,1260,96//1,8//105,,Wilson descriptive simulation interval,0.062795435019,0.0921618639791,,,,true
+500,factor,persistence,high,substitution_frequency,frequency,63,189,252,63//1,1//4,,Wilson descriptive simulation interval,0.200561619904,0.306945878761,,,,true
+500,factor,persistence,high,complementarity_frequency,frequency,35,217,252,35//1,5//36,,Wilson descriptive simulation interval,0.101588914651,0.187033027864,,,,true
+500,factor,persistence,high,frontier_only_mean_compression_ratio,mean,252,0,252,105//1,5//12,7//1004,,,,0.00525995335915,,,true
+500,factor,persistence,high,innovation_safe_mean_compression_ratio,mean,252,0,252,94//3,47//378,5473//284634,,,,0.00873512382389,,,true
+750,factor,frontier_density,sparse,frontier_positive_loss_frequency,frequency,158,215,373,158//1,158//373,,Wilson descriptive simulation interval,0.374475966298,0.474266790992,,,,true
+750,factor,frontier_density,sparse,mean_positive_frontier_loss,mean,158,215,158,26135185//98304,26135185//15532032,362416975295519//119858578587648,,,,0.138337894271,,,true
+750,factor,frontier_density,sparse,innovation_safe_loss_frequency,frequency,0,373,373,0//1,0//1,,Wilson descriptive simulation interval,0,0.010193832793,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+750,factor,frontier_density,sparse,silent_generative_asset_frequency,frequency,158,1707,1865,158//1,158//1865,,Wilson descriptive simulation interval,0.0729183853174,0.0982258587869,,,,true
+750,factor,frontier_density,sparse,substitution_frequency,frequency,95,278,373,95//1,95//373,,Wilson descriptive simulation interval,0.213132298567,0.301252343259,,,,true
+750,factor,frontier_density,sparse,complementarity_frequency,frequency,64,309,373,64//1,64//373,,Wilson descriptive simulation interval,0.136717381924,0.213141838007,,,,true
+750,factor,frontier_density,sparse,frontier_only_mean_compression_ratio,mean,373,0,373,373//2,1//2,0//1,,,,0,,,true
+750,factor,frontier_density,sparse,innovation_safe_mean_compression_ratio,mean,373,0,373,61//1,61//373,5795//208134,,,,0.00863974230045,,,true
+750,factor,frontier_density,dense,frontier_positive_loss_frequency,frequency,163,214,377,163//1,163//377,,Wilson descriptive simulation interval,0.383283488211,0.482802519972,,,,true
+750,factor,frontier_density,dense,mean_positive_frontier_loss,mean,163,214,163,54850709//196608,54850709//32047104,379696917694567//127589519720448,,,,0.135119251974,,,true
+750,factor,frontier_density,dense,innovation_safe_loss_frequency,frequency,0,377,377,0//1,0//1,,Wilson descriptive simulation interval,8.67361737988e-19,0.0100867663741,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+750,factor,frontier_density,dense,silent_generative_asset_frequency,frequency,157,1728,1885,157//1,157//1885,,Wilson descriptive simulation interval,0.0716466073327,0.0966266256252,,,,true
+750,factor,frontier_density,dense,substitution_frequency,frequency,97,280,377,97//1,97//377,,Wilson descriptive simulation interval,0.215770804765,0.303714283422,,,,true
+750,factor,frontier_density,dense,complementarity_frequency,frequency,66,311,377,66//1,66//377,,Wilson descriptive simulation interval,0.140036483195,0.216651203176,,,,true
+750,factor,frontier_density,dense,frontier_only_mean_compression_ratio,mean,377,0,377,377//3,1//3,0//1,,,,0,,,true
+750,factor,frontier_density,dense,innovation_safe_mean_compression_ratio,mean,377,0,377,191//6,191//2262,5921//850512,,,,0.00429721054397,,,true
+750,factor,module_overlap,low,frontier_positive_loss_frequency,frequency,162,214,376,162//1,81//188,,Wilson descriptive simulation interval,0.381746154092,0.481354624424,,,,true
+750,factor,module_overlap,low,mean_positive_frontier_loss,mean,162,214,162,9135269//32768,9135269//5308416,11082503345689//3500666781696,,,,0.139793198424,,,true
+750,factor,module_overlap,low,innovation_safe_loss_frequency,frequency,0,376,376,0//1,0//1,,Wilson descriptive simulation interval,0,0.0101133215753,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+750,factor,module_overlap,low,silent_generative_asset_frequency,frequency,156,1724,1880,156//1,39//470,,Wilson descriptive simulation interval,0.0713435200064,0.0963146750832,,,,true
+750,factor,module_overlap,low,substitution_frequency,frequency,95,281,376,95//1,95//376,,Wilson descriptive simulation interval,0.211390218444,0.298931797016,,,,true
+750,factor,module_overlap,low,complementarity_frequency,frequency,67,309,376,67//1,67//376,,Wilson descriptive simulation interval,0.142825067834,0.220067016797,,,,true
+750,factor,module_overlap,low,frontier_only_mean_compression_ratio,mean,376,0,376,157//1,157//376,589//84600,,,,0.00430307131188,,,true
+750,factor,module_overlap,low,innovation_safe_mean_compression_ratio,mean,376,0,376,0//1,0//1,0//1,,,,0,,,true
+750,factor,module_overlap,high,frontier_positive_loss_frequency,frequency,159,215,374,159//1,159//374,,Wilson descriptive simulation interval,0.376041981951,0.475747707368,,,,true
+750,factor,module_overlap,high,mean_positive_frontier_loss,mean,159,215,159,52309465//196608,52309465//31260672,686840290435289//242770878922752,,,,0.133392380852,,,true
+750,factor,module_overlap,high,innovation_safe_loss_frequency,frequency,0,374,374,0//1,0//1,,Wilson descriptive simulation interval,0,0.0101668536658,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+750,factor,module_overlap,high,silent_generative_asset_frequency,frequency,159,1711,1870,159//1,159//1870,,Wilson descriptive simulation interval,0.0732199860378,0.0985349174017,,,,true
+750,factor,module_overlap,high,substitution_frequency,frequency,97,277,374,97//1,97//374,,Wilson descriptive simulation interval,0.21754480191,0.306064913758,,,,true
+750,factor,module_overlap,high,complementarity_frequency,frequency,63,311,374,63//1,63//374,,Wilson descriptive simulation interval,0.133932363291,0.209707689408,,,,true
+750,factor,module_overlap,high,frontier_only_mean_compression_ratio,mean,374,0,374,931//6,931//2244,11651//1674024,,,,0.00431384920674,,,true
+750,factor,module_overlap,high,innovation_safe_mean_compression_ratio,mean,374,0,374,557//6,557//2244,11651//1674024,,,,0.00431384920674,,,true
+750,factor,module_complementarity,weak,frontier_positive_loss_frequency,frequency,163,211,374,163//1,163//374,,Wilson descriptive simulation interval,0.386478569059,0.486484021786,,,,true
+750,factor,module_complementarity,weak,mean_positive_frontier_loss,mean,163,211,163,55712419//196608,55712419//32047104,520254017622443//170119359627264,,,,0.136973656549,,,true
+750,factor,module_complementarity,weak,innovation_safe_loss_frequency,frequency,0,374,374,0//1,0//1,,Wilson descriptive simulation interval,0,0.0101668536658,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+750,factor,module_complementarity,weak,silent_generative_asset_frequency,frequency,159,1711,1870,159//1,159//1870,,Wilson descriptive simulation interval,0.0732199860378,0.0985349174017,,,,true
+750,factor,module_complementarity,weak,substitution_frequency,frequency,95,279,374,95//1,95//374,,Wilson descriptive simulation interval,0.212548417325,0.30047484758,,,,true
+750,factor,module_complementarity,weak,complementarity_frequency,frequency,67,307,374,67//1,67//374,,Wilson descriptive simulation interval,0.143603202777,0.221209751447,,,,true
+750,factor,module_complementarity,weak,frontier_only_mean_compression_ratio,mean,374,0,374,311//2,311//748,3885//558008,,,,0.0043145896546,,,true
+750,factor,module_complementarity,weak,innovation_safe_mean_compression_ratio,mean,374,0,374,277//6,277//2244,94937//5022072,,,,0.00710952332641,,,true
+750,factor,module_complementarity,strong,frontier_positive_loss_frequency,frequency,158,218,376,158//1,79//188,,Wilson descriptive simulation interval,0.371374941306,0.47066441852,,,,true
+750,factor,module_complementarity,strong,mean_positive_frontier_loss,mean,158,218,158,4284055//16384,4284055//2588672,39096563236885//13317619843072,,,,0.136309913134,,,true
+750,factor,module_complementarity,strong,innovation_safe_loss_frequency,frequency,0,376,376,0//1,0//1,,Wilson descriptive simulation interval,0,0.0101133215753,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+750,factor,module_complementarity,strong,silent_generative_asset_frequency,frequency,156,1724,1880,156//1,39//470,,Wilson descriptive simulation interval,0.0713435200064,0.0963146750832,,,,true
+750,factor,module_complementarity,strong,substitution_frequency,frequency,97,279,376,97//1,97//376,,Wilson descriptive simulation interval,0.216358907115,0.30449381769,,,,true
+750,factor,module_complementarity,strong,complementarity_frequency,frequency,63,313,376,63//1,63//376,,Wilson descriptive simulation interval,0.133207227953,0.208623437988,,,,true
+750,factor,module_complementarity,strong,frontier_only_mean_compression_ratio,mean,376,0,376,470//3,5//12,47//6750,,,,0.00430331482912,,,true
+750,factor,module_complementarity,strong,innovation_safe_mean_compression_ratio,mean,376,0,376,140//3,35//282,3002//158625,,,,0.00709456225387,,,true
+750,factor,project_cost,low,frontier_positive_loss_frequency,frequency,235,139,374,235//1,235//374,,Wilson descriptive simulation interval,0.578293688271,0.67578113004,,,,true
+750,factor,project_cost,low,mean_positive_frontier_loss,mean,235,139,235,6454421//16384,6454421//3850240,894739809617//283870494720,,,,0.115812202743,,,true
+750,factor,project_cost,low,innovation_safe_loss_frequency,frequency,0,374,374,0//1,0//1,,Wilson descriptive simulation interval,0,0.0101668536658,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+750,factor,project_cost,low,silent_generative_asset_frequency,frequency,231,1639,1870,231//1,21//170,,Wilson descriptive simulation interval,0.109382956901,0.139219429724,,,,true
+750,factor,project_cost,low,substitution_frequency,frequency,145,229,374,145//1,145//374,,Wilson descriptive simulation interval,0.339701641738,0.43798289224,,,,true
+750,factor,project_cost,low,complementarity_frequency,frequency,90,284,374,90//1,45//187,,Wilson descriptive simulation interval,0.200095522364,0.286461615634,,,,true
+750,factor,project_cost,low,frontier_only_mean_compression_ratio,mean,374,0,374,467//3,467//1122,1457//209253,,,,0.00431477474671,,,true
+750,factor,project_cost,low,innovation_safe_mean_compression_ratio,mean,374,0,374,275//6,25//204,955//50728,,,,0.00709483034081,,,true
+750,factor,project_cost,high,frontier_positive_loss_frequency,frequency,86,290,376,86//1,43//188,,Wilson descriptive simulation interval,0.189139522629,0.273794300779,,,,true
+750,factor,project_cost,high,mean_positive_frontier_loss,mean,86,290,86,29668027//196608,29668027//16908288,727861029249349//282565898403840,,,,0.173067346152,,,true
+750,factor,project_cost,high,innovation_safe_loss_frequency,frequency,0,376,376,0//1,0//1,,Wilson descriptive simulation interval,0,0.0101133215753,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+750,factor,project_cost,high,silent_generative_asset_frequency,frequency,84,1796,1880,84//1,21//470,,Wilson descriptive simulation interval,0.0362336804879,0.0549849610895,,,,true
+750,factor,project_cost,high,substitution_frequency,frequency,47,329,376,47//1,1//8,,Wilson descriptive simulation interval,0.0953182133713,0.16226677781,,,,true
+750,factor,project_cost,high,complementarity_frequency,frequency,40,336,376,40//1,5//47,,Wilson descriptive simulation interval,0.0791023408421,0.141625167632,,,,true
+750,factor,project_cost,high,frontier_only_mean_compression_ratio,mean,376,0,376,313//2,313//752,1309//188000,,,,0.0043032539511,,,true
+750,factor,project_cost,high,innovation_safe_mean_compression_ratio,mean,376,0,376,47//1,1//8,19//1000,,,,0.00710858037119,,,true
+750,factor,duration,short,frontier_positive_loss_frequency,frequency,243,133,376,243//1,243//376,,Wilson descriptive simulation interval,0.596691893097,0.692902613889,,,,true
+750,factor,duration,short,mean_positive_frontier_loss,mean,243,133,243,33624757//65536,33624757//15925248,404692959731755//126284923404288,,,,0.114837554431,,,true
+750,factor,duration,short,innovation_safe_loss_frequency,frequency,0,376,376,0//1,0//1,,Wilson descriptive simulation interval,0,0.0101133215753,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+750,factor,duration,short,silent_generative_asset_frequency,frequency,238,1642,1880,238//1,119//940,,Wilson descriptive simulation interval,0.11232226827,0.142392084986,,,,true
+750,factor,duration,short,substitution_frequency,frequency,144,232,376,144//1,18//47,,Wilson descriptive simulation interval,0.335261896705,0.433062497706,,,,true
+750,factor,duration,short,complementarity_frequency,frequency,99,277,376,99//1,99//376,,Wilson descriptive simulation interval,0.221335964974,0.310047469176,,,,true
+750,factor,duration,short,frontier_only_mean_compression_ratio,mean,376,0,376,469//3,469//1128,589//84600,,,,0.00430307131188,,,true
+750,factor,duration,short,innovation_safe_mean_compression_ratio,mean,376,0,376,139//3,139//1128,7973//423000,,,,0.00708022038131,,,true
+750,factor,duration,long,frontier_positive_loss_frequency,frequency,78,296,374,78//1,39//187,,Wilson descriptive simulation interval,0.170447017672,0.252591415748,,,,true
+750,factor,duration,long,mean_positive_frontier_loss,mean,78,296,78,780851//24576,780851//1916928,116744282399//906875633664,,,,0.0406253057028,,,true
+750,factor,duration,long,innovation_safe_loss_frequency,frequency,0,374,374,0//1,0//1,,Wilson descriptive simulation interval,0,0.0101668536658,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+750,factor,duration,long,silent_generative_asset_frequency,frequency,77,1793,1870,77//1,7//170,,Wilson descriptive simulation interval,0.0330715004705,0.0511626582293,,,,true
+750,factor,duration,long,substitution_frequency,frequency,48,326,374,48//1,24//187,,Wilson descriptive simulation interval,0.0981848832749,0.166056788701,,,,true
+750,factor,duration,long,complementarity_frequency,frequency,31,343,374,31//1,31//374,,Wilson descriptive simulation interval,0.0590065289485,0.115250311543,,,,true
+750,factor,duration,long,frontier_only_mean_compression_ratio,mean,374,0,374,935//6,5//12,187//26856,,,,0.00431483644232,,,true
+750,factor,duration,long,innovation_safe_mean_compression_ratio,mean,374,0,374,93//2,93//748,95321//5022072,,,,0.00712388707237,,,true
+750,factor,admission,low,frontier_positive_loss_frequency,frequency,89,287,376,89//1,89//376,,Wilson descriptive simulation interval,0.196536131192,0.282193756234,,,,true
+750,factor,admission,low,mean_positive_frontier_loss,mean,89,287,89,317419//4096,317419//364544,746421339533//1576789868544,,,,0.0729306542877,,,true
+750,factor,admission,low,innovation_safe_loss_frequency,frequency,0,376,376,0//1,0//1,,Wilson descriptive simulation interval,0,0.0101133215753,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+750,factor,admission,low,silent_generative_asset_frequency,frequency,87,1793,1880,87//1,87//1880,,Wilson descriptive simulation interval,0.037670043135,0.0567335798387,,,,true
+750,factor,admission,low,substitution_frequency,frequency,48,328,376,48//1,6//47,,Wilson descriptive simulation interval,0.0976549849942,0.16519536086,,,,true
+750,factor,admission,low,complementarity_frequency,frequency,41,335,376,41//1,41//376,,Wilson descriptive simulation interval,0.0814026766377,0.144590186509,,,,true
+750,factor,admission,low,frontier_only_mean_compression_ratio,mean,376,0,376,313//2,313//752,1309//188000,,,,0.0043032539511,,,true
+750,factor,admission,low,innovation_safe_mean_compression_ratio,mean,376,0,376,93//2,93//752,96247//5076000,,,,0.00710131653836,,,true
+750,factor,admission,high,frontier_positive_loss_frequency,frequency,232,142,374,232//1,116//187,,Wilson descriptive simulation interval,0.5701483811,0.668046761065,,,,true
+750,factor,admission,high,mean_positive_frontier_loss,mean,232,142,232,91884967//196608,91884967//45613056,2484374774223389//690527661981696,,,,0.124530009897,,,true
+750,factor,admission,high,innovation_safe_loss_frequency,frequency,0,374,374,0//1,0//1,,Wilson descriptive simulation interval,0,0.0101668536658,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+750,factor,admission,high,silent_generative_asset_frequency,frequency,228,1642,1870,228//1,114//935,,Wilson descriptive simulation interval,0.10786520208,0.137535206079,,,,true
+750,factor,admission,high,substitution_frequency,frequency,144,230,374,144//1,72//187,,Wilson descriptive simulation interval,0.337117291874,0.435274016723,,,,true
+750,factor,admission,high,complementarity_frequency,frequency,89,285,374,89//1,89//374,,Wilson descriptive simulation interval,0.197611657746,0.283652254871,,,,true
+750,factor,admission,high,frontier_only_mean_compression_ratio,mean,374,0,374,467//3,467//1122,1457//209253,,,,0.00431477474671,,,true
+750,factor,admission,high,innovation_safe_mean_compression_ratio,mean,374,0,374,139//3,139//1122,23689//1255518,,,,0.00710274284225,,,true
+750,factor,persistence,low,frontier_positive_loss_frequency,frequency,155,219,374,155//1,155//374,,Wilson descriptive simulation interval,0.365629012543,0.46498777525,,,,true
+750,factor,persistence,low,mean_positive_frontier_loss,mean,155,219,155,4249863//16384,4249863//2539520,29810470659479//9611331502080,,,,0.141457764019,,,true
+750,factor,persistence,low,innovation_safe_loss_frequency,frequency,0,374,374,0//1,0//1,,Wilson descriptive simulation interval,0,0.0101668536658,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+750,factor,persistence,low,silent_generative_asset_frequency,frequency,152,1718,1870,152//1,76//935,,Wilson descriptive simulation interval,0.0697391150236,0.0945445053284,,,,true
+750,factor,persistence,low,substitution_frequency,frequency,96,278,374,96//1,48//187,,Wilson descriptive simulation interval,0.215045544442,0.303270945845,,,,true
+750,factor,persistence,low,complementarity_frequency,frequency,60,314,374,60//1,30//187,,Wilson descriptive simulation interval,0.126714345959,0.201046030595,,,,true
+750,factor,persistence,low,frontier_only_mean_compression_ratio,mean,374,0,374,467//3,467//1122,1457//209253,,,,0.00431477474671,,,true
+750,factor,persistence,low,innovation_safe_mean_compression_ratio,mean,374,0,374,46//1,23//187,3932//209253,,,,0.00708818602716,,,true
+750,factor,persistence,high,frontier_positive_loss_frequency,frequency,166,210,376,166//1,83//188,,Wilson descriptive simulation interval,0.39214055753,0.492021639675,,,,true
+750,factor,persistence,high,mean_positive_frontier_loss,mean,166,210,166,56122723//196608,56122723//32636928,204936956753099//70583492542464,,,,0.132252693395,,,true
+750,factor,persistence,high,innovation_safe_loss_frequency,frequency,0,376,376,0//1,0//1,,Wilson descriptive simulation interval,0,0.0101133215753,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+750,factor,persistence,high,silent_generative_asset_frequency,frequency,163,1717,1880,163//1,163//1880,,Wilson descriptive simulation interval,0.0748098750577,0.10027994329,,,,true
+750,factor,persistence,high,substitution_frequency,frequency,96,280,376,96//1,12//47,,Wilson descriptive simulation interval,0.213873506144,0.301713863989,,,,true
+750,factor,persistence,high,complementarity_frequency,frequency,70,306,376,70//1,35//188,,Wilson descriptive simulation interval,0.15007129121,0.228616857438,,,,true
+750,factor,persistence,high,frontier_only_mean_compression_ratio,mean,376,0,376,313//2,313//752,1309//188000,,,,0.0043032539511,,,true
+750,factor,persistence,high,innovation_safe_mean_compression_ratio,mean,376,0,376,281//6,281//2256,96631//5076000,,,,0.00711546862131,,,true
+1000,factor,frontier_density,sparse,frontier_positive_loss_frequency,frequency,196,304,500,196//1,49//125,,Wilson descriptive simulation interval,0.35018737779,0.43545947975,,,,true
+1000,factor,frontier_density,sparse,mean_positive_frontier_loss,mean,196,304,196,20747551//65536,20747551//12845056,885331165431623//295476570095616,,,,0.123641229777,,,true
+1000,factor,frontier_density,sparse,innovation_safe_loss_frequency,frequency,0,500,500,0//1,0//1,,Wilson descriptive simulation interval,4.33680868994e-19,0.00762434046155,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+1000,factor,frontier_density,sparse,silent_generative_asset_frequency,frequency,196,2304,2500,196//1,49//625,,Wilson descriptive simulation interval,0.068498299034,0.0895953603813,,,,true
+1000,factor,frontier_density,sparse,substitution_frequency,frequency,127,373,500,127//1,127//500,,Wilson descriptive simulation interval,0.217820254915,0.293930920592,,,,true
+1000,factor,frontier_density,sparse,complementarity_frequency,frequency,71,429,500,71//1,71//500,,Wilson descriptive simulation interval,0.114129360446,0.175329667325,,,,true
+1000,factor,frontier_density,sparse,frontier_only_mean_compression_ratio,mean,500,0,500,250//1,1//2,0//1,,,,0,,,true
+1000,factor,frontier_density,sparse,innovation_safe_mean_compression_ratio,mean,500,0,500,251//3,251//1500,20833//748500,,,,0.00746096499549,,,true
+1000,factor,frontier_density,dense,frontier_positive_loss_frequency,frequency,200,300,500,200//1,2//5,,Wilson descriptive simulation interval,0.357978990795,0.443545877298,,,,true
+1000,factor,frontier_density,dense,mean_positive_frontier_loss,mean,200,300,200,15603301//49152,15603301//9830400,257522868507449//96153580339200,,,,0.115720465701,,,true
+1000,factor,frontier_density,dense,innovation_safe_loss_frequency,frequency,0,500,500,0//1,0//1,,Wilson descriptive simulation interval,4.33680868994e-19,0.00762434046155,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+1000,factor,frontier_density,dense,silent_generative_asset_frequency,frequency,192,2308,2500,192//1,48//625,,Wilson descriptive simulation interval,0.0669993611041,0.0878992078346,,,,true
+1000,factor,frontier_density,dense,substitution_frequency,frequency,129,371,500,129//1,129//500,,Wilson descriptive simulation interval,0.221596200223,0.298093980561,,,,true
+1000,factor,frontier_density,dense,complementarity_frequency,frequency,70,430,500,70//1,7//50,,Wilson descriptive simulation interval,0.112322660188,0.173166864944,,,,true
+1000,factor,frontier_density,dense,frontier_only_mean_compression_ratio,mean,500,0,500,500//3,1//3,0//1,,,,0,,,true
+1000,factor,frontier_density,dense,innovation_safe_mean_compression_ratio,mean,500,0,500,125//3,1//12,125//17964,,,,0.00373051234197,,,true
+1000,factor,module_overlap,low,frontier_positive_loss_frequency,frequency,199,300,499,199//1,199//499,,Wilson descriptive simulation interval,0.356766172471,0.442375290055,,,,true
+1000,factor,module_overlap,low,mean_positive_frontier_loss,mean,199,300,199,61926821//196608,61926821//39124992,1078145656351121//380768178143232,,,,0.119283907573,,,true
+1000,factor,module_overlap,low,innovation_safe_loss_frequency,frequency,0,499,499,0//1,0//1,,Wilson descriptive simulation interval,0,0.00763950297516,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+1000,factor,module_overlap,low,silent_generative_asset_frequency,frequency,191,2304,2495,191//1,191//2495,,Wilson descriptive simulation interval,0.0667590037346,0.0876491350686,,,,true
+1000,factor,module_overlap,low,substitution_frequency,frequency,127,372,499,127//1,127//499,,Wilson descriptive simulation interval,0.218266314301,0.294502579945,,,,true
+1000,factor,module_overlap,low,complementarity_frequency,frequency,72,427,499,72//1,72//499,,Wilson descriptive simulation interval,0.116173758638,0.177838312617,,,,true
+1000,factor,module_overlap,low,frontier_only_mean_compression_ratio,mean,499,0,499,1247//6,1247//2994,125//17964,,,,0.00373424845942,,,true
+1000,factor,module_overlap,low,innovation_safe_mean_compression_ratio,mean,499,0,499,0//1,0//1,0//1,,,,0,,,true
+1000,factor,module_overlap,high,frontier_positive_loss_frequency,frequency,197,304,501,197//1,197//501,,Wilson descriptive simulation interval,0.351409249551,0.43664302284,,,,true
+1000,factor,module_overlap,high,mean_positive_frontier_loss,mean,197,304,197,15682259//49152,15682259//9682944,1059532714531825//373133873774592,,,,0.120058174019,,,true
+1000,factor,module_overlap,high,innovation_safe_loss_frequency,frequency,0,501,501,0//1,0//1,,Wilson descriptive simulation interval,4.33680868994e-19,0.00760923801636,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+1000,factor,module_overlap,high,silent_generative_asset_frequency,frequency,197,2308,2505,197//1,197//2505,,Wilson descriptive simulation interval,0.0687350780933,0.0898406889891,,,,true
+1000,factor,module_overlap,high,substitution_frequency,frequency,129,372,501,129//1,43//167,,Wilson descriptive simulation interval,0.22114414526,0.29751662288,,,,true
+1000,factor,module_overlap,high,complementarity_frequency,frequency,69,432,501,69//1,23//167,,Wilson descriptive simulation interval,0.110294347336,0.1706680347,,,,true
+1000,factor,module_overlap,high,frontier_only_mean_compression_ratio,mean,501,0,501,1253//6,1253//3006,251//36072,,,,0.00372677253866,,,true
+1000,factor,module_overlap,high,innovation_safe_mean_compression_ratio,mean,501,0,501,376//3,376//1503,251//36072,,,,0.00372677253866,,,true
+1000,factor,module_complementarity,weak,frontier_positive_loss_frequency,frequency,198,301,499,198//1,198//499,,Wilson descriptive simulation interval,0.354813764983,0.440350300761,,,,true
+1000,factor,module_complementarity,weak,mean_positive_frontier_loss,mean,198,301,198,62719087//196608,62719087//38928384,4349886050306837//1507765449129984,,,,0.120708944244,,,true
+1000,factor,module_complementarity,weak,innovation_safe_loss_frequency,frequency,0,499,499,0//1,0//1,,Wilson descriptive simulation interval,0,0.00763950297516,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+1000,factor,module_complementarity,weak,silent_generative_asset_frequency,frequency,194,2301,2495,194//1,194//2495,,Wilson descriptive simulation interval,0.0678851099144,0.0889241416039,,,,true
+1000,factor,module_complementarity,weak,substitution_frequency,frequency,127,372,499,127//1,127//499,,Wilson descriptive simulation interval,0.218266314301,0.294502579945,,,,true
+1000,factor,module_complementarity,weak,complementarity_frequency,frequency,72,427,499,72//1,72//499,,Wilson descriptive simulation interval,0.116173758638,0.177838312617,,,,true
+1000,factor,module_complementarity,weak,frontier_only_mean_compression_ratio,mean,499,0,499,1249//6,1249//2994,7781//1118259,,,,0.00373418847101,,,true
+1000,factor,module_complementarity,weak,innovation_safe_mean_compression_ratio,mean,499,0,499,125//2,125//998,85625//4473036,,,,0.0061936808438,,,true
+1000,factor,module_complementarity,strong,frontier_positive_loss_frequency,frequency,198,303,501,198//1,66//167,,Wilson descriptive simulation interval,0.353352671118,0.438661241041,,,,true
+1000,factor,module_complementarity,strong,mean_positive_frontier_loss,mean,198,303,198,10322795//32768,10322795//6488064,3647038668329//1308824174592,,,,0.118630656795,,,true
+1000,factor,module_complementarity,strong,innovation_safe_loss_frequency,frequency,0,501,501,0//1,0//1,,Wilson descriptive simulation interval,4.33680868994e-19,0.00760923801636,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+1000,factor,module_complementarity,strong,silent_generative_asset_frequency,frequency,194,2311,2505,194//1,194//2505,,Wilson descriptive simulation interval,0.067612772748,0.0885714522229,,,,true
+1000,factor,module_complementarity,strong,substitution_frequency,frequency,129,372,501,129//1,43//167,,Wilson descriptive simulation interval,0.22114414526,0.29751662288,,,,true
+1000,factor,module_complementarity,strong,complementarity_frequency,frequency,69,432,501,69//1,23//167,,Wilson descriptive simulation interval,0.110294347336,0.1706680347,,,,true
+1000,factor,module_complementarity,strong,frontier_only_mean_compression_ratio,mean,501,0,501,417//2,139//334,581//83500,,,,0.00372671314739,,,true
+1000,factor,module_complementarity,strong,innovation_safe_mean_compression_ratio,mean,501,0,501,377//6,377//3006,173//9018,,,,0.00618798244768,,,true
+1000,factor,project_cost,low,frontier_positive_loss_frequency,frequency,292,207,499,292//1,292//499,,Wilson descriptive simulation interval,0.541451337711,0.62758802551,,,,true
+1000,factor,project_cost,low,mean_positive_frontier_loss,mean,292,207,292,3796093//8192,3796093//2392064,50734819275839//17107123175424,,,,0.100779718726,,,true
+1000,factor,project_cost,low,innovation_safe_loss_frequency,frequency,0,499,499,0//1,0//1,,Wilson descriptive simulation interval,0,0.00763950297516,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+1000,factor,project_cost,low,silent_generative_asset_frequency,frequency,286,2209,2495,286//1,286//2495,,Wilson descriptive simulation interval,0.102716880265,0.127726494519,,,,true
+1000,factor,project_cost,low,substitution_frequency,frequency,193,306,499,193//1,193//499,,Wilson descriptive simulation interval,0.345062916722,0.430214165114,,,,true
+1000,factor,project_cost,low,complementarity_frequency,frequency,97,402,499,97//1,97//499,,Wilson descriptive simulation interval,0.162056354225,0.231390636571,,,,true
+1000,factor,project_cost,low,frontier_only_mean_compression_ratio,mean,499,0,499,623//3,623//1497,7781//1118259,,,,0.00373418847101,,,true
+1000,factor,project_cost,low,innovation_safe_mean_compression_ratio,mean,499,0,499,373//6,373//2994,85375//4473036,,,,0.0061846323644,,,true
+1000,factor,project_cost,high,frontier_positive_loss_frequency,frequency,104,397,501,104//1,104//501,,Wilson descriptive simulation interval,0.174361049601,0.245258724328,,,,true
+1000,factor,project_cost,high,mean_positive_frontier_loss,mean,104,397,104,33549625//196608,33549625//20447232,1021418097609703//414069207072768,,,,0.154009899422,,,true
+1000,factor,project_cost,high,innovation_safe_loss_frequency,frequency,0,501,501,0//1,0//1,,Wilson descriptive simulation interval,4.33680868994e-19,0.00760923801636,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+1000,factor,project_cost,high,silent_generative_asset_frequency,frequency,102,2403,2505,102//1,34//835,,Wilson descriptive simulation interval,0.0336563097187,0.0491872904976,,,,true
+1000,factor,project_cost,high,substitution_frequency,frequency,63,438,501,63//1,21//167,,Wilson descriptive simulation interval,0.099533622407,0.157658921018,,,,true
+1000,factor,project_cost,high,complementarity_frequency,frequency,44,457,501,44//1,44//501,,Wilson descriptive simulation interval,0.0660725019942,0.115848885832,,,,true
+1000,factor,project_cost,high,frontier_only_mean_compression_ratio,mean,501,0,501,209//1,209//501,581//83500,,,,0.00372671314739,,,true
+1000,factor,project_cost,high,innovation_safe_mean_compression_ratio,mean,501,0,501,379//6,379//3006,43373//2254500,,,,0.00619677529699,,,true
+1000,factor,duration,short,frontier_positive_loss_frequency,frequency,298,202,500,298//1,149//250,,Wilson descriptive simulation interval,0.552415351324,0.638120775307,,,,true
+1000,factor,duration,short,mean_positive_frontier_loss,mean,298,202,298,117509861//196608,117509861//58589184,10465975766461661//3421173379497984,,,,0.101319768384,,,true
+1000,factor,duration,short,innovation_safe_loss_frequency,frequency,0,500,500,0//1,0//1,,Wilson descriptive simulation interval,4.33680868994e-19,0.00762434046155,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+1000,factor,duration,short,silent_generative_asset_frequency,frequency,292,2208,2500,292//1,73//625,,Wilson descriptive simulation interval,0.104793751365,0.129982079489,,,,true
+1000,factor,duration,short,substitution_frequency,frequency,192,308,500,192//1,48//125,,Wilson descriptive simulation interval,0.342407674618,0.427361172369,,,,true
+1000,factor,duration,short,complementarity_frequency,frequency,107,393,500,107//1,107//500,,Wilson descriptive simulation interval,0.180302999988,0.252058122756,,,,true
+1000,factor,duration,short,frontier_only_mean_compression_ratio,mean,500,0,500,625//3,5//12,125//17964,,,,0.00373051234197,,,true
+1000,factor,duration,short,innovation_safe_mean_compression_ratio,mean,500,0,500,63//1,63//500,4781//249500,,,,0.00619069053488,,,true
+1000,factor,duration,long,frontier_positive_loss_frequency,frequency,98,402,500,98//1,49//250,,Wilson descriptive simulation interval,0.163578106614,0.233057492386,,,,true
+1000,factor,duration,long,mean_positive_frontier_loss,mean,98,402,98,1786499//49152,1786499//4816896,2760146155801//22965727002624,,,,0.0350197388331,,,true
+1000,factor,duration,long,innovation_safe_loss_frequency,frequency,0,500,500,0//1,0//1,,Wilson descriptive simulation interval,4.33680868994e-19,0.00762434046155,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+1000,factor,duration,long,silent_generative_asset_frequency,frequency,96,2404,2500,96//1,24//625,,Wilson descriptive simulation interval,0.0315482041826,0.0466681933176,,,,true
+1000,factor,duration,long,substitution_frequency,frequency,64,436,500,64//1,16//125,,Wilson descriptive simulation interval,0.101526823995,0.160145685308,,,,true
+1000,factor,duration,long,complementarity_frequency,frequency,34,466,500,34//1,17//250,,Wilson descriptive simulation interval,0.0490665074249,0.0935209227339,,,,true
+1000,factor,duration,long,frontier_only_mean_compression_ratio,mean,500,0,500,625//3,5//12,125//17964,,,,0.00373051234197,,,true
+1000,factor,duration,long,innovation_safe_mean_compression_ratio,mean,500,0,500,187//3,187//1500,43031//2245500,,,,0.00619083440572,,,true
+1000,factor,admission,low,frontier_positive_loss_frequency,frequency,110,390,500,110//1,11//50,,Wilson descriptive simulation interval,0.185900932572,0.258368698087,,,,true
+1000,factor,admission,low,mean_positive_frontier_loss,mean,110,390,110,735817//8192,735817//901120,1045143225073//2413905838080,,,,0.0627381054324,,,true
+1000,factor,admission,low,innovation_safe_loss_frequency,frequency,0,500,500,0//1,0//1,,Wilson descriptive simulation interval,4.33680868994e-19,0.00762434046155,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+1000,factor,admission,low,silent_generative_asset_frequency,frequency,108,2392,2500,108//1,27//625,,Wilson descriptive simulation interval,0.0359066803027,0.0518949886273,,,,true
+1000,factor,admission,low,substitution_frequency,frequency,64,436,500,64//1,16//125,,Wilson descriptive simulation interval,0.101526823995,0.160145685308,,,,true
+1000,factor,admission,low,complementarity_frequency,frequency,46,454,500,46//1,23//250,,Wilson descriptive simulation interval,0.0696827236805,0.120538738136,,,,true
+1000,factor,admission,low,frontier_only_mean_compression_ratio,mean,500,0,500,417//2,417//1000,20833//2994000,,,,0.00373048249775,,,true
+1000,factor,admission,low,innovation_safe_mean_compression_ratio,mean,500,0,500,188//3,47//375,10789//561375,,,,0.00619981970849,,,true
+1000,factor,admission,high,frontier_positive_loss_frequency,frequency,286,214,500,286//1,143//250,,Wilson descriptive simulation interval,0.528243850363,0.614658244611,,,,true
+1000,factor,admission,high,mean_positive_frontier_loss,mean,286,214,286,106996249//196608,106996249//56229888,3598060188379643//1050248352890880,,,,0.109447334931,,,true
+1000,factor,admission,high,innovation_safe_loss_frequency,frequency,0,500,500,0//1,0//1,,Wilson descriptive simulation interval,4.33680868994e-19,0.00762434046155,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+1000,factor,admission,high,silent_generative_asset_frequency,frequency,280,2220,2500,280//1,14//125,,Wilson descriptive simulation interval,0.100228293614,0.124962265809,,,,true
+1000,factor,admission,high,substitution_frequency,frequency,192,308,500,192//1,48//125,,Wilson descriptive simulation interval,0.342407674618,0.427361172369,,,,true
+1000,factor,admission,high,complementarity_frequency,frequency,95,405,500,95//1,19//100,,Wilson descriptive simulation interval,0.15802737883,0.226699712256,,,,true
+1000,factor,admission,high,frontier_only_mean_compression_ratio,mean,500,0,500,1249//6,1249//3000,20833//2994000,,,,0.00373048249775,,,true
+1000,factor,admission,high,innovation_safe_mean_compression_ratio,mean,500,0,500,188//3,47//375,7151//374250,,,,0.00618183604283,,,true
+1000,factor,persistence,low,frontier_positive_loss_frequency,frequency,194,302,496,194//1,97//248,,Wilson descriptive simulation interval,0.349176200236,0.43475528825,,,,true
+1000,factor,persistence,low,mean_positive_frontier_loss,mean,194,302,194,1907827//6144,1907827//1191936,22254198177511//7538070257664,,,,0.123360187319,,,true
+1000,factor,persistence,low,innovation_safe_loss_frequency,frequency,0,496,496,0//1,0//1,,Wilson descriptive simulation interval,0,0.00768535453173,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+1000,factor,persistence,low,silent_generative_asset_frequency,frequency,190,2290,2480,190//1,19//248,,Wilson descriptive simulation interval,0.0667872938259,0.0877481164184,,,,true
+1000,factor,persistence,low,substitution_frequency,frequency,128,368,496,128//1,8//31,,Wilson descriptive simulation interval,0.221518789206,0.298328962986,,,,true
+1000,factor,persistence,low,complementarity_frequency,frequency,68,428,496,68//1,17//124,,Wilson descriptive simulation interval,0.109604371285,0.170167257004,,,,true
+1000,factor,persistence,low,frontier_only_mean_compression_ratio,mean,496,0,496,413//2,413//992,20501//2946240,,,,0.00374552434165,,,true
+1000,factor,persistence,low,innovation_safe_mean_compression_ratio,mean,496,0,496,373//6,373//2976,168887//8838720,,,,0.0062067261527,,,true
+1000,factor,persistence,high,frontier_positive_loss_frequency,frequency,202,302,504,202//1,101//252,,Wilson descriptive simulation interval,0.358915587262,0.444172565028,,,,true
+1000,factor,persistence,high,mean_positive_frontier_loss,mean,202,302,202,63605393//196608,63605393//39714816,4275334887948373//1569458359369728,,,,0.116127342043,,,true
+1000,factor,persistence,high,innovation_safe_loss_frequency,frequency,0,504,504,0//1,0//1,,Wilson descriptive simulation interval,4.33680868994e-19,0.00756428754284,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+1000,factor,persistence,high,silent_generative_asset_frequency,frequency,198,2322,2520,198//1,11//140,,Wilson descriptive simulation interval,0.0686959290565,0.0897298141387,,,,true
+1000,factor,persistence,high,substitution_frequency,frequency,128,376,504,128//1,16//63,,Wilson descriptive simulation interval,0.217926052629,0.293732565051,,,,true
+1000,factor,persistence,high,complementarity_frequency,frequency,73,431,504,73//1,73//504,,Wilson descriptive simulation interval,0.116800812942,0.178254772257,,,,true
+1000,factor,persistence,high,frontier_only_mean_compression_ratio,mean,504,0,504,1261//6,1261//3024,63503//9126432,,,,0.00371562042854,,,true
+1000,factor,persistence,high,innovation_safe_mean_compression_ratio,mean,504,0,504,379//6,379//3024,175391//9126432,,,,0.0061750129507,,,true
+1024,factor,frontier_density,sparse,frontier_positive_loss_frequency,frequency,196,316,512,196//1,49//128,,Wilson descriptive simulation interval,0.341730015501,0.425640369434,,,,true
+1024,factor,frontier_density,sparse,mean_positive_frontier_loss,mean,196,316,196,20747551//65536,20747551//12845056,885331165431623//295476570095616,,,,0.123641229777,,,true
+1024,factor,frontier_density,sparse,innovation_safe_loss_frequency,frequency,0,512,512,0//1,0//1,,Wilson descriptive simulation interval,0,0.00744697572288,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+1024,factor,frontier_density,sparse,silent_generative_asset_frequency,frequency,196,2364,2560,196//1,49//640,,Wilson descriptive simulation interval,0.0668850651587,0.0875088258749,,,,true
+1024,factor,frontier_density,sparse,substitution_frequency,frequency,127,385,512,127//1,127//512,,Wilson descriptive simulation interval,0.212606578183,0.287239749428,,,,true
+1024,factor,frontier_density,sparse,complementarity_frequency,frequency,71,441,512,71//1,71//512,,Wilson descriptive simulation interval,0.111417360199,0.171307993351,,,,true
+1024,factor,frontier_density,sparse,frontier_only_mean_compression_ratio,mean,512,0,512,256//1,1//2,0//1,,,,0,,,true
+1024,factor,frontier_density,sparse,innovation_safe_mean_compression_ratio,mean,512,0,512,256//3,1//6,128//4599,,,,0.0073728992534,,,true
+1024,factor,frontier_density,dense,frontier_positive_loss_frequency,frequency,202,310,512,202//1,101//256,,Wilson descriptive simulation interval,0.353132277823,0.437501068618,,,,true
+1024,factor,frontier_density,dense,mean_positive_frontier_loss,mean,202,310,202,15666619//49152,15666619//9928704,521916089921899//196182294921216,,,,0.114761113345,,,true
+1024,factor,frontier_density,dense,innovation_safe_loss_frequency,frequency,0,512,512,0//1,0//1,,Wilson descriptive simulation interval,0,0.00744697572288,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+1024,factor,frontier_density,dense,silent_generative_asset_frequency,frequency,192,2368,2560,192//1,3//40,,Wilson descriptive simulation interval,0.0654215258847,0.0858520474037,,,,true
+1024,factor,frontier_density,dense,substitution_frequency,frequency,129,383,512,129//1,129//512,,Wilson descriptive simulation interval,0.216290803643,0.29130984447,,,,true
+1024,factor,frontier_density,dense,complementarity_frequency,frequency,70,442,512,70//1,35//256,,Wilson descriptive simulation interval,0.109653958612,0.169194234687,,,,true
+1024,factor,frontier_density,dense,frontier_only_mean_compression_ratio,mean,512,0,512,512//3,1//3,0//1,,,,0,,,true
+1024,factor,frontier_density,dense,innovation_safe_mean_compression_ratio,mean,512,0,512,128//3,1//12,32//4599,,,,0.0036864496267,,,true
+1024,factor,module_overlap,low,frontier_positive_loss_frequency,frequency,201,311,512,201//1,201//512,,Wilson descriptive simulation interval,0.351230141698,0.435526044492,,,,true
+1024,factor,module_overlap,low,mean_positive_frontier_loss,mean,201,311,201,62180093//196608,62180093//39518208,2184743272041493//776959583846400,,,,0.118277724998,,,true
+1024,factor,module_overlap,low,innovation_safe_loss_frequency,frequency,0,512,512,0//1,0//1,,Wilson descriptive simulation interval,0,0.00744697572288,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+1024,factor,module_overlap,low,silent_generative_asset_frequency,frequency,191,2369,2560,191//1,191//2560,,Wilson descriptive simulation interval,0.0650558401982,0.0854376536538,,,,true
+1024,factor,module_overlap,low,substitution_frequency,frequency,127,385,512,127//1,127//512,,Wilson descriptive simulation interval,0.212606578183,0.287239749428,,,,true
+1024,factor,module_overlap,low,complementarity_frequency,frequency,72,440,512,72//1,9//64,,Wilson descriptive simulation interval,0.113182716794,0.173419797007,,,,true
+1024,factor,module_overlap,low,frontier_only_mean_compression_ratio,mean,512,0,512,640//3,5//12,32//4599,,,,0.0036864496267,,,true
+1024,factor,module_overlap,low,innovation_safe_mean_compression_ratio,mean,512,0,512,0//1,0//1,0//1,,,,0,,,true
+1024,factor,module_overlap,high,frontier_positive_loss_frequency,frequency,197,315,512,197//1,197//512,,Wilson descriptive simulation interval,0.343628627082,0.427618918104,,,,true
+1024,factor,module_overlap,high,mean_positive_frontier_loss,mean,197,315,197,15682259//49152,15682259//9682944,1059532714531825//373133873774592,,,,0.120058174019,,,true
+1024,factor,module_overlap,high,innovation_safe_loss_frequency,frequency,0,512,512,0//1,0//1,,Wilson descriptive simulation interval,0,0.00744697572288,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+1024,factor,module_overlap,high,silent_generative_asset_frequency,frequency,197,2363,2560,197//1,197//2560,,Wilson descriptive simulation interval,0.067251146317,0.0879228241529,,,,true
+1024,factor,module_overlap,high,substitution_frequency,frequency,129,383,512,129//1,129//512,,Wilson descriptive simulation interval,0.216290803643,0.29130984447,,,,true
+1024,factor,module_overlap,high,complementarity_frequency,frequency,69,443,512,69//1,69//512,,Wilson descriptive simulation interval,0.107892546753,0.167078486295,,,,true
+1024,factor,module_overlap,high,frontier_only_mean_compression_ratio,mean,512,0,512,640//3,5//12,32//4599,,,,0.0036864496267,,,true
+1024,factor,module_overlap,high,innovation_safe_mean_compression_ratio,mean,512,0,512,128//1,1//4,32//4599,,,,0.0036864496267,,,true
+1024,factor,module_complementarity,weak,frontier_positive_loss_frequency,frequency,199,313,512,199//1,199//512,,Wilson descriptive simulation interval,0.347427974637,0.431573891052,,,,true
+1024,factor,module_complementarity,weak,mean_positive_frontier_loss,mean,199,313,199,62842051//196608,62842051//39124992,2189645835593603//761536356286464,,,,0.120202936863,,,true
+1024,factor,module_complementarity,weak,innovation_safe_loss_frequency,frequency,0,512,512,0//1,0//1,,Wilson descriptive simulation interval,0,0.00744697572288,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+1024,factor,module_complementarity,weak,silent_generative_asset_frequency,frequency,194,2366,2560,194//1,97//1280,,Wilson descriptive simulation interval,0.0661531373436,0.0866805948174,,,,true
+1024,factor,module_complementarity,weak,substitution_frequency,frequency,127,385,512,127//1,127//512,,Wilson descriptive simulation interval,0.212606578183,0.287239749428,,,,true
+1024,factor,module_complementarity,weak,complementarity_frequency,frequency,72,440,512,72//1,9//64,,Wilson descriptive simulation interval,0.113182716794,0.173419797007,,,,true
+1024,factor,module_complementarity,weak,frontier_only_mean_compression_ratio,mean,512,0,512,640//3,5//12,32//4599,,,,0.0036864496267,,,true
+1024,factor,module_complementarity,weak,innovation_safe_mean_compression_ratio,mean,512,0,512,64//1,1//8,88//4599,,,,0.00611328511015,,,true
+1024,factor,module_complementarity,strong,frontier_positive_loss_frequency,frequency,199,313,512,199//1,199//512,,Wilson descriptive simulation interval,0.347427974637,0.431573891052,,,,true
+1024,factor,module_complementarity,strong,mean_positive_frontier_loss,mean,199,313,199,10344513//32768,10344513//6520832,2114601302189203//761536356286464,,,,0.118125154244,,,true
+1024,factor,module_complementarity,strong,innovation_safe_loss_frequency,frequency,0,512,512,0//1,0//1,,Wilson descriptive simulation interval,0,0.00744697572288,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+1024,factor,module_complementarity,strong,silent_generative_asset_frequency,frequency,194,2366,2560,194//1,97//1280,,Wilson descriptive simulation interval,0.0661531373436,0.0866805948174,,,,true
+1024,factor,module_complementarity,strong,substitution_frequency,frequency,129,383,512,129//1,129//512,,Wilson descriptive simulation interval,0.216290803643,0.29130984447,,,,true
+1024,factor,module_complementarity,strong,complementarity_frequency,frequency,69,443,512,69//1,69//512,,Wilson descriptive simulation interval,0.107892546753,0.167078486295,,,,true
+1024,factor,module_complementarity,strong,frontier_only_mean_compression_ratio,mean,512,0,512,640//3,5//12,32//4599,,,,0.0036864496267,,,true
+1024,factor,module_complementarity,strong,innovation_safe_mean_compression_ratio,mean,512,0,512,64//1,1//8,88//4599,,,,0.00611328511015,,,true
+1024,factor,project_cost,low,frontier_positive_loss_frequency,frequency,293,219,512,293//1,293//512,,Wilson descriptive simulation interval,0.529029185372,0.614425743918,,,,true
+1024,factor,project_cost,low,mean_positive_frontier_loss,mean,293,219,293,7603045//16384,7603045//4800512,101917557210575//34449395810304,,,,0.100484687913,,,true
+1024,factor,project_cost,low,innovation_safe_loss_frequency,frequency,0,512,512,0//1,0//1,,Wilson descriptive simulation interval,0,0.00744697572288,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+1024,factor,project_cost,low,silent_generative_asset_frequency,frequency,286,2274,2560,286//1,143//1280,,Wilson descriptive simulation interval,0.100092801528,0.124508238774,,,,true
+1024,factor,project_cost,low,substitution_frequency,frequency,193,319,512,193//1,193//512,,Wilson descriptive simulation interval,0.336038454003,0.419700450179,,,,true
+1024,factor,project_cost,low,complementarity_frequency,frequency,97,415,512,97//1,97//512,,Wilson descriptive simulation interval,0.157870175855,0.225661344223,,,,true
+1024,factor,project_cost,low,frontier_only_mean_compression_ratio,mean,512,0,512,640//3,5//12,32//4599,,,,0.0036864496267,,,true
+1024,factor,project_cost,low,innovation_safe_mean_compression_ratio,mean,512,0,512,64//1,1//8,88//4599,,,,0.00611328511015,,,true
+1024,factor,project_cost,high,frontier_positive_loss_frequency,frequency,105,407,512,105//1,105//512,,Wilson descriptive simulation interval,0.172362544741,0.242186257346,,,,true
+1024,factor,project_cost,high,mean_positive_frontier_loss,mean,105,407,105,33672589//196608,33672589//20643840,517691993710447//211054692925440,,,,0.152842301273,,,true
+1024,factor,project_cost,high,innovation_safe_loss_frequency,frequency,0,512,512,0//1,0//1,,Wilson descriptive simulation interval,0,0.00744697572288,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+1024,factor,project_cost,high,silent_generative_asset_frequency,frequency,102,2458,2560,102//1,51//1280,,Wilson descriptive simulation interval,0.0329308779099,0.0481355461101,,,,true
+1024,factor,project_cost,high,substitution_frequency,frequency,63,449,512,63//1,63//512,,Wilson descriptive simulation interval,0.0973679679921,0.154340103549,,,,true
+1024,factor,project_cost,high,complementarity_frequency,frequency,44,468,512,44//1,11//128,,Wilson descriptive simulation interval,0.064638955957,0.113403070814,,,,true
+1024,factor,project_cost,high,frontier_only_mean_compression_ratio,mean,512,0,512,640//3,5//12,32//4599,,,,0.0036864496267,,,true
+1024,factor,project_cost,high,innovation_safe_mean_compression_ratio,mean,512,0,512,64//1,1//8,88//4599,,,,0.00611328511015,,,true
+1024,factor,duration,short,frontier_positive_loss_frequency,frequency,300,212,512,300//1,75//128,,Wilson descriptive simulation interval,0.542786871665,0.627808179383,,,,true
+1024,factor,duration,short,mean_positive_frontier_loss,mean,300,212,300,117763133//196608,117763133//58982400,10578934198080011//3467327098060800,,,,0.100846986145,,,true
+1024,factor,duration,short,innovation_safe_loss_frequency,frequency,0,512,512,0//1,0//1,,Wilson descriptive simulation interval,0,0.00744697572288,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+1024,factor,duration,short,silent_generative_asset_frequency,frequency,292,2268,2560,292//1,73//640,,Wilson descriptive simulation interval,0.102322352013,0.126959164907,,,,true
+1024,factor,duration,short,substitution_frequency,frequency,192,320,512,192//1,3//8,,Wilson descriptive simulation interval,0.334142698307,0.417719045623,,,,true
+1024,factor,duration,short,complementarity_frequency,frequency,107,405,512,107//1,107//512,,Wilson descriptive simulation interval,0.175998246327,0.246304876262,,,,true
+1024,factor,duration,short,frontier_only_mean_compression_ratio,mean,512,0,512,640//3,5//12,32//4599,,,,0.0036864496267,,,true
+1024,factor,duration,short,innovation_safe_mean_compression_ratio,mean,512,0,512,64//1,1//8,88//4599,,,,0.00611328511015,,,true
+1024,factor,duration,long,frontier_positive_loss_frequency,frequency,98,414,512,98//1,49//256,,Wilson descriptive simulation interval,0.159677161506,0.227731518823,,,,true
+1024,factor,duration,long,mean_positive_frontier_loss,mean,98,414,98,1786499//49152,1786499//4816896,2760146155801//22965727002624,,,,0.0350197388331,,,true
+1024,factor,duration,long,innovation_safe_loss_frequency,frequency,0,512,512,0//1,0//1,,Wilson descriptive simulation interval,0,0.00744697572288,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+1024,factor,duration,long,silent_generative_asset_frequency,frequency,96,2464,2560,96//1,3//80,,Wilson descriptive simulation interval,0.030806482331,0.045579465071,,,,true
+1024,factor,duration,long,substitution_frequency,frequency,64,448,512,64//1,1//8,,Wilson descriptive simulation interval,0.0991166386114,0.156468593181,,,,true
+1024,factor,duration,long,complementarity_frequency,frequency,34,478,512,34//1,17//256,,Wilson descriptive simulation interval,0.0479070661282,0.0913633581315,,,,true
+1024,factor,duration,long,frontier_only_mean_compression_ratio,mean,512,0,512,640//3,5//12,32//4599,,,,0.0036864496267,,,true
+1024,factor,duration,long,innovation_safe_mean_compression_ratio,mean,512,0,512,64//1,1//8,88//4599,,,,0.00611328511015,,,true
+1024,factor,admission,low,frontier_positive_loss_frequency,frequency,111,401,512,111//1,111//512,,Wilson descriptive simulation interval,0.183284055272,0.254527708321,,,,true
+1024,factor,admission,low,mean_positive_frontier_loss,mean,111,401,111,1482493//16384,1482493//1818624,703445482307//1638798458880,,,,0.0621857618882,,,true
+1024,factor,admission,low,innovation_safe_loss_frequency,frequency,0,512,512,0//1,0//1,,Wilson descriptive simulation interval,0,0.00744697572288,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+1024,factor,admission,low,silent_generative_asset_frequency,frequency,108,2452,2560,108//1,27//640,,Wilson descriptive simulation interval,0.0350622867441,0.0506846138937,,,,true
+1024,factor,admission,low,substitution_frequency,frequency,64,448,512,64//1,1//8,,Wilson descriptive simulation interval,0.0991166386114,0.156468593181,,,,true
+1024,factor,admission,low,complementarity_frequency,frequency,46,466,512,46//1,23//256,,Wilson descriptive simulation interval,0.0680328867914,0.117763460481,,,,true
+1024,factor,admission,low,frontier_only_mean_compression_ratio,mean,512,0,512,640//3,5//12,32//4599,,,,0.0036864496267,,,true
+1024,factor,admission,low,innovation_safe_mean_compression_ratio,mean,512,0,512,64//1,1//8,88//4599,,,,0.00611328511015,,,true
+1024,factor,admission,high,frontier_positive_loss_frequency,frequency,287,225,512,287//1,287//512,,Wilson descriptive simulation interval,0.517263202218,0.602928765566,,,,true
+1024,factor,admission,high,mean_positive_frontier_loss,mean,287,225,287,107119213//196608,107119213//56426496,123295023922111//36055176708096,,,,0.109156100382,,,true
+1024,factor,admission,high,innovation_safe_loss_frequency,frequency,0,512,512,0//1,0//1,,Wilson descriptive simulation interval,0,0.00744697572288,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+1024,factor,admission,high,silent_generative_asset_frequency,frequency,280,2280,2560,280//1,7//64,,Wilson descriptive simulation interval,0.09786494331,0.122055620374,,,,true
+1024,factor,admission,high,substitution_frequency,frequency,192,320,512,192//1,3//8,,Wilson descriptive simulation interval,0.334142698307,0.417719045623,,,,true
+1024,factor,admission,high,complementarity_frequency,frequency,95,417,512,95//1,95//512,,Wilson descriptive simulation interval,0.154260264589,0.221516934987,,,,true
+1024,factor,admission,high,frontier_only_mean_compression_ratio,mean,512,0,512,640//3,5//12,32//4599,,,,0.0036864496267,,,true
+1024,factor,admission,high,innovation_safe_mean_compression_ratio,mean,512,0,512,64//1,1//8,88//4599,,,,0.00611328511015,,,true
+1024,factor,persistence,low,frontier_positive_loss_frequency,frequency,196,316,512,196//1,49//128,,Wilson descriptive simulation interval,0.341730015501,0.425640369434,,,,true
+1024,factor,persistence,low,mean_positive_frontier_loss,mean,196,316,196,7662967//24576,7662967//4816896,67665354499699//23084107038720,,,,0.122292157039,,,true
+1024,factor,persistence,low,innovation_safe_loss_frequency,frequency,0,512,512,0//1,0//1,,Wilson descriptive simulation interval,0,0.00744697572288,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+1024,factor,persistence,low,silent_generative_asset_frequency,frequency,190,2370,2560,190//1,19//256,,Wilson descriptive simulation interval,0.0646902353066,0.0850231791091,,,,true
+1024,factor,persistence,low,substitution_frequency,frequency,128,384,512,128//1,1//4,,Wilson descriptive simulation interval,0.214448189722,0.289275298139,,,,true
+1024,factor,persistence,low,complementarity_frequency,frequency,68,444,512,68//1,17//128,,Wilson descriptive simulation interval,0.106133160575,0.164960712221,,,,true
+1024,factor,persistence,low,frontier_only_mean_compression_ratio,mean,512,0,512,640//3,5//12,32//4599,,,,0.0036864496267,,,true
+1024,factor,persistence,low,innovation_safe_mean_compression_ratio,mean,512,0,512,64//1,1//8,88//4599,,,,0.00611328511015,,,true
+1024,factor,persistence,high,frontier_positive_loss_frequency,frequency,202,310,512,202//1,101//256,,Wilson descriptive simulation interval,0.353132277823,0.437501068618,,,,true
+1024,factor,persistence,high,mean_positive_frontier_loss,mean,202,310,202,63605393//196608,63605393//39714816,4275334887948373//1569458359369728,,,,0.116127342043,,,true
+1024,factor,persistence,high,innovation_safe_loss_frequency,frequency,0,512,512,0//1,0//1,,Wilson descriptive simulation interval,0,0.00744697572288,,sparse_events,event or nonevent support is below the registered sparse-count threshold,true
+1024,factor,persistence,high,silent_generative_asset_frequency,frequency,198,2362,2560,198//1,99//1280,,Wilson descriptive simulation interval,0.0676173049188,0.0883367449875,,,,true
+1024,factor,persistence,high,substitution_frequency,frequency,128,384,512,128//1,1//4,,Wilson descriptive simulation interval,0.214448189722,0.289275298139,,,,true
+1024,factor,persistence,high,complementarity_frequency,frequency,73,439,512,73//1,73//512,,Wilson descriptive simulation interval,0.114949994857,0.175529679195,,,,true
+1024,factor,persistence,high,frontier_only_mean_compression_ratio,mean,512,0,512,640//3,5//12,32//4599,,,,0.0036864496267,,,true
+1024,factor,persistence,high,innovation_safe_mean_compression_ratio,mean,512,0,512,64//1,1//8,88//4599,,,,0.00611328511015,,,true

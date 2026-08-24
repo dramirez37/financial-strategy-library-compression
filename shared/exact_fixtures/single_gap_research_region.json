@@ -1,0 +1,77 @@
+{
+  "schema_version": "lean-julia-exact-fixture-v2",
+  "fixture_id": "single_gap_research_region",
+  "theorem_family": "S5 destructive-kernel compatibility fixture",
+  "beliefs": ["left", "middle", "right"],
+  "transition_rows": [
+    ["0//1", "1//1", "0//1"],
+    ["1//1", "0//1", "0//1"],
+    ["0//1", "1//1", "0//1"]
+  ],
+  "discount": "1//1",
+  "modules": ["marker"],
+  "strategies": [
+    {
+      "id": "inactive",
+      "operational_profile": ["0//1", "0//1", "0//1"],
+      "modules": []
+    },
+    {
+      "id": "candidate",
+      "operational_profile": ["0//1", "1//1", "0//1"],
+      "modules": ["marker"]
+    }
+  ],
+  "libraries": [
+    {
+      "id": "current",
+      "strategies": ["inactive"]
+    }
+  ],
+  "projects": [
+    {
+      "id": "innovate",
+      "cost": ["1//2", "1//2", "1//2"],
+      "duration": 1,
+      "survival": "1//1",
+      "strict_cost": false,
+      "required_modules": [],
+      "candidate_strategies": ["candidate"]
+    }
+  ],
+  "expected": {
+    "rational_scalars": [
+    {
+      "id": "connected_components",
+      "value": "2//1"
+    }
+  ],
+    "rational_vectors": [
+    {
+      "id": "candidate_gap",
+      "values": ["0//1", "1//1", "0//1"]
+    },
+    {
+      "id": "coverage_potential",
+      "values": ["1//1", "0//1", "1//1"]
+    }
+  ],
+    "boolean_scalars": [
+    {
+      "id": "kernel_stochastically_monotone",
+      "value": false
+    },
+    {
+      "id": "region_disconnected",
+      "value": true
+    }
+  ],
+    "boolean_vectors": [
+    {
+      "id": "research_region",
+      "values": [true, false, true]
+    }
+  ],
+    "string_vectors": []
+  }
+}

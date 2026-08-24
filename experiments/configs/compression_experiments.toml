@@ -1,0 +1,23 @@
+schema_version = "innovation-safe-compression-v1"
+experiment_id = "innovation-safe-library-compression-v1"
+julia_version = "1.12.6"
+seed = 4850180331074310995
+
+[exact_fixture]
+arithmetic = "Rational{BigInt}"
+lean_family = "F4"
+loss_target = 5
+horizon = 2
+discount = "1//2"
+
+[minimum_search]
+arithmetic = "Rational{BigInt}"
+max_optional_strategies = 20
+method = "cardinality-ordered exhaustive enumeration"
+
+[scaling]
+arithmetic = "Float64"
+strategy_counts = [16, 32, 64, 128]
+belief_count = 8
+module_count = 6
+value_atol = 1.0e-12

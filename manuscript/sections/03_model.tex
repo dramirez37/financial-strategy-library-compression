@@ -1,0 +1,227 @@
+% Page budget: approximately 4 pages.
+\section{Dynamic library model and sufficient state}\label{sec:model}
+
+The model is specified first on raw verified libraries.  Research then
+generates and verifies a catalog candidate, admission updates the raw library,
+and the compressed process is obtained by projecting that raw evolution.
+
+\subsection{Hidden market state and filtered belief}
+
+Let \(X=\Fin(m)\), \(2\le m\), be the hidden market-state type and let \(B\) be
+a nonempty finite grid of filtered beliefs.  The controller observes \(b\in B\)
+rather than \(x\in X\).  Each grid point has an injective rational
+interpretation \(b\mapsto\mu_b\), at least one \(\mu_b\) is non-Dirac, and the
+already-filtered belief evolves under an exact rational Markov kernel \(P_B\).
+Economically, \(x\) is the unobserved market regime and \(b\) is the
+controller's decision-relevant assessment of that regime.  All carriers below
+are finite and have decidable equality; the probability-table and
+normalization conventions are in \cref{app:ratprob}.
+
+\subsection{Strategy operating profiles}
+
+Each strategy identifier \(s\in S\) has an immutable state-contingent operating
+payoff \(u_s:X\to\Q\).  Its belief-indexed \emph{operational profile} is
+\begin{equation}\label{eq:operational-profile}
+  j_s(b):=\sum_{x\in X}\mu_b(x)u_s(x).
+\end{equation}
+Thus \(j_s(b)\) is the expected payoff from operating \(s\) now; project and
+continuation values are introduced separately below.  A distinguished
+inactive strategy \(s_0\) has zero operating payoff.
+
+\subsection{Modules and closure}
+
+Each strategy also carries an immutable finite set of modules, so its complete
+catalog row is
+\[
+  \sigma_s=(s,u_s,\mods(s)),
+  \qquad \mods(s)\in\powersetfin(M),
+  \qquad \mods(s_0)=\varnothing.
+\]
+Economically, modules are reusable capabilities: they do not enter operating
+payoff directly, but they can be combined to support later research.  The set
+of capabilities available after all such combinations is represented by an
+extensive, monotone, and idempotent closure operator
+\[
+  \cl:\powersetfin(M)\to\powersetfin(M).
+\]
+
+\subsection{Raw library}
+
+A \emph{raw verified library} is a set \(L\subseteq S\) containing \(s_0\).
+Economically, \(L\) is the catalog of strategy identities currently retained
+and verified.  Define
+\begin{align}
+  F_L(b)&:=\max_{s\in L}j_s(b),
+  &U_L&:=\bigcup_{s\in L}\mods(s),\label{eq:frontier-union}\\
+  C_L&:=\cl(U_L).\label{eq:raw-library-closure}
+\end{align}
+Here \(F_L\) is the best currently attainable operating profile, \(U_L\) is
+the raw module inventory, and \(C_L\) is the resulting set of generative
+capabilities.  The raw decision state is \((b,L)\).  Continue earns \(F_L(b)\),
+advances the belief once under \(P_B\), and leaves \(L\) unchanged.  The
+elementary frontier and closure calculus is recorded in
+\cref{lem:frontier-closure-calculus}.
+
+\subsection{Positive-duration generation, verification, and admission}
+
+Economically, a research project uses the incumbent library's capabilities
+over a positive number of periods to seek a new verified strategy.  Each
+project \(q\in Q\) has prerequisites
+\(\operatorname{req}(q)\in\powersetfin(M)\).  At initiation belief \(b\) and
+closure \(C\), candidate generation follows
+\[
+  G(q,b,C)\in\Delta_{\Q}(\operatorname{Option}(S)),
+\]
+with the point mass on \(\operatorname{none}\) when the prerequisites are not
+contained in \(C\).  A generated \(s\) passes verification with probability
+\(\nu(q,b,C,s)\).  The admitted law is derived from these two stages:
+\[
+  \Gamma(q,b,C)(\operatorname{some}(s))
+  =G(q,b,C)(\operatorname{some}(s))\nu(q,b,C,s),
+\]
+with all failed-generation and failed-verification mass assigned to
+\(\operatorname{none}\).  Because \(G\) sees only \((q,b,C)\), generation cannot
+inspect raw identifiers, multiplicity, provenance, age, or admission order.
+
+For a frontier--closure pair \(K=(F,C)\), let \(A(K)\) be the available finite
+project menu.  A project \(q\in A(K)\) has initiation cost
+\(\kappa_q(b,K)\ge0\), strictly positive duration \(d_q\), and an operation
+flag \(o_q\in\{0,1\}\).  Its exact joint completion law
+\(\Lambda_q(\mathbf b,o\mid b,K)\) couples the \(P_B\)-belief path with the
+admitted outcome \(o\sim\Gamma(q,b,C)\); the components may be correlated.
+During research the incumbent earns
+\[
+  -\kappa_q(b,K)+\sum_{t=0}^{d_q-1}\beta^t o_qF(b_t),
+  \qquad 0\le\beta<1.
+\]
+The old library remains in force through date \(d_q-1\), the outcome is
+applied at date \(d_q\), and continuation starts from the terminal belief.
+Appendix~A gives the full path marginals and normalization identities.
+
+\subsection{Raw update}
+
+Economically, successful admission adds one verified candidate, whereas every
+other outcome leaves the incumbent catalog unchanged.  Formally,
+\begin{equation}\label{eq:raw-library-update}
+  L\oplus\operatorname{none}=L,
+  \qquad
+  L\oplus\operatorname{some}(s)=L\cup\{s\}.
+\end{equation}
+The corresponding raw terminal law is the pushforward
+\begin{equation}\label{eq:raw-terminal-transition}
+  \mathcal Q_q^{\rm raw}(\,\cdot\mid b,L)
+  :=(\mathbf b,o\mapsto(b_{d_q},L\oplus o))_{\#}
+    \Lambda_q(\,\cdot\mid b,(F_L,C_L)).
+\end{equation}
+
+\subsection{Compressed frontier--closure state}
+
+\begin{definition}[Compressed frontier--closure state]
+\label{def:finite-library-state}
+The compressed innovation state is
+\begin{equation}\label{eq:closure-compression}
+  K_L:=(F_L,C_L).
+\end{equation}
+Economically, the frontier records what the library can operate now and the
+closure records what it can help generate later.  The realizable set
+\(\mathcal K:=\{K_L:L\text{ is a raw verified library}\}\) is finite because
+\(S\) is finite.
+\end{definition}
+
+For an admitted outcome define
+\[
+  \operatorname{addK}(K,\operatorname{none})=K,
+  \qquad
+  \operatorname{addK}((F,C),\operatorname{some}(s))
+  =\left(b\mapsto\max\{F(b),j_s(b)\},
+    \cl(C\cup\mods(s))\right).
+\]
+This map is the compressed effect of adding an admitted catalog row.  Closure
+idempotence gives the local identity
+\begin{equation}\label{eq:raw-compressed-local-update}
+  K_{L\oplus o}=\operatorname{addK}(K_L,o).
+\end{equation}
+Applying \(L\mapsto K_L\) to the raw law in
+\cref{eq:raw-terminal-transition} yields the next-state laws
+\(\overline T_q\) and \(\overline{\mathcal Q}_q\): they are the pushforwards of
+\(\Gamma\) and \(\Lambda_q\) through \(\operatorname{addK}\) and
+\((\mathbf b,o)\mapsto(b_{d_q},\operatorname{addK}(K,o))\), respectively.
+Thus the compressed transition is derived from the raw law, not separately
+postulated.
+
+\subsection{Projection theorem}
+
+Economically, two raw libraries with the same frontier--closure state support
+the same operating and research opportunities even when their retained
+strategy identities differ.
+
+\begin{theorem}[Raw-to-compressed controlled Markov projection]
+\label{thm:raw-to-compressed-projection}
+In the finite exact model above:
+\begin{enumerate}
+  \item \(\overline T_q\) and \(\overline{\mathcal Q}_q\) are normalized and
+    supported on realizable compressed states;
+  \item if \(K_L=K_{\widetilde L}\), every project has the same availability,
+    cost, duration, operating-reward block, and joint terminal
+    belief--next-compressed-state law from \(L\) and \(\widetilde L\);
+  \item at embedded decision epochs,
+    \((B_{\tau_n},K_{L_n})\) is the controlled semi-Markov projection of
+    \((B_{\tau_n},L_n)\); and
+  \item for every finite calendar horizon \(h\), belief \(b\), and raw library
+    \(L\),
+    \[
+      V_h^{\rm raw}(b,L)=\bar V_h(b,K_L).
+    \]
+    The stationary raw and compressed Bellman fixed points also agree under
+    \(L\mapsto K_L\), and a maximizing stationary compressed selector lifts to
+    a Bellman-optimal raw selector.
+\end{enumerate}
+\end{theorem}
+
+The projection, quotient, and restricted representation-refinement arguments
+are in \cref{app:di-quotient}.  Finiteness supplies normalization
+and attained action maxima, positive duration makes the calendar-horizon
+induction well founded, and contraction is used only for the stationary
+clauses.  The proof leaves the joint completion law unfactorized, so it permits
+correlation between the belief path and admission outcome.  Detectability does
+not enter this result.  The Markov state is stated at decision epochs; during
+an unfinished project it must also record the project and remaining duration.
+
+\subsection{Resource burden and exact compression}
+\label{subsec:retention-resources}
+
+Resource burden is an outer retention decision, not operating payoff or
+project cost.  Each active strategy has a fixed rational weight \(w_s>0\),
+while \(w_{s_0}=0\), and the library's one-time retention burden is
+\begin{equation}\label{eq:library-burden}
+  W(L):=\sum_{s\in L}w_s.
+\end{equation}
+Economically, \(W(L)\) can commensurate storage, validation, maintenance,
+monitoring, retrieval, and governance requirements.  If
+\(S_\theta^{\mathrm{elig}}\) is the finite outer-certified catalog, write
+\(\mathfrak L_\theta=\{L'\subseteq S_\theta^{\mathrm{elig}}:s_0\in L'\}\).
+Later capacity and price problems optimize over this family.  Equal compressed
+states can have unequal burdens, so a resource optimizer must retain the raw
+library \(L\) or augment \(K_L\) by \(W(L)\).
+
+For compression of a specified source \(L\), define
+\begin{equation}\label{eq:safe-compression-family}
+  \mathcal P_{\mathrm{safe}}(L)
+  :=\{L'\subseteq L:s_0\in L',\ K_{L'}=K_L\}.
+\end{equation}
+This family contains exactly the source sublibraries that preserve both the
+current operating frontier and the generative closure.  By the projection
+theorem, every member therefore has the same project menus,
+positive-duration research laws, future compressed updates, and productive
+values as the source.  Resource minimization changes only the retained raw
+representation of that control process.  The detectability result in
+\cref{sec:compression} gives the corresponding observable converse.  Exact
+safe compression is
+\begin{equation}\label{eq:minimum-safe-compression}
+  \boxed{
+  \begin{aligned}
+    \underset{L'\subseteq L}{\operatorname{minimize}}\quad &W(L')\\
+    \text{subject to}\quad &s_0\in L',\\
+                            &K_{L'}=K_L.
+  \end{aligned}}
+\end{equation}

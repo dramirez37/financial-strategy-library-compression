@@ -1,0 +1,151 @@
+schema_version = "theorem-mechanism-experiments-v2"
+experiment_id = "theorem-mechanism-controlled-suite-v2"
+run_date = "2026-07-21"
+julia_version = "1.12.6"
+source_base_commit = "dc8388973e3a73778210e0a896cca3faf301961a"
+seed = 6075990691714899795
+
+[dynamic_quotient]
+arithmetic = "Rational{BigInt}"
+horizon = 3
+stress_trials = 64
+belief_count = 3
+expected = "raw libraries with distinct strategy identities but equal frontier and closure have identical finite-horizon values and policies"
+
+[frontier_closure]
+arithmetic = "Rational{BigInt}"
+horizon = 2
+discount = "1//2"
+future_reward = "8//1"
+expected = "frontier-only changes move passive operational value; closure-only changes move the research-option premium"
+
+[safe_deletion]
+arithmetic = "Rational{BigInt}"
+horizon = 3
+expected = "stepwise deletion of strategies redundant in both components preserves compressed state, value, and policy"
+
+[frontier_pruning]
+arithmetic = "Rational{BigInt}"
+horizon = 2
+discount = "1//2"
+future_rewards = [0, 2, 4, 10, 20, 40]
+expected = "frontier-only pruning loss equals one half of the enabled future reward"
+
+[value_decomposition]
+arithmetic = "Rational{BigInt}"
+horizon = 2
+discount = "1//2"
+expected = "total innovation equals operational innovation plus the change in research-option premium"
+
+[coverage_geometry]
+arithmetic = "Rational{BigInt}"
+weak_cost = "1//2"
+strict_cost = "1//1"
+expected = "the four geometry fixtures retain their preregistered component counts; exact coverage potential recovers the same fixed-candidate ranking as date-first gross value; bounded score error preserves the separated top candidate; redundancy-aware marginal selection improves on individual-score top-k"
+
+[coverage_ranking]
+arithmetic = "Rational{BigInt}"
+initial_belief = 1
+horizon = 2
+discount = "1//1"
+survival = "1//1"
+selection_count = 2
+transition = [
+  ["0//1", "3//4", "1//4"],
+  ["0//1", "1//1", "0//1"],
+  ["0//1", "0//1", "1//1"],
+]
+
+[[coverage_ranking.candidates]]
+candidate_id = "future-common"
+gap = ["1//1", "12//1", "0//1"]
+raw_parameter_novelty = "1//1"
+stable_score_error = "-1//2"
+stress_score_error = "-1//1"
+
+[[coverage_ranking.candidates]]
+candidate_id = "future-common-clone"
+gap = ["1//2", "32//3", "0//1"]
+raw_parameter_novelty = "2//1"
+stable_score_error = "1//2"
+stress_score_error = "1//1"
+
+[[coverage_ranking.candidates]]
+candidate_id = "current-specialist"
+gap = ["33//4", "0//1", "0//1"]
+raw_parameter_novelty = "4//1"
+stable_score_error = "0//1"
+stress_score_error = "0//1"
+
+[[coverage_ranking.candidates]]
+candidate_id = "balanced"
+gap = ["3//1", "6//1", "1//1"]
+raw_parameter_novelty = "3//1"
+stable_score_error = "0//1"
+stress_score_error = "0//1"
+
+[[coverage_ranking.candidates]]
+candidate_id = "rare-state-specialist"
+gap = ["2//1", "0//1", "20//1"]
+raw_parameter_novelty = "5//1"
+stable_score_error = "0//1"
+stress_score_error = "0//1"
+
+[[coverage_ranking.candidates]]
+candidate_id = "rare-state-clone"
+gap = ["1//4", "0//1", "24//1"]
+raw_parameter_novelty = "6//1"
+stable_score_error = "0//1"
+stress_score_error = "0//1"
+
+[coverage_ranking.expected]
+coverage_order = ["future-common", "future-common-clone", "current-specialist", "balanced", "rare-state-specialist", "rare-state-clone"]
+top_margin = "3//2"
+current_belief_top = "current-specialist"
+average_gap_top = "rare-state-clone"
+raw_parameter_novelty_top = "rare-state-clone"
+stable_error_bound = "1//2"
+stable_top = "future-common"
+stress_error_bound = "1//1"
+stress_top = "future-common-clone"
+individual_selection = ["future-common", "future-common-clone"]
+marginal_selection = ["future-common", "current-specialist"]
+individual_set_value = "10//1"
+marginal_set_value = "69//4"
+
+[dynamic_policy]
+arithmetic = "Float64"
+belief_grid_size = 61
+signal_scale = 0.085
+value_tolerance = 1.0e-9
+maximum_iterations = 5000
+baseline_cost = 0.18
+baseline_delay = 1
+baseline_persistence = 0.75
+baseline_discount = 0.82
+costs = [0.08, 0.18, 0.32]
+delays = [0, 1, 3]
+persistences = [0.35, 0.75, 0.95]
+discounts = [0.65, 0.82, 0.94]
+expected = "research regions shrink with cost and delay, expand with discounting, and are mapped under persistence changes"
+
+[outputs]
+raw = "experiments/results/raw/theorem_mechanism_observations.csv"
+summary_json = "experiments/results/summaries/theorem_mechanism_summary.json"
+summary_csv = "experiments/results/summaries/theorem_mechanism_summary.csv"
+policy_summary_csv = "experiments/results/summaries/theorem_mechanism_policy_summary.csv"
+decomposition_csv = "experiments/results/summaries/theorem_mechanism_decomposition.csv"
+metadata = "experiments/results/summaries/theorem_mechanism_metadata.json"
+report = "experiments/results/SYNTHETIC_REPORT.md"
+pruning_figure_data = "experiments/results/summaries/theorem_mechanism_pruning_loss.csv"
+decomposition_figure_data = "experiments/results/summaries/theorem_mechanism_decomposition_figure.csv"
+coverage_figure_data = "experiments/results/summaries/theorem_mechanism_coverage_geometry.csv"
+coverage_ranking_csv = "experiments/results/summaries/theorem_mechanism_coverage_ranking.csv"
+coverage_ranking_summary_csv = "experiments/results/summaries/theorem_mechanism_coverage_ranking_summary.csv"
+coverage_selection_csv = "experiments/results/summaries/theorem_mechanism_coverage_selection.csv"
+policy_figure_data = "experiments/results/summaries/theorem_mechanism_policy_map.csv"
+pruning_figure = "manuscript/figures/theorem_mechanism_pruning_loss.svg"
+decomposition_figure = "manuscript/figures/theorem_mechanism_value_decomposition.svg"
+coverage_figure = "manuscript/figures/theorem_mechanism_coverage_geometry.svg"
+coverage_ranking_figure = "manuscript/figures/theorem_mechanism_coverage_ranking.svg"
+policy_figure = "manuscript/figures/theorem_mechanism_policy_map.svg"

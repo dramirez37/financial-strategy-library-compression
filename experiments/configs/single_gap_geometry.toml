@@ -1,0 +1,25 @@
+schema_version = "single-gap-geometry-v1"
+experiment_id = "single-gap-coverage-region-audit-v1"
+arithmetic = "Rational{BigInt}"
+search_order = "complete lexicographic finite enumeration"
+stop_after_first_witness = true
+
+[kernel_search]
+belief_states = 3
+gap_grid = [0, 1, 2]
+kernel_class = "deterministic row-stochastic"
+require_strict_interior_peak = true
+require_connected_positive_support = true
+
+[cost_search]
+belief_states = 3
+potential = [1, 2, 3]
+cost_grid = [0, 1, 2, 3]
+
+[positive_class_check]
+belief_states = 3
+gap_grid = [0, 1, 2]
+survival_grid = [0, 1, 2]
+discount_grid = [0, 1, 2]
+cost_grid = [0, 1, 2, 3]
+kernel_class = "stochastically monotone deterministic"

@@ -1,0 +1,37 @@
+schema_version = "unified-benchmark-selected-v1"
+experiment_id = "unified-positive-duration-benchmark-search-v1"
+candidate_id = "C0424"
+arithmetic = "Rational{BigInt}"
+randomness = "none"
+source_search = "experiments/configs/unified_benchmark_search.toml"
+legacy_fixture = "experiments/configs/canonical_discounted_dp.toml"
+
+[parameters]
+discount = "1//2"
+discover_cost_low = "1//32"
+discover_cost_high = "1//1"
+scale_cost = "3//16"
+scale_duration = 2
+scale_admission = "3//4"
+survival = "1//1"
+scale_generation = "1//1"
+scale_admitted_success = "3//4"
+
+[structure]
+belief_count = 2
+raw_strategy_count = 4
+raw_library_count = 8
+compressed_state_count = 3
+discover_duration = 1
+discover_operates = true
+scale_operates = true
+policy_signature = "research:discover|continue|research:scale|research:scale|continue|continue"
+
+[certificates]
+minimum_action_margin = "3//16"
+stability_minimum_margin = "11//64"
+policy_iterations = 3
+policy_equation_residual = "0//1"
+bellman_residual = "0//1"
+raw_compressed_equal = true
+policy_lift = true

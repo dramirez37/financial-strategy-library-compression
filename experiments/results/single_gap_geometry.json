@@ -1,0 +1,84 @@
+{
+  "arithmetic": "Rational{BigInt}",
+  "complete_finite_search_order": true,
+  "config_file": "experiments/configs/single_gap_geometry.toml",
+  "experiment_id": "single-gap-coverage-region-audit-v1",
+  "julia_version": "1.12.6",
+  "schema_version": "single-gap-geometry-v1",
+  "state_count": 3,
+  "stop_after_first_witness": true,
+  "verified_monotone_deterministic_class": {
+    "all_hold": true,
+    "checks": 60000
+  },
+  "witnesses": {
+    "cost_disconnection": {
+      "checked": 13,
+      "cost": [
+        "0//1",
+        "3//1",
+        "0//1"
+      ],
+      "cost_antitone": false,
+      "id": "CX-SG-COST-01",
+      "potential": [
+        "1//1",
+        "2//1",
+        "3//1"
+      ],
+      "potential_monotone": true,
+      "region": [
+        true,
+        false,
+        true
+      ]
+    },
+    "kernel_destroys_unimodality": {
+      "checked": 11,
+      "destinations": [
+        2,
+        1,
+        2
+      ],
+      "gap": [
+        "0//1",
+        "1//1",
+        "0//1"
+      ],
+      "gap_interval_support": true,
+      "gap_quasiconcave": true,
+      "gap_single_peaked": true,
+      "id": "CX-SG-KERNEL-01",
+      "kernel": [
+        [
+          "0//1",
+          "1//1",
+          "0//1"
+        ],
+        [
+          "1//1",
+          "0//1",
+          "0//1"
+        ],
+        [
+          "0//1",
+          "1//1",
+          "0//1"
+        ]
+      ],
+      "kernel_stochastically_monotone": false,
+      "potential": [
+        "1//1",
+        "0//1",
+        "1//1"
+      ],
+      "potential_quasiconcave": false,
+      "region": [
+        true,
+        false,
+        true
+      ],
+      "threshold": "1//1"
+    }
+  }
+}

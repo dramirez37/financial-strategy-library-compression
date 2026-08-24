@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="430" viewBox="0 0 980 430" role="img" aria-labelledby="title desc">
+<title id="title">Capacity-optimal selected-library path</title>
+<desc id="desc">Each row uses the minimum-burden, lowest-mask member of the exact optimizer correspondence; CSV certificates retain every tie.</desc>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;fill:#172a3a}.title{font-size:20px;font-weight:650}.subtitle{font-size:12px;fill:#66717e}.axis{font-size:11px;fill:#66717e}.label{font-size:12px}.small{font-size:10px;fill:#66717e}</style>
+<text x="55" y="35" class="title">Optimal library path</text>
+<text x="55" y="55" class="subtitle">Capacity path; ties use the declared minimum-burden then lowest-mask display selection.</text>
+<text x="235" y="103" text-anchor="end" class="label">equal active · low</text>
+<rect x="250.0" y="85" width="123.63636363636363" height="28" fill="#c8d0d8" stroke="#ffffff"><title>B∈[1//1,2//1): I</title></rect>
+<text x="311.8181818181818" y="104" text-anchor="middle" font-size="11" fill="#ffffff">I</text>
+<rect x="373.6363636363636" y="85" width="123.63636363636363" height="28" fill="#c65d32" stroke="#ffffff"><title>B∈[2//1,3//1): I+D</title></rect>
+<text x="435.45454545454544" y="104" text-anchor="middle" font-size="11" fill="#ffffff">I+D</text>
+<rect x="497.27272727272725" y="85" width="123.63636363636374" height="28" fill="#c65d32" stroke="#ffffff"><title>B∈[3//1,4//1): I+D;I+A+D;I+B+D</title></rect>
+<text x="559.0909090909091" y="104" text-anchor="middle" font-size="11" fill="#ffffff">I+D</text>
+<rect x="620.909090909091" y="85" width="309.090909090909" height="28" fill="#c65d32" stroke="#ffffff"><title>B∈[4//1,13//2): I+D;I+A+D;I+B+D;I+A+B+D</title></rect>
+<text x="775.4545454545455" y="104" text-anchor="middle" font-size="11" fill="#ffffff">I+D</text>
+<text x="235" y="146" text-anchor="end" class="label">equal active · high</text>
+<rect x="250.0" y="128" width="123.63636363636363" height="28" fill="#c8d0d8" stroke="#ffffff"><title>B∈[1//1,2//1): I</title></rect>
+<text x="311.8181818181818" y="147" text-anchor="middle" font-size="11" fill="#ffffff">I</text>
+<rect x="373.6363636363636" y="128" width="123.63636363636363" height="28" fill="#c65d32" stroke="#ffffff"><title>B∈[2//1,3//1): I+D</title></rect>
+<text x="435.45454545454544" y="147" text-anchor="middle" font-size="11" fill="#ffffff">I+D</text>
+<rect x="497.27272727272725" y="128" width="123.63636363636374" height="28" fill="#c65d32" stroke="#ffffff"><title>B∈[3//1,4//1): I+D;I+A+D;I+B+D</title></rect>
+<text x="559.0909090909091" y="147" text-anchor="middle" font-size="11" fill="#ffffff">I+D</text>
+<rect x="620.909090909091" y="128" width="309.090909090909" height="28" fill="#c65d32" stroke="#ffffff"><title>B∈[4//1,13//2): I+D;I+A+D;I+B+D;I+A+B+D</title></rect>
+<text x="775.4545454545455" y="147" text-anchor="middle" font-size="11" fill="#ffffff">I+D</text>
+<text x="235" y="189" text-anchor="end" class="label">carrier heavy · low</text>
+<rect x="250.0" y="171" width="123.63636363636363" height="28" fill="#c8d0d8" stroke="#ffffff"><title>B∈[1//1,2//1): I</title></rect>
+<text x="311.8181818181818" y="190" text-anchor="middle" font-size="11" fill="#ffffff">I</text>
+<rect x="373.6363636363636" y="171" width="123.63636363636363" height="28" fill="#c65d32" stroke="#ffffff"><title>B∈[2//1,3//1): I+D</title></rect>
+<text x="435.45454545454544" y="190" text-anchor="middle" font-size="11" fill="#ffffff">I+D</text>
+<rect x="497.27272727272725" y="171" width="123.63636363636374" height="28" fill="#c65d32" stroke="#ffffff"><title>B∈[3//1,4//1): I+D</title></rect>
+<text x="559.0909090909091" y="190" text-anchor="middle" font-size="11" fill="#ffffff">I+D</text>
+<rect x="620.909090909091" y="171" width="123.63636363636351" height="28" fill="#c65d32" stroke="#ffffff"><title>B∈[4//1,5//1): I+D;I+A+D;I+B+D</title></rect>
+<text x="682.7272727272727" y="190" text-anchor="middle" font-size="11" fill="#ffffff">I+D</text>
+<rect x="744.5454545454545" y="171" width="123.63636363636363" height="28" fill="#c65d32" stroke="#ffffff"><title>B∈[5//1,6//1): I+D;I+A+D;I+B+D</title></rect>
+<text x="806.3636363636363" y="190" text-anchor="middle" font-size="11" fill="#ffffff">I+D</text>
+<rect x="868.1818181818181" y="171" width="61.81818181818187" height="28" fill="#c65d32" stroke="#ffffff"><title>B∈[6//1,13//2): I+D;I+A+D;I+B+D;I+A+B+D</title></rect>
+<text x="899.090909090909" y="190" text-anchor="middle" font-size="11" fill="#ffffff">I+D</text>
+<text x="235" y="232" text-anchor="end" class="label">carrier heavy · high</text>
+<rect x="250.0" y="214" width="123.63636363636363" height="28" fill="#c8d0d8" stroke="#ffffff"><title>B∈[1//1,2//1): I</title></rect>
+<text x="311.8181818181818" y="233" text-anchor="middle" font-size="11" fill="#ffffff">I</text>
+<rect x="373.6363636363636" y="214" width="123.63636363636363" height="28" fill="#c65d32" stroke="#ffffff"><title>B∈[2//1,3//1): I+D</title></rect>
+<text x="435.45454545454544" y="233" text-anchor="middle" font-size="11" fill="#ffffff">I+D</text>
+<rect x="497.27272727272725" y="214" width="123.63636363636374" height="28" fill="#c65d32" stroke="#ffffff"><title>B∈[3//1,4//1): I+D</title></rect>
+<text x="559.0909090909091" y="233" text-anchor="middle" font-size="11" fill="#ffffff">I+D</text>
+<rect x="620.909090909091" y="214" width="123.63636363636351" height="28" fill="#c65d32" stroke="#ffffff"><title>B∈[4//1,5//1): I+D;I+A+D;I+B+D</title></rect>
+<text x="682.7272727272727" y="233" text-anchor="middle" font-size="11" fill="#ffffff">I+D</text>
+<rect x="744.5454545454545" y="214" width="123.63636363636363" height="28" fill="#c65d32" stroke="#ffffff"><title>B∈[5//1,6//1): I+D;I+A+D;I+B+D</title></rect>
+<text x="806.3636363636363" y="233" text-anchor="middle" font-size="11" fill="#ffffff">I+D</text>
+<rect x="868.1818181818181" y="214" width="61.81818181818187" height="28" fill="#c65d32" stroke="#ffffff"><title>B∈[6//1,13//2): I+D;I+A+D;I+B+D;I+A+B+D</title></rect>
+<text x="899.090909090909" y="233" text-anchor="middle" font-size="11" fill="#ffffff">I+D</text>
+<text x="235" y="275" text-anchor="end" class="label">descendant heavy · low</text>
+<rect x="250.0" y="257" width="123.63636363636363" height="28" fill="#c8d0d8" stroke="#ffffff"><title>B∈[1//1,2//1): I</title></rect>
+<text x="311.8181818181818" y="276" text-anchor="middle" font-size="11" fill="#ffffff">I</text>
+<rect x="373.6363636363636" y="257" width="123.63636363636363" height="28" fill="#2f5d8a" stroke="#ffffff"><title>B∈[2//1,3//1): I+A;I+B</title></rect>
+<text x="435.45454545454544" y="276" text-anchor="middle" font-size="11" fill="#ffffff">I+A</text>
+<rect x="497.27272727272725" y="257" width="123.63636363636374" height="28" fill="#c65d32" stroke="#ffffff"><title>B∈[3//1,4//1): I+D</title></rect>
+<text x="559.0909090909091" y="276" text-anchor="middle" font-size="11" fill="#ffffff">I+D</text>
+<rect x="620.909090909091" y="257" width="123.63636363636351" height="28" fill="#c65d32" stroke="#ffffff"><title>B∈[4//1,5//1): I+D;I+A+D;I+B+D</title></rect>
+<text x="682.7272727272727" y="276" text-anchor="middle" font-size="11" fill="#ffffff">I+D</text>
+<rect x="744.5454545454545" y="257" width="185.4545454545455" height="28" fill="#c65d32" stroke="#ffffff"><title>B∈[5//1,13//2): I+D;I+A+D;I+B+D;I+A+B+D</title></rect>
+<text x="837.2727272727273" y="276" text-anchor="middle" font-size="11" fill="#ffffff">I+D</text>
+<text x="235" y="318" text-anchor="end" class="label">descendant heavy · high</text>
+<rect x="250.0" y="300" width="123.63636363636363" height="28" fill="#c8d0d8" stroke="#ffffff"><title>B∈[1//1,2//1): I</title></rect>
+<text x="311.8181818181818" y="319" text-anchor="middle" font-size="11" fill="#ffffff">I</text>
+<rect x="373.6363636363636" y="300" width="123.63636363636363" height="28" fill="#2f5d8a" stroke="#ffffff"><title>B∈[2//1,3//1): I+A;I+B</title></rect>
+<text x="435.45454545454544" y="319" text-anchor="middle" font-size="11" fill="#ffffff">I+A</text>
+<rect x="497.27272727272725" y="300" width="123.63636363636374" height="28" fill="#c65d32" stroke="#ffffff"><title>B∈[3//1,4//1): I+D</title></rect>
+<text x="559.0909090909091" y="319" text-anchor="middle" font-size="11" fill="#ffffff">I+D</text>
+<rect x="620.909090909091" y="300" width="123.63636363636351" height="28" fill="#c65d32" stroke="#ffffff"><title>B∈[4//1,5//1): I+D;I+A+D;I+B+D</title></rect>
+<text x="682.7272727272727" y="319" text-anchor="middle" font-size="11" fill="#ffffff">I+D</text>
+<rect x="744.5454545454545" y="300" width="185.4545454545455" height="28" fill="#c65d32" stroke="#ffffff"><title>B∈[5//1,13//2): I+D;I+A+D;I+B+D;I+A+B+D</title></rect>
+<text x="837.2727272727273" y="319" text-anchor="middle" font-size="11" fill="#ffffff">I+D</text>
+<line x1="250.0" y1="81" x2="250.0" y2="329" stroke="#ffffff" stroke-opacity="0.5"/>
+<text x="250.0" y="348" text-anchor="middle" class="axis">1//1</text>
+<line x1="373.6363636363636" y1="81" x2="373.6363636363636" y2="329" stroke="#ffffff" stroke-opacity="0.5"/>
+<text x="373.6363636363636" y="348" text-anchor="middle" class="axis">2//1</text>
+<line x1="497.27272727272725" y1="81" x2="497.27272727272725" y2="329" stroke="#ffffff" stroke-opacity="0.5"/>
+<text x="497.27272727272725" y="348" text-anchor="middle" class="axis">3//1</text>
+<line x1="620.909090909091" y1="81" x2="620.909090909091" y2="329" stroke="#ffffff" stroke-opacity="0.5"/>
+<text x="620.909090909091" y="348" text-anchor="middle" class="axis">4//1</text>
+<line x1="744.5454545454545" y1="81" x2="744.5454545454545" y2="329" stroke="#ffffff" stroke-opacity="0.5"/>
+<text x="744.5454545454545" y="348" text-anchor="middle" class="axis">5//1</text>
+<line x1="868.1818181818181" y1="81" x2="868.1818181818181" y2="329" stroke="#ffffff" stroke-opacity="0.5"/>
+<text x="868.1818181818181" y="348" text-anchor="middle" class="axis">6//1</text>
+<text x="590.0" y="405" text-anchor="middle" class="axis">Total capacity B</text>
+</svg>

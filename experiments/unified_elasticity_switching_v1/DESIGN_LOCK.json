@@ -1,0 +1,37 @@
+{
+  "schema_version": "unified-elasticity-switching-lock-v1",
+  "experiment_id": "unified-elasticity-switching-v1",
+  "locked_at_utc": "2026-08-05T03:04:20Z",
+  "lock_stage": "pre-extension-outcome analytical lock",
+  "extension_outcomes_read_before_lock": false,
+  "outputs_absent_at_freeze": true,
+  "randomness": "none",
+  "arithmetic": "Rational{BigInt}",
+  "design_sha256": "1a6d6f1a41def79773751216101f17169f58bc928e2191ba8362715edcd9c3db",
+  "files": {
+    "experiments/configs/unified_elasticity_switching_v1.toml": "1a6d6f1a41def79773751216101f17169f58bc928e2191ba8362715edcd9c3db",
+    "experiments/configs/unified_canonical_resources.toml": "9a3899ae1baeecb023f4689b47db84a853e3c9ccc6f5fc7f281b1672162c17a1",
+    "experiments/configs/unified_canonical_benchmark.toml": "8674f9136ce0b7a245de6665e46a8c9b3bc13e3472d2080af5089108a6d2e1c8",
+    "experiments/configs/unified_comparative_statics.toml": "f1f1c9fe77e96ad0be5d16de9c2f79c9c2bbb99df27464cb97d4955a53033633",
+    "BRIDGE_ELASTICITY_SPEC.md": "5253b0313c0e07f395291f46bf0443a234717a5483d5663139a20f3a11bda7ad",
+    "julia/scripts/run_unified_resource_benchmark.jl": "6a03eb7690dd5f5366808564585568d6d5660b2214ee35bdecd847b35a20606b",
+    "julia/src/ComparativeStatics.jl": "7790337981c1d80a021c433b67a90e4dcf8c73dbd928b5fa2c3effe4f47473dd"
+  },
+  "required_absent_outputs": [
+    "experiments/results/summaries/unified_elasticity_switching_v1_bridge.csv",
+    "experiments/results/summaries/unified_elasticity_switching_v1_duration_convexity.csv",
+    "experiments/results/summaries/unified_elasticity_switching_v1_channel_contributions.csv",
+    "experiments/results/summaries/unified_elasticity_switching_v1_capacity.csv",
+    "experiments/results/summaries/unified_elasticity_switching_v1_penalized_path.csv",
+    "experiments/results/summaries/unified_elasticity_switching_v1_library_breakpoints.csv",
+    "experiments/results/summaries/unified_elasticity_switching_v1_bellman_breakpoints.csv",
+    "experiments/results/summaries/unified_elasticity_switching_v1_robustness.csv",
+    "experiments/results/summaries/unified_elasticity_switching_v1_summary.json",
+    "manuscript/figures/unified_elasticity_switching_v1_margin_elasticity.svg",
+    "manuscript/figures/unified_elasticity_switching_v1_value_capacity.svg",
+    "manuscript/figures/unified_elasticity_switching_v1_penalized_envelope.svg",
+    "manuscript/figures/unified_elasticity_switching_v1_selected_burden.svg",
+    "manuscript/figures/unified_elasticity_switching_v1_innovation_duration.svg",
+    "manuscript/figures/unified_elasticity_switching_v1_switching_map.svg"
+  ]
+}

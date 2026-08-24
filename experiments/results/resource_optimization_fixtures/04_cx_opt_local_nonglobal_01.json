@@ -1,0 +1,284 @@
+{
+  "claim": {
+    "arithmetic": "Rational{BigInt}",
+    "assumption_boundary": "The converse would require a global exchange property absent from general frontier--closure feasible sets.",
+    "claim_number": 4,
+    "evidence_class": "exact finite Julia search; not Lean proof",
+    "fixture": {
+      "local_trace": {
+        "actual_deletions": [
+          "s1"
+        ],
+        "all_steps_source_safe": true,
+        "deletion_order": [
+          "s1",
+          "s2"
+        ],
+        "endpoint": {
+          "active_count": 1,
+          "cardinality_with_inactive": 2,
+          "frontier": [
+            "0//1"
+          ],
+          "mask": 2,
+          "modules": [
+            "m1"
+          ],
+          "productive_value": "0//1",
+          "strategies": [
+            "inactive",
+            "s2"
+          ],
+          "weight": "2//1"
+        },
+        "endpoint_irreducible": true,
+        "libraries": [
+          {
+            "active_count": 2,
+            "cardinality_with_inactive": 3,
+            "frontier": [
+              "0//1"
+            ],
+            "mask": 3,
+            "modules": [
+              "m1"
+            ],
+            "productive_value": "0//1",
+            "strategies": [
+              "inactive",
+              "s1",
+              "s2"
+            ],
+            "weight": "3//1"
+          },
+          {
+            "active_count": 1,
+            "cardinality_with_inactive": 2,
+            "frontier": [
+              "0//1"
+            ],
+            "mask": 2,
+            "modules": [
+              "m1"
+            ],
+            "productive_value": "0//1",
+            "strategies": [
+              "inactive",
+              "s2"
+            ],
+            "weight": "2//1"
+          }
+        ]
+      },
+      "problem": {
+        "active_strategies": [
+          {
+            "id": "s1",
+            "modules": [
+              "m1"
+            ],
+            "profile": [
+              "0//1"
+            ],
+            "weight": "1//1"
+          },
+          {
+            "id": "s2",
+            "modules": [
+              "m1"
+            ],
+            "profile": [
+              "0//1"
+            ],
+            "weight": "2//1"
+          }
+        ],
+        "belief_count": 1,
+        "closure": "identity",
+        "inactive": {
+          "id": "inactive",
+          "modules": [],
+          "profile": [
+            "0//1"
+          ],
+          "weight": "0//1"
+        },
+        "module_count": 1,
+        "productive_value_monotone_under_inclusion": true,
+        "productive_value_table": [
+          {
+            "mask": 0,
+            "productive_value": "0//1",
+            "strategies": [
+              "inactive"
+            ]
+          },
+          {
+            "mask": 1,
+            "productive_value": "0//1",
+            "strategies": [
+              "inactive",
+              "s1"
+            ]
+          },
+          {
+            "mask": 2,
+            "productive_value": "0//1",
+            "strategies": [
+              "inactive",
+              "s2"
+            ]
+          },
+          {
+            "mask": 3,
+            "productive_value": "0//1",
+            "strategies": [
+              "inactive",
+              "s1",
+              "s2"
+            ]
+          }
+        ]
+      },
+      "safe_set": {
+        "feasible_libraries": [
+          {
+            "active_count": 1,
+            "cardinality_with_inactive": 2,
+            "frontier": [
+              "0//1"
+            ],
+            "mask": 1,
+            "modules": [
+              "m1"
+            ],
+            "productive_value": "0//1",
+            "strategies": [
+              "inactive",
+              "s1"
+            ],
+            "weight": "1//1"
+          },
+          {
+            "active_count": 1,
+            "cardinality_with_inactive": 2,
+            "frontier": [
+              "0//1"
+            ],
+            "mask": 2,
+            "modules": [
+              "m1"
+            ],
+            "productive_value": "0//1",
+            "strategies": [
+              "inactive",
+              "s2"
+            ],
+            "weight": "2//1"
+          },
+          {
+            "active_count": 2,
+            "cardinality_with_inactive": 3,
+            "frontier": [
+              "0//1"
+            ],
+            "mask": 3,
+            "modules": [
+              "m1"
+            ],
+            "productive_value": "0//1",
+            "strategies": [
+              "inactive",
+              "s1",
+              "s2"
+            ],
+            "weight": "3//1"
+          }
+        ],
+        "minimum_cardinality_libraries": [
+          {
+            "active_count": 1,
+            "cardinality_with_inactive": 2,
+            "frontier": [
+              "0//1"
+            ],
+            "mask": 1,
+            "modules": [
+              "m1"
+            ],
+            "productive_value": "0//1",
+            "strategies": [
+              "inactive",
+              "s1"
+            ],
+            "weight": "1//1"
+          },
+          {
+            "active_count": 1,
+            "cardinality_with_inactive": 2,
+            "frontier": [
+              "0//1"
+            ],
+            "mask": 2,
+            "modules": [
+              "m1"
+            ],
+            "productive_value": "0//1",
+            "strategies": [
+              "inactive",
+              "s2"
+            ],
+            "weight": "2//1"
+          }
+        ],
+        "minimum_weight_libraries": [
+          {
+            "active_count": 1,
+            "cardinality_with_inactive": 2,
+            "frontier": [
+              "0//1"
+            ],
+            "mask": 1,
+            "modules": [
+              "m1"
+            ],
+            "productive_value": "0//1",
+            "strategies": [
+              "inactive",
+              "s1"
+            ],
+            "weight": "1//1"
+          }
+        ],
+        "source": {
+          "active_count": 2,
+          "cardinality_with_inactive": 3,
+          "frontier": [
+            "0//1"
+          ],
+          "mask": 3,
+          "modules": [
+            "m1"
+          ],
+          "productive_value": "0//1",
+          "strategies": [
+            "inactive",
+            "s1",
+            "s2"
+          ],
+          "weight": "3//1"
+        }
+      }
+    },
+    "id": "CX-OPT-LOCAL-NONGLOBAL-01",
+    "minimality": {
+      "lexicographic_score": "(2, 1, 2//1, 3//1, 2, (0x0000000000000001, 0x0000000000000001), (1//1, 2//1), (1, 2))",
+      "two_active_strategies_are_minimal": true
+    },
+    "status": "counterexample_found",
+    "theorem_revision": "Retain only the one-way theorem that every global minimum is irreducible; delete the converse.",
+    "title": "A locally irreducible safe library need not be globally optimal"
+  },
+  "experiment_id": "paper1-resource-optimization-counterexample-audit-v1",
+  "schema_version": "resource-optimization-counterexample-audit-v1"
+}

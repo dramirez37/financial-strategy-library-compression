@@ -1,0 +1,67 @@
+{
+  "schema_version": "lean-julia-exact-fixture-v2",
+  "fixture_id": "strategy_innovation_equation",
+  "theorem_family": "S4 Strategy Innovation Equation compatibility fixture",
+  "beliefs": ["current", "future"],
+  "transition_rows": [
+    ["0//1", "1//1"],
+    ["0//1", "1//1"]
+  ],
+  "discount": "1//2",
+  "modules": ["marker"],
+  "strategies": [
+    {
+      "id": "inactive",
+      "operational_profile": ["0//1", "0//1"],
+      "modules": []
+    },
+    {
+      "id": "candidate",
+      "operational_profile": ["1//1", "2//1"],
+      "modules": ["marker"]
+    }
+  ],
+  "libraries": [
+    {
+      "id": "current",
+      "strategies": ["inactive"]
+    }
+  ],
+  "projects": [
+    {
+      "id": "innovate",
+      "cost": ["0//1", "0//1"],
+      "duration": 1,
+      "survival": "1//1",
+      "strict_cost": false,
+      "required_modules": [],
+      "candidate_strategies": ["candidate"]
+    }
+  ],
+  "expected": {
+    "rational_scalars": [
+    {
+      "id": "initial_innovation_value",
+      "value": "5//2"
+    }
+  ],
+    "rational_vectors": [
+    {
+      "id": "candidate_gap",
+      "values": ["1//1", "2//1"]
+    },
+    {
+      "id": "discounted_gap_sum_horizon_three",
+      "values": ["5//2", "7//2"]
+    }
+  ],
+    "boolean_scalars": [
+    {
+      "id": "innovation_equation_identity",
+      "value": true
+    }
+  ],
+    "boolean_vectors": [],
+    "string_vectors": []
+  }
+}

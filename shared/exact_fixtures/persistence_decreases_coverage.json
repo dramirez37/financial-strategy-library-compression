@@ -1,0 +1,83 @@
+{
+  "schema_version": "lean-julia-exact-fixture-v2",
+  "fixture_id": "persistence_decreases_coverage",
+  "theorem_family": "S7 persistence-decreases-coverage example",
+  "beliefs": ["current", "other"],
+  "transition_rows": [
+    ["0//1", "1//1"],
+    ["1//1", "0//1"]
+  ],
+  "discount": "1//2",
+  "modules": ["marker"],
+  "strategies": [
+    {
+      "id": "inactive",
+      "operational_profile": ["0//1", "0//1"],
+      "modules": []
+    },
+    {
+      "id": "candidate",
+      "operational_profile": ["0//1", "1//1"],
+      "modules": ["marker"]
+    }
+  ],
+  "libraries": [
+    {
+      "id": "current",
+      "strategies": ["inactive"]
+    }
+  ],
+  "projects": [
+    {
+      "id": "innovate",
+      "cost": ["0//1", "0//1"],
+      "duration": 1,
+      "survival": "1//1",
+      "strict_cost": false,
+      "required_modules": [],
+      "candidate_strategies": ["candidate"]
+    }
+  ],
+  "expected": {
+    "rational_scalars": [
+    {
+      "id": "coverage_high_persistence",
+      "value": "1//8"
+    },
+    {
+      "id": "coverage_low_persistence",
+      "value": "3//8"
+    },
+    {
+      "id": "effective_discount",
+      "value": "1//2"
+    },
+    {
+      "id": "persistence_high",
+      "value": "3//4"
+    },
+    {
+      "id": "persistence_low",
+      "value": "1//4"
+    }
+  ],
+    "rational_vectors": [
+    {
+      "id": "gap",
+      "values": ["0//1", "1//1"]
+    }
+  ],
+    "boolean_scalars": [
+    {
+      "id": "coverage_increases",
+      "value": false
+    },
+    {
+      "id": "coverage_decreases",
+      "value": true
+    }
+  ],
+    "boolean_vectors": [],
+    "string_vectors": []
+  }
+}

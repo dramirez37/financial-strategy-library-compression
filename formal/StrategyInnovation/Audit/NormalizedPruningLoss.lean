@@ -1,0 +1,35 @@
+import StrategyInnovation.Compression.NormalizedPruningLoss
+
+/-!
+# Focused axiom audit for normalized pruning loss (T4)
+
+Every publication-facing declaration in the parameterized exact-rational T4
+construction is printed below.
+-/
+
+#print axioms StrategyInnovation.Projection.Model.NormalizedPruningLoss.Parameters
+#print axioms StrategyInnovation.Projection.Model.NormalizedPruningLoss.bridge_operationallyRedundant
+#print axioms StrategyInnovation.Projection.Model.NormalizedPruningLoss.bridge_generativelyEssential
+#print axioms StrategyInnovation.Projection.Model.NormalizedPruningLoss.bridge_uniquelyCarriesRequiredModule
+#print axioms StrategyInnovation.Projection.Model.NormalizedPruningLoss.bridge_profile_eq_zero
+#print axioms StrategyInnovation.Projection.Model.NormalizedPruningLoss.RewardsBoundedByCap
+#print axioms StrategyInnovation.Projection.Model.NormalizedPruningLoss.rewards_boundedByCap
+#print axioms StrategyInnovation.Projection.Model.NormalizedPruningLoss.generation_descendant_probability_retained
+#print axioms StrategyInnovation.Projection.Model.NormalizedPruningLoss.generation_descendant_probability_pruned
+#print axioms StrategyInnovation.Projection.Model.NormalizedPruningLoss.descendant_admission_probability
+#print axioms StrategyInnovation.Projection.Model.NormalizedPruningLoss.admitted_descendant_probability_retained
+#print axioms StrategyInnovation.Projection.Model.NormalizedPruningLoss.admitted_descendant_probability_pruned
+#print axioms StrategyInnovation.Projection.Model.NormalizedPruningLoss.retained_expected_descendant_value
+#print axioms StrategyInnovation.Projection.Model.NormalizedPruningLoss.pruned_expected_descendant_value
+#print axioms StrategyInnovation.Projection.Model.NormalizedPruningLoss.CanonicalConstructionCertificate
+#print axioms StrategyInnovation.Projection.Model.NormalizedPruningLoss.canonicalConstruction_certificate
+#print axioms StrategyInnovation.Projection.Model.NormalizedPruningLoss.canonicalPruningLoss_exact
+#print axioms StrategyInnovation.Projection.Model.NormalizedPruningLoss.rewardCap_sharp
+#print axioms StrategyInnovation.Projection.Model.NormalizedPruningLoss.destroys_all_attainable_descendant_value
+#print axioms StrategyInnovation.Projection.Model.NormalizedPruningLoss.unitRewardCap_loss_le_one
+#print axioms StrategyInnovation.Projection.Model.NormalizedPruningLoss.arbitraryLoss_by_rewardScaling
+#print axioms StrategyInnovation.Projection.Model.NormalizedPruningLoss.canonicalPruningLossWithOperation_exact
+#print axioms StrategyInnovation.Projection.Model.NormalizedPruningLoss.continuedOperation_cancels_under_operationalRedundancy
+
+#lint- only checkType unusedArguments simpNF in
+  StrategyInnovation.Projection.Model.NormalizedPruningLoss

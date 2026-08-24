@@ -1,0 +1,23 @@
+schema_version = "primitive-substitution-search-v1"
+experiment_id = "primitive-substitution-search-v1"
+julia_version = "1.12.6"
+arithmetic = "Rational{BigInt}"
+randomness = "none"
+
+[grid]
+frontier_numerators = [0, 2, 4, 6, 8, 10]
+frontier_denominator = 1
+candidate_numerators = [4, 10]
+candidate_denominator = 1
+success_numerators = [0, 1, 2]
+success_denominator = 2
+cost_numerators = [0, 1, 2]
+cost_denominator = 1
+
+[model]
+discount_numerator = 1
+discount_denominator = 2
+
+[outputs]
+search_rows = "experiments/results/summaries/primitive_substitution_search.csv"
+summary = "experiments/results/summaries/primitive_substitution_summary.json"

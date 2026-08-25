@@ -1,0 +1,210 @@
+\section{Reproducibility Records}
+\label{sec:supp-reproducibility}
+
+This section records the execution boundaries, configuration histories,
+hashes, and complete artifact locations for Supplements~S4--S6.  The commands
+are reproduction instructions only; compiling this supplement does not run
+Julia or regenerate any committed result.  The public repository is available
+at
+\begin{center}
+\url{https://github.com/dramirez37/financial-strategy-library-compression}.
+\end{center}
+
+\subsection{Canonical and presentation records}
+
+The canonical solve is deterministic and uses no random seed:
+\begin{verbatim}
+julia --project=julia \
+  julia/scripts/solve_unified_canonical_benchmark.jl
+\end{verbatim}
+The manuscript presentation layer is Julia-generated:
+\begin{verbatim}
+julia --project=julia \
+  julia/scripts/generate_manuscript_numerical_artifacts.jl
+julia --project=julia \
+  julia/scripts/generate_manuscript_numerical_artifacts.jl --check
+\end{verbatim}
+The first command validates the committed convergence, compression,
+decomposition, geometry, grammar, mechanism, and uncertainty tables before
+writing manuscript artifacts.  The second is nonmutating and rejects byte
+drift.  Complete canonical numerical outputs are listed in Supplement~S4.
+
+\subsection{Randomized-study configuration history}
+
+The registered v2 experiment uses the fixed maximum \(N=1024\), master seed
+\texttt{6075990691714899803}, and the complete trial and derived-seed registry
+at
+\begin{center}
+\path{experiments/randomized_library_v2/TRIAL_REGISTRY.csv}.
+\end{center}
+The initial design, sequential-precision amendment, and executable-protocol
+amendment are retained at
+\begin{center}
+\path{experiments/randomized_library_v2/DESIGN_LOCK.json},\\
+\path{experiments/randomized_library_v2/DESIGN_LOCK_AMENDMENT_1.json},\\
+\path{experiments/randomized_library_v2/DESIGN_LOCK_AMENDMENT_2.json}.
+\end{center}
+Their aggregate hashes are, respectively,
+\begin{verbatim}
+0b012dfc14f4ea57b0d34877a68d9a546cd499d2270903e772d78b21425d14db
+d9122d258b8fe62d5872c41b0a418b1351a5798b25ddb99ec73b726e324d244f
+8c278c07d998ba118d98c78cc1373a47ab63127f00d606c0042c006dac11e7be
+\end{verbatim}
+The registered run, byte-drift replay, and independent result-reader audit
+are:
+\begin{verbatim}
+julia --project=julia \
+  julia/scripts/run_randomized_library_stress_v2.jl
+julia --project=julia \
+  julia/scripts/run_randomized_library_stress_v2.jl --check
+julia --project=julia \
+  julia/scripts/audit_randomized_library_v2_results.jl
+\end{verbatim}
+
+All theorem-facing calculations and point estimates use
+\texttt{Rational\{BigInt\}}.  Decimal Wilson intervals, Monte Carlo standard
+errors, and SVG coordinates are presentation diagnostics only.  The complete
+cumulative source is
+\begin{center}
+\path{experiments/results/summaries/randomized_library_v2_stability_summary.csv},
+\end{center}
+and the 896-row two-level slice table is
+\begin{center}
+\path{experiments/results/summaries/randomized_library_v2_stability_factor_summary.csv}.
+\end{center}
+The data-linked stabilization plot is
+\begin{center}
+\path{manuscript/figures/randomized_library_v2_stability.svg}.
+\end{center}
+The exact final counts are 398 positive frontier-only losses, zero positive
+innovation-safe losses, 388 silent generative assets among 5,120 source
+assets, 256 substitutions, 141 complementarities, and 627 zero interactions.
+All interaction counts use four raw witnesses.  These diagnostics describe
+Monte Carlo precision within the registered finite generator, not uncertainty
+about a real population.
+
+The separately locked resource extension reuses only the frozen v2 registry.
+Its exact run and byte-drift check are
+\begin{verbatim}
+julia --project=julia \
+  julia/scripts/run_randomized_library_optimization_extension.jl
+julia --project=julia \
+  julia/scripts/run_randomized_library_optimization_extension.jl --check
+\end{verbatim}
+Every trial enumerates all 32 inactive-containing sublibraries.  The readable
+exact summary is
+\begin{center}
+\path{RANDOMIZED_LIBRARY_OPTIMIZATION_EXTENSION_V1.md}.
+\end{center}
+The parent report and frozen pilot remain separately indexed by
+\path{RANDOMIZED_LIBRARY_REPORT_V2.md} and
+\path{RANDOMIZED_LIBRARY_REPORT.md}; they are not pooled.
+
+\subsection{Financial configuration and amendment history}
+
+Both financial audits use the licensed CRSP/WRDS snapshot associated with
+source-repository commit
+\texttt{3146029aa71dfe7639ede9ca79f81602165125e8}.  Preparation scripts perform
+no download.  The terminal audit uses seed \texttt{6075990691714899801}; the
+annual walk-forward audit uses seed \texttt{6075990691714899802}.  Their
+ignored panels contain 106,975 and 427,900 rows, each with 4,279 complete
+common dates.  Raw and row-level data are nonredistributable.
+
+The terminal configuration, audit, results, and limitations records are
+\begin{center}
+\path{experiments/configs/financial_terminal_audit.toml},\\
+\path{experiments/financial_terminal_audit/DATA_AUDIT.md},\\
+\path{experiments/financial_terminal_audit/DRAFT_RESULTS.md},\\
+\path{experiments/financial_terminal_audit/EMPIRICAL_LIMITATIONS.md}.
+\end{center}
+The annual walk-forward audit's initial lock, six retained amendments,
+amendment history, final lock, frozen universe, audit, results, and limitations
+are
+\begin{center}
+\path{experiments/financial_annual_walkforward_audit/DESIGN_LOCK_INITIAL.json},\\
+\path{experiments/financial_annual_walkforward_audit/DESIGN_LOCK_AMENDED_1.json} through\\
+\path{experiments/financial_annual_walkforward_audit/DESIGN_LOCK_AMENDED_6.json},\\
+\path{experiments/financial_annual_walkforward_audit/DESIGN_AMENDMENTS.md},\\
+\path{experiments/financial_annual_walkforward_audit/DESIGN_LOCK.json},\\
+\path{experiments/financial_annual_walkforward_audit/universe_selection.toml},\\
+\path{experiments/financial_annual_walkforward_audit/DATA_AUDIT.md},\\
+\path{experiments/financial_annual_walkforward_audit/DRAFT_RESULTS.md},\\
+\path{experiments/financial_annual_walkforward_audit/EMPIRICAL_LIMITATIONS.md}.
+\end{center}
+The initial protocol, sparse-support amendment, and report-only corrections
+remain in that versioned history.  Reruns must preserve negative and mixed
+outcomes unless a new experiment is registered.
+
+The cross-audit financial resource optimization is a separate exact
+post-solve analysis of the two committed aggregate audit records; it is not a
+third licensed-data audit and does not read row-level inputs.  Its nonmutating
+lock and certificate checks are
+\begin{verbatim}
+julia --project=julia \
+  julia/scripts/lock_financial_resource_optimization.jl --check
+julia --project=julia \
+  julia/scripts/verify_financial_resource_optimization_outputs.jl
+\end{verbatim}
+The registered design and readable exact report are
+\begin{center}
+\path{experiments/financial_resource_optimization/DESIGN_LOCK.json},\\
+\path{FINANCIAL_RESOURCE_OPTIMIZATION.md}.
+\end{center}
+
+\subsection{Complete artifact index}
+
+\path{ARTIFACT_MANIFEST.md} is the authoritative configuration, data,
+decision, RNG, output-hash, and correction-history index.
+\path{REPRODUCIBILITY.md} records the complete command surface and
+component-specific gates.  \path{EMPIRICAL_INFORMATION_SET_AUDIT.md} records
+the code-level financial execution order and quantity-by-quantity information
+classification.
+
+Within \path{experiments/results/summaries/}, the following prefix families
+exhaust the study records used in the main paper and Supplements~S5--S6:
+\begin{description}
+  \item[Registered parent study.]
+  The parent-study prefix is
+  \begin{center}
+  \path{randomized_library_v2_*}.
+  \end{center}
+  It excludes the separately registered optimization-extension prefix below.
+  This family contains trials, assets,
+  profiles, modules, closures, kernels, projects, pruning, actions, raw-witness
+  manifests, rectangle corners and transitions, interaction signs, method,
+  factor, relationship, stability, and summary records.
+  \item[Randomized resource extension.]
+  \path{randomized_library_v2_optimization_v1_*}.  This family contains trial,
+  sublibrary, compression, capacity, breakpoint, penalized, elasticity,
+  factor-summary, and aggregate-summary records.
+  \item[Exact response experiments.]
+  \path{unified_comparative_statics_*} and \path{theorem_mechanism_*}.  These
+  families contain exact fixtures, the 2,430-row interaction response, sign
+  checks, policy-map rows, decomposition, pruning-loss, coverage, selection,
+  metadata, and aggregate summaries.
+  \item[Locked terminal financial audit.]
+  \path{financial_terminal_audit_*}.  This namespace is disjoint from the
+  annual walk-forward prefix below.  The
+  family contains grammar, candidate, pruning, ranking, decomposition,
+  uncertainty, cost-sensitivity, mechanism, figure-source, and status records.
+  \item[Annual walk-forward financial audit.]
+  \path{financial_annual_walkforward_audit_*}.  This family contains grammar,
+  candidate, pruning, selection, episode-ranking, ranking, decomposition,
+  uncertainty, cost-sensitivity, mechanism, universe-figure, and status
+  records.
+  \item[Cross-audit financial resource optimization.]
+  \path{financial_resource_optimization_*}.  This family contains registered
+  weights, selected-library memberships, exact frontier certificates,
+  solution summaries, and status metadata derived from the two aggregate
+  audit records.
+\end{description}
+
+The corresponding supplement figures are
+\begin{center}
+\path{manuscript/figures/dynamic_research_policy_regions.tex},\\
+\path{manuscript/figures/randomized_library_v2_stability.svg},\\
+\path{manuscript/figures/financial_coverage_comparison.tex}.
+\end{center}
+The theorem ledger, formal correspondence, and validation matrix retain
+mathematical validity, Lean kernel verification, Julia validation, and
+empirical relevance as separate evidence dimensions.

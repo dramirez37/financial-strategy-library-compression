@@ -1,0 +1,90 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,longtable,array}
+\usepackage{pdflscape}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage[l3]{csvsimple}
+\usepackage[hidelinks]{hyperref}
+\usepackage[capitalise,noabbrev]{cleveref}
+
+\renewcommand{\thesection}{S\arabic{section}}
+\numberwithin{equation}{section}
+\allowdisplaybreaks
+\setcounter{tocdepth}{1}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{assumption}[definition]{Assumption}
+\newtheorem{example}[definition]{Example}
+\newtheorem{counterexample}[definition]{Counterexample}
+
+\theoremstyle{plain}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+
+\crefname{assumption}{Assumption}{Assumptions}
+\Crefname{assumption}{Assumption}{Assumptions}
+\crefname{counterexample}{Counterexample}{Counterexamples}
+\Crefname{counterexample}{Counterexample}{Counterexamples}
+
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Fin}{\operatorname{Fin}}
+\newcommand{\cl}{\operatorname{cl}}
+\newcommand{\mods}{\operatorname{mods}}
+\newcommand{\DI}{\mathrm{DI}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\gen}{\mathrm{gen}}
+\newcommand{\one}{\mathbf{1}}
+\newcommand{\powersetfin}{\mathcal{P}_{\mathrm{fin}}}
+
+\title{Online Supplement to\\
+Financial Strategy Library Compression under Partial Information:\\
+Resource Constraints and Generative Value}
+\author{David Ramirez\\
+\href{https://orcid.org/0009-0000-3128-5123}{ORCID: 0009-0000-3128-5123}\\
+Corresponding email: \href{mailto:ramirezdavv@gmail.com}{\texttt{ramirezdavv@gmail.com}}}
+\date{\textit{Preprint --- August 2026}}
+\hypersetup{
+  pdftitle={Online Supplement to Financial Strategy Library Compression under Partial Information: Resource Constraints and Generative Value},
+  pdfauthor={David Ramirez},
+  pdfsubject={Online Supplement to preprint v0.1.1-arxiv}
+}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\clearpage
+
+\section*{Contents}
+\par\medskip
+\makeatletter
+\@starttoc{toc}
+\makeatother
+\clearpage
+
+This supplement collects the extended theoretical material and complete
+numerical records omitted from the primary appendix.  The notation,
+finite-state model, timing, assumptions, and evidence classifications are
+those of the main paper.  References to the main paper are descriptive so that
+this document compiles independently; all numbered cross-references below are
+internal to the supplement.
+
+\input{supplement_sections/s1_belief_occupation_coverage}
+\input{supplement_sections/s2_frontier_closure_interaction}
+\input{supplement_sections/s3_comparative_statics_counterexamples}
+\input{supplement_sections/s3_auxiliary_models}
+\input{supplement_sections/s4_complete_canonical_numerical_records}
+\input{supplement_sections/s5_complete_registered_randomized_study}
+\input{supplement_sections/s6_full_financial_audit_secondary_tests}
+\input{supplement_sections/s7_reproducibility_records}
+
+\end{document}

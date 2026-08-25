@@ -1,0 +1,270 @@
+% Page budget: at most 7 pages.
+\section{Dynamic solution and canonical optimization model}\label{sec:control}
+
+The resource problems in Sections~4--5 take productive library values as
+inputs.  This section closes the model by solving those values from the same
+raw admission and update laws used to define the sufficient state.  It then
+places exact safe compression, hard capacity, resource pricing, and elasticity
+on one six-state rational benchmark.  Exact arithmetic comes first throughout;
+\texttt{Float64} is used only for the final numerical diagnostic.
+
+\subsection{Unified Bellman operator}
+
+Write \(K=K_L=(F_L,C_L)\), let \(A(K)\) be the finite feasible project menu,
+and let \(d(q)>0\) be the duration of project \(q\).  Conditional on \(B_0=b\),
+the belief-path marginal during research is
+\begin{equation}\label{eq:control-belief-path}
+ \Pr(B_{0:d(q)}=b_{0:d(q)}\mid b)
+ =\mathbf 1\{b_0=b\}\prod_{t=0}^{d(q)-1}P_B(b_t,b_{t+1}).
+\end{equation}
+Let \(\Lambda_q(\cdot\mid b,K)\) be the exact joint law of this path and the
+admitted outcome \(O\); path and admission need not be independent.  During
+research, incumbent operation contributes
+\begin{equation}\label{eq:control-operating-reward}
+ \mathcal O_q(B_{0:d(q)-1};K)
+ :=\sum_{t=0}^{d(q)-1}\beta^t
+   \mathbf 1\{o(q)=1\}F_K(B_t).
+\end{equation}
+
+\begin{definition}[Unified Continue, research, and Bellman operators]
+\label{def:dynamic-control-operators}
+For \(V:B\times\mathcal K_{\rm real}\to\mathbb R\), define
+\begin{align}
+ (\mathsf C V)(b,K)
+   &:=F_K(b)+\beta\sum_{b'}P_B(b,b')V(b',K),
+   \label{eq:control-continue}\\
+ (\mathsf R_qV)(b,K)
+   &:=-\kappa(b,K,q)
+     +\mathbb E_{\Lambda_q(\cdot\mid b,K)}\!\left[
+       \mathcal O_q(B_{0:d(q)-1};K)
+       +\beta^{d(q)}V\!\left(B_{d(q)},
+          \operatorname{addK}(K,O)\right)\right],
+   \label{eq:control-research}\\
+ (\mathsf TV)(b,K)
+   &:=\max\!\left\{(\mathsf CV)(b,K),
+       \max_{q\in A(K)}(\mathsf R_qV)(b,K)\right\}.
+ \label{eq:control-bellman-operator}
+\end{align}
+If \(A(K)=\varnothing\), the inner research maximum is omitted, so
+\((\mathsf TV)(b,K)=(\mathsf CV)(b,K)\).
+\end{definition}
+
+Continue consumes one date; research consumes \(d(q)\) dates.  Suspending
+operation removes the block in \eqref{eq:control-operating-reward}, not belief
+evolution or the terminal raw update.  At a finite horizon only projects whose
+duration fits the remaining dates are feasible.  The stationary equation is
+\(V_\infty=\mathsf TV_\infty\) on the complete menu.
+
+\begin{proposition}[Finite-state contraction and selectors]
+\label{prop:finite-horizon-action-attainment}
+\label{thm:finite-state-contraction}
+Suppose all carriers are finite, primitive probabilities and payoffs are exact
+rationals, project durations are positive, and \(0\le\beta<1\).  Every
+finite-horizon Bellman maximum is attained.  The raw and compressed stationary
+operators are monotone sup-norm contractions with modulus \(\beta\), have
+unique fixed points, and agree under raw-to-compressed projection.  Hence
+dynamically innovation-equivalent libraries have equal finite- and
+infinite-horizon values.  A stationary maximizing selector exists, satisfies
+\(\mathsf T_{\pi^\star}V_\infty=V_\infty=V^{\pi^\star}\), and lifts to a raw
+stationary selector.  For any initial table \(v_0\),
+\begin{equation}\label{eq:control-geometric-bound}
+ \lVert\mathsf T^n v_0-V_\infty\rVert_\infty
+ \le \frac{\lVert v_0-\mathsf T v_0\rVert_\infty\beta^n}{1-\beta}.
+\end{equation}
+\end{proposition}
+
+The contraction, intertwining, and selector argument is in
+\cref{app:di-quotient}.  Appendix~D gives the numerical stopping rule and
+compact verification certificate; Online Supplement~S4 retains the complete
+convergence history.
+
+\subsection{Unified six-state compressed benchmark}
+\label{sec:numerics}
+
+The benchmark is constructed from raw primitives.  Its catalog is
+\[
+\begin{array}{c|c|c|l}
+s&(j_s(\ell),j_s(h))&\operatorname{mods}(s)&\text{role}\\ \hline
+s_0&(0,0)&\varnothing&\text{mandatory inactive policy}\\
+c_A&(0,0)&\{m\}&\text{silent carrier A}\\
+c_B&(0,0)&\{m\}&\text{silent carrier B}\\
+g&(2,4)&\{m\}&\text{profitable descendant and carrier}.
+\end{array}
+\]
+Closure is the identity on \(\{m\}\), and every raw library contains \(s_0\).
+Exhausting the eight subsets of \(\{c_A,c_B,g\}\) produces three compressed
+library states,
+\[
+ K_0=((0,0),\varnothing),\qquad
+ K_1=((0,0),\{m\}),\qquad
+ K_2=((2,4),\{m\}).
+\]
+Together with \(B=\{\ell,h\}\), these are the six Bellman states.  The exact
+belief law and discount are
+\begin{equation}\label{eq:canonical-belief-kernel}
+ P_B=\begin{pmatrix}3/4&1/4\\[2pt]1/4&3/4\end{pmatrix},\qquad
+ P_B^2=\begin{pmatrix}5/8&3/8\\[2pt]3/8&5/8\end{pmatrix},\qquad
+ \beta=1/2.
+\end{equation}
+
+Discover is available at \(K_0\), lasts one date, operates the incumbent, and
+costs \(1/32\) at \(\ell\) and \(1\) at \(h\).  Raw generation and verification
+give
+\(\Gamma_D=\tfrac14\delta_\bot+\tfrac12\delta_{c_A}
+ +\tfrac14\delta_{c_B}\).
+Scale is available at \(K_1,K_2\), lasts two dates, operates the incumbent,
+costs \(3/16\), and admits \(g\) with marginal probability \(3/4\).  Its
+success is correlated with the terminal belief: the exact conditional
+probability is \(3/5\) for \((B_0,B_2)=(\ell,\ell)\), \(1/3\) for
+\((h,\ell)\), and \(1\) when \(B_2=h\).  Applying the raw update
+\(L\oplus s=L\cup\{s\}\) and only then projecting gives
+\[
+ R_D(K_0)=\tfrac14\delta_{K_0}+\tfrac34\delta_{K_1},\qquad
+ R_S(K_1)=\tfrac14\delta_{K_1}+\tfrac34\delta_{K_2},\qquad
+ R_S(K_2)=\delta_{K_2}.
+\]
+Thus no transition is stipulated directly on the compressed carrier.  The
+full path-by-admission atoms and reward-block algebra are in Online
+Supplement~S4.
+
+\begin{figure}[htbp]
+  \centering
+  \input{figures/unified_canonical_transition}
+  \caption{Exact raw-derived compressed transition law.  Each edge label is
+  the one-project probability obtained by applying raw generation,
+  verification, admission, and library update before projection.  Solid blue
+  is Discover, dashed orange is Scale, and self-loops collect failure and
+  Continue; no intermediate states or smooth interpolation are implied.}
+  \label{fig:canonical-compressed-transition}
+\end{figure}
+
+\subsection{Exact rational dynamic solution}
+
+Exact raw and compressed policy iteration terminate after three improvement
+steps with policy-equation and Bellman residuals equal to zero.  Projection
+matches values and actions on all eight raw libraries.  The minimum exact
+winning margin is \(3/16\), so the benchmark has no action tie.
+
+\begin{table}[htbp]
+\centering
+\small
+\input{tables/main_canonical_stationary_solution}
+\caption{Exact rational stationary solution of the raw-derived six-state
+benchmark.  Values and winning margins are measured in the benchmark's payoff
+units.  Denominator-one rationals are rendered as integers.  Appendix~D
+reports the zero-residual certificate; Online Supplement~S4 reports the full
+action-value record.}
+\label{tab:canonical-exact-solution}
+\end{table}
+
+\subsection{Resource weights and exact safe-compression solutions}
+
+Write \(I,A,B,D\) for \(s_0,c_A,c_B,g\).  The three prospectively fixed
+integer schedules keep the silent carriers symmetric.  In the coordinate
+order \((I,A,B,D)\), their primary-model weight vectors are equal-active
+\((0,1,1,1)\), carrier-heavy \((0,2,2,1)\), and descendant-heavy
+\((0,1,1,2)\), consistently with \(w_I=w_{s_0}=0\).  The benchmark artifacts
+display a common mandatory resource unit in addition to that formal burden:
+\begin{equation}\label{eq:canonical-display-burden}
+ \widetilde W(L):=1+W(L).
+\end{equation}
+Thus the displayed schedule vectors are \((1,1,1,1)\), \((1,2,2,1)\), and
+\((1,1,1,2)\).  If \(\widetilde V^\star\) and \(\widetilde J^\star\) denote
+the benchmark objectives written in this display convention, then
+\begin{align}
+ \widetilde V^\star(b;\widetilde B)
+ &=V^\star(b;\widetilde B-1), && \widetilde B\ge1,\label{eq:canonical-display-capacity}\\
+ \widetilde J^\star(b;\lambda)
+ &=J^\star(b;\lambda)-\lambda.\label{eq:canonical-display-penalty}
+\end{align}
+The translation shifts capacity axes by one unit and penalized-value levels by
+\(-\lambda\).  It leaves optimal libraries, switching prices, breakpoint
+order, and absolute burden reductions unchanged.  The capacity and penalty
+theorems, and their Lean counterparts, apply to \(W\), not to
+\(\widetilde W\).
+
+Complete enumeration shows that the full source compresses uniquely to
+\(I+D\) under every
+schedule, keeps frontier \((2,4)\) and closure \(\{m\}\), and saves one-half,
+two-thirds, or two-fifths of displayed source burden \(\widetilde W\).  These
+are exact finite enumeration certificates, not consequences of a greedy
+rule.  The complete
+source-by-source correspondence and exact burden reductions are in Online
+Supplement~S4.
+
+\subsection{Capacity-optimal library path}
+
+The hard-capacity optimizer is evaluated at every attainable displayed burden
+\(\widetilde B\).  Equal active and carrier heavy jump directly from \(I\) to
+\(I+D\).  Descendant heavy passes through the tied carrier pair \(I+A\) or
+\(I+B\); the resulting capacity complements make the second value increment
+exceed the first.
+The exact paths, globally active positive switch prices, and inactive pairwise
+crossing candidates are tabulated in Online Supplement~S4; the main text uses
+the combined economic-geometry figure to avoid repeating the same staircase
+and breakpoints.
+
+\subsection{Penalized envelope, breakpoints, and selected burden}
+
+For each schedule and belief, the displayed penalized problem exhausts the
+eight affine branches \(V(b,L)-\lambda\widetilde W(L)\).  Only \(I+D\) and
+\(I\) are globally active for \(\lambda>0\).  Equal active and carrier heavy
+switch at \(1229/288\) from low belief and \(2089/288\) from high belief.
+Descendant heavy doubles the relevant burden difference, so its breakpoints
+are \(1229/576\) and \(2089/576\).  At a breakpoint both libraries are
+optimal; away from it the optimizer is unique after removal of redundant
+equal-state libraries.
+
+\subsection{Innovation duration and elasticity values}
+
+At \(\beta=1/2\), the exact local fixed-policy discount elasticities
+\(D_\beta=\beta V_\beta/V\) are
+\[
+\begin{array}{c|cc|l}
+ &\ell&h&\text{productive channel}\\ \hline
+I&10777/2070&14089/2070&\text{generative}\\
+I{+}A\text{ or }I{+}B&56/15&53/15&\text{generative}\\
+I{+}D&25/21&29/33&\text{operational}.
+\end{array}
+\]
+The zero complementary channel is reported as a zero contribution, not with
+an elasticity.  In the registered bridge calculation with gross descendant
+value one, duration three, and normalized positive margin \(1/16\), the exact
+discount/survival, admission/payoff, and cost elasticities are respectively
+\(48\), \(16\), and \(-15\).  These are fixed-exposure values; they do not
+differentiate through a library or action switch.
+
+\subsection{Floating-Point Verification}
+
+After fixing the exact solution and optimizer correspondences, the same
+raw-law model's \texttt{Float64} value iteration stops after 42 steps.  Its
+final increment is \(5.5422\times10^{-13}\), its Bellman residual is
+\(2.7711\times10^{-13}\), and its Float64 a-posteriori contraction bound is
+\(5.5422\times10^{-13}\).  Converting the binary Float64 iterate exactly to
+rationals gives maximum error \(5.5482\times10^{-13}\) against the exact
+rational table, below the exactly re-evaluated residual-based certificate
+\(5.5489\times10^{-13}\).  The six actions match
+\cref{tab:canonical-exact-solution}.  Appendix~D reports the stopping rule and
+compact certificate, while Online Supplement~S4 reports the complete history;
+the policy-map response remains with the controlled diagnostics in
+Online Supplement~S5.
+
+\begin{figure}[p]
+  \centering
+  \input{figures/unified_economic_geometry}
+  \caption{Economic geometry of the canonical outer optimization.  Panel
+  (a) plots \(\widetilde V^\star(b;\widetilde B)\) at and between attainable
+  exact displayed burdens as right-continuous stairs.  Panel (b) plots the
+  exact active affine branches of \(\widetilde J^\star(b;\lambda)\) over the
+  displayed range.  Panel (c) plots displayed burden \(\widetilde W\) under
+  the declared right-continuous minimum-burden tie rule; open endpoints are
+  excluded and filled endpoints are selected.  Here
+  \(\widetilde W=1+W\) includes the common mandatory display unit; the formal
+  model and Lean theorem use \(w_{s_0}=0\).  Equal-active and carrier-heavy
+  schedules coincide.  Source values are exact
+  \texttt{Rational\{BigInt\}}; only TeX mark placement uses rendered
+  floating-point coordinates.}
+  \label{fig:canonical-economic-geometry}
+\end{figure}
+
+\clearpage

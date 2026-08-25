@@ -6,15 +6,15 @@
   Information: Resource Constraints and Generative Value*
 - **Author:** David Ramirez
 - **ORCID:** [0009-0000-3128-5123](https://orcid.org/0009-0000-3128-5123)
-- **Release:** `v0.1.0-preprint`
-- **Preprint date:** August 23, 2026
+- **Release candidate:** `v0.1.1-arxiv`
+- **Preprint date:** August 25, 2026
 - **Repository:**
   [github.com/dramirez37/financial-strategy-library-compression](https://github.com/dramirez37/financial-strategy-library-compression)
 - **Preprint record:** URL forthcoming
 
 The versioned release candidate includes the compiled
-[`main paper`](release/v0.1.0-preprint/financial-strategy-library-compression-preprint.pdf)
-and [`Online Supplement`](release/v0.1.0-preprint/financial-strategy-library-compression-online-supplement.pdf).
+[`main paper`](release/v0.1.1-arxiv/financial-strategy-library-compression-preprint.pdf)
+and [`Online Supplement`](release/v0.1.1-arxiv/financial-strategy-library-compression-online-supplement.pdf).
 
 The paper studies exact compression of finite financial-strategy libraries
 when a retained strategy may contribute both current operating value and
@@ -112,7 +112,7 @@ contract, commands, and public outputs available without licensed access.
 | `experiments/financial_resource_optimization/` | Cross-audit resource-optimization protocol and public certificates. |
 | `manuscript/` | Main-paper source, appendices, bibliography, generated figures/tables, and build script. |
 | `manuscript/online_supplement/` | Standalone supplement source and build script. |
-| `release/v0.1.0-preprint/` | Versioned release PDFs and SHA-256/commit metadata. |
+| `release/v0.1.1-arxiv/` | Versioned PDFs, arXiv-ready TeX bundle, and SHA-256/commit metadata. |
 | `scripts/` | Public disclosure audit and complete verification orchestration. |
 
 ## Reproducibility

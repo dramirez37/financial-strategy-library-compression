@@ -32,7 +32,7 @@ provenance are outside this manifest's distributable artifact surface.
 | Citation metadata | `CITATION.cff` |
 | Software, content, and third-party rights | `LICENSE` |
 
-## Preprint v0.1.0 manuscript-facing release inventory
+## Preprint v0.1.1-arxiv manuscript-facing release inventory
 
 This table is the complete inventory of generated files read by the final
 main-paper and Online Supplement source graphs, plus the two distributed PDFs.
@@ -57,10 +57,11 @@ coordinates and displayed decimal summaries remain presentation layers.
 | `manuscript/tables/unified_canonical_resource_channel_elasticities.tex` | `julia/scripts/run_unified_resource_benchmark.jl` | `unified_canonical_resources.toml` | `Rational{BigInt}` | `bc419c4a344ae2d5c6a2991e169939886ddf8ea42a08a1bc07b72e0de15861c9` | PUBLIC GENERATED; main paper |
 | `manuscript/tables/financial_design_summary.tex` | `julia/scripts/generate_manuscript_numerical_artifacts.jl` | the two financial-audit configs and committed aggregates | exact counts with Float64 audit summaries | `c888dd869a630cd34618aa3c326728f989f67c947ef7a261e9583a20318084e0` | PUBLIC GENERATED; supplement |
 | `manuscript/tables/numerical_mechanism_summary.tex` | `julia/scripts/generate_manuscript_numerical_artifacts.jl` | `compression_experiments.csv` and `theorem_mechanism_{pruning_loss,decomposition,coverage_geometry}.csv` | `Rational{BigInt}` | `61a85ebb33fe920d8430de1c8a80af0cc1c37113ad6c7eba82a265f38663d7b1` | PUBLIC GENERATED; supplement |
-| `release/v0.1.0-preprint/financial-strategy-library-compression-preprint.pdf` | `manuscript/build.sh` | committed main-paper source graph and bibliography | not applicable; compiled presentation of separately classified evidence | `032c3b4315f9ef7d30a5ec82a306677394efd9d63451b69c11b690d1493e99d6` | PUBLIC GENERATED; final 44-page release PDF |
-| `release/v0.1.0-preprint/financial-strategy-library-compression-online-supplement.pdf` | `manuscript/online_supplement/build.sh` | committed supplement source graph and public generated inputs | not applicable; compiled presentation of separately classified evidence | `cb973200d19e6864844a7eb118123bb1faf370a28d7281901855627745359f79` | PUBLIC GENERATED; final 41-page release PDF |
+| `release/v0.1.1-arxiv/financial-strategy-library-compression-preprint.pdf` | `manuscript/build.sh` | committed main-paper source graph and bibliography | not applicable; compiled presentation of separately classified evidence | `6f4097b450b3dcb0413513f8fbf9d2f7c4c91091a996cf38a988d1d230a4fde1` | PUBLIC GENERATED; final 43-page release-candidate PDF |
+| `release/v0.1.1-arxiv/financial-strategy-library-compression-online-supplement.pdf` | `manuscript/online_supplement/build.sh` | committed supplement source graph and public generated inputs | not applicable; compiled presentation of separately classified evidence | `85e4e28a52aaad72edcca2a1611be927b65f69c76c0836030b0abf7ae384f481` | PUBLIC GENERATED; final 41-page release-candidate PDF |
+| `release/v0.1.1-arxiv/financial-strategy-library-compression-arxiv-source.tar.gz` | `scripts/build_arxiv_bundle.sh` | the two active LaTeX source graphs, matching bibliography and `paper.bbl`, and only their required public figures, tables, and displayed CSV records | not applicable; packaging artifact only | `d7270f2aad722cd6560c4d549624a988fe1658c035d8a1f8d3ad1f10b8272606` | PUBLIC GENERATED; arXiv upload source with `paper.tex` first and `supplement.tex` second |
 
-`release/v0.1.0-preprint/RELEASE_METADATA.md` records the release identifier,
+`release/v0.1.1-arxiv/RELEASE_METADATA.md` records the release identifier,
 date, exact PDF hashes, and an `export-subst` commit placeholder. In a release
 archive that placeholder expands to the exact source commit without creating
 an impossible self-referential commit hash in the committed file.
@@ -719,7 +720,7 @@ artifact checksum is assigned. The focused Git commit is their provenance.
 | empirical data | licensed/provenanced inputs, if used | ignored local CRSP panel exists with complete source and license audit; raw and row-level redistribution is prohibited |
 | general raw-model theorem fixture adapters | future mappings from the shared exact records into every accepted raw Lean structure | the version-1 transparent exact bridge exists, but no universal raw-model adapter theorem exists |
 | generated theorem exports and machine-readable axiom reports | generated audited metadata in `shared/` | absent; source-level F0 audit exists |
-| release bundle | `release/v0.1.0-preprint/` | main and supplement PDFs plus hashes and archive-expanded source-commit metadata are present; deprecated internal records and licensed rows are excluded from the release archive |
+| release bundle | `release/v0.1.1-arxiv/` | main and supplement PDFs, minimal two-document arXiv source package, hashes, and archive-expanded source-commit metadata are present; executable research projects, deprecated internal records, and licensed rows are excluded from the arXiv source archive |
 
 ## Manifest policy
 

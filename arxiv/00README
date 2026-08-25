@@ -1,0 +1,16 @@
+This submission contains two top-level PDFLaTeX documents.
+
+Compile and order them as follows:
+
+1. paper.tex
+2. supplement.tex
+
+paper.tex is the main preprint. supplement.tex is the standalone Online
+Supplement. Both files compile from this directory. paper.bbl is supplied to
+make the bibliography independent of BibTeX availability, and the matching
+bibliography/references.bib is included for source completeness.
+
+The bundle contains only TeX inputs, the figures and tables read by those
+inputs, the public CSV records displayed verbatim in the supplement, and the
+bibliography. It contains no licensed financial rows, executable research
+code, version-control data, logs, or auxiliary build files.

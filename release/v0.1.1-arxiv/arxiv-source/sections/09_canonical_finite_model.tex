@@ -1,0 +1,63 @@
+% Page budget: 2.5--3 pages before the financial audits.
+\section{Controlled experiments}\label{sec:experiments}
+
+The experiments separate three evidentiary roles.  Exact rational fixtures
+exercise individual optimization mechanisms; a registered randomized study
+summarizes how those mechanisms behave across finite generated libraries; and
+the two financial audits ask retrospectively how much resource an exact
+frontier--closure constraint costs in two larger libraries.  The first two
+layers are finite computational evidence; the financial information boundary
+is stated in Appendix~E.  Full protocols and diagnostic tables are in Online
+Supplements~S5--S7.
+
+\subsection{Exact optimization fixtures}
+
+The smallest exact fixtures are reported where their mechanisms are used:
+the local--global compression witness in Section~4, the sharp bridge loss in
+Section~4.5, and the capacity and price geometry in Section~6.  Online
+Supplement~S4 gives the complete canonical resource correspondences, and
+Online Supplement~S5 retains the broader mechanism suite.  All fixture values
+use exact rational arithmetic and complete finite enumeration.
+
+\subsection{Randomized optimal-compression study}
+
+The registered $N=1024$ extension evaluates the resource problem with exact
+rationals on the frozen finite-library registry.  The resulting summary is in
+\cref{tab:randomized-optimization-summary}.  The registered rechecked deletion
+order's zero gap is a design outcome, not a greedy-optimality theorem.
+
+\begin{table}[htbp]
+\centering
+\small
+\input{tables/main_randomized_optimization_summary}
+\caption{Randomized optimal-compression outcomes.  Fractions and integer
+counts are exact.  A leading \(\approx\) marks a decimal rendered from an exact
+across-trial rational mean; the committed source tables retain the full
+fractions and every optimizer tie.  Frequencies describe the registered finite
+generator, not a real-library population.}
+\label{tab:randomized-optimization-summary}
+\end{table}
+
+Capacity rises quickly but not concavely: on average, three quarters of source
+burden recovers more than $99\%$ of attainable productive value, yet many
+attainable staircases contain an increasing increment.
+Frontier-only compression is more aggressive precisely because it may discard
+the descendant channel; its zero median normalized loss coexists with a sharp
+upper tail.
+
+The registered price intervals also separate resource demand from productive
+value and its channels.
+\begin{table}[htbp]
+\centering
+\scriptsize
+\input{tables/main_randomized_price_elasticities}
+\caption{Across-trial mean arc elasticities and channel contributions; every
+entry is dimensionless.  Exact \(\mathtt{Rational\{BigInt\}}\) observations
+are rounded to five decimal places for display.  Every arc is defined in all
+1,024 trials, so no undefined elasticity is imputed as zero.  The two channel
+contributions add exactly to productive-value elasticity before rendering.}
+\label{tab:randomized-price-elasticities}
+\end{table}
+Prefix stability, Wilson intervals, Monte Carlo standard errors, full
+factorial slices, and the frozen-pilot comparison are confined to Online
+Supplement~S5.

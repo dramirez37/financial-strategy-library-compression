@@ -57,6 +57,7 @@ numerical rule.
 | `make randomized` | Verify all three frozen design/amendment locks, run the registered (N=1024) study once, then run the independent result-reader audit. | Long; the registered planning allowance is 900 seconds, but runtime is host dependent. | Public synthetic registry, locks, configuration, and committed master/derived seeds only. | `RANDOMIZED_LIBRARY_REPORT_V2.md`, registered randomized CSV/JSON summaries and figures, plus an independent reconciliation report. |
 | `make formal` | Run a clean Lean build, prohibited-marker scan, comprehensive axiom audit with the accepted standard-axiom whitelist, and manuscript linter. | Medium to long; clean-build time is host and cache dependent. | Public Lean sources and pinned Lake/mathlib environment; no empirical data. | Local `formal/.lake/` build products and audit output; no tracked source change. |
 | `make manuscript` | Compile the main preprint and standalone Online Supplement with their existing warning gates. | Short to medium; normally minutes. | Public LaTeX, bibliography, figure, and table sources; no Julia or licensed data. | `manuscript/build/main.pdf` and `manuscript/build/online_supplement/main.pdf`. |
+| `make arxiv-bundle` | Assemble the two top-level TeX documents and only their required public inputs into the versioned arXiv source directory. | Short; normally seconds after `make manuscript`. | Public LaTeX sources plus the generated `main.bbl`; no Julia, Lean, or licensed data. | `release/v0.1.1-arxiv/arxiv-source/` and its uploadable `.tar.gz` archive. |
 | `make financial-licensed` | Validate independently supplied licensed inputs, prepare both ignored panels, run the terminal and annual walk-forward audits, and run/check the cross-audit resource optimization. | Long; data volume, storage, and host dependent. | Independent CRSP/WRDS license, the four source files in `DATA_ACCESS.md`, and `ALGOLIB_CRSP_ROOT`. | Six ignored local panel/provenance/audit files; registered public aggregate CSV/JSON/report/figure artifacts; cross-audit exact certificates. |
 
 `make help` prints this component list. `JULIA_EXE` may point to an absolute
@@ -169,8 +170,24 @@ make manuscript
 These scripts require latexmk, pdfTeX, BibTeX, and ripgrep. They compile
 committed sources; they do not run Julia or regenerate experiment outputs.
 The versioned copies distributed with this release are under
-`release/v0.1.0-preprint/`; their SHA-256 values and archive-expanded source
+`release/v0.1.1-arxiv/`; their SHA-256 values and archive-expanded source
 commit are recorded in `RELEASE_METADATA.md` in that directory.
+
+### arXiv source bundle
+
+```sh
+make manuscript
+make arxiv-bundle
+```
+
+The bundle target copies, but does not reinterpret, the canonical manuscript
+sources and generated presentation artifacts. It creates `paper.tex` and
+`supplement.tex` at the bundle root, rewrites only the supplement's relative
+input paths, includes the matching bibliography and `paper.bbl`, and excludes
+the repository, Julia and Lean projects, experiment runners, licensed-data
+contracts, logs, and auxiliary build files. Compile the two top-level files
+from the bundle root with PDFLaTeX, selecting `paper.tex` first and
+`supplement.tex` second when submitting to arXiv.
 
 ### Complete public gate
 

@@ -1,6 +1,6 @@
 # Expand the exact source commit in the archived release record without
 # creating an impossible self-referential commit hash in the working tree.
-release/v0.1.0-preprint/RELEASE_METADATA.md export-subst
+release/v0.1.1-arxiv/RELEASE_METADATA.md export-subst
 
 # Deprecated compatibility wrapper; public commands use `scripts/verify.sh`.
 scripts/full_check.sh export-ignore

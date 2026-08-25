@@ -1,0 +1,170 @@
+% Page budget: 3 pages across the two Section 5 source fragments.
+\clearpage
+\section{Value Interpretation}\label{sec:value}
+
+Section~4 determines which strategies remain.  This section explains why its
+two preservation objects have economic value.  It keeps the value
+decomposition, one descendant-event bound, and the finite shadow value needed
+to interpret the compression problem.  Appendix~C contains the core
+sensitivity formulas; extended belief-occupation and interaction results are
+in Online Supplements~S1--S3.  Resource burden is not a third productive
+channel: it enters through the outer capacity or penalized problem of
+Section~4.
+
+\subsection{Operational--generative decomposition}
+
+Use the unified raw process of \cref{thm:raw-to-compressed-projection}.  Its
+\emph{passive value} freezes the library and rules out research:
+\begin{align}
+ P_0(b,L)&=0,\nonumber\\
+ P_{n+1}(b,L)&=F_L(b)+\beta
+   \sum_{b'}P_B(b,b')P_n(b',L).\label{eq:passive-value}
+\end{align}
+Let \(U_n(b,L)\) be the corresponding full value with Continue and every
+feasible positive-duration research project, and let
+\(\Omega_n(b,L):=U_n(b,L)-P_n(b,L)\) be the research-option premium.
+
+\begin{definition}[Insertion-value channels]
+\label{def:innovation-components}
+For a candidate \(s\), define
+\begin{align}
+ \mathcal I_n(s\mid b,L)
+   &:=U_n(b,L\cup\{s\})-U_n(b,L),\label{eq:total-innovation}\\
+ \Delta^{\op}_n(s\mid b,L)
+   &:=P_n(b,L\cup\{s\})-P_n(b,L),\label{eq:operational-innovation}\\
+ \Delta^{\gen}_n(s\mid b,L)
+   &:=\Omega_n(b,L\cup\{s\})-\Omega_n(b,L).
+   \label{eq:generative-innovation}
+\end{align}
+\end{definition}
+
+\begin{theorem}[Operational--generative value decomposition]
+\label{thm:value-decomposition}
+For every finite horizon, belief, raw library, and candidate,
+\begin{equation}\label{eq:value-decomposition}
+ \mathcal I_n(s\mid b,L)
+ =\Delta^{\op}_n(s\mid b,L)+\Delta^{\gen}_n(s\mid b,L).
+\end{equation}
+\end{theorem}
+
+This is an accounting identity, not a sign claim.  The operational term asks
+what insertion changes when invention is switched off.  The generative term
+is the residual change in the option to research, so it can be negative if
+insertion changes costs, completion laws, or the relative appeal of projects.
+The projection theorem gives \(U_n(b,L)=V_n(b,K_L)\), allowing both channels
+to be evaluated on the sufficient frontier--closure state.
+
+\begin{corollary}[Frontier-silent insertion]
+\label{cor:frontier-silent-insertion}
+If \(F_{L\cup\{s\}}=F_L\), then
+\(\Delta^{\op}_n(s\mid b,L)=0\).  If also
+\(C_{L\cup\{s\}}=C_L\), then \(\mathcal I_n(s\mid b,L)=0\).
+\end{corollary}
+
+\begin{example}[Operationally silent, generatively valuable bridge]
+\label{ex:operational-zero-generative-positive}
+A zero-profile bridge carries the unique module enabling a duration-one,
+zero-cost project whose descendant pays two.  With one belief, suspended
+operation, and \(\beta=1/2\), insertion gives
+\begin{equation}\label{eq:operational-zero-generative-positive}
+ \Delta^{\op}_2=0,
+ \qquad \Delta^{\gen}_2=1.
+\end{equation}
+The strategy is silent on the current frontier and valuable solely as an
+input into future invention.
+\end{example}
+
+\subsection{Joint descendant-event lower bound}
+
+The generative channel becomes economically sharp when one retained carrier
+opens a specific path to a descendant.  Write \(L^+=L\cup\{s\}\).  For a
+project \(q\) of duration \(d\le h\) and a distinguished descendant \(g\),
+define the terminal-belief/descendant event mass from the unified joint law:
+\begin{equation}\label{eq:t6-joint-descendant-mass}
+ \eta_{q,g}(b'\mid b,K)
+ :=\Pr\!\left(B_d=b',\ O=\operatorname{some}(g)
+       \mid B_0=b,K,q\right).
+\end{equation}
+This is a subprobability mass and permits arbitrary correlation between the
+terminal belief and admission.  The operating-timing adjustment is
+\begin{equation}\label{eq:t6-operating-adjustment}
+ A^{\op}_{q,h}(b,L^+)
+ :=\mathbb E^q_{b,K_{L^+}}\!\left[
+   G^{\op}(K_{L^+},q,\mathbf B)
+   +\beta^dP_{h-d}(B_d,L^+)\right]-P_h(b,L^+).
+\end{equation}
+It records operating value earned or forgone while research consumes time.
+
+\begin{theorem}[Joint descendant-event generative-option lower bound]
+\label{thm:generative-carrier-lower-bound}
+Suppose \(F_{L^+}=F_L\); \(q\), of duration \(d\le h\), is feasible at
+\(L^+\) and infeasible at \(L\); its cost is \(\kappa\); and the deleted comparator has
+\(\Omega_h(b,L)=0\).  Let \(G(b')\ge0\) lower-bound the complete
+full-minus-passive continuation gain after admitting \(g\) on every
+length-\(d\) path.  If failure leaves the library unchanged, other admissions
+are insertion-only, and full continuation retains the passive policy, then
+\begin{equation}\label{eq:t6-lower-bound-adjusted}
+ \Delta_h^{\gen}(s\mid b,L)
+ \ge \max\!\left\{
+  -\kappa+A^{\op}_{q,h}(b,L^+)
+  +\beta^d\sum_{b'}\eta_{q,g}(b'\mid b,K_{L^+})G(b'),\,0
+ \right\}.
+\end{equation}
+If \(A^{\op}_{q,h}=0\), this reduces to
+\begin{equation}\label{eq:t6-lower-bound}
+ \Delta_h^{\gen}(s\mid b,L)
+ \ge \max\!\left\{
+  -\kappa+\beta^d\sum_{b'}
+  \eta_{q,g}(b'\mid b,K_{L^+})G(b'),\,0
+ \right\}.
+\end{equation}
+\end{theorem}
+
+Under the event-specific factorization
+\[
+ \eta_{q,g}(\,\cdot\mid b,K_{L^+})
+ =\pi\rho^d\mu_{q,d}(b,\,\cdot),
+\]
+write
+\(\overline G_{q,d}(b):=\sum_{b'}\mu_{q,d}(b,b')G(b')\).
+
+\begin{corollary}[Product specialization and signs]
+\label{cor:t6-independent-product}
+\label{cor:t6-comparative-statics}
+Under that factorization, the terminal term in
+\eqref{eq:t6-lower-bound-adjusted} is
+\(\beta^d\pi\rho^d\overline G_{q,d}(b)\).  Holding other terms fixed,
+the guarantee rises with pointwise joint mass, pointwise gain, and the
+operating adjustment and falls with cost.  Total descendant mass alone has no
+sign if its terminal-belief distribution also changes.
+\end{corollary}
+
+The joint bound does not require independence.  Duration has no
+unconditional sign because it can change
+discounting, the joint law, belief occupation, operating rewards,
+continuation gains, and horizon feasibility.  Appendix~A gives the proof and
+exact retained-carrier example; Online Supplement~S3 gives the
+detailed delay algebra.
+
+\subsection{Capacity shadow value}
+
+The hard-capacity problem in \cref{eq:capacity-value} yields the exact
+forward shadow value
+\begin{equation}\label{eq:capacity-shadow-value}
+ \Delta_B^\delta V_\theta^\star(b;B)
+ :=V_\theta^\star(b;B+\delta)-V_\theta^\star(b;B),
+ \qquad \delta>0.
+\end{equation}
+By \cref{thm:capacity-value}, this finite difference is nonnegative and is
+zero whenever the interval crosses no value-changing attainable burden.  It
+is the appropriate marginal object because capacity value is a finite step
+function, not a differentiable relaxation.
+
+Scarce capabilities can be complementary.  In the exact two-unit witness,
+neither first capability is productive alone but the pair unlocks value one,
+so the unit shadow sequence is \(0,1\).  Capacity value therefore need not be
+concave and marginal capacity values need not diminish.  Conversely,
+additive independent gains with equal unit weights give weakly decreasing
+grid shadows.  Any normalized capacity arc additionally requires positive
+base capacity and positive base value; when either denominator is zero, we
+report \eqref{eq:capacity-shadow-value} itself.

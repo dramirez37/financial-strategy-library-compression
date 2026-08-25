@@ -130,7 +130,7 @@ EMAIL_PATTERN='[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}'
 PUBLICATION_EMAIL='ramirezdavv'@'gmail.com'
 EMAIL_FILES="$(git grep -IlE "$EMAIL_PATTERN" -- . || true)"
 UNAPPROVED_EMAIL_FILES="$(printf '%s\n' "$EMAIL_FILES" | rg -v \
-    '^(CITATION\.cff|manuscript/main\.tex|manuscript/online_supplement/main\.tex)$' || true)"
+    '^(CITATION\.cff|manuscript/main\.tex|manuscript/online_supplement/main\.tex|release/v0\.1\.1-arxiv/arxiv-source/(paper|supplement)\.tex)$' || true)"
 [[ -z "$UNAPPROVED_EMAIL_FILES" ]] ||
     print_paths_and_fail "email addresses require publication review; values suppressed" "$UNAPPROVED_EMAIL_FILES"
 
@@ -142,7 +142,9 @@ UNAPPROVED_EMAIL_VALUES="$(printf '%s\n' "$EMAIL_VALUES" | rg -vxF "$PUBLICATION
 for publication_email_path in \
     CITATION.cff \
     manuscript/main.tex \
-    manuscript/online_supplement/main.tex; do
+    manuscript/online_supplement/main.tex \
+    release/v0.1.1-arxiv/arxiv-source/paper.tex \
+    release/v0.1.1-arxiv/arxiv-source/supplement.tex; do
     rg -qF "$PUBLICATION_EMAIL" "$publication_email_path" ||
         fail "publication-approved corresponding email is missing from $publication_email_path"
 done
@@ -207,20 +209,24 @@ for licensed_dir in \
     done < <(find "$licensed_dir" -type f -print)
 done
 
-RELEASE_VERSION='v0.1.0-preprint'
-RELEASE_DATE='2026-08-23'
-RELEASE_DISPLAY_DATE='August 23, 2026'
+RELEASE_VERSION='v0.1.1-arxiv'
+RELEASE_DATE='2026-08-25'
+RELEASE_DISPLAY_DATE='August 2026'
 REPOSITORY_URL='https://github.com/dramirez37/financial-strategy-library-compression'
 RELEASE_ROOT="release/$RELEASE_VERSION"
 RELEASE_METADATA="$RELEASE_ROOT/RELEASE_METADATA.md"
 MAIN_RELEASE_PDF="$RELEASE_ROOT/financial-strategy-library-compression-preprint.pdf"
 SUPPLEMENT_RELEASE_PDF="$RELEASE_ROOT/financial-strategy-library-compression-online-supplement.pdf"
+ARXIV_SOURCE_ARCHIVE="$RELEASE_ROOT/financial-strategy-library-compression-arxiv-source.tar.gz"
 
 for release_path in \
     .gitattributes \
     "$RELEASE_METADATA" \
     "$MAIN_RELEASE_PDF" \
-    "$SUPPLEMENT_RELEASE_PDF"; do
+    "$SUPPLEMENT_RELEASE_PDF" \
+    "$ARXIV_SOURCE_ARCHIVE" \
+    "$RELEASE_ROOT/arxiv-source/paper.tex" \
+    "$RELEASE_ROOT/arxiv-source/supplement.tex"; do
     [[ -f "$release_path" ]] || fail "required release file is absent: $release_path"
     git ls-files --error-unmatch "$release_path" >/dev/null 2>&1 ||
         fail "required release file is not tracked: $release_path"
@@ -234,7 +240,7 @@ for metadata_path in CITATION.cff "$RELEASE_METADATA"; do
     rg -qF "$RELEASE_DATE" "$metadata_path" ||
         fail "release date is missing from $metadata_path"
 done
-for metadata_path in README.md manuscript/main.tex manuscript/online_supplement/main.tex; do
+for metadata_path in manuscript/main.tex manuscript/online_supplement/main.tex; do
     rg -qF "$RELEASE_DISPLAY_DATE" "$metadata_path" ||
         fail "display release date is missing from $metadata_path"
 done
@@ -249,12 +255,16 @@ fi
 
 MAIN_RECORDED_HASH="$(awk -F': ' '/^- Main PDF SHA-256:/ {print $2}' "$RELEASE_METADATA")"
 SUPPLEMENT_RECORDED_HASH="$(awk -F': ' '/^- Supplement PDF SHA-256:/ {print $2}' "$RELEASE_METADATA")"
+ARXIV_RECORDED_HASH="$(awk -F': ' '/^- arXiv source archive SHA-256:/ {print $2}' "$RELEASE_METADATA")"
 MAIN_CURRENT_HASH="$(shasum -a 256 "$MAIN_RELEASE_PDF" | awk '{print $1}')"
 SUPPLEMENT_CURRENT_HASH="$(shasum -a 256 "$SUPPLEMENT_RELEASE_PDF" | awk '{print $1}')"
+ARXIV_CURRENT_HASH="$(shasum -a 256 "$ARXIV_SOURCE_ARCHIVE" | awk '{print $1}')"
 [[ "$MAIN_RECORDED_HASH" == "$MAIN_CURRENT_HASH" ]] ||
     fail "main release PDF hash does not match $RELEASE_METADATA"
 [[ "$SUPPLEMENT_RECORDED_HASH" == "$SUPPLEMENT_CURRENT_HASH" ]] ||
     fail "supplement release PDF hash does not match $RELEASE_METADATA"
+[[ "$ARXIV_RECORDED_HASH" == "$ARXIV_CURRENT_HASH" ]] ||
+    fail "arXiv source archive hash does not match $RELEASE_METADATA"
 
 RELEASE_EXCLUDED_PATHS=(
     scripts/full_check.sh
@@ -289,7 +299,7 @@ while IFS= read -r path; do
         continue
     fi
     case "$path" in
-        experiments/results/*|manuscript/figures/*|manuscript/tables/*|shared/exact_fixtures/*.json|formal/StrategyInnovation/Fixtures/Generated.lean|release/*/*.pdf)
+        experiments/results/*|manuscript/figures/*|manuscript/tables/*|shared/exact_fixtures/*.json|formal/StrategyInnovation/Fixtures/Generated.lean|release/*/*.pdf|release/*/*.tar.gz|release/*/arxiv-source/*)
             GENERATED_PUBLIC_COUNT=$((GENERATED_PUBLIC_COUNT + 1))
             ;;
         *)

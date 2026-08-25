@@ -1,0 +1,126 @@
+\section{Proofs of Resource-Optimization Results}
+\label{app:optimization-proofs}
+
+This appendix supplies the finite arguments behind the resource results in
+Section~4.  All comparisons hold at the fixed belief, primitive model, and
+eligible catalog displayed with the corresponding result.
+
+\subsection{Minimum-resource representation and local/global boundary}
+\label{app:safe-optimization-proof}
+
+\begin{proof}[Proof of \cref{thm:minimum-safe-compression}.]
+The source \(L\) belongs to \(\mathcal P_{\mathrm{safe}}(L)\), so the feasible
+family is nonempty.  It is a subset of the finite powerset of \(L\), hence the
+rational burden attains a minimum.  Every feasible \(L'\) satisfies
+\(K_{L'}=K_L\), so the forward projection theorem identifies all productive
+finite-horizon values.  Bellman intertwining and discounted contraction give
+the stationary value and complete optimal-action correspondence.
+\end{proof}
+
+\begin{proof}[Proof of \cref{thm:local-global-safe-compression}, forward
+implication.]
+If a global minimum retained a safely deletable active strategy \(s\), then
+positivity of \(w_s\) would give
+\[
+ W(L'\setminus\{s\})=W(L')-w_s<W(L'),
+\]
+contradicting minimality.  Thus every global minimum is one-deletion
+irreducible.  A rechecked safe-deletion trace is feasible because its exact
+compressed-state equalities compose, but composition alone is not an
+optimization argument.
+\end{proof}
+
+The converse fails in the exact \((2,2,3)\) construction.  Under identity
+closure and the common zero frontier, a retained active set is safe exactly
+when it covers both \(m_1\) and \(m_2\).  The singleton carriers \(s_1,s_2\)
+have weights \(2,2\), and their bundle \(s_{12}\) has weight \(3\).  The five
+safe active sets are
+\[
+ \{s_1,s_2\},\quad \{s_{12}\},\quad
+ \{s_1,s_{12}\},\quad \{s_2,s_{12}\},\quad
+ \{s_1,s_2,s_{12}\},
+\]
+with respective burdens \(4,3,5,5,7\).  Deleting the unique heaviest safe
+strategy first leaves the two singleton carriers and burden four, while the
+bundle-only library is the unique global minimum with burden three.  Both
+endpoints preserve the source frontier and closure; the failure is global
+resource optimality, not productive value.
+
+\subsection{Sharp frontier-only loss}
+\label{app:bridge-catalog}
+
+\begin{proof}[Proof of \cref{thm:normalized-frontier-pruning-loss}.]
+Use the canonical bridge catalog of Section~4: the retained library has
+frontier \(F_L=(3,3)\), closure \(C_L=\{m\}\), and a dominated unique carrier
+of \(m\).  Deleting that carrier preserves the frontier but makes the sole
+descendant mass zero.  Conditional on retention and commitment to the unique
+project, sequential generation and admission give admitted descendant mass
+\(\rho^d\pi\).  Terminal reward \(R\) arrives after \(d\) dates, so the
+retained one-project envelope is
+\[
+ \max\{0,\beta^d\rho^d\pi R-\kappa\},
+\]
+whereas the frontier-only comparator is zero.  The incumbent operating block
+cancels under frontier equality.  At \(R=C\), the worthwhile condition selects
+the research branch and yields
+\[
+ \operatorname{Loss}_d=\beta^d\rho^d\pi C-\kappa.
+\]
+For \(0\le R\le C\), monotonicity of the two-branch envelope gives the same
+quantity as an upper bound, and \(R=C\) attains it.  Thus the bound is sharp
+within the stated canonical comparison.  Substituting
+\((d,\beta,\rho,\pi,\kappa,C)=(1,1/2,1,1,0,2M)\) gives
+\cref{thm:scaled-frontier-pruning-loss}.
+\end{proof}
+
+\subsection{Capacity-constrained value}
+\label{app:capacity-proof}
+
+\begin{proof}[Proof of \cref{thm:capacity-value}.]
+The inactive-only library makes every nonnegative budget feasible.  The
+eligible family is finite, so each feasible subfamily has a maximizing
+library.  If \(B_1\le B_2\), the first feasible family is contained in the
+second, proving monotonicity.  Order the finite set of attainable burdens.
+Between consecutive burdens the feasible family is unchanged, hence its
+maximum is unchanged; every strict value change therefore occurs at an
+attainable burden, and every exact forward difference is nonnegative.
+\end{proof}
+
+Increasing increments remain possible.  In the exact two-unit
+joint-capability example,
+\[
+ V^\star(0)=0,\qquad V^\star(1)=0,\qquad V^\star(2)=1,
+\]
+so the successive unit increments are \(0\) and \(1\).  The first unit cannot
+assemble the required pair, while the second completes it.  This also shows
+why capacity value need not be concave; separately, the discrete price problem
+may omit an attainable capacity optimum.
+
+\subsection{Penalized finite envelope}
+\label{app:penalized-proof}
+
+\begin{proof}[Proof of \cref{thm:penalized-envelope}.]
+At fixed \((\theta,b)\), each eligible library supplies the affine branch
+\[
+ J_{L'}(\lambda)=V_\theta(b,L')-\lambda W(L').
+\]
+The finite maximum is attained and is continuous, convex, and piecewise
+affine, with changes of maximizing face only at finitely many pairwise
+intersections.  Nonnegative burdens make every branch, and therefore the
+envelope, nonincreasing.
+
+Let \(L_1\) optimize at \(\lambda_1\) and \(L_2\) at
+\(\lambda_2>\lambda_1\).  Optimality gives
+\begin{align*}
+ V_1-\lambda_1W_1&\ge V_2-\lambda_1W_2,\\
+ V_2-\lambda_2W_2&\ge V_1-\lambda_2W_1.
+\end{align*}
+Adding yields \((\lambda_2-\lambda_1)(W_1-W_2)\ge0\), hence
+\(W_2\le W_1\).  This applies to every optimizer pair and proves the
+set-valued burden order.  Strict dominance on a neighborhood identifies one
+affine branch and its slope \(-W(L')\); no derivative is selected at a tie,
+and the proof imposes no nesting of raw libraries.
+\end{proof}
+
+The supporting conditional replacement formulation is in Online
+Supplement~S3.

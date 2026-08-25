@@ -20,7 +20,7 @@ require_file() {
     [[ -f "$ROOT/$1" ]] || fail "required public file is absent: $1"
 }
 
-for tool in awk bibtex git lake latexmk make pdflatex rg sed sort tr; do
+for tool in awk bibtex diff git lake latexmk make pdflatex rg sed sort tar tr; do
     command -v "$tool" >/dev/null 2>&1 || fail "required command is unavailable: $tool"
 done
 
@@ -42,6 +42,7 @@ for path in \
     .gitattributes \
     Makefile \
     scripts/audit_public_repository.sh \
+    scripts/build_arxiv_bundle.sh \
     scripts/check_manuscript_sources.sh \
     scripts/formal_check.sh \
     scripts/preprint_check.sh \
@@ -62,9 +63,12 @@ for path in \
     experiments/randomized_library_v2/DESIGN_LOCK_AMENDMENT_2.json \
     experiments/financial_annual_walkforward_audit/DESIGN_LOCK.json \
     experiments/financial_resource_optimization/DESIGN_LOCK.json \
-    release/v0.1.0-preprint/RELEASE_METADATA.md \
-    release/v0.1.0-preprint/financial-strategy-library-compression-preprint.pdf \
-    release/v0.1.0-preprint/financial-strategy-library-compression-online-supplement.pdf \
+    release/v0.1.1-arxiv/RELEASE_METADATA.md \
+    release/v0.1.1-arxiv/financial-strategy-library-compression-preprint.pdf \
+    release/v0.1.1-arxiv/financial-strategy-library-compression-online-supplement.pdf \
+    release/v0.1.1-arxiv/arxiv-source/paper.tex \
+    release/v0.1.1-arxiv/arxiv-source/supplement.tex \
+    release/v0.1.1-arxiv/financial-strategy-library-compression-arxiv-source.tar.gz \
     manuscript/main.tex \
     manuscript/online_supplement/main.tex; do
     require_file "$path"
@@ -111,6 +115,7 @@ INITIAL_GIT_STATUS="$(git status --porcelain=v1 --untracked-files=all)"
 
 "$ROOT/scripts/audit_public_repository.sh"
 "$ROOT/scripts/check_manuscript_sources.sh"
+"$ROOT/scripts/build_arxiv_bundle.sh" --check
 
 "$JULIA_EXE" --project=julia julia/scripts/solve_unified_canonical_benchmark.jl --check
 "$JULIA_EXE" --project=julia julia/scripts/export_exact_fixtures.jl --check

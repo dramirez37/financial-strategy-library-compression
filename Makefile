@@ -3,7 +3,7 @@ JULIA_EXE ?= $(if $(wildcard $(LOCAL_JULIA)),$(LOCAL_JULIA),julia)
 export JULIA_EXE
 export ALGOLIB_CRSP_ROOT
 
-.PHONY: help preprint-check canonical randomized formal manuscript \
+.PHONY: help preprint-check canonical randomized formal manuscript arxiv-bundle \
 	financial-licensed public-audit verify
 
 help:
@@ -13,6 +13,7 @@ help:
 		'make randomized         Reproduce and independently audit the registered N=1024 study' \
 		'make formal             Run the declared Lean build, linter, and axiom audit' \
 		'make manuscript         Compile the main preprint and online supplement' \
+		'make arxiv-bundle       Assemble the minimal two-document arXiv source package' \
 		'make financial-licensed Run both licensed-data audits and the cross-audit optimization' \
 		'make verify             Run the complete release gate'
 
@@ -36,6 +37,9 @@ formal:
 manuscript:
 	@./manuscript/build.sh
 	@./manuscript/online_supplement/build.sh
+
+arxiv-bundle:
+	@./scripts/build_arxiv_bundle.sh
 
 financial-licensed:
 	@./scripts/run_financial_licensed.sh

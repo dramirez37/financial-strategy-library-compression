@@ -1,0 +1,196 @@
+\documentclass[pdflatex,sn-mathphys-ay]{sn-jnl}
+
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsfonts,mathtools}
+\usepackage{booktabs,longtable,array}
+\usepackage{pdflscape}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{placeins}
+\usepackage[capitalise,noabbrev]{cleveref}
+
+\numberwithin{equation}{section}
+\allowdisplaybreaks
+
+\newtheoremstyle{aor-definition}
+  {12pt plus2pt minus1pt}
+  {12pt plus2pt minus1pt}
+  {\small\normalfont\leftskip=0pt\rightskip=0pt plus 1fil\parfillskip=0pt plus 1fil}
+  {0pt}
+  {\small\bfseries}
+  {}
+  {\newline}
+  {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}
+
+\newtheoremstyle{aor-theorem}
+  {12pt plus2pt minus1pt}
+  {12pt plus2pt minus1pt}
+  {\small\itshape\leftskip=0pt\rightskip=0pt plus 1fil\parfillskip=0pt plus 1fil}
+  {0pt}
+  {\small\bfseries}
+  {}
+  {\newline}
+  {\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}}
+
+\theoremstyle{aor-definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{assumption}[definition]{Assumption}
+\newtheorem{example}[definition]{Example}
+\newtheorem{counterexample}[definition]{Counterexample}
+
+\theoremstyle{aor-theorem}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+
+\makeatletter
+\AtBeginDocument{%
+  \renewenvironment{proof}[1][\proofname]{%
+    \par
+    \pushQED{\qed}%
+    \small\normalfont
+    \topsep 7.5\p@ \@plus 7.5\p@\relax
+    \trivlist
+    \item[\hskip\labelsep\itshape #1\@addpunct{.}]%
+    \mbox{}\par\nobreak\noindent\ignorespaces
+  }{%
+    \popQED
+    \endtrivlist
+    \@endpefalse
+  }%
+}
+\makeatother
+
+\crefname{assumption}{Assumption}{Assumptions}
+\Crefname{assumption}{Assumption}{Assumptions}
+\crefname{counterexample}{Counterexample}{Counterexamples}
+\Crefname{counterexample}{Counterexample}{Counterexamples}
+
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Fin}{\operatorname{Fin}}
+\newcommand{\cl}{\operatorname{cl}}
+\newcommand{\mods}{\operatorname{mods}}
+\newcommand{\DI}{\mathrm{DI}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\gen}{\mathrm{gen}}
+\newcommand{\one}{\mathbf{1}}
+\newcommand{\powersetfin}{\mathcal{P}_{\mathrm{fin}}}
+
+\input{../journal/aor/author_metadata}
+
+\hypersetup{
+  pdftitle={Financial Strategy Library Compression under Partial Information: Resource Constraints and Generative Value},
+  pdfauthor={David Ramirez},
+  pdfsubject={Original Research for Annals of Operations Research},
+  pdfkeywords={strategy-library compression, partial information, stochastic control, combinatorial optimization, generative value, quantitative finance}
+}
+
+\begin{document}
+
+\articletype{Original Research}
+\title[Financial strategy-library compression]{Financial Strategy Library Compression under Partial Information: Resource Constraints and Generative Value}
+
+\author*[1]{\fnm{David} \sur{Ramirez}}\email{ramirezdavv@gmail.com}
+\affil*[1]{\orgname{\AORAffiliationDisplay}}
+
+\abstract{Growing financial strategy libraries consume validation, monitoring,
+maintenance, computing, and governance resources. Retained strategies can be
+operating assets, contributing current payoff, and generative assets, carrying
+modules needed to produce future descendants. We study a finite
+partial-information process whose raw library dynamics project onto a
+sufficient productive state comprising the operating frontier and generative
+closure. Exact, source-relative compression minimizes additive retention
+burden while preserving both objects and therefore productive value and the
+complete set of available optimal actions. Under identity closure, the exact
+decision problem is NP-complete by a weight-preserving set-cover reduction;
+the general optimization problem is NP-hard. Rechecking frontier and closure
+after each deletion certifies a safe path, but a deletion-irreducible endpoint
+need not be globally resource-minimal. A sharp bridge construction shows that
+frontier-only pruning can eliminate the complete attainable delayed descendant
+margin. Hard-capacity value is stepwise and can exhibit increasing increments,
+whereas penalized value is a convex piecewise-affine envelope with discrete
+changes in the selected library. Exact rational fixtures, complete
+small-library searches, registered synthetic stress tests, and retrospective
+financial audits examine these mechanisms. Heuristic and mixed-integer outputs
+remain numerical evidence: selected libraries are independently rechecked for
+exact frontier equality, closure equality, burden, and mandatory inactive
+retention. Held-out financial outcomes are used only after compression and
+support no causal, forecasting, alpha, or deployable-performance claim.}
+
+\keywords{strategy-library compression, partial information, stochastic control,
+combinatorial optimization, generative value, quantitative finance}
+
+\maketitle
+
+\input{../journal/aor/sections/01_introduction}
+\input{sections/02_literature_boundary}
+\input{sections/03_model}
+\input{sections/04_dynamic_innovation_equivalence}
+\input{../journal/aor/sections/05_innovation_safe_compression}
+\input{sections/06_operational_generative_value}
+\input{sections/07_belief_space_coverage}
+\input{sections/08_dynamic_research_control}
+\input{../journal/aor/sections/09_canonical_finite_model}
+\input{sections/10_financial_compression_audit}
+\input{../journal/aor/sections/11_limitations_conclusion}
+
+\appendix
+\input{appendices/a_additional_formal_definitions}
+\input{appendices/b_long_proofs}
+\input{appendices/a_structural_counterexamples}
+\input{appendices/b_optimization_proofs}
+\input{appendices/c_comparative_statics}
+\input{appendices/d_numerical_convergence}
+\input{appendices/e_experiment_protocol}
+\input{appendices/f_validation_status}
+
+\backmatter
+
+\bmhead{Supplementary information}
+Online Resource~1 contains the extended theoretical material, complete
+registered randomized-study diagnostics, full retrospective financial-audit
+secondary tests, and reproducibility records referenced in the article.
+
+\section*{Declarations}
+
+\bmhead{Funding}
+\AORFundingStatement
+
+\bmhead{Competing interests}
+\AORCompetingInterestsStatement
+
+\bmhead{Ethics approval and consent to participate}
+Not applicable. The study does not involve human participants or animals.
+
+\bmhead{Consent for publication}
+Not applicable.
+
+\bmhead{Data availability}
+The exact fixtures, synthetic-study inputs and aggregate outputs, generated
+tables, and generated figures supporting the article are available in the
+project repository. The retrospective financial audits use licensed
+CRSP/WRDS source data. Raw and row-level licensed observations cannot be
+redistributed. Researchers with independent licensed access can reproduce the
+licensed-data stages using the documented input contract; the repository
+provides the redistributable aggregate outputs and exact post-solve
+certificates.
+
+\bmhead{Code availability}
+The Julia 1.12.6 and Lean 4.32.0 source, pinned environments, exact fixtures,
+registered configurations, and reproducibility commands are available at
+\url{https://github.com/dramirez37/financial-strategy-library-compression}.
+
+\bmhead{Author contributions}
+\AORAuthorContributionStatement
+
+\bmhead{Preprint disclosure}
+An earlier preprint release candidate, \texttt{v0.1.1-arxiv}, is preserved in
+the project repository. The journal version adds the explicit computational-
+complexity result and integrates the bounded algorithmic evidence while
+preserving the preprint's theorem meanings and registered studies.
+
+\bibliography{bibliography/references}
+
+\end{document}

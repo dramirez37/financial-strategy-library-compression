@@ -237,6 +237,7 @@ The v1 artifacts remain the frozen pilot and are not pooled with the v2 run.
 | `ALC-SUMMARY-v1` | `experiments/results/summaries/approximate_compression_summary.json` | `cbf582fe2f15a6452037ce362beeb481b241713c15032acc46b82c2a208a85aa` | exact source sizes, minima, losses, Pareto counts, config hash, all-gates result, and theorem-evidence boundary |
 | `ALC-FIG-PARETO-v1` | `manuscript/figures/approximate_compression_pareto.svg` | `06d185a1bae03d3f1379997d6bf47d6982569f87a7b5d932612c57c4013e64b9` | exact size--operational--generative loss surface; XML-valid and full-canvas visually inspected |
 | `ALC-FIG-SEARCH-v1` | `manuscript/figures/approximate_compression_search.svg` | `74e8dbc9dddfa6b5fce764b7c7bcf3506616a04f8a170750474e40d976ecc400` | exact-versus-heuristic cardinality and evaluation-effort comparison; XML-valid and full-canvas visually inspected |
+| `AOR-ALC-TABLE-v0.2.0` | `journal/aor/generated/approximate_compression_summary.tex` | `3d528beb0e4f238543eb887604b1d14177e786ed8b1271c7acd4f5955455a74e` | journal-facing macros and exact two-row table regenerated from the same committed experiment; nonmutating drift check in `journal/aor/check.sh` |
 
 The exact rational subset surface and complete enumeration certify only the
 two registered finite optima. Incomplete beams and greedy rows have no

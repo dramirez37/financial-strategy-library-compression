@@ -632,6 +632,28 @@ Every experiment must have:
   complete Bellman-oracle cut set. This experiment does not create or validate
   a Lean theorem.
 
+### AOR journal wrapper
+
+- **Scientific baseline:** commit
+  `1f414769459e314e594a8a2b9b679996b04597ba`; the journal gate rejects any
+  difference in `release/v0.1.1-arxiv/` or the frozen N=1024 study surface.
+- **Environment:** Julia 1.12.6 from `.local_runtime/` and the committed
+  `julia/` project, plus the hash-pinned December 2024 Springer Nature class
+  and author--year bibliography style under `journal/aor/template/`.
+- **Generated manuscript numbers:**
+  `journal/aor/scripts/generate_journal_artifacts.jl` reruns the committed
+  exact tolerance-based experiment and emits
+  `journal/aor/generated/approximate_compression_summary.tex`. The journal
+  article imports its counts, beam width, evaluated-pool values, and table
+  cells directly.
+- **Development commands:** `make journal` builds the article and Online
+  Resource 1; `make journal-check` adds frozen-surface, theorem-fixture,
+  artifact-drift, source, bibliography, and PDF checks.
+- **Submission boundary:** `make journal-submission-check` additionally
+  rejects unresolved author affiliation, funding, competing-interest,
+  contribution, and cover-letter confirmations. It does not replay the
+  registered N=1024 study or run any long benchmark.
+
 ### multi-gap-topology-audit-v1
 
 - **Configuration:** `experiments/configs/multi_gap_topology.toml`

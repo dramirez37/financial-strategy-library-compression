@@ -339,8 +339,10 @@ counterexamples later in this ledger.
 ### SC-COMP — Complexity of exact safe compression
 
 - **Theorem ID:** SC-COMP
-- **Evidence status:** exact Julia reduction fixtures; no manuscript theorem or
-  Lean verification claim
+- **Journal manuscript label:** `thm:aor-safe-compression-complexity` in
+  `journal/aor/sections/05_innovation_safe_compression.tex`
+- **Evidence status:** complete human-readable polynomial reduction and exact
+  Julia reduction fixtures; no Lean verification claim
 - **Informal statement:** Under an explicit finite binary encoding, the
   identity-closure safe-compression decision problem is NP-complete and its
   minimum-weight optimization problem is NP-hard. Frontier preservation alone
@@ -371,8 +373,9 @@ counterexamples later in this ledger.
   `julia/test/test_safe_compression_complexity.jl`.
 - **Registered fixture:**
   `experiments/results/safe_compression_complexity_reduction_fixture.json`.
-- **Status:** proposed; complete human polynomial proof and exact Julia
-  reduction validation; Lean proof open
+- **Status:** proposed in the controlled ledger vocabulary; complete human
+  polynomial proof included in the journal draft and exact Julia reduction
+  validation; Lean proof not selected
 - **Informal mathematical validity:** The identity problem is in NP by direct
   exact verification. Three weight-preserving polynomial constructors map
   weighted set cover to closure-only, frontier-only, and combined safe

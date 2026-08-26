@@ -67,6 +67,10 @@ manuscript/**/*.synctex.gz
 manuscript/**/*.toc
 manuscript/main.pdf
 
+# Journal submission build products (journal sources remain tracked)
+journal/aor/build/
+journal/aor/submission/
+
 # Generated experiment outputs and logs
 experiments/results/*
 !experiments/results/README.md

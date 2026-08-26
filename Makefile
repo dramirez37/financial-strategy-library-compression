@@ -4,7 +4,7 @@ export JULIA_EXE
 export ALGOLIB_CRSP_ROOT
 
 .PHONY: help preprint-check canonical randomized formal manuscript arxiv-bundle \
-	financial-licensed public-audit verify
+	journal journal-check journal-submission-check financial-licensed public-audit verify
 
 help:
 	@printf '%s\n' \
@@ -14,6 +14,9 @@ help:
 		'make formal             Run the declared Lean build, linter, and axiom audit' \
 		'make manuscript         Compile the main preprint and online supplement' \
 		'make arxiv-bundle       Assemble the minimal two-document arXiv source package' \
+		'make journal            Build the Annals of Operations Research journal draft' \
+		'make journal-check      Run the targeted journal-source and artifact gate' \
+		'make journal-submission-check  Reject unresolved author confirmations' \
 		'make financial-licensed Run both licensed-data audits and the cross-audit optimization' \
 		'make verify             Run the complete release gate'
 
@@ -40,6 +43,15 @@ manuscript:
 
 arxiv-bundle:
 	@./scripts/build_arxiv_bundle.sh
+
+journal:
+	@./journal/aor/build.sh
+
+journal-check:
+	@./journal/aor/check.sh
+
+journal-submission-check:
+	@./journal/aor/check.sh --submission-ready
 
 financial-licensed:
 	@./scripts/run_financial_licensed.sh

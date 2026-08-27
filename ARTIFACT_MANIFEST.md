@@ -319,15 +319,19 @@ experiment.
 
 | Artifact ID | Path | SHA-256 | Role |
 |---|---|---|---|
-| `SCX-CORE-v1` | `julia/src/SafeCompressionComplexity.jl` | `474a227fe9e8d7ed960a86e45d8cfbb1c0f27c7d85a8b11a06226e93e7d769c9` | polynomial-size exact decision-instance and weight-preserving closure-only, frontier-only, and combined constructors |
-| `SCX-CODE-v1` | `julia/scripts/verify_safe_compression_complexity_reductions.jl` | `81cd3a814f0c3e495bdfe62b9eb5da727798216d33592a5e74ae29d299dc168a` | deterministic exact correspondence renderer for the registered weighted-set-cover fixture |
-| `SCX-TEST-v1` | `julia/test/test_safe_compression_complexity.jl` | `5bacfdca5bc7204ce6448ac531e68f1db310239141ed57612b89044c00c677f9` | fixture-mask, exhaustive small-incidence, optimizer, and artifact-drift checks |
-| `SCX-FIXTURE-v1` | `experiments/results/safe_compression_complexity_reduction_fixture.json` | `e9b9dd98c7ebad8f3dc7e1b7a1daefcd5df46f44f83d0aaba4a9bda77085b050` | exact closure-only, frontier-only, and combined feasibility/weight/optimizer correspondence record |
+| `SCX-CORE-v2` | `julia/src/SafeCompressionComplexity.jl` | `d691f7e92d99dbb3006beb03f94e759c9144c01e7e0c556ddf81ea4df6148036` | positive-integer-cost, budgeted full-union set-cover decision instance; explicit mandatory inactive identifier; exact closure-only reduction and feasibility/weight/threshold/decision checks; pre-existing frontier-only and combined constructors remain outside SC-COMP |
+| `SCX-CODE-v2` | `julia/scripts/verify_safe_compression_complexity_reductions.jl` | `bb7f41303debc349d2937b2dd6339e6f70d6e58058640ef31b1e51eb68bdcbd0` | deterministic schema-v2 renderer for five full-union weighted-set-cover yes/no fixtures with separate frontier, closure, burden, and inactive fields |
+| `SCX-TEST-v2` | `julia/test/test_safe_compression_complexity.jl` | `fe3d11505ccb824a2257f739f1af48e1c971d6a11fa1154152e97d1b78fca5ac` | exact budget/type boundary checks, five-fixture drift checks, and 5,565 budgeted variants of all 265 full-union three-set/three-element incidence systems (44,520 selected masks) |
+| `SCX-FIXTURE-v2` | `experiments/results/safe_compression_complexity_reduction_fixture.json` | `9334926c076034e054721ef754db96d43de4dcacb426d97e4d5e5dff24d656bb` | exact five-instance closure-only feasibility, weight, copied-threshold, decision, optimizer, inactive, frontier, and closure correspondence record |
+| `SCX-PROOF-v1` | `journal/aor/manuscript/05_identity_closure_complexity.tex` | `58b40dae455cb37caee8032423be5b6ab138f577ffd9377fd007f9e241555f21` | HUMAN PROOF: source-problem normalization, NP membership, polynomial construction size, forward/reverse feasibility, threshold preservation, exact restricted subclass, and explicit reduction audit |
 
-The constructors are polynomial in their explicitly listed incidence input.
-Exhaustive optimizer enumeration is used only to validate small fixtures. The
-artifact is not a universal proof; SC-COMP has no Lean declaration or axiom
-audit.
+The SC-COMP constructor is polynomial in its explicitly listed incidence
+input. Exhaustive optimizer enumeration is used only to validate small
+fixtures. The JSON artifact is exact finite computation, not a universal
+proof; the universal claim rests on the recorded human proof. SC-COMP has no
+Lean declaration, formal complexity framework, or axiom audit. No item in this
+table establishes strong NP-hardness, inapproximability, APX-hardness, a solver
+status, an approximation guarantee, or a runtime result.
 
 ## Exact identity-closure tagged-cover artifacts
 

@@ -18,7 +18,7 @@ const DEFAULT_OUTPUT = joinpath(
     "results",
     "safe_compression_complexity_reduction_fixture.json",
 )
-const SCHEMA_VERSION = "safe-compression-complexity-reduction-v1"
+const SCHEMA_VERSION = "safe-compression-complexity-reduction-v2"
 
 default_output_path() = DEFAULT_OUTPUT
 _ratio(value::Rational) = "$(numerator(value))//$(denominator(value))"
@@ -35,7 +35,7 @@ function _set_rows(instance::WeightedSetCoverInstance)
     return [
         Dict(
             "id" => instance.set_ids[index],
-            "weight" => _ratio(instance.weights[index]),
+            "weight" => instance.weights[index],
             "elements" => String[
                 instance.element_ids[element_index] for
                 element_index in eachindex(instance.element_ids) if
@@ -54,30 +54,51 @@ function _candidate_rows(
 )
     problem = reduction.problem
     cover = reduction.identity_cover
+    source_frontier = library_frontier(problem, reduction.source_mask)
+    source_closure = library_module_mask(problem, reduction.source_mask)
     return [
         Dict(
             "mask" => Int(mask),
             "selected_sets" => _selected_ids(instance, mask),
-            "weight" => _ratio(set_cover_weight(instance, mask)),
+            "inactive_retained" => true,
+            "set_cover_cost" => set_cover_weight(instance, mask),
+            "safe_compression_burden" => library_weight(problem, mask),
             "set_cover_feasible" => set_cover_feasible(instance, mask),
+            "set_cover_within_budget" =>
+                set_cover_within_budget(instance, mask),
+            "frontier_equal" =>
+                library_frontier(problem, mask) == source_frontier,
+            "closure_equal" =>
+                library_module_mask(problem, mask) == source_closure,
             "safe_compression_feasible" =>
                 safe_feasible(problem, reduction.source_mask, mask),
-            "combined_obligation_cover_feasible" =>
+            "safe_compression_within_budget" =>
+                safe_compression_within_budget(
+                    problem,
+                    reduction.source_mask,
+                    mask,
+                ),
+            "identity_obligation_cover_feasible" =>
                 covers_identity_obligations(cover, mask),
         ) for mask in UInt64(0):reduction.source_mask
     ]
 end
 
 function _reduction_row(
+    fixture_id::String,
     instance::WeightedSetCoverInstance,
     reduction,
 )
     problem = reduction.problem
     cover = reduction.identity_cover
     return Dict(
+        "fixture_id" => fixture_id,
         "mode" => String(reduction.mode),
+        "inactive_strategy_id" => problem.inactive_strategy_id,
         "belief_count" => size(problem.profiles, 2),
         "module_count" => problem.module_count,
+        "budget" => instance.budget,
+        "safe_compression_budget" => problem.budget,
         "source_frontier" => [
             _ratio(value) for value in
             library_frontier(problem, reduction.source_mask)
@@ -90,65 +111,138 @@ function _reduction_row(
         ],
         "correspondence_for_every_mask" => reduction.correspondence,
         "weight_preserved_for_every_mask" => reduction.weight_preservation,
+        "threshold_preserved" => reduction.threshold_preservation,
+        "decision_correspondence_for_every_mask" =>
+            reduction.decision_correspondence,
+        "set_cover_decision_answer" => reduction.set_cover_yes,
+        "safe_compression_decision_answer" =>
+            reduction.safe_compression_yes,
         "optimizer_correspondence" => reduction.optimizer_correspondence,
         "optimal_masks" => [Int(mask) for mask in reduction.safe_optima],
         "optimal_selected_sets" => [
             _selected_ids(instance, mask) for mask in reduction.safe_optima
         ],
-        "minimum_weight" =>
-            _ratio(library_weight(problem, only(reduction.safe_optima))),
+        "minimum_weight" => minimum(
+            library_weight(problem, mask) for mask in reduction.safe_optima
+        ),
         "candidate_rows" => _candidate_rows(instance, reduction),
     )
 end
 
+function _fixture_instances()
+    return [
+        "canonical_yes" => WeightedSetCoverInstance(
+            ["e1", "e2", "e3"],
+            ["A", "B", "C", "D"],
+            [3, 2, 1, 4],
+            UInt64[0x03, 0x06, 0x01, 0x04],
+            3,
+        ),
+        "canonical_no" => WeightedSetCoverInstance(
+            ["e1", "e2", "e3"],
+            ["A", "B", "C", "D"],
+            [3, 2, 1, 4],
+            UInt64[0x03, 0x06, 0x01, 0x04],
+            2,
+        ),
+        "threshold_tie_yes" => WeightedSetCoverInstance(
+            ["e1", "e2"],
+            ["A", "B", "AB"],
+            [1, 1, 2],
+            UInt64[0x01, 0x02, 0x03],
+            2,
+        ),
+        "singleton_overweight_no" => WeightedSetCoverInstance(
+            ["e1"],
+            ["A"],
+            [2],
+            UInt64[0x01],
+            1,
+        ),
+        "empty_set_redundancy_yes" => WeightedSetCoverInstance(
+            ["e1", "e2"],
+            ["empty", "AB", "A", "B"],
+            [9, 5, 2, 2],
+            UInt64[0x00, 0x03, 0x01, 0x02],
+            4,
+        ),
+    ]
+end
+
 function build_complexity_reduction_fixture()
-    instance = WeightedSetCoverInstance(
-        ["e1", "e2", "e3"],
-        ["A", "B", "C", "D"],
-        [3, 2, 1, 4],
-        UInt64[0x03, 0x06, 0x01, 0x04],
-    )
+    fixture_instances = _fixture_instances()
     reductions = [
-        reduction_correspondence(instance, :closure_only),
-        reduction_correspondence(instance, :frontier_only),
-        reduction_correspondence(instance, :combined),
+        fixture_id => reduction_correspondence(instance, :closure_only) for
+        (fixture_id, instance) in fixture_instances
     ]
     all_gates = all(
         reduction.correspondence &&
         reduction.weight_preservation &&
-        reduction.optimizer_correspondence for reduction in reductions
+        reduction.threshold_preservation &&
+        reduction.decision_correspondence &&
+        reduction.optimizer_correspondence &&
+        !isempty(reduction.problem.inactive_strategy_id) &&
+        reduction.set_cover_yes == reduction.safe_compression_yes for
+        (_, reduction) in reductions
     )
     return Dict(
         "schema_version" => SCHEMA_VERSION,
-        "arithmetic" => "Rational{BigInt}",
-        "evidence_class" =>
-            "exact finite executable reduction fixture; not a complexity proof",
-        "source_problem" => Dict(
-            "problem" => "weighted set cover",
-            "elements" => instance.element_ids,
-            "sets" => _set_rows(instance),
-            "source_mask" => Int(set_cover_source_mask(instance)),
-            "optimal_masks" => [
-                Int(mask) for mask in set_cover_optimal_masks(instance)
-            ],
-            "optimal_selected_sets" => [
-                _selected_ids(instance, mask) for
-                mask in set_cover_optimal_masks(instance)
-            ],
+        "arithmetic" =>
+            "positive BigInt costs and budget; Rational{BigInt} zero profiles",
+        "evidence_class" => string(
+            "exact finite executable decision-reduction fixture; ",
+            "not a complexity proof",
         ),
-        "reductions" => [
-            _reduction_row(instance, reduction) for reduction in reductions
+        "source_problem" => Dict(
+            "problem" => "full-union weighted set cover decision",
+            "cost_encoding" => "positive binary integers",
+            "budget_encoding" => "nonnegative binary integer",
+            "validity_check" => "the listed set family covers the universe",
+        ),
+        "reduction_target" => Dict(
+            "problem" => "identity-closure innovation-safe compression decision",
+            "restricted_subclass" =>
+                "one belief, zero profiles, fixed inactive, one module per universe element",
+        ),
+        "instances" => [
+            merge(
+                _reduction_row(fixture_id, instance, reduction),
+                Dict(
+                    "elements" => instance.element_ids,
+                    "sets" => _set_rows(instance),
+                    "source_mask" => Int(set_cover_source_mask(instance)),
+                ),
+            ) for ((fixture_id, instance), (_, reduction)) in
+            zip(fixture_instances, reductions)
         ],
         "gates" => Dict(
-            "all_candidate_masks_checked" => true,
+            "fixture_count" => length(fixture_instances),
+            "all_candidate_masks_checked" => all(
+                length(_candidate_rows(instance, reduction)) ==
+                Int(reduction.source_mask) + 1 for
+                ((_, instance), (_, reduction)) in
+                zip(fixture_instances, reductions)
+            ),
             "all_feasibility_correspondences_hold" => all(
-                reduction.correspondence for reduction in reductions
+                reduction.correspondence for (_, reduction) in reductions
             ),
             "all_weights_preserved" => all(
-                reduction.weight_preservation for reduction in reductions
+                reduction.weight_preservation for (_, reduction) in reductions
+            ),
+            "all_thresholds_preserved" => all(
+                reduction.threshold_preservation for (_, reduction) in reductions
+            ),
+            "all_budgeted_decisions_preserved" => all(
+                reduction.decision_correspondence &&
+                reduction.set_cover_yes == reduction.safe_compression_yes for
+                (_, reduction) in reductions
             ),
             "all_optimizer_sets_preserved" => all(
-                reduction.optimizer_correspondence for reduction in reductions
+                reduction.optimizer_correspondence for (_, reduction) in reductions
+            ),
+            "all_inactive_strategies_fixed" => all(
+                !isempty(reduction.problem.inactive_strategy_id) for
+                (_, reduction) in reductions
             ),
             "all_gates_pass" => all_gates,
         ),

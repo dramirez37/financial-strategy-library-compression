@@ -1,195 +1,304 @@
 {
-  "arithmetic": "Rational{BigInt}",
-  "evidence_class": "exact finite executable reduction fixture; not a complexity proof",
+  "arithmetic": "positive BigInt costs and budget; Rational{BigInt} zero profiles",
+  "evidence_class": "exact finite executable decision-reduction fixture; not a complexity proof",
   "gates": {
+    "all_budgeted_decisions_preserved": true,
     "all_candidate_masks_checked": true,
     "all_feasibility_correspondences_hold": true,
     "all_gates_pass": true,
+    "all_inactive_strategies_fixed": true,
     "all_optimizer_sets_preserved": true,
-    "all_weights_preserved": true
+    "all_thresholds_preserved": true,
+    "all_weights_preserved": true,
+    "fixture_count": 5
   },
-  "reductions": [
+  "instances": [
     {
       "belief_count": 1,
+      "budget": 3,
       "candidate_rows": [
         {
-          "combined_obligation_cover_feasible": false,
+          "closure_equal": false,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": false,
+          "inactive_retained": true,
           "mask": 0,
+          "safe_compression_burden": 0,
           "safe_compression_feasible": false,
+          "safe_compression_within_budget": false,
           "selected_sets": [],
+          "set_cover_cost": 0,
           "set_cover_feasible": false,
-          "weight": "0//1"
+          "set_cover_within_budget": false
         },
         {
-          "combined_obligation_cover_feasible": false,
+          "closure_equal": false,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": false,
+          "inactive_retained": true,
           "mask": 1,
+          "safe_compression_burden": 3,
           "safe_compression_feasible": false,
+          "safe_compression_within_budget": false,
           "selected_sets": [
             "A"
           ],
+          "set_cover_cost": 3,
           "set_cover_feasible": false,
-          "weight": "3//1"
+          "set_cover_within_budget": false
         },
         {
-          "combined_obligation_cover_feasible": false,
+          "closure_equal": false,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": false,
+          "inactive_retained": true,
           "mask": 2,
+          "safe_compression_burden": 2,
           "safe_compression_feasible": false,
+          "safe_compression_within_budget": false,
           "selected_sets": [
             "B"
           ],
+          "set_cover_cost": 2,
           "set_cover_feasible": false,
-          "weight": "2//1"
+          "set_cover_within_budget": false
         },
         {
-          "combined_obligation_cover_feasible": true,
+          "closure_equal": true,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": true,
+          "inactive_retained": true,
           "mask": 3,
+          "safe_compression_burden": 5,
           "safe_compression_feasible": true,
+          "safe_compression_within_budget": false,
           "selected_sets": [
             "A",
             "B"
           ],
+          "set_cover_cost": 5,
           "set_cover_feasible": true,
-          "weight": "5//1"
+          "set_cover_within_budget": false
         },
         {
-          "combined_obligation_cover_feasible": false,
+          "closure_equal": false,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": false,
+          "inactive_retained": true,
           "mask": 4,
+          "safe_compression_burden": 1,
           "safe_compression_feasible": false,
+          "safe_compression_within_budget": false,
           "selected_sets": [
             "C"
           ],
+          "set_cover_cost": 1,
           "set_cover_feasible": false,
-          "weight": "1//1"
+          "set_cover_within_budget": false
         },
         {
-          "combined_obligation_cover_feasible": false,
+          "closure_equal": false,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": false,
+          "inactive_retained": true,
           "mask": 5,
+          "safe_compression_burden": 4,
           "safe_compression_feasible": false,
+          "safe_compression_within_budget": false,
           "selected_sets": [
             "A",
             "C"
           ],
+          "set_cover_cost": 4,
           "set_cover_feasible": false,
-          "weight": "4//1"
+          "set_cover_within_budget": false
         },
         {
-          "combined_obligation_cover_feasible": true,
+          "closure_equal": true,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": true,
+          "inactive_retained": true,
           "mask": 6,
+          "safe_compression_burden": 3,
           "safe_compression_feasible": true,
+          "safe_compression_within_budget": true,
           "selected_sets": [
             "B",
             "C"
           ],
+          "set_cover_cost": 3,
           "set_cover_feasible": true,
-          "weight": "3//1"
+          "set_cover_within_budget": true
         },
         {
-          "combined_obligation_cover_feasible": true,
+          "closure_equal": true,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": true,
+          "inactive_retained": true,
           "mask": 7,
+          "safe_compression_burden": 6,
           "safe_compression_feasible": true,
+          "safe_compression_within_budget": false,
           "selected_sets": [
             "A",
             "B",
             "C"
           ],
+          "set_cover_cost": 6,
           "set_cover_feasible": true,
-          "weight": "6//1"
+          "set_cover_within_budget": false
         },
         {
-          "combined_obligation_cover_feasible": false,
+          "closure_equal": false,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": false,
+          "inactive_retained": true,
           "mask": 8,
+          "safe_compression_burden": 4,
           "safe_compression_feasible": false,
+          "safe_compression_within_budget": false,
           "selected_sets": [
             "D"
           ],
+          "set_cover_cost": 4,
           "set_cover_feasible": false,
-          "weight": "4//1"
+          "set_cover_within_budget": false
         },
         {
-          "combined_obligation_cover_feasible": true,
+          "closure_equal": true,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": true,
+          "inactive_retained": true,
           "mask": 9,
+          "safe_compression_burden": 7,
           "safe_compression_feasible": true,
+          "safe_compression_within_budget": false,
           "selected_sets": [
             "A",
             "D"
           ],
+          "set_cover_cost": 7,
           "set_cover_feasible": true,
-          "weight": "7//1"
+          "set_cover_within_budget": false
         },
         {
-          "combined_obligation_cover_feasible": false,
+          "closure_equal": false,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": false,
+          "inactive_retained": true,
           "mask": 10,
+          "safe_compression_burden": 6,
           "safe_compression_feasible": false,
+          "safe_compression_within_budget": false,
           "selected_sets": [
             "B",
             "D"
           ],
+          "set_cover_cost": 6,
           "set_cover_feasible": false,
-          "weight": "6//1"
+          "set_cover_within_budget": false
         },
         {
-          "combined_obligation_cover_feasible": true,
+          "closure_equal": true,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": true,
+          "inactive_retained": true,
           "mask": 11,
+          "safe_compression_burden": 9,
           "safe_compression_feasible": true,
+          "safe_compression_within_budget": false,
           "selected_sets": [
             "A",
             "B",
             "D"
           ],
+          "set_cover_cost": 9,
           "set_cover_feasible": true,
-          "weight": "9//1"
+          "set_cover_within_budget": false
         },
         {
-          "combined_obligation_cover_feasible": false,
+          "closure_equal": false,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": false,
+          "inactive_retained": true,
           "mask": 12,
+          "safe_compression_burden": 5,
           "safe_compression_feasible": false,
+          "safe_compression_within_budget": false,
           "selected_sets": [
             "C",
             "D"
           ],
+          "set_cover_cost": 5,
           "set_cover_feasible": false,
-          "weight": "5//1"
+          "set_cover_within_budget": false
         },
         {
-          "combined_obligation_cover_feasible": true,
+          "closure_equal": true,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": true,
+          "inactive_retained": true,
           "mask": 13,
+          "safe_compression_burden": 8,
           "safe_compression_feasible": true,
+          "safe_compression_within_budget": false,
           "selected_sets": [
             "A",
             "C",
             "D"
           ],
+          "set_cover_cost": 8,
           "set_cover_feasible": true,
-          "weight": "8//1"
+          "set_cover_within_budget": false
         },
         {
-          "combined_obligation_cover_feasible": true,
+          "closure_equal": true,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": true,
+          "inactive_retained": true,
           "mask": 14,
+          "safe_compression_burden": 7,
           "safe_compression_feasible": true,
+          "safe_compression_within_budget": false,
           "selected_sets": [
             "B",
             "C",
             "D"
           ],
+          "set_cover_cost": 7,
           "set_cover_feasible": true,
-          "weight": "7//1"
+          "set_cover_within_budget": false
         },
         {
-          "combined_obligation_cover_feasible": true,
+          "closure_equal": true,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": true,
+          "inactive_retained": true,
           "mask": 15,
+          "safe_compression_burden": 10,
           "safe_compression_feasible": true,
+          "safe_compression_within_budget": false,
           "selected_sets": [
             "A",
             "B",
             "C",
             "D"
           ],
+          "set_cover_cost": 10,
           "set_cover_feasible": true,
-          "weight": "10//1"
+          "set_cover_within_budget": false
         }
       ],
       "correspondence_for_every_mask": true,
-      "minimum_weight": "3//1",
+      "decision_correspondence_for_every_mask": true,
+      "elements": [
+        "e1",
+        "e2",
+        "e3"
+      ],
+      "fixture_id": "canonical_yes",
+      "inactive_strategy_id": "inactive",
+      "minimum_weight": 3,
       "mode": "closure_only",
       "module_count": 3,
       "obligation_labels": [
@@ -213,199 +322,341 @@
         1,
         4
       ],
+      "safe_compression_budget": 3,
+      "safe_compression_decision_answer": true,
+      "set_cover_decision_answer": true,
+      "sets": [
+        {
+          "elements": [
+            "e1",
+            "e2"
+          ],
+          "id": "A",
+          "weight": 3
+        },
+        {
+          "elements": [
+            "e2",
+            "e3"
+          ],
+          "id": "B",
+          "weight": 2
+        },
+        {
+          "elements": [
+            "e1"
+          ],
+          "id": "C",
+          "weight": 1
+        },
+        {
+          "elements": [
+            "e3"
+          ],
+          "id": "D",
+          "weight": 4
+        }
+      ],
       "source_frontier": [
         "0//1"
       ],
+      "source_mask": 15,
       "source_module_mask": 7,
+      "threshold_preserved": true,
       "weight_preserved_for_every_mask": true
     },
     {
-      "belief_count": 3,
+      "belief_count": 1,
+      "budget": 2,
       "candidate_rows": [
         {
-          "combined_obligation_cover_feasible": false,
+          "closure_equal": false,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": false,
+          "inactive_retained": true,
           "mask": 0,
+          "safe_compression_burden": 0,
           "safe_compression_feasible": false,
+          "safe_compression_within_budget": false,
           "selected_sets": [],
+          "set_cover_cost": 0,
           "set_cover_feasible": false,
-          "weight": "0//1"
+          "set_cover_within_budget": false
         },
         {
-          "combined_obligation_cover_feasible": false,
+          "closure_equal": false,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": false,
+          "inactive_retained": true,
           "mask": 1,
+          "safe_compression_burden": 3,
           "safe_compression_feasible": false,
+          "safe_compression_within_budget": false,
           "selected_sets": [
             "A"
           ],
+          "set_cover_cost": 3,
           "set_cover_feasible": false,
-          "weight": "3//1"
+          "set_cover_within_budget": false
         },
         {
-          "combined_obligation_cover_feasible": false,
+          "closure_equal": false,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": false,
+          "inactive_retained": true,
           "mask": 2,
+          "safe_compression_burden": 2,
           "safe_compression_feasible": false,
+          "safe_compression_within_budget": false,
           "selected_sets": [
             "B"
           ],
+          "set_cover_cost": 2,
           "set_cover_feasible": false,
-          "weight": "2//1"
+          "set_cover_within_budget": false
         },
         {
-          "combined_obligation_cover_feasible": true,
+          "closure_equal": true,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": true,
+          "inactive_retained": true,
           "mask": 3,
+          "safe_compression_burden": 5,
           "safe_compression_feasible": true,
+          "safe_compression_within_budget": false,
           "selected_sets": [
             "A",
             "B"
           ],
+          "set_cover_cost": 5,
           "set_cover_feasible": true,
-          "weight": "5//1"
+          "set_cover_within_budget": false
         },
         {
-          "combined_obligation_cover_feasible": false,
+          "closure_equal": false,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": false,
+          "inactive_retained": true,
           "mask": 4,
+          "safe_compression_burden": 1,
           "safe_compression_feasible": false,
+          "safe_compression_within_budget": false,
           "selected_sets": [
             "C"
           ],
+          "set_cover_cost": 1,
           "set_cover_feasible": false,
-          "weight": "1//1"
+          "set_cover_within_budget": false
         },
         {
-          "combined_obligation_cover_feasible": false,
+          "closure_equal": false,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": false,
+          "inactive_retained": true,
           "mask": 5,
+          "safe_compression_burden": 4,
           "safe_compression_feasible": false,
+          "safe_compression_within_budget": false,
           "selected_sets": [
             "A",
             "C"
           ],
+          "set_cover_cost": 4,
           "set_cover_feasible": false,
-          "weight": "4//1"
+          "set_cover_within_budget": false
         },
         {
-          "combined_obligation_cover_feasible": true,
+          "closure_equal": true,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": true,
+          "inactive_retained": true,
           "mask": 6,
+          "safe_compression_burden": 3,
           "safe_compression_feasible": true,
+          "safe_compression_within_budget": false,
           "selected_sets": [
             "B",
             "C"
           ],
+          "set_cover_cost": 3,
           "set_cover_feasible": true,
-          "weight": "3//1"
+          "set_cover_within_budget": false
         },
         {
-          "combined_obligation_cover_feasible": true,
+          "closure_equal": true,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": true,
+          "inactive_retained": true,
           "mask": 7,
+          "safe_compression_burden": 6,
           "safe_compression_feasible": true,
+          "safe_compression_within_budget": false,
           "selected_sets": [
             "A",
             "B",
             "C"
           ],
+          "set_cover_cost": 6,
           "set_cover_feasible": true,
-          "weight": "6//1"
+          "set_cover_within_budget": false
         },
         {
-          "combined_obligation_cover_feasible": false,
+          "closure_equal": false,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": false,
+          "inactive_retained": true,
           "mask": 8,
+          "safe_compression_burden": 4,
           "safe_compression_feasible": false,
+          "safe_compression_within_budget": false,
           "selected_sets": [
             "D"
           ],
+          "set_cover_cost": 4,
           "set_cover_feasible": false,
-          "weight": "4//1"
+          "set_cover_within_budget": false
         },
         {
-          "combined_obligation_cover_feasible": true,
+          "closure_equal": true,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": true,
+          "inactive_retained": true,
           "mask": 9,
+          "safe_compression_burden": 7,
           "safe_compression_feasible": true,
+          "safe_compression_within_budget": false,
           "selected_sets": [
             "A",
             "D"
           ],
+          "set_cover_cost": 7,
           "set_cover_feasible": true,
-          "weight": "7//1"
+          "set_cover_within_budget": false
         },
         {
-          "combined_obligation_cover_feasible": false,
+          "closure_equal": false,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": false,
+          "inactive_retained": true,
           "mask": 10,
+          "safe_compression_burden": 6,
           "safe_compression_feasible": false,
+          "safe_compression_within_budget": false,
           "selected_sets": [
             "B",
             "D"
           ],
+          "set_cover_cost": 6,
           "set_cover_feasible": false,
-          "weight": "6//1"
+          "set_cover_within_budget": false
         },
         {
-          "combined_obligation_cover_feasible": true,
+          "closure_equal": true,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": true,
+          "inactive_retained": true,
           "mask": 11,
+          "safe_compression_burden": 9,
           "safe_compression_feasible": true,
+          "safe_compression_within_budget": false,
           "selected_sets": [
             "A",
             "B",
             "D"
           ],
+          "set_cover_cost": 9,
           "set_cover_feasible": true,
-          "weight": "9//1"
+          "set_cover_within_budget": false
         },
         {
-          "combined_obligation_cover_feasible": false,
+          "closure_equal": false,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": false,
+          "inactive_retained": true,
           "mask": 12,
+          "safe_compression_burden": 5,
           "safe_compression_feasible": false,
+          "safe_compression_within_budget": false,
           "selected_sets": [
             "C",
             "D"
           ],
+          "set_cover_cost": 5,
           "set_cover_feasible": false,
-          "weight": "5//1"
+          "set_cover_within_budget": false
         },
         {
-          "combined_obligation_cover_feasible": true,
+          "closure_equal": true,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": true,
+          "inactive_retained": true,
           "mask": 13,
+          "safe_compression_burden": 8,
           "safe_compression_feasible": true,
+          "safe_compression_within_budget": false,
           "selected_sets": [
             "A",
             "C",
             "D"
           ],
+          "set_cover_cost": 8,
           "set_cover_feasible": true,
-          "weight": "8//1"
+          "set_cover_within_budget": false
         },
         {
-          "combined_obligation_cover_feasible": true,
+          "closure_equal": true,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": true,
+          "inactive_retained": true,
           "mask": 14,
+          "safe_compression_burden": 7,
           "safe_compression_feasible": true,
+          "safe_compression_within_budget": false,
           "selected_sets": [
             "B",
             "C",
             "D"
           ],
+          "set_cover_cost": 7,
           "set_cover_feasible": true,
-          "weight": "7//1"
+          "set_cover_within_budget": false
         },
         {
-          "combined_obligation_cover_feasible": true,
+          "closure_equal": true,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": true,
+          "inactive_retained": true,
           "mask": 15,
+          "safe_compression_burden": 10,
           "safe_compression_feasible": true,
+          "safe_compression_within_budget": false,
           "selected_sets": [
             "A",
             "B",
             "C",
             "D"
           ],
+          "set_cover_cost": 10,
           "set_cover_feasible": true,
-          "weight": "10//1"
+          "set_cover_within_budget": false
         }
       ],
       "correspondence_for_every_mask": true,
-      "minimum_weight": "3//1",
-      "mode": "frontier_only",
-      "module_count": 1,
+      "decision_correspondence_for_every_mask": true,
+      "elements": [
+        "e1",
+        "e2",
+        "e3"
+      ],
+      "fixture_id": "canonical_no",
+      "inactive_strategy_id": "inactive",
+      "minimum_weight": 3,
+      "mode": "closure_only",
+      "module_count": 3,
       "obligation_labels": [
-        "belief:1",
-        "belief:2",
-        "belief:3"
+        "module:1",
+        "module:2",
+        "module:3"
       ],
       "optimal_masks": [
         6
@@ -423,279 +674,691 @@
         1,
         4
       ],
-      "source_frontier": [
-        "1//1",
-        "1//1",
-        "1//1"
+      "safe_compression_budget": 2,
+      "safe_compression_decision_answer": false,
+      "set_cover_decision_answer": false,
+      "sets": [
+        {
+          "elements": [
+            "e1",
+            "e2"
+          ],
+          "id": "A",
+          "weight": 3
+        },
+        {
+          "elements": [
+            "e2",
+            "e3"
+          ],
+          "id": "B",
+          "weight": 2
+        },
+        {
+          "elements": [
+            "e1"
+          ],
+          "id": "C",
+          "weight": 1
+        },
+        {
+          "elements": [
+            "e3"
+          ],
+          "id": "D",
+          "weight": 4
+        }
       ],
-      "source_module_mask": 0,
+      "source_frontier": [
+        "0//1"
+      ],
+      "source_mask": 15,
+      "source_module_mask": 7,
+      "threshold_preserved": true,
       "weight_preserved_for_every_mask": true
     },
     {
-      "belief_count": 3,
+      "belief_count": 1,
+      "budget": 2,
       "candidate_rows": [
         {
-          "combined_obligation_cover_feasible": false,
+          "closure_equal": false,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": false,
+          "inactive_retained": true,
           "mask": 0,
+          "safe_compression_burden": 0,
           "safe_compression_feasible": false,
+          "safe_compression_within_budget": false,
           "selected_sets": [],
+          "set_cover_cost": 0,
           "set_cover_feasible": false,
-          "weight": "0//1"
+          "set_cover_within_budget": false
         },
         {
-          "combined_obligation_cover_feasible": false,
+          "closure_equal": false,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": false,
+          "inactive_retained": true,
           "mask": 1,
+          "safe_compression_burden": 1,
           "safe_compression_feasible": false,
+          "safe_compression_within_budget": false,
           "selected_sets": [
             "A"
           ],
+          "set_cover_cost": 1,
           "set_cover_feasible": false,
-          "weight": "3//1"
+          "set_cover_within_budget": false
         },
         {
-          "combined_obligation_cover_feasible": false,
+          "closure_equal": false,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": false,
+          "inactive_retained": true,
           "mask": 2,
+          "safe_compression_burden": 1,
           "safe_compression_feasible": false,
+          "safe_compression_within_budget": false,
           "selected_sets": [
             "B"
           ],
+          "set_cover_cost": 1,
           "set_cover_feasible": false,
-          "weight": "2//1"
+          "set_cover_within_budget": false
         },
         {
-          "combined_obligation_cover_feasible": true,
+          "closure_equal": true,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": true,
+          "inactive_retained": true,
           "mask": 3,
+          "safe_compression_burden": 2,
           "safe_compression_feasible": true,
+          "safe_compression_within_budget": true,
           "selected_sets": [
             "A",
             "B"
           ],
+          "set_cover_cost": 2,
           "set_cover_feasible": true,
-          "weight": "5//1"
+          "set_cover_within_budget": true
         },
         {
-          "combined_obligation_cover_feasible": false,
+          "closure_equal": true,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": true,
+          "inactive_retained": true,
           "mask": 4,
-          "safe_compression_feasible": false,
+          "safe_compression_burden": 2,
+          "safe_compression_feasible": true,
+          "safe_compression_within_budget": true,
           "selected_sets": [
-            "C"
+            "AB"
           ],
-          "set_cover_feasible": false,
-          "weight": "1//1"
+          "set_cover_cost": 2,
+          "set_cover_feasible": true,
+          "set_cover_within_budget": true
         },
         {
-          "combined_obligation_cover_feasible": false,
+          "closure_equal": true,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": true,
+          "inactive_retained": true,
           "mask": 5,
-          "safe_compression_feasible": false,
+          "safe_compression_burden": 3,
+          "safe_compression_feasible": true,
+          "safe_compression_within_budget": false,
           "selected_sets": [
             "A",
-            "C"
+            "AB"
           ],
-          "set_cover_feasible": false,
-          "weight": "4//1"
+          "set_cover_cost": 3,
+          "set_cover_feasible": true,
+          "set_cover_within_budget": false
         },
         {
-          "combined_obligation_cover_feasible": true,
+          "closure_equal": true,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": true,
+          "inactive_retained": true,
           "mask": 6,
+          "safe_compression_burden": 3,
           "safe_compression_feasible": true,
+          "safe_compression_within_budget": false,
           "selected_sets": [
             "B",
-            "C"
+            "AB"
           ],
+          "set_cover_cost": 3,
           "set_cover_feasible": true,
-          "weight": "3//1"
+          "set_cover_within_budget": false
         },
         {
-          "combined_obligation_cover_feasible": true,
+          "closure_equal": true,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": true,
+          "inactive_retained": true,
           "mask": 7,
+          "safe_compression_burden": 4,
           "safe_compression_feasible": true,
+          "safe_compression_within_budget": false,
           "selected_sets": [
             "A",
             "B",
-            "C"
+            "AB"
           ],
+          "set_cover_cost": 4,
           "set_cover_feasible": true,
-          "weight": "6//1"
-        },
-        {
-          "combined_obligation_cover_feasible": false,
-          "mask": 8,
-          "safe_compression_feasible": false,
-          "selected_sets": [
-            "D"
-          ],
-          "set_cover_feasible": false,
-          "weight": "4//1"
-        },
-        {
-          "combined_obligation_cover_feasible": true,
-          "mask": 9,
-          "safe_compression_feasible": true,
-          "selected_sets": [
-            "A",
-            "D"
-          ],
-          "set_cover_feasible": true,
-          "weight": "7//1"
-        },
-        {
-          "combined_obligation_cover_feasible": false,
-          "mask": 10,
-          "safe_compression_feasible": false,
-          "selected_sets": [
-            "B",
-            "D"
-          ],
-          "set_cover_feasible": false,
-          "weight": "6//1"
-        },
-        {
-          "combined_obligation_cover_feasible": true,
-          "mask": 11,
-          "safe_compression_feasible": true,
-          "selected_sets": [
-            "A",
-            "B",
-            "D"
-          ],
-          "set_cover_feasible": true,
-          "weight": "9//1"
-        },
-        {
-          "combined_obligation_cover_feasible": false,
-          "mask": 12,
-          "safe_compression_feasible": false,
-          "selected_sets": [
-            "C",
-            "D"
-          ],
-          "set_cover_feasible": false,
-          "weight": "5//1"
-        },
-        {
-          "combined_obligation_cover_feasible": true,
-          "mask": 13,
-          "safe_compression_feasible": true,
-          "selected_sets": [
-            "A",
-            "C",
-            "D"
-          ],
-          "set_cover_feasible": true,
-          "weight": "8//1"
-        },
-        {
-          "combined_obligation_cover_feasible": true,
-          "mask": 14,
-          "safe_compression_feasible": true,
-          "selected_sets": [
-            "B",
-            "C",
-            "D"
-          ],
-          "set_cover_feasible": true,
-          "weight": "7//1"
-        },
-        {
-          "combined_obligation_cover_feasible": true,
-          "mask": 15,
-          "safe_compression_feasible": true,
-          "selected_sets": [
-            "A",
-            "B",
-            "C",
-            "D"
-          ],
-          "set_cover_feasible": true,
-          "weight": "10//1"
+          "set_cover_within_budget": false
         }
       ],
       "correspondence_for_every_mask": true,
-      "minimum_weight": "3//1",
-      "mode": "combined",
-      "module_count": 3,
+      "decision_correspondence_for_every_mask": true,
+      "elements": [
+        "e1",
+        "e2"
+      ],
+      "fixture_id": "threshold_tie_yes",
+      "inactive_strategy_id": "inactive",
+      "minimum_weight": 2,
+      "mode": "closure_only",
+      "module_count": 2,
       "obligation_labels": [
-        "belief:1",
-        "belief:2",
-        "belief:3",
         "module:1",
-        "module:2",
-        "module:3"
+        "module:2"
       ],
       "optimal_masks": [
-        6
+        3,
+        4
       ],
       "optimal_selected_sets": [
         [
-          "B",
-          "C"
+          "A",
+          "B"
+        ],
+        [
+          "AB"
         ]
       ],
       "optimizer_correspondence": true,
       "policy_obligation_masks": [
-        27,
-        54,
-        9,
-        36
+        1,
+        2,
+        3
+      ],
+      "safe_compression_budget": 2,
+      "safe_compression_decision_answer": true,
+      "set_cover_decision_answer": true,
+      "sets": [
+        {
+          "elements": [
+            "e1"
+          ],
+          "id": "A",
+          "weight": 1
+        },
+        {
+          "elements": [
+            "e2"
+          ],
+          "id": "B",
+          "weight": 1
+        },
+        {
+          "elements": [
+            "e1",
+            "e2"
+          ],
+          "id": "AB",
+          "weight": 2
+        }
       ],
       "source_frontier": [
-        "1//1",
-        "1//1",
-        "1//1"
+        "0//1"
       ],
-      "source_module_mask": 7,
+      "source_mask": 7,
+      "source_module_mask": 3,
+      "threshold_preserved": true,
+      "weight_preserved_for_every_mask": true
+    },
+    {
+      "belief_count": 1,
+      "budget": 1,
+      "candidate_rows": [
+        {
+          "closure_equal": false,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": false,
+          "inactive_retained": true,
+          "mask": 0,
+          "safe_compression_burden": 0,
+          "safe_compression_feasible": false,
+          "safe_compression_within_budget": false,
+          "selected_sets": [],
+          "set_cover_cost": 0,
+          "set_cover_feasible": false,
+          "set_cover_within_budget": false
+        },
+        {
+          "closure_equal": true,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": true,
+          "inactive_retained": true,
+          "mask": 1,
+          "safe_compression_burden": 2,
+          "safe_compression_feasible": true,
+          "safe_compression_within_budget": false,
+          "selected_sets": [
+            "A"
+          ],
+          "set_cover_cost": 2,
+          "set_cover_feasible": true,
+          "set_cover_within_budget": false
+        }
+      ],
+      "correspondence_for_every_mask": true,
+      "decision_correspondence_for_every_mask": true,
+      "elements": [
+        "e1"
+      ],
+      "fixture_id": "singleton_overweight_no",
+      "inactive_strategy_id": "inactive",
+      "minimum_weight": 2,
+      "mode": "closure_only",
+      "module_count": 1,
+      "obligation_labels": [
+        "module:1"
+      ],
+      "optimal_masks": [
+        1
+      ],
+      "optimal_selected_sets": [
+        [
+          "A"
+        ]
+      ],
+      "optimizer_correspondence": true,
+      "policy_obligation_masks": [
+        1
+      ],
+      "safe_compression_budget": 1,
+      "safe_compression_decision_answer": false,
+      "set_cover_decision_answer": false,
+      "sets": [
+        {
+          "elements": [
+            "e1"
+          ],
+          "id": "A",
+          "weight": 2
+        }
+      ],
+      "source_frontier": [
+        "0//1"
+      ],
+      "source_mask": 1,
+      "source_module_mask": 1,
+      "threshold_preserved": true,
+      "weight_preserved_for_every_mask": true
+    },
+    {
+      "belief_count": 1,
+      "budget": 4,
+      "candidate_rows": [
+        {
+          "closure_equal": false,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": false,
+          "inactive_retained": true,
+          "mask": 0,
+          "safe_compression_burden": 0,
+          "safe_compression_feasible": false,
+          "safe_compression_within_budget": false,
+          "selected_sets": [],
+          "set_cover_cost": 0,
+          "set_cover_feasible": false,
+          "set_cover_within_budget": false
+        },
+        {
+          "closure_equal": false,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": false,
+          "inactive_retained": true,
+          "mask": 1,
+          "safe_compression_burden": 9,
+          "safe_compression_feasible": false,
+          "safe_compression_within_budget": false,
+          "selected_sets": [
+            "empty"
+          ],
+          "set_cover_cost": 9,
+          "set_cover_feasible": false,
+          "set_cover_within_budget": false
+        },
+        {
+          "closure_equal": true,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": true,
+          "inactive_retained": true,
+          "mask": 2,
+          "safe_compression_burden": 5,
+          "safe_compression_feasible": true,
+          "safe_compression_within_budget": false,
+          "selected_sets": [
+            "AB"
+          ],
+          "set_cover_cost": 5,
+          "set_cover_feasible": true,
+          "set_cover_within_budget": false
+        },
+        {
+          "closure_equal": true,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": true,
+          "inactive_retained": true,
+          "mask": 3,
+          "safe_compression_burden": 14,
+          "safe_compression_feasible": true,
+          "safe_compression_within_budget": false,
+          "selected_sets": [
+            "empty",
+            "AB"
+          ],
+          "set_cover_cost": 14,
+          "set_cover_feasible": true,
+          "set_cover_within_budget": false
+        },
+        {
+          "closure_equal": false,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": false,
+          "inactive_retained": true,
+          "mask": 4,
+          "safe_compression_burden": 2,
+          "safe_compression_feasible": false,
+          "safe_compression_within_budget": false,
+          "selected_sets": [
+            "A"
+          ],
+          "set_cover_cost": 2,
+          "set_cover_feasible": false,
+          "set_cover_within_budget": false
+        },
+        {
+          "closure_equal": false,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": false,
+          "inactive_retained": true,
+          "mask": 5,
+          "safe_compression_burden": 11,
+          "safe_compression_feasible": false,
+          "safe_compression_within_budget": false,
+          "selected_sets": [
+            "empty",
+            "A"
+          ],
+          "set_cover_cost": 11,
+          "set_cover_feasible": false,
+          "set_cover_within_budget": false
+        },
+        {
+          "closure_equal": true,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": true,
+          "inactive_retained": true,
+          "mask": 6,
+          "safe_compression_burden": 7,
+          "safe_compression_feasible": true,
+          "safe_compression_within_budget": false,
+          "selected_sets": [
+            "AB",
+            "A"
+          ],
+          "set_cover_cost": 7,
+          "set_cover_feasible": true,
+          "set_cover_within_budget": false
+        },
+        {
+          "closure_equal": true,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": true,
+          "inactive_retained": true,
+          "mask": 7,
+          "safe_compression_burden": 16,
+          "safe_compression_feasible": true,
+          "safe_compression_within_budget": false,
+          "selected_sets": [
+            "empty",
+            "AB",
+            "A"
+          ],
+          "set_cover_cost": 16,
+          "set_cover_feasible": true,
+          "set_cover_within_budget": false
+        },
+        {
+          "closure_equal": false,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": false,
+          "inactive_retained": true,
+          "mask": 8,
+          "safe_compression_burden": 2,
+          "safe_compression_feasible": false,
+          "safe_compression_within_budget": false,
+          "selected_sets": [
+            "B"
+          ],
+          "set_cover_cost": 2,
+          "set_cover_feasible": false,
+          "set_cover_within_budget": false
+        },
+        {
+          "closure_equal": false,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": false,
+          "inactive_retained": true,
+          "mask": 9,
+          "safe_compression_burden": 11,
+          "safe_compression_feasible": false,
+          "safe_compression_within_budget": false,
+          "selected_sets": [
+            "empty",
+            "B"
+          ],
+          "set_cover_cost": 11,
+          "set_cover_feasible": false,
+          "set_cover_within_budget": false
+        },
+        {
+          "closure_equal": true,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": true,
+          "inactive_retained": true,
+          "mask": 10,
+          "safe_compression_burden": 7,
+          "safe_compression_feasible": true,
+          "safe_compression_within_budget": false,
+          "selected_sets": [
+            "AB",
+            "B"
+          ],
+          "set_cover_cost": 7,
+          "set_cover_feasible": true,
+          "set_cover_within_budget": false
+        },
+        {
+          "closure_equal": true,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": true,
+          "inactive_retained": true,
+          "mask": 11,
+          "safe_compression_burden": 16,
+          "safe_compression_feasible": true,
+          "safe_compression_within_budget": false,
+          "selected_sets": [
+            "empty",
+            "AB",
+            "B"
+          ],
+          "set_cover_cost": 16,
+          "set_cover_feasible": true,
+          "set_cover_within_budget": false
+        },
+        {
+          "closure_equal": true,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": true,
+          "inactive_retained": true,
+          "mask": 12,
+          "safe_compression_burden": 4,
+          "safe_compression_feasible": true,
+          "safe_compression_within_budget": true,
+          "selected_sets": [
+            "A",
+            "B"
+          ],
+          "set_cover_cost": 4,
+          "set_cover_feasible": true,
+          "set_cover_within_budget": true
+        },
+        {
+          "closure_equal": true,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": true,
+          "inactive_retained": true,
+          "mask": 13,
+          "safe_compression_burden": 13,
+          "safe_compression_feasible": true,
+          "safe_compression_within_budget": false,
+          "selected_sets": [
+            "empty",
+            "A",
+            "B"
+          ],
+          "set_cover_cost": 13,
+          "set_cover_feasible": true,
+          "set_cover_within_budget": false
+        },
+        {
+          "closure_equal": true,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": true,
+          "inactive_retained": true,
+          "mask": 14,
+          "safe_compression_burden": 9,
+          "safe_compression_feasible": true,
+          "safe_compression_within_budget": false,
+          "selected_sets": [
+            "AB",
+            "A",
+            "B"
+          ],
+          "set_cover_cost": 9,
+          "set_cover_feasible": true,
+          "set_cover_within_budget": false
+        },
+        {
+          "closure_equal": true,
+          "frontier_equal": true,
+          "identity_obligation_cover_feasible": true,
+          "inactive_retained": true,
+          "mask": 15,
+          "safe_compression_burden": 18,
+          "safe_compression_feasible": true,
+          "safe_compression_within_budget": false,
+          "selected_sets": [
+            "empty",
+            "AB",
+            "A",
+            "B"
+          ],
+          "set_cover_cost": 18,
+          "set_cover_feasible": true,
+          "set_cover_within_budget": false
+        }
+      ],
+      "correspondence_for_every_mask": true,
+      "decision_correspondence_for_every_mask": true,
+      "elements": [
+        "e1",
+        "e2"
+      ],
+      "fixture_id": "empty_set_redundancy_yes",
+      "inactive_strategy_id": "inactive",
+      "minimum_weight": 4,
+      "mode": "closure_only",
+      "module_count": 2,
+      "obligation_labels": [
+        "module:1",
+        "module:2"
+      ],
+      "optimal_masks": [
+        12
+      ],
+      "optimal_selected_sets": [
+        [
+          "A",
+          "B"
+        ]
+      ],
+      "optimizer_correspondence": true,
+      "policy_obligation_masks": [
+        0,
+        3,
+        1,
+        2
+      ],
+      "safe_compression_budget": 4,
+      "safe_compression_decision_answer": true,
+      "set_cover_decision_answer": true,
+      "sets": [
+        {
+          "elements": [],
+          "id": "empty",
+          "weight": 9
+        },
+        {
+          "elements": [
+            "e1",
+            "e2"
+          ],
+          "id": "AB",
+          "weight": 5
+        },
+        {
+          "elements": [
+            "e1"
+          ],
+          "id": "A",
+          "weight": 2
+        },
+        {
+          "elements": [
+            "e2"
+          ],
+          "id": "B",
+          "weight": 2
+        }
+      ],
+      "source_frontier": [
+        "0//1"
+      ],
+      "source_mask": 15,
+      "source_module_mask": 3,
+      "threshold_preserved": true,
       "weight_preserved_for_every_mask": true
     }
   ],
-  "schema_version": "safe-compression-complexity-reduction-v1",
+  "reduction_target": {
+    "problem": "identity-closure innovation-safe compression decision",
+    "restricted_subclass": "one belief, zero profiles, fixed inactive, one module per universe element"
+  },
+  "schema_version": "safe-compression-complexity-reduction-v2",
   "source_problem": {
-    "elements": [
-      "e1",
-      "e2",
-      "e3"
-    ],
-    "optimal_masks": [
-      6
-    ],
-    "optimal_selected_sets": [
-      [
-        "B",
-        "C"
-      ]
-    ],
-    "problem": "weighted set cover",
-    "sets": [
-      {
-        "elements": [
-          "e1",
-          "e2"
-        ],
-        "id": "A",
-        "weight": "3//1"
-      },
-      {
-        "elements": [
-          "e2",
-          "e3"
-        ],
-        "id": "B",
-        "weight": "2//1"
-      },
-      {
-        "elements": [
-          "e1"
-        ],
-        "id": "C",
-        "weight": "1//1"
-      },
-      {
-        "elements": [
-          "e3"
-        ],
-        "id": "D",
-        "weight": "4//1"
-      }
-    ],
-    "source_mask": 15
+    "budget_encoding": "nonnegative binary integer",
+    "cost_encoding": "positive binary integers",
+    "problem": "full-union weighted set cover decision",
+    "validity_check": "the listed set family covers the universe"
   }
 }

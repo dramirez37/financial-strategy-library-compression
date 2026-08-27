@@ -395,30 +395,32 @@ Every experiment must have:
   them. Carrier-minimality and bounded-search survival are reported separately
   from Lean verification.
 
-### safe-compression-complexity-reduction-v1
+### safe-compression-complexity-reduction-v2
 
 - **Entry point:**
   `julia/scripts/verify_safe_compression_complexity_reductions.jl`
 - **Environment:** Julia 1.12.6 with the committed Julia project and manifest
-- **Arithmetic:** `Rational{BigInt}` throughout; floating inputs rejected
+- **Arithmetic:** positive `BigInt` costs, nonnegative `BigInt` budgets, and
+  `Rational{BigInt}` zero profiles; fractional costs and floating inputs are
+  rejected
 - **Randomness:** none
 - **Command:** `./.local_runtime/julia-1.12.6/bin/julia --project=julia
   julia/scripts/verify_safe_compression_complexity_reductions.jl`
 - **Non-mutating check:** same command with `--check`
 - **Output:**
   `experiments/results/safe_compression_complexity_reduction_fixture.json`
-- **Expected invariants:** closure-only, frontier-only, and combined
-  constructors preserve every candidate mask's feasibility, exact weight,
-  and optimizer correspondence for the registered weighted-set-cover
-  instance.
+- **Expected invariants:** the closure-only constructor copies every cost and
+  threshold exactly, and preserves every candidate mask's feasibility,
+  within-budget decision, and optimizer set in five registered full-union
+  weighted-set-cover instances.
 - **Focused test:** `./.local_runtime/julia-1.12.6/bin/julia
   --project=julia/test -e 'using StrategyInnovation, Test;
   include("julia/scripts/verify_safe_compression_complexity_reductions.jl");
   using .SafeCompressionComplexityReductionFixture;
   include("julia/test/test_safe_compression_complexity.jl")'`
-- **Validation:** 25 constructor assertions, 2,387 exhaustive small-incidence
-  assertions, five artifact assertions, and 6,360 counted
-  reduction/candidate-mask correspondences.
+- **Validation:** 42 focused test assertions; five registered fixtures; 5,565
+  budgeted variants of all 265 full-union three-set/three-element incidence
+  systems; and 44,520 exact selected-mask correspondences.
 - **Scope warning:** this is exact executable validation of the polynomial
   constructors. The universal NP-completeness proof is human-readable and has
   no Lean counterpart or axiom audit.

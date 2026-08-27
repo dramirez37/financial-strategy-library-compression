@@ -9,9 +9,14 @@
 3. Preserve the audited scientific sections by reference; journal-only copies
    exist only where the introduction, compression section, experiment section,
    or conclusion needs a submission-specific change.
-4. Promote SC-COMP into the journal manuscript as a human-readable
-   computational-complexity theorem. It has exact Julia reduction fixtures but
-   no Lean declaration, and the prose says so explicitly.
+4. Promote SC-COMP into the journal manuscript as a HUMAN PROOF for the
+   explicitly encoded identity-closure decision problem. Its hardness source
+   is normalized full-union weighted set cover; the proved restricted target
+   has one belief, all-zero profiles, mandatory zero-burden inactivity, and
+   module rows equal to the source set family. The theorem has exact budgeted
+   Julia reduction fixtures but no Lean declaration, and the prose says so
+   explicitly. Frontier-only and arbitrary-closure NP-completeness claims are
+   outside this theorem.
 5. Integrate the existing `approximate-library-compression-v1` artifacts as a
    bounded numerical subsection. This is not a new study, does not alter the
    frozen N=1024 registry, and creates no approximation guarantee.

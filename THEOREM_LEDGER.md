@@ -426,35 +426,43 @@ counterexamples later in this ledger.
 
 - **Theorem ID:** SC-COMP
 - **Journal manuscript label:** `thm:aor-safe-compression-complexity` in
+  `journal/aor/manuscript/05_identity_closure_complexity.tex`, included by
   `journal/aor/sections/05_innovation_safe_compression.tex`
-- **Evidence status:** complete human-readable polynomial reduction and exact
-  Julia reduction fixtures; no Lean verification claim
-- **Informal statement:** Under an explicit finite binary encoding, the
-  identity-closure safe-compression decision problem is NP-complete and its
-  minimum-weight optimization problem is NP-hard. Frontier preservation alone
-  is NP-complete. Closure preservation alone is exactly weighted set cover
-  and is NP-complete. Under identity closure, the combined problem is exactly
-  weighted hitting set on the SC-TAG belief-attainer and source-module carrier
-  obligations. All belief rows may be retained; zero-frontier rows are
-  automatically covered by the fixed inactive strategy and can therefore be
-  removed in the reduced complexity instance without changing feasible
-  selections. The lower bounds persist under unit weights. A general-closure
-  class containing identity closure is NP-hard and is NP-complete when its
-  closure equality is polynomial-time verifiable.
+- **Evidence status:** HUMAN PROOF, supported by exact finite Julia reduction
+  checks; no Lean verification claim
+- **Informal statement:** With an explicit finite binary encoding, positive
+  integer active weights, a nonnegative integer threshold, mandatory
+  zero-burden inactivity, and identity closure, the safe-compression decision
+  problem is NP-complete. The exact restricted subclass used for hardness has
+  one belief, zero profiles for all strategies, no inactive modules, and a
+  source module family with full union. It remains NP-complete with unit active
+  weights. Minimum-burden identity-closure compression is NP-hard. Any broader
+  model class containing this subclass is NP-hard, but no NP-membership claim
+  is made for an arbitrary nonidentity closure operator without a polynomial
+  exact closure-equality verifier.
 - **Exact assumptions:**
-  1. A-FIN, A-LIBRARY, A-PROFILE, A-FRONTIER, A-CLOSURE, and
-     A-RESOURCE-WEIGHT for the finite exact source problem;
-  2. A-SAFE-COMPLEXITY-ENCODING for explicit binary input size and the
-     certificate model;
-  3. identity closure for the primary equivalence and reductions; and
-  4. a polynomial closure-equality evaluator only for the general-closure
-     NP-membership conclusion.
-- **Assumption reconciliation:** The reductions use no dynamic process,
-  Bellman value, UDI, detectability, randomization, approximation oracle, or
-  floating arithmetic. The closure-only reduction has one belief and zero
-  profiles. The frontier-only reduction has binary profiles and inert
-  modules. General closure inherits only the lower bound without an
-  evaluation assumption.
+  1. a finite source library with explicitly listed exact binary-rational
+     profiles and module-incidence rows;
+  2. a finite nonempty belief set, a finite module universe, and identity
+     closure equal to row union;
+  3. a mandatory inactive strategy with zero profile, zero modules, and zero
+     burden;
+  4. positive binary-integer active weights and a nonnegative binary-integer
+     threshold; and
+  5. exact, source-relative frontier and closure equality.
+- **Source-problem audit:** The proof defines FULL-UNION WEIGHTED SET COVER
+  rather than silently assuming a complete family. It proves that restricted
+  language is NP-complete from Karp's SET COVER decision problem: empty universes
+  map to a fixed yes-instance, uncovered universes map to a fixed no-instance,
+  and remaining instances receive unit costs and the copied cardinality
+  threshold. No strong-NP-hardness or approximation conclusion is drawn.
+- **Assumption reconciliation:** The reduction uses no dynamic process,
+  Bellman value, UDI, detectability, randomization, approximation oracle,
+  floating arithmetic, solver, or held-out information. One zero-profile
+  belief is preserved automatically by mandatory inactivity. Each set-cover
+  element is one module, each indexed set is one active module row, costs and
+  threshold are copied exactly, and source full union gives the exact source
+  closure.
 - **Lean declaration:** none. A finite complexity encoding, polynomial-time
   reduction formalism, and NP-completeness library bridge remain absent.
 - **Julia counterpart:** `julia/src/SafeCompressionComplexity.jl`,
@@ -462,24 +470,28 @@ counterexamples later in this ledger.
   `julia/test/test_safe_compression_complexity.jl`.
 - **Registered fixture:**
   `experiments/results/safe_compression_complexity_reduction_fixture.json`.
-- **Status:** proposed in the controlled ledger vocabulary; complete human
-  polynomial proof included in the journal draft and exact Julia reduction
-  validation; Lean proof not selected
-- **Informal mathematical validity:** The identity problem is in NP by direct
-  exact verification. Three weight-preserving polynomial constructors map
-  weighted set cover to closure-only, frontier-only, and combined safe
-  compression with identical feasible masks. Unit weights transfer ordinary
-  set-cover hardness. The exact combined hitting-set characterization follows
-  by listing all SC-TAG belief-attainer sets and source-module carrier sets;
-  deleting the automatically satisfied zero-frontier rows yields the earlier
-  positive-frontier-only reduced representation.
+- **Status:** HUMAN PROOF. The journal draft contains the complete membership,
+  normalization, construction-size, forward, reverse, and threshold arguments
+  plus an explicit reduction audit. Lean proof was not selected because the
+  repository has no valid formal complexity framework.
+- **Informal mathematical validity:** A selected-strategy bit vector is a
+  polynomial certificate under the explicit identity-closure encoding. The
+  polynomial reduction from FULL-UNION WEIGHTED SET COVER copies incidence,
+  cost, and threshold; safe closure equality is set-cover equality, while the
+  inactive strategy makes the single zero frontier automatic. Burden equals
+  selected-set cost for every mask. Thus yes/no answers correspond exactly.
 - **Lean kernel verification:** Not established. No active manuscript result
   may call SC-COMP Lean verified.
-- **Julia implementation validation:** All masks in the registered fixture
-  agree across source set cover and all three safe-compression constructors.
-  The focused suite also exhausts all 265 covering three-set/three-element
-  incidence systems, totaling 6,360 reduction/mask correspondences. This is
-  implementation validation, not universal proof.
+- **Julia implementation validation:** The registered schema-v2 fixture checks
+  five budgeted full-union instances, including yes/no thresholds, a threshold
+  tie, an overweight singleton, and an empty-set column. The focused suite
+  checks 5,565 budgeted variants of all 265 full-union three-set/three-element
+  incidence systems and all 44,520 corresponding selected masks. It verifies
+  exact feasibility, weight, copied-threshold, and decision correspondence.
+  This is exact finite implementation validation, not a universal or Lean
+  proof.
+- **Excluded claims:** strong NP-hardness, inapproximability, APX-hardness,
+  approximation ratios, solver evidence, and runtime/scaling claims.
 - **Empirical relevance:** Not applicable.
 
 ### PEN — Exact penalized affine-envelope theorem

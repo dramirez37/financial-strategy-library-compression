@@ -75,11 +75,11 @@ the package's general closure without an adapter would change semantics.
 
 | Capability | Symbols | Evidence boundary |
 |---|---|---|
-| Weighted set-cover source | `WeightedSetCoverInstance`, `set_cover_feasible`, `set_cover_weight`, `set_cover_optimal_masks` | Exact finite executable definition, up to the fixture's 62-bit carrier limit. |
-| Safe-compression decision source | `SafeCompressionDecisionInstance`, its `safe_feasible`, `minimum_safe_weight_masks` | Identity-closure, inactive-implicit exact fixture model. |
-| Polynomial constructors | `closure_only_safe_compression_reduction`, `frontier_only_safe_compression_reduction`, `combined_safe_compression_reduction` | Construction code supporting the human reduction; execution is not a universal proof. |
+| Weighted set-cover source | `WeightedSetCoverInstance`, `set_cover_feasible`, `set_cover_within_budget`, `set_cover_weight`, `set_cover_optimal_masks` | Positive-integer-cost, nonnegative-integer-budget, full-union exact finite definition, up to the fixture's 62-bit carrier limit. |
+| Safe-compression decision source | `SafeCompressionDecisionInstance`, its `safe_feasible`, `safe_compression_within_budget`, `minimum_safe_weight_masks` | Identity-closure exact fixture model with an explicit mandatory inactive identifier; active-selection masks omit its fixed zero burden. |
+| Polynomial constructors | `closure_only_safe_compression_reduction`, `frontier_only_safe_compression_reduction`, `combined_safe_compression_reduction` | SC-COMP uses and proves only the closure-only construction. The other pre-existing executable constructors are outside the narrowed theorem; execution is never a universal proof. |
 | Tagged obligations | `IdentitySafeCover`, `identity_safe_cover`, `covers_identity_obligations` | Builds distinct string labels `belief:i` and `module:j`, and carrier masks, for identity closure. This is the executable precursor to a tagged-cover theorem. |
-| Cross-model audit | `reduction_correspondence` | Checks feasibility, weight, and optimizer correspondence by complete finite enumeration on a fixture. |
+| Cross-model audit | `reduction_correspondence` | Checks feasibility, exact weight, copied threshold, budgeted yes/no answer, and optimizer correspondence by complete finite enumeration on a fixture. |
 
 The theorem ledger's `SC-COMP` record is the authoritative claim boundary. No
 corresponding Lean file, finite-complexity encoding, polynomial-time reduction
@@ -204,7 +204,7 @@ algorithm look more sophisticated.
 | Rechecked deletion | Single and fixed-point deletion, stale/batch-certificate rejection, frontier-only loss witness, deterministic deletion order. |
 | Exact enumeration/formulation | Minimum cardinality, solver-neutral formulation satisfaction, 1,376 seeded small-library properties. |
 | JuMP/HiGHS | Identity and general closure, cardinality versus weight, all-optimum ties, exact objective scaling failures, Float weight rejection, exact postchecks, 12 random MILP-versus-independent-enumeration instances, deletion traces. |
-| Complexity | Three reduction modes, tagged obligation labels, all 265 covering three-set/three-element incidence systems, optimizer/weight correspondence, registered artifact drift. |
+| Complexity | Closure-only SC-COMP reduction, explicit inactive identifier and budget, five registered yes/no fixtures, and 5,565 budgeted variants of all 265 full-union three-set/three-element incidence systems (44,520 selected masks), with exact feasibility/weight/threshold/decision correspondence and artifact drift. |
 | Approximate methods | Exact loss definitions, complete subset and Pareto oracles, four greedy rules, multistart, beam search, operational lower bound, complete/partial no-good cut behavior, committed outputs. |
 | Resource optimization | Exact burdens, complete safe families and optimizer ties, local/global/capacity/penalty counterexamples, artifact drift. |
 | Financial resource layer | Outcome-blind weights, exact incidence construction, fail-closed original-object certification, mandatory inactive selection, exact small-instance MILP/enumeration agreement, design-lock validation. |

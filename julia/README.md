@@ -183,17 +183,19 @@ minimize the 14 requested claim audits. Its committed JSON outputs are
 byte-checked in the test suite. The implementation deliberately leaves the raw
 productive transition unchanged and supplies no Lean proof.
 
-`src/SafeCompressionComplexity.jl` gives exact, weight-preserving
-constructors from weighted set cover to closure-only, frontier-only, and
-combined identity-closure safe compression. It also extracts the exact
-frontier-attainer/module-carrier obligation cover from an identity-closure
-problem. `scripts/verify_safe_compression_complexity_reductions.jl` writes the
-deterministic correspondence fixture, and
-`test/test_safe_compression_complexity.jl` checks every candidate mask in the
-fixture plus every covering three-set/three-element incidence system. The
-bit-mask limits are fixture implementation limits, not assumptions of the
-polynomial reduction. These checks validate the constructors and do not
-constitute a Lean or universal complexity proof.
+`src/SafeCompressionComplexity.jl` gives an exact budgeted full-union weighted
+set-cover decision fixture and weight-preserving constructors for
+identity-closure safe compression. The SC-COMP theorem uses only the
+closure-only constructor: one belief, zero profiles, one active strategy per
+set, one module per universe element, and a mandatory zero-burden inactive
+strategy. `scripts/verify_safe_compression_complexity_reductions.jl` writes
+five deterministic yes/no and threshold fixtures.
+`test/test_safe_compression_complexity.jl` additionally checks 5,565 budgeted
+variants of all 265 full-union three-set/three-element incidence systems and
+all 44,520 selected masks. The bit-mask limits are fixture implementation
+limits, not assumptions of the polynomial reduction. These exact finite checks
+validate the implementation; they are not a Lean or universal complexity
+proof.
 
 The compatibility F5/F8 layer in `src/DynamicProgramming.jl` adds exact
 finite-horizon Bellman recursion, delays and candidate distributions,
@@ -240,10 +242,9 @@ juliaup default 1.12.6
 julia --project=julia -e 'using Pkg; Pkg.instantiate(); Pkg.test()'
 ```
 
-The current suite runs 14,195 deterministic checks, including 10,410 focused
-tagged-cover checks, 215 reusable raw-model checks, 63 raw-first rectangle
-checks, 80 unified
-comparative-statics checks, 102 randomized-library checks, 119
+The current suite includes 10,410 focused tagged-cover checks, 215 reusable
+raw-model checks, 63 raw-first rectangle checks, 80 unified comparative-
+statics checks, 102 randomized-library checks, 119
 approximate-compression checks, exhaustive foundational/compression
 properties, 226 dynamic-program checks, 249 coverage checks, 35
 kernel-persistence response checks, 22 F6/F7 value-and-figure checks, 80 T7

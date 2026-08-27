@@ -16,7 +16,9 @@ export IdentitySafeCover,
        library_weight,
        minimum_safe_weight_masks,
        reduction_correspondence,
+       safe_compression_within_budget,
        safe_feasible,
+       set_cover_within_budget,
        set_cover_feasible,
        set_cover_optimal_masks,
        set_cover_source_mask,
@@ -26,6 +28,24 @@ function _require_unique(values, label::AbstractString)
     length(Set(values)) == length(values) ||
         throw(ArgumentError("$label must be unique"))
     return nothing
+end
+
+function _positive_integer(value, label::AbstractString)
+    exact = exact_rational(value)
+    denominator(exact) == 1 ||
+        throw(ArgumentError("$label must be an integer"))
+    numerator(exact) > 0 ||
+        throw(ArgumentError("$label must be strictly positive"))
+    return BigInt(numerator(exact))
+end
+
+function _nonnegative_integer(value, label::AbstractString)
+    exact = exact_rational(value)
+    denominator(exact) == 1 ||
+        throw(ArgumentError("$label must be an integer"))
+    numerator(exact) >= 0 ||
+        throw(ArgumentError("$label must be nonnegative"))
+    return BigInt(numerator(exact))
 end
 
 function _full_mask(count::Integer)
@@ -38,10 +58,12 @@ end
 """
     WeightedSetCoverInstance
 
-Finite exact weighted-set-cover input used to construct safe-compression
-instances. `set_masks[i]` records the elements covered by selectable set `i`.
-The constructor requires the complete family to cover the universe, matching
-the standard restricted NP-complete input class used by the reductions.
+Finite full-union weighted-set-cover decision input used to construct
+safe-compression instances. `set_masks[i]` records the elements covered by
+selectable set `i`. Costs are strictly positive integers and `budget` is a
+nonnegative integer. The constructor requires the complete family to cover
+the nonempty universe. The manuscript separately proves that this explicit
+restriction remains NP-complete.
 
 The bit-mask bounds are implementation limits of the executable fixture, not
 assumptions of the mathematical reduction.
@@ -49,8 +71,9 @@ assumptions of the mathematical reduction.
 struct WeightedSetCoverInstance
     element_ids::Vector{String}
     set_ids::Vector{String}
-    weights::Vector{ExactRational}
+    weights::Vector{BigInt}
     set_masks::Vector{UInt64}
+    budget::BigInt
 end
 
 function WeightedSetCoverInstance(
@@ -58,6 +81,7 @@ function WeightedSetCoverInstance(
     set_ids::AbstractVector,
     weights::AbstractVector,
     set_masks::AbstractVector{<:Integer},
+    budget,
 )
     elements = String[string(value) for value in element_ids]
     sets = String[string(value) for value in set_ids]
@@ -76,9 +100,10 @@ function WeightedSetCoverInstance(
     length(set_masks) == length(sets) ||
         throw(DimensionMismatch("one incidence mask is required per selectable set"))
 
-    exact_weights = ExactRational[exact_rational(weight) for weight in weights]
-    all(>(zero(ExactRational)), exact_weights) ||
-        throw(ArgumentError("every selectable set must have positive exact weight"))
+    integer_weights = BigInt[
+        _positive_integer(weight, "selectable-set cost") for weight in weights
+    ]
+    integer_budget = _nonnegative_integer(budget, "set-cover budget")
 
     universe_mask = _full_mask(length(elements))
     incidence = UInt64[UInt64(mask) for mask in set_masks]
@@ -87,7 +112,13 @@ function WeightedSetCoverInstance(
     reduce(|, incidence; init = UInt64(0)) == universe_mask ||
         throw(ArgumentError("the complete set family must cover the universe"))
 
-    return WeightedSetCoverInstance(elements, sets, exact_weights, incidence)
+    return WeightedSetCoverInstance(
+        elements,
+        sets,
+        integer_weights,
+        incidence,
+        integer_budget,
+    )
 end
 
 set_cover_source_mask(instance::WeightedSetCoverInstance) =
@@ -127,8 +158,16 @@ function set_cover_weight(
             set_index in eachindex(instance.set_ids) if
             !iszero(selected_mask & (UInt64(1) << (set_index - 1)))
         );
-        init = zero(ExactRational),
+        init = BigInt(0),
     )
+end
+
+function set_cover_within_budget(
+    instance::WeightedSetCoverInstance,
+    selected_mask::UInt64,
+)
+    return set_cover_feasible(instance, selected_mask) &&
+           set_cover_weight(instance, selected_mask) <= instance.budget
 end
 
 function set_cover_optimal_masks(instance::WeightedSetCoverInstance)
@@ -146,17 +185,22 @@ end
 """
     SafeCompressionDecisionInstance
 
-Polynomial-size identity-closure decision instance. The inactive policy is
-implicit and has zero profile, zero weight, and no modules. Exact exhaustive
+Polynomial-size identity-closure decision instance. Every listed active
+strategy has a positive integer weight and `budget` is a nonnegative integer.
+The mandatory inactive strategy is explicit by identifier and fixed into
+every encoded library; it has zero profile, zero weight, and no modules.
+Selected bit masks therefore encode active strategies only. Exact exhaustive
 optimization is provided only as a fixture validator and is not part of the
 reduction constructor.
 """
 struct SafeCompressionDecisionInstance
+    inactive_strategy_id::String
     strategy_ids::Vector{String}
-    weights::Vector{ExactRational}
+    weights::Vector{BigInt}
     profiles::Matrix{ExactRational}
     module_masks::Vector{UInt64}
     module_count::Int
+    budget::BigInt
 end
 
 function SafeCompressionDecisionInstance(
@@ -165,9 +209,15 @@ function SafeCompressionDecisionInstance(
     profiles::AbstractMatrix,
     module_masks::AbstractVector{<:Integer},
     module_count::Integer,
+    budget;
+    inactive_strategy_id = "inactive",
 )
+    inactive_id = string(inactive_strategy_id)
     ids = String[string(id) for id in strategy_ids]
     _require_unique(ids, "active strategy identifiers")
+    inactive_id in ids && throw(
+        ArgumentError("the inactive identifier must be distinct from active IDs"),
+    )
     active_count = length(ids)
     1 <= active_count <= 62 ||
         throw(ArgumentError("bit-mask fixtures support between 1 and 62 active policies"))
@@ -182,9 +232,10 @@ function SafeCompressionDecisionInstance(
     1 <= module_count <= 62 ||
         throw(ArgumentError("bit-mask fixtures support between 1 and 62 modules"))
 
-    exact_weights = ExactRational[exact_rational(weight) for weight in weights]
-    all(>(zero(ExactRational)), exact_weights) ||
-        throw(ArgumentError("every active policy must have positive exact weight"))
+    integer_weights = BigInt[
+        _positive_integer(weight, "active-strategy weight") for weight in weights
+    ]
+    integer_budget = _nonnegative_integer(budget, "safe-compression threshold")
     exact_profiles = ExactRational[
         exact_rational(profiles[row, column]) for
         row in axes(profiles, 1), column in axes(profiles, 2)
@@ -195,11 +246,13 @@ function SafeCompressionDecisionInstance(
         throw(ArgumentError("a module row exceeds the declared universe"))
 
     return SafeCompressionDecisionInstance(
+        inactive_id,
         ids,
-        exact_weights,
+        integer_weights,
         exact_profiles,
         exact_module_masks,
         Int(module_count),
+        integer_budget,
     )
 end
 
@@ -225,7 +278,7 @@ function library_weight(
             problem.weights[index] for index in eachindex(problem.strategy_ids) if
             !iszero(mask & (UInt64(1) << (index - 1)))
         );
-        init = zero(ExactRational),
+        init = BigInt(0),
     )
 end
 
@@ -245,6 +298,15 @@ function library_frontier(
         end
     end
     return frontier
+end
+
+function safe_compression_within_budget(
+    problem::SafeCompressionDecisionInstance,
+    source_mask::UInt64,
+    candidate_mask::UInt64,
+)
+    return safe_feasible(problem, source_mask, candidate_mask) &&
+           library_weight(problem, candidate_mask) <= problem.budget
 end
 
 function library_module_mask(
@@ -323,6 +385,7 @@ function closure_only_safe_compression_reduction(
         zeros(ExactRational, active_count, 1),
         instance.set_masks,
         length(instance.element_ids),
+        instance.budget,
     )
 end
 
@@ -345,6 +408,7 @@ function frontier_only_safe_compression_reduction(
         _incidence_profiles(instance),
         zeros(UInt64, active_count),
         1,
+        instance.budget,
     )
 end
 
@@ -365,6 +429,7 @@ function combined_safe_compression_reduction(
         _incidence_profiles(instance),
         instance.set_masks,
         length(instance.element_ids),
+        instance.budget,
     )
 end
 
@@ -460,7 +525,9 @@ end
     reduction_correspondence(instance, mode)
 
 Enumerate the executable fixture and verify that every selected-set mask is a
-set cover iff it is a safe sublibrary in the requested reduction mode.
+set cover iff it is a safe sublibrary in the requested reduction mode. It
+separately checks exact weight equality, copied decision thresholds, and the
+budgeted yes/no predicate used by the complexity theorem.
 Supported modes are `:closure_only`, `:frontier_only`, and `:combined`.
 """
 function reduction_correspondence(
@@ -487,6 +554,19 @@ function reduction_correspondence(
         set_cover_weight(instance, mask) == library_weight(problem, mask) for
         mask in masks
     )
+    threshold_preservation = problem.budget == instance.budget
+    decision_correspondence = all(
+        set_cover_within_budget(instance, mask) ==
+        safe_compression_within_budget(problem, source_mask, mask) for
+        mask in masks
+    )
+    set_cover_yes = any(
+        set_cover_within_budget(instance, mask) for mask in masks
+    )
+    safe_compression_yes = any(
+        safe_compression_within_budget(problem, source_mask, mask) for
+        mask in masks
+    )
     safe_optima = minimum_safe_weight_masks(problem, source_mask)
     cover_optima = set_cover_optimal_masks(instance)
     return (
@@ -496,6 +576,10 @@ function reduction_correspondence(
         identity_cover = identity_cover,
         correspondence = correspondence,
         weight_preservation = weight_preservation,
+        threshold_preservation = threshold_preservation,
+        decision_correspondence = decision_correspondence,
+        set_cover_yes = set_cover_yes,
+        safe_compression_yes = safe_compression_yes,
         safe_optima = safe_optima,
         cover_optima = cover_optima,
         optimizer_correspondence = safe_optima == cover_optima,

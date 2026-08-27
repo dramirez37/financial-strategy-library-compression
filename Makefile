@@ -5,7 +5,8 @@ export ALGOLIB_CRSP_ROOT
 
 .PHONY: help preprint-check canonical randomized formal manuscript arxiv-bundle \
 	journal journal-check journal-submission-check financial-licensed public-audit verify \
-	aor-algorithm-tests aor-generator-tests
+	aor-algorithm-tests aor-generator-tests aor-benchmark aor-benchmark-audit \
+	aor-benchmark-v2-tests aor-benchmark-v2-lock aor-benchmark-v2 aor-benchmark-v2-audit
 
 help:
 	@printf '%s\n' \
@@ -20,6 +21,10 @@ help:
 		'make journal-submission-check  Reject unresolved author confirmations' \
 		'make aor-algorithm-tests  Triangulate journal algorithms and audit saved certificates' \
 		'make aor-generator-tests  Validate registered benchmark generators without final runs' \
+		'make aor-benchmark       Run the locked final algorithmic benchmark (resume-safe)' \
+		'make aor-benchmark-audit Independently audit saved final benchmark artifacts' \
+		'make aor-benchmark-v2      Run locked v2 with eight deterministic worker lanes' \
+		'make aor-benchmark-v2-audit Independently audit saved v2 benchmark artifacts' \
 		'make financial-licensed Run both licensed-data audits and the cross-audit optimization' \
 		'make verify             Run the complete release gate'
 
@@ -61,6 +66,27 @@ aor-algorithm-tests:
 
 aor-generator-tests:
 	@"$(JULIA_EXE)" --startup-file=no --project=julia/test julia/test/run_algorithmic_compression_generator_tests.jl
+
+aor-benchmark:
+	@"$(JULIA_EXE)" --startup-file=no --project=julia/test julia/test/run_algorithmic_compression_final_runner_tests.jl
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/run_algorithmic_compression_final_v1.jl --check
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/run_algorithmic_compression_final_v1.jl --run
+
+aor-benchmark-audit:
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/audit_algorithmic_compression_final_v1.jl
+
+aor-benchmark-v2-tests:
+	@"$(JULIA_EXE)" --threads=8 --startup-file=no --project=julia/test julia/test/run_algorithmic_compression_v2_tests.jl
+
+aor-benchmark-v2-lock:
+	@"$(JULIA_EXE)" --threads=8 --startup-file=no --project=julia julia/scripts/lock_algorithmic_compression_design_v2.jl --check
+
+aor-benchmark-v2: aor-benchmark-v2-tests aor-benchmark-v2-lock
+	@"$(JULIA_EXE)" --threads=8 --startup-file=no --project=julia julia/scripts/run_algorithmic_compression_final_v2.jl --check
+	@"$(JULIA_EXE)" --threads=8 --startup-file=no --project=julia julia/scripts/run_algorithmic_compression_final_v2.jl --run
+
+aor-benchmark-v2-audit:
+	@"$(JULIA_EXE)" --threads=8 --startup-file=no --project=julia julia/scripts/audit_algorithmic_compression_final_v2.jl
 
 financial-licensed:
 	@./scripts/run_financial_licensed.sh

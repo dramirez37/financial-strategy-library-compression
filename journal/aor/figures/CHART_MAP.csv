@@ -1,0 +1,11 @@
+figure,question,family,data,palette_policy,qa_surface
+performance_profile.svg,How robustly do methods solve registered instances relative to the best observed solved time?,performance profile,journal/aor/tables/figure_performance_profile_data.csv,five approved roots plus dash/marker cycles,SVG and rendered PNG
+runtime_vs_size.svg,How does median PAR-2 change across registered strategy counts?,faceted line-dot,journal/aor/tables/figure_runtime_vs_size_data.csv,five approved roots plus dash/marker cycles,SVG and rendered PNG
+heuristic_gap_heatmap.svg,Where do heuristic burden gaps concentrate by algorithm and size?,heatmap with direct values,journal/aor/tables/figure_heuristic_gap_heatmap_data.csv,single blue root,SVG and rendered PNG
+preprocessing_reduction.svg,How do exact reductions relate to paired PAR-2 and node changes?,three-panel scatter,journal/aor/tables/figure_preprocessing_reduction_data.csv,blue/orange plus shapes,SVG and rendered PNG
+multistart_improvement.svg,How often and how much does 32-start deletion improve over start one?,strip plot with medians,journal/aor/tables/figure_multistart_improvement_data.csv,approved roots plus open markers,SVG and rendered PNG
+family_a_exact_gap_distributions.svg,What is the full Family A exact-gap distribution by heuristic?,strip and interval,journal/aor/tables/figure_family_a_gap_data.csv,approved roots plus open markers,SVG and rendered PNG
+family_b_burden_runtime_frontier.svg,How do Family B MIP-reference gaps relate to PAR-2?,scatter,journal/aor/tables/figure_family_b_burden_runtime_data.csv,approved roots plus marker shapes,SVG and rendered PNG
+solved_fraction_grid.svg,Which registered method-size cells return exactly feasible candidates?,heatmap with direct fractions,journal/aor/tables/figure_solved_fraction_data.csv,single blue root,SVG and rendered PNG
+semantic_evaluation_counts.svg,How many exact semantic checks do certified deletion variants use?,dot and interval,journal/aor/tables/figure_semantic_evaluation_data.csv,three approved roots plus shapes,SVG and rendered PNG
+adversarial_mechanisms.svg,How do registered adversarial mechanisms separate heuristic burden ratios?,faceted line-dot,journal/aor/tables/figure_adversarial_mechanism_data.csv,approved roots plus dash/marker cycles,SVG and rendered PNG

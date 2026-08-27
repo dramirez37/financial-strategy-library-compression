@@ -1,0 +1,14 @@
+family,size,registered_n,preprocessing_available_n,variable_reduction_mean,variable_reduction_median,variable_reduction_q10,variable_reduction_q25,variable_reduction_q75,variable_reduction_q90,variable_reduction_minimum,variable_reduction_worst,requirement_reduction_mean,requirement_reduction_median,requirement_reduction_q10,requirement_reduction_q25,requirement_reduction_q75,requirement_reduction_q90,requirement_reduction_minimum,requirement_reduction_worst,paired_par2_available_n,mean_log_par2_difference,median_log_par2_difference,q90_log_par2_difference,worst_log_par2_difference,paired_nodes_available_n,mean_log1p_node_difference,median_log1p_node_difference,q90_log1p_node_difference,worst_log1p_node_difference
+adversarial,large,7,7,0.3735,0.04545,0.01506,0.0232,0.7538,1,0.01493,1,0.3033,0.03077,0.01538,0.02284,0.5156,1,0.01538,1,7,0.9051,0.891,1.436,1.675,5,0,0,0,0
+adversarial,medium,7,7,0.4082,0.1667,0.05439,0.05903,0.76,1,0.05263,1,0.3392,0.07692,0.05882,0.06066,0.5588,1,0.05882,1,7,0.6961,0.7924,1.083,1.303,5,0,0,0,0
+adversarial,small,7,7,0.4986,0.5,0.1357,0.1548,0.7778,1,0.125,1,0.4464,0.2,0.17,0.2,0.7,1,0.125,1,7,0.8488,0.8077,1.17,1.19,5,0,0,0,0
+small_exact,N11-R10,4,4,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,4,0.7585,0.7129,0.9809,1.046,0,UNAVAILABLE,UNAVAILABLE,UNAVAILABLE,UNAVAILABLE
+small_exact,N11-R6,4,4,0.9318,1,0.8091,0.9318,1,1,0.7273,1,0.9167,1,0.7667,0.9167,1,1,0.6667,1,4,0.682,0.6964,0.8249,0.8532,1,0,0,0,0
+small_exact,N15-R10,4,4,0.8833,1,0.6733,0.8833,1,1,0.5333,1,0.8,1,0.44,0.8,1,1,0.2,1,4,1.055,1.029,1.312,1.405,1,0,0,0,0
+small_exact,N15-R6,4,4,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,4,1.002,1.044,1.15,1.151,0,UNAVAILABLE,UNAVAILABLE,UNAVAILABLE,UNAVAILABLE
+small_exact,N7-R10,4,4,0.7857,1,0.4,0.7857,1,1,0.1429,1,0.775,1,0.37,0.775,1,1,0.1,1,4,0.672,0.7517,0.8956,0.9551,1,0,0,0,0
+small_exact,N7-R6,4,3,0.6667,0.5714,0.4571,0.5,0.7857,0.9143,0.4286,1,0.7222,0.6667,0.5333,0.5833,0.8333,0.9333,0.5,1,4,0.6487,0.5737,1.205,1.447,2,0,0,0,0
+structured,N192-R32,32,28,0.9859,1,0.9464,1,1,1,0.901,1,0.8862,1,0.5312,1,1,1,0.2812,1,32,1.805,2.031,2.547,3.016,6,0,0,0,0
+structured,N192-R64,32,28,0.9753,1,0.8995,1,1,1,0.8229,1,0.8845,1,0.6203,1,1,1,0.125,1,32,1.864,2.243,2.682,3.094,6,0,0,0,0
+structured,N64-R32,32,28,0.9475,1,0.8391,0.9453,1,1,0.6406,1,0.856,1,0.5031,0.8984,1,1,0.0625,1,32,1.13,1.187,1.673,2.554,9,0,0,0,0
+structured,N64-R64,32,28,0.8968,1,0.6984,0.793,1,1,0.3125,1,0.851,1,0.575,0.668,1,1,0.01562,1,32,1.142,1.29,1.789,2.017,9,0,0,0,0

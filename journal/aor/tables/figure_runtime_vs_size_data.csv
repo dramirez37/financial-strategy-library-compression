@@ -1,0 +1,123 @@
+family,requirement_count,strategy_count,algorithm_id,algorithm,registered_n,median_par2_seconds,q25_par2_seconds,q75_par2_seconds,trace_join_key
+small_exact,6,7,cardinality_greedy,Cardinality greedy,4,0.957304521,0.938279823,30.73118431275,small_exact|N7-R6|cardinality_greedy|primary
+small_exact,6,7,complete_enumeration,Enumeration,4,0.635917313,0.47587980225000004,150.57252334425002,small_exact|N7-R6|complete_enumeration|primary
+small_exact,6,7,declared_source_order,Declared source order,4,0.808916458,0.79431926,0.9807217915,small_exact|N7-R6|declared_source_order|primary
+small_exact,6,7,heaviest_safe_first,Heaviest safe first,4,1.1945543330000001,0.94842874975,1.3157939997499999,small_exact|N7-R6|heaviest_safe_first|primary
+small_exact,6,7,jump_highs_tagged_cover,HiGHS MIP,4,4.2436666665,3.33458433325,153.70531171875,small_exact|N7-R6|jump_highs_tagged_cover|primary
+small_exact,6,7,lightest_safe_first,Lightest safe first,4,0.7517872915,0.56116169775,0.988274854,small_exact|N7-R6|lightest_safe_first|primary
+small_exact,6,7,maximum_immediate_burden_release,Maximum immediate release,4,0.7455725419999999,0.690189094,0.9321046565,small_exact|N7-R6|maximum_immediate_burden_release|primary
+small_exact,6,7,minimum_unique_carrier_exposure,Minimum unique-carrier exposure,4,0.792863187,0.74126543725,0.9833071455000001,small_exact|N7-R6|minimum_unique_carrier_exposure|primary
+small_exact,6,7,multistart_random_rechecked_deletion_32,32-start random deletion,4,1.0165351875,0.91456612475,1.143719094,small_exact|N7-R6|multistart_random_rechecked_deletion_32|primary
+small_exact,6,7,random_order_rechecked_deletion,Random-order deletion,4,0.7759109795,0.617445417,1.21474620825,small_exact|N7-R6|random_order_rechecked_deletion|primary
+small_exact,6,7,requirement_mask_dp,Mask DP,4,0.731884,0.6667573649999999,150.58366449975,small_exact|N7-R6|requirement_mask_dp|primary
+small_exact,6,7,weighted_greedy,Weighted greedy,4,0.6146387705,0.47799974999999995,0.743958687,small_exact|N7-R6|weighted_greedy|primary
+small_exact,6,7,weighted_greedy_reverse_delete,Weighted greedy + reverse deletion,4,0.7384850625,0.50623454175,0.9622565,small_exact|N7-R6|weighted_greedy_reverse_delete|primary
+small_exact,6,11,cardinality_greedy,Cardinality greedy,4,0.7999842500000001,0.6589048645,0.92721858325,small_exact|N11-R6|cardinality_greedy|primary
+small_exact,6,11,complete_enumeration,Enumeration,4,0.42451193750000005,0.345404875,0.535044802,small_exact|N11-R6|complete_enumeration|primary
+small_exact,6,11,declared_source_order,Declared source order,4,0.5688847294999999,0.38221337525,0.83128762525,small_exact|N11-R6|declared_source_order|primary
+small_exact,6,11,heaviest_safe_first,Heaviest safe first,4,0.6161912915000001,0.5246256975000001,0.743613198,small_exact|N11-R6|heaviest_safe_first|primary
+small_exact,6,11,jump_highs_tagged_cover,HiGHS MIP,4,3.9075282085,3.4899627192500002,4.07289011425,small_exact|N11-R6|jump_highs_tagged_cover|primary
+small_exact,6,11,lightest_safe_first,Lightest safe first,4,0.777995125,0.6051296349999999,0.9150799272500001,small_exact|N11-R6|lightest_safe_first|primary
+small_exact,6,11,maximum_immediate_burden_release,Maximum immediate release,4,0.720234521,0.575327073,0.8443969064999999,small_exact|N11-R6|maximum_immediate_burden_release|primary
+small_exact,6,11,minimum_unique_carrier_exposure,Minimum unique-carrier exposure,4,0.765334458,0.71294248925,0.8049712705000001,small_exact|N11-R6|minimum_unique_carrier_exposure|primary
+small_exact,6,11,multistart_random_rechecked_deletion_32,32-start random deletion,4,0.7958017294999999,0.724979261,0.88685595825,small_exact|N11-R6|multistart_random_rechecked_deletion_32|primary
+small_exact,6,11,random_order_rechecked_deletion,Random-order deletion,4,0.5760281875,0.52963306225,0.66174238575,small_exact|N11-R6|random_order_rechecked_deletion|primary
+small_exact,6,11,requirement_mask_dp,Mask DP,4,0.4360881665,0.425405625,0.549117083,small_exact|N11-R6|requirement_mask_dp|primary
+small_exact,6,11,weighted_greedy,Weighted greedy,4,0.6334396455,0.5289198225,0.74318575,small_exact|N11-R6|weighted_greedy|primary
+small_exact,6,11,weighted_greedy_reverse_delete,Weighted greedy + reverse deletion,4,0.594724625,0.54911751075,0.64184735375,small_exact|N11-R6|weighted_greedy_reverse_delete|primary
+small_exact,6,15,cardinality_greedy,Cardinality greedy,4,0.6307831455,0.56827853125,0.733459114,small_exact|N15-R6|cardinality_greedy|primary
+small_exact,6,15,complete_enumeration,Enumeration,4,0.5739792085,0.5250942402500001,0.65721393725,small_exact|N15-R6|complete_enumeration|primary
+small_exact,6,15,declared_source_order,Declared source order,4,0.8022508960000001,0.60115611475,0.9720029170000001,small_exact|N15-R6|declared_source_order|primary
+small_exact,6,15,heaviest_safe_first,Heaviest safe first,4,0.9517983125,0.87547172925,1.0051009165,small_exact|N15-R6|heaviest_safe_first|primary
+small_exact,6,15,jump_highs_tagged_cover,HiGHS MIP,4,4.5243716455000005,3.9360904792499998,5.099036187,small_exact|N15-R6|jump_highs_tagged_cover|primary
+small_exact,6,15,lightest_safe_first,Lightest safe first,4,0.717869521,0.6377393125,0.83422431275,small_exact|N15-R6|lightest_safe_first|primary
+small_exact,6,15,maximum_immediate_burden_release,Maximum immediate release,4,0.6031904795,0.4998351985,0.7227095727499999,small_exact|N15-R6|maximum_immediate_burden_release|primary
+small_exact,6,15,minimum_unique_carrier_exposure,Minimum unique-carrier exposure,4,0.62662825,0.54095880175,0.72962286475,small_exact|N15-R6|minimum_unique_carrier_exposure|primary
+small_exact,6,15,multistart_random_rechecked_deletion_32,32-start random deletion,4,0.972299333,0.872484739,0.9828753125,small_exact|N15-R6|multistart_random_rechecked_deletion_32|primary
+small_exact,6,15,random_order_rechecked_deletion,Random-order deletion,4,0.9924699379999999,0.84761866725,1.11585099,small_exact|N15-R6|random_order_rechecked_deletion|primary
+small_exact,6,15,requirement_mask_dp,Mask DP,4,0.7248411665000001,0.64194895825,0.88026048975,small_exact|N15-R6|requirement_mask_dp|primary
+small_exact,6,15,weighted_greedy,Weighted greedy,4,0.8530555005,0.7871021355,0.8777403545,small_exact|N15-R6|weighted_greedy|primary
+small_exact,6,15,weighted_greedy_reverse_delete,Weighted greedy + reverse deletion,4,0.594634646,0.557008073,0.6610382082499999,small_exact|N15-R6|weighted_greedy_reverse_delete|primary
+small_exact,10,7,cardinality_greedy,Cardinality greedy,4,0.8408542295,0.76433957275,0.87145399,small_exact|N7-R10|cardinality_greedy|primary
+small_exact,10,7,complete_enumeration,Enumeration,4,0.857669521,0.7482259065,0.8735267707500001,small_exact|N7-R10|complete_enumeration|primary
+small_exact,10,7,declared_source_order,Declared source order,4,0.7111004165,0.5622655835,0.88836478075,small_exact|N7-R10|declared_source_order|primary
+small_exact,10,7,heaviest_safe_first,Heaviest safe first,4,0.76407425,0.6753431459999999,0.9021264999999999,small_exact|N7-R10|heaviest_safe_first|primary
+small_exact,10,7,jump_highs_tagged_cover,HiGHS MIP,4,4.3894335205,3.9259312289999997,4.78791326,small_exact|N7-R10|jump_highs_tagged_cover|primary
+small_exact,10,7,lightest_safe_first,Lightest safe first,4,0.7115580415,0.64368629175,0.806066583,small_exact|N7-R10|lightest_safe_first|primary
+small_exact,10,7,maximum_immediate_burden_release,Maximum immediate release,4,0.7839097915,0.6822172394999999,0.8246588957500001,small_exact|N7-R10|maximum_immediate_burden_release|primary
+small_exact,10,7,minimum_unique_carrier_exposure,Minimum unique-carrier exposure,4,0.5008872085,0.41757872925,0.5878509897499999,small_exact|N7-R10|minimum_unique_carrier_exposure|primary
+small_exact,10,7,multistart_random_rechecked_deletion_32,32-start random deletion,4,0.5453694585,0.48597629175,0.64814994825,small_exact|N7-R10|multistart_random_rechecked_deletion_32|primary
+small_exact,10,7,random_order_rechecked_deletion,Random-order deletion,4,0.704363625,0.68838286475,0.81538056225,small_exact|N7-R10|random_order_rechecked_deletion|primary
+small_exact,10,7,requirement_mask_dp,Mask DP,4,0.6381822079999999,0.47871965624999996,0.797870864,small_exact|N7-R10|requirement_mask_dp|primary
+small_exact,10,7,weighted_greedy,Weighted greedy,4,0.42475835399999995,0.34948902075,0.494357771,small_exact|N7-R10|weighted_greedy|primary
+small_exact,10,7,weighted_greedy_reverse_delete,Weighted greedy + reverse deletion,4,0.6744286669999999,0.6029129582499999,0.783767865,small_exact|N7-R10|weighted_greedy_reverse_delete|primary
+small_exact,10,11,cardinality_greedy,Cardinality greedy,4,0.5692604585,0.53690823975,0.57096947925,small_exact|N11-R10|cardinality_greedy|primary
+small_exact,10,11,complete_enumeration,Enumeration,4,0.7120953125,0.6249735519999999,0.7874459687500001,small_exact|N11-R10|complete_enumeration|primary
+small_exact,10,11,declared_source_order,Declared source order,4,0.5622205840000001,0.43375816725,0.7355695317500001,small_exact|N11-R10|declared_source_order|primary
+small_exact,10,11,heaviest_safe_first,Heaviest safe first,4,0.8631158545,0.6920696977499999,1.04296161525,small_exact|N11-R10|heaviest_safe_first|primary
+small_exact,10,11,jump_highs_tagged_cover,HiGHS MIP,4,3.067806,3.036110979,3.47719216675,small_exact|N11-R10|jump_highs_tagged_cover|primary
+small_exact,10,11,lightest_safe_first,Lightest safe first,4,0.6314374165000001,0.5925772185,0.689266073,small_exact|N11-R10|lightest_safe_first|primary
+small_exact,10,11,maximum_immediate_burden_release,Maximum immediate release,4,0.653538667,0.589721771,0.7151011565,small_exact|N11-R10|maximum_immediate_burden_release|primary
+small_exact,10,11,minimum_unique_carrier_exposure,Minimum unique-carrier exposure,4,0.7431165625,0.71437713525,0.7927136045000001,small_exact|N11-R10|minimum_unique_carrier_exposure|primary
+small_exact,10,11,multistart_random_rechecked_deletion_32,32-start random deletion,4,1.0188907915,0.87257302075,1.1544277185,small_exact|N11-R10|multistart_random_rechecked_deletion_32|primary
+small_exact,10,11,random_order_rechecked_deletion,Random-order deletion,4,0.654593063,0.57753215675,0.7954851147499999,small_exact|N11-R10|random_order_rechecked_deletion|primary
+small_exact,10,11,requirement_mask_dp,Mask DP,4,0.8333460005,0.7981421985,0.86053611475,small_exact|N11-R10|requirement_mask_dp|primary
+small_exact,10,11,weighted_greedy,Weighted greedy,4,0.6459420419999999,0.58401762525,0.75462306275,small_exact|N11-R10|weighted_greedy|primary
+small_exact,10,11,weighted_greedy_reverse_delete,Weighted greedy + reverse deletion,4,0.7197306455,0.661492677,0.7795324785,small_exact|N11-R10|weighted_greedy_reverse_delete|primary
+small_exact,10,15,cardinality_greedy,Cardinality greedy,4,0.869273521,0.71323654175,0.9376274582499999,small_exact|N15-R10|cardinality_greedy|primary
+small_exact,10,15,complete_enumeration,Enumeration,4,0.561631583,0.50230795825,0.6355290725,small_exact|N15-R10|complete_enumeration|primary
+small_exact,10,15,declared_source_order,Declared source order,4,0.954313021,0.8939397395,0.97282813575,small_exact|N15-R10|declared_source_order|primary
+small_exact,10,15,heaviest_safe_first,Heaviest safe first,4,0.8265806874999999,0.73059524,0.87601330175,small_exact|N15-R10|heaviest_safe_first|primary
+small_exact,10,15,jump_highs_tagged_cover,HiGHS MIP,4,4.659668333,3.9659117499999996,5.474400145500001,small_exact|N15-R10|jump_highs_tagged_cover|primary
+small_exact,10,15,lightest_safe_first,Lightest safe first,4,0.770337167,0.735830396,0.8077423545,small_exact|N15-R10|lightest_safe_first|primary
+small_exact,10,15,maximum_immediate_burden_release,Maximum immediate release,4,0.8335115215,0.58791534425,0.98823286525,small_exact|N15-R10|maximum_immediate_burden_release|primary
+small_exact,10,15,minimum_unique_carrier_exposure,Minimum unique-carrier exposure,4,0.6660996875,0.40456770825,0.930814927,small_exact|N15-R10|minimum_unique_carrier_exposure|primary
+small_exact,10,15,multistart_random_rechecked_deletion_32,32-start random deletion,4,0.760037792,0.6784521880000001,0.8924533644999999,small_exact|N15-R10|multistart_random_rechecked_deletion_32|primary
+small_exact,10,15,random_order_rechecked_deletion,Random-order deletion,4,0.671045875,0.54916865625,0.9456560105,small_exact|N15-R10|random_order_rechecked_deletion|primary
+small_exact,10,15,requirement_mask_dp,Mask DP,4,0.6799746875,0.5916991665,0.7692203440000001,small_exact|N15-R10|requirement_mask_dp|primary
+small_exact,10,15,weighted_greedy,Weighted greedy,4,0.776705854,0.6729754585,0.82551324975,small_exact|N15-R10|weighted_greedy|primary
+small_exact,10,15,weighted_greedy_reverse_delete,Weighted greedy + reverse deletion,4,0.4953672295,0.43070568775,0.52280687525,small_exact|N15-R10|weighted_greedy_reverse_delete|primary
+structured,32,64,cardinality_greedy,Cardinality greedy,32,0.6788237085,0.568775042,0.816118198,structured|N64-R32|cardinality_greedy|primary
+structured,32,64,declared_source_order,Declared source order,32,0.8837579369999999,0.7675357082500001,1.1808948025000001,structured|N64-R32|declared_source_order|primary
+structured,32,64,heaviest_safe_first,Heaviest safe first,32,0.8265935419999999,0.71659795875,1.045197833,structured|N64-R32|heaviest_safe_first|primary
+structured,32,64,jump_highs_tagged_cover,HiGHS MIP,32,7.2976800205,5.10065670825,8.746161031,structured|N64-R32|jump_highs_tagged_cover|primary
+structured,32,64,lightest_safe_first,Lightest safe first,32,0.9161339165,0.74179446875,1.05951529175,structured|N64-R32|lightest_safe_first|primary
+structured,32,64,maximum_immediate_burden_release,Maximum immediate release,32,0.896614896,0.630548573,1.15203826075,structured|N64-R32|maximum_immediate_burden_release|primary
+structured,32,64,minimum_unique_carrier_exposure,Minimum unique-carrier exposure,32,0.993550188,0.7785494895,1.1471722400000002,structured|N64-R32|minimum_unique_carrier_exposure|primary
+structured,32,64,multistart_random_rechecked_deletion_32,32-start random deletion,32,5.898637458,5.5282855515,7.12800351025,structured|N64-R32|multistart_random_rechecked_deletion_32|primary
+structured,32,64,random_order_rechecked_deletion,Random-order deletion,32,0.8488558125,0.6624642915,1.10085601025,structured|N64-R32|random_order_rechecked_deletion|primary
+structured,32,64,weighted_greedy,Weighted greedy,32,0.7019235,0.60266543725,0.90325444825,structured|N64-R32|weighted_greedy|primary
+structured,32,64,weighted_greedy_reverse_delete,Weighted greedy + reverse deletion,32,0.7925677915,0.54468322875,1.0106812082499999,structured|N64-R32|weighted_greedy_reverse_delete|primary
+structured,32,192,cardinality_greedy,Cardinality greedy,32,0.69716075,0.52060947925,0.91686421875,structured|N192-R32|cardinality_greedy|primary
+structured,32,192,declared_source_order,Declared source order,32,4.6481601875,4.13472609325,5.33778839575,structured|N192-R32|declared_source_order|primary
+structured,32,192,heaviest_safe_first,Heaviest safe first,32,4.5780394995,3.811669302,5.4473277495,structured|N192-R32|heaviest_safe_first|primary
+structured,32,192,jump_highs_tagged_cover,HiGHS MIP,32,17.909353937,14.27514168775,20.23398954175,structured|N192-R32|jump_highs_tagged_cover|primary
+structured,32,192,lightest_safe_first,Lightest safe first,32,4.459396375000001,3.99195788525,5.30039846875,structured|N192-R32|lightest_safe_first|primary
+structured,32,192,maximum_immediate_burden_release,Maximum immediate release,32,4.886371542,4.36547141675,5.639501771,structured|N192-R32|maximum_immediate_burden_release|primary
+structured,32,192,minimum_unique_carrier_exposure,Minimum unique-carrier exposure,32,4.6588902085,3.845867146,5.3110757505,structured|N192-R32|minimum_unique_carrier_exposure|primary
+structured,32,192,multistart_random_rechecked_deletion_32,32-start random deletion,32,1800.0,137.229349896,1800.0,structured|N192-R32|multistart_random_rechecked_deletion_32|primary
+structured,32,192,random_order_rechecked_deletion,Random-order deletion,32,4.325857396,3.97125582275,5.522893177,structured|N192-R32|random_order_rechecked_deletion|primary
+structured,32,192,weighted_greedy,Weighted greedy,32,0.678128375,0.50070093725,0.9148224375,structured|N192-R32|weighted_greedy|primary
+structured,32,192,weighted_greedy_reverse_delete,Weighted greedy + reverse deletion,32,0.693415396,0.541483833,1.02088544825,structured|N192-R32|weighted_greedy_reverse_delete|primary
+structured,64,64,cardinality_greedy,Cardinality greedy,32,0.6739961875,0.42106976025,0.9027507395000001,structured|N64-R64|cardinality_greedy|primary
+structured,64,64,declared_source_order,Declared source order,32,0.945586229,0.85230160375,1.25306422925,structured|N64-R64|declared_source_order|primary
+structured,64,64,heaviest_safe_first,Heaviest safe first,32,1.0843191665,0.76845627075,1.196743834,structured|N64-R64|heaviest_safe_first|primary
+structured,64,64,jump_highs_tagged_cover,HiGHS MIP,32,7.69077375,5.6822823645,8.811793708,structured|N64-R64|jump_highs_tagged_cover|primary
+structured,64,64,lightest_safe_first,Lightest safe first,32,1.0215554999999998,0.86252740575,1.2636698855000001,structured|N64-R64|lightest_safe_first|primary
+structured,64,64,maximum_immediate_burden_release,Maximum immediate release,32,0.917042083,0.75580991675,1.12790426075,structured|N64-R64|maximum_immediate_burden_release|primary
+structured,64,64,minimum_unique_carrier_exposure,Minimum unique-carrier exposure,32,0.9924305204999999,0.75128781275,1.3768601145000001,structured|N64-R64|minimum_unique_carrier_exposure|primary
+structured,64,64,multistart_random_rechecked_deletion_32,32-start random deletion,32,8.513640354,6.220885386,9.96158786475,structured|N64-R64|multistart_random_rechecked_deletion_32|primary
+structured,64,64,random_order_rechecked_deletion,Random-order deletion,32,1.119076875,0.88011794775,1.3146835105,structured|N64-R64|random_order_rechecked_deletion|primary
+structured,64,64,weighted_greedy,Weighted greedy,32,0.7784936875,0.66289991675,0.9959450519999999,structured|N64-R64|weighted_greedy|primary
+structured,64,64,weighted_greedy_reverse_delete,Weighted greedy + reverse deletion,32,0.70659975,0.53867126,0.92606978125,structured|N64-R64|weighted_greedy_reverse_delete|primary
+structured,64,192,cardinality_greedy,Cardinality greedy,32,0.76422075,0.6623898127500001,1.0216639375,structured|N192-R64|cardinality_greedy|primary
+structured,64,192,declared_source_order,Declared source order,32,6.302693937500001,5.58843454175,7.4043584895,structured|N192-R64|declared_source_order|primary
+structured,64,192,heaviest_safe_first,Heaviest safe first,32,6.481871396,5.879407093999999,7.60105348975,structured|N192-R64|heaviest_safe_first|primary
+structured,64,192,jump_highs_tagged_cover,HiGHS MIP,32,19.4690593955,16.542359677500002,22.5113533545,structured|N192-R64|jump_highs_tagged_cover|primary
+structured,64,192,lightest_safe_first,Lightest safe first,32,6.270423833,5.235009979,7.12672788575,structured|N192-R64|lightest_safe_first|primary
+structured,64,192,maximum_immediate_burden_release,Maximum immediate release,32,6.191894145999999,5.5063009375,7.285918082999999,structured|N192-R64|maximum_immediate_burden_release|primary
+structured,64,192,minimum_unique_carrier_exposure,Minimum unique-carrier exposure,32,5.9734575415,5.34687466625,7.1166440625,structured|N192-R64|minimum_unique_carrier_exposure|primary
+structured,64,192,multistart_random_rechecked_deletion_32,32-start random deletion,32,183.082721375,157.96302387475,213.45982163525,structured|N192-R64|multistart_random_rechecked_deletion_32|primary
+structured,64,192,random_order_rechecked_deletion,Random-order deletion,32,6.3626617495,5.8987690522500005,7.4104212605,structured|N192-R64|random_order_rechecked_deletion|primary
+structured,64,192,weighted_greedy,Weighted greedy,32,0.8325996250000001,0.60863048975,1.01714769825,structured|N192-R64|weighted_greedy|primary
+structured,64,192,weighted_greedy_reverse_delete,Weighted greedy + reverse deletion,32,0.903148208,0.777174813,1.05247896875,structured|N192-R64|weighted_greedy_reverse_delete|primary

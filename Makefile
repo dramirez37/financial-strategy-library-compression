@@ -6,7 +6,8 @@ export ALGOLIB_CRSP_ROOT
 .PHONY: help preprint-check canonical randomized formal manuscript arxiv-bundle \
 	journal journal-check journal-submission-check financial-licensed public-audit verify \
 	aor-algorithm-tests aor-generator-tests aor-benchmark aor-benchmark-audit \
-	aor-benchmark-v2-tests aor-benchmark-v2-lock aor-benchmark-v2 aor-benchmark-v2-audit
+	aor-benchmark-v2-tests aor-benchmark-v2-lock aor-benchmark-v2 aor-benchmark-v2-audit \
+	aor-benchmark-v2-analysis
 
 help:
 	@printf '%s\n' \
@@ -25,6 +26,7 @@ help:
 		'make aor-benchmark-audit Independently audit saved final benchmark artifacts' \
 		'make aor-benchmark-v2      Run locked v2 with eight deterministic worker lanes' \
 		'make aor-benchmark-v2-audit Independently audit saved v2 benchmark artifacts' \
+		'make aor-benchmark-v2-analysis Generate and test locked v2 tables and figures' \
 		'make financial-licensed Run both licensed-data audits and the cross-audit optimization' \
 		'make verify             Run the complete release gate'
 
@@ -87,6 +89,10 @@ aor-benchmark-v2: aor-benchmark-v2-tests aor-benchmark-v2-lock
 
 aor-benchmark-v2-audit:
 	@"$(JULIA_EXE)" --threads=8 --startup-file=no --project=julia julia/scripts/audit_algorithmic_compression_final_v2.jl
+
+aor-benchmark-v2-analysis:
+	@"$(JULIA_EXE)" --startup-file=no --project=julia/test julia/test/run_algorithmic_compression_v2_analysis_tests.jl
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/analyze_algorithmic_compression_v2.jl
 
 financial-licensed:
 	@./scripts/run_financial_licensed.sh

@@ -1,0 +1,74 @@
+instance_sha256 = "abe6f041b054ff85619505a6fff52f3b67844d40f5804b54d1a524a61a6edde8"
+schema_version = "algorithmic-compression-generator-record-v1"
+status = "GENERATED"
+
+[[attempts]]
+accepted = true
+attempt_index = 1
+attempt_seed = "4536282186674380757"
+reasons = []
+
+[realized]
+active_coverage_density = "17//32"
+active_incidence_count = 527
+active_strategy_count = 31
+bundle_count = 0
+bundle_prevalence = "0//1"
+bundle_threshold = 24
+distinct_active_weights = ["1//1"]
+frontier_coverage_density = "1//1"
+frontier_module_rank_association = "0//1"
+frontier_row_count = 1
+mandatory_strategy_ids = ["inactive"]
+maximum_active_weight = "1//1"
+maximum_carrier_count = 32
+mean_pairwise_module_jaccard = "3667153026167//9669880774125"
+minimum_active_weight = "1//1"
+minimum_carrier_count = 16
+module_coverage_density = "16//31"
+module_row_count = 31
+preprocessing_forced_strategy_ids = ["inactive"]
+strategy_count = 32
+tagged_requirement_count = 32
+unique_carrier_count = 0
+unique_carrier_frequency = "0//1"
+unique_carrier_strategy_ids = []
+
+[requested]
+bundle_count_target = -1
+bundle_prevalence_level = "mechanism"
+coverage_density_level = "mechanism"
+coverage_density_target = "UNSPECIFIED"
+frontier_module_correlation_level = "mechanism"
+frontier_row_count = 1
+mandatory_strategy_count = 1
+module_overlap_level = "mechanism"
+module_row_count = 31
+strategy_count = 32
+tagged_requirement_count = 32
+unique_carrier_count_target = -1
+unique_carrier_frequency_level = "mechanism"
+weight_dispersion_level = "mechanism"
+
+[seed]
+execution_order_key = "7867159793772963110"
+generator_seed = "3297623091925760950"
+instance_id = "V2-C-M06-S03"
+mip_seed = "990473291"
+multistart_seed = "3750085497696884773"
+phase = "final"
+random_order_seed = "1731783315425575522"
+randomness_scope = "label_permutation_and_stochastic_algorithms;v2_eight_worker_domain"
+replicate_id = 1
+seed_id = "SEED-V2-C-M06-S03"
+
+[spec]
+analysis_included = true
+family = "adversarial"
+generator_id = "adversarial-mechanism-v1"
+instance_id = "V2-C-M06-S03"
+mechanism = "symmetric_hard"
+mechanism_parameter = "cyclic_order=31"
+phase = "final"
+replicate_id = 1
+seed_id = "SEED-V2-C-M06-S03"

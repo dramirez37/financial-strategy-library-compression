@@ -1,0 +1,74 @@
+instance_sha256 = "f2b448d5311f2347f45606a247a5f0d081380038c22453dceacfd92d66a70c80"
+schema_version = "algorithmic-compression-generator-record-v1"
+status = "GENERATED"
+
+[[attempts]]
+accepted = true
+attempt_index = 1
+attempt_seed = "6742091756658889203"
+reasons = []
+
+[realized]
+active_coverage_density = "5//66"
+active_incidence_count = 160
+active_strategy_count = 64
+bundle_count = 0
+bundle_prevalence = "0//1"
+bundle_threshold = 25
+distinct_active_weights = ["1//1", "2//1"]
+frontier_coverage_density = "1//1"
+frontier_module_rank_association = "0//1"
+frontier_row_count = 1
+mandatory_strategy_ids = ["inactive"]
+maximum_active_weight = "2//1"
+maximum_carrier_count = 65
+mean_pairwise_module_jaccard = "4//189"
+minimum_active_weight = "1//1"
+minimum_carrier_count = 3
+module_coverage_density = "3//64"
+module_row_count = 32
+preprocessing_forced_strategy_ids = ["inactive"]
+strategy_count = 65
+tagged_requirement_count = 33
+unique_carrier_count = 0
+unique_carrier_frequency = "0//1"
+unique_carrier_strategy_ids = []
+
+[requested]
+bundle_count_target = -1
+bundle_prevalence_level = "mechanism"
+coverage_density_level = "mechanism"
+coverage_density_target = "UNSPECIFIED"
+frontier_module_correlation_level = "mechanism"
+frontier_row_count = 1
+mandatory_strategy_count = 1
+module_overlap_level = "mechanism"
+module_row_count = 32
+strategy_count = 65
+tagged_requirement_count = 33
+unique_carrier_count_target = -1
+unique_carrier_frequency_level = "mechanism"
+weight_dispersion_level = "mechanism"
+
+[seed]
+execution_order_key = "1633481321676054347"
+generator_seed = "7529533035813372485"
+instance_id = "V2-C-M04-S03"
+mip_seed = "1427385574"
+multistart_seed = "949114240969848662"
+phase = "final"
+random_order_seed = "1358219539973106163"
+randomness_scope = "label_permutation_and_stochastic_algorithms;v2_eight_worker_domain"
+replicate_id = 1
+seed_id = "SEED-V2-C-M04-S03"
+
+[spec]
+analysis_included = true
+family = "adversarial"
+generator_id = "adversarial-mechanism-v1"
+instance_id = "V2-C-M04-S03"
+mechanism = "dominance_heavy"
+mechanism_parameter = "base_dimension=32"
+phase = "final"
+replicate_id = 1
+seed_id = "SEED-V2-C-M04-S03"

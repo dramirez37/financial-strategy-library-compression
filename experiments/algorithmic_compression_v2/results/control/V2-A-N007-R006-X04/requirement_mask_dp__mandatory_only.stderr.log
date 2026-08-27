@@ -1,0 +1,46 @@
+
+[10618] signal 2: Interrupt: 2
+in expression starting at /Users/david/Coding/Julia/algolib/julia/scripts/run_algorithmic_compression_final_worker_v1.jl:83
+_ZN4llvm13getObjectSizeEPKNS_5ValueERyRKNS_10DataLayoutEPKNS_17TargetLibraryInfoENS_14ObjectSizeOptsE at /Users/david/Coding/Julia/algolib/.local_runtime/julia-1.12.6/lib/julia/libLLVM.dylib (unknown line)
+_ZN12_GLOBAL__N_18DSEState11isOverwriteEPKN4llvm11InstructionES4_RKNS1_14MemoryLocationES7_RxS8_ at /Users/david/Coding/Julia/algolib/.local_runtime/julia-1.12.6/lib/julia/libLLVM.dylib (unknown line)
+_ZN12_GLOBAL__N_119eliminateDeadStoresERN4llvm8FunctionERNS0_9AAResultsERNS0_9MemorySSAERNS0_13DominatorTreeERNS0_17PostDominatorTreeERKNS0_17TargetLibraryInfoERKNS0_8LoopInfoE at /Users/david/Coding/Julia/algolib/.local_runtime/julia-1.12.6/lib/julia/libLLVM.dylib (unknown line)
+_ZN4llvm7DSEPass3runERNS_8FunctionERNS_15AnalysisManagerIS1_JEEE at /Users/david/Coding/Julia/algolib/.local_runtime/julia-1.12.6/lib/julia/libLLVM.dylib (unknown line)
+_ZN4llvm11PassManagerINS_8FunctionENS_15AnalysisManagerIS1_JEEEJEE3runERS1_RS3_ at /Users/david/Coding/Julia/algolib/.local_runtime/julia-1.12.6/lib/julia/libLLVM.dylib (unknown line)
+_ZN4llvm27ModuleToFunctionPassAdaptor3runERNS_6ModuleERNS_15AnalysisManagerIS1_JEEE at /Users/david/Coding/Julia/algolib/.local_runtime/julia-1.12.6/lib/julia/libLLVM.dylib (unknown line)
+_ZN4llvm11PassManagerINS_6ModuleENS_15AnalysisManagerIS1_JEEEJEE3runERS1_RS3_ at /Users/david/Coding/Julia/algolib/.local_runtime/julia-1.12.6/lib/julia/libLLVM.dylib (unknown line)
+run at /Users/julia/.julia/scratchspaces/a66863c6-20e8-4ff4-8a62-49f30b1f605e/agent-cache/default-honeycrisp-HL2F7YQ3XH.0/build/default-honeycrisp-HL2F7YQ3XH-0/julialang/julia-release-1-dot-12/src/pipeline.cpp:741
+operator() at /Users/julia/.julia/scratchspaces/a66863c6-20e8-4ff4-8a62-49f30b1f605e/agent-cache/default-honeycrisp-HL2F7YQ3XH.0/build/default-honeycrisp-HL2F7YQ3XH-0/julialang/julia-release-1-dot-12/src/jitlayers.cpp:1459 [inlined]
+withModuleDo<(lambda at /Users/julia/.julia/scratchspaces/a66863c6-20e8-4ff4-8a62-49f30b1f605e/agent-cache/default-honeycrisp-HL2F7YQ3XH.0/build/default-honeycrisp-HL2F7YQ3XH-0/julialang/julia-release-1-dot-12/src/jitlayers.cpp:1420:30)> at /Users/julia/.julia/scratchspaces/a66863c6-20e8-4ff4-8a62-49f30b1f605e/agent-cache/default-honeycrisp-HL2F7YQ3XH.0/build/default-honeycrisp-HL2F7YQ3XH-0/julialang/julia-release-1-dot-12/usr/include/llvm/ExecutionEngine/Orc/ThreadSafeModule.h:136 [inlined]
+operator() at /Users/julia/.julia/scratchspaces/a66863c6-20e8-4ff4-8a62-49f30b1f605e/agent-cache/default-honeycrisp-HL2F7YQ3XH.0/build/default-honeycrisp-HL2F7YQ3XH-0/julialang/julia-release-1-dot-12/src/jitlayers.cpp:1420
+operator() at /Users/julia/.julia/scratchspaces/a66863c6-20e8-4ff4-8a62-49f30b1f605e/agent-cache/default-honeycrisp-HL2F7YQ3XH.0/build/default-honeycrisp-HL2F7YQ3XH-0/julialang/julia-release-1-dot-12/src/jitlayers.cpp:1572 [inlined]
+addModule at /Users/julia/.julia/scratchspaces/a66863c6-20e8-4ff4-8a62-49f30b1f605e/agent-cache/default-honeycrisp-HL2F7YQ3XH.0/build/default-honeycrisp-HL2F7YQ3XH-0/julialang/julia-release-1-dot-12/src/jitlayers.cpp:2031
+jl_compile_codeinst_now at /Users/julia/.julia/scratchspaces/a66863c6-20e8-4ff4-8a62-49f30b1f605e/agent-cache/default-honeycrisp-HL2F7YQ3XH.0/build/default-honeycrisp-HL2F7YQ3XH-0/julialang/julia-release-1-dot-12/src/jitlayers.cpp:626
+jl_generate_fptr_for_unspecialized_impl at /Users/julia/.julia/scratchspaces/a66863c6-20e8-4ff4-8a62-49f30b1f605e/agent-cache/default-honeycrisp-HL2F7YQ3XH.0/build/default-honeycrisp-HL2F7YQ3XH-0/julialang/julia-release-1-dot-12/src/jitlayers.cpp:875
+jl_compile_method_internal at /Users/julia/.julia/scratchspaces/a66863c6-20e8-4ff4-8a62-49f30b1f605e/agent-cache/default-honeycrisp-HL2F7YQ3XH.0/build/default-honeycrisp-HL2F7YQ3XH-0/julialang/julia-release-1-dot-12/src/gf.c:3552
+_jl_invoke at /Users/julia/.julia/scratchspaces/a66863c6-20e8-4ff4-8a62-49f30b1f605e/agent-cache/default-honeycrisp-HL2F7YQ3XH.0/build/default-honeycrisp-HL2F7YQ3XH-0/julialang/julia-release-1-dot-12/src/gf.c:4006 [inlined]
+ijl_invoke at /Users/julia/.julia/scratchspaces/a66863c6-20e8-4ff4-8a62-49f30b1f605e/agent-cache/default-honeycrisp-HL2F7YQ3XH.0/build/default-honeycrisp-HL2F7YQ3XH-0/julialang/julia-release-1-dot-12/src/gf.c:4021
+jl_invoke_julia_macro at /Users/julia/.julia/scratchspaces/a66863c6-20e8-4ff4-8a62-49f30b1f605e/agent-cache/default-honeycrisp-HL2F7YQ3XH.0/build/default-honeycrisp-HL2F7YQ3XH-0/julialang/julia-release-1-dot-12/src/ast.c:1138
+jl_expand_macros at /Users/julia/.julia/scratchspaces/a66863c6-20e8-4ff4-8a62-49f30b1f605e/agent-cache/default-honeycrisp-HL2F7YQ3XH.0/build/default-honeycrisp-HL2F7YQ3XH-0/julialang/julia-release-1-dot-12/src/ast.c:1200
+jl_expand_macros at /Users/julia/.julia/scratchspaces/a66863c6-20e8-4ff4-8a62-49f30b1f605e/agent-cache/default-honeycrisp-HL2F7YQ3XH.0/build/default-honeycrisp-HL2F7YQ3XH-0/julialang/julia-release-1-dot-12/src/ast.c:1249
+jl_expand_macros at /Users/julia/.julia/scratchspaces/a66863c6-20e8-4ff4-8a62-49f30b1f605e/agent-cache/default-honeycrisp-HL2F7YQ3XH.0/build/default-honeycrisp-HL2F7YQ3XH-0/julialang/julia-release-1-dot-12/src/ast.c:1249
+jl_expand_macros at /Users/julia/.julia/scratchspaces/a66863c6-20e8-4ff4-8a62-49f30b1f605e/agent-cache/default-honeycrisp-HL2F7YQ3XH.0/build/default-honeycrisp-HL2F7YQ3XH-0/julialang/julia-release-1-dot-12/src/ast.c:1249
+jl_expand_macros at /Users/julia/.julia/scratchspaces/a66863c6-20e8-4ff4-8a62-49f30b1f605e/agent-cache/default-honeycrisp-HL2F7YQ3XH.0/build/default-honeycrisp-HL2F7YQ3XH-0/julialang/julia-release-1-dot-12/src/ast.c:1249
+ijl_expand_stmt_with_loc at /Users/julia/.julia/scratchspaces/a66863c6-20e8-4ff4-8a62-49f30b1f605e/agent-cache/default-honeycrisp-HL2F7YQ3XH.0/build/default-honeycrisp-HL2F7YQ3XH-0/julialang/julia-release-1-dot-12/src/ast.c:1361
+jl_eval_module_expr at /Users/julia/.julia/scratchspaces/a66863c6-20e8-4ff4-8a62-49f30b1f605e/agent-cache/default-honeycrisp-HL2F7YQ3XH.0/build/default-honeycrisp-HL2F7YQ3XH-0/julialang/julia-release-1-dot-12/src/toplevel.c:195 [inlined]
+jl_toplevel_eval_flex at /Users/julia/.julia/scratchspaces/a66863c6-20e8-4ff4-8a62-49f30b1f605e/agent-cache/default-honeycrisp-HL2F7YQ3XH.0/build/default-honeycrisp-HL2F7YQ3XH-0/julialang/julia-release-1-dot-12/src/toplevel.c:814
+jl_toplevel_eval_flex at /Users/julia/.julia/scratchspaces/a66863c6-20e8-4ff4-8a62-49f30b1f605e/agent-cache/default-honeycrisp-HL2F7YQ3XH.0/build/default-honeycrisp-HL2F7YQ3XH-0/julialang/julia-release-1-dot-12/src/toplevel.c:975
+ijl_toplevel_eval at /Users/julia/.julia/scratchspaces/a66863c6-20e8-4ff4-8a62-49f30b1f605e/agent-cache/default-honeycrisp-HL2F7YQ3XH.0/build/default-honeycrisp-HL2F7YQ3XH-0/julialang/julia-release-1-dot-12/src/toplevel.c:1047 [inlined]
+ijl_toplevel_eval_in at /Users/julia/.julia/scratchspaces/a66863c6-20e8-4ff4-8a62-49f30b1f605e/agent-cache/default-honeycrisp-HL2F7YQ3XH.0/build/default-honeycrisp-HL2F7YQ3XH-0/julialang/julia-release-1-dot-12/src/toplevel.c:1092
+jlplt_ijl_toplevel_eval_in_8028.1 at /Users/david/Coding/Julia/algolib/.local_runtime/julia-1.12.6/lib/julia/sys.dylib (unknown line)
+eval at ./boot.jl:489
+include_string at ./loading.jl:2874
+_include at ./loading.jl:2934
+include at ./Base.jl:306
+exec_options at ./client.jl:317
+_start at ./client.jl:550
+jfptr__start_29115.1 at /Users/david/Coding/Julia/algolib/.local_runtime/julia-1.12.6/lib/julia/sys.dylib (unknown line)
+jl_apply at /Users/julia/.julia/scratchspaces/a66863c6-20e8-4ff4-8a62-49f30b1f605e/agent-cache/default-honeycrisp-HL2F7YQ3XH.0/build/default-honeycrisp-HL2F7YQ3XH-0/julialang/julia-release-1-dot-12/src/./julia.h:2391 [inlined]
+true_main at /Users/julia/.julia/scratchspaces/a66863c6-20e8-4ff4-8a62-49f30b1f605e/agent-cache/default-honeycrisp-HL2F7YQ3XH.0/build/default-honeycrisp-HL2F7YQ3XH-0/julialang/julia-release-1-dot-12/src/jlapi.c:971
+jl_repl_entrypoint at /Users/julia/.julia/scratchspaces/a66863c6-20e8-4ff4-8a62-49f30b1f605e/agent-cache/default-honeycrisp-HL2F7YQ3XH.0/build/default-honeycrisp-HL2F7YQ3XH-0/julialang/julia-release-1-dot-12/src/jlapi.c:1139
+unknown function (ip: 0x0) at (unknown file)
+Allocations: 2054394 (Pool: 2054239; Big: 155); GC: 3

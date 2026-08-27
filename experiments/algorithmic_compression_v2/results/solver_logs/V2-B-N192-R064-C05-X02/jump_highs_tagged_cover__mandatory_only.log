@@ -1,0 +1,70 @@
+Running HiGHS 1.15.1 (git hash: 04024d701f): Copyright (c) 2026 under MIT licence terms
+Includes third-party software components, see THIRD_PARTY_NOTICES.md for full details
+Using BLAS: Apple Accelerate 
+MIP has 64 rows; 191 cols; 1528 nonzeros; 191 integer variables (191 binary)
+Coefficient ranges:
+  Matrix  [1e+00, 1e+00]
+  Cost    [1e+00, 2e+01]
+  Bound   [1e+00, 1e+00]
+  RHS     [1e+00, 1e+00]
+Presolving model
+64 rows, 62 cols, 1528 nonzeros 0s
+42 rows, 58 cols, 920 nonzeros 0s
+42 rows, 20 cols, 506 nonzeros 0s
+Presolve reductions: rows 42(-22); columns 20(-171); nonzeros 506(-1022) 
+Objective function is integral with scale 1
+
+Solving MIP model with:
+   42 rows
+   20 cols (20 binary, 0 integer, 0 implied int., 0 continuous, 0 domain fixed)
+   506 nonzeros
+   Thread count 1 (of 10 threads). Using 1 max workers. Parallel search off
+
+Src: B => Branching; C => Central rounding; F => Feasibility pump; H => Heuristic;
+     I => Shifting; J => Feasibility jump; L => Sub-MIP; P => Empty MIP; R => Randomized rounding;
+     S => Solve LP; T => Evaluate node; U => Unbounded; X => User solution; Y => HiGHS solution;
+     Z => ZI Round; l => Trivial lower; p => Trivial point; u => Trivial upper; z => Trivial zero
+
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work      
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+
+ u       0       0         0   0.00%   -inf            139                Large        0      0      0         0     0.0s
+ J       0       0         0   0.00%   -inf            123                Large        0      0      0         0     0.0s
+ S       0       0         0   0.00%   0               11               100.00%        0      0      0         0     0.0s
+ R       0       0         0   0.00%   3               9                 66.67%        0      0      0         8     0.0s
+
+45.0% inactive integer columns, restarting
+Model after restart has 14 rows, 11 cols (11 bin., 0 int., 0 impl., 0 cont., 0 dom.fix.), and 110 nonzeros
+
+         0       0         0   0.00%   3               9                 66.67%        0      0      0         8     0.0s
+ R       0       0         0   0.00%   3               7                 57.14%        0      0      0         8     0.0s
+ C       0       0         0   0.00%   3               6                 50.00%        5      1      0        12     0.0s
+ L       0       0         0 100.00%   3               3                  0.00%        5      1      0        12     0.0s
+         1       0         1 100.00%   3               3                  0.00%        5      1      0        12     0.0s
+
+Solving report
+  Status            Optimal
+  Primal bound      3
+  Dual bound        3
+  Gap               0%
+  P-D integral      0.00696489465795
+  Solution status   feasible
+                    3 (objective)
+                    0 (bound viol.)
+                    0 (int. viol.)
+                    0 (row viol.)
+  Timing            0.02
+                    0.00 (Presolve)
+                        MIP    time [calls] = 0.00 [1]
+                        subMIP time [calls] = 0.00 [1]
+                    0.01 (Solve)
+                    0.00 (Postsolve)
+                        MIP    time [calls] = 0.00 [1]
+                        subMIP time [calls] = 0.00 [1]
+  Max sub-MIP depth 2
+  Nodes             1
+  Repair LPs        0
+  LP iterations     12
+                    0 (strong br.)
+                    4 (separation)
+                    0 (heuristics)

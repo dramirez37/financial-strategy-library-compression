@@ -1,0 +1,138 @@
+algorithm_execution_position = 13
+algorithm_id = "weighted_greedy"
+analysis_included = true
+candidate_accepted = true
+experiment_id = "registered-algorithmic-compression-benchmark-v2"
+failure_code = ""
+family = "small_exact"
+generator_seed = "1894396511564315436"
+global_schedule_position = 2816
+instance_id = "V2-A-N007-R010-X01"
+instance_sha256 = "e3128fdf33c46edb7de4901cbaa02798e9e6d9f61c7af93bb7caf8dbdf5d26ea"
+lane_position = 352
+launch_wave = 352
+mechanism = "none"
+mip_seed = "86385868"
+multistart_seed = "913505012508313746"
+preprocessing_variant = "mandatory_only"
+random_order_seed = "4490572132738101877"
+registered_memory_limit_bytes = "1610612736"
+registered_time_limit_seconds = 60.0
+replicate_id = 1
+schema_version = "algorithmic-compression-final-run-v2"
+seed_id = "SEED-V2-A-N007-R010-X01"
+status = "SOLVED"
+terminal = true
+worker_lane = 8
+
+[supervisor]
+memory_limit_enforced = true
+peak_memory_bytes = 1026736128
+status = "PROCESS_COMPLETED"
+stderr_path = "experiments/algorithmic_compression_v2/results/control/V2-A-N007-R010-X01/weighted_greedy__mandatory_only.stderr.log"
+stdout_path = "experiments/algorithmic_compression_v2/results/control/V2-A-N007-R010-X01/weighted_greedy__mandatory_only.stdout.log"
+time_limit_enforced = true
+wall_clock_ns = "314828334"
+worker_exit_code = 0
+
+[worker]
+algorithm_id = "weighted_greedy"
+algorithm_wall_clock_ns = 75817250
+blas_threads = 1
+candidate_accepted = true
+compile_time_seconds = 0.067623001
+evidence_class = "synthetic heuristic evidence plus exact feasibility check"
+finished_at_utc = "2026-08-27T17:34:10.475Z"
+gc_time_seconds = 0.0
+highs_threads = 1
+instance_id = "V2-A-N007-R010-X01"
+instance_sha256 = "e3128fdf33c46edb7de4901cbaa02798e9e6d9f61c7af93bb7caf8dbdf5d26ea"
+julia_allocated_bytes = 5004600
+julia_threads = 1
+preprocessing_variant = "mandatory_only"
+schema_version = "algorithmic-compression-final-worker-v1"
+selected_original_strategy_ids = ["inactive", "s0002", "s0004", "s0006"]
+selected_original_strategy_indices = [1, 3, 5, 7]
+started_at_utc = "2026-08-27T17:34:10.399Z"
+status = "SOLVED"
+worker_status = "COMPLETED"
+
+    [worker.exact_burden]
+    available = true
+    value = "4//1"
+
+    [worker.exact_feasibility_recheck]
+    available = true
+    burden_reconciled = true
+    closure_preserved = true
+    exact_burden = "4//1"
+    exact_feasible = true
+    frontier_preserved = true
+    mandatory_retained = true
+    tagged_coverage = true
+
+    [worker.full_preprocessing_sensitivity]
+    available = false
+
+    [worker.method_result]
+    algorithm = "weighted_greedy"
+    exact_burden = "4//1"
+    greedy_burden_before_reverse_deletion = "4//1"
+    instance_sha256 = "e3128fdf33c46edb7de4901cbaa02798e9e6d9f61c7af93bb7caf8dbdf5d26ea"
+    reverse_deletion_trace = []
+    schema_version = "journal-compression-greedy-solution-v1"
+    selected_strategy_ids = ["inactive", "s0002", "s0004", "s0006"]
+    status = "feasible_heuristic"
+    tie_declaration = "minimum exact score, then lowest original strategy index in canonical order"
+    uncovered_counts = [10, 6, 2, 0]
+
+        [worker.method_result.final_certificate]
+        burden_reconciled = true
+        closure_preserved = true
+        evidence_class = "exact finite heuristic computation"
+        exact_burden = "4//1"
+        frontier_preserved = true
+        lean_kernel_verified = false
+        mandatory_retained = true
+        search_complete = false
+        selected_strategy_indices = [1, 3, 5, 7]
+        solver_status_used = false
+        tagged_coverage = true
+
+        [worker.method_result.guarantee]
+        applies_to_exact_burden = true
+        declaration = "Chvatal's positive-cost weighted-set-cover H(d) guarantee applies to exact burden."
+        exact_harmonic_factor = "25//12"
+        maximum_residual_set_cardinality = 4
+        primary_source_key = "Chvatal1979"
+
+        [[worker.method_result.step_trace]]
+        exact_score = "1//4"
+        exact_weight = "1//1"
+        newly_covered_count = 4
+        newly_covered_requirement_indices = [3, 4, 6, 7]
+        step_index = 1
+        strategy_id = "s0004"
+        strategy_index = 5
+        uncovered_after = 6
+        uncovered_before = 10
+        [[worker.method_result.step_trace]]
+        exact_score = "1//2"
+        exact_weight = "2//1"
+        newly_covered_count = 4
+        newly_covered_requirement_indices = [1, 2, 8, 9]
+        step_index = 2
+        strategy_id = "s0002"
+        strategy_index = 3
+        uncovered_after = 2
+        uncovered_before = 6
+        [[worker.method_result.step_trace]]
+        exact_score = "1//2"
+        exact_weight = "1//1"
+        newly_covered_count = 2
+        newly_covered_requirement_indices = [5, 10]
+        step_index = 3
+        strategy_id = "s0006"
+        strategy_index = 7
+        uncovered_after = 0
+        uncovered_before = 2

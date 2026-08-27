@@ -1,0 +1,2376 @@
+algorithm_execution_position = 2
+algorithm_id = "lightest_safe_first"
+analysis_included = true
+candidate_accepted = true
+experiment_id = "registered-algorithmic-compression-benchmark-v2"
+failure_code = ""
+family = "structured"
+generator_seed = "4671004157073593210"
+global_schedule_position = 3435
+instance_id = "V2-B-N192-R064-C16-X01"
+instance_sha256 = "c86c2df0dde50b362bcf1bc4caabc8a2af538d5a98491e62418cf10c8375bcf4"
+lane_position = 430
+launch_wave = 430
+mechanism = "none"
+mip_seed = "943127731"
+multistart_seed = "7113893050724341909"
+preprocessing_variant = "full_fixed_point_then_reconstruct"
+random_order_seed = "6010154673029706355"
+registered_memory_limit_bytes = "1610612736"
+registered_time_limit_seconds = 600.0
+replicate_id = 1
+schema_version = "algorithmic-compression-final-run-v2"
+seed_id = "SEED-V2-B-N192-R064-C16-X01"
+status = "SOLVED"
+terminal = true
+worker_lane = 3
+
+[supervisor]
+memory_limit_enforced = true
+peak_memory_bytes = 968048640
+status = "PROCESS_COMPLETED"
+stderr_path = "experiments/algorithmic_compression_v2/results/control/V2-B-N192-R064-C16-X01/lightest_safe_first__full_fixed_point_then_reconstruct.stderr.log"
+stdout_path = "experiments/algorithmic_compression_v2/results/control/V2-B-N192-R064-C16-X01/lightest_safe_first__full_fixed_point_then_reconstruct.stdout.log"
+time_limit_enforced = true
+wall_clock_ns = "16952754791"
+worker_exit_code = 0
+
+[worker]
+algorithm_id = "lightest_safe_first"
+algorithm_wall_clock_ns = 16262281083
+blas_threads = 1
+candidate_accepted = true
+compile_time_seconds = 16.099188257
+evidence_class = "synthetic rechecked-deletion evidence plus exact feasibility check"
+finished_at_utc = "2026-08-27T18:20:29.099Z"
+gc_time_seconds = 0.249486166
+highs_threads = 1
+instance_id = "V2-B-N192-R064-C16-X01"
+instance_sha256 = "c86c2df0dde50b362bcf1bc4caabc8a2af538d5a98491e62418cf10c8375bcf4"
+julia_allocated_bytes = 895707960
+julia_threads = 1
+preprocessing_variant = "full_fixed_point_then_reconstruct"
+schema_version = "algorithmic-compression-final-worker-v1"
+selected_original_strategy_ids = ["inactive", "s0002"]
+selected_original_strategy_indices = [1, 3]
+started_at_utc = "2026-08-27T18:20:12.836Z"
+status = "SOLVED"
+worker_status = "COMPLETED"
+
+    [worker.exact_burden]
+    available = true
+    value = "1//1"
+
+    [worker.exact_feasibility_recheck]
+    available = true
+    burden_reconciled = true
+    closure_preserved = true
+    exact_burden = "1//1"
+    exact_feasible = true
+    frontier_preserved = true
+    mandatory_retained = true
+    tagged_coverage = true
+
+    [worker.full_preprocessing_sensitivity]
+    all_optimizer_identities_reconstructable = false
+    available = true
+    forced_strategy_indices = [1, 3]
+    objective_offset = "1//1"
+    remaining_requirement_indices = []
+    remaining_strategy_indices = []
+
+        [worker.full_preprocessing_sensitivity.audit]
+        all_optimizer_identities_reconstructable_by_declared_maps = false
+        arithmetic = "Rational{BigInt}"
+        feasible = true
+        fixed_point = true
+        fixed_point_iterations = 176
+        forced_strategy_ids = ["StrategyId(\"inactive\")", "StrategyId(\"s0002\")"]
+        forced_strategy_indices = [1, 3]
+        objective_offset = "1//1"
+        original_requirement_count = 64
+        original_variable_count = 192
+        reduced_requirement_count = 0
+        reduced_variable_count = 0
+        remaining_requirement_indices = []
+        remaining_strategy_indices = []
+        requirement_representative = [0, 1, 1, 3, 4, 4, 4, 7, 3, 9, 9, 9, 12, 13, 9, 15, 15, 9, 1, 0, 20, 21, 20, 23, 23, 25, 25, 27, 20, 29, 30, 29, 19, 23, 33, 33, 33, 35, 33, 35, 33, 35, 36, 41, 33, 33, 35, 35, 35, 37, 34, 37, 35, 37, 34, 41, 33, 34, 35, 41, 33, 37, 35, 36]
+        requirement_status = ["satisfied_by_forced_selection", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "satisfied_by_forced_selection", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement"]
+        schema_version = "tagged-cover-preprocessing-audit-v1"
+        strategy_elimination_target = [0, 0, 0, 0, 24, 24, 3, 3, 38, 0, 0, 24, 0, 38, 3, 38, 3, 3, 0, 3, 3, 3, 0, 3, 3, 24, 24, 24, 24, 0, 0, 3, 3, 24, 3, 24, 0, 3, 0, 3, 35, 3, 24, 24, 24, 0, 0, 0, 3, 3, 0, 3, 0, 3, 0, 3, 0, 3, 38, 24, 0, 24, 0, 3, 3, 3, 3, 3, 3, 3, 0, 3, 3, 3, 0, 3, 0, 0, 0, 24, 0, 24, 0, 3, 35, 24, 3, 3, 3, 3, 3, 0, 0, 24, 3, 3, 3, 0, 0, 3, 3, 35, 0, 3, 24, 0, 35, 0, 38, 3, 35, 0, 0, 0, 38, 0, 3, 0, 0, 3, 0, 0, 3, 0, 0, 24, 0, 0, 3, 0, 3, 24, 3, 0, 24, 24, 0, 0, 3, 0, 0, 3, 3, 3, 0, 3, 3, 0, 3, 3, 0, 3, 24, 3, 3, 0, 24, 3, 3, 3, 3, 24, 117, 3, 0, 3, 3, 0, 3, 3, 3, 3, 0, 3, 24, 38, 38, 3, 24, 3, 3, 3, 3, 3, 3, 38, 0, 0, 24, 24, 0, 0]
+        strategy_status = ["mandatory_selected", "empty_contribution", "forced_selected", "empty_contribution", "duplicate_heavier", "duplicate_heavier", "dominated_strict_weight", "dominated_strict_weight", "duplicate_heavier", "empty_contribution", "empty_contribution", "duplicate_heavier", "empty_contribution", "duplicate_heavier", "dominated_equal_weight", "duplicate_heavier", "dominated_equal_weight", "dominated_strict_weight", "empty_contribution", "dominated_strict_weight", "duplicate_heavier", "dominated_equal_weight", "empty_contribution", "dominated_equal_weight", "dominated_strict_weight", "duplicate_heavier", "duplicate_heavier", "duplicate_heavier", "duplicate_equal_weight", "empty_contribution", "empty_contribution", "dominated_strict_weight", "dominated_strict_weight", "duplicate_heavier", "dominated_equal_weight", "duplicate_heavier", "empty_contribution", "dominated_equal_weight", "empty_contribution", "dominated_strict_weight", "duplicate_heavier", "dominated_strict_weight", "duplicate_equal_weight", "duplicate_heavier", "duplicate_equal_weight", "empty_contribution", "empty_contribution", "empty_contribution", "duplicate_heavier", "dominated_strict_weight", "empty_contribution", "dominated_strict_weight", "empty_contribution", "duplicate_equal_weight", "empty_contribution", "duplicate_heavier", "empty_contribution", "dominated_equal_weight", "duplicate_heavier", "duplicate_heavier", "empty_contribution", "duplicate_heavier", "empty_contribution", "dominated_equal_weight", "dominated_strict_weight", "dominated_equal_weight", "dominated_equal_weight", "dominated_strict_weight", "dominated_strict_weight", "duplicate_equal_weight", "empty_contribution", "duplicate_equal_weight", "dominated_equal_weight", "dominated_strict_weight", "empty_contribution", "dominated_strict_weight", "empty_contribution", "empty_contribution", "empty_contribution", "duplicate_heavier", "empty_contribution", "duplicate_equal_weight", "empty_contribution", "dominated_equal_weight", "duplicate_equal_weight", "duplicate_heavier", "duplicate_equal_weight", "duplicate_heavier", "duplicate_equal_weight", "dominated_strict_weight", "dominated_strict_weight", "empty_contribution", "empty_contribution", "duplicate_heavier", "dominated_strict_weight", "dominated_strict_weight", "dominated_strict_weight", "empty_contribution", "empty_contribution", "duplicate_heavier", "dominated_strict_weight", "duplicate_heavier", "empty_contribution", "duplicate_heavier", "duplicate_heavier", "empty_contribution", "duplicate_heavier", "empty_contribution", "duplicate_equal_weight", "dominated_equal_weight", "duplicate_heavier", "empty_contribution", "empty_contribution", "empty_contribution", "duplicate_equal_weight", "empty_contribution", "dominated_strict_weight", "empty_contribution", "empty_contribution", "duplicate_heavier", "empty_contribution", "empty_contribution", "dominated_strict_weight", "empty_contribution", "empty_contribution", "duplicate_equal_weight", "empty_contribution", "empty_contribution", "dominated_equal_weight", "empty_contribution", "dominated_equal_weight", "duplicate_heavier", "dominated_equal_weight", "empty_contribution", "duplicate_heavier", "duplicate_heavier", "empty_contribution", "empty_contribution", "duplicate_equal_weight", "empty_contribution", "empty_contribution", "dominated_strict_weight", "dominated_equal_weight", "duplicate_heavier", "empty_contribution", "duplicate_heavier", "duplicate_heavier", "empty_contribution", "duplicate_heavier", "duplicate_heavier", "empty_contribution", "dominated_strict_weight", "duplicate_equal_weight", "dominated_equal_weight", "dominated_strict_weight", "empty_contribution", "duplicate_heavier", "dominated_equal_weight", "dominated_strict_weight", "duplicate_heavier", "duplicate_equal_weight", "duplicate_equal_weight", "duplicate_equal_weight", "dominated_strict_weight", "empty_contribution", "dominated_strict_weight", "dominated_strict_weight", "empty_contribution", "dominated_strict_weight", "dominated_strict_weight", "dominated_equal_weight", "dominated_equal_weight", "empty_contribution", "duplicate_equal_weight", "duplicate_equal_weight", "duplicate_equal_weight", "duplicate_heavier", "dominated_equal_weight", "duplicate_heavier", "duplicate_heavier", "dominated_strict_weight", "dominated_strict_weight", "dominated_strict_weight", "duplicate_equal_weight", "dominated_strict_weight", "duplicate_heavier", "empty_contribution", "empty_contribution", "duplicate_heavier", "duplicate_equal_weight", "empty_contribution", "empty_contribution"]
+
+            [worker.full_preprocessing_sensitivity.audit.equal_coverage_reconstruction_map]
+            3 = [3, 54, 70, 72, 87, 89, 139, 161, 174, 184]
+
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 1
+            iteration = 0
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"inactive\")"]
+            removed_strategy_indices = [1]
+            rule = "mandatory_strategy"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                action = "fixed_to_one"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 2
+            iteration = 1
+            removed_requirement_indices = [39, 45, 46, 57, 61]
+            removed_requirements = ["ModuleRequirement(\"m0007\")", "ModuleRequirement(\"m0013\")", "ModuleRequirement(\"m0014\")", "ModuleRequirement(\"m0025\")", "ModuleRequirement(\"m0029\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "ModuleRequirement(\"m0001\")"
+                representative_requirement_index = 33
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 3
+            iteration = 2
+            removed_requirement_indices = [38, 40, 42, 47, 48, 49, 53, 59, 63]
+            removed_requirements = ["ModuleRequirement(\"m0006\")", "ModuleRequirement(\"m0008\")", "ModuleRequirement(\"m0010\")", "ModuleRequirement(\"m0015\")", "ModuleRequirement(\"m0016\")", "ModuleRequirement(\"m0017\")", "ModuleRequirement(\"m0021\")", "ModuleRequirement(\"m0027\")", "ModuleRequirement(\"m0031\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "ModuleRequirement(\"m0003\")"
+                representative_requirement_index = 35
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 4
+            iteration = 3
+            removed_requirement_indices = [43, 64]
+            removed_requirements = ["ModuleRequirement(\"m0011\")", "ModuleRequirement(\"m0032\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "ModuleRequirement(\"m0004\")"
+                representative_requirement_index = 36
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 5
+            iteration = 4
+            removed_requirement_indices = [50, 54, 62]
+            removed_requirements = ["ModuleRequirement(\"m0018\")", "ModuleRequirement(\"m0022\")", "ModuleRequirement(\"m0030\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "ModuleRequirement(\"m0005\")"
+                representative_requirement_index = 37
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 6
+            iteration = 5
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0001\")"]
+            removed_strategy_indices = [2]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 7
+            iteration = 6
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0003\")"]
+            removed_strategy_indices = [4]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 8
+            iteration = 7
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0009\")"]
+            removed_strategy_indices = [10]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 9
+            iteration = 8
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0010\")"]
+            removed_strategy_indices = [11]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 10
+            iteration = 9
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0012\")"]
+            removed_strategy_indices = [13]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 11
+            iteration = 10
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0018\")"]
+            removed_strategy_indices = [19]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 12
+            iteration = 11
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0022\")"]
+            removed_strategy_indices = [23]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 13
+            iteration = 12
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0029\")"]
+            removed_strategy_indices = [30]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 14
+            iteration = 13
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0030\")"]
+            removed_strategy_indices = [31]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 15
+            iteration = 14
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0036\")"]
+            removed_strategy_indices = [37]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 16
+            iteration = 15
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0038\")"]
+            removed_strategy_indices = [39]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 17
+            iteration = 16
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0045\")"]
+            removed_strategy_indices = [46]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 18
+            iteration = 17
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0046\")"]
+            removed_strategy_indices = [47]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 19
+            iteration = 18
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0047\")"]
+            removed_strategy_indices = [48]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 20
+            iteration = 19
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0050\")"]
+            removed_strategy_indices = [51]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 21
+            iteration = 20
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0052\")"]
+            removed_strategy_indices = [53]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 22
+            iteration = 21
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0054\")"]
+            removed_strategy_indices = [55]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 23
+            iteration = 22
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0056\")"]
+            removed_strategy_indices = [57]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 24
+            iteration = 23
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0060\")"]
+            removed_strategy_indices = [61]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 25
+            iteration = 24
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0062\")"]
+            removed_strategy_indices = [63]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 26
+            iteration = 25
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0070\")"]
+            removed_strategy_indices = [71]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 27
+            iteration = 26
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0074\")"]
+            removed_strategy_indices = [75]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 28
+            iteration = 27
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0076\")"]
+            removed_strategy_indices = [77]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 29
+            iteration = 28
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0077\")"]
+            removed_strategy_indices = [78]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 30
+            iteration = 29
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0078\")"]
+            removed_strategy_indices = [79]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 31
+            iteration = 30
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0080\")"]
+            removed_strategy_indices = [81]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 32
+            iteration = 31
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0082\")"]
+            removed_strategy_indices = [83]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 33
+            iteration = 32
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0091\")"]
+            removed_strategy_indices = [92]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 34
+            iteration = 33
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0092\")"]
+            removed_strategy_indices = [93]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 35
+            iteration = 34
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0097\")"]
+            removed_strategy_indices = [98]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 36
+            iteration = 35
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0098\")"]
+            removed_strategy_indices = [99]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 37
+            iteration = 36
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0102\")"]
+            removed_strategy_indices = [103]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 38
+            iteration = 37
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0105\")"]
+            removed_strategy_indices = [106]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 39
+            iteration = 38
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0107\")"]
+            removed_strategy_indices = [108]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 40
+            iteration = 39
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0111\")"]
+            removed_strategy_indices = [112]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 41
+            iteration = 40
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0112\")"]
+            removed_strategy_indices = [113]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 42
+            iteration = 41
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0113\")"]
+            removed_strategy_indices = [114]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 43
+            iteration = 42
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0115\")"]
+            removed_strategy_indices = [116]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 44
+            iteration = 43
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0117\")"]
+            removed_strategy_indices = [118]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 45
+            iteration = 44
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0118\")"]
+            removed_strategy_indices = [119]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 46
+            iteration = 45
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0120\")"]
+            removed_strategy_indices = [121]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 47
+            iteration = 46
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0121\")"]
+            removed_strategy_indices = [122]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 48
+            iteration = 47
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0123\")"]
+            removed_strategy_indices = [124]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 49
+            iteration = 48
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0124\")"]
+            removed_strategy_indices = [125]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 50
+            iteration = 49
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0126\")"]
+            removed_strategy_indices = [127]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 51
+            iteration = 50
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0127\")"]
+            removed_strategy_indices = [128]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 52
+            iteration = 51
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0129\")"]
+            removed_strategy_indices = [130]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 53
+            iteration = 52
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0133\")"]
+            removed_strategy_indices = [134]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 54
+            iteration = 53
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0136\")"]
+            removed_strategy_indices = [137]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 55
+            iteration = 54
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0137\")"]
+            removed_strategy_indices = [138]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 56
+            iteration = 55
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0139\")"]
+            removed_strategy_indices = [140]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 57
+            iteration = 56
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0140\")"]
+            removed_strategy_indices = [141]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 58
+            iteration = 57
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0144\")"]
+            removed_strategy_indices = [145]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 59
+            iteration = 58
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0147\")"]
+            removed_strategy_indices = [148]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 60
+            iteration = 59
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0150\")"]
+            removed_strategy_indices = [151]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 61
+            iteration = 60
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0155\")"]
+            removed_strategy_indices = [156]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 62
+            iteration = 61
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0164\")"]
+            removed_strategy_indices = [165]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 63
+            iteration = 62
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0167\")"]
+            removed_strategy_indices = [168]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 64
+            iteration = 63
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0172\")"]
+            removed_strategy_indices = [173]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 65
+            iteration = 64
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0186\")"]
+            removed_strategy_indices = [187]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 66
+            iteration = 65
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0190\")"]
+            removed_strategy_indices = [191]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 67
+            iteration = 66
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0191\")"]
+            removed_strategy_indices = [192]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 68
+            iteration = 67
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0020\")", "StrategyId(\"s0048\")", "StrategyId(\"s0053\")", "StrategyId(\"s0055\")", "StrategyId(\"s0069\")", "StrategyId(\"s0071\")", "StrategyId(\"s0086\")", "StrategyId(\"s0087\")", "StrategyId(\"s0088\")", "StrategyId(\"s0099\")", "StrategyId(\"s0103\")", "StrategyId(\"s0119\")", "StrategyId(\"s0138\")", "StrategyId(\"s0143\")", "StrategyId(\"s0145\")", "StrategyId(\"s0146\")", "StrategyId(\"s0148\")", "StrategyId(\"s0149\")", "StrategyId(\"s0159\")", "StrategyId(\"s0160\")", "StrategyId(\"s0173\")", "StrategyId(\"s0179\")", "StrategyId(\"s0183\")"]
+            removed_strategy_indices = [21, 49, 54, 56, 70, 72, 87, 88, 89, 100, 104, 120, 139, 144, 146, 147, 149, 150, 160, 161, 174, 180, 184]
+            rule = "duplicate_coverage"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                equal_weight_tie_indices = [54, 70, 72, 87, 89, 139, 161, 174, 184]
+                representative_strategy = "StrategyId(\"s0002\")"
+                representative_strategy_index = 3
+                strictly_heavier_indices = [21, 49, 56, 88, 100, 104, 120, 144, 146, 147, 149, 150, 160, 180]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 69
+            iteration = 68
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0004\")", "StrategyId(\"s0005\")", "StrategyId(\"s0011\")", "StrategyId(\"s0025\")", "StrategyId(\"s0026\")", "StrategyId(\"s0027\")", "StrategyId(\"s0028\")", "StrategyId(\"s0033\")", "StrategyId(\"s0035\")", "StrategyId(\"s0042\")", "StrategyId(\"s0043\")", "StrategyId(\"s0044\")", "StrategyId(\"s0059\")", "StrategyId(\"s0061\")", "StrategyId(\"s0079\")", "StrategyId(\"s0081\")", "StrategyId(\"s0085\")", "StrategyId(\"s0093\")", "StrategyId(\"s0104\")", "StrategyId(\"s0125\")", "StrategyId(\"s0131\")", "StrategyId(\"s0134\")", "StrategyId(\"s0135\")", "StrategyId(\"s0152\")", "StrategyId(\"s0156\")", "StrategyId(\"s0161\")", "StrategyId(\"s0174\")", "StrategyId(\"s0178\")", "StrategyId(\"s0188\")", "StrategyId(\"s0189\")"]
+            removed_strategy_indices = [5, 6, 12, 26, 27, 28, 29, 34, 36, 43, 44, 45, 60, 62, 80, 82, 86, 94, 105, 126, 132, 135, 136, 153, 157, 162, 175, 179, 189, 190]
+            rule = "duplicate_coverage"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                equal_weight_tie_indices = [29, 43, 45, 82, 126, 153, 162, 175, 190]
+                representative_strategy = "StrategyId(\"s0023\")"
+                representative_strategy_index = 24
+                strictly_heavier_indices = [5, 6, 12, 26, 27, 28, 34, 36, 44, 60, 62, 80, 86, 94, 105, 132, 135, 136, 157, 179, 189]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 70
+            iteration = 69
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0008\")", "StrategyId(\"s0013\")", "StrategyId(\"s0015\")", "StrategyId(\"s0058\")", "StrategyId(\"s0108\")", "StrategyId(\"s0114\")", "StrategyId(\"s0175\")", "StrategyId(\"s0176\")", "StrategyId(\"s0185\")"]
+            removed_strategy_indices = [9, 14, 16, 59, 109, 115, 176, 177, 186]
+            rule = "duplicate_coverage"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                equal_weight_tie_indices = [109, 115, 176]
+                representative_strategy = "StrategyId(\"s0037\")"
+                representative_strategy_index = 38
+                strictly_heavier_indices = [9, 14, 16, 59, 177, 186]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 71
+            iteration = 70
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0040\")", "StrategyId(\"s0084\")", "StrategyId(\"s0101\")", "StrategyId(\"s0106\")", "StrategyId(\"s0110\")"]
+            removed_strategy_indices = [41, 85, 102, 107, 111]
+            rule = "duplicate_coverage"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                equal_weight_tie_indices = [85]
+                representative_strategy = "StrategyId(\"s0034\")"
+                representative_strategy_index = 35
+                strictly_heavier_indices = [41, 102, 107, 111]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 72
+            iteration = 71
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0162\")"]
+            removed_strategy_indices = [163]
+            rule = "duplicate_coverage"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                equal_weight_tie_indices = [163]
+                representative_strategy = "StrategyId(\"s0116\")"
+                representative_strategy_index = 117
+                strictly_heavier_indices = []
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 73
+            iteration = 72
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0006\")"]
+            removed_strategy_indices = [7]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 74
+            iteration = 73
+            removed_requirement_indices = [35]
+            removed_requirements = ["ModuleRequirement(\"m0003\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "ModuleRequirement(\"m0001\")"
+                representative_requirement_index = 33
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 75
+            iteration = 74
+            removed_requirement_indices = [55]
+            removed_requirements = ["ModuleRequirement(\"m0023\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "ModuleRequirement(\"m0002\")"
+                representative_requirement_index = 34
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 76
+            iteration = 75
+            removed_requirement_indices = [52]
+            removed_requirements = ["ModuleRequirement(\"m0020\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "ModuleRequirement(\"m0005\")"
+                representative_requirement_index = 37
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 77
+            iteration = 76
+            removed_requirement_indices = [56]
+            removed_requirements = ["ModuleRequirement(\"m0024\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "ModuleRequirement(\"m0009\")"
+                representative_requirement_index = 41
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 78
+            iteration = 77
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0007\")"]
+            removed_strategy_indices = [8]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 79
+            iteration = 78
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0014\")"]
+            removed_strategy_indices = [15]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = false
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = [15]
+                weight_relation = "equal"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 80
+            iteration = 79
+            removed_requirement_indices = [28]
+            removed_requirements = ["FrontierRequirement(\"b0028\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "FrontierRequirement(\"b0027\")"
+                representative_requirement_index = 27
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 81
+            iteration = 80
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0016\")"]
+            removed_strategy_indices = [17]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = false
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = [17]
+                weight_relation = "equal"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 82
+            iteration = 81
+            removed_requirement_indices = [37]
+            removed_requirements = ["ModuleRequirement(\"m0005\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "ModuleRequirement(\"m0001\")"
+                representative_requirement_index = 33
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 83
+            iteration = 82
+            removed_requirement_indices = [60]
+            removed_requirements = ["ModuleRequirement(\"m0028\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "ModuleRequirement(\"m0009\")"
+                representative_requirement_index = 41
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 84
+            iteration = 83
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0017\")"]
+            removed_strategy_indices = [18]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 85
+            iteration = 84
+            removed_requirement_indices = [24]
+            removed_requirements = ["FrontierRequirement(\"b0024\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "FrontierRequirement(\"b0023\")"
+                representative_requirement_index = 23
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 86
+            iteration = 85
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0019\")"]
+            removed_strategy_indices = [20]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 87
+            iteration = 86
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0021\")"]
+            removed_strategy_indices = [22]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = false
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = [22]
+                weight_relation = "equal"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 88
+            iteration = 87
+            removed_requirement_indices = [14]
+            removed_requirements = ["FrontierRequirement(\"b0014\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "FrontierRequirement(\"b0013\")"
+                representative_requirement_index = 13
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 89
+            iteration = 88
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0023\")"]
+            removed_strategy_indices = [24]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = false
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = [24, 29, 43, 45, 82, 126, 153, 162, 175, 190]
+                weight_relation = "equal"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 90
+            iteration = 89
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0024\")"]
+            removed_strategy_indices = [25]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 91
+            iteration = 90
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0031\")"]
+            removed_strategy_indices = [32]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 92
+            iteration = 91
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0032\")"]
+            removed_strategy_indices = [33]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 93
+            iteration = 92
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0034\")"]
+            removed_strategy_indices = [35]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = false
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = [35, 85]
+                weight_relation = "equal"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 94
+            iteration = 93
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0037\")"]
+            removed_strategy_indices = [38]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = false
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = [38, 109, 115, 176]
+                weight_relation = "equal"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 95
+            iteration = 94
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0039\")"]
+            removed_strategy_indices = [40]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 96
+            iteration = 95
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0041\")"]
+            removed_strategy_indices = [42]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 97
+            iteration = 96
+            removed_requirement_indices = [5]
+            removed_requirements = ["FrontierRequirement(\"b0005\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "FrontierRequirement(\"b0004\")"
+                representative_requirement_index = 4
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 98
+            iteration = 97
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0049\")"]
+            removed_strategy_indices = [50]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 99
+            iteration = 98
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0051\")"]
+            removed_strategy_indices = [52]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 100
+            iteration = 99
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0057\")"]
+            removed_strategy_indices = [58]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = false
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = [58]
+                weight_relation = "equal"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 101
+            iteration = 100
+            removed_requirement_indices = [26]
+            removed_requirements = ["FrontierRequirement(\"b0026\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "FrontierRequirement(\"b0025\")"
+                representative_requirement_index = 25
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 102
+            iteration = 101
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0063\")"]
+            removed_strategy_indices = [64]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = false
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = [64]
+                weight_relation = "equal"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 103
+            iteration = 102
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0064\")"]
+            removed_strategy_indices = [65]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 104
+            iteration = 103
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0065\")"]
+            removed_strategy_indices = [66]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = false
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = [66]
+                weight_relation = "equal"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 105
+            iteration = 104
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0066\")"]
+            removed_strategy_indices = [67]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = false
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = [67]
+                weight_relation = "equal"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 106
+            iteration = 105
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0067\")"]
+            removed_strategy_indices = [68]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 107
+            iteration = 106
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0068\")"]
+            removed_strategy_indices = [69]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 108
+            iteration = 107
+            removed_requirement_indices = [22]
+            removed_requirements = ["FrontierRequirement(\"b0022\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "FrontierRequirement(\"b0021\")"
+                representative_requirement_index = 21
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 109
+            iteration = 108
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0072\")"]
+            removed_strategy_indices = [73]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = false
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = [73]
+                weight_relation = "equal"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 110
+            iteration = 109
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0073\")"]
+            removed_strategy_indices = [74]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 111
+            iteration = 110
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0075\")"]
+            removed_strategy_indices = [76]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 112
+            iteration = 111
+            removed_requirement_indices = [6]
+            removed_requirements = ["FrontierRequirement(\"b0006\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "FrontierRequirement(\"b0004\")"
+                representative_requirement_index = 4
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 113
+            iteration = 112
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0083\")"]
+            removed_strategy_indices = [84]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = false
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = [84]
+                weight_relation = "equal"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 114
+            iteration = 113
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0089\")"]
+            removed_strategy_indices = [90]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 115
+            iteration = 114
+            removed_requirement_indices = [36]
+            removed_requirements = ["ModuleRequirement(\"m0004\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "ModuleRequirement(\"m0001\")"
+                representative_requirement_index = 33
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 116
+            iteration = 115
+            removed_requirement_indices = [58]
+            removed_requirements = ["ModuleRequirement(\"m0026\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "ModuleRequirement(\"m0002\")"
+                representative_requirement_index = 34
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 117
+            iteration = 116
+            removed_requirement_indices = [44]
+            removed_requirements = ["ModuleRequirement(\"m0012\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "ModuleRequirement(\"m0009\")"
+                representative_requirement_index = 41
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 118
+            iteration = 117
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0090\")"]
+            removed_strategy_indices = [91]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 119
+            iteration = 118
+            removed_requirement_indices = [13]
+            removed_requirements = ["FrontierRequirement(\"b0013\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "FrontierRequirement(\"b0012\")"
+                representative_requirement_index = 12
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 120
+            iteration = 119
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0094\")"]
+            removed_strategy_indices = [95]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 121
+            iteration = 120
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0095\")"]
+            removed_strategy_indices = [96]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 122
+            iteration = 121
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0096\")"]
+            removed_strategy_indices = [97]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 123
+            iteration = 122
+            removed_requirement_indices = [41]
+            removed_requirements = ["ModuleRequirement(\"m0009\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "ModuleRequirement(\"m0001\")"
+                representative_requirement_index = 33
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 124
+            iteration = 123
+            removed_requirement_indices = [51]
+            removed_requirements = ["ModuleRequirement(\"m0019\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "ModuleRequirement(\"m0002\")"
+                representative_requirement_index = 34
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 125
+            iteration = 124
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0100\")"]
+            removed_strategy_indices = [101]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 126
+            iteration = 125
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0109\")"]
+            removed_strategy_indices = [110]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = false
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = [110]
+                weight_relation = "equal"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 127
+            iteration = 126
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0116\")"]
+            removed_strategy_indices = [117]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 128
+            iteration = 127
+            removed_requirement_indices = [27]
+            removed_requirements = ["FrontierRequirement(\"b0027\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "FrontierRequirement(\"b0025\")"
+                representative_requirement_index = 25
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 129
+            iteration = 128
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0122\")"]
+            removed_strategy_indices = [123]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 130
+            iteration = 129
+            removed_requirement_indices = [10]
+            removed_requirements = ["FrontierRequirement(\"b0010\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "FrontierRequirement(\"b0009\")"
+                representative_requirement_index = 9
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 131
+            iteration = 130
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0128\")"]
+            removed_strategy_indices = [129]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = false
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = [129]
+                weight_relation = "equal"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 132
+            iteration = 131
+            removed_requirement_indices = [8]
+            removed_requirements = ["FrontierRequirement(\"b0008\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "FrontierRequirement(\"b0007\")"
+                representative_requirement_index = 7
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 133
+            iteration = 132
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0130\")"]
+            removed_strategy_indices = [131]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = false
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = [131]
+                weight_relation = "equal"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 134
+            iteration = 133
+            removed_requirement_indices = [16]
+            removed_requirements = ["FrontierRequirement(\"b0016\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "FrontierRequirement(\"b0015\")"
+                representative_requirement_index = 15
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 135
+            iteration = 134
+            removed_requirement_indices = [31]
+            removed_requirements = ["FrontierRequirement(\"b0031\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "FrontierRequirement(\"b0030\")"
+                representative_requirement_index = 30
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 136
+            iteration = 135
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0132\")"]
+            removed_strategy_indices = [133]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = false
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = [133]
+                weight_relation = "equal"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 137
+            iteration = 136
+            removed_requirement_indices = [11]
+            removed_requirements = ["FrontierRequirement(\"b0011\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "FrontierRequirement(\"b0009\")"
+                representative_requirement_index = 9
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 138
+            iteration = 137
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0141\")"]
+            removed_strategy_indices = [142]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 139
+            iteration = 138
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0142\")"]
+            removed_strategy_indices = [143]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = false
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = [143]
+                weight_relation = "equal"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 140
+            iteration = 139
+            removed_requirement_indices = [12]
+            removed_requirements = ["FrontierRequirement(\"b0012\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "FrontierRequirement(\"b0009\")"
+                representative_requirement_index = 9
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 141
+            iteration = 140
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0151\")"]
+            removed_strategy_indices = [152]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 142
+            iteration = 141
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0153\")"]
+            removed_strategy_indices = [154]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = false
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = [154]
+                weight_relation = "equal"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 143
+            iteration = 142
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0154\")"]
+            removed_strategy_indices = [155]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 144
+            iteration = 143
+            removed_requirement_indices = [30]
+            removed_requirements = ["FrontierRequirement(\"b0030\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "FrontierRequirement(\"b0029\")"
+                representative_requirement_index = 29
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 145
+            iteration = 144
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0157\")"]
+            removed_strategy_indices = [158]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = false
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = [158]
+                weight_relation = "equal"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 146
+            iteration = 145
+            removed_requirement_indices = [7]
+            removed_requirements = ["FrontierRequirement(\"b0007\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "FrontierRequirement(\"b0004\")"
+                representative_requirement_index = 4
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 147
+            iteration = 146
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0158\")"]
+            removed_strategy_indices = [159]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 148
+            iteration = 147
+            removed_requirement_indices = [2]
+            removed_requirements = ["FrontierRequirement(\"b0002\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "FrontierRequirement(\"b0001\")"
+                representative_requirement_index = 1
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 149
+            iteration = 148
+            removed_requirement_indices = [17]
+            removed_requirements = ["FrontierRequirement(\"b0017\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "FrontierRequirement(\"b0015\")"
+                representative_requirement_index = 15
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 150
+            iteration = 149
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0163\")"]
+            removed_strategy_indices = [164]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 151
+            iteration = 150
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0165\")"]
+            removed_strategy_indices = [166]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 152
+            iteration = 151
+            removed_requirement_indices = [25]
+            removed_requirements = ["FrontierRequirement(\"b0025\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "FrontierRequirement(\"b0023\")"
+                representative_requirement_index = 23
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 153
+            iteration = 152
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0166\")"]
+            removed_strategy_indices = [167]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 154
+            iteration = 153
+            removed_requirement_indices = [21]
+            removed_requirements = ["FrontierRequirement(\"b0021\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "FrontierRequirement(\"b0020\")"
+                representative_requirement_index = 20
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 155
+            iteration = 154
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0168\")"]
+            removed_strategy_indices = [169]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 156
+            iteration = 155
+            removed_requirement_indices = [15]
+            removed_requirements = ["FrontierRequirement(\"b0015\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "FrontierRequirement(\"b0009\")"
+                representative_requirement_index = 9
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 157
+            iteration = 156
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0169\")"]
+            removed_strategy_indices = [170]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 158
+            iteration = 157
+            removed_requirement_indices = [32]
+            removed_requirements = ["FrontierRequirement(\"b0032\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "FrontierRequirement(\"b0029\")"
+                representative_requirement_index = 29
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 159
+            iteration = 158
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0170\")"]
+            removed_strategy_indices = [171]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = false
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = [171]
+                weight_relation = "equal"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 160
+            iteration = 159
+            removed_requirement_indices = [18]
+            removed_requirements = ["FrontierRequirement(\"b0018\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "FrontierRequirement(\"b0009\")"
+                representative_requirement_index = 9
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 161
+            iteration = 160
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0171\")"]
+            removed_strategy_indices = [172]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = false
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = [172]
+                weight_relation = "equal"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 162
+            iteration = 161
+            removed_requirement_indices = [4]
+            removed_requirements = ["FrontierRequirement(\"b0004\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "FrontierRequirement(\"b0003\")"
+                representative_requirement_index = 3
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 163
+            iteration = 162
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0177\")"]
+            removed_strategy_indices = [178]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = false
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = [178]
+                weight_relation = "equal"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 164
+            iteration = 163
+            removed_requirement_indices = [9]
+            removed_requirements = ["FrontierRequirement(\"b0009\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "FrontierRequirement(\"b0003\")"
+                representative_requirement_index = 3
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 165
+            iteration = 164
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0180\")"]
+            removed_strategy_indices = [181]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 166
+            iteration = 165
+            removed_requirement_indices = [3]
+            removed_requirements = ["FrontierRequirement(\"b0003\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "FrontierRequirement(\"b0001\")"
+                representative_requirement_index = 1
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 167
+            iteration = 166
+            removed_requirement_indices = [34]
+            removed_requirements = ["ModuleRequirement(\"m0002\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "FrontierRequirement(\"b0023\")"
+                representative_requirement_index = 23
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 168
+            iteration = 167
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0181\")"]
+            removed_strategy_indices = [182]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 169
+            iteration = 168
+            removed_requirement_indices = [33]
+            removed_requirements = ["ModuleRequirement(\"m0001\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "FrontierRequirement(\"b0019\")"
+                representative_requirement_index = 19
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 170
+            iteration = 169
+            removed_requirement_indices = [23]
+            removed_requirements = ["FrontierRequirement(\"b0023\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "FrontierRequirement(\"b0020\")"
+                representative_requirement_index = 20
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 171
+            iteration = 170
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0182\")"]
+            removed_strategy_indices = [183]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 172
+            iteration = 171
+            removed_requirement_indices = [29]
+            removed_requirements = ["FrontierRequirement(\"b0029\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "FrontierRequirement(\"b0020\")"
+                representative_requirement_index = 20
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 173
+            iteration = 172
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0184\")"]
+            removed_strategy_indices = [185]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 174
+            iteration = 173
+            removed_requirement_indices = [19]
+            removed_requirements = ["FrontierRequirement(\"b0019\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "FrontierRequirement(\"b0001\")"
+                representative_requirement_index = 1
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 175
+            iteration = 174
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0002\")"]
+            removed_strategy_indices = [3]
+            rule = "mandatory_requirement_carrier"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                equal_coverage_choice_indices = [3, 54, 70, 72, 87, 89, 139, 161, 174, 184]
+                triggering_requirement = "FrontierRequirement(\"b0020\")"
+                triggering_requirement_index = 20
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 176
+            iteration = 174
+            removed_requirement_indices = [1, 20]
+            removed_requirements = ["FrontierRequirement(\"b0001\")", "FrontierRequirement(\"b0020\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "forced_selection_propagation"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                forced_strategy_index = 3
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 177
+            iteration = 175
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0187\")"]
+            removed_strategy_indices = [188]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+
+            [worker.full_preprocessing_sensitivity.audit.rule_counts.coverage_dominance]
+            applications = 59
+            requirements_removed = 0
+            variables_removed = 59
+
+            [worker.full_preprocessing_sensitivity.audit.rule_counts.duplicate_coverage]
+            applications = 5
+            requirements_removed = 0
+            variables_removed = 68
+
+            [worker.full_preprocessing_sensitivity.audit.rule_counts.empty_contribution]
+            applications = 63
+            requirements_removed = 0
+            variables_removed = 63
+
+            [worker.full_preprocessing_sensitivity.audit.rule_counts.forced_selection_propagation]
+            applications = 1
+            requirements_removed = 2
+            variables_removed = 0
+
+            [worker.full_preprocessing_sensitivity.audit.rule_counts.infeasible_requirement]
+            applications = 0
+            requirements_removed = 0
+            variables_removed = 0
+
+            [worker.full_preprocessing_sensitivity.audit.rule_counts.mandatory_requirement_carrier]
+            applications = 1
+            requirements_removed = 0
+            variables_removed = 1
+
+            [worker.full_preprocessing_sensitivity.audit.rule_counts.mandatory_strategy]
+            applications = 1
+            requirements_removed = 0
+            variables_removed = 1
+
+            [worker.full_preprocessing_sensitivity.audit.rule_counts.mandatory_strategy_propagation]
+            applications = 0
+            requirements_removed = 0
+            variables_removed = 0
+
+            [worker.full_preprocessing_sensitivity.audit.rule_counts.redundant_requirement]
+            applications = 47
+            requirements_removed = 62
+            variables_removed = 0
+
+    [worker.method_result]
+    algorithm = "lightest_safe_first"
+    deletion_trace = []
+    exact_burden = "1//1"
+    instance_sha256 = "3fbf33302124e07ae8b7546878b97d94ac7263736b74b6447615c62d7d7eb013"
+    order_indices = []
+    random_seed = "NOT_APPLICABLE"
+    schema_version = "journal-compression-certified-deletion-v1"
+    selected_strategy_ids = ["inactive", "s0002"]
+    start_summaries = []
+    status = "certified_irreducible_heuristic"
+    tie_declaration = "minimum exact weight among currently safe deletions; ties by lowest canonical original strategy index"
+
+        [worker.method_result.counters]
+        closure_checks = "1"
+        complete_scans = "1"
+        frontier_checks = "1"
+
+        [worker.method_result.final_feasibility_certificate]
+        burden_reconciled = true
+        closure_preserved = true
+        evidence_class = "exact finite rechecked-deletion computation"
+        exact_burden = "1//1"
+        frontier_preserved = true
+        lean_kernel_verified = false
+        mandatory_retained = true
+        search_complete = false
+        selected_strategy_indices = [1, 2]
+        solver_status_used = false
+        tagged_coverage = true
+
+        [worker.method_result.irreducibility_certificate]
+        checks = []
+        complete = true
+        complete_scan_index = 1
+        no_safe_nonmandatory_deletion = true
+
+        [worker.method_result.runtime]
+        algorithm_ns = "35750"
+        final_certification_ns = "72916"
+        total_ns = "31316417"

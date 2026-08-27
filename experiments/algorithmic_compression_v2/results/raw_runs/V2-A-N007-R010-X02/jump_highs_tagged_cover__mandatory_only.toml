@@ -1,0 +1,177 @@
+algorithm_execution_position = 11
+algorithm_id = "jump_highs_tagged_cover"
+analysis_included = true
+candidate_accepted = true
+experiment_id = "registered-algorithmic-compression-benchmark-v2"
+failure_code = ""
+family = "small_exact"
+generator_seed = "8347771257065896987"
+global_schedule_position = 1418
+instance_id = "V2-A-N007-R010-X02"
+instance_sha256 = "fe3631b55508eb8c2145f80af159366f532a75cf6d918e19c183a73de3c3c8d3"
+lane_position = 178
+launch_wave = 178
+mechanism = "none"
+mip_seed = "19100337"
+multistart_seed = "1410553915675476174"
+preprocessing_variant = "mandatory_only"
+random_order_seed = "7605612571549540264"
+registered_memory_limit_bytes = "1610612736"
+registered_time_limit_seconds = 300.0
+replicate_id = 2
+schema_version = "algorithmic-compression-final-run-v2"
+seed_id = "SEED-V2-A-N007-R010-X02"
+solver_log_path = "experiments/algorithmic_compression_v2/results/solver_logs/V2-A-N007-R010-X02/jump_highs_tagged_cover__mandatory_only.log"
+solver_log_sha256 = "5d0dcf1a287eaad9b2ca59ee31c55680de485006f34ffdadef87b28bc41a0659"
+status = "SOLVED"
+terminal = true
+worker_lane = 2
+
+[supervisor]
+memory_limit_enforced = true
+peak_memory_bytes = 918093824
+status = "PROCESS_COMPLETED"
+stderr_path = "experiments/algorithmic_compression_v2/results/control/V2-A-N007-R010-X02/jump_highs_tagged_cover__mandatory_only.stderr.log"
+stdout_path = "experiments/algorithmic_compression_v2/results/control/V2-A-N007-R010-X02/jump_highs_tagged_cover__mandatory_only.stdout.log"
+time_limit_enforced = true
+wall_clock_ns = "2477410333"
+worker_exit_code = 0
+
+[worker]
+algorithm_id = "jump_highs_tagged_cover"
+algorithm_wall_clock_ns = 1911189875
+blas_threads = 1
+candidate_accepted = true
+compile_time_seconds = 1.892974541
+evidence_class = "mixed-integer solver evidence plus exact post-check"
+finished_at_utc = "2026-08-27T16:18:58.055Z"
+gc_time_seconds = 0.0
+highs_threads = 1
+instance_id = "V2-A-N007-R010-X02"
+instance_sha256 = "fe3631b55508eb8c2145f80af159366f532a75cf6d918e19c183a73de3c3c8d3"
+julia_allocated_bytes = 245329848
+julia_threads = 1
+preprocessing_variant = "mandatory_only"
+schema_version = "algorithmic-compression-final-worker-v1"
+selected_original_strategy_ids = ["inactive", "s0005"]
+selected_original_strategy_indices = [1, 6]
+started_at_utc = "2026-08-27T16:18:56.144Z"
+status = "SOLVED"
+worker_status = "COMPLETED"
+
+    [worker.exact_burden]
+    available = true
+    value = "8//1"
+
+    [worker.exact_feasibility_recheck]
+    available = true
+    burden_reconciled = true
+    closure_preserved = true
+    exact_burden = "8//1"
+    exact_feasible = true
+    frontier_preserved = true
+    mandatory_retained = true
+    tagged_coverage = true
+
+    [worker.full_preprocessing_sensitivity]
+    available = false
+
+    [worker.method_result]
+    algorithm = "jump_highs_tagged_cover"
+    binary_value_rejection_reason = ""
+    binary_values_exact = true
+    candidate_accepted = true
+    instance_sha256 = "fe3631b55508eb8c2145f80af159366f532a75cf6d918e19c183a73de3c3c8d3"
+    raw_reduced_variable_values = [0.0, 0.0, 0.0, 0.0, 1.0, 0.0]
+    registered_external_variant = true
+    schema_version = "journal-compression-mip-solution-v1"
+    selected_strategy_ids = ["inactive", "s0005"]
+    selected_strategy_indices = [1, 6]
+    solver_claimed_optimal = true
+    solver_optimality_is_formal_proof = false
+    status = "SOLVED"
+
+        [worker.method_result.controls]
+        absolute_mip_gap_tolerance = 0.0
+        fractional_binary_rounding_permitted = false
+        parallel = "off"
+        presolve = "on"
+        random_seed = 19100337
+        relative_mip_gap_tolerance = 0.0
+        threads = 1
+        time_limit_seconds = 300.0
+
+        [worker.method_result.crosscheck]
+        algorithm = "complete_enumeration"
+        applicability_declaration = "auto-selected complete enumeration under the declared optional-strategy limit"
+        candidate_available = true
+        candidate_matches_exact_optimum = true
+        dp_requirement_count = 10
+        dp_requirement_limit = 18
+        enumeration_limit = 20
+        enumeration_optional_count = 6
+        exact_optimum_burden = "8//1"
+        performed = true
+        requested_mode = "auto"
+
+        [worker.method_result.exact_burden]
+        available = true
+        value = "8//1"
+
+        [worker.method_result.exact_feasibility_certificate]
+        available = true
+        burden_reconciled = true
+        closure_preserved = true
+        exact_burden = "8//1"
+        exact_feasible = true
+        frontier_preserved = true
+        mandatory_retained = true
+        tagged_coverage = true
+
+        [worker.method_result.formulation]
+        closure_kind = "identity"
+        objective_scale = "1"
+        original_binary_strategy_count = 7
+        original_mandatory_equality_count = 1
+        original_tagged_cover_row_count = 10
+        preprocessing_variant = "mandatory_only"
+        residual_binary_variable_count = 6
+        residual_scaled_objective = [1, 4, 1, 2, 8, 16]
+        residual_tagged_cover_row_count = 10
+
+        [worker.method_result.preprocessing]
+        all_optimizer_identities_reconstructable = true
+        exact_objective_offset = "0//1"
+        fixed_point_iterations = 0
+        forced_strategy_indices = [1]
+        original_requirement_count = 10
+        original_strategy_count = 7
+        reduced_requirement_count = 10
+        reduced_strategy_count = 6
+        remaining_requirement_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        remaining_strategy_indices = [2, 3, 4, 5, 6, 7]
+        requirements_removed = 0
+        variables_removed = 1
+        variant = "mandatory_only"
+
+        [worker.method_result.runtime]
+        optimization_wall_ns = "167230625"
+
+        [worker.method_result.solver_diagnostics]
+        best_bound = 8.0
+        complete_solver_log = """Running HiGHS 1.15.1 (git hash: 04024d701f): Copyright (c) 2026 under MIT licence terms\nIncludes third-party software components, see THIRD_PARTY_NOTICES.md for full details\nUsing BLAS: Apple Accelerate \nMIP has 10 rows; 6 cols; 20 nonzeros; 6 integer variables (6 binary)\nCoefficient ranges:\n  Matrix  [1e+00, 1e+00]\n  Cost    [1e+00, 2e+01]\n  Bound   [1e+00, 1e+00]\n  RHS     [1e+00, 1e+00]\nPresolving model\n10 rows, 5 cols, 20 nonzeros 0s\n4 rows, 5 cols, 8 nonzeros 0s\n0 rows, 0 cols, 0 nonzeros 0s\nPresolve reductions: rows 0(-10); columns 0(-6); nonzeros 0(-20) - Reduced to empty\nPresolve: Optimal\n\nSrc: B => Branching; C => Central rounding; F => Feasibility pump; H => Heuristic;\n     I => Shifting; J => Feasibility jump; L => Sub-MIP; P => Empty MIP; R => Randomized rounding;\n     S => Solve LP; T => Evaluate node; U => Unbounded; X => User solution; Y => HiGHS solution;\n     Z => ZI Round; l => Trivial lower; p => Trivial point; u => Trivial upper; z => Trivial zero\n\n        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work      \nSrc  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time\n\n         0       0         0   0.00%   8               8                  0.00%        0      0      0         0     0.0s\n\nSolving report\n  Status            Optimal\n  Primal bound      8\n  Dual bound        8\n  Gap               0%\n  P-D integral      0\n  Solution status   feasible\n                    8 (objective)\n                    0 (bound viol.)\n                    0 (int. viol.)\n                    0 (row viol.)\n  Timing            0.00\n                    0.00 (Presolve)\n                    0.00 (Solve)\n                    0.00 (Postsolve)\n  Max sub-MIP depth 0\n  Nodes             0\n  Repair LPs        0\n  LP iterations     0\n"""
+        dual_status = "NO_SOLUTION"
+        highs_julia_version = "1.24.1"
+        jump_version = "1.31.1"
+        node_count = 0
+        objective_value = 8.0
+        presolve_rows_removed = 10
+        presolve_variables_removed = 6
+        primal_status = "FEASIBLE_POINT"
+        raw_status = "kHighsModelStatusOptimal"
+        reported_relative_gap = 0.0
+        solve_time_seconds = 0.0004122089594602585
+        solver_invoked = true
+        solver_name = "HiGHS"
+        solver_version = "v1.15.1"
+        termination_status = "OPTIMAL"

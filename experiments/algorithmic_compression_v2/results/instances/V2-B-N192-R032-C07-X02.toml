@@ -1,0 +1,1906 @@
+identity_closure = true
+requirement_ordering = "frontier-then-module-canonical-identifier-order"
+schema_version = "journal-compression-instance-v1"
+source_closure_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+source_closure_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+source_frontier = ["1//1", "1//1", "1//1", "1//1", "1//1", "1//1", "1//1", "1//1"]
+strategy_ordering = "canonical-identifier-order"
+
+[preprocessing]
+all_optimizer_identities_reconstructable = true
+applied = false
+equal_coverage_groups = []
+forced_strategy_indices = []
+objective_offset = "0//1"
+remaining_requirement_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+remaining_strategy_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192]
+
+[provenance]
+generator = "structured-tagged-incidence-v1"
+instance_id = "V2-B-N192-R032-C07-X02"
+instance_kind = "synthetic"
+parent_hashes = []
+redistributable = true
+source = "Registered Algorithmic Compression Benchmark v1 registry"
+
+    [[provenance.attributes]]
+    key = "accepted_attempt_seed"
+    value = "6479457245731552323"
+    [[provenance.attributes]]
+    key = "evidence_class"
+    value = "synthetic registered generator"
+    [[provenance.attributes]]
+    key = "generator_seed"
+    value = "7393446790883707827"
+    [[provenance.attributes]]
+    key = "mechanism"
+    value = "none"
+    [[provenance.attributes]]
+    key = "phase"
+    value = "final"
+    [[provenance.attributes]]
+    key = "seed_id"
+    value = "SEED-V2-B-N192-R032-C07-X02"
+
+[[requirements]]
+id_kind = "string"
+id_value = "b0001"
+tag = "frontier"
+[[requirements]]
+id_kind = "string"
+id_value = "b0002"
+tag = "frontier"
+[[requirements]]
+id_kind = "string"
+id_value = "b0003"
+tag = "frontier"
+[[requirements]]
+id_kind = "string"
+id_value = "b0004"
+tag = "frontier"
+[[requirements]]
+id_kind = "string"
+id_value = "b0005"
+tag = "frontier"
+[[requirements]]
+id_kind = "string"
+id_value = "b0006"
+tag = "frontier"
+[[requirements]]
+id_kind = "string"
+id_value = "b0007"
+tag = "frontier"
+[[requirements]]
+id_kind = "string"
+id_value = "b0008"
+tag = "frontier"
+[[requirements]]
+id_kind = "string"
+id_value = "m0001"
+tag = "module"
+[[requirements]]
+id_kind = "string"
+id_value = "m0002"
+tag = "module"
+[[requirements]]
+id_kind = "string"
+id_value = "m0003"
+tag = "module"
+[[requirements]]
+id_kind = "string"
+id_value = "m0004"
+tag = "module"
+[[requirements]]
+id_kind = "string"
+id_value = "m0005"
+tag = "module"
+[[requirements]]
+id_kind = "string"
+id_value = "m0006"
+tag = "module"
+[[requirements]]
+id_kind = "string"
+id_value = "m0007"
+tag = "module"
+[[requirements]]
+id_kind = "string"
+id_value = "m0008"
+tag = "module"
+[[requirements]]
+id_kind = "string"
+id_value = "m0009"
+tag = "module"
+[[requirements]]
+id_kind = "string"
+id_value = "m0010"
+tag = "module"
+[[requirements]]
+id_kind = "string"
+id_value = "m0011"
+tag = "module"
+[[requirements]]
+id_kind = "string"
+id_value = "m0012"
+tag = "module"
+[[requirements]]
+id_kind = "string"
+id_value = "m0013"
+tag = "module"
+[[requirements]]
+id_kind = "string"
+id_value = "m0014"
+tag = "module"
+[[requirements]]
+id_kind = "string"
+id_value = "m0015"
+tag = "module"
+[[requirements]]
+id_kind = "string"
+id_value = "m0016"
+tag = "module"
+[[requirements]]
+id_kind = "string"
+id_value = "m0017"
+tag = "module"
+[[requirements]]
+id_kind = "string"
+id_value = "m0018"
+tag = "module"
+[[requirements]]
+id_kind = "string"
+id_value = "m0019"
+tag = "module"
+[[requirements]]
+id_kind = "string"
+id_value = "m0020"
+tag = "module"
+[[requirements]]
+id_kind = "string"
+id_value = "m0021"
+tag = "module"
+[[requirements]]
+id_kind = "string"
+id_value = "m0022"
+tag = "module"
+[[requirements]]
+id_kind = "string"
+id_value = "m0023"
+tag = "module"
+[[requirements]]
+id_kind = "string"
+id_value = "m0024"
+tag = "module"
+
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "inactive"
+mandatory = true
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "0//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0001"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "16//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0002"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0003"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0004"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0005"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "16//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0006"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "8//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 20, 21, 23, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0007"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0012", "m0013", "m0015", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "16//1"
+[[strategies]]
+covered_requirement_indices = [6, 7, 8, 9, 11, 12, 13, 14, 15, 17, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 30, 31, 32]
+id_kind = "string"
+id_value = "s0008"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0003", "m0004", "m0005", "m0006", "m0007", "m0009", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1"]
+weight = "4//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0009"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "16//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8, 9, 11, 12, 13, 14, 15, 16, 18, 20, 21, 22, 24, 25, 26, 27, 28, 29, 31, 32]
+id_kind = "string"
+id_value = "s0010"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0010", "m0012", "m0013", "m0014", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "8//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0011"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0012"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "8//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0013"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "8//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 30, 31, 32]
+id_kind = "string"
+id_value = "s0014"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "8//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]
+id_kind = "string"
+id_value = "s0015"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0016"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0017"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "16//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0018"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "4//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8, 9, 11, 13, 14, 16, 17, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0019"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0003", "m0005", "m0006", "m0008", "m0009", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0020"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "16//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0021"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "16//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0022"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "8//1"
+[[strategies]]
+covered_requirement_indices = [9, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0023"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0024"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0025"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "16//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0026"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0027"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0028"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "16//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0029"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "16//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0030"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "4//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0031"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0032"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0010", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "8//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8, 9, 16, 17, 18, 19, 21, 22, 23, 24, 26, 28, 30, 31, 32]
+id_kind = "string"
+id_value = "s0033"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0008", "m0009", "m0010", "m0011", "m0013", "m0014", "m0015", "m0016", "m0018", "m0020", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "8//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0034"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "4//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0035"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "16//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16, 17, 18, 21, 22, 23, 24, 25, 26, 27, 28, 30, 32]
+id_kind = "string"
+id_value = "s0036"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0007", "m0008", "m0009", "m0010", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0022", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "4//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0037"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "8//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 10, 12, 13, 14, 15, 16, 17, 19, 20, 21, 22, 23, 24, 25, 26, 27, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0038"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0002", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "0//1"]
+weight = "8//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0039"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0040"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "4//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0041"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0042"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0043"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "16//1"
+[[strategies]]
+covered_requirement_indices = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0044"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "8//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0045"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "4//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0046"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "4//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 32]
+id_kind = "string"
+id_value = "s0047"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0048"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "16//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 16, 17, 18, 19, 20, 21, 22, 24, 26, 27, 28, 31, 32]
+id_kind = "string"
+id_value = "s0049"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0016", "m0018", "m0019", "m0020", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "4//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0050"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "8//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0051"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "4//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0052"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0053"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "16//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0054"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0010", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0055"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "4//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0056"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "4//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0057"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "4//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0058"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "16//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0059"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0060"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "8//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0061"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "4//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8, 9, 11, 12, 13, 15, 16, 17, 18, 19, 21, 22, 23, 24, 26, 27, 28, 29, 30, 32]
+id_kind = "string"
+id_value = "s0062"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0003", "m0004", "m0005", "m0007", "m0008", "m0009", "m0010", "m0011", "m0013", "m0014", "m0015", "m0016", "m0018", "m0019", "m0020", "m0021", "m0022", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "4//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0063"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0064"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0065"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0004", "m0005", "m0006", "m0007", "m0008", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0066"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0067"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0068"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "16//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0069"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "16//1"
+[[strategies]]
+covered_requirement_indices = [8]
+id_kind = "string"
+id_value = "s0070"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "1//1"]
+weight = "16//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0071"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "16//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0072"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0073"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "4//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0074"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "4//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0075"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "8//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0076"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "8//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0077"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0078"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "16//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0079"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0080"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 19, 20, 21, 22, 23, 24, 26, 27, 28, 29, 30]
+id_kind = "string"
+id_value = "s0081"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0005", "m0006", "m0007", "m0008", "m0009", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0018", "m0019", "m0020", "m0021", "m0022"]
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "8//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0082"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0083"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0084"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16, 17, 18, 19, 21, 23, 24, 26, 27, 28, 29, 30, 32]
+id_kind = "string"
+id_value = "s0085"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0007", "m0008", "m0009", "m0010", "m0011", "m0013", "m0015", "m0016", "m0018", "m0019", "m0020", "m0021", "m0022", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0086"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "4//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0087"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "8//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0088"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "4//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0089"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0090"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0091"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "8//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0092"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "16//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0093"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "4//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0094"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0095"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "8//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0096"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0010", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "8//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0097"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8, 10, 11, 12, 13, 14, 15, 16, 17, 19, 21, 23, 24, 25, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0098"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0011", "m0013", "m0015", "m0016", "m0017", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "16//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0099"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0100"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "16//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0101"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0102"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0010", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "8//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0103"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "8//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0104"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "16//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0105"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "8//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 17, 18, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 32]
+id_kind = "string"
+id_value = "s0106"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0007", "m0009", "m0010", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0107"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "8//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0108"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0109"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "8//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0110"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "16//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 24, 26, 28, 29, 31, 32]
+id_kind = "string"
+id_value = "s0111"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0014", "m0016", "m0018", "m0020", "m0021", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "16//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0112"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "4//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0113"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = [2, 5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0114"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "1//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "8//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0115"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0116"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = [7, 8, 9, 10, 11, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]
+id_kind = "string"
+id_value = "s0117"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "1//1", "1//1"]
+weight = "16//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0118"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0119"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = [3, 5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0120"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "1//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "4//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 18, 19, 21, 23, 24, 26, 27, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0121"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0013", "m0015", "m0016", "m0018", "m0019", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "8//1"
+[[strategies]]
+covered_requirement_indices = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 18, 19, 22, 23, 24, 26, 27, 28, 30, 32]
+id_kind = "string"
+id_value = "s0122"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0010", "m0011", "m0014", "m0015", "m0016", "m0018", "m0019", "m0020", "m0022", "m0024"]
+profile = ["0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "4//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 31, 32]
+id_kind = "string"
+id_value = "s0123"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0124"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0125"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0126"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "4//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0127"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0128"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0129"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "8//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8, 9, 10, 12, 13, 14, 16, 17, 18, 20, 21, 22, 23, 24, 26, 27, 28, 29, 30, 31]
+id_kind = "string"
+id_value = "s0130"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0004", "m0005", "m0006", "m0008", "m0009", "m0010", "m0012", "m0013", "m0014", "m0015", "m0016", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023"]
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0131"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 32]
+id_kind = "string"
+id_value = "s0132"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "4//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0133"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "16//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0134"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "16//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0135"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "16//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0136"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "4//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0137"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0138"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0139"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "8//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0140"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "4//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0141"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "4//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0142"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "4//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0143"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "8//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0144"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "16//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0145"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "4//1"
+[[strategies]]
+covered_requirement_indices = [9, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0146"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "4//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0147"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0148"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "4//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]
+id_kind = "string"
+id_value = "s0149"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "8//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0150"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0151"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "4//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0152"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "4//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0153"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0154"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "8//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8, 9, 11, 12, 13, 15, 16, 17, 18, 19, 21, 22, 24, 25, 26, 27, 28, 29, 30, 31]
+id_kind = "string"
+id_value = "s0155"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0003", "m0004", "m0005", "m0007", "m0008", "m0009", "m0010", "m0011", "m0013", "m0014", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023"]
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = [5, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 25, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0156"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0015", "m0017", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "0//1", "0//1", "0//1"]
+weight = "16//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0157"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "16//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0158"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0159"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0015", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0160"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "8//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0161"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 32]
+id_kind = "string"
+id_value = "s0162"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "4//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0163"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "16//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0164"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0165"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "16//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0166"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "16//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0167"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = [1, 5, 6, 7, 8, 9, 10, 11, 12, 14, 15, 16, 17, 18, 19, 21, 22, 25, 27, 28, 29, 31, 32]
+id_kind = "string"
+id_value = "s0168"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0013", "m0014", "m0017", "m0019", "m0020", "m0021", "m0023", "m0024"]
+profile = ["1//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0169"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "4//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0170"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0171"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "16//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0172"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = [5, 6]
+id_kind = "string"
+id_value = "s0173"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "0//1", "0//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0174"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0175"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "8//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0176"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "8//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]
+id_kind = "string"
+id_value = "s0177"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 16, 17, 19, 20, 21, 22, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0178"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0005", "m0006", "m0007", "m0008", "m0009", "m0011", "m0012", "m0013", "m0014", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0179"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0180"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0181"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0013", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "8//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0182"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8, 9, 11, 12, 14, 15, 16, 17, 18, 19, 20, 23, 24, 25, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0183"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0003", "m0004", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012", "m0015", "m0016", "m0017", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0184"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "4//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 17, 18, 21, 22, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0185"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0004", "m0005", "m0006", "m0007", "m0009", "m0010", "m0013", "m0014", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "8//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0186"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "16//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0187"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16, 17, 20, 21, 22, 23, 24, 25, 27, 28, 30, 31, 32]
+id_kind = "string"
+id_value = "s0188"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0007", "m0008", "m0009", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0019", "m0020", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0189"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "8//1"
+[[strategies]]
+covered_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16, 17, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+id_kind = "string"
+id_value = "s0190"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0011", "m0012", "m0013", "m0014", "m0015", "m0016", "m0017", "m0018", "m0019", "m0020", "m0021", "m0022", "m0023", "m0024"]
+profile = ["0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1", "0//1"]
+weight = "4//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0191"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1", "1//1", "1//1", "1//1", "1//1"]
+weight = "1//1"
+
+[tie_handling]
+declaration = "one deterministic representative; tied optima are not claimed complete"
+mode = "declared_representative"
+stable_selector = "lexicographic binary selection in canonical strategy order"

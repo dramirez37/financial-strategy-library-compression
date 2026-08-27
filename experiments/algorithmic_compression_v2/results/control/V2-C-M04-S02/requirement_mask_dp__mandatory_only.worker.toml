@@ -1,0 +1,97 @@
+algorithm_id = "requirement_mask_dp"
+algorithm_wall_clock_ns = 262599875
+blas_threads = 1
+candidate_accepted = true
+compile_time_seconds = 0.214608501
+evidence_class = "exact finite computation"
+finished_at_utc = "2026-08-27T18:16:57.079Z"
+gc_time_seconds = 0.0
+highs_threads = 1
+instance_id = "V2-C-M04-S02"
+instance_sha256 = "7188ada9deb6c6c07d72588c3ecffeef7e4f54b564f83aaa6957a280f0ab1ff2"
+julia_allocated_bytes = 67148800
+julia_threads = 1
+preprocessing_variant = "mandatory_only"
+schema_version = "algorithmic-compression-final-worker-v1"
+selected_original_strategy_ids = ["inactive", "s0002", "s0003", "s0010", "s0019", "s0020", "s0023"]
+selected_original_strategy_indices = [1, 3, 4, 11, 20, 21, 24]
+started_at_utc = "2026-08-27T18:16:56.817Z"
+status = "SOLVED"
+worker_status = "COMPLETED"
+
+[exact_burden]
+available = true
+value = "6//1"
+
+[exact_feasibility_recheck]
+available = true
+burden_reconciled = true
+closure_preserved = true
+exact_burden = "6//1"
+exact_feasible = true
+frontier_preserved = true
+mandatory_retained = true
+tagged_coverage = true
+
+[full_preprocessing_sensitivity]
+available = false
+
+[method_result]
+algorithm = "requirement_mask_dp"
+arithmetic = "Rational{BigInt}"
+evidence_class = "exact finite computation"
+exact_burden = "6//1"
+instance_sha256 = "7188ada9deb6c6c07d72588c3ecffeef7e4f54b564f83aaa6957a280f0ab1ff2"
+optimal_selection_count_returned = 2
+schema_version = "journal-compression-exact-solution-v1"
+search_complete = true
+selected_strategy_id_kinds = ["string", "string", "string", "string", "string", "string", "string"]
+selected_strategy_id_values = ["inactive", "s0002", "s0003", "s0010", "s0019", "s0020", "s0023"]
+selected_strategy_indices = [1, 3, 4, 11, 20, 21, 24]
+solver_status_used = false
+status = "exact_optimum"
+tie_declaration = "all exact optimizer identities retained"
+ties_complete = true
+
+    [method_result.counters]
+    candidate_selections_evaluated = "0"
+    final_reachable_states = "4096"
+    integer_encoding = "decimal BigInt string"
+    state_layer_pairs_visited = "25167"
+    transitions_evaluated = "50334"
+
+    [[method_result.optimal_selections]]
+    burden_reconciled = true
+    closure_preserved = true
+    exact_burden = "6//1"
+    frontier_preserved = true
+    mandatory_retained = true
+    selected_strategy_indices = [1, 3, 4, 11, 20, 21, 24]
+    selection_index = 1
+    tagged_coverage = true
+    [[method_result.optimal_selections]]
+    burden_reconciled = true
+    closure_preserved = true
+    exact_burden = "6//1"
+    frontier_preserved = true
+    mandatory_retained = true
+    selected_strategy_indices = [1, 5, 7, 13, 14, 15, 19]
+    selection_index = 2
+    tagged_coverage = true
+
+    [method_result.preprocessing]
+    all_optimizer_identities_reconstructable = true
+    exact_objective_offset = "0//1"
+    forced_strategy_indices = [1]
+    input_preprocessing_reused = false
+    original_requirement_count = 13
+    original_strategy_count = 25
+    reduced_requirement_count = 12
+    reduced_strategy_count = 24
+
+    [method_result.runtime_ns]
+    evidence_class = "single-run wall-clock measurement"
+    preprocessing = 19310458
+    reconstruction_and_certification = 192942083
+    search = 45418417
+    total = 257671000

@@ -1,0 +1,225 @@
+instance_available = true
+instance_id = "V2-B-N192-R032-C05-X01"
+instance_sha256 = "205ff23f1d4381241397dc51a1fe4f88d0b80969cda2cc1633131d1fde8b4c11"
+schema_version = "algorithmic-compression-final-instance-audit-v2"
+
+[[run_certificates]]
+algorithm_id = "cardinality_greedy"
+candidate_accepted = true
+independent_exact_burden = "12//1"
+independent_exact_feasible = true
+preprocessing_variant = "full_fixed_point_then_reconstruct"
+raw_record_path = "experiments/algorithmic_compression_v2/results/raw_runs/V2-B-N192-R032-C05-X01/cardinality_greedy__full_fixed_point_then_reconstruct.toml"
+raw_record_sha256 = "fb01f35eeac61371b90bcd66a7678cbd970672dc40b77904d21253628a70ee9a"
+selected_strategy_indices = [1, 14, 35]
+status = "SOLVED"
+[[run_certificates]]
+algorithm_id = "cardinality_greedy"
+candidate_accepted = true
+independent_exact_burden = "12//1"
+independent_exact_feasible = true
+preprocessing_variant = "mandatory_only"
+raw_record_path = "experiments/algorithmic_compression_v2/results/raw_runs/V2-B-N192-R032-C05-X01/cardinality_greedy__mandatory_only.toml"
+raw_record_sha256 = "0f9500de41c93178d5ed270ebc8284555255d29fbf63e988d05ccee3be8365f7"
+selected_strategy_indices = [1, 14, 35]
+status = "SOLVED"
+[[run_certificates]]
+algorithm_id = "declared_source_order"
+candidate_accepted = true
+independent_exact_burden = "24//1"
+independent_exact_feasible = true
+preprocessing_variant = "full_fixed_point_then_reconstruct"
+raw_record_path = "experiments/algorithmic_compression_v2/results/raw_runs/V2-B-N192-R032-C05-X01/declared_source_order__full_fixed_point_then_reconstruct.toml"
+raw_record_sha256 = "803dc1e380fcda592a50b93d09c1615cea930023f3f4d4a9eba7e04790b15d3a"
+selected_strategy_indices = [1, 140, 187, 188]
+status = "SOLVED"
+[[run_certificates]]
+algorithm_id = "declared_source_order"
+candidate_accepted = true
+independent_exact_burden = "28//1"
+independent_exact_feasible = true
+preprocessing_variant = "mandatory_only"
+raw_record_path = "experiments/algorithmic_compression_v2/results/raw_runs/V2-B-N192-R032-C05-X01/declared_source_order__mandatory_only.toml"
+raw_record_sha256 = "77a49c6c56c18374f92dd9c573f511a954b245b50c9ac54236d433f5b90955d5"
+selected_strategy_indices = [1, 185, 188, 192]
+status = "SOLVED"
+[[run_certificates]]
+algorithm_id = "heaviest_safe_first"
+candidate_accepted = true
+independent_exact_burden = "3//1"
+independent_exact_feasible = true
+preprocessing_variant = "full_fixed_point_then_reconstruct"
+raw_record_path = "experiments/algorithmic_compression_v2/results/raw_runs/V2-B-N192-R032-C05-X01/heaviest_safe_first__full_fixed_point_then_reconstruct.toml"
+raw_record_sha256 = "d965abb1d0904375ffd3442c5ca828314b36434b636c6de0a99494d58486052d"
+selected_strategy_indices = [1, 62, 74, 97]
+status = "SOLVED"
+[[run_certificates]]
+algorithm_id = "heaviest_safe_first"
+candidate_accepted = true
+independent_exact_burden = "3//1"
+independent_exact_feasible = true
+preprocessing_variant = "mandatory_only"
+raw_record_path = "experiments/algorithmic_compression_v2/results/raw_runs/V2-B-N192-R032-C05-X01/heaviest_safe_first__mandatory_only.toml"
+raw_record_sha256 = "075fb87381267a21bf17e04068f58b94b1f861ede375f9ebba06cd03e9cc6fc4"
+selected_strategy_indices = [1, 85, 97, 156]
+status = "SOLVED"
+[[run_certificates]]
+algorithm_id = "jump_highs_tagged_cover"
+candidate_accepted = true
+independent_exact_burden = "3//1"
+independent_exact_feasible = true
+preprocessing_variant = "full_fixed_point"
+raw_record_path = "experiments/algorithmic_compression_v2/results/raw_runs/V2-B-N192-R032-C05-X01/jump_highs_tagged_cover__full_fixed_point.toml"
+raw_record_sha256 = "a5dc76f81b8425e4be1279b986d0566999d43a35fe6fea0d36df29b673f0126c"
+selected_strategy_indices = [1, 62, 70, 74]
+status = "SOLVED"
+[[run_certificates]]
+algorithm_id = "jump_highs_tagged_cover"
+candidate_accepted = true
+independent_exact_burden = "3//1"
+independent_exact_feasible = true
+preprocessing_variant = "mandatory_only"
+raw_record_path = "experiments/algorithmic_compression_v2/results/raw_runs/V2-B-N192-R032-C05-X01/jump_highs_tagged_cover__mandatory_only.toml"
+raw_record_sha256 = "7ec88234f0721a12e9e3acb37b58730f152e39625dff8a0f5575ade6e2583748"
+selected_strategy_indices = [1, 74, 85, 156]
+status = "SOLVED"
+[[run_certificates]]
+algorithm_id = "lightest_safe_first"
+candidate_accepted = true
+independent_exact_burden = "32//1"
+independent_exact_feasible = true
+preprocessing_variant = "full_fixed_point_then_reconstruct"
+raw_record_path = "experiments/algorithmic_compression_v2/results/raw_runs/V2-B-N192-R032-C05-X01/lightest_safe_first__full_fixed_point_then_reconstruct.toml"
+raw_record_sha256 = "a0c3bdb19dc0a8be7ce792247fc7d60a910b78d6dfb64e4ac15244c0fd2fa295"
+selected_strategy_indices = [1, 65, 140]
+status = "SOLVED"
+[[run_certificates]]
+algorithm_id = "lightest_safe_first"
+candidate_accepted = true
+independent_exact_burden = "48//1"
+independent_exact_feasible = true
+preprocessing_variant = "mandatory_only"
+raw_record_path = "experiments/algorithmic_compression_v2/results/raw_runs/V2-B-N192-R032-C05-X01/lightest_safe_first__mandatory_only.toml"
+raw_record_sha256 = "d236ca7d2e6a5ccd84cfc03f5ef48a72f7c2c30dc73ffd8dd7aff219d0f5a222"
+selected_strategy_indices = [1, 76, 100, 185]
+status = "SOLVED"
+[[run_certificates]]
+algorithm_id = "maximum_immediate_burden_release"
+candidate_accepted = true
+independent_exact_burden = "3//1"
+independent_exact_feasible = true
+preprocessing_variant = "full_fixed_point_then_reconstruct"
+raw_record_path = "experiments/algorithmic_compression_v2/results/raw_runs/V2-B-N192-R032-C05-X01/maximum_immediate_burden_release__full_fixed_point_then_reconstruct.toml"
+raw_record_sha256 = "fd03520dd65d1d2b0e8c776da1b6023c01113540f510a3588255aedce1b8e1dc"
+selected_strategy_indices = [1, 62, 74, 97]
+status = "SOLVED"
+[[run_certificates]]
+algorithm_id = "maximum_immediate_burden_release"
+candidate_accepted = true
+independent_exact_burden = "3//1"
+independent_exact_feasible = true
+preprocessing_variant = "mandatory_only"
+raw_record_path = "experiments/algorithmic_compression_v2/results/raw_runs/V2-B-N192-R032-C05-X01/maximum_immediate_burden_release__mandatory_only.toml"
+raw_record_sha256 = "1924e3dc24180b7b9bd4f10853fc9ad5f016a247ed9ab7eba08ff757228c8c73"
+selected_strategy_indices = [1, 85, 97, 156]
+status = "SOLVED"
+[[run_certificates]]
+algorithm_id = "minimum_unique_carrier_exposure"
+candidate_accepted = true
+independent_exact_burden = "5//1"
+independent_exact_feasible = true
+preprocessing_variant = "full_fixed_point_then_reconstruct"
+raw_record_path = "experiments/algorithmic_compression_v2/results/raw_runs/V2-B-N192-R032-C05-X01/minimum_unique_carrier_exposure__full_fixed_point_then_reconstruct.toml"
+raw_record_sha256 = "c355b1f7da7e258fd6d307966c52a7fddc36b917a2f5f9ff0378e3bc772ce062"
+selected_strategy_indices = [1, 14, 97]
+status = "SOLVED"
+[[run_certificates]]
+algorithm_id = "minimum_unique_carrier_exposure"
+candidate_accepted = true
+independent_exact_burden = "3//1"
+independent_exact_feasible = true
+preprocessing_variant = "mandatory_only"
+raw_record_path = "experiments/algorithmic_compression_v2/results/raw_runs/V2-B-N192-R032-C05-X01/minimum_unique_carrier_exposure__mandatory_only.toml"
+raw_record_sha256 = "cec2f981023e71cdf05c5474193f7406c2597b218c11044ba4a72ca02dec09c5"
+selected_strategy_indices = [1, 85, 97, 156]
+status = "SOLVED"
+[[run_certificates]]
+algorithm_id = "multistart_random_rechecked_deletion_32"
+candidate_accepted = true
+independent_exact_burden = "3//1"
+independent_exact_feasible = true
+preprocessing_variant = "full_fixed_point_then_reconstruct"
+raw_record_path = "experiments/algorithmic_compression_v2/results/raw_runs/V2-B-N192-R032-C05-X01/multistart_random_rechecked_deletion_32__full_fixed_point_then_reconstruct.toml"
+raw_record_sha256 = "29fc2dbf96b573ad6f9828e9c43002d0d1de60268e49811ab050135923129973"
+selected_strategy_indices = [1, 62, 70, 74]
+status = "SOLVED"
+[[run_certificates]]
+algorithm_id = "multistart_random_rechecked_deletion_32"
+candidate_accepted = true
+independent_exact_burden = "5//1"
+independent_exact_feasible = true
+preprocessing_variant = "mandatory_only"
+raw_record_path = "experiments/algorithmic_compression_v2/results/raw_runs/V2-B-N192-R032-C05-X01/multistart_random_rechecked_deletion_32__mandatory_only.toml"
+raw_record_sha256 = "940046d8514b35ea4dba9693d3ab8c2167e1b73e099b81498f2d64511a2ced1c"
+selected_strategy_indices = [1, 14, 74]
+status = "SOLVED"
+[[run_certificates]]
+algorithm_id = "random_order_rechecked_deletion"
+candidate_accepted = true
+independent_exact_burden = "18//1"
+independent_exact_feasible = true
+preprocessing_variant = "full_fixed_point_then_reconstruct"
+raw_record_path = "experiments/algorithmic_compression_v2/results/raw_runs/V2-B-N192-R032-C05-X01/random_order_rechecked_deletion__full_fixed_point_then_reconstruct.toml"
+raw_record_sha256 = "14dc2a03c8ab3de3100f882c2a2084ba3cdeb5141fa3662d2f118afa838e386c"
+selected_strategy_indices = [1, 75, 140]
+status = "SOLVED"
+[[run_certificates]]
+algorithm_id = "random_order_rechecked_deletion"
+candidate_accepted = true
+independent_exact_burden = "10//1"
+independent_exact_feasible = true
+preprocessing_variant = "mandatory_only"
+raw_record_path = "experiments/algorithmic_compression_v2/results/raw_runs/V2-B-N192-R032-C05-X01/random_order_rechecked_deletion__mandatory_only.toml"
+raw_record_sha256 = "7f596dd42e94fc6cdf7372488e8ca330d18a5c4d0d10afe60bf5f541b541aa67"
+selected_strategy_indices = [1, 89, 97, 111]
+status = "SOLVED"
+[[run_certificates]]
+algorithm_id = "weighted_greedy"
+candidate_accepted = true
+independent_exact_burden = "3//1"
+independent_exact_feasible = true
+preprocessing_variant = "full_fixed_point_then_reconstruct"
+raw_record_path = "experiments/algorithmic_compression_v2/results/raw_runs/V2-B-N192-R032-C05-X01/weighted_greedy__full_fixed_point_then_reconstruct.toml"
+raw_record_sha256 = "809bcf19547d9caddbb36a9ec368b64bcff36cd0141756bfb0ec1fc0c7dcdcc2"
+selected_strategy_indices = [1, 62, 70, 74]
+status = "SOLVED"
+[[run_certificates]]
+algorithm_id = "weighted_greedy"
+candidate_accepted = true
+independent_exact_burden = "3//1"
+independent_exact_feasible = true
+preprocessing_variant = "mandatory_only"
+raw_record_path = "experiments/algorithmic_compression_v2/results/raw_runs/V2-B-N192-R032-C05-X01/weighted_greedy__mandatory_only.toml"
+raw_record_sha256 = "6c6a5f2f64dfc96f67be8a373449bfe97bc82f59130322273bc239c6b652371d"
+selected_strategy_indices = [1, 62, 70, 74]
+status = "SOLVED"
+[[run_certificates]]
+algorithm_id = "weighted_greedy_reverse_delete"
+candidate_accepted = true
+independent_exact_burden = "3//1"
+independent_exact_feasible = true
+preprocessing_variant = "full_fixed_point_then_reconstruct"
+raw_record_path = "experiments/algorithmic_compression_v2/results/raw_runs/V2-B-N192-R032-C05-X01/weighted_greedy_reverse_delete__full_fixed_point_then_reconstruct.toml"
+raw_record_sha256 = "adcbb0f9b1cf0a0a7177cfe2cac51f49ac9bfe210bf32049865094b31c19b43e"
+selected_strategy_indices = [1, 62, 70, 74]
+status = "SOLVED"
+[[run_certificates]]
+algorithm_id = "weighted_greedy_reverse_delete"
+candidate_accepted = true
+independent_exact_burden = "3//1"
+independent_exact_feasible = true
+preprocessing_variant = "mandatory_only"
+raw_record_path = "experiments/algorithmic_compression_v2/results/raw_runs/V2-B-N192-R032-C05-X01/weighted_greedy_reverse_delete__mandatory_only.toml"
+raw_record_sha256 = "4fde0d25524c1b1dbf7536c3c236ce619e4a0addef3d9e278a1bef3485df1657"
+selected_strategy_indices = [1, 62, 70, 74]
+status = "SOLVED"

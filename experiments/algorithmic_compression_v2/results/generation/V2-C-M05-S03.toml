@@ -1,0 +1,74 @@
+instance_sha256 = "4a0cad3c9729dfecc394750cf98042f5379d76ae83d7615a161e492acac30fb0"
+schema_version = "algorithmic-compression-generator-record-v1"
+status = "GENERATED"
+
+[[attempts]]
+accepted = true
+attempt_index = 1
+attempt_seed = "4846201198388057881"
+reasons = []
+
+[realized]
+active_coverage_density = "193//4225"
+active_incidence_count = 193
+active_strategy_count = 65
+bundle_count = 0
+bundle_prevalence = "0//1"
+bundle_threshold = 49
+distinct_active_weights = ["1//1"]
+frontier_coverage_density = "1//1"
+frontier_module_rank_association = "0//1"
+frontier_row_count = 1
+mandatory_strategy_ids = ["inactive", "s0024"]
+maximum_active_weight = "1//1"
+maximum_carrier_count = 66
+mean_pairwise_module_jaccard = "11//1040"
+minimum_active_weight = "1//1"
+minimum_carrier_count = 1
+module_coverage_density = "2//65"
+module_row_count = 64
+preprocessing_forced_strategy_ids = ["inactive", "s0024"]
+strategy_count = 66
+tagged_requirement_count = 65
+unique_carrier_count = 1
+unique_carrier_frequency = "1//65"
+unique_carrier_strategy_ids = ["s0024"]
+
+[requested]
+bundle_count_target = -1
+bundle_prevalence_level = "mechanism"
+coverage_density_level = "mechanism"
+coverage_density_target = "UNSPECIFIED"
+frontier_module_correlation_level = "mechanism"
+frontier_row_count = 1
+mandatory_strategy_count = 2
+module_overlap_level = "mechanism"
+module_row_count = 64
+strategy_count = 66
+tagged_requirement_count = 65
+unique_carrier_count_target = -1
+unique_carrier_frequency_level = "mechanism"
+weight_dispersion_level = "mechanism"
+
+[seed]
+execution_order_key = "467886011352518588"
+generator_seed = "5579150698864803761"
+instance_id = "V2-C-M05-S03"
+mip_seed = "1695798565"
+multistart_seed = "4571048116289201981"
+phase = "final"
+random_order_seed = "937813403470058650"
+randomness_scope = "label_permutation_and_stochastic_algorithms;v2_eight_worker_domain"
+replicate_id = 1
+seed_id = "SEED-V2-C-M05-S03"
+
+[spec]
+analysis_included = true
+family = "adversarial"
+generator_id = "adversarial-mechanism-v1"
+instance_id = "V2-C-M05-S03"
+mechanism = "rare_mandatory_requirements"
+mechanism_parameter = "modules=64;rare_rows=1"
+phase = "final"
+replicate_id = 1
+seed_id = "SEED-V2-C-M05-S03"

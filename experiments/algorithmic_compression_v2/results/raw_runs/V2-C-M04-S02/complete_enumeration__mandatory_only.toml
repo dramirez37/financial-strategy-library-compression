@@ -1,0 +1,51 @@
+algorithm_execution_position = 17
+algorithm_id = "complete_enumeration"
+analysis_included = true
+candidate_accepted = false
+experiment_id = "registered-algorithmic-compression-benchmark-v2"
+failure_code = "IMPLEMENTATION_ERROR"
+family = "adversarial"
+generator_seed = "471496888065304183"
+global_schedule_position = 3518
+instance_id = "V2-C-M04-S02"
+instance_sha256 = "7188ada9deb6c6c07d72588c3ecffeef7e4f54b564f83aaa6957a280f0ab1ff2"
+lane_position = 440
+launch_wave = 440
+mechanism = "dominance_heavy"
+mip_seed = "796486986"
+multistart_seed = "8676533677487890918"
+preprocessing_variant = "mandatory_only"
+random_order_seed = "1131382810142149142"
+registered_memory_limit_bytes = "1610612736"
+registered_time_limit_seconds = 300.0
+replicate_id = 1
+schema_version = "algorithmic-compression-final-run-v2"
+seed_id = "SEED-V2-C-M04-S02"
+status = "IMPLEMENTATION_ERROR"
+terminal = true
+worker_lane = 6
+
+[supervisor]
+memory_limit_enforced = true
+peak_memory_bytes = 990691328
+status = "PROCESS_COMPLETED"
+stderr_path = "experiments/algorithmic_compression_v2/results/control/V2-C-M04-S02/complete_enumeration__mandatory_only.stderr.log"
+stdout_path = "experiments/algorithmic_compression_v2/results/control/V2-C-M04-S02/complete_enumeration__mandatory_only.stdout.log"
+time_limit_enforced = true
+wall_clock_ns = "5873065417"
+worker_exit_code = 2
+
+[worker]
+algorithm_id = "complete_enumeration"
+backtrace = """\nStacktrace:\n  [1] solve_journal_compression_enumeration(instance::StrategyInnovation.JournalCompressionInstance; retain_all_ties::Bool, maximum_optional_strategies::Int64, maximum_ties::Int64)\n    @ StrategyInnovation ~/Coding/Julia/algolib/julia/src/ExactJournalCompression.jl:412\n  [2] solve_journal_compression_enumeration\n    @ ~/Coding/Julia/algolib/julia/src/ExactJournalCompression.jl:395 [inlined]\n  [3] _execute(instance::StrategyInnovation.JournalCompressionInstance, algorithm::Symbol, variant::Symbol, job::Dict{String, Any})\n    @ Main.AlgorithmicCompressionFinalWorkerV1 ~/Coding/Julia/algolib/julia/scripts/run_algorithmic_compression_final_worker_v1.jl:320\n  [4] macro expansion\n    @ ./timing.jl:697 [inlined]\n  [5] run_job(path::String)\n    @ Main.AlgorithmicCompressionFinalWorkerV1 ~/Coding/Julia/algolib/julia/scripts/run_algorithmic_compression_final_worker_v1.jl:514\n  [6] main\n    @ ~/Coding/Julia/algolib/julia/scripts/run_algorithmic_compression_final_worker_v1.jl:547 [inlined]\n  [7] main()\n    @ Main.AlgorithmicCompressionFinalWorkerV1 ~/Coding/Julia/algolib/julia/scripts/run_algorithmic_compression_final_worker_v1.jl:544\n  [8] top-level scope\n    @ ~/Coding/Julia/algolib/julia/scripts/run_algorithmic_compression_final_worker_v1.jl:554\n  [9] include(mod::Module, _path::String)\n    @ Base ./Base.jl:306\n [10] exec_options(opts::Base.JLOptions)\n    @ Base ./client.jl:317\n [11] _start()\n    @ Base ./client.jl:550"""
+candidate_accepted = false
+exception_type = "ArgumentError"
+finished_at_utc = "2026-08-27T18:18:57.884Z"
+instance_id = "V2-C-M04-S02"
+instance_sha256 = "7188ada9deb6c6c07d72588c3ecffeef7e4f54b564f83aaa6957a280f0ab1ff2"
+message = "ArgumentError: complete enumeration has 24 residual strategies; the declared limit is 14"
+preprocessing_variant = "mandatory_only"
+schema_version = "algorithmic-compression-final-worker-v1"
+started_at_utc = "2026-08-27T18:18:57.864Z"
+status = "IMPLEMENTATION_ERROR"
+worker_status = "ERROR"

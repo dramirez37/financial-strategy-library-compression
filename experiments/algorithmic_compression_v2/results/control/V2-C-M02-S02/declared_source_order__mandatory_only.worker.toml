@@ -1,0 +1,199 @@
+algorithm_id = "declared_source_order"
+algorithm_wall_clock_ns = 77278625
+blas_threads = 1
+candidate_accepted = true
+compile_time_seconds = 0.075474292
+evidence_class = "synthetic rechecked-deletion evidence plus exact feasibility check"
+finished_at_utc = "2026-08-27T16:58:19.872Z"
+gc_time_seconds = 0.0
+highs_threads = 1
+instance_id = "V2-C-M02-S02"
+instance_sha256 = "e355c334ab3b51f75dddbc1dd1712c5036fe0a227d1a36f9fcda0bedb8d269e1"
+julia_allocated_bytes = 7233624
+julia_threads = 1
+preprocessing_variant = "mandatory_only"
+schema_version = "algorithmic-compression-final-worker-v1"
+selected_original_strategy_ids = ["inactive", "s0008"]
+selected_original_strategy_indices = [1, 9]
+started_at_utc = "2026-08-27T16:58:19.794Z"
+status = "SOLVED"
+worker_status = "COMPLETED"
+
+[exact_burden]
+available = true
+value = "1//1"
+
+[exact_feasibility_recheck]
+available = true
+burden_reconciled = true
+closure_preserved = true
+exact_burden = "1//1"
+exact_feasible = true
+frontier_preserved = true
+mandatory_retained = true
+tagged_coverage = true
+
+[full_preprocessing_sensitivity]
+available = false
+
+[method_result]
+algorithm = "declared_source_order"
+exact_burden = "1//1"
+instance_sha256 = "e355c334ab3b51f75dddbc1dd1712c5036fe0a227d1a36f9fcda0bedb8d269e1"
+order_indices = [2, 3, 4, 5, 6, 7, 8, 9]
+random_seed = "NOT_APPLICABLE"
+schema_version = "journal-compression-certified-deletion-v1"
+selected_strategy_ids = ["inactive", "s0008"]
+start_summaries = []
+status = "certified_irreducible_heuristic"
+tie_declaration = "first currently safe strategy in the complete caller-declared order; canonical original order when no order is supplied"
+
+    [method_result.counters]
+    closure_checks = "37"
+    complete_scans = "8"
+    frontier_checks = "37"
+
+    [[method_result.deletion_trace]]
+    closure_preserved = true
+    complete_scan_index = 1
+    exact_burden_after = "7//1"
+    exact_burden_release = "1//1"
+    frontier_preserved = true
+    mandatory_retained = true
+    selected_after_indices = [1, 3, 4, 5, 6, 7, 8, 9]
+    selected_before_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    step_index = 1
+    strategy_id = "s0001"
+    strategy_index = 2
+    tagged_coverage_preserved = true
+
+        [method_result.deletion_trace.selection_score]
+        declared_source_rank = 1
+    [[method_result.deletion_trace]]
+    closure_preserved = true
+    complete_scan_index = 2
+    exact_burden_after = "6//1"
+    exact_burden_release = "1//1"
+    frontier_preserved = true
+    mandatory_retained = true
+    selected_after_indices = [1, 4, 5, 6, 7, 8, 9]
+    selected_before_indices = [1, 3, 4, 5, 6, 7, 8, 9]
+    step_index = 2
+    strategy_id = "s0002"
+    strategy_index = 3
+    tagged_coverage_preserved = true
+
+        [method_result.deletion_trace.selection_score]
+        declared_source_rank = 2
+    [[method_result.deletion_trace]]
+    closure_preserved = true
+    complete_scan_index = 3
+    exact_burden_after = "5//1"
+    exact_burden_release = "1//1"
+    frontier_preserved = true
+    mandatory_retained = true
+    selected_after_indices = [1, 5, 6, 7, 8, 9]
+    selected_before_indices = [1, 4, 5, 6, 7, 8, 9]
+    step_index = 3
+    strategy_id = "s0003"
+    strategy_index = 4
+    tagged_coverage_preserved = true
+
+        [method_result.deletion_trace.selection_score]
+        declared_source_rank = 3
+    [[method_result.deletion_trace]]
+    closure_preserved = true
+    complete_scan_index = 4
+    exact_burden_after = "4//1"
+    exact_burden_release = "1//1"
+    frontier_preserved = true
+    mandatory_retained = true
+    selected_after_indices = [1, 6, 7, 8, 9]
+    selected_before_indices = [1, 5, 6, 7, 8, 9]
+    step_index = 4
+    strategy_id = "s0004"
+    strategy_index = 5
+    tagged_coverage_preserved = true
+
+        [method_result.deletion_trace.selection_score]
+        declared_source_rank = 4
+    [[method_result.deletion_trace]]
+    closure_preserved = true
+    complete_scan_index = 5
+    exact_burden_after = "3//1"
+    exact_burden_release = "1//1"
+    frontier_preserved = true
+    mandatory_retained = true
+    selected_after_indices = [1, 7, 8, 9]
+    selected_before_indices = [1, 6, 7, 8, 9]
+    step_index = 5
+    strategy_id = "s0005"
+    strategy_index = 6
+    tagged_coverage_preserved = true
+
+        [method_result.deletion_trace.selection_score]
+        declared_source_rank = 5
+    [[method_result.deletion_trace]]
+    closure_preserved = true
+    complete_scan_index = 6
+    exact_burden_after = "2//1"
+    exact_burden_release = "1//1"
+    frontier_preserved = true
+    mandatory_retained = true
+    selected_after_indices = [1, 8, 9]
+    selected_before_indices = [1, 7, 8, 9]
+    step_index = 6
+    strategy_id = "s0006"
+    strategy_index = 7
+    tagged_coverage_preserved = true
+
+        [method_result.deletion_trace.selection_score]
+        declared_source_rank = 6
+    [[method_result.deletion_trace]]
+    closure_preserved = true
+    complete_scan_index = 7
+    exact_burden_after = "1//1"
+    exact_burden_release = "1//1"
+    frontier_preserved = true
+    mandatory_retained = true
+    selected_after_indices = [1, 9]
+    selected_before_indices = [1, 8, 9]
+    step_index = 7
+    strategy_id = "s0007"
+    strategy_index = 8
+    tagged_coverage_preserved = true
+
+        [method_result.deletion_trace.selection_score]
+        declared_source_rank = 7
+
+    [method_result.final_feasibility_certificate]
+    burden_reconciled = true
+    closure_preserved = true
+    evidence_class = "exact finite rechecked-deletion computation"
+    exact_burden = "1//1"
+    frontier_preserved = true
+    lean_kernel_verified = false
+    mandatory_retained = true
+    search_complete = false
+    selected_strategy_indices = [1, 9]
+    solver_status_used = false
+    tagged_coverage = true
+
+    [method_result.irreducibility_certificate]
+    complete = true
+    complete_scan_index = 8
+    no_safe_nonmandatory_deletion = true
+
+        [[method_result.irreducibility_certificate.checks]]
+        closure_preserved = false
+        deletion_safe = false
+        frontier_preserved = true
+        mandatory_retained = true
+        strategy_id = "s0008"
+        strategy_index = 9
+        tagged_coverage_preserved = false
+
+    [method_result.runtime]
+    algorithm_ns = "35839917"
+    final_certification_ns = "5335625"
+    total_ns = "68865958"

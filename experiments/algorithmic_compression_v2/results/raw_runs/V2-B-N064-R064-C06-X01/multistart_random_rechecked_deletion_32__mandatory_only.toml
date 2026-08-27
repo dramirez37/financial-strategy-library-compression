@@ -1,0 +1,1477 @@
+algorithm_execution_position = 7
+algorithm_id = "multistart_random_rechecked_deletion_32"
+analysis_included = true
+candidate_accepted = true
+experiment_id = "registered-algorithmic-compression-benchmark-v2"
+failure_code = ""
+family = "structured"
+generator_seed = "1659622378249213128"
+global_schedule_position = 2282
+instance_id = "V2-B-N064-R064-C06-X01"
+instance_sha256 = "c78192e9ea8f3ff410aa60fa1f2c1acb7d9aa83c0ad4416a0cbf89067e799ea4"
+lane_position = 286
+launch_wave = 286
+mechanism = "none"
+mip_seed = "1304136488"
+multistart_seed = "5967700938342649705"
+preprocessing_variant = "mandatory_only"
+random_order_seed = "8842253385942462286"
+registered_memory_limit_bytes = "1610612736"
+registered_time_limit_seconds = 900.0
+replicate_id = 1
+schema_version = "algorithmic-compression-final-run-v2"
+seed_id = "SEED-V2-B-N064-R064-C06-X01"
+status = "SOLVED"
+terminal = true
+worker_lane = 2
+
+[supervisor]
+memory_limit_enforced = true
+peak_memory_bytes = 1088684032
+status = "PROCESS_COMPLETED"
+stderr_path = "experiments/algorithmic_compression_v2/results/control/V2-B-N064-R064-C06-X01/multistart_random_rechecked_deletion_32__mandatory_only.stderr.log"
+stdout_path = "experiments/algorithmic_compression_v2/results/control/V2-B-N064-R064-C06-X01/multistart_random_rechecked_deletion_32__mandatory_only.stdout.log"
+time_limit_enforced = true
+wall_clock_ns = "5963946667"
+worker_exit_code = 0
+
+[worker]
+algorithm_id = "multistart_random_rechecked_deletion_32"
+algorithm_wall_clock_ns = 5035627375
+blas_threads = 1
+candidate_accepted = true
+compile_time_seconds = 0.093380499
+evidence_class = "synthetic rechecked-deletion evidence plus exact feasibility check"
+finished_at_utc = "2026-08-27T17:01:00.114Z"
+gc_time_seconds = 0.984758333
+highs_threads = 1
+instance_id = "V2-B-N064-R064-C06-X01"
+instance_sha256 = "c78192e9ea8f3ff410aa60fa1f2c1acb7d9aa83c0ad4416a0cbf89067e799ea4"
+julia_allocated_bytes = 2618668104
+julia_threads = 1
+preprocessing_variant = "mandatory_only"
+schema_version = "algorithmic-compression-final-worker-v1"
+selected_original_strategy_ids = ["inactive", "s0009", "s0012", "s0022", "s0031", "s0032", "s0033", "s0035", "s0042", "s0046", "s0049", "s0052", "s0053"]
+selected_original_strategy_indices = [1, 10, 13, 23, 32, 33, 34, 36, 43, 47, 50, 53, 54]
+started_at_utc = "2026-08-27T17:00:55.078Z"
+status = "SOLVED"
+worker_status = "COMPLETED"
+
+    [worker.exact_burden]
+    available = true
+    value = "21//1"
+
+    [worker.exact_feasibility_recheck]
+    available = true
+    burden_reconciled = true
+    closure_preserved = true
+    exact_burden = "21//1"
+    exact_feasible = true
+    frontier_preserved = true
+    mandatory_retained = true
+    tagged_coverage = true
+
+    [worker.full_preprocessing_sensitivity]
+    available = false
+
+    [worker.method_result]
+    algorithm = "multistart_random_deletion"
+    exact_burden = "21//1"
+    instance_sha256 = "c78192e9ea8f3ff410aa60fa1f2c1acb7d9aa83c0ad4416a0cbf89067e799ea4"
+    order_indices = [22, 48, 37, 57, 17, 52, 16, 63, 64, 13, 55, 46, 58, 59, 35, 29, 33, 32, 24, 14, 47, 60, 9, 15, 42, 6, 45, 3, 39, 18, 49, 40, 2, 53, 30, 12, 26, 28, 62, 38, 21, 25, 44, 41, 20, 27, 11, 7, 10, 43, 5, 23, 31, 8, 34, 19, 36, 54, 4, 56, 50, 61, 51]
+    random_seed = "5967700938342649705"
+    schema_version = "journal-compression-certified-deletion-v1"
+    selected_strategy_ids = ["inactive", "s0009", "s0012", "s0022", "s0031", "s0032", "s0033", "s0035", "s0042", "s0046", "s0049", "s0052", "s0053"]
+    status = "certified_irreducible_heuristic"
+    tie_declaration = "minimum certified endpoint burden across starts; ties by lexicographic selected-index tuple, then start index"
+
+        [worker.method_result.counters]
+        closure_checks = "62439"
+        complete_scans = "1665"
+        frontier_checks = "62439"
+
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 1
+        exact_burden_after = "123//1"
+        exact_burden_release = "3//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64]
+        selected_before_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64]
+        step_index = 1
+        strategy_id = "s0021"
+        strategy_index = 22
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 1
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 2
+        exact_burden_after = "120//1"
+        exact_burden_release = "3//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64]
+        selected_before_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64]
+        step_index = 2
+        strategy_id = "s0047"
+        strategy_index = 48
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 2
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 3
+        exact_burden_after = "118//1"
+        exact_burden_release = "2//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64]
+        selected_before_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64]
+        step_index = 3
+        strategy_id = "s0036"
+        strategy_index = 37
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 3
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 4
+        exact_burden_after = "117//1"
+        exact_burden_release = "1//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 49, 50, 51, 52, 53, 54, 55, 56, 58, 59, 60, 61, 62, 63, 64]
+        selected_before_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64]
+        step_index = 4
+        strategy_id = "s0056"
+        strategy_index = 57
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 4
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 5
+        exact_burden_after = "115//1"
+        exact_burden_release = "2//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 18, 19, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 49, 50, 51, 52, 53, 54, 55, 56, 58, 59, 60, 61, 62, 63, 64]
+        selected_before_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 49, 50, 51, 52, 53, 54, 55, 56, 58, 59, 60, 61, 62, 63, 64]
+        step_index = 5
+        strategy_id = "s0016"
+        strategy_index = 17
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 5
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 6
+        exact_burden_after = "112//1"
+        exact_burden_release = "3//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 18, 19, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 49, 50, 51, 53, 54, 55, 56, 58, 59, 60, 61, 62, 63, 64]
+        selected_before_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 18, 19, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 49, 50, 51, 52, 53, 54, 55, 56, 58, 59, 60, 61, 62, 63, 64]
+        step_index = 6
+        strategy_id = "s0051"
+        strategy_index = 52
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 6
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 7
+        exact_burden_after = "110//1"
+        exact_burden_release = "2//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 18, 19, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 49, 50, 51, 53, 54, 55, 56, 58, 59, 60, 61, 62, 63, 64]
+        selected_before_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 18, 19, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 49, 50, 51, 53, 54, 55, 56, 58, 59, 60, 61, 62, 63, 64]
+        step_index = 7
+        strategy_id = "s0015"
+        strategy_index = 16
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 7
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 8
+        exact_burden_after = "109//1"
+        exact_burden_release = "1//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 18, 19, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 49, 50, 51, 53, 54, 55, 56, 58, 59, 60, 61, 62, 64]
+        selected_before_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 18, 19, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 49, 50, 51, 53, 54, 55, 56, 58, 59, 60, 61, 62, 63, 64]
+        step_index = 8
+        strategy_id = "s0062"
+        strategy_index = 63
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 8
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 9
+        exact_burden_after = "107//1"
+        exact_burden_release = "2//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 18, 19, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 49, 50, 51, 53, 54, 55, 56, 58, 59, 60, 61, 62]
+        selected_before_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 18, 19, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 49, 50, 51, 53, 54, 55, 56, 58, 59, 60, 61, 62, 64]
+        step_index = 9
+        strategy_id = "s0063"
+        strategy_index = 64
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 9
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 10
+        exact_burden_after = "105//1"
+        exact_burden_release = "2//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 18, 19, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 49, 50, 51, 53, 54, 56, 58, 59, 60, 61, 62]
+        selected_before_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 18, 19, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 49, 50, 51, 53, 54, 55, 56, 58, 59, 60, 61, 62]
+        step_index = 10
+        strategy_id = "s0054"
+        strategy_index = 55
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 11
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 11
+        exact_burden_after = "104//1"
+        exact_burden_release = "1//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 18, 19, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 38, 39, 40, 41, 42, 43, 44, 45, 47, 49, 50, 51, 53, 54, 56, 58, 59, 60, 61, 62]
+        selected_before_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 18, 19, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 49, 50, 51, 53, 54, 56, 58, 59, 60, 61, 62]
+        step_index = 11
+        strategy_id = "s0045"
+        strategy_index = 46
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 12
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 12
+        exact_burden_after = "101//1"
+        exact_burden_release = "3//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 18, 19, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 38, 39, 40, 41, 42, 43, 44, 45, 47, 49, 50, 51, 53, 54, 56, 59, 60, 61, 62]
+        selected_before_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 18, 19, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 38, 39, 40, 41, 42, 43, 44, 45, 47, 49, 50, 51, 53, 54, 56, 58, 59, 60, 61, 62]
+        step_index = 12
+        strategy_id = "s0057"
+        strategy_index = 58
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 13
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 13
+        exact_burden_after = "98//1"
+        exact_burden_release = "3//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 18, 19, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 38, 39, 40, 41, 42, 43, 44, 45, 47, 49, 50, 51, 53, 54, 56, 60, 61, 62]
+        selected_before_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 18, 19, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 38, 39, 40, 41, 42, 43, 44, 45, 47, 49, 50, 51, 53, 54, 56, 59, 60, 61, 62]
+        step_index = 13
+        strategy_id = "s0058"
+        strategy_index = 59
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 14
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 14
+        exact_burden_after = "97//1"
+        exact_burden_release = "1//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 18, 19, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 36, 38, 39, 40, 41, 42, 43, 44, 45, 47, 49, 50, 51, 53, 54, 56, 60, 61, 62]
+        selected_before_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 18, 19, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 38, 39, 40, 41, 42, 43, 44, 45, 47, 49, 50, 51, 53, 54, 56, 60, 61, 62]
+        step_index = 14
+        strategy_id = "s0034"
+        strategy_index = 35
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 15
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 15
+        exact_burden_after = "94//1"
+        exact_burden_release = "3//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 18, 19, 20, 21, 23, 24, 25, 26, 27, 28, 30, 31, 32, 33, 34, 36, 38, 39, 40, 41, 42, 43, 44, 45, 47, 49, 50, 51, 53, 54, 56, 60, 61, 62]
+        selected_before_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 18, 19, 20, 21, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 36, 38, 39, 40, 41, 42, 43, 44, 45, 47, 49, 50, 51, 53, 54, 56, 60, 61, 62]
+        step_index = 15
+        strategy_id = "s0028"
+        strategy_index = 29
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 16
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 16
+        exact_burden_after = "93//1"
+        exact_burden_release = "1//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 18, 19, 20, 21, 23, 25, 26, 27, 28, 30, 31, 32, 33, 34, 36, 38, 39, 40, 41, 42, 43, 44, 45, 47, 49, 50, 51, 53, 54, 56, 60, 61, 62]
+        selected_before_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 18, 19, 20, 21, 23, 24, 25, 26, 27, 28, 30, 31, 32, 33, 34, 36, 38, 39, 40, 41, 42, 43, 44, 45, 47, 49, 50, 51, 53, 54, 56, 60, 61, 62]
+        step_index = 16
+        strategy_id = "s0023"
+        strategy_index = 24
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 19
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 17
+        exact_burden_after = "90//1"
+        exact_burden_release = "3//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 18, 19, 20, 21, 23, 25, 26, 27, 28, 30, 31, 32, 33, 34, 36, 38, 39, 40, 41, 42, 43, 44, 45, 47, 49, 50, 51, 53, 54, 56, 60, 61, 62]
+        selected_before_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 18, 19, 20, 21, 23, 25, 26, 27, 28, 30, 31, 32, 33, 34, 36, 38, 39, 40, 41, 42, 43, 44, 45, 47, 49, 50, 51, 53, 54, 56, 60, 61, 62]
+        step_index = 17
+        strategy_id = "s0013"
+        strategy_index = 14
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 20
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 18
+        exact_burden_after = "87//1"
+        exact_burden_release = "3//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 18, 19, 20, 21, 23, 25, 26, 27, 28, 30, 31, 32, 33, 34, 36, 38, 39, 40, 41, 42, 43, 44, 45, 47, 49, 50, 51, 53, 54, 56, 61, 62]
+        selected_before_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 18, 19, 20, 21, 23, 25, 26, 27, 28, 30, 31, 32, 33, 34, 36, 38, 39, 40, 41, 42, 43, 44, 45, 47, 49, 50, 51, 53, 54, 56, 60, 61, 62]
+        step_index = 18
+        strategy_id = "s0059"
+        strategy_index = 60
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 22
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 19
+        exact_burden_after = "84//1"
+        exact_burden_release = "3//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 15, 18, 19, 20, 21, 23, 25, 26, 27, 28, 30, 31, 32, 33, 34, 36, 38, 39, 40, 41, 42, 43, 44, 45, 47, 49, 50, 51, 53, 54, 56, 61, 62]
+        selected_before_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 18, 19, 20, 21, 23, 25, 26, 27, 28, 30, 31, 32, 33, 34, 36, 38, 39, 40, 41, 42, 43, 44, 45, 47, 49, 50, 51, 53, 54, 56, 61, 62]
+        step_index = 19
+        strategy_id = "s0008"
+        strategy_index = 9
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 23
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 20
+        exact_burden_after = "82//1"
+        exact_burden_release = "2//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 18, 19, 20, 21, 23, 25, 26, 27, 28, 30, 31, 32, 33, 34, 36, 38, 39, 40, 41, 42, 43, 44, 45, 47, 49, 50, 51, 53, 54, 56, 61, 62]
+        selected_before_indices = [1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 15, 18, 19, 20, 21, 23, 25, 26, 27, 28, 30, 31, 32, 33, 34, 36, 38, 39, 40, 41, 42, 43, 44, 45, 47, 49, 50, 51, 53, 54, 56, 61, 62]
+        step_index = 20
+        strategy_id = "s0014"
+        strategy_index = 15
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 24
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 21
+        exact_burden_after = "81//1"
+        exact_burden_release = "1//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 18, 19, 20, 21, 23, 25, 26, 27, 28, 30, 31, 32, 33, 34, 36, 38, 39, 40, 41, 43, 44, 45, 47, 49, 50, 51, 53, 54, 56, 61, 62]
+        selected_before_indices = [1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 18, 19, 20, 21, 23, 25, 26, 27, 28, 30, 31, 32, 33, 34, 36, 38, 39, 40, 41, 42, 43, 44, 45, 47, 49, 50, 51, 53, 54, 56, 61, 62]
+        step_index = 21
+        strategy_id = "s0041"
+        strategy_index = 42
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 25
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 22
+        exact_burden_after = "80//1"
+        exact_burden_release = "1//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 2, 3, 4, 5, 7, 8, 10, 11, 12, 13, 18, 19, 20, 21, 23, 25, 26, 27, 28, 30, 31, 32, 33, 34, 36, 38, 39, 40, 41, 43, 44, 45, 47, 49, 50, 51, 53, 54, 56, 61, 62]
+        selected_before_indices = [1, 2, 3, 4, 5, 6, 7, 8, 10, 11, 12, 13, 18, 19, 20, 21, 23, 25, 26, 27, 28, 30, 31, 32, 33, 34, 36, 38, 39, 40, 41, 43, 44, 45, 47, 49, 50, 51, 53, 54, 56, 61, 62]
+        step_index = 22
+        strategy_id = "s0005"
+        strategy_index = 6
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 26
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 23
+        exact_burden_after = "77//1"
+        exact_burden_release = "3//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 2, 3, 4, 5, 7, 8, 10, 11, 12, 13, 18, 19, 20, 21, 23, 25, 26, 27, 28, 30, 31, 32, 33, 34, 36, 38, 39, 40, 41, 43, 44, 47, 49, 50, 51, 53, 54, 56, 61, 62]
+        selected_before_indices = [1, 2, 3, 4, 5, 7, 8, 10, 11, 12, 13, 18, 19, 20, 21, 23, 25, 26, 27, 28, 30, 31, 32, 33, 34, 36, 38, 39, 40, 41, 43, 44, 45, 47, 49, 50, 51, 53, 54, 56, 61, 62]
+        step_index = 23
+        strategy_id = "s0044"
+        strategy_index = 45
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 27
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 24
+        exact_burden_after = "75//1"
+        exact_burden_release = "2//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 2, 4, 5, 7, 8, 10, 11, 12, 13, 18, 19, 20, 21, 23, 25, 26, 27, 28, 30, 31, 32, 33, 34, 36, 38, 39, 40, 41, 43, 44, 47, 49, 50, 51, 53, 54, 56, 61, 62]
+        selected_before_indices = [1, 2, 3, 4, 5, 7, 8, 10, 11, 12, 13, 18, 19, 20, 21, 23, 25, 26, 27, 28, 30, 31, 32, 33, 34, 36, 38, 39, 40, 41, 43, 44, 47, 49, 50, 51, 53, 54, 56, 61, 62]
+        step_index = 24
+        strategy_id = "s0002"
+        strategy_index = 3
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 28
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 25
+        exact_burden_after = "72//1"
+        exact_burden_release = "3//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 2, 4, 5, 7, 8, 10, 11, 12, 13, 18, 19, 20, 21, 23, 25, 26, 27, 28, 30, 31, 32, 33, 34, 36, 38, 40, 41, 43, 44, 47, 49, 50, 51, 53, 54, 56, 61, 62]
+        selected_before_indices = [1, 2, 4, 5, 7, 8, 10, 11, 12, 13, 18, 19, 20, 21, 23, 25, 26, 27, 28, 30, 31, 32, 33, 34, 36, 38, 39, 40, 41, 43, 44, 47, 49, 50, 51, 53, 54, 56, 61, 62]
+        step_index = 25
+        strategy_id = "s0038"
+        strategy_index = 39
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 29
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 26
+        exact_burden_after = "71//1"
+        exact_burden_release = "1//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 2, 4, 5, 7, 8, 10, 11, 12, 13, 19, 20, 21, 23, 25, 26, 27, 28, 30, 31, 32, 33, 34, 36, 38, 40, 41, 43, 44, 47, 49, 50, 51, 53, 54, 56, 61, 62]
+        selected_before_indices = [1, 2, 4, 5, 7, 8, 10, 11, 12, 13, 18, 19, 20, 21, 23, 25, 26, 27, 28, 30, 31, 32, 33, 34, 36, 38, 40, 41, 43, 44, 47, 49, 50, 51, 53, 54, 56, 61, 62]
+        step_index = 26
+        strategy_id = "s0017"
+        strategy_index = 18
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 30
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 27
+        exact_burden_after = "69//1"
+        exact_burden_release = "2//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 2, 4, 5, 7, 8, 10, 11, 12, 13, 19, 20, 21, 23, 25, 26, 27, 28, 30, 31, 32, 33, 34, 36, 38, 40, 41, 43, 44, 47, 50, 51, 53, 54, 56, 61, 62]
+        selected_before_indices = [1, 2, 4, 5, 7, 8, 10, 11, 12, 13, 19, 20, 21, 23, 25, 26, 27, 28, 30, 31, 32, 33, 34, 36, 38, 40, 41, 43, 44, 47, 49, 50, 51, 53, 54, 56, 61, 62]
+        step_index = 27
+        strategy_id = "s0048"
+        strategy_index = 49
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 31
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 28
+        exact_burden_after = "68//1"
+        exact_burden_release = "1//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 2, 4, 5, 7, 8, 10, 11, 12, 13, 19, 20, 21, 23, 25, 26, 27, 28, 30, 31, 32, 33, 34, 36, 38, 41, 43, 44, 47, 50, 51, 53, 54, 56, 61, 62]
+        selected_before_indices = [1, 2, 4, 5, 7, 8, 10, 11, 12, 13, 19, 20, 21, 23, 25, 26, 27, 28, 30, 31, 32, 33, 34, 36, 38, 40, 41, 43, 44, 47, 50, 51, 53, 54, 56, 61, 62]
+        step_index = 28
+        strategy_id = "s0039"
+        strategy_index = 40
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 32
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 29
+        exact_burden_after = "67//1"
+        exact_burden_release = "1//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 4, 5, 7, 8, 10, 11, 12, 13, 19, 20, 21, 23, 25, 26, 27, 28, 30, 31, 32, 33, 34, 36, 38, 41, 43, 44, 47, 50, 51, 53, 54, 56, 61, 62]
+        selected_before_indices = [1, 2, 4, 5, 7, 8, 10, 11, 12, 13, 19, 20, 21, 23, 25, 26, 27, 28, 30, 31, 32, 33, 34, 36, 38, 41, 43, 44, 47, 50, 51, 53, 54, 56, 61, 62]
+        step_index = 29
+        strategy_id = "s0001"
+        strategy_index = 2
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 33
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 30
+        exact_burden_after = "64//1"
+        exact_burden_release = "3//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 4, 5, 7, 8, 10, 11, 12, 13, 19, 20, 21, 23, 25, 26, 27, 28, 31, 32, 33, 34, 36, 38, 41, 43, 44, 47, 50, 51, 53, 54, 56, 61, 62]
+        selected_before_indices = [1, 4, 5, 7, 8, 10, 11, 12, 13, 19, 20, 21, 23, 25, 26, 27, 28, 30, 31, 32, 33, 34, 36, 38, 41, 43, 44, 47, 50, 51, 53, 54, 56, 61, 62]
+        step_index = 30
+        strategy_id = "s0029"
+        strategy_index = 30
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 35
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 31
+        exact_burden_after = "63//1"
+        exact_burden_release = "1//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 4, 5, 7, 8, 10, 11, 13, 19, 20, 21, 23, 25, 26, 27, 28, 31, 32, 33, 34, 36, 38, 41, 43, 44, 47, 50, 51, 53, 54, 56, 61, 62]
+        selected_before_indices = [1, 4, 5, 7, 8, 10, 11, 12, 13, 19, 20, 21, 23, 25, 26, 27, 28, 31, 32, 33, 34, 36, 38, 41, 43, 44, 47, 50, 51, 53, 54, 56, 61, 62]
+        step_index = 31
+        strategy_id = "s0011"
+        strategy_index = 12
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 36
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 32
+        exact_burden_after = "61//1"
+        exact_burden_release = "2//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 4, 5, 7, 8, 10, 11, 13, 19, 20, 21, 23, 25, 27, 28, 31, 32, 33, 34, 36, 38, 41, 43, 44, 47, 50, 51, 53, 54, 56, 61, 62]
+        selected_before_indices = [1, 4, 5, 7, 8, 10, 11, 13, 19, 20, 21, 23, 25, 26, 27, 28, 31, 32, 33, 34, 36, 38, 41, 43, 44, 47, 50, 51, 53, 54, 56, 61, 62]
+        step_index = 32
+        strategy_id = "s0025"
+        strategy_index = 26
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 37
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 33
+        exact_burden_after = "59//1"
+        exact_burden_release = "2//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 4, 5, 7, 8, 10, 11, 13, 19, 20, 21, 23, 25, 27, 31, 32, 33, 34, 36, 38, 41, 43, 44, 47, 50, 51, 53, 54, 56, 61, 62]
+        selected_before_indices = [1, 4, 5, 7, 8, 10, 11, 13, 19, 20, 21, 23, 25, 27, 28, 31, 32, 33, 34, 36, 38, 41, 43, 44, 47, 50, 51, 53, 54, 56, 61, 62]
+        step_index = 33
+        strategy_id = "s0027"
+        strategy_index = 28
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 38
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 34
+        exact_burden_after = "57//1"
+        exact_burden_release = "2//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 4, 5, 7, 8, 10, 11, 13, 19, 20, 21, 23, 25, 27, 31, 32, 33, 34, 36, 38, 41, 43, 44, 47, 50, 51, 53, 54, 56, 61]
+        selected_before_indices = [1, 4, 5, 7, 8, 10, 11, 13, 19, 20, 21, 23, 25, 27, 31, 32, 33, 34, 36, 38, 41, 43, 44, 47, 50, 51, 53, 54, 56, 61, 62]
+        step_index = 34
+        strategy_id = "s0061"
+        strategy_index = 62
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 39
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 35
+        exact_burden_after = "54//1"
+        exact_burden_release = "3//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 4, 5, 7, 8, 10, 11, 13, 19, 20, 21, 23, 25, 27, 31, 32, 33, 34, 36, 41, 43, 44, 47, 50, 51, 53, 54, 56, 61]
+        selected_before_indices = [1, 4, 5, 7, 8, 10, 11, 13, 19, 20, 21, 23, 25, 27, 31, 32, 33, 34, 36, 38, 41, 43, 44, 47, 50, 51, 53, 54, 56, 61]
+        step_index = 35
+        strategy_id = "s0037"
+        strategy_index = 38
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 40
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 36
+        exact_burden_after = "52//1"
+        exact_burden_release = "2//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 4, 5, 7, 8, 10, 11, 13, 19, 20, 23, 25, 27, 31, 32, 33, 34, 36, 41, 43, 44, 47, 50, 51, 53, 54, 56, 61]
+        selected_before_indices = [1, 4, 5, 7, 8, 10, 11, 13, 19, 20, 21, 23, 25, 27, 31, 32, 33, 34, 36, 41, 43, 44, 47, 50, 51, 53, 54, 56, 61]
+        step_index = 36
+        strategy_id = "s0020"
+        strategy_index = 21
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 41
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 37
+        exact_burden_after = "49//1"
+        exact_burden_release = "3//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 4, 5, 7, 8, 10, 11, 13, 19, 20, 23, 27, 31, 32, 33, 34, 36, 41, 43, 44, 47, 50, 51, 53, 54, 56, 61]
+        selected_before_indices = [1, 4, 5, 7, 8, 10, 11, 13, 19, 20, 23, 25, 27, 31, 32, 33, 34, 36, 41, 43, 44, 47, 50, 51, 53, 54, 56, 61]
+        step_index = 37
+        strategy_id = "s0024"
+        strategy_index = 25
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 42
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 38
+        exact_burden_after = "46//1"
+        exact_burden_release = "3//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 4, 5, 7, 8, 10, 11, 13, 19, 20, 23, 27, 31, 32, 33, 34, 36, 41, 43, 47, 50, 51, 53, 54, 56, 61]
+        selected_before_indices = [1, 4, 5, 7, 8, 10, 11, 13, 19, 20, 23, 27, 31, 32, 33, 34, 36, 41, 43, 44, 47, 50, 51, 53, 54, 56, 61]
+        step_index = 38
+        strategy_id = "s0043"
+        strategy_index = 44
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 43
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 39
+        exact_burden_after = "44//1"
+        exact_burden_release = "2//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 4, 5, 7, 8, 10, 11, 13, 19, 20, 23, 27, 31, 32, 33, 34, 36, 43, 47, 50, 51, 53, 54, 56, 61]
+        selected_before_indices = [1, 4, 5, 7, 8, 10, 11, 13, 19, 20, 23, 27, 31, 32, 33, 34, 36, 41, 43, 47, 50, 51, 53, 54, 56, 61]
+        step_index = 39
+        strategy_id = "s0040"
+        strategy_index = 41
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 44
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 40
+        exact_burden_after = "42//1"
+        exact_burden_release = "2//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 4, 5, 7, 8, 10, 11, 13, 19, 23, 27, 31, 32, 33, 34, 36, 43, 47, 50, 51, 53, 54, 56, 61]
+        selected_before_indices = [1, 4, 5, 7, 8, 10, 11, 13, 19, 20, 23, 27, 31, 32, 33, 34, 36, 43, 47, 50, 51, 53, 54, 56, 61]
+        step_index = 40
+        strategy_id = "s0019"
+        strategy_index = 20
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 45
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 41
+        exact_burden_after = "39//1"
+        exact_burden_release = "3//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 4, 5, 7, 8, 10, 11, 13, 19, 23, 31, 32, 33, 34, 36, 43, 47, 50, 51, 53, 54, 56, 61]
+        selected_before_indices = [1, 4, 5, 7, 8, 10, 11, 13, 19, 23, 27, 31, 32, 33, 34, 36, 43, 47, 50, 51, 53, 54, 56, 61]
+        step_index = 41
+        strategy_id = "s0026"
+        strategy_index = 27
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 46
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 42
+        exact_burden_after = "38//1"
+        exact_burden_release = "1//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 4, 5, 7, 8, 10, 13, 19, 23, 31, 32, 33, 34, 36, 43, 47, 50, 51, 53, 54, 56, 61]
+        selected_before_indices = [1, 4, 5, 7, 8, 10, 11, 13, 19, 23, 31, 32, 33, 34, 36, 43, 47, 50, 51, 53, 54, 56, 61]
+        step_index = 42
+        strategy_id = "s0010"
+        strategy_index = 11
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 47
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 43
+        exact_burden_after = "37//1"
+        exact_burden_release = "1//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 4, 5, 8, 10, 13, 19, 23, 31, 32, 33, 34, 36, 43, 47, 50, 51, 53, 54, 56, 61]
+        selected_before_indices = [1, 4, 5, 7, 8, 10, 13, 19, 23, 31, 32, 33, 34, 36, 43, 47, 50, 51, 53, 54, 56, 61]
+        step_index = 43
+        strategy_id = "s0006"
+        strategy_index = 7
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 48
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 44
+        exact_burden_after = "35//1"
+        exact_burden_release = "2//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 4, 8, 10, 13, 19, 23, 31, 32, 33, 34, 36, 43, 47, 50, 51, 53, 54, 56, 61]
+        selected_before_indices = [1, 4, 5, 8, 10, 13, 19, 23, 31, 32, 33, 34, 36, 43, 47, 50, 51, 53, 54, 56, 61]
+        step_index = 44
+        strategy_id = "s0004"
+        strategy_index = 5
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 51
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 45
+        exact_burden_after = "33//1"
+        exact_burden_release = "2//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 4, 8, 10, 13, 19, 23, 32, 33, 34, 36, 43, 47, 50, 51, 53, 54, 56, 61]
+        selected_before_indices = [1, 4, 8, 10, 13, 19, 23, 31, 32, 33, 34, 36, 43, 47, 50, 51, 53, 54, 56, 61]
+        step_index = 45
+        strategy_id = "s0030"
+        strategy_index = 31
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 53
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 46
+        exact_burden_after = "30//1"
+        exact_burden_release = "3//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 4, 10, 13, 19, 23, 32, 33, 34, 36, 43, 47, 50, 51, 53, 54, 56, 61]
+        selected_before_indices = [1, 4, 8, 10, 13, 19, 23, 32, 33, 34, 36, 43, 47, 50, 51, 53, 54, 56, 61]
+        step_index = 46
+        strategy_id = "s0007"
+        strategy_index = 8
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 54
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 47
+        exact_burden_after = "28//1"
+        exact_burden_release = "2//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 4, 10, 13, 23, 32, 33, 34, 36, 43, 47, 50, 51, 53, 54, 56, 61]
+        selected_before_indices = [1, 4, 10, 13, 19, 23, 32, 33, 34, 36, 43, 47, 50, 51, 53, 54, 56, 61]
+        step_index = 47
+        strategy_id = "s0018"
+        strategy_index = 19
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 56
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 48
+        exact_burden_after = "26//1"
+        exact_burden_release = "2//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 10, 13, 23, 32, 33, 34, 36, 43, 47, 50, 51, 53, 54, 56, 61]
+        selected_before_indices = [1, 4, 10, 13, 23, 32, 33, 34, 36, 43, 47, 50, 51, 53, 54, 56, 61]
+        step_index = 48
+        strategy_id = "s0003"
+        strategy_index = 4
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 59
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 49
+        exact_burden_after = "23//1"
+        exact_burden_release = "3//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 10, 13, 23, 32, 33, 34, 36, 43, 47, 50, 51, 53, 54, 61]
+        selected_before_indices = [1, 10, 13, 23, 32, 33, 34, 36, 43, 47, 50, 51, 53, 54, 56, 61]
+        step_index = 49
+        strategy_id = "s0055"
+        strategy_index = 56
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 60
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 50
+        exact_burden_after = "22//1"
+        exact_burden_release = "1//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 10, 13, 23, 32, 33, 34, 36, 43, 47, 50, 51, 53, 54]
+        selected_before_indices = [1, 10, 13, 23, 32, 33, 34, 36, 43, 47, 50, 51, 53, 54, 61]
+        step_index = 50
+        strategy_id = "s0060"
+        strategy_index = 61
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 62
+        [[worker.method_result.deletion_trace]]
+        closure_preserved = true
+        complete_scan_index = 51
+        exact_burden_after = "21//1"
+        exact_burden_release = "1//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_after_indices = [1, 10, 13, 23, 32, 33, 34, 36, 43, 47, 50, 53, 54]
+        selected_before_indices = [1, 10, 13, 23, 32, 33, 34, 36, 43, 47, 50, 51, 53, 54]
+        step_index = 51
+        strategy_id = "s0050"
+        strategy_index = 51
+        tagged_coverage_preserved = true
+
+            [worker.method_result.deletion_trace.selection_score]
+            random_order_rank = 63
+
+        [worker.method_result.final_feasibility_certificate]
+        burden_reconciled = true
+        closure_preserved = true
+        evidence_class = "exact finite rechecked-deletion computation"
+        exact_burden = "21//1"
+        frontier_preserved = true
+        lean_kernel_verified = false
+        mandatory_retained = true
+        search_complete = false
+        selected_strategy_indices = [1, 10, 13, 23, 32, 33, 34, 36, 43, 47, 50, 53, 54]
+        solver_status_used = false
+        tagged_coverage = true
+
+        [worker.method_result.irreducibility_certificate]
+        complete = true
+        complete_scan_index = 52
+        no_safe_nonmandatory_deletion = true
+
+            [[worker.method_result.irreducibility_certificate.checks]]
+            closure_preserved = true
+            deletion_safe = false
+            frontier_preserved = false
+            mandatory_retained = true
+            strategy_id = "s0009"
+            strategy_index = 10
+            tagged_coverage_preserved = false
+            [[worker.method_result.irreducibility_certificate.checks]]
+            closure_preserved = true
+            deletion_safe = false
+            frontier_preserved = false
+            mandatory_retained = true
+            strategy_id = "s0012"
+            strategy_index = 13
+            tagged_coverage_preserved = false
+            [[worker.method_result.irreducibility_certificate.checks]]
+            closure_preserved = true
+            deletion_safe = false
+            frontier_preserved = false
+            mandatory_retained = true
+            strategy_id = "s0022"
+            strategy_index = 23
+            tagged_coverage_preserved = false
+            [[worker.method_result.irreducibility_certificate.checks]]
+            closure_preserved = true
+            deletion_safe = false
+            frontier_preserved = false
+            mandatory_retained = true
+            strategy_id = "s0031"
+            strategy_index = 32
+            tagged_coverage_preserved = false
+            [[worker.method_result.irreducibility_certificate.checks]]
+            closure_preserved = true
+            deletion_safe = false
+            frontier_preserved = false
+            mandatory_retained = true
+            strategy_id = "s0032"
+            strategy_index = 33
+            tagged_coverage_preserved = false
+            [[worker.method_result.irreducibility_certificate.checks]]
+            closure_preserved = true
+            deletion_safe = false
+            frontier_preserved = false
+            mandatory_retained = true
+            strategy_id = "s0033"
+            strategy_index = 34
+            tagged_coverage_preserved = false
+            [[worker.method_result.irreducibility_certificate.checks]]
+            closure_preserved = true
+            deletion_safe = false
+            frontier_preserved = false
+            mandatory_retained = true
+            strategy_id = "s0035"
+            strategy_index = 36
+            tagged_coverage_preserved = false
+            [[worker.method_result.irreducibility_certificate.checks]]
+            closure_preserved = true
+            deletion_safe = false
+            frontier_preserved = false
+            mandatory_retained = true
+            strategy_id = "s0042"
+            strategy_index = 43
+            tagged_coverage_preserved = false
+            [[worker.method_result.irreducibility_certificate.checks]]
+            closure_preserved = true
+            deletion_safe = false
+            frontier_preserved = false
+            mandatory_retained = true
+            strategy_id = "s0046"
+            strategy_index = 47
+            tagged_coverage_preserved = false
+            [[worker.method_result.irreducibility_certificate.checks]]
+            closure_preserved = true
+            deletion_safe = false
+            frontier_preserved = false
+            mandatory_retained = true
+            strategy_id = "s0049"
+            strategy_index = 50
+            tagged_coverage_preserved = false
+            [[worker.method_result.irreducibility_certificate.checks]]
+            closure_preserved = true
+            deletion_safe = false
+            frontier_preserved = false
+            mandatory_retained = true
+            strategy_id = "s0052"
+            strategy_index = 53
+            tagged_coverage_preserved = false
+            [[worker.method_result.irreducibility_certificate.checks]]
+            closure_preserved = true
+            deletion_safe = false
+            frontier_preserved = false
+            mandatory_retained = true
+            strategy_id = "s0053"
+            strategy_index = 54
+            tagged_coverage_preserved = false
+
+        [worker.method_result.runtime]
+        algorithm_ns = "4646281541"
+        final_certification_ns = "4123749"
+        total_ns = "5035455333"
+
+        [[worker.method_result.start_summaries]]
+        deletion_count = 51
+        exact_burden = "27//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = [8, 5, 54, 3, 16, 34, 7, 21, 40, 23, 28, 24, 64, 25, 56, 27, 50, 51, 2, 14, 31, 15, 22, 6, 36, 13, 46, 11, 4, 47, 17, 61, 55, 12, 26, 37, 63, 30, 38, 45, 49, 59, 35, 42, 60, 18, 43, 20, 57, 58, 32, 48, 9, 62, 53, 33, 10, 39, 19, 52, 29, 41, 44]
+        random_seed = "5967700938342649705"
+        selected_indices = [1, 9, 13, 23, 29, 32, 33, 39, 41, 43, 47, 50, 53]
+        start_index = 1
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1951"
+            complete_scans = "52"
+            frontier_checks = "1951"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 52
+        exact_burden = "25//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = [24, 6, 11, 57, 20, 30, 8, 54, 31, 26, 34, 48, 32, 7, 55, 47, 40, 58, 50, 36, 2, 62, 3, 45, 38, 51, 17, 28, 64, 60, 52, 49, 10, 39, 53, 16, 19, 4, 23, 42, 41, 61, 37, 14, 43, 25, 59, 44, 33, 5, 63, 56, 12, 15, 9, 22, 35, 18, 13, 21, 46, 27, 29]
+        random_seed = "8596556360723713913"
+        selected_indices = [1, 9, 13, 23, 27, 32, 33, 43, 47, 50, 53, 59]
+        start_index = 2
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1962"
+            complete_scans = "53"
+            frontier_checks = "1962"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 51
+        exact_burden = "24//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = [36, 61, 9, 27, 29, 32, 22, 54, 21, 25, 18, 7, 23, 53, 15, 56, 57, 14, 55, 51, 28, 26, 60, 6, 40, 4, 17, 52, 49, 11, 59, 43, 16, 50, 2, 3, 45, 63, 19, 44, 62, 33, 42, 39, 38, 12, 24, 48, 10, 34, 13, 64, 30, 58, 31, 8, 5, 35, 47, 37, 41, 20, 46]
+        random_seed = "4792547503352089928"
+        selected_indices = [1, 13, 20, 23, 31, 32, 33, 41, 43, 47, 50, 53, 64]
+        start_index = 3
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1951"
+            complete_scans = "52"
+            frontier_checks = "1951"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 51
+        exact_burden = "25//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = [8, 11, 41, 13, 16, 33, 43, 20, 30, 58, 23, 18, 3, 24, 60, 64, 25, 49, 46, 55, 59, 44, 63, 17, 37, 6, 56, 57, 35, 51, 40, 27, 53, 31, 14, 45, 32, 50, 62, 39, 61, 54, 28, 4, 52, 48, 12, 36, 10, 19, 22, 15, 7, 5, 42, 34, 9, 29, 38, 2, 26, 47, 21]
+        random_seed = "13573009857236397721"
+        selected_indices = [1, 7, 9, 13, 23, 29, 32, 33, 43, 47, 50, 53, 54]
+        start_index = 4
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1951"
+            complete_scans = "52"
+            frontier_checks = "1951"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 50
+        exact_burden = "27//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = [62, 14, 49, 52, 16, 50, 11, 5, 46, 54, 35, 34, 53, 55, 9, 23, 60, 25, 38, 45, 33, 20, 36, 51, 58, 48, 32, 42, 37, 15, 2, 4, 3, 18, 30, 13, 22, 40, 43, 59, 31, 56, 21, 64, 63, 24, 28, 39, 29, 12, 44, 17, 10, 6, 26, 8, 7, 19, 27, 61, 41, 57, 47]
+        random_seed = "3901265674102638768"
+        selected_indices = [1, 13, 23, 26, 32, 33, 39, 41, 43, 44, 47, 50, 53, 57]
+        start_index = 5
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1939"
+            complete_scans = "51"
+            frontier_checks = "1939"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 51
+        exact_burden = "24//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = [40, 61, 26, 45, 3, 6, 28, 36, 48, 24, 47, 16, 60, 44, 59, 42, 53, 21, 9, 4, 62, 19, 2, 18, 38, 58, 52, 31, 50, 22, 29, 49, 17, 10, 20, 51, 23, 57, 54, 25, 56, 8, 27, 41, 32, 64, 33, 34, 37, 11, 7, 35, 12, 14, 5, 43, 30, 55, 63, 13, 46, 39, 15]
+        random_seed = "2449547935259082622"
+        selected_indices = [1, 12, 13, 23, 32, 33, 39, 41, 43, 47, 50, 53, 64]
+        start_index = 6
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1951"
+            complete_scans = "52"
+            frontier_checks = "1951"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 52
+        exact_burden = "22//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = [11, 50, 42, 18, 28, 2, 5, 12, 9, 14, 47, 52, 24, 48, 25, 34, 17, 6, 53, 56, 19, 41, 38, 51, 31, 20, 44, 39, 3, 40, 22, 4, 57, 49, 62, 10, 16, 15, 27, 54, 43, 32, 60, 63, 7, 30, 35, 26, 45, 33, 8, 29, 23, 13, 61, 59, 55, 46, 36, 37, 64, 21, 58]
+        random_seed = "4535490389960368832"
+        selected_indices = [1, 13, 16, 23, 32, 33, 36, 43, 47, 50, 53, 59]
+        start_index = 7
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1962"
+            complete_scans = "53"
+            frontier_checks = "1962"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 50
+        exact_burden = "27//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = [30, 37, 28, 55, 20, 11, 57, 3, 9, 6, 10, 17, 40, 49, 34, 31, 44, 41, 27, 22, 45, 59, 46, 35, 39, 36, 8, 58, 52, 24, 47, 15, 32, 7, 25, 33, 38, 56, 54, 12, 23, 42, 2, 13, 19, 62, 26, 43, 63, 18, 16, 5, 51, 53, 60, 21, 61, 29, 4, 50, 14, 64, 48]
+        random_seed = "5588997253351384472"
+        selected_indices = [1, 7, 13, 23, 26, 29, 32, 33, 43, 47, 48, 50, 53, 64]
+        start_index = 8
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1939"
+            complete_scans = "51"
+            frontier_checks = "1939"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 52
+        exact_burden = "24//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = [51, 24, 40, 21, 10, 35, 16, 44, 37, 31, 56, 23, 15, 26, 4, 12, 5, 27, 22, 19, 32, 14, 8, 33, 36, 29, 57, 49, 62, 52, 42, 53, 64, 20, 54, 61, 60, 45, 38, 34, 25, 28, 30, 3, 2, 47, 9, 46, 6, 18, 58, 17, 41, 63, 55, 43, 59, 11, 50, 7, 13, 39, 48]
+        random_seed = "3414269403331072970"
+        selected_indices = [1, 9, 13, 17, 23, 32, 33, 43, 47, 50, 53, 59]
+        start_index = 9
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1962"
+            complete_scans = "53"
+            frontier_checks = "1962"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 51
+        exact_burden = "24//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = [6, 42, 44, 61, 32, 29, 56, 50, 5, 35, 14, 52, 13, 54, 45, 20, 25, 63, 24, 58, 7, 59, 57, 27, 18, 39, 41, 2, 17, 62, 23, 53, 33, 49, 34, 19, 37, 30, 64, 3, 38, 11, 28, 10, 22, 55, 12, 15, 26, 21, 8, 36, 47, 51, 48, 16, 60, 4, 40, 43, 9, 46, 31]
+        random_seed = "11548473656236479612"
+        selected_indices = [1, 9, 13, 23, 31, 32, 33, 36, 43, 47, 50, 53, 64]
+        start_index = 10
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1951"
+            complete_scans = "52"
+            frontier_checks = "1951"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 51
+        exact_burden = "25//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = [19, 28, 60, 52, 54, 61, 7, 10, 43, 58, 50, 33, 59, 57, 64, 5, 44, 49, 47, 21, 27, 41, 35, 11, 23, 62, 30, 22, 45, 17, 18, 26, 37, 38, 36, 20, 42, 39, 6, 48, 53, 31, 29, 16, 51, 24, 32, 55, 25, 2, 56, 8, 4, 34, 9, 12, 15, 14, 40, 63, 3, 46, 13]
+        random_seed = "16201762836389332967"
+        selected_indices = [1, 8, 12, 13, 23, 29, 31, 32, 33, 43, 47, 50, 53]
+        start_index = 11
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1951"
+            complete_scans = "52"
+            frontier_checks = "1951"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 52
+        exact_burden = "23//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = [7, 41, 38, 49, 14, 61, 27, 44, 17, 30, 25, 56, 43, 31, 33, 57, 32, 53, 42, 52, 23, 13, 21, 60, 50, 34, 6, 20, 4, 46, 16, 5, 8, 29, 12, 18, 47, 26, 10, 48, 64, 63, 59, 36, 37, 28, 22, 24, 2, 58, 15, 19, 62, 40, 39, 55, 3, 54, 11, 9, 45, 51, 35]
+        random_seed = "18108764735942549621"
+        selected_indices = [1, 9, 13, 23, 32, 33, 36, 39, 43, 47, 50, 53]
+        start_index = 12
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1962"
+            complete_scans = "53"
+            frontier_checks = "1962"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 51
+        exact_burden = "25//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = [19, 47, 49, 41, 17, 29, 59, 40, 12, 33, 7, 13, 18, 32, 27, 35, 22, 52, 48, 11, 55, 56, 23, 63, 64, 8, 20, 9, 5, 62, 34, 43, 24, 46, 3, 21, 53, 38, 10, 15, 6, 54, 28, 36, 39, 58, 26, 2, 44, 37, 16, 57, 60, 51, 31, 42, 50, 45, 25, 14, 61, 4, 30]
+        random_seed = "13411481886983618231"
+        selected_indices = [1, 13, 14, 16, 23, 32, 33, 39, 43, 47, 50, 53, 57]
+        start_index = 13
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1951"
+            complete_scans = "52"
+            frontier_checks = "1951"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 51
+        exact_burden = "26//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = [17, 10, 25, 26, 50, 45, 42, 13, 28, 58, 2, 46, 52, 12, 6, 36, 43, 49, 11, 34, 7, 21, 3, 54, 5, 31, 44, 29, 16, 20, 19, 64, 27, 56, 4, 22, 8, 35, 15, 30, 51, 9, 40, 62, 53, 41, 38, 59, 39, 61, 47, 23, 60, 48, 32, 14, 63, 33, 18, 24, 37, 55, 57]
+        random_seed = "15448139851593649115"
+        selected_indices = [1, 9, 13, 14, 23, 32, 33, 39, 43, 47, 50, 53, 57]
+        start_index = 14
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1951"
+            complete_scans = "52"
+            frontier_checks = "1951"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 51
+        exact_burden = "26//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = [60, 5, 38, 52, 45, 41, 39, 17, 25, 11, 10, 63, 31, 32, 22, 53, 37, 29, 21, 7, 43, 19, 44, 57, 58, 12, 26, 16, 33, 59, 55, 62, 15, 36, 3, 46, 54, 56, 35, 2, 49, 34, 40, 51, 27, 28, 42, 30, 4, 48, 8, 64, 24, 20, 61, 9, 18, 50, 47, 13, 6, 23, 14]
+        random_seed = "7861286884422821303"
+        selected_indices = [1, 9, 13, 18, 23, 27, 30, 32, 33, 43, 47, 50, 53]
+        start_index = 15
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1951"
+            complete_scans = "52"
+            frontier_checks = "1951"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 51
+        exact_burden = "24//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = [33, 10, 15, 49, 47, 21, 42, 36, 48, 30, 43, 3, 16, 27, 25, 5, 41, 9, 46, 6, 57, 44, 58, 12, 63, 22, 61, 4, 14, 56, 55, 54, 13, 31, 62, 53, 39, 40, 26, 37, 20, 8, 11, 51, 38, 24, 45, 34, 29, 64, 32, 2, 7, 35, 59, 60, 50, 17, 23, 19, 28, 52, 18]
+        random_seed = "4789633478768295385"
+        selected_indices = [1, 13, 18, 23, 32, 33, 34, 43, 47, 50, 52, 53, 59]
+        start_index = 16
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1951"
+            complete_scans = "52"
+            frontier_checks = "1951"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 52
+        exact_burden = "23//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = [54, 37, 11, 58, 18, 2, 30, 28, 35, 4, 51, 33, 59, 15, 32, 12, 62, 6, 50, 26, 31, 34, 57, 9, 38, 45, 3, 61, 17, 7, 13, 8, 41, 43, 5, 46, 24, 53, 10, 25, 19, 44, 29, 36, 22, 20, 56, 39, 52, 23, 49, 47, 27, 40, 48, 64, 55, 60, 42, 14, 16, 21, 63]
+        random_seed = "17225137551193336212"
+        selected_indices = [1, 13, 16, 23, 27, 32, 33, 43, 47, 49, 50, 53]
+        start_index = 17
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1962"
+            complete_scans = "53"
+            frontier_checks = "1962"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 51
+        exact_burden = "23//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = [16, 17, 30, 57, 51, 35, 27, 44, 14, 56, 49, 50, 61, 48, 62, 19, 22, 25, 5, 60, 12, 59, 10, 3, 9, 31, 2, 34, 32, 20, 8, 63, 54, 42, 64, 55, 37, 47, 6, 40, 58, 52, 18, 26, 33, 38, 23, 11, 41, 29, 24, 53, 46, 45, 4, 28, 21, 43, 13, 39, 15, 7, 36]
+        random_seed = "4507490216970917083"
+        selected_indices = [1, 11, 13, 23, 26, 32, 33, 36, 39, 43, 47, 50, 53]
+        start_index = 18
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1951"
+            complete_scans = "52"
+            frontier_checks = "1951"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 51
+        exact_burden = "25//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = [35, 39, 34, 64, 56, 2, 8, 40, 26, 22, 54, 24, 58, 7, 44, 18, 17, 36, 15, 4, 6, 27, 42, 13, 5, 14, 19, 55, 51, 48, 50, 32, 45, 10, 3, 49, 20, 28, 59, 33, 9, 12, 25, 61, 37, 52, 57, 29, 43, 23, 21, 63, 38, 60, 47, 41, 30, 53, 11, 62, 16, 46, 31]
+        random_seed = "12506735003882637131"
+        selected_indices = [1, 13, 16, 23, 29, 31, 32, 33, 41, 43, 47, 50, 53]
+        start_index = 19
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1951"
+            complete_scans = "52"
+            frontier_checks = "1951"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 51
+        exact_burden = "28//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = [5, 42, 4, 34, 26, 22, 46, 51, 2, 53, 7, 8, 32, 10, 38, 64, 47, 17, 48, 25, 15, 39, 16, 41, 13, 23, 37, 24, 61, 12, 33, 58, 49, 31, 56, 50, 19, 20, 35, 40, 14, 55, 62, 9, 18, 36, 59, 3, 44, 28, 63, 60, 57, 43, 52, 45, 11, 21, 54, 6, 27, 29, 30]
+        random_seed = "4702022043511842679"
+        selected_indices = [1, 13, 23, 27, 29, 30, 32, 33, 43, 44, 47, 50, 53]
+        start_index = 20
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1951"
+            complete_scans = "52"
+            frontier_checks = "1951"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 50
+        exact_burden = "25//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = [46, 5, 42, 23, 28, 50, 47, 18, 13, 64, 20, 33, 58, 25, 30, 63, 26, 56, 51, 22, 57, 59, 34, 15, 35, 52, 11, 24, 19, 43, 21, 12, 29, 2, 41, 16, 4, 44, 14, 9, 3, 7, 32, 6, 40, 45, 48, 37, 38, 8, 61, 31, 27, 39, 62, 49, 53, 60, 10, 17, 55, 36, 54]
+        random_seed = "1409270635945609208"
+        selected_indices = [1, 10, 13, 23, 31, 32, 33, 36, 43, 47, 48, 50, 53, 54]
+        start_index = 21
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1939"
+            complete_scans = "51"
+            frontier_checks = "1939"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 51
+        exact_burden = "24//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = [63, 45, 26, 12, 5, 30, 11, 40, 17, 28, 27, 31, 20, 56, 10, 33, 51, 62, 50, 44, 8, 48, 25, 7, 43, 42, 39, 59, 19, 9, 58, 14, 6, 41, 60, 38, 3, 46, 64, 4, 61, 18, 37, 29, 34, 13, 47, 35, 55, 24, 57, 15, 32, 2, 54, 36, 53, 22, 23, 21, 16, 52, 49]
+        random_seed = "2186902260524181514"
+        selected_indices = [1, 13, 16, 23, 32, 33, 43, 47, 49, 50, 52, 53, 57]
+        start_index = 22
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1951"
+            complete_scans = "52"
+            frontier_checks = "1951"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 51
+        exact_burden = "26//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = [38, 45, 58, 42, 41, 50, 57, 27, 26, 40, 39, 16, 3, 7, 14, 31, 32, 20, 15, 29, 61, 49, 60, 47, 10, 2, 43, 5, 19, 6, 54, 8, 4, 12, 21, 64, 22, 62, 53, 9, 46, 44, 18, 51, 63, 56, 11, 35, 13, 17, 37, 59, 23, 24, 55, 34, 30, 48, 33, 28, 25, 36, 52]
+        random_seed = "9249280448108372872"
+        selected_indices = [1, 13, 23, 30, 32, 33, 36, 43, 47, 48, 50, 53, 59]
+        start_index = 23
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1951"
+            complete_scans = "52"
+            frontier_checks = "1951"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 51
+        exact_burden = "23//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = [42, 48, 27, 43, 18, 24, 29, 25, 7, 21, 55, 12, 4, 64, 53, 37, 51, 54, 6, 52, 56, 5, 47, 63, 20, 33, 61, 3, 13, 9, 57, 10, 39, 36, 17, 14, 15, 40, 49, 19, 23, 8, 41, 31, 46, 38, 45, 35, 32, 2, 44, 60, 28, 22, 58, 16, 30, 34, 50, 26, 11, 59, 62]
+        random_seed = "4509881231124321370"
+        selected_indices = [1, 11, 13, 17, 23, 26, 32, 33, 43, 47, 50, 53, 62]
+        start_index = 24
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1951"
+            complete_scans = "52"
+            frontier_checks = "1951"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 51
+        exact_burden = "24//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = [14, 60, 15, 35, 11, 63, 45, 10, 36, 37, 54, 56, 33, 22, 34, 50, 19, 43, 39, 6, 27, 3, 25, 7, 5, 32, 20, 40, 57, 13, 30, 38, 53, 52, 12, 31, 58, 47, 8, 48, 64, 44, 2, 51, 29, 23, 16, 4, 62, 17, 9, 41, 28, 46, 55, 42, 21, 24, 18, 59, 61, 49, 26]
+        random_seed = "4588905269238554727"
+        selected_indices = [1, 9, 13, 18, 23, 26, 32, 33, 41, 43, 47, 50, 53]
+        start_index = 25
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1951"
+            complete_scans = "52"
+            frontier_checks = "1951"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 51
+        exact_burden = "24//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = [7, 26, 64, 47, 55, 37, 17, 15, 23, 28, 2, 29, 4, 43, 60, 41, 14, 31, 6, 13, 40, 63, 46, 8, 49, 44, 36, 22, 59, 57, 21, 53, 3, 19, 27, 50, 5, 30, 16, 9, 39, 61, 35, 24, 56, 33, 42, 58, 52, 51, 34, 18, 12, 25, 45, 20, 62, 10, 48, 38, 11, 32, 54]
+        random_seed = "5110724443590599115"
+        selected_indices = [1, 10, 13, 20, 23, 32, 33, 43, 47, 50, 52, 53, 54]
+        start_index = 26
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1951"
+            complete_scans = "52"
+            frontier_checks = "1951"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 51
+        exact_burden = "25//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = [8, 14, 40, 61, 4, 37, 13, 55, 12, 38, 9, 36, 44, 21, 23, 41, 39, 7, 22, 60, 5, 53, 26, 19, 27, 58, 43, 48, 59, 25, 31, 35, 46, 33, 56, 10, 54, 52, 28, 16, 11, 30, 24, 57, 34, 62, 18, 6, 2, 17, 64, 63, 47, 45, 29, 32, 49, 3, 42, 15, 50, 51, 20]
+        random_seed = "1279614846711247546"
+        selected_indices = [1, 13, 17, 20, 23, 29, 32, 33, 43, 47, 49, 50, 53]
+        start_index = 27
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1951"
+            complete_scans = "52"
+            frontier_checks = "1951"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 51
+        exact_burden = "21//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = [22, 48, 37, 57, 17, 52, 16, 63, 64, 13, 55, 46, 58, 59, 35, 29, 33, 32, 24, 14, 47, 60, 9, 15, 42, 6, 45, 3, 39, 18, 49, 40, 2, 53, 30, 12, 26, 28, 62, 38, 21, 25, 44, 41, 20, 27, 11, 7, 10, 43, 5, 23, 31, 8, 34, 19, 36, 54, 4, 56, 50, 61, 51]
+        random_seed = "8842152671509447958"
+        selected_indices = [1, 10, 13, 23, 32, 33, 34, 36, 43, 47, 50, 53, 54]
+        start_index = 28
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1951"
+            complete_scans = "52"
+            frontier_checks = "1951"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 51
+        exact_burden = "23//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = [44, 27, 41, 60, 51, 52, 50, 35, 9, 39, 29, 49, 28, 32, 17, 10, 14, 46, 40, 59, 54, 4, 62, 37, 12, 30, 53, 43, 5, 58, 21, 13, 57, 16, 26, 56, 45, 18, 8, 63, 48, 25, 36, 23, 15, 2, 47, 61, 6, 22, 55, 42, 19, 33, 34, 38, 64, 7, 3, 20, 11, 24, 31]
+        random_seed = "10847204761948491785"
+        selected_indices = [1, 13, 20, 23, 31, 32, 33, 36, 43, 47, 50, 53, 64]
+        start_index = 29
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1951"
+            complete_scans = "52"
+            frontier_checks = "1951"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 51
+        exact_burden = "23//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = [10, 23, 13, 4, 15, 54, 28, 56, 17, 38, 40, 60, 27, 61, 24, 44, 6, 20, 43, 21, 12, 29, 53, 9, 37, 59, 50, 52, 49, 62, 30, 34, 25, 16, 31, 41, 5, 3, 63, 7, 55, 46, 51, 45, 47, 64, 14, 33, 2, 22, 8, 19, 11, 39, 57, 36, 42, 26, 35, 58, 48, 32, 18]
+        random_seed = "6007054499333106526"
+        selected_indices = [1, 13, 18, 23, 26, 32, 33, 36, 43, 47, 48, 50, 53]
+        start_index = 30
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1951"
+            complete_scans = "52"
+            frontier_checks = "1951"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 51
+        exact_burden = "25//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = [42, 5, 57, 64, 44, 21, 32, 62, 60, 2, 6, 19, 47, 25, 48, 3, 40, 13, 61, 30, 51, 22, 14, 15, 52, 7, 50, 36, 9, 20, 39, 23, 58, 53, 8, 33, 59, 37, 28, 24, 31, 49, 11, 10, 18, 63, 46, 4, 29, 45, 17, 41, 55, 54, 43, 34, 38, 35, 27, 16, 56, 26, 12]
+        random_seed = "18398253087335191423"
+        selected_indices = [1, 12, 13, 23, 27, 29, 32, 33, 43, 47, 50, 53, 54]
+        start_index = 31
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1951"
+            complete_scans = "52"
+            frontier_checks = "1951"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 50
+        exact_burden = "24//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = [4, 19, 42, 2, 12, 52, 43, 47, 41, 13, 34, 38, 64, 31, 11, 21, 33, 59, 35, 39, 18, 62, 57, 20, 63, 61, 8, 3, 53, 46, 50, 9, 6, 48, 17, 15, 14, 44, 22, 23, 16, 25, 7, 27, 51, 30, 49, 5, 29, 26, 36, 10, 54, 58, 24, 60, 37, 45, 28, 32, 56, 55, 40]
+        random_seed = "6806095120875380382"
+        selected_indices = [1, 5, 10, 13, 23, 26, 32, 33, 36, 43, 47, 50, 53, 54]
+        start_index = 32
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1939"
+            complete_scans = "51"
+            frontier_checks = "1939"

@@ -1,0 +1,74 @@
+instance_sha256 = "843b0b867f54f571e83bac6427331548b85c24115f40a781eb3039a32daddd18"
+schema_version = "algorithmic-compression-generator-record-v1"
+status = "GENERATED"
+
+[[attempts]]
+accepted = true
+attempt_index = 1
+attempt_seed = "2440540278987709162"
+reasons = []
+
+[realized]
+active_coverage_density = "3//8"
+active_incidence_count = 1512
+active_strategy_count = 63
+bundle_count = 8
+bundle_prevalence = "8//63"
+bundle_threshold = 48
+distinct_active_weights = ["1//1", "2//1", "4//1", "8//1", "16//1"]
+frontier_coverage_density = "737//2016"
+frontier_module_rank_association = "10//63"
+frontier_row_count = 32
+mandatory_strategy_ids = ["inactive"]
+maximum_active_weight = "16//1"
+maximum_carrier_count = 27
+mean_pairwise_module_jaccard = "3824880822743//18685759950000"
+minimum_active_weight = "1//1"
+minimum_carrier_count = 18
+module_coverage_density = "775//2016"
+module_row_count = 32
+preprocessing_forced_strategy_ids = ["inactive", "s0004"]
+strategy_count = 64
+tagged_requirement_count = 64
+unique_carrier_count = 0
+unique_carrier_frequency = "0//1"
+unique_carrier_strategy_ids = []
+
+[requested]
+bundle_count_target = 8
+bundle_prevalence_level = "one_eighth"
+coverage_density_level = "three_eighths"
+coverage_density_target = "3//8"
+frontier_module_correlation_level = "independent"
+frontier_row_count = 32
+mandatory_strategy_count = 1
+module_overlap_level = "low_clustered"
+module_row_count = 32
+strategy_count = 64
+tagged_requirement_count = 64
+unique_carrier_count_target = 0
+unique_carrier_frequency_level = "zero"
+weight_dispersion_level = "high_powers_of_two"
+
+[seed]
+execution_order_key = "1916570204745938566"
+generator_seed = "1790663420114831574"
+instance_id = "V2-B-N064-R064-C12-X01"
+mip_seed = "332683652"
+multistart_seed = "2070474279979805390"
+phase = "final"
+random_order_seed = "8114134004598078199"
+randomness_scope = "instance_generation_and_stochastic_algorithms;v2_eight_worker_domain"
+replicate_id = 1
+seed_id = "SEED-V2-B-N064-R064-C12-X01"
+
+[spec]
+analysis_included = true
+family = "structured"
+generator_id = "structured-tagged-incidence-v1"
+instance_id = "V2-B-N064-R064-C12-X01"
+mechanism = "none"
+mechanism_parameter = "none"
+phase = "final"
+replicate_id = 1
+seed_id = "SEED-V2-B-N064-R064-C12-X01"

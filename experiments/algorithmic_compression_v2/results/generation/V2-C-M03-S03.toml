@@ -1,0 +1,74 @@
+instance_sha256 = "b286f2ac67db70a9d4e64938a14f576f1f3605fafde07c0f22b79be533b96f86"
+schema_version = "algorithmic-compression-generator-record-v1"
+status = "GENERATED"
+
+[[attempts]]
+accepted = true
+attempt_index = 1
+attempt_seed = "6432946508409509142"
+reasons = []
+
+[realized]
+active_coverage_density = "1//1"
+active_incidence_count = 4224
+active_strategy_count = 128
+bundle_count = 128
+bundle_prevalence = "1//1"
+bundle_threshold = 25
+distinct_active_weights = ["1//1", "2//1"]
+frontier_coverage_density = "1//1"
+frontier_module_rank_association = "0//1"
+frontier_row_count = 1
+mandatory_strategy_ids = ["inactive"]
+maximum_active_weight = "2//1"
+maximum_carrier_count = 129
+mean_pairwise_module_jaccard = "1//1"
+minimum_active_weight = "1//1"
+minimum_carrier_count = 128
+module_coverage_density = "1//1"
+module_row_count = 32
+preprocessing_forced_strategy_ids = ["inactive", "s0004"]
+strategy_count = 129
+tagged_requirement_count = 33
+unique_carrier_count = 0
+unique_carrier_frequency = "0//1"
+unique_carrier_strategy_ids = []
+
+[requested]
+bundle_count_target = -1
+bundle_prevalence_level = "mechanism"
+coverage_density_level = "mechanism"
+coverage_density_target = "UNSPECIFIED"
+frontier_module_correlation_level = "mechanism"
+frontier_row_count = 1
+mandatory_strategy_count = 1
+module_overlap_level = "mechanism"
+module_row_count = 32
+strategy_count = 129
+tagged_requirement_count = 33
+unique_carrier_count_target = -1
+unique_carrier_frequency_level = "mechanism"
+weight_dispersion_level = "mechanism"
+
+[seed]
+execution_order_key = "7929899668365821540"
+generator_seed = "3225531117239331412"
+instance_id = "V2-C-M03-S03"
+mip_seed = "12406599"
+multistart_seed = "6857465319335512365"
+phase = "final"
+random_order_seed = "5165305141633491171"
+randomness_scope = "label_permutation_and_stochastic_algorithms;v2_eight_worker_domain"
+replicate_id = 1
+seed_id = "SEED-V2-C-M03-S03"
+
+[spec]
+analysis_included = true
+family = "adversarial"
+generator_id = "adversarial-mechanism-v1"
+instance_id = "V2-C-M03-S03"
+mechanism = "dense_duplicate_coverage"
+mechanism_parameter = "duplicates=128;modules=32"
+phase = "final"
+replicate_id = 1
+seed_id = "SEED-V2-C-M03-S03"

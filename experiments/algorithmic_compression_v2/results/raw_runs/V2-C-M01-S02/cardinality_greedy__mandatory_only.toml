@@ -1,0 +1,118 @@
+algorithm_execution_position = 8
+algorithm_id = "cardinality_greedy"
+analysis_included = true
+candidate_accepted = true
+experiment_id = "registered-algorithmic-compression-benchmark-v2"
+failure_code = ""
+family = "adversarial"
+generator_seed = "6977553769429378838"
+global_schedule_position = 3463
+instance_id = "V2-C-M01-S02"
+instance_sha256 = "0815bfe3c338bfd9751217093f4be752ef7fede2e6839f56937ab2ed84eef08d"
+lane_position = 433
+launch_wave = 433
+mechanism = "unbounded_heaviest_safe_first_gap"
+mip_seed = "2055191639"
+multistart_seed = "1914962295445069033"
+preprocessing_variant = "mandatory_only"
+random_order_seed = "5214113929253760732"
+registered_memory_limit_bytes = "1610612736"
+registered_time_limit_seconds = 300.0
+replicate_id = 1
+schema_version = "algorithmic-compression-final-run-v2"
+seed_id = "SEED-V2-C-M01-S02"
+status = "SOLVED"
+terminal = true
+worker_lane = 7
+
+[supervisor]
+memory_limit_enforced = true
+peak_memory_bytes = 926318592
+status = "PROCESS_COMPLETED"
+stderr_path = "experiments/algorithmic_compression_v2/results/control/V2-C-M01-S02/cardinality_greedy__mandatory_only.stderr.log"
+stdout_path = "experiments/algorithmic_compression_v2/results/control/V2-C-M01-S02/cardinality_greedy__mandatory_only.stdout.log"
+time_limit_enforced = true
+wall_clock_ns = "676663834"
+worker_exit_code = 0
+
+[worker]
+algorithm_id = "cardinality_greedy"
+algorithm_wall_clock_ns = 62521334
+blas_threads = 1
+candidate_accepted = true
+compile_time_seconds = 0.060533168
+evidence_class = "synthetic heuristic evidence plus exact feasibility check"
+finished_at_utc = "2026-08-27T18:13:54.581Z"
+gc_time_seconds = 0.0
+highs_threads = 1
+instance_id = "V2-C-M01-S02"
+instance_sha256 = "0815bfe3c338bfd9751217093f4be752ef7fede2e6839f56937ab2ed84eef08d"
+julia_allocated_bytes = 5234896
+julia_threads = 1
+preprocessing_variant = "mandatory_only"
+schema_version = "algorithmic-compression-final-worker-v1"
+selected_original_strategy_ids = ["inactive", "s0016"]
+selected_original_strategy_indices = [1, 17]
+started_at_utc = "2026-08-27T18:13:54.518Z"
+status = "SOLVED"
+worker_status = "COMPLETED"
+
+    [worker.exact_burden]
+    available = true
+    value = "3//2"
+
+    [worker.exact_feasibility_recheck]
+    available = true
+    burden_reconciled = true
+    closure_preserved = true
+    exact_burden = "3//2"
+    exact_feasible = true
+    frontier_preserved = true
+    mandatory_retained = true
+    tagged_coverage = true
+
+    [worker.full_preprocessing_sensitivity]
+    available = false
+
+    [worker.method_result]
+    algorithm = "cardinality_greedy"
+    exact_burden = "3//2"
+    greedy_burden_before_reverse_deletion = "3//2"
+    instance_sha256 = "0815bfe3c338bfd9751217093f4be752ef7fede2e6839f56937ab2ed84eef08d"
+    reverse_deletion_trace = []
+    schema_version = "journal-compression-greedy-solution-v1"
+    selected_strategy_ids = ["inactive", "s0016"]
+    status = "feasible_heuristic"
+    tie_declaration = "minimum exact score, then lowest original strategy index in canonical order"
+    uncovered_counts = [16, 0]
+
+        [worker.method_result.final_certificate]
+        burden_reconciled = true
+        closure_preserved = true
+        evidence_class = "exact finite heuristic computation"
+        exact_burden = "3//2"
+        frontier_preserved = true
+        lean_kernel_verified = false
+        mandatory_retained = true
+        search_complete = false
+        selected_strategy_indices = [1, 17]
+        solver_status_used = false
+        tagged_coverage = true
+
+        [worker.method_result.guarantee]
+        applies_to_exact_burden = false
+        declaration = "Cardinality greedy ignores unequal weights; no approximation guarantee for exact burden is asserted."
+        exact_harmonic_factor = "2436559//720720"
+        maximum_residual_set_cardinality = 16
+        primary_source_key = "Chvatal1979"
+
+        [[worker.method_result.step_trace]]
+        exact_score = "1//16"
+        exact_weight = "3//2"
+        newly_covered_count = 16
+        newly_covered_requirement_indices = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+        step_index = 1
+        strategy_id = "s0016"
+        strategy_index = 17
+        uncovered_after = 0
+        uncovered_before = 16

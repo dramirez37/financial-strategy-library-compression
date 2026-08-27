@@ -1,0 +1,74 @@
+instance_sha256 = "00387268d0e29959b0e576772790fce798d5290069cc8564cdbc4d2fbb7da26b"
+schema_version = "algorithmic-compression-generator-record-v1"
+status = "GENERATED"
+
+[[attempts]]
+accepted = true
+attempt_index = 1
+attempt_seed = "5339743395961678124"
+reasons = []
+
+[realized]
+active_coverage_density = "49//289"
+active_incidence_count = 49
+active_strategy_count = 17
+bundle_count = 0
+bundle_prevalence = "0//1"
+bundle_threshold = 13
+distinct_active_weights = ["1//1"]
+frontier_coverage_density = "1//1"
+frontier_module_rank_association = "0//1"
+frontier_row_count = 1
+mandatory_strategy_ids = ["inactive", "s0001"]
+maximum_active_weight = "1//1"
+maximum_carrier_count = 18
+mean_pairwise_module_jaccard = "3//68"
+minimum_active_weight = "1//1"
+minimum_carrier_count = 1
+module_coverage_density = "2//17"
+module_row_count = 16
+preprocessing_forced_strategy_ids = ["inactive", "s0001"]
+strategy_count = 18
+tagged_requirement_count = 17
+unique_carrier_count = 1
+unique_carrier_frequency = "1//17"
+unique_carrier_strategy_ids = ["s0001"]
+
+[requested]
+bundle_count_target = -1
+bundle_prevalence_level = "mechanism"
+coverage_density_level = "mechanism"
+coverage_density_target = "UNSPECIFIED"
+frontier_module_correlation_level = "mechanism"
+frontier_row_count = 1
+mandatory_strategy_count = 2
+module_overlap_level = "mechanism"
+module_row_count = 16
+strategy_count = 18
+tagged_requirement_count = 17
+unique_carrier_count_target = -1
+unique_carrier_frequency_level = "mechanism"
+weight_dispersion_level = "mechanism"
+
+[seed]
+execution_order_key = "2923403656419026656"
+generator_seed = "4146659193416115895"
+instance_id = "V2-C-M05-S02"
+mip_seed = "353996806"
+multistart_seed = "7202038732190124166"
+phase = "final"
+random_order_seed = "2150359211543549013"
+randomness_scope = "label_permutation_and_stochastic_algorithms;v2_eight_worker_domain"
+replicate_id = 1
+seed_id = "SEED-V2-C-M05-S02"
+
+[spec]
+analysis_included = true
+family = "adversarial"
+generator_id = "adversarial-mechanism-v1"
+instance_id = "V2-C-M05-S02"
+mechanism = "rare_mandatory_requirements"
+mechanism_parameter = "modules=16;rare_rows=1"
+phase = "final"
+replicate_id = 1
+seed_id = "SEED-V2-C-M05-S02"

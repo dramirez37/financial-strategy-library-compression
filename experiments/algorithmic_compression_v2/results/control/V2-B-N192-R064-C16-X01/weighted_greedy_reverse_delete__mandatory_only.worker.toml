@@ -1,0 +1,88 @@
+algorithm_id = "weighted_greedy_reverse_delete"
+algorithm_wall_clock_ns = 264736167
+blas_threads = 1
+candidate_accepted = true
+compile_time_seconds = 0.155824292
+evidence_class = "synthetic heuristic evidence plus exact feasibility check"
+finished_at_utc = "2026-08-27T18:22:31.019Z"
+gc_time_seconds = 0.0
+highs_threads = 1
+instance_id = "V2-B-N192-R064-C16-X01"
+instance_sha256 = "c86c2df0dde50b362bcf1bc4caabc8a2af538d5a98491e62418cf10c8375bcf4"
+julia_allocated_bytes = 16778944
+julia_threads = 1
+preprocessing_variant = "mandatory_only"
+schema_version = "algorithmic-compression-final-worker-v1"
+selected_original_strategy_ids = ["inactive", "s0002"]
+selected_original_strategy_indices = [1, 3]
+started_at_utc = "2026-08-27T18:22:30.754Z"
+status = "SOLVED"
+worker_status = "COMPLETED"
+
+[exact_burden]
+available = true
+value = "1//1"
+
+[exact_feasibility_recheck]
+available = true
+burden_reconciled = true
+closure_preserved = true
+exact_burden = "1//1"
+exact_feasible = true
+frontier_preserved = true
+mandatory_retained = true
+tagged_coverage = true
+
+[full_preprocessing_sensitivity]
+available = false
+
+[method_result]
+algorithm = "weighted_greedy_reverse_delete"
+exact_burden = "1//1"
+greedy_burden_before_reverse_deletion = "1//1"
+instance_sha256 = "c86c2df0dde50b362bcf1bc4caabc8a2af538d5a98491e62418cf10c8375bcf4"
+schema_version = "journal-compression-greedy-solution-v1"
+selected_strategy_ids = ["inactive", "s0002"]
+status = "feasible_heuristic"
+tie_declaration = "minimum exact score, then lowest original strategy index in canonical order"
+uncovered_counts = [64, 0]
+
+    [method_result.final_certificate]
+    burden_reconciled = true
+    closure_preserved = true
+    evidence_class = "exact finite heuristic computation"
+    exact_burden = "1//1"
+    frontier_preserved = true
+    lean_kernel_verified = false
+    mandatory_retained = true
+    search_complete = false
+    selected_strategy_indices = [1, 3]
+    solver_status_used = false
+    tagged_coverage = true
+
+    [method_result.guarantee]
+    applies_to_exact_burden = true
+    declaration = "Chvatal's positive-cost weighted-set-cover H(d) guarantee applies to exact burden."
+    exact_harmonic_factor = "623171679694215690971693339//131362987122535807501262400"
+    maximum_residual_set_cardinality = 64
+    primary_source_key = "Chvatal1979"
+
+    [[method_result.reverse_deletion_trace]]
+    exact_burden_after = "1//1"
+    exact_burden_before = "1//1"
+    examination_index = 1
+    removed = false
+    strategy_id = "s0002"
+    strategy_index = 3
+    uncovered_after_trial = 64
+
+    [[method_result.step_trace]]
+    exact_score = "1//64"
+    exact_weight = "1//1"
+    newly_covered_count = 64
+    newly_covered_requirement_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64]
+    step_index = 1
+    strategy_id = "s0002"
+    strategy_index = 3
+    uncovered_after = 0
+    uncovered_before = 64

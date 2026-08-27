@@ -1,0 +1,38 @@
+algorithm_execution_position = 16
+algorithm_id = "lightest_safe_first"
+analysis_included = true
+candidate_accepted = false
+experiment_id = "registered-algorithmic-compression-benchmark-v2"
+failure_code = "GENERATION_FAILED"
+family = "structured"
+generation_record_path = "experiments/algorithmic_compression_v2/results/generation/V2-B-N192-R032-C13-X02.toml"
+generation_record_sha256 = "dd0a311935864be3518db9236ea7a51dfd9151f793e27a4fae57985e08c597b0"
+generator_seed = "8511472001078352587"
+global_schedule_position = 264
+instance_id = "V2-B-N192-R032-C13-X02"
+lane_position = 33
+launch_wave = 33
+mechanism = "none"
+mip_seed = "863718186"
+multistart_seed = "4711242452804338798"
+preprocessing_variant = "mandatory_only"
+random_order_seed = "5369808403165286217"
+registered_memory_limit_bytes = "1610612736"
+registered_time_limit_seconds = 600.0
+replicate_id = 2
+schema_version = "algorithmic-compression-final-run-v2"
+seed_id = "SEED-V2-B-N192-R032-C13-X02"
+status = "GENERATION_FAILED"
+terminal = true
+worker_lane = 8
+
+[exact_feasibility_recheck]
+available = false
+
+[supervisor]
+memory_limit_enforced = true
+peak_memory_bytes = 0
+status = "NOT_STARTED_GENERATION_FAILED"
+time_limit_enforced = true
+wall_clock_ns = "0"
+worker_exit_code = -1

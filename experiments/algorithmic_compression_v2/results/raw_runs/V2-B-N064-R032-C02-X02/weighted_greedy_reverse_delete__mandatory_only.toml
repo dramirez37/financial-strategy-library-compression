@@ -1,0 +1,216 @@
+algorithm_execution_position = 10
+algorithm_id = "weighted_greedy_reverse_delete"
+analysis_included = true
+candidate_accepted = true
+experiment_id = "registered-algorithmic-compression-benchmark-v2"
+failure_code = ""
+family = "structured"
+generator_seed = "5740031147474984073"
+global_schedule_position = 1143
+instance_id = "V2-B-N064-R032-C02-X02"
+instance_sha256 = "868b73316c1729c75ae0a73e6f849624ed150cfe3281cc4e36bbf47326e53c68"
+lane_position = 143
+launch_wave = 143
+mechanism = "none"
+mip_seed = "718625312"
+multistart_seed = "7141870098495409678"
+preprocessing_variant = "mandatory_only"
+random_order_seed = "2368302165780774331"
+registered_memory_limit_bytes = "1610612736"
+registered_time_limit_seconds = 300.0
+replicate_id = 2
+schema_version = "algorithmic-compression-final-run-v2"
+seed_id = "SEED-V2-B-N064-R032-C02-X02"
+status = "SOLVED"
+terminal = true
+worker_lane = 7
+
+[supervisor]
+memory_limit_enforced = true
+peak_memory_bytes = 921141248
+status = "PROCESS_COMPLETED"
+stderr_path = "experiments/algorithmic_compression_v2/results/control/V2-B-N064-R032-C02-X02/weighted_greedy_reverse_delete__mandatory_only.stderr.log"
+stdout_path = "experiments/algorithmic_compression_v2/results/control/V2-B-N064-R032-C02-X02/weighted_greedy_reverse_delete__mandatory_only.stdout.log"
+time_limit_enforced = true
+wall_clock_ns = "583543291"
+worker_exit_code = 0
+
+[worker]
+algorithm_id = "weighted_greedy_reverse_delete"
+algorithm_wall_clock_ns = 78469375
+blas_threads = 1
+candidate_accepted = true
+compile_time_seconds = 0.071946667
+evidence_class = "synthetic heuristic evidence plus exact feasibility check"
+finished_at_utc = "2026-08-27T16:12:21.461Z"
+gc_time_seconds = 0.0
+highs_threads = 1
+instance_id = "V2-B-N064-R032-C02-X02"
+instance_sha256 = "868b73316c1729c75ae0a73e6f849624ed150cfe3281cc4e36bbf47326e53c68"
+julia_allocated_bytes = 6720008
+julia_threads = 1
+preprocessing_variant = "mandatory_only"
+schema_version = "algorithmic-compression-final-worker-v1"
+selected_original_strategy_ids = ["inactive", "s0013", "s0014", "s0020", "s0027", "s0054", "s0061"]
+selected_original_strategy_indices = [1, 14, 15, 21, 28, 55, 62]
+started_at_utc = "2026-08-27T16:12:21.383Z"
+status = "SOLVED"
+worker_status = "COMPLETED"
+
+    [worker.exact_burden]
+    available = true
+    value = "18//1"
+
+    [worker.exact_feasibility_recheck]
+    available = true
+    burden_reconciled = true
+    closure_preserved = true
+    exact_burden = "18//1"
+    exact_feasible = true
+    frontier_preserved = true
+    mandatory_retained = true
+    tagged_coverage = true
+
+    [worker.full_preprocessing_sensitivity]
+    available = false
+
+    [worker.method_result]
+    algorithm = "weighted_greedy_reverse_delete"
+    exact_burden = "18//1"
+    greedy_burden_before_reverse_deletion = "18//1"
+    instance_sha256 = "868b73316c1729c75ae0a73e6f849624ed150cfe3281cc4e36bbf47326e53c68"
+    schema_version = "journal-compression-greedy-solution-v1"
+    selected_strategy_ids = ["inactive", "s0013", "s0014", "s0020", "s0027", "s0054", "s0061"]
+    status = "feasible_heuristic"
+    tie_declaration = "minimum exact score, then lowest original strategy index in canonical order"
+    uncovered_counts = [32, 14, 7, 3, 2, 1, 0]
+
+        [worker.method_result.final_certificate]
+        burden_reconciled = true
+        closure_preserved = true
+        evidence_class = "exact finite heuristic computation"
+        exact_burden = "18//1"
+        frontier_preserved = true
+        lean_kernel_verified = false
+        mandatory_retained = true
+        search_complete = false
+        selected_strategy_indices = [1, 14, 15, 21, 28, 55, 62]
+        solver_status_used = false
+        tagged_coverage = true
+
+        [worker.method_result.guarantee]
+        applies_to_exact_burden = true
+        declaration = "Chvatal's positive-cost weighted-set-cover H(d) guarantee applies to exact burden."
+        exact_harmonic_factor = "14274301//4084080"
+        maximum_residual_set_cardinality = 18
+        primary_source_key = "Chvatal1979"
+
+        [[worker.method_result.reverse_deletion_trace]]
+        exact_burden_after = "18//1"
+        exact_burden_before = "18//1"
+        examination_index = 1
+        removed = false
+        strategy_id = "s0054"
+        strategy_index = 55
+        uncovered_after_trial = 1
+        [[worker.method_result.reverse_deletion_trace]]
+        exact_burden_after = "18//1"
+        exact_burden_before = "18//1"
+        examination_index = 2
+        removed = false
+        strategy_id = "s0061"
+        strategy_index = 62
+        uncovered_after_trial = 1
+        [[worker.method_result.reverse_deletion_trace]]
+        exact_burden_after = "18//1"
+        exact_burden_before = "18//1"
+        examination_index = 3
+        removed = false
+        strategy_id = "s0020"
+        strategy_index = 21
+        uncovered_after_trial = 1
+        [[worker.method_result.reverse_deletion_trace]]
+        exact_burden_after = "18//1"
+        exact_burden_before = "18//1"
+        examination_index = 4
+        removed = false
+        strategy_id = "s0014"
+        strategy_index = 15
+        uncovered_after_trial = 4
+        [[worker.method_result.reverse_deletion_trace]]
+        exact_burden_after = "18//1"
+        exact_burden_before = "18//1"
+        examination_index = 5
+        removed = false
+        strategy_id = "s0027"
+        strategy_index = 28
+        uncovered_after_trial = 1
+        [[worker.method_result.reverse_deletion_trace]]
+        exact_burden_after = "18//1"
+        exact_burden_before = "18//1"
+        examination_index = 6
+        removed = false
+        strategy_id = "s0013"
+        strategy_index = 14
+        uncovered_after_trial = 8
+
+        [[worker.method_result.step_trace]]
+        exact_score = "1//18"
+        exact_weight = "1//1"
+        newly_covered_count = 18
+        newly_covered_requirement_indices = [6, 7, 8, 9, 10, 11, 12, 13, 14, 22, 23, 24, 25, 26, 27, 28, 29, 30]
+        step_index = 1
+        strategy_id = "s0013"
+        strategy_index = 14
+        uncovered_after = 14
+        uncovered_before = 32
+        [[worker.method_result.step_trace]]
+        exact_score = "1//7"
+        exact_weight = "1//1"
+        newly_covered_count = 7
+        newly_covered_requirement_indices = [1, 5, 17, 18, 19, 20, 21]
+        step_index = 2
+        strategy_id = "s0027"
+        strategy_index = 28
+        uncovered_after = 7
+        uncovered_before = 14
+        [[worker.method_result.step_trace]]
+        exact_score = "1//2"
+        exact_weight = "2//1"
+        newly_covered_count = 4
+        newly_covered_requirement_indices = [15, 16, 31, 32]
+        step_index = 3
+        strategy_id = "s0014"
+        strategy_index = 15
+        uncovered_after = 3
+        uncovered_before = 7
+        [[worker.method_result.step_trace]]
+        exact_score = "2//1"
+        exact_weight = "2//1"
+        newly_covered_count = 1
+        newly_covered_requirement_indices = [3]
+        step_index = 4
+        strategy_id = "s0020"
+        strategy_index = 21
+        uncovered_after = 2
+        uncovered_before = 3
+        [[worker.method_result.step_trace]]
+        exact_score = "4//1"
+        exact_weight = "4//1"
+        newly_covered_count = 1
+        newly_covered_requirement_indices = [4]
+        step_index = 5
+        strategy_id = "s0061"
+        strategy_index = 62
+        uncovered_after = 1
+        uncovered_before = 2
+        [[worker.method_result.step_trace]]
+        exact_score = "8//1"
+        exact_weight = "8//1"
+        newly_covered_count = 1
+        newly_covered_requirement_indices = [2]
+        step_index = 6
+        strategy_id = "s0054"
+        strategy_index = 55
+        uncovered_after = 0
+        uncovered_before = 1

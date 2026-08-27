@@ -1,0 +1,183 @@
+algorithm_id = "weighted_greedy_reverse_delete"
+algorithm_wall_clock_ns = 1501867625
+blas_threads = 1
+candidate_accepted = true
+compile_time_seconds = 1.496235749
+evidence_class = "synthetic heuristic evidence plus exact feasibility check"
+finished_at_utc = "2026-08-27T17:16:45.544Z"
+gc_time_seconds = 0.0
+highs_threads = 1
+instance_id = "V2-C-M01-S01"
+instance_sha256 = "8d8e826c7722c5c65eb94a973cdabcb649b5d3bfb16b3060842bc9f2cb62f588"
+julia_allocated_bytes = 157598224
+julia_threads = 1
+preprocessing_variant = "full_fixed_point_then_reconstruct"
+schema_version = "algorithmic-compression-final-worker-v1"
+selected_original_strategy_ids = ["inactive", "s0003"]
+selected_original_strategy_indices = [1, 4]
+started_at_utc = "2026-08-27T17:16:44.042Z"
+status = "SOLVED"
+worker_status = "COMPLETED"
+
+[exact_burden]
+available = true
+value = "3//2"
+
+[exact_feasibility_recheck]
+available = true
+burden_reconciled = true
+closure_preserved = true
+exact_burden = "3//2"
+exact_feasible = true
+frontier_preserved = true
+mandatory_retained = true
+tagged_coverage = true
+
+[full_preprocessing_sensitivity]
+all_optimizer_identities_reconstructable = true
+available = true
+forced_strategy_indices = [1]
+objective_offset = "0//1"
+remaining_requirement_indices = [2, 3, 4, 5]
+remaining_strategy_indices = [2, 3, 4, 5, 6]
+
+    [full_preprocessing_sensitivity.audit]
+    all_optimizer_identities_reconstructable_by_declared_maps = true
+    arithmetic = "Rational{BigInt}"
+    feasible = true
+    fixed_point = true
+    fixed_point_iterations = 1
+    forced_strategy_ids = ["StrategyId(\"inactive\")"]
+    forced_strategy_indices = [1]
+    objective_offset = "0//1"
+    original_requirement_count = 5
+    original_variable_count = 6
+    reduced_requirement_count = 4
+    reduced_variable_count = 5
+    remaining_requirement_indices = [2, 3, 4, 5]
+    remaining_strategy_indices = [2, 3, 4, 5, 6]
+    requirement_representative = [0, 2, 3, 4, 5]
+    requirement_status = ["satisfied_by_mandatory", "remaining", "remaining", "remaining", "remaining"]
+    schema_version = "tagged-cover-preprocessing-audit-v1"
+    strategy_elimination_target = [0, 0, 0, 0, 0, 0]
+    strategy_status = ["mandatory_selected", "remaining", "remaining", "remaining", "remaining", "remaining"]
+
+        [full_preprocessing_sensitivity.audit.equal_coverage_reconstruction_map]
+
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 1
+        iteration = 0
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"inactive\")"]
+        removed_strategy_indices = [1]
+        rule = "mandatory_strategy"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+            action = "fixed_to_one"
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 2
+        iteration = 0
+        removed_requirement_indices = [1]
+        removed_requirements = ["FrontierRequirement(\"b0001\")"]
+        removed_strategy_ids = []
+        removed_strategy_indices = []
+        rule = "mandatory_strategy_propagation"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+
+        [full_preprocessing_sensitivity.audit.rule_counts.coverage_dominance]
+        applications = 0
+        requirements_removed = 0
+        variables_removed = 0
+
+        [full_preprocessing_sensitivity.audit.rule_counts.duplicate_coverage]
+        applications = 0
+        requirements_removed = 0
+        variables_removed = 0
+
+        [full_preprocessing_sensitivity.audit.rule_counts.empty_contribution]
+        applications = 0
+        requirements_removed = 0
+        variables_removed = 0
+
+        [full_preprocessing_sensitivity.audit.rule_counts.forced_selection_propagation]
+        applications = 0
+        requirements_removed = 0
+        variables_removed = 0
+
+        [full_preprocessing_sensitivity.audit.rule_counts.infeasible_requirement]
+        applications = 0
+        requirements_removed = 0
+        variables_removed = 0
+
+        [full_preprocessing_sensitivity.audit.rule_counts.mandatory_requirement_carrier]
+        applications = 0
+        requirements_removed = 0
+        variables_removed = 0
+
+        [full_preprocessing_sensitivity.audit.rule_counts.mandatory_strategy]
+        applications = 1
+        requirements_removed = 0
+        variables_removed = 1
+
+        [full_preprocessing_sensitivity.audit.rule_counts.mandatory_strategy_propagation]
+        applications = 1
+        requirements_removed = 1
+        variables_removed = 0
+
+        [full_preprocessing_sensitivity.audit.rule_counts.redundant_requirement]
+        applications = 0
+        requirements_removed = 0
+        variables_removed = 0
+
+[method_result]
+algorithm = "weighted_greedy_reverse_delete"
+exact_burden = "3//2"
+greedy_burden_before_reverse_deletion = "3//2"
+instance_sha256 = "8d8e826c7722c5c65eb94a973cdabcb649b5d3bfb16b3060842bc9f2cb62f588"
+schema_version = "journal-compression-greedy-solution-v1"
+selected_strategy_ids = ["inactive", "s0003"]
+status = "feasible_heuristic"
+tie_declaration = "minimum exact score, then lowest original strategy index in canonical order"
+uncovered_counts = [4, 0]
+
+    [method_result.final_certificate]
+    burden_reconciled = true
+    closure_preserved = true
+    evidence_class = "exact finite heuristic computation"
+    exact_burden = "3//2"
+    frontier_preserved = true
+    lean_kernel_verified = false
+    mandatory_retained = true
+    search_complete = false
+    selected_strategy_indices = [1, 4]
+    solver_status_used = false
+    tagged_coverage = true
+
+    [method_result.guarantee]
+    applies_to_exact_burden = true
+    declaration = "Chvatal's positive-cost weighted-set-cover H(d) guarantee applies to exact burden."
+    exact_harmonic_factor = "25//12"
+    maximum_residual_set_cardinality = 4
+    primary_source_key = "Chvatal1979"
+
+    [[method_result.reverse_deletion_trace]]
+    exact_burden_after = "3//2"
+    exact_burden_before = "3//2"
+    examination_index = 1
+    removed = false
+    strategy_id = "s0003"
+    strategy_index = 4
+    uncovered_after_trial = 4
+
+    [[method_result.step_trace]]
+    exact_score = "3//8"
+    exact_weight = "3//2"
+    newly_covered_count = 4
+    newly_covered_requirement_indices = [2, 3, 4, 5]
+    step_index = 1
+    strategy_id = "s0003"
+    strategy_index = 4
+    uncovered_after = 0
+    uncovered_before = 4

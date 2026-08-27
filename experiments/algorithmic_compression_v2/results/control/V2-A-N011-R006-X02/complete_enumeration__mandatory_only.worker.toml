@@ -1,0 +1,88 @@
+algorithm_id = "complete_enumeration"
+algorithm_wall_clock_ns = 208291375
+blas_threads = 1
+candidate_accepted = true
+compile_time_seconds = 0.20533775
+evidence_class = "exact finite computation"
+finished_at_utc = "2026-08-27T16:40:21.096Z"
+gc_time_seconds = 0.0
+highs_threads = 1
+instance_id = "V2-A-N011-R006-X02"
+instance_sha256 = "2a5992189be12696a8dfaf8c4c81bf50ae5ea639ddcb0d10e62f705b819ff7dc"
+julia_allocated_bytes = 21061264
+julia_threads = 1
+preprocessing_variant = "mandatory_only"
+schema_version = "algorithmic-compression-final-worker-v1"
+selected_original_strategy_ids = ["inactive", "s0008"]
+selected_original_strategy_indices = [1, 9]
+started_at_utc = "2026-08-27T16:40:20.888Z"
+status = "SOLVED"
+worker_status = "COMPLETED"
+
+[exact_burden]
+available = true
+value = "4//1"
+
+[exact_feasibility_recheck]
+available = true
+burden_reconciled = true
+closure_preserved = true
+exact_burden = "4//1"
+exact_feasible = true
+frontier_preserved = true
+mandatory_retained = true
+tagged_coverage = true
+
+[full_preprocessing_sensitivity]
+available = false
+
+[method_result]
+algorithm = "complete_enumeration"
+arithmetic = "Rational{BigInt}"
+evidence_class = "exact finite computation"
+exact_burden = "4//1"
+instance_sha256 = "2a5992189be12696a8dfaf8c4c81bf50ae5ea639ddcb0d10e62f705b819ff7dc"
+optimal_selection_count_returned = 1
+schema_version = "journal-compression-exact-solution-v1"
+search_complete = true
+selected_strategy_id_kinds = ["string", "string"]
+selected_strategy_id_values = ["inactive", "s0008"]
+selected_strategy_indices = [1, 9]
+solver_status_used = false
+status = "exact_optimum"
+tie_declaration = "all exact optimizer identities retained"
+ties_complete = true
+
+    [method_result.counters]
+    candidate_selections_evaluated = "1024"
+    final_reachable_states = "0"
+    integer_encoding = "decimal BigInt string"
+    state_layer_pairs_visited = "1024"
+    transitions_evaluated = "0"
+
+    [[method_result.optimal_selections]]
+    burden_reconciled = true
+    closure_preserved = true
+    exact_burden = "4//1"
+    frontier_preserved = true
+    mandatory_retained = true
+    selected_strategy_indices = [1, 9]
+    selection_index = 1
+    tagged_coverage = true
+
+    [method_result.preprocessing]
+    all_optimizer_identities_reconstructable = true
+    exact_objective_offset = "0//1"
+    forced_strategy_indices = [1]
+    input_preprocessing_reused = false
+    original_requirement_count = 6
+    original_strategy_count = 11
+    reduced_requirement_count = 6
+    reduced_strategy_count = 10
+
+    [method_result.runtime_ns]
+    evidence_class = "single-run wall-clock measurement"
+    preprocessing = 17680584
+    reconstruction_and_certification = 184908167
+    search = 1417792
+    total = 204006625

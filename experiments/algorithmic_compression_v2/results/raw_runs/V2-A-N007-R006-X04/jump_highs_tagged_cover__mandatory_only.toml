@@ -1,0 +1,30 @@
+algorithm_id = "jump_highs_tagged_cover"
+analysis_included = true
+candidate_accepted = false
+experiment_id = "registered-algorithmic-compression-benchmark-v2"
+failure_code = "PROCESS_INTERRUPTED"
+family = "small_exact"
+global_schedule_position = 35
+instance_id = "V2-A-N007-R006-X04"
+lane_position = 5
+launch_wave = 5
+mechanism = "none"
+preprocessing_variant = "mandatory_only"
+registered_memory_limit_bytes = "1610612736"
+registered_time_limit_seconds = 300.0
+schema_version = "algorithmic-compression-final-run-v2"
+status = "PROCESS_INTERRUPTED"
+terminal = true
+worker_lane = 3
+
+[exact_feasibility_recheck]
+available = false
+
+[supervisor]
+memory_limit_enforced = true
+peak_memory_bytes = 0
+stderr_path = "experiments/algorithmic_compression_v2/results/control/V2-A-N007-R006-X04/jump_highs_tagged_cover__mandatory_only.stderr.log"
+stdout_path = "experiments/algorithmic_compression_v2/results/control/V2-A-N007-R006-X04/jump_highs_tagged_cover__mandatory_only.stdout.log"
+time_limit_enforced = true
+wall_clock_ns = "0"
+worker_exit_code = -1

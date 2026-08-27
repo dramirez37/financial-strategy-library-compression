@@ -1,0 +1,140 @@
+algorithm_id = "cardinality_greedy"
+algorithm_wall_clock_ns = 81388750
+blas_threads = 1
+candidate_accepted = true
+compile_time_seconds = 0.079208209
+evidence_class = "synthetic heuristic evidence plus exact feasibility check"
+finished_at_utc = "2026-08-27T18:26:09.055Z"
+gc_time_seconds = 0.0
+highs_threads = 1
+instance_id = "V2-C-M04-S02"
+instance_sha256 = "7188ada9deb6c6c07d72588c3ecffeef7e4f54b564f83aaa6957a280f0ab1ff2"
+julia_allocated_bytes = 5342320
+julia_threads = 1
+preprocessing_variant = "mandatory_only"
+schema_version = "algorithmic-compression-final-worker-v1"
+selected_original_strategy_ids = ["inactive", "s0002", "s0003", "s0007", "s0010", "s0014", "s0016", "s0020"]
+selected_original_strategy_indices = [1, 3, 4, 8, 11, 15, 17, 21]
+started_at_utc = "2026-08-27T18:26:08.974Z"
+status = "SOLVED"
+worker_status = "COMPLETED"
+
+[exact_burden]
+available = true
+value = "9//1"
+
+[exact_feasibility_recheck]
+available = true
+burden_reconciled = true
+closure_preserved = true
+exact_burden = "9//1"
+exact_feasible = true
+frontier_preserved = true
+mandatory_retained = true
+tagged_coverage = true
+
+[full_preprocessing_sensitivity]
+available = false
+
+[method_result]
+algorithm = "cardinality_greedy"
+exact_burden = "9//1"
+greedy_burden_before_reverse_deletion = "9//1"
+instance_sha256 = "7188ada9deb6c6c07d72588c3ecffeef7e4f54b564f83aaa6957a280f0ab1ff2"
+reverse_deletion_trace = []
+schema_version = "journal-compression-greedy-solution-v1"
+selected_strategy_ids = ["inactive", "s0002", "s0003", "s0007", "s0010", "s0014", "s0016", "s0020"]
+status = "feasible_heuristic"
+tie_declaration = "minimum exact score, then lowest original strategy index in canonical order"
+uncovered_counts = [12, 10, 8, 6, 4, 2, 1, 0]
+
+    [method_result.final_certificate]
+    burden_reconciled = true
+    closure_preserved = true
+    evidence_class = "exact finite heuristic computation"
+    exact_burden = "9//1"
+    frontier_preserved = true
+    lean_kernel_verified = false
+    mandatory_retained = true
+    search_complete = false
+    selected_strategy_indices = [1, 3, 4, 8, 11, 15, 17, 21]
+    solver_status_used = false
+    tagged_coverage = true
+
+    [method_result.guarantee]
+    applies_to_exact_burden = false
+    declaration = "Cardinality greedy ignores unequal weights; no approximation guarantee for exact burden is asserted."
+    exact_harmonic_factor = "3//2"
+    maximum_residual_set_cardinality = 2
+    primary_source_key = "Chvatal1979"
+
+    [[method_result.step_trace]]
+    exact_score = "1//2"
+    exact_weight = "1//1"
+    newly_covered_count = 2
+    newly_covered_requirement_indices = [9, 10]
+    step_index = 1
+    strategy_id = "s0002"
+    strategy_index = 3
+    uncovered_after = 10
+    uncovered_before = 12
+    [[method_result.step_trace]]
+    exact_score = "1//2"
+    exact_weight = "1//1"
+    newly_covered_count = 2
+    newly_covered_requirement_indices = [2, 13]
+    step_index = 2
+    strategy_id = "s0003"
+    strategy_index = 4
+    uncovered_after = 8
+    uncovered_before = 10
+    [[method_result.step_trace]]
+    exact_score = "1//2"
+    exact_weight = "1//1"
+    newly_covered_count = 2
+    newly_covered_requirement_indices = [3, 4]
+    step_index = 3
+    strategy_id = "s0010"
+    strategy_index = 11
+    uncovered_after = 6
+    uncovered_before = 8
+    [[method_result.step_trace]]
+    exact_score = "1//2"
+    exact_weight = "1//1"
+    newly_covered_count = 2
+    newly_covered_requirement_indices = [6, 7]
+    step_index = 4
+    strategy_id = "s0014"
+    strategy_index = 15
+    uncovered_after = 4
+    uncovered_before = 6
+    [[method_result.step_trace]]
+    exact_score = "1//2"
+    exact_weight = "1//1"
+    newly_covered_count = 2
+    newly_covered_requirement_indices = [11, 12]
+    step_index = 5
+    strategy_id = "s0020"
+    strategy_index = 21
+    uncovered_after = 2
+    uncovered_before = 4
+    [[method_result.step_trace]]
+    exact_score = "1//1"
+    exact_weight = "2//1"
+    newly_covered_count = 1
+    newly_covered_requirement_indices = [8]
+    step_index = 6
+    strategy_id = "s0007"
+    strategy_index = 8
+    uncovered_after = 1
+    uncovered_before = 2
+    [[method_result.step_trace]]
+    exact_score = "1//1"
+    exact_weight = "2//1"
+    newly_covered_count = 1
+    newly_covered_requirement_indices = [5]
+    step_index = 7
+    strategy_id = "s0016"
+    strategy_index = 17
+    uncovered_after = 0
+    uncovered_before = 1

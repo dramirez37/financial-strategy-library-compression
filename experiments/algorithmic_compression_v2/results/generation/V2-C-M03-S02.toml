@@ -1,0 +1,74 @@
+instance_sha256 = "3aef8d884afa863b7cb9e02195e9110b3781c4d9978d220094ebe7bde0a97ff9"
+schema_version = "algorithmic-compression-generator-record-v1"
+status = "GENERATED"
+
+[[attempts]]
+accepted = true
+attempt_index = 1
+attempt_seed = "2990050941776143238"
+reasons = []
+
+[realized]
+active_coverage_density = "1//1"
+active_incidence_count = 544
+active_strategy_count = 32
+bundle_count = 32
+bundle_prevalence = "1//1"
+bundle_threshold = 13
+distinct_active_weights = ["1//1", "2//1"]
+frontier_coverage_density = "1//1"
+frontier_module_rank_association = "0//1"
+frontier_row_count = 1
+mandatory_strategy_ids = ["inactive"]
+maximum_active_weight = "2//1"
+maximum_carrier_count = 33
+mean_pairwise_module_jaccard = "1//1"
+minimum_active_weight = "1//1"
+minimum_carrier_count = 32
+module_coverage_density = "1//1"
+module_row_count = 16
+preprocessing_forced_strategy_ids = ["inactive", "s0003"]
+strategy_count = 33
+tagged_requirement_count = 17
+unique_carrier_count = 0
+unique_carrier_frequency = "0//1"
+unique_carrier_strategy_ids = []
+
+[requested]
+bundle_count_target = -1
+bundle_prevalence_level = "mechanism"
+coverage_density_level = "mechanism"
+coverage_density_target = "UNSPECIFIED"
+frontier_module_correlation_level = "mechanism"
+frontier_row_count = 1
+mandatory_strategy_count = 1
+module_overlap_level = "mechanism"
+module_row_count = 16
+strategy_count = 33
+tagged_requirement_count = 17
+unique_carrier_count_target = -1
+unique_carrier_frequency_level = "mechanism"
+weight_dispersion_level = "mechanism"
+
+[seed]
+execution_order_key = "2287814754636788951"
+generator_seed = "7686378815241102986"
+instance_id = "V2-C-M03-S02"
+mip_seed = "589035514"
+multistart_seed = "1364280434394046823"
+phase = "final"
+random_order_seed = "2696214110229134077"
+randomness_scope = "label_permutation_and_stochastic_algorithms;v2_eight_worker_domain"
+replicate_id = 1
+seed_id = "SEED-V2-C-M03-S02"
+
+[spec]
+analysis_included = true
+family = "adversarial"
+generator_id = "adversarial-mechanism-v1"
+instance_id = "V2-C-M03-S02"
+mechanism = "dense_duplicate_coverage"
+mechanism_parameter = "duplicates=32;modules=16"
+phase = "final"
+replicate_id = 1
+seed_id = "SEED-V2-C-M03-S02"

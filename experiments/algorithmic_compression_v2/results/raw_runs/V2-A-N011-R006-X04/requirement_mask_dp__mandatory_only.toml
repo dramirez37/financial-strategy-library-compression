@@ -1,0 +1,126 @@
+algorithm_execution_position = 2
+algorithm_id = "requirement_mask_dp"
+analysis_included = true
+candidate_accepted = true
+experiment_id = "registered-algorithmic-compression-benchmark-v2"
+failure_code = ""
+family = "small_exact"
+generator_seed = "3765210692698999603"
+global_schedule_position = 3072
+instance_id = "V2-A-N011-R006-X04"
+instance_sha256 = "4c62f542f0719e23ea2b55c563c3faaea571a331abc4b2167b358d2b2750e079"
+lane_position = 384
+launch_wave = 384
+mechanism = "none"
+mip_seed = "1481755879"
+multistart_seed = "3224407883017867976"
+preprocessing_variant = "mandatory_only"
+random_order_seed = "2592500411759667977"
+registered_memory_limit_bytes = "1610612736"
+registered_time_limit_seconds = 300.0
+replicate_id = 4
+schema_version = "algorithmic-compression-final-run-v2"
+seed_id = "SEED-V2-A-N011-R006-X04"
+status = "SOLVED"
+terminal = true
+worker_lane = 8
+
+[supervisor]
+memory_limit_enforced = true
+peak_memory_bytes = 1070858240
+status = "PROCESS_COMPLETED"
+stderr_path = "experiments/algorithmic_compression_v2/results/control/V2-A-N011-R006-X04/requirement_mask_dp__mandatory_only.stderr.log"
+stdout_path = "experiments/algorithmic_compression_v2/results/control/V2-A-N011-R006-X04/requirement_mask_dp__mandatory_only.stdout.log"
+time_limit_enforced = true
+wall_clock_ns = "428590125"
+worker_exit_code = 0
+
+[worker]
+algorithm_id = "requirement_mask_dp"
+algorithm_wall_clock_ns = 115607667
+blas_threads = 1
+candidate_accepted = true
+compile_time_seconds = 0.113613127
+evidence_class = "exact finite computation"
+finished_at_utc = "2026-08-27T17:49:45.574Z"
+gc_time_seconds = 0.0
+highs_threads = 1
+instance_id = "V2-A-N011-R006-X04"
+instance_sha256 = "4c62f542f0719e23ea2b55c563c3faaea571a331abc4b2167b358d2b2750e079"
+julia_allocated_bytes = 15688784
+julia_threads = 1
+preprocessing_variant = "mandatory_only"
+schema_version = "algorithmic-compression-final-worker-v1"
+selected_original_strategy_ids = ["inactive", "s0003", "s0006", "s0009"]
+selected_original_strategy_indices = [1, 4, 7, 10]
+started_at_utc = "2026-08-27T17:49:45.459Z"
+status = "SOLVED"
+worker_status = "COMPLETED"
+
+    [worker.exact_burden]
+    available = true
+    value = "7//1"
+
+    [worker.exact_feasibility_recheck]
+    available = true
+    burden_reconciled = true
+    closure_preserved = true
+    exact_burden = "7//1"
+    exact_feasible = true
+    frontier_preserved = true
+    mandatory_retained = true
+    tagged_coverage = true
+
+    [worker.full_preprocessing_sensitivity]
+    available = false
+
+    [worker.method_result]
+    algorithm = "requirement_mask_dp"
+    arithmetic = "Rational{BigInt}"
+    evidence_class = "exact finite computation"
+    exact_burden = "7//1"
+    instance_sha256 = "4c62f542f0719e23ea2b55c563c3faaea571a331abc4b2167b358d2b2750e079"
+    optimal_selection_count_returned = 1
+    schema_version = "journal-compression-exact-solution-v1"
+    search_complete = true
+    selected_strategy_id_kinds = ["string", "string", "string", "string"]
+    selected_strategy_id_values = ["inactive", "s0003", "s0006", "s0009"]
+    selected_strategy_indices = [1, 4, 7, 10]
+    solver_status_used = false
+    status = "exact_optimum"
+    tie_declaration = "all exact optimizer identities retained"
+    ties_complete = true
+
+        [worker.method_result.counters]
+        candidate_selections_evaluated = "0"
+        final_reachable_states = "10"
+        integer_encoding = "decimal BigInt string"
+        state_layer_pairs_visited = "57"
+        transitions_evaluated = "114"
+
+        [[worker.method_result.optimal_selections]]
+        burden_reconciled = true
+        closure_preserved = true
+        exact_burden = "7//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_strategy_indices = [1, 4, 7, 10]
+        selection_index = 1
+        tagged_coverage = true
+
+        [worker.method_result.preprocessing]
+        all_optimizer_identities_reconstructable = true
+        exact_objective_offset = "0//1"
+        forced_strategy_indices = [1]
+        input_preprocessing_reused = false
+        original_requirement_count = 6
+        original_strategy_count = 11
+        reduced_requirement_count = 6
+        reduced_strategy_count = 10
+
+        [worker.method_result.runtime_ns]
+        evidence_class = "single-run wall-clock measurement"
+        preprocessing = 19407292
+        reconstruction_and_certification = 91444125
+        search = 288916
+        total = 111140375

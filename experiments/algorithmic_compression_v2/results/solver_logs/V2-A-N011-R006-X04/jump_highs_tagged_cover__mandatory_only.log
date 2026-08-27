@@ -1,0 +1,52 @@
+Running HiGHS 1.15.1 (git hash: 04024d701f): Copyright (c) 2026 under MIT licence terms
+Includes third-party software components, see THIRD_PARTY_NOTICES.md for full details
+Using BLAS: Apple Accelerate 
+MIP has 6 rows; 10 cols; 23 nonzeros; 10 integer variables (10 binary)
+Coefficient ranges:
+  Matrix  [1e+00, 1e+00]
+  Cost    [1e+00, 2e+01]
+  Bound   [1e+00, 1e+00]
+  RHS     [1e+00, 1e+00]
+Presolving model
+2 rows, 3 cols, 4 nonzeros 0s
+2 rows, 3 cols, 4 nonzeros 0s
+Presolve reductions: rows 2(-4); columns 3(-7); nonzeros 4(-19) 
+Objective function is integral with scale 0.5
+
+Solving MIP model with:
+   2 rows
+   3 cols (3 binary, 0 integer, 0 implied int., 0 continuous, 0 domain fixed)
+   4 nonzeros
+   Thread count 1 (of 10 threads). Using 1 max workers. Parallel search off
+
+Src: B => Branching; C => Central rounding; F => Feasibility pump; H => Heuristic;
+     I => Shifting; J => Feasibility jump; L => Sub-MIP; P => Empty MIP; R => Randomized rounding;
+     S => Solve LP; T => Evaluate node; U => Unbounded; X => User solution; Y => HiGHS solution;
+     Z => ZI Round; l => Trivial lower; p => Trivial point; u => Trivial upper; z => Trivial zero
+
+        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work      
+Src  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time
+
+ u       0       0         0   0.00%   -inf            15                 Large        0      0      0         0     0.0s
+ J       0       0         0 100.00%   -inf            7                  Large        0      0      0         0     0.0s
+         1       0         1 100.00%   7               7                  0.00%        0      0      0         0     0.0s
+
+Solving report
+  Status            Optimal
+  Primal bound      7
+  Dual bound        7
+  Gap               0%
+  P-D integral      1.49996152946e-06
+  Solution status   feasible
+                    7 (objective)
+                    0 (bound viol.)
+                    0 (int. viol.)
+                    0 (row viol.)
+  Timing            0.01
+                    0.00 (Presolve)
+                    0.01 (Solve)
+                    0.00 (Postsolve)
+  Max sub-MIP depth 0
+  Nodes             1
+  Repair LPs        0
+  LP iterations     0

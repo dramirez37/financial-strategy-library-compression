@@ -1,0 +1,30 @@
+algorithm_id = "requirement_mask_dp"
+analysis_included = true
+candidate_accepted = false
+experiment_id = "registered-algorithmic-compression-benchmark-v2"
+failure_code = "PROCESS_INTERRUPTED"
+family = "small_exact"
+global_schedule_position = 33
+instance_id = "V2-A-N007-R006-X04"
+lane_position = 5
+launch_wave = 5
+mechanism = "none"
+preprocessing_variant = "full_fixed_point"
+registered_memory_limit_bytes = "1610612736"
+registered_time_limit_seconds = 300.0
+schema_version = "algorithmic-compression-final-run-v2"
+status = "PROCESS_INTERRUPTED"
+terminal = true
+worker_lane = 1
+
+[exact_feasibility_recheck]
+available = false
+
+[supervisor]
+memory_limit_enforced = true
+peak_memory_bytes = 0
+stderr_path = "experiments/algorithmic_compression_v2/results/control/V2-A-N007-R006-X04/requirement_mask_dp__full_fixed_point.stderr.log"
+stdout_path = "experiments/algorithmic_compression_v2/results/control/V2-A-N007-R006-X04/requirement_mask_dp__full_fixed_point.stdout.log"
+time_limit_enforced = true
+wall_clock_ns = "0"
+worker_exit_code = -1

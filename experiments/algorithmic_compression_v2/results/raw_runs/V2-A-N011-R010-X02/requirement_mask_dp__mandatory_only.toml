@@ -1,0 +1,126 @@
+algorithm_execution_position = 25
+algorithm_id = "requirement_mask_dp"
+analysis_included = true
+candidate_accepted = true
+experiment_id = "registered-algorithmic-compression-benchmark-v2"
+failure_code = ""
+family = "small_exact"
+generator_seed = "7371111874275914735"
+global_schedule_position = 904
+instance_id = "V2-A-N011-R010-X02"
+instance_sha256 = "7f0b633d8aa6d657deb0c272f041cef80911b07ed7f4d5e277c7f4445d3d29ce"
+lane_position = 113
+launch_wave = 113
+mechanism = "none"
+mip_seed = "640518209"
+multistart_seed = "5671352939177686556"
+preprocessing_variant = "mandatory_only"
+random_order_seed = "760946256433986275"
+registered_memory_limit_bytes = "1610612736"
+registered_time_limit_seconds = 300.0
+replicate_id = 2
+schema_version = "algorithmic-compression-final-run-v2"
+seed_id = "SEED-V2-A-N011-R010-X02"
+status = "SOLVED"
+terminal = true
+worker_lane = 8
+
+[supervisor]
+memory_limit_enforced = true
+peak_memory_bytes = 1024770048
+status = "PROCESS_COMPLETED"
+stderr_path = "experiments/algorithmic_compression_v2/results/control/V2-A-N011-R010-X02/requirement_mask_dp__mandatory_only.stderr.log"
+stdout_path = "experiments/algorithmic_compression_v2/results/control/V2-A-N011-R010-X02/requirement_mask_dp__mandatory_only.stdout.log"
+time_limit_enforced = true
+wall_clock_ns = "729611667"
+worker_exit_code = 0
+
+[worker]
+algorithm_id = "requirement_mask_dp"
+algorithm_wall_clock_ns = 124159750
+blas_threads = 1
+candidate_accepted = true
+compile_time_seconds = 0.120695083
+evidence_class = "exact finite computation"
+finished_at_utc = "2026-08-27T15:53:00.292Z"
+gc_time_seconds = 0.0
+highs_threads = 1
+instance_id = "V2-A-N011-R010-X02"
+instance_sha256 = "7f0b633d8aa6d657deb0c272f041cef80911b07ed7f4d5e277c7f4445d3d29ce"
+julia_allocated_bytes = 17557000
+julia_threads = 1
+preprocessing_variant = "mandatory_only"
+schema_version = "algorithmic-compression-final-worker-v1"
+selected_original_strategy_ids = ["inactive", "s0010"]
+selected_original_strategy_indices = [1, 11]
+started_at_utc = "2026-08-27T15:53:00.168Z"
+status = "SOLVED"
+worker_status = "COMPLETED"
+
+    [worker.exact_burden]
+    available = true
+    value = "8//1"
+
+    [worker.exact_feasibility_recheck]
+    available = true
+    burden_reconciled = true
+    closure_preserved = true
+    exact_burden = "8//1"
+    exact_feasible = true
+    frontier_preserved = true
+    mandatory_retained = true
+    tagged_coverage = true
+
+    [worker.full_preprocessing_sensitivity]
+    available = false
+
+    [worker.method_result]
+    algorithm = "requirement_mask_dp"
+    arithmetic = "Rational{BigInt}"
+    evidence_class = "exact finite computation"
+    exact_burden = "8//1"
+    instance_sha256 = "7f0b633d8aa6d657deb0c272f041cef80911b07ed7f4d5e277c7f4445d3d29ce"
+    optimal_selection_count_returned = 1
+    schema_version = "journal-compression-exact-solution-v1"
+    search_complete = true
+    selected_strategy_id_kinds = ["string", "string"]
+    selected_strategy_id_values = ["inactive", "s0010"]
+    selected_strategy_indices = [1, 11]
+    solver_status_used = false
+    status = "exact_optimum"
+    tie_declaration = "all exact optimizer identities retained"
+    ties_complete = true
+
+        [worker.method_result.counters]
+        candidate_selections_evaluated = "0"
+        final_reachable_states = "16"
+        integer_encoding = "decimal BigInt string"
+        state_layer_pairs_visited = "36"
+        transitions_evaluated = "72"
+
+        [[worker.method_result.optimal_selections]]
+        burden_reconciled = true
+        closure_preserved = true
+        exact_burden = "8//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_strategy_indices = [1, 11]
+        selection_index = 1
+        tagged_coverage = true
+
+        [worker.method_result.preprocessing]
+        all_optimizer_identities_reconstructable = true
+        exact_objective_offset = "0//1"
+        forced_strategy_indices = [1]
+        input_preprocessing_reused = false
+        original_requirement_count = 10
+        original_strategy_count = 11
+        reduced_requirement_count = 10
+        reduced_strategy_count = 10
+
+        [worker.method_result.runtime_ns]
+        evidence_class = "single-run wall-clock measurement"
+        preprocessing = 26918917
+        reconstruction_and_certification = 90959792
+        search = 1787375
+        total = 119666125

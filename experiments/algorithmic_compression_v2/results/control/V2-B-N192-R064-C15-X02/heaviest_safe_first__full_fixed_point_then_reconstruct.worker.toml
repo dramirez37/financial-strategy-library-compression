@@ -1,0 +1,1917 @@
+algorithm_id = "heaviest_safe_first"
+algorithm_wall_clock_ns = 14722977417
+blas_threads = 1
+candidate_accepted = true
+compile_time_seconds = 14.659450219
+evidence_class = "synthetic rechecked-deletion evidence plus exact feasibility check"
+finished_at_utc = "2026-08-27T17:15:28.317Z"
+gc_time_seconds = 0.210282625
+highs_threads = 1
+instance_id = "V2-B-N192-R064-C15-X02"
+instance_sha256 = "57e08d9323d33e14063d036a59afecdf46f0b1bb88c56903ef785663042c6726"
+julia_allocated_bytes = 934797256
+julia_threads = 1
+preprocessing_variant = "full_fixed_point_then_reconstruct"
+schema_version = "algorithmic-compression-final-worker-v1"
+selected_original_strategy_ids = ["inactive", "s0006", "s0034", "s0047", "s0066", "s0071", "s0093", "s0120", "s0165", "s0180"]
+selected_original_strategy_indices = [1, 7, 35, 48, 67, 72, 94, 121, 166, 181]
+started_at_utc = "2026-08-27T17:15:13.594Z"
+status = "SOLVED"
+worker_status = "COMPLETED"
+
+[exact_burden]
+available = true
+value = "41//1"
+
+[exact_feasibility_recheck]
+available = true
+burden_reconciled = true
+closure_preserved = true
+exact_burden = "41//1"
+exact_feasible = true
+frontier_preserved = true
+mandatory_retained = true
+tagged_coverage = true
+
+[full_preprocessing_sensitivity]
+all_optimizer_identities_reconstructable = true
+available = true
+forced_strategy_indices = [1, 48, 35, 121, 72, 166, 181, 94, 67, 7]
+objective_offset = "41//1"
+remaining_requirement_indices = []
+remaining_strategy_indices = []
+
+    [full_preprocessing_sensitivity.audit]
+    all_optimizer_identities_reconstructable_by_declared_maps = true
+    arithmetic = "Rational{BigInt}"
+    feasible = true
+    fixed_point = true
+    fixed_point_iterations = 163
+    forced_strategy_ids = ["StrategyId(\"inactive\")", "StrategyId(\"s0047\")", "StrategyId(\"s0034\")", "StrategyId(\"s0120\")", "StrategyId(\"s0071\")", "StrategyId(\"s0165\")", "StrategyId(\"s0180\")", "StrategyId(\"s0093\")", "StrategyId(\"s0066\")", "StrategyId(\"s0006\")"]
+    forced_strategy_indices = [1, 48, 35, 121, 72, 166, 181, 94, 67, 7]
+    objective_offset = "41//1"
+    original_requirement_count = 64
+    original_variable_count = 192
+    reduced_requirement_count = 0
+    reduced_variable_count = 0
+    remaining_requirement_indices = []
+    remaining_strategy_indices = []
+    requirement_representative = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 20, 20, 20, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 20, 20, 0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 0, 20, 20, 0, 0, 0]
+    requirement_status = ["satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "duplicate_requirement", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "duplicate_requirement", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "duplicate_requirement", "duplicate_requirement", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "duplicate_requirement", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "duplicate_requirement", "duplicate_requirement", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection"]
+    schema_version = "tagged-cover-preprocessing-audit-v1"
+    strategy_elimination_target = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 7, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 7, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 7, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 7, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 7, 0, 7, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 7, 0, 0, 7, 0, 0, 0, 7, 0, 0, 0, 7, 7, 0, 7, 7, 0]
+    strategy_status = ["mandatory_selected", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "forced_selected", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "duplicate_heavier", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "duplicate_equal_weight", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "duplicate_heavier", "duplicate_heavier", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "forced_selected", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "duplicate_heavier", "empty_contribution", "duplicate_heavier", "empty_contribution", "duplicate_equal_weight", "empty_contribution", "empty_contribution", "empty_contribution", "forced_selected", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "duplicate_heavier", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "duplicate_heavier", "empty_contribution", "empty_contribution", "forced_selected", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "forced_selected", "empty_contribution", "duplicate_heavier", "empty_contribution", "empty_contribution", "empty_contribution", "duplicate_heavier", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "duplicate_heavier", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "forced_selected", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "duplicate_heavier", "duplicate_heavier", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "duplicate_heavier", "duplicate_heavier", "empty_contribution", "empty_contribution", "forced_selected", "empty_contribution", "duplicate_heavier", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "duplicate_heavier", "empty_contribution", "duplicate_heavier", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "duplicate_equal_weight", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "duplicate_heavier", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "duplicate_heavier", "empty_contribution", "duplicate_heavier", "empty_contribution", "forced_selected", "empty_contribution", "empty_contribution", "duplicate_heavier", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "duplicate_heavier", "empty_contribution", "empty_contribution", "duplicate_heavier", "empty_contribution", "forced_selected", "empty_contribution", "duplicate_heavier", "empty_contribution", "empty_contribution", "empty_contribution", "duplicate_heavier", "duplicate_heavier", "empty_contribution", "duplicate_heavier", "duplicate_heavier", "empty_contribution"]
+
+        [full_preprocessing_sensitivity.audit.equal_coverage_reconstruction_map]
+        7 = [7, 20, 44, 145]
+
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 1
+        iteration = 0
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"inactive\")"]
+        removed_strategy_indices = [1]
+        rule = "mandatory_strategy"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+            action = "fixed_to_one"
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 2
+        iteration = 1
+        removed_requirement_indices = [22, 23, 24, 25, 28, 38, 46, 47, 51, 60, 61]
+        removed_requirements = ["ModuleRequirement(\"m0006\")", "ModuleRequirement(\"m0007\")", "ModuleRequirement(\"m0008\")", "ModuleRequirement(\"m0009\")", "ModuleRequirement(\"m0012\")", "ModuleRequirement(\"m0022\")", "ModuleRequirement(\"m0030\")", "ModuleRequirement(\"m0031\")", "ModuleRequirement(\"m0035\")", "ModuleRequirement(\"m0044\")", "ModuleRequirement(\"m0045\")"]
+        removed_strategy_ids = []
+        removed_strategy_indices = []
+        rule = "redundant_requirement"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+            representative_requirement = "ModuleRequirement(\"m0004\")"
+            representative_requirement_index = 20
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 3
+        iteration = 2
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0047\")"]
+        removed_strategy_indices = [48]
+        rule = "mandatory_requirement_carrier"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+            equal_coverage_choice_indices = [48]
+            triggering_requirement = "FrontierRequirement(\"b0001\")"
+            triggering_requirement_index = 1
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 4
+        iteration = 2
+        removed_requirement_indices = [1, 17, 18, 19, 20, 21, 26, 27, 29, 30, 31, 32, 33, 34, 35, 36, 37, 39, 40, 41, 42, 43, 44, 45, 48, 49, 50, 52, 53, 54, 55, 56, 58, 59, 63, 64]
+        removed_requirements = ["FrontierRequirement(\"b0001\")", "ModuleRequirement(\"m0001\")", "ModuleRequirement(\"m0002\")", "ModuleRequirement(\"m0003\")", "ModuleRequirement(\"m0004\")", "ModuleRequirement(\"m0005\")", "ModuleRequirement(\"m0010\")", "ModuleRequirement(\"m0011\")", "ModuleRequirement(\"m0013\")", "ModuleRequirement(\"m0014\")", "ModuleRequirement(\"m0015\")", "ModuleRequirement(\"m0016\")", "ModuleRequirement(\"m0017\")", "ModuleRequirement(\"m0018\")", "ModuleRequirement(\"m0019\")", "ModuleRequirement(\"m0020\")", "ModuleRequirement(\"m0021\")", "ModuleRequirement(\"m0023\")", "ModuleRequirement(\"m0024\")", "ModuleRequirement(\"m0025\")", "ModuleRequirement(\"m0026\")", "ModuleRequirement(\"m0027\")", "ModuleRequirement(\"m0028\")", "ModuleRequirement(\"m0029\")", "ModuleRequirement(\"m0032\")", "ModuleRequirement(\"m0033\")", "ModuleRequirement(\"m0034\")", "ModuleRequirement(\"m0036\")", "ModuleRequirement(\"m0037\")", "ModuleRequirement(\"m0038\")", "ModuleRequirement(\"m0039\")", "ModuleRequirement(\"m0040\")", "ModuleRequirement(\"m0042\")", "ModuleRequirement(\"m0043\")", "ModuleRequirement(\"m0047\")", "ModuleRequirement(\"m0048\")"]
+        removed_strategy_ids = []
+        removed_strategy_indices = []
+        rule = "forced_selection_propagation"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+            forced_strategy_index = 48
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 5
+        iteration = 3
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0034\")"]
+        removed_strategy_indices = [35]
+        rule = "mandatory_requirement_carrier"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+            equal_coverage_choice_indices = [35]
+            triggering_requirement = "FrontierRequirement(\"b0002\")"
+            triggering_requirement_index = 2
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 6
+        iteration = 3
+        removed_requirement_indices = [2, 57, 62]
+        removed_requirements = ["FrontierRequirement(\"b0002\")", "ModuleRequirement(\"m0041\")", "ModuleRequirement(\"m0046\")"]
+        removed_strategy_ids = []
+        removed_strategy_indices = []
+        rule = "forced_selection_propagation"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+            forced_strategy_index = 35
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 7
+        iteration = 4
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0120\")"]
+        removed_strategy_indices = [121]
+        rule = "mandatory_requirement_carrier"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+            equal_coverage_choice_indices = [121]
+            triggering_requirement = "FrontierRequirement(\"b0003\")"
+            triggering_requirement_index = 3
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 8
+        iteration = 4
+        removed_requirement_indices = [3]
+        removed_requirements = ["FrontierRequirement(\"b0003\")"]
+        removed_strategy_ids = []
+        removed_strategy_indices = []
+        rule = "forced_selection_propagation"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+            forced_strategy_index = 121
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 9
+        iteration = 5
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0071\")"]
+        removed_strategy_indices = [72]
+        rule = "mandatory_requirement_carrier"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+            equal_coverage_choice_indices = [72]
+            triggering_requirement = "FrontierRequirement(\"b0004\")"
+            triggering_requirement_index = 4
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 10
+        iteration = 5
+        removed_requirement_indices = [4]
+        removed_requirements = ["FrontierRequirement(\"b0004\")"]
+        removed_strategy_ids = []
+        removed_strategy_indices = []
+        rule = "forced_selection_propagation"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+            forced_strategy_index = 72
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 11
+        iteration = 6
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0165\")"]
+        removed_strategy_indices = [166]
+        rule = "mandatory_requirement_carrier"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+            equal_coverage_choice_indices = [166]
+            triggering_requirement = "FrontierRequirement(\"b0005\")"
+            triggering_requirement_index = 5
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 12
+        iteration = 6
+        removed_requirement_indices = [5]
+        removed_requirements = ["FrontierRequirement(\"b0005\")"]
+        removed_strategy_ids = []
+        removed_strategy_indices = []
+        rule = "forced_selection_propagation"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+            forced_strategy_index = 166
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 13
+        iteration = 7
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0180\")"]
+        removed_strategy_indices = [181]
+        rule = "mandatory_requirement_carrier"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+            equal_coverage_choice_indices = [181]
+            triggering_requirement = "FrontierRequirement(\"b0006\")"
+            triggering_requirement_index = 6
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 14
+        iteration = 7
+        removed_requirement_indices = [6]
+        removed_requirements = ["FrontierRequirement(\"b0006\")"]
+        removed_strategy_ids = []
+        removed_strategy_indices = []
+        rule = "forced_selection_propagation"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+            forced_strategy_index = 181
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 15
+        iteration = 8
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0093\")"]
+        removed_strategy_indices = [94]
+        rule = "mandatory_requirement_carrier"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+            equal_coverage_choice_indices = [94]
+            triggering_requirement = "FrontierRequirement(\"b0007\")"
+            triggering_requirement_index = 7
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 16
+        iteration = 8
+        removed_requirement_indices = [7]
+        removed_requirements = ["FrontierRequirement(\"b0007\")"]
+        removed_strategy_ids = []
+        removed_strategy_indices = []
+        rule = "forced_selection_propagation"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+            forced_strategy_index = 94
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 17
+        iteration = 9
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0066\")"]
+        removed_strategy_indices = [67]
+        rule = "mandatory_requirement_carrier"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+            equal_coverage_choice_indices = [67]
+            triggering_requirement = "FrontierRequirement(\"b0008\")"
+            triggering_requirement_index = 8
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 18
+        iteration = 9
+        removed_requirement_indices = [8]
+        removed_requirements = ["FrontierRequirement(\"b0008\")"]
+        removed_strategy_ids = []
+        removed_strategy_indices = []
+        rule = "forced_selection_propagation"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+            forced_strategy_index = 67
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 19
+        iteration = 10
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0001\")"]
+        removed_strategy_indices = [2]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 20
+        iteration = 11
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0002\")"]
+        removed_strategy_indices = [3]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 21
+        iteration = 12
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0003\")"]
+        removed_strategy_indices = [4]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 22
+        iteration = 13
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0004\")"]
+        removed_strategy_indices = [5]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 23
+        iteration = 14
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0005\")"]
+        removed_strategy_indices = [6]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 24
+        iteration = 15
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0007\")"]
+        removed_strategy_indices = [8]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 25
+        iteration = 16
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0008\")"]
+        removed_strategy_indices = [9]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 26
+        iteration = 17
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0009\")"]
+        removed_strategy_indices = [10]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 27
+        iteration = 18
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0010\")"]
+        removed_strategy_indices = [11]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 28
+        iteration = 19
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0011\")"]
+        removed_strategy_indices = [12]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 29
+        iteration = 20
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0013\")"]
+        removed_strategy_indices = [14]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 30
+        iteration = 21
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0014\")"]
+        removed_strategy_indices = [15]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 31
+        iteration = 22
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0015\")"]
+        removed_strategy_indices = [16]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 32
+        iteration = 23
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0016\")"]
+        removed_strategy_indices = [17]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 33
+        iteration = 24
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0018\")"]
+        removed_strategy_indices = [19]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 34
+        iteration = 25
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0020\")"]
+        removed_strategy_indices = [21]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 35
+        iteration = 26
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0021\")"]
+        removed_strategy_indices = [22]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 36
+        iteration = 27
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0022\")"]
+        removed_strategy_indices = [23]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 37
+        iteration = 28
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0026\")"]
+        removed_strategy_indices = [27]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 38
+        iteration = 29
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0027\")"]
+        removed_strategy_indices = [28]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 39
+        iteration = 30
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0028\")"]
+        removed_strategy_indices = [29]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 40
+        iteration = 31
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0029\")"]
+        removed_strategy_indices = [30]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 41
+        iteration = 32
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0030\")"]
+        removed_strategy_indices = [31]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 42
+        iteration = 33
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0031\")"]
+        removed_strategy_indices = [32]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 43
+        iteration = 34
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0032\")"]
+        removed_strategy_indices = [33]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 44
+        iteration = 35
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0033\")"]
+        removed_strategy_indices = [34]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 45
+        iteration = 36
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0035\")"]
+        removed_strategy_indices = [36]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 46
+        iteration = 37
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0036\")"]
+        removed_strategy_indices = [37]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 47
+        iteration = 38
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0037\")"]
+        removed_strategy_indices = [38]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 48
+        iteration = 39
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0038\")"]
+        removed_strategy_indices = [39]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 49
+        iteration = 40
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0040\")"]
+        removed_strategy_indices = [41]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 50
+        iteration = 41
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0042\")"]
+        removed_strategy_indices = [43]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 51
+        iteration = 42
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0044\")"]
+        removed_strategy_indices = [45]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 52
+        iteration = 43
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0045\")"]
+        removed_strategy_indices = [46]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 53
+        iteration = 44
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0046\")"]
+        removed_strategy_indices = [47]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 54
+        iteration = 45
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0048\")"]
+        removed_strategy_indices = [49]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 55
+        iteration = 46
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0049\")"]
+        removed_strategy_indices = [50]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 56
+        iteration = 47
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0051\")"]
+        removed_strategy_indices = [52]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 57
+        iteration = 48
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0052\")"]
+        removed_strategy_indices = [53]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 58
+        iteration = 49
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0053\")"]
+        removed_strategy_indices = [54]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 59
+        iteration = 50
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0055\")"]
+        removed_strategy_indices = [56]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 60
+        iteration = 51
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0056\")"]
+        removed_strategy_indices = [57]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 61
+        iteration = 52
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0057\")"]
+        removed_strategy_indices = [58]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 62
+        iteration = 53
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0058\")"]
+        removed_strategy_indices = [59]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 63
+        iteration = 54
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0059\")"]
+        removed_strategy_indices = [60]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 64
+        iteration = 55
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0060\")"]
+        removed_strategy_indices = [61]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 65
+        iteration = 56
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0061\")"]
+        removed_strategy_indices = [62]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 66
+        iteration = 57
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0062\")"]
+        removed_strategy_indices = [63]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 67
+        iteration = 58
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0064\")"]
+        removed_strategy_indices = [65]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 68
+        iteration = 59
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0065\")"]
+        removed_strategy_indices = [66]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 69
+        iteration = 60
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0067\")"]
+        removed_strategy_indices = [68]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 70
+        iteration = 61
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0068\")"]
+        removed_strategy_indices = [69]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 71
+        iteration = 62
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0069\")"]
+        removed_strategy_indices = [70]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 72
+        iteration = 63
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0070\")"]
+        removed_strategy_indices = [71]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 73
+        iteration = 64
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0072\")"]
+        removed_strategy_indices = [73]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 74
+        iteration = 65
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0074\")"]
+        removed_strategy_indices = [75]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 75
+        iteration = 66
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0075\")"]
+        removed_strategy_indices = [76]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 76
+        iteration = 67
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0076\")"]
+        removed_strategy_indices = [77]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 77
+        iteration = 68
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0078\")"]
+        removed_strategy_indices = [79]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 78
+        iteration = 69
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0079\")"]
+        removed_strategy_indices = [80]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 79
+        iteration = 70
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0080\")"]
+        removed_strategy_indices = [81]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 80
+        iteration = 71
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0081\")"]
+        removed_strategy_indices = [82]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 81
+        iteration = 72
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0082\")"]
+        removed_strategy_indices = [83]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 82
+        iteration = 73
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0083\")"]
+        removed_strategy_indices = [84]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 83
+        iteration = 74
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0084\")"]
+        removed_strategy_indices = [85]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 84
+        iteration = 75
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0085\")"]
+        removed_strategy_indices = [86]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 85
+        iteration = 76
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0086\")"]
+        removed_strategy_indices = [87]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 86
+        iteration = 77
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0088\")"]
+        removed_strategy_indices = [89]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 87
+        iteration = 78
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0089\")"]
+        removed_strategy_indices = [90]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 88
+        iteration = 79
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0090\")"]
+        removed_strategy_indices = [91]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 89
+        iteration = 80
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0091\")"]
+        removed_strategy_indices = [92]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 90
+        iteration = 81
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0092\")"]
+        removed_strategy_indices = [93]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 91
+        iteration = 82
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0094\")"]
+        removed_strategy_indices = [95]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 92
+        iteration = 83
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0095\")"]
+        removed_strategy_indices = [96]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 93
+        iteration = 84
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0096\")"]
+        removed_strategy_indices = [97]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 94
+        iteration = 85
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0097\")"]
+        removed_strategy_indices = [98]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 95
+        iteration = 86
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0098\")"]
+        removed_strategy_indices = [99]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 96
+        iteration = 87
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0099\")"]
+        removed_strategy_indices = [100]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 97
+        iteration = 88
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0100\")"]
+        removed_strategy_indices = [101]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 98
+        iteration = 89
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0101\")"]
+        removed_strategy_indices = [102]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 99
+        iteration = 90
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0102\")"]
+        removed_strategy_indices = [103]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 100
+        iteration = 91
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0103\")"]
+        removed_strategy_indices = [104]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 101
+        iteration = 92
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0104\")"]
+        removed_strategy_indices = [105]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 102
+        iteration = 93
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0107\")"]
+        removed_strategy_indices = [108]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 103
+        iteration = 94
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0108\")"]
+        removed_strategy_indices = [109]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 104
+        iteration = 95
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0109\")"]
+        removed_strategy_indices = [110]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 105
+        iteration = 96
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0110\")"]
+        removed_strategy_indices = [111]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 106
+        iteration = 97
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0111\")"]
+        removed_strategy_indices = [112]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 107
+        iteration = 98
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0112\")"]
+        removed_strategy_indices = [113]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 108
+        iteration = 99
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0113\")"]
+        removed_strategy_indices = [114]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 109
+        iteration = 100
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0114\")"]
+        removed_strategy_indices = [115]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 110
+        iteration = 101
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0118\")"]
+        removed_strategy_indices = [119]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 111
+        iteration = 102
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0119\")"]
+        removed_strategy_indices = [120]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 112
+        iteration = 103
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0121\")"]
+        removed_strategy_indices = [122]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 113
+        iteration = 104
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0123\")"]
+        removed_strategy_indices = [124]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 114
+        iteration = 105
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0124\")"]
+        removed_strategy_indices = [125]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 115
+        iteration = 106
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0125\")"]
+        removed_strategy_indices = [126]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 116
+        iteration = 107
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0126\")"]
+        removed_strategy_indices = [127]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 117
+        iteration = 108
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0127\")"]
+        removed_strategy_indices = [128]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 118
+        iteration = 109
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0129\")"]
+        removed_strategy_indices = [130]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 119
+        iteration = 110
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0131\")"]
+        removed_strategy_indices = [132]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 120
+        iteration = 111
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0132\")"]
+        removed_strategy_indices = [133]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 121
+        iteration = 112
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0133\")"]
+        removed_strategy_indices = [134]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 122
+        iteration = 113
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0134\")"]
+        removed_strategy_indices = [135]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 123
+        iteration = 114
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0135\")"]
+        removed_strategy_indices = [136]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 124
+        iteration = 115
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0136\")"]
+        removed_strategy_indices = [137]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 125
+        iteration = 116
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0137\")"]
+        removed_strategy_indices = [138]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 126
+        iteration = 117
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0138\")"]
+        removed_strategy_indices = [139]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 127
+        iteration = 118
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0140\")"]
+        removed_strategy_indices = [141]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 128
+        iteration = 119
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0141\")"]
+        removed_strategy_indices = [142]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 129
+        iteration = 120
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0142\")"]
+        removed_strategy_indices = [143]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 130
+        iteration = 121
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0143\")"]
+        removed_strategy_indices = [144]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 131
+        iteration = 122
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0145\")"]
+        removed_strategy_indices = [146]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 132
+        iteration = 123
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0147\")"]
+        removed_strategy_indices = [148]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 133
+        iteration = 124
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0148\")"]
+        removed_strategy_indices = [149]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 134
+        iteration = 125
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0149\")"]
+        removed_strategy_indices = [150]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 135
+        iteration = 126
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0150\")"]
+        removed_strategy_indices = [151]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 136
+        iteration = 127
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0151\")"]
+        removed_strategy_indices = [152]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 137
+        iteration = 128
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0152\")"]
+        removed_strategy_indices = [153]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 138
+        iteration = 129
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0153\")"]
+        removed_strategy_indices = [154]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 139
+        iteration = 130
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0155\")"]
+        removed_strategy_indices = [156]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 140
+        iteration = 131
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0157\")"]
+        removed_strategy_indices = [158]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 141
+        iteration = 132
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0158\")"]
+        removed_strategy_indices = [159]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 142
+        iteration = 133
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0159\")"]
+        removed_strategy_indices = [160]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 143
+        iteration = 134
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0160\")"]
+        removed_strategy_indices = [161]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 144
+        iteration = 135
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0162\")"]
+        removed_strategy_indices = [163]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 145
+        iteration = 136
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0164\")"]
+        removed_strategy_indices = [165]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 146
+        iteration = 137
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0166\")"]
+        removed_strategy_indices = [167]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 147
+        iteration = 138
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0167\")"]
+        removed_strategy_indices = [168]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 148
+        iteration = 139
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0169\")"]
+        removed_strategy_indices = [170]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 149
+        iteration = 140
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0170\")"]
+        removed_strategy_indices = [171]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 150
+        iteration = 141
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0171\")"]
+        removed_strategy_indices = [172]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 151
+        iteration = 142
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0172\")"]
+        removed_strategy_indices = [173]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 152
+        iteration = 143
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0173\")"]
+        removed_strategy_indices = [174]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 153
+        iteration = 144
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0174\")"]
+        removed_strategy_indices = [175]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 154
+        iteration = 145
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0176\")"]
+        removed_strategy_indices = [177]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 155
+        iteration = 146
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0177\")"]
+        removed_strategy_indices = [178]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 156
+        iteration = 147
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0179\")"]
+        removed_strategy_indices = [180]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 157
+        iteration = 148
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0181\")"]
+        removed_strategy_indices = [182]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 158
+        iteration = 149
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0183\")"]
+        removed_strategy_indices = [184]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 159
+        iteration = 150
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0184\")"]
+        removed_strategy_indices = [185]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 160
+        iteration = 151
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0185\")"]
+        removed_strategy_indices = [186]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 161
+        iteration = 152
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0188\")"]
+        removed_strategy_indices = [189]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 162
+        iteration = 153
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0191\")"]
+        removed_strategy_indices = [192]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 163
+        iteration = 154
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0012\")", "StrategyId(\"s0019\")", "StrategyId(\"s0024\")", "StrategyId(\"s0025\")", "StrategyId(\"s0039\")", "StrategyId(\"s0041\")", "StrategyId(\"s0043\")", "StrategyId(\"s0054\")", "StrategyId(\"s0063\")", "StrategyId(\"s0073\")", "StrategyId(\"s0077\")", "StrategyId(\"s0087\")", "StrategyId(\"s0105\")", "StrategyId(\"s0106\")", "StrategyId(\"s0116\")", "StrategyId(\"s0117\")", "StrategyId(\"s0122\")", "StrategyId(\"s0128\")", "StrategyId(\"s0130\")", "StrategyId(\"s0144\")", "StrategyId(\"s0154\")", "StrategyId(\"s0161\")", "StrategyId(\"s0163\")", "StrategyId(\"s0168\")", "StrategyId(\"s0175\")", "StrategyId(\"s0178\")", "StrategyId(\"s0182\")", "StrategyId(\"s0186\")", "StrategyId(\"s0187\")", "StrategyId(\"s0189\")", "StrategyId(\"s0190\")"]
+        removed_strategy_indices = [13, 20, 25, 26, 40, 42, 44, 55, 64, 74, 78, 88, 106, 107, 117, 118, 123, 129, 131, 145, 155, 162, 164, 169, 176, 179, 183, 187, 188, 190, 191]
+        rule = "duplicate_coverage"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+            equal_weight_tie_indices = [20, 44, 145]
+            representative_strategy = "StrategyId(\"s0006\")"
+            representative_strategy_index = 7
+            strictly_heavier_indices = [13, 25, 26, 40, 42, 55, 64, 74, 78, 88, 106, 107, 117, 118, 123, 129, 131, 155, 162, 164, 169, 176, 179, 183, 187, 188, 190, 191]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 164
+        iteration = 155
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0006\")"]
+        removed_strategy_indices = [7]
+        rule = "mandatory_requirement_carrier"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+            equal_coverage_choice_indices = [7, 20, 44, 145]
+            triggering_requirement = "FrontierRequirement(\"b0009\")"
+            triggering_requirement_index = 9
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 165
+        iteration = 155
+        removed_requirement_indices = [9, 10, 11, 12, 13, 14, 15, 16]
+        removed_requirements = ["FrontierRequirement(\"b0009\")", "FrontierRequirement(\"b0010\")", "FrontierRequirement(\"b0011\")", "FrontierRequirement(\"b0012\")", "FrontierRequirement(\"b0013\")", "FrontierRequirement(\"b0014\")", "FrontierRequirement(\"b0015\")", "FrontierRequirement(\"b0016\")"]
+        removed_strategy_ids = []
+        removed_strategy_indices = []
+        rule = "forced_selection_propagation"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+            forced_strategy_index = 7
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 166
+        iteration = 156
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0017\")"]
+        removed_strategy_indices = [18]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 167
+        iteration = 157
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0023\")"]
+        removed_strategy_indices = [24]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 168
+        iteration = 158
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0050\")"]
+        removed_strategy_indices = [51]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 169
+        iteration = 159
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0115\")"]
+        removed_strategy_indices = [116]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 170
+        iteration = 160
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0139\")"]
+        removed_strategy_indices = [140]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 171
+        iteration = 161
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0146\")"]
+        removed_strategy_indices = [147]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+        [[full_preprocessing_sensitivity.audit.events]]
+        event_index = 172
+        iteration = 162
+        removed_requirement_indices = []
+        removed_requirements = []
+        removed_strategy_ids = ["StrategyId(\"s0156\")"]
+        removed_strategy_indices = [157]
+        rule = "empty_contribution"
+
+            [full_preprocessing_sensitivity.audit.events.details]
+
+        [full_preprocessing_sensitivity.audit.rule_counts.coverage_dominance]
+        applications = 0
+        requirements_removed = 0
+        variables_removed = 0
+
+        [full_preprocessing_sensitivity.audit.rule_counts.duplicate_coverage]
+        applications = 1
+        requirements_removed = 0
+        variables_removed = 31
+
+        [full_preprocessing_sensitivity.audit.rule_counts.empty_contribution]
+        applications = 151
+        requirements_removed = 0
+        variables_removed = 151
+
+        [full_preprocessing_sensitivity.audit.rule_counts.forced_selection_propagation]
+        applications = 9
+        requirements_removed = 53
+        variables_removed = 0
+
+        [full_preprocessing_sensitivity.audit.rule_counts.infeasible_requirement]
+        applications = 0
+        requirements_removed = 0
+        variables_removed = 0
+
+        [full_preprocessing_sensitivity.audit.rule_counts.mandatory_requirement_carrier]
+        applications = 9
+        requirements_removed = 0
+        variables_removed = 9
+
+        [full_preprocessing_sensitivity.audit.rule_counts.mandatory_strategy]
+        applications = 1
+        requirements_removed = 0
+        variables_removed = 1
+
+        [full_preprocessing_sensitivity.audit.rule_counts.mandatory_strategy_propagation]
+        applications = 0
+        requirements_removed = 0
+        variables_removed = 0
+
+        [full_preprocessing_sensitivity.audit.rule_counts.redundant_requirement]
+        applications = 1
+        requirements_removed = 11
+        variables_removed = 0
+
+[method_result]
+algorithm = "heaviest_safe_first"
+deletion_trace = []
+exact_burden = "41//1"
+instance_sha256 = "cd664d4ff51ba72bda7436b088d7a9ddb3b111712b4f385f26e530e5ece2165e"
+order_indices = []
+random_seed = "NOT_APPLICABLE"
+schema_version = "journal-compression-certified-deletion-v1"
+selected_strategy_ids = ["inactive", "s0006", "s0034", "s0047", "s0066", "s0071", "s0093", "s0120", "s0165", "s0180"]
+start_summaries = []
+status = "certified_irreducible_heuristic"
+tie_declaration = "maximum exact weight among currently safe deletions; ties by lowest canonical original strategy index"
+
+    [method_result.counters]
+    closure_checks = "1"
+    complete_scans = "1"
+    frontier_checks = "1"
+
+    [method_result.final_feasibility_certificate]
+    burden_reconciled = true
+    closure_preserved = true
+    evidence_class = "exact finite rechecked-deletion computation"
+    exact_burden = "41//1"
+    frontier_preserved = true
+    lean_kernel_verified = false
+    mandatory_retained = true
+    search_complete = false
+    selected_strategy_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    solver_status_used = false
+    tagged_coverage = true
+
+    [method_result.irreducibility_certificate]
+    checks = []
+    complete = true
+    complete_scan_index = 1
+    no_safe_nonmandatory_deletion = true
+
+    [method_result.runtime]
+    algorithm_ns = "32875"
+    final_certification_ns = "87083"
+    total_ns = "23475041"

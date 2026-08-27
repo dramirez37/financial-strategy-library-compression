@@ -1,0 +1,74 @@
+instance_sha256 = "1d06230c8efdc1e445426ae190b5be1fc384f705b8bd2952d3adc6614ace2872"
+schema_version = "algorithmic-compression-generator-record-v1"
+status = "GENERATED"
+
+[[attempts]]
+accepted = true
+attempt_index = 1
+attempt_seed = "3490174153289732757"
+reasons = []
+
+[realized]
+active_coverage_density = "1//1"
+active_incidence_count = 20
+active_strategy_count = 4
+bundle_count = 4
+bundle_prevalence = "1//1"
+bundle_threshold = 4
+distinct_active_weights = ["1//1"]
+frontier_coverage_density = "1//1"
+frontier_module_rank_association = "0//1"
+frontier_row_count = 1
+mandatory_strategy_ids = ["inactive"]
+maximum_active_weight = "1//1"
+maximum_carrier_count = 5
+mean_pairwise_module_jaccard = "1//1"
+minimum_active_weight = "1//1"
+minimum_carrier_count = 4
+module_coverage_density = "1//1"
+module_row_count = 4
+preprocessing_forced_strategy_ids = ["inactive", "s0001"]
+strategy_count = 5
+tagged_requirement_count = 5
+unique_carrier_count = 0
+unique_carrier_frequency = "0//1"
+unique_carrier_strategy_ids = []
+
+[requested]
+bundle_count_target = -1
+bundle_prevalence_level = "mechanism"
+coverage_density_level = "mechanism"
+coverage_density_target = "UNSPECIFIED"
+frontier_module_correlation_level = "mechanism"
+frontier_row_count = 1
+mandatory_strategy_count = 1
+module_overlap_level = "mechanism"
+module_row_count = 4
+strategy_count = 5
+tagged_requirement_count = 5
+unique_carrier_count_target = -1
+unique_carrier_frequency_level = "mechanism"
+weight_dispersion_level = "mechanism"
+
+[seed]
+execution_order_key = "2924253497877871339"
+generator_seed = "5985984801226895658"
+instance_id = "V2-C-M02-S01"
+mip_seed = "1699440901"
+multistart_seed = "8595338194896787206"
+phase = "final"
+random_order_seed = "5300899784759426948"
+randomness_scope = "label_permutation_and_stochastic_algorithms;v2_eight_worker_domain"
+replicate_id = 1
+seed_id = "SEED-V2-C-M02-S01"
+
+[spec]
+analysis_included = true
+family = "adversarial"
+generator_id = "adversarial-mechanism-v1"
+instance_id = "V2-C-M02-S01"
+mechanism = "many_tied_optima"
+mechanism_parameter = "q=4"
+phase = "final"
+replicate_id = 1
+seed_id = "SEED-V2-C-M02-S01"

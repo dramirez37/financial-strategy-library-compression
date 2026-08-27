@@ -1,0 +1,24 @@
+
+[86507] signal 15: Terminated: 15
+in expression starting at /Users/david/Coding/Julia/algolib/julia/scripts/run_algorithmic_compression_final_worker_v1.jl:553
+ht_keyindex2_shorthash! at ./dict.jl:265
+setindex! at ./dict.jl:356
+push! at ./set.jl:137 [inlined]
+union! at ./abstractset.jl:106
+unknown function (ip: 0x12e020173) at (unknown file)
+#check_journal_compression_solution#699 at /Users/david/Coding/Julia/algolib/julia/src/JournalCompressionInstance.jl:1136
+check_journal_compression_solution at /Users/david/Coding/Julia/algolib/julia/src/JournalCompressionInstance.jl:1116 [inlined]
+_journal_complete_deletion_scan at /Users/david/Coding/Julia/algolib/julia/src/CertifiedDeletionJournalCompression.jl:185
+#_solve_journal_deletion_single#812 at /Users/david/Coding/Julia/algolib/julia/src/CertifiedDeletionJournalCompression.jl:494
+_solve_journal_deletion_single at /Users/david/Coding/Julia/algolib/julia/src/CertifiedDeletionJournalCompression.jl:459 [inlined]
+_journal_multistart_random_deletion at /Users/david/Coding/Julia/algolib/julia/src/CertifiedDeletionJournalCompression.jl:583
+#solve_journal_compression_deletion#824 at /Users/david/Coding/Julia/algolib/julia/src/CertifiedDeletionJournalCompression.jl:675
+solve_journal_compression_deletion at /Users/david/Coding/Julia/algolib/julia/src/CertifiedDeletionJournalCompression.jl:664 [inlined]
+#solve_journal_compression_multistart_random#827 at /Users/david/Coding/Julia/algolib/julia/src/CertifiedDeletionJournalCompression.jl:743 [inlined]
+solve_journal_compression_multistart_random at /Users/david/Coding/Julia/algolib/julia/src/CertifiedDeletionJournalCompression.jl:738 [inlined]
+_execute at /Users/david/Coding/Julia/algolib/julia/scripts/run_algorithmic_compression_final_worker_v1.jl:366
+macro expansion at ./timing.jl:697 [inlined]
+run_job at /Users/david/Coding/Julia/algolib/julia/scripts/run_algorithmic_compression_final_worker_v1.jl:514
+main at /Users/david/Coding/Julia/algolib/julia/scripts/run_algorithmic_compression_final_worker_v1.jl:547 [inlined]
+main at /Users/david/Coding/Julia/algolib/julia/scripts/run_algorithmic_compression_final_worker_v1.jl:544
+unknown function (ip: 0x114a0c193) at (unknown file)

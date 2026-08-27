@@ -1,0 +1,118 @@
+algorithm_execution_position = 9
+algorithm_id = "weighted_greedy"
+analysis_included = true
+candidate_accepted = true
+experiment_id = "registered-algorithmic-compression-benchmark-v2"
+failure_code = ""
+family = "structured"
+generator_seed = "8145022317170567074"
+global_schedule_position = 56
+instance_id = "V2-B-N064-R032-C12-X01"
+instance_sha256 = "a6370c22f78c4563b94fb55402fee2d56b6566c570e0e28f2c864f637ade3254"
+lane_position = 7
+launch_wave = 7
+mechanism = "none"
+mip_seed = "1309195335"
+multistart_seed = "1800383177839578694"
+preprocessing_variant = "mandatory_only"
+random_order_seed = "6730803946548768566"
+registered_memory_limit_bytes = "1610612736"
+registered_time_limit_seconds = 300.0
+replicate_id = 1
+schema_version = "algorithmic-compression-final-run-v2"
+seed_id = "SEED-V2-B-N064-R032-C12-X01"
+status = "SOLVED"
+terminal = true
+worker_lane = 8
+
+[supervisor]
+memory_limit_enforced = true
+peak_memory_bytes = 935985152
+status = "PROCESS_COMPLETED"
+stderr_path = "experiments/algorithmic_compression_v2/results/control/V2-B-N064-R032-C12-X01/weighted_greedy__mandatory_only.stderr.log"
+stdout_path = "experiments/algorithmic_compression_v2/results/control/V2-B-N064-R032-C12-X01/weighted_greedy__mandatory_only.stdout.log"
+time_limit_enforced = true
+wall_clock_ns = "683428375"
+worker_exit_code = 0
+
+[worker]
+algorithm_id = "weighted_greedy"
+algorithm_wall_clock_ns = 78004875
+blas_threads = 1
+candidate_accepted = true
+compile_time_seconds = 0.065239417
+evidence_class = "synthetic heuristic evidence plus exact feasibility check"
+finished_at_utc = "2026-08-27T15:10:07.249Z"
+gc_time_seconds = 0.0
+highs_threads = 1
+instance_id = "V2-B-N064-R032-C12-X01"
+instance_sha256 = "a6370c22f78c4563b94fb55402fee2d56b6566c570e0e28f2c864f637ade3254"
+julia_allocated_bytes = 7046512
+julia_threads = 1
+preprocessing_variant = "mandatory_only"
+schema_version = "algorithmic-compression-final-worker-v1"
+selected_original_strategy_ids = ["inactive", "s0005"]
+selected_original_strategy_indices = [1, 6]
+started_at_utc = "2026-08-27T15:10:07.171Z"
+status = "SOLVED"
+worker_status = "COMPLETED"
+
+    [worker.exact_burden]
+    available = true
+    value = "1//1"
+
+    [worker.exact_feasibility_recheck]
+    available = true
+    burden_reconciled = true
+    closure_preserved = true
+    exact_burden = "1//1"
+    exact_feasible = true
+    frontier_preserved = true
+    mandatory_retained = true
+    tagged_coverage = true
+
+    [worker.full_preprocessing_sensitivity]
+    available = false
+
+    [worker.method_result]
+    algorithm = "weighted_greedy"
+    exact_burden = "1//1"
+    greedy_burden_before_reverse_deletion = "1//1"
+    instance_sha256 = "a6370c22f78c4563b94fb55402fee2d56b6566c570e0e28f2c864f637ade3254"
+    reverse_deletion_trace = []
+    schema_version = "journal-compression-greedy-solution-v1"
+    selected_strategy_ids = ["inactive", "s0005"]
+    status = "feasible_heuristic"
+    tie_declaration = "minimum exact score, then lowest original strategy index in canonical order"
+    uncovered_counts = [32, 0]
+
+        [worker.method_result.final_certificate]
+        burden_reconciled = true
+        closure_preserved = true
+        evidence_class = "exact finite heuristic computation"
+        exact_burden = "1//1"
+        frontier_preserved = true
+        lean_kernel_verified = false
+        mandatory_retained = true
+        search_complete = false
+        selected_strategy_indices = [1, 6]
+        solver_status_used = false
+        tagged_coverage = true
+
+        [worker.method_result.guarantee]
+        applies_to_exact_burden = true
+        declaration = "Chvatal's positive-cost weighted-set-cover H(d) guarantee applies to exact burden."
+        exact_harmonic_factor = "586061125622639//144403552893600"
+        maximum_residual_set_cardinality = 32
+        primary_source_key = "Chvatal1979"
+
+        [[worker.method_result.step_trace]]
+        exact_score = "1//32"
+        exact_weight = "1//1"
+        newly_covered_count = 32
+        newly_covered_requirement_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+        step_index = 1
+        strategy_id = "s0005"
+        strategy_index = 6
+        uncovered_after = 0
+        uncovered_before = 32

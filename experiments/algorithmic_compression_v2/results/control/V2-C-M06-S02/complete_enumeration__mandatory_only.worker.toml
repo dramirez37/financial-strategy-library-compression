@@ -1,0 +1,13 @@
+algorithm_id = "complete_enumeration"
+backtrace = """\nStacktrace:\n  [1] solve_journal_compression_enumeration(instance::StrategyInnovation.JournalCompressionInstance; retain_all_ties::Bool, maximum_optional_strategies::Int64, maximum_ties::Int64)\n    @ StrategyInnovation ~/Coding/Julia/algolib/julia/src/ExactJournalCompression.jl:412\n  [2] solve_journal_compression_enumeration\n    @ ~/Coding/Julia/algolib/julia/src/ExactJournalCompression.jl:395 [inlined]\n  [3] _execute(instance::StrategyInnovation.JournalCompressionInstance, algorithm::Symbol, variant::Symbol, job::Dict{String, Any})\n    @ Main.AlgorithmicCompressionFinalWorkerV1 ~/Coding/Julia/algolib/julia/scripts/run_algorithmic_compression_final_worker_v1.jl:320\n  [4] macro expansion\n    @ ./timing.jl:697 [inlined]\n  [5] run_job(path::String)\n    @ Main.AlgorithmicCompressionFinalWorkerV1 ~/Coding/Julia/algolib/julia/scripts/run_algorithmic_compression_final_worker_v1.jl:514\n  [6] main\n    @ ~/Coding/Julia/algolib/julia/scripts/run_algorithmic_compression_final_worker_v1.jl:547 [inlined]\n  [7] main()\n    @ Main.AlgorithmicCompressionFinalWorkerV1 ~/Coding/Julia/algolib/julia/scripts/run_algorithmic_compression_final_worker_v1.jl:544\n  [8] top-level scope\n    @ ~/Coding/Julia/algolib/julia/scripts/run_algorithmic_compression_final_worker_v1.jl:554\n  [9] include(mod::Module, _path::String)\n    @ Base ./Base.jl:306\n [10] exec_options(opts::Base.JLOptions)\n    @ Base ./client.jl:317\n [11] _start()\n    @ Base ./client.jl:550"""
+candidate_accepted = false
+exception_type = "ArgumentError"
+finished_at_utc = "2026-08-27T17:00:05.645Z"
+instance_id = "V2-C-M06-S02"
+instance_sha256 = "9ef0c755b9a11f9246df523739b20ae3acabef10d26d618b04c3dbb5f865976e"
+message = "ArgumentError: complete enumeration has 15 residual strategies; the declared limit is 14"
+preprocessing_variant = "mandatory_only"
+schema_version = "algorithmic-compression-final-worker-v1"
+started_at_utc = "2026-08-27T17:00:05.613Z"
+status = "IMPLEMENTATION_ERROR"
+worker_status = "ERROR"

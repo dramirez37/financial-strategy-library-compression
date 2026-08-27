@@ -1,0 +1,90 @@
+algorithm_id = "cardinality_greedy"
+algorithm_wall_clock_ns = 164175833
+blas_threads = 1
+candidate_accepted = true
+compile_time_seconds = 0.161422958
+evidence_class = "synthetic heuristic evidence plus exact feasibility check"
+finished_at_utc = "2026-08-27T17:59:33.181Z"
+gc_time_seconds = 0.0
+highs_threads = 1
+instance_id = "V2-C-M04-S01"
+instance_sha256 = "266b7acdc71b5c028f1e863002dd052e939e2724ce16debea3fa86225cd0cd15"
+julia_allocated_bytes = 4970000
+julia_threads = 1
+preprocessing_variant = "mandatory_only"
+schema_version = "algorithmic-compression-final-worker-v1"
+selected_original_strategy_ids = ["inactive", "s0004", "s0005"]
+selected_original_strategy_indices = [1, 5, 6]
+started_at_utc = "2026-08-27T17:59:33.017Z"
+status = "SOLVED"
+worker_status = "COMPLETED"
+
+[exact_burden]
+available = true
+value = "2//1"
+
+[exact_feasibility_recheck]
+available = true
+burden_reconciled = true
+closure_preserved = true
+exact_burden = "2//1"
+exact_feasible = true
+frontier_preserved = true
+mandatory_retained = true
+tagged_coverage = true
+
+[full_preprocessing_sensitivity]
+available = false
+
+[method_result]
+algorithm = "cardinality_greedy"
+exact_burden = "2//1"
+greedy_burden_before_reverse_deletion = "2//1"
+instance_sha256 = "266b7acdc71b5c028f1e863002dd052e939e2724ce16debea3fa86225cd0cd15"
+reverse_deletion_trace = []
+schema_version = "journal-compression-greedy-solution-v1"
+selected_strategy_ids = ["inactive", "s0004", "s0005"]
+status = "feasible_heuristic"
+tie_declaration = "minimum exact score, then lowest original strategy index in canonical order"
+uncovered_counts = [4, 2, 0]
+
+    [method_result.final_certificate]
+    burden_reconciled = true
+    closure_preserved = true
+    evidence_class = "exact finite heuristic computation"
+    exact_burden = "2//1"
+    frontier_preserved = true
+    lean_kernel_verified = false
+    mandatory_retained = true
+    search_complete = false
+    selected_strategy_indices = [1, 5, 6]
+    solver_status_used = false
+    tagged_coverage = true
+
+    [method_result.guarantee]
+    applies_to_exact_burden = false
+    declaration = "Cardinality greedy ignores unequal weights; no approximation guarantee for exact burden is asserted."
+    exact_harmonic_factor = "3//2"
+    maximum_residual_set_cardinality = 2
+    primary_source_key = "Chvatal1979"
+
+    [[method_result.step_trace]]
+    exact_score = "1//2"
+    exact_weight = "1//1"
+    newly_covered_count = 2
+    newly_covered_requirement_indices = [3, 4]
+    step_index = 1
+    strategy_id = "s0004"
+    strategy_index = 5
+    uncovered_after = 2
+    uncovered_before = 4
+    [[method_result.step_trace]]
+    exact_score = "1//2"
+    exact_weight = "1//1"
+    newly_covered_count = 2
+    newly_covered_requirement_indices = [2, 5]
+    step_index = 2
+    strategy_id = "s0005"
+    strategy_index = 6
+    uncovered_after = 0
+    uncovered_before = 2

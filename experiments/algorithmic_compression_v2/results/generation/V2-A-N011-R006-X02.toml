@@ -1,0 +1,74 @@
+instance_sha256 = "2a5992189be12696a8dfaf8c4c81bf50ae5ea639ddcb0d10e62f705b819ff7dc"
+schema_version = "algorithmic-compression-generator-record-v1"
+status = "GENERATED"
+
+[[attempts]]
+accepted = true
+attempt_index = 1
+attempt_seed = "6406301403759120567"
+reasons = []
+
+[realized]
+active_coverage_density = "1//5"
+active_incidence_count = 12
+active_strategy_count = 10
+bundle_count = 1
+bundle_prevalence = "1//10"
+bundle_threshold = 5
+distinct_active_weights = ["1//1", "2//1", "4//1", "8//1", "16//1"]
+frontier_coverage_density = "1//5"
+frontier_module_rank_association = "2//15"
+frontier_row_count = 2
+mandatory_strategy_ids = ["inactive"]
+maximum_active_weight = "16//1"
+maximum_carrier_count = 2
+mean_pairwise_module_jaccard = "1//17"
+minimum_active_weight = "1//1"
+minimum_carrier_count = 2
+module_coverage_density = "1//5"
+module_row_count = 4
+preprocessing_forced_strategy_ids = ["inactive", "s0008"]
+strategy_count = 11
+tagged_requirement_count = 6
+unique_carrier_count = 0
+unique_carrier_frequency = "0//1"
+unique_carrier_strategy_ids = []
+
+[requested]
+bundle_count_target = 1
+bundle_prevalence_level = "one_eighth"
+coverage_density_level = "one_eighth"
+coverage_density_target = "1//8"
+frontier_module_correlation_level = "independent"
+frontier_row_count = 2
+mandatory_strategy_count = 1
+module_overlap_level = "high_clustered"
+module_row_count = 4
+strategy_count = 11
+tagged_requirement_count = 6
+unique_carrier_count_target = 0
+unique_carrier_frequency_level = "zero"
+weight_dispersion_level = "high_powers_of_two"
+
+[seed]
+execution_order_key = "4483717825454073957"
+generator_seed = "6454758813321006813"
+instance_id = "V2-A-N011-R006-X02"
+mip_seed = "2025339160"
+multistart_seed = "7535338878476026424"
+phase = "final"
+random_order_seed = "2811480286085499160"
+randomness_scope = "instance_generation_and_stochastic_algorithms;v2_eight_worker_domain"
+replicate_id = 2
+seed_id = "SEED-V2-A-N011-R006-X02"
+
+[spec]
+analysis_included = true
+family = "small_exact"
+generator_id = "small-exact-tagged-v1"
+instance_id = "V2-A-N011-R006-X02"
+mechanism = "none"
+mechanism_parameter = "none"
+phase = "final"
+replicate_id = 2
+seed_id = "SEED-V2-A-N011-R006-X02"

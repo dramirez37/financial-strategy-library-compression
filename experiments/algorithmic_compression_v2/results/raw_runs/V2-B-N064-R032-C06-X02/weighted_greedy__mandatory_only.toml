@@ -1,0 +1,168 @@
+algorithm_execution_position = 20
+algorithm_id = "weighted_greedy"
+analysis_included = true
+candidate_accepted = true
+experiment_id = "registered-algorithmic-compression-benchmark-v2"
+failure_code = ""
+family = "structured"
+generator_seed = "1816020793368935511"
+global_schedule_position = 2914
+instance_id = "V2-B-N064-R032-C06-X02"
+instance_sha256 = "e2f33674bd64ba104b12cb2e1ef9c6fa1d85ed12b6223d3d7252bf2407409443"
+lane_position = 365
+launch_wave = 365
+mechanism = "none"
+mip_seed = "596303544"
+multistart_seed = "2312431650017855764"
+preprocessing_variant = "mandatory_only"
+random_order_seed = "8485528021840455233"
+registered_memory_limit_bytes = "1610612736"
+registered_time_limit_seconds = 300.0
+replicate_id = 2
+schema_version = "algorithmic-compression-final-run-v2"
+seed_id = "SEED-V2-B-N064-R032-C06-X02"
+status = "SOLVED"
+terminal = true
+worker_lane = 2
+
+[supervisor]
+memory_limit_enforced = true
+peak_memory_bytes = 963002368
+status = "PROCESS_COMPLETED"
+stderr_path = "experiments/algorithmic_compression_v2/results/control/V2-B-N064-R032-C06-X02/weighted_greedy__mandatory_only.stderr.log"
+stdout_path = "experiments/algorithmic_compression_v2/results/control/V2-B-N064-R032-C06-X02/weighted_greedy__mandatory_only.stdout.log"
+time_limit_enforced = true
+wall_clock_ns = "607077083"
+worker_exit_code = 0
+
+[worker]
+algorithm_id = "weighted_greedy"
+algorithm_wall_clock_ns = 79831958
+blas_threads = 1
+candidate_accepted = true
+compile_time_seconds = 0.073856417
+evidence_class = "synthetic heuristic evidence plus exact feasibility check"
+finished_at_utc = "2026-08-27T17:39:34.165Z"
+gc_time_seconds = 0.0
+highs_threads = 1
+instance_id = "V2-B-N064-R032-C06-X02"
+instance_sha256 = "e2f33674bd64ba104b12cb2e1ef9c6fa1d85ed12b6223d3d7252bf2407409443"
+julia_allocated_bytes = 6655784
+julia_threads = 1
+preprocessing_variant = "mandatory_only"
+schema_version = "algorithmic-compression-final-worker-v1"
+selected_original_strategy_ids = ["inactive", "s0003", "s0006", "s0028", "s0030", "s0050", "s0052"]
+selected_original_strategy_indices = [1, 4, 7, 29, 31, 51, 53]
+started_at_utc = "2026-08-27T17:39:34.085Z"
+status = "SOLVED"
+worker_status = "COMPLETED"
+
+    [worker.exact_burden]
+    available = true
+    value = "11//1"
+
+    [worker.exact_feasibility_recheck]
+    available = true
+    burden_reconciled = true
+    closure_preserved = true
+    exact_burden = "11//1"
+    exact_feasible = true
+    frontier_preserved = true
+    mandatory_retained = true
+    tagged_coverage = true
+
+    [worker.full_preprocessing_sensitivity]
+    available = false
+
+    [worker.method_result]
+    algorithm = "weighted_greedy"
+    exact_burden = "11//1"
+    greedy_burden_before_reverse_deletion = "11//1"
+    instance_sha256 = "e2f33674bd64ba104b12cb2e1ef9c6fa1d85ed12b6223d3d7252bf2407409443"
+    reverse_deletion_trace = []
+    schema_version = "journal-compression-greedy-solution-v1"
+    selected_strategy_ids = ["inactive", "s0003", "s0006", "s0028", "s0030", "s0050", "s0052"]
+    status = "feasible_heuristic"
+    tie_declaration = "minimum exact score, then lowest original strategy index in canonical order"
+    uncovered_counts = [32, 11, 4, 3, 2, 1, 0]
+
+        [worker.method_result.final_certificate]
+        burden_reconciled = true
+        closure_preserved = true
+        evidence_class = "exact finite heuristic computation"
+        exact_burden = "11//1"
+        frontier_preserved = true
+        lean_kernel_verified = false
+        mandatory_retained = true
+        search_complete = false
+        selected_strategy_indices = [1, 4, 7, 29, 31, 51, 53]
+        solver_status_used = false
+        tagged_coverage = true
+
+        [worker.method_result.guarantee]
+        applies_to_exact_burden = true
+        declaration = "Chvatal's positive-cost weighted-set-cover H(d) guarantee applies to exact burden."
+        exact_harmonic_factor = "18858053//5173168"
+        maximum_residual_set_cardinality = 21
+        primary_source_key = "Chvatal1979"
+
+        [[worker.method_result.step_trace]]
+        exact_score = "1//21"
+        exact_weight = "1//1"
+        newly_covered_count = 21
+        newly_covered_requirement_indices = [1, 5, 6, 7, 8, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+        step_index = 1
+        strategy_id = "s0003"
+        strategy_index = 4
+        uncovered_after = 11
+        uncovered_before = 32
+        [[worker.method_result.step_trace]]
+        exact_score = "1//7"
+        exact_weight = "1//1"
+        newly_covered_count = 7
+        newly_covered_requirement_indices = [10, 11, 12, 13, 14, 15, 16]
+        step_index = 2
+        strategy_id = "s0052"
+        strategy_index = 53
+        uncovered_after = 4
+        uncovered_before = 11
+        [[worker.method_result.step_trace]]
+        exact_score = "1//1"
+        exact_weight = "1//1"
+        newly_covered_count = 1
+        newly_covered_requirement_indices = [9]
+        step_index = 3
+        strategy_id = "s0028"
+        strategy_index = 29
+        uncovered_after = 3
+        uncovered_before = 4
+        [[worker.method_result.step_trace]]
+        exact_score = "2//1"
+        exact_weight = "2//1"
+        newly_covered_count = 1
+        newly_covered_requirement_indices = [3]
+        step_index = 4
+        strategy_id = "s0030"
+        strategy_index = 31
+        uncovered_after = 2
+        uncovered_before = 3
+        [[worker.method_result.step_trace]]
+        exact_score = "3//1"
+        exact_weight = "3//1"
+        newly_covered_count = 1
+        newly_covered_requirement_indices = [2]
+        step_index = 5
+        strategy_id = "s0006"
+        strategy_index = 7
+        uncovered_after = 1
+        uncovered_before = 2
+        [[worker.method_result.step_trace]]
+        exact_score = "3//1"
+        exact_weight = "3//1"
+        newly_covered_count = 1
+        newly_covered_requirement_indices = [4]
+        step_index = 6
+        strategy_id = "s0050"
+        strategy_index = 51
+        uncovered_after = 0
+        uncovered_before = 1

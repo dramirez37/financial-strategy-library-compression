@@ -1,0 +1,243 @@
+algorithm_execution_position = 13
+algorithm_id = "requirement_mask_dp"
+analysis_included = true
+candidate_accepted = true
+experiment_id = "registered-algorithmic-compression-benchmark-v2"
+failure_code = ""
+family = "small_exact"
+generator_seed = "4713408523152641311"
+global_schedule_position = 3174
+instance_id = "V2-A-N007-R006-X02"
+instance_sha256 = "a1f5f661041129f0b3ba2f1a88ecb346ad243b91ea3fc5a43f5afbda1e149c25"
+lane_position = 397
+launch_wave = 397
+mechanism = "none"
+mip_seed = "1409880523"
+multistart_seed = "5222396129446498855"
+preprocessing_variant = "full_fixed_point"
+random_order_seed = "4602635445308991428"
+registered_memory_limit_bytes = "1610612736"
+registered_time_limit_seconds = 300.0
+replicate_id = 2
+schema_version = "algorithmic-compression-final-run-v2"
+seed_id = "SEED-V2-A-N007-R006-X02"
+status = "SOLVED"
+terminal = true
+worker_lane = 6
+
+[supervisor]
+memory_limit_enforced = true
+peak_memory_bytes = 990347264
+status = "PROCESS_COMPLETED"
+stderr_path = "experiments/algorithmic_compression_v2/results/control/V2-A-N007-R006-X02/requirement_mask_dp__full_fixed_point.stderr.log"
+stdout_path = "experiments/algorithmic_compression_v2/results/control/V2-A-N007-R006-X02/requirement_mask_dp__full_fixed_point.stdout.log"
+time_limit_enforced = true
+wall_clock_ns = "3273546667"
+worker_exit_code = 0
+
+[worker]
+algorithm_id = "requirement_mask_dp"
+algorithm_wall_clock_ns = 2392471542
+blas_threads = 1
+candidate_accepted = true
+compile_time_seconds = 2.377856331
+evidence_class = "exact finite computation"
+finished_at_utc = "2026-08-27T17:55:10.327Z"
+gc_time_seconds = 0.0
+highs_threads = 1
+instance_id = "V2-A-N007-R006-X02"
+instance_sha256 = "a1f5f661041129f0b3ba2f1a88ecb346ad243b91ea3fc5a43f5afbda1e149c25"
+julia_allocated_bytes = 217896208
+julia_threads = 1
+preprocessing_variant = "full_fixed_point"
+schema_version = "algorithmic-compression-final-worker-v1"
+selected_original_strategy_ids = ["inactive", "s0001", "s0004", "s0006"]
+selected_original_strategy_indices = [1, 2, 5, 7]
+started_at_utc = "2026-08-27T17:55:07.934Z"
+status = "SOLVED"
+worker_status = "COMPLETED"
+
+    [worker.exact_burden]
+    available = true
+    value = "4//1"
+
+    [worker.exact_feasibility_recheck]
+    available = true
+    burden_reconciled = true
+    closure_preserved = true
+    exact_burden = "4//1"
+    exact_feasible = true
+    frontier_preserved = true
+    mandatory_retained = true
+    tagged_coverage = true
+
+    [worker.full_preprocessing_sensitivity]
+    all_optimizer_identities_reconstructable = true
+    available = true
+    forced_strategy_indices = [1]
+    objective_offset = "0//1"
+    remaining_requirement_indices = [1, 2, 6]
+    remaining_strategy_indices = [2, 4, 5, 7]
+
+        [worker.full_preprocessing_sensitivity.audit]
+        all_optimizer_identities_reconstructable_by_declared_maps = true
+        arithmetic = "Rational{BigInt}"
+        feasible = true
+        fixed_point = true
+        fixed_point_iterations = 4
+        forced_strategy_ids = ["StrategyId(\"inactive\")"]
+        forced_strategy_indices = [1]
+        objective_offset = "0//1"
+        original_requirement_count = 6
+        original_variable_count = 7
+        reduced_requirement_count = 3
+        reduced_variable_count = 4
+        remaining_requirement_indices = [1, 2, 6]
+        remaining_strategy_indices = [2, 4, 5, 7]
+        requirement_representative = [1, 2, 2, 2, 2, 6]
+        requirement_status = ["remaining", "remaining", "duplicate_requirement", "duplicate_requirement", "duplicate_requirement", "remaining"]
+        schema_version = "tagged-cover-preprocessing-audit-v1"
+        strategy_elimination_target = [0, 0, 0, 0, 0, 0, 0]
+        strategy_status = ["mandatory_selected", "remaining", "empty_contribution", "remaining", "remaining", "empty_contribution", "remaining"]
+
+            [worker.full_preprocessing_sensitivity.audit.equal_coverage_reconstruction_map]
+
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 1
+            iteration = 0
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"inactive\")"]
+            removed_strategy_indices = [1]
+            rule = "mandatory_strategy"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                action = "fixed_to_one"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 2
+            iteration = 1
+            removed_requirement_indices = [3, 4, 5]
+            removed_requirements = ["ModuleRequirement(\"m0001\")", "ModuleRequirement(\"m0002\")", "ModuleRequirement(\"m0003\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                representative_requirement = "FrontierRequirement(\"b0002\")"
+                representative_requirement_index = 2
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 3
+            iteration = 2
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0002\")"]
+            removed_strategy_indices = [3]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 4
+            iteration = 3
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0005\")"]
+            removed_strategy_indices = [6]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+
+            [worker.full_preprocessing_sensitivity.audit.rule_counts.coverage_dominance]
+            applications = 0
+            requirements_removed = 0
+            variables_removed = 0
+
+            [worker.full_preprocessing_sensitivity.audit.rule_counts.duplicate_coverage]
+            applications = 0
+            requirements_removed = 0
+            variables_removed = 0
+
+            [worker.full_preprocessing_sensitivity.audit.rule_counts.empty_contribution]
+            applications = 2
+            requirements_removed = 0
+            variables_removed = 2
+
+            [worker.full_preprocessing_sensitivity.audit.rule_counts.forced_selection_propagation]
+            applications = 0
+            requirements_removed = 0
+            variables_removed = 0
+
+            [worker.full_preprocessing_sensitivity.audit.rule_counts.infeasible_requirement]
+            applications = 0
+            requirements_removed = 0
+            variables_removed = 0
+
+            [worker.full_preprocessing_sensitivity.audit.rule_counts.mandatory_requirement_carrier]
+            applications = 0
+            requirements_removed = 0
+            variables_removed = 0
+
+            [worker.full_preprocessing_sensitivity.audit.rule_counts.mandatory_strategy]
+            applications = 1
+            requirements_removed = 0
+            variables_removed = 1
+
+            [worker.full_preprocessing_sensitivity.audit.rule_counts.mandatory_strategy_propagation]
+            applications = 0
+            requirements_removed = 0
+            variables_removed = 0
+
+            [worker.full_preprocessing_sensitivity.audit.rule_counts.redundant_requirement]
+            applications = 1
+            requirements_removed = 3
+            variables_removed = 0
+
+    [worker.method_result]
+    algorithm = "requirement_mask_dp"
+    arithmetic = "Rational{BigInt}"
+    evidence_class = "exact finite computation"
+    exact_burden = "4//1"
+    instance_sha256 = "c6a7abd05e1c6ffb85fcc4546abba290dfce0484afacfbf16082337e62185ef6"
+    optimal_selection_count_returned = 1
+    schema_version = "journal-compression-exact-solution-v1"
+    search_complete = true
+    selected_strategy_id_kinds = ["string", "string", "string", "string"]
+    selected_strategy_id_values = ["inactive", "s0001", "s0004", "s0006"]
+    selected_strategy_indices = [1, 2, 4, 5]
+    solver_status_used = false
+    status = "exact_optimum"
+    tie_declaration = "first exact predecessor under increasing masks and skip-before-take order"
+    ties_complete = false
+
+        [worker.method_result.counters]
+        candidate_selections_evaluated = "0"
+        final_reachable_states = "8"
+        integer_encoding = "decimal BigInt string"
+        state_layer_pairs_visited = "11"
+        transitions_evaluated = "22"
+
+        [[worker.method_result.optimal_selections]]
+        burden_reconciled = true
+        closure_preserved = true
+        exact_burden = "4//1"
+        frontier_preserved = true
+        mandatory_retained = true
+        selected_strategy_indices = [1, 2, 4, 5]
+        selection_index = 1
+        tagged_coverage = true
+
+        [worker.method_result.preprocessing]
+        all_optimizer_identities_reconstructable = true
+        exact_objective_offset = "0//1"
+        forced_strategy_indices = [1]
+        input_preprocessing_reused = false
+        original_requirement_count = 6
+        original_strategy_count = 5
+        reduced_requirement_count = 6
+        reduced_strategy_count = 4
+
+        [worker.method_result.runtime_ns]
+        evidence_class = "single-run wall-clock measurement"
+        preprocessing = 26015417
+        reconstruction_and_certification = 109808375
+        search = 176708
+        total = 136000542

@@ -1,0 +1,802 @@
+algorithm_execution_position = 24
+algorithm_id = "multistart_random_rechecked_deletion_32"
+analysis_included = true
+candidate_accepted = true
+experiment_id = "registered-algorithmic-compression-benchmark-v2"
+failure_code = ""
+family = "small_exact"
+generator_seed = "4910548444358415126"
+global_schedule_position = 2802
+instance_id = "V2-A-N011-R010-X01"
+instance_sha256 = "695fca41daf2d114d46ad4bdb1fcb05943c28e596009c41939d5ba5fc1af0842"
+lane_position = 351
+launch_wave = 351
+mechanism = "none"
+mip_seed = "2108950081"
+multistart_seed = "5525081789190951697"
+preprocessing_variant = "full_fixed_point_then_reconstruct"
+random_order_seed = "6767215775358771380"
+registered_memory_limit_bytes = "1610612736"
+registered_time_limit_seconds = 120.0
+replicate_id = 1
+schema_version = "algorithmic-compression-final-run-v2"
+seed_id = "SEED-V2-A-N011-R010-X01"
+status = "SOLVED"
+terminal = true
+worker_lane = 2
+
+[supervisor]
+memory_limit_enforced = true
+peak_memory_bytes = 967802880
+status = "PROCESS_COMPLETED"
+stderr_path = "experiments/algorithmic_compression_v2/results/control/V2-A-N011-R010-X01/multistart_random_rechecked_deletion_32__full_fixed_point_then_reconstruct.stderr.log"
+stdout_path = "experiments/algorithmic_compression_v2/results/control/V2-A-N011-R010-X01/multistart_random_rechecked_deletion_32__full_fixed_point_then_reconstruct.stdout.log"
+time_limit_enforced = true
+wall_clock_ns = "2814403458"
+worker_exit_code = 0
+
+[worker]
+algorithm_id = "multistart_random_rechecked_deletion_32"
+algorithm_wall_clock_ns = 2187700583
+blas_threads = 1
+candidate_accepted = true
+compile_time_seconds = 2.166090374
+evidence_class = "synthetic rechecked-deletion evidence plus exact feasibility check"
+finished_at_utc = "2026-08-27T17:31:48.286Z"
+gc_time_seconds = 0.0
+highs_threads = 1
+instance_id = "V2-A-N011-R010-X01"
+instance_sha256 = "695fca41daf2d114d46ad4bdb1fcb05943c28e596009c41939d5ba5fc1af0842"
+julia_allocated_bytes = 235189640
+julia_threads = 1
+preprocessing_variant = "full_fixed_point_then_reconstruct"
+schema_version = "algorithmic-compression-final-worker-v1"
+selected_original_strategy_ids = ["inactive", "s0002", "s0005", "s0007"]
+selected_original_strategy_indices = [1, 3, 6, 8]
+started_at_utc = "2026-08-27T17:31:46.098Z"
+status = "SOLVED"
+worker_status = "COMPLETED"
+
+    [worker.exact_burden]
+    available = true
+    value = "5//1"
+
+    [worker.exact_feasibility_recheck]
+    available = true
+    burden_reconciled = true
+    closure_preserved = true
+    exact_burden = "5//1"
+    exact_feasible = true
+    frontier_preserved = true
+    mandatory_retained = true
+    tagged_coverage = true
+
+    [worker.full_preprocessing_sensitivity]
+    all_optimizer_identities_reconstructable = false
+    available = true
+    forced_strategy_indices = [1, 8, 3, 6]
+    objective_offset = "5//1"
+    remaining_requirement_indices = []
+    remaining_strategy_indices = []
+
+        [worker.full_preprocessing_sensitivity.audit]
+        all_optimizer_identities_reconstructable_by_declared_maps = false
+        arithmetic = "Rational{BigInt}"
+        feasible = true
+        fixed_point = true
+        fixed_point_iterations = 11
+        forced_strategy_ids = ["StrategyId(\"inactive\")", "StrategyId(\"s0007\")", "StrategyId(\"s0002\")", "StrategyId(\"s0005\")"]
+        forced_strategy_indices = [1, 8, 3, 6]
+        objective_offset = "5//1"
+        original_requirement_count = 10
+        original_variable_count = 11
+        reduced_requirement_count = 0
+        reduced_variable_count = 0
+        remaining_requirement_indices = []
+        remaining_strategy_indices = []
+        requirement_representative = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        requirement_status = ["satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection"]
+        schema_version = "tagged-cover-preprocessing-audit-v1"
+        strategy_elimination_target = [0, 3, 0, 0, 0, 0, 6, 0, 0, 0, 0]
+        strategy_status = ["mandatory_selected", "dominated_equal_weight", "forced_selected", "empty_contribution", "empty_contribution", "forced_selected", "dominated_strict_weight", "forced_selected", "empty_contribution", "empty_contribution", "empty_contribution"]
+
+            [worker.full_preprocessing_sensitivity.audit.equal_coverage_reconstruction_map]
+
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 1
+            iteration = 0
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"inactive\")"]
+            removed_strategy_indices = [1]
+            rule = "mandatory_strategy"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                action = "fixed_to_one"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 2
+            iteration = 1
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0007\")"]
+            removed_strategy_indices = [8]
+            rule = "mandatory_requirement_carrier"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                equal_coverage_choice_indices = [8]
+                triggering_requirement = "FrontierRequirement(\"b0001\")"
+                triggering_requirement_index = 1
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 3
+            iteration = 1
+            removed_requirement_indices = [1, 2, 9, 10]
+            removed_requirements = ["FrontierRequirement(\"b0001\")", "FrontierRequirement(\"b0002\")", "ModuleRequirement(\"m0005\")", "ModuleRequirement(\"m0006\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "forced_selection_propagation"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                forced_strategy_index = 8
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 4
+            iteration = 2
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0003\")"]
+            removed_strategy_indices = [4]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 5
+            iteration = 3
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0009\")"]
+            removed_strategy_indices = [10]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 6
+            iteration = 4
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0001\")"]
+            removed_strategy_indices = [2]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = false
+                dominating_strategy = "StrategyId(\"s0002\")"
+                dominating_strategy_index = 3
+                unreconstructable_equal_weight_identity_indices = [2]
+                weight_relation = "equal"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 7
+            iteration = 5
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0002\")"]
+            removed_strategy_indices = [3]
+            rule = "mandatory_requirement_carrier"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                equal_coverage_choice_indices = [3]
+                triggering_requirement = "FrontierRequirement(\"b0003\")"
+                triggering_requirement_index = 3
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 8
+            iteration = 5
+            removed_requirement_indices = [3, 4, 5, 6]
+            removed_requirements = ["FrontierRequirement(\"b0003\")", "FrontierRequirement(\"b0004\")", "ModuleRequirement(\"m0001\")", "ModuleRequirement(\"m0002\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "forced_selection_propagation"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                forced_strategy_index = 3
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 9
+            iteration = 6
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0008\")"]
+            removed_strategy_indices = [9]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 10
+            iteration = 7
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0010\")"]
+            removed_strategy_indices = [11]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 11
+            iteration = 8
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0006\")"]
+            removed_strategy_indices = [7]
+            rule = "coverage_dominance"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0005\")"
+                dominating_strategy_index = 6
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 12
+            iteration = 9
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0005\")"]
+            removed_strategy_indices = [6]
+            rule = "mandatory_requirement_carrier"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                equal_coverage_choice_indices = [6]
+                triggering_requirement = "ModuleRequirement(\"m0003\")"
+                triggering_requirement_index = 7
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 13
+            iteration = 9
+            removed_requirement_indices = [7, 8]
+            removed_requirements = ["ModuleRequirement(\"m0003\")", "ModuleRequirement(\"m0004\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "forced_selection_propagation"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+                forced_strategy_index = 6
+            [[worker.full_preprocessing_sensitivity.audit.events]]
+            event_index = 14
+            iteration = 10
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0004\")"]
+            removed_strategy_indices = [5]
+            rule = "empty_contribution"
+
+                [worker.full_preprocessing_sensitivity.audit.events.details]
+
+            [worker.full_preprocessing_sensitivity.audit.rule_counts.coverage_dominance]
+            applications = 2
+            requirements_removed = 0
+            variables_removed = 2
+
+            [worker.full_preprocessing_sensitivity.audit.rule_counts.duplicate_coverage]
+            applications = 0
+            requirements_removed = 0
+            variables_removed = 0
+
+            [worker.full_preprocessing_sensitivity.audit.rule_counts.empty_contribution]
+            applications = 5
+            requirements_removed = 0
+            variables_removed = 5
+
+            [worker.full_preprocessing_sensitivity.audit.rule_counts.forced_selection_propagation]
+            applications = 3
+            requirements_removed = 10
+            variables_removed = 0
+
+            [worker.full_preprocessing_sensitivity.audit.rule_counts.infeasible_requirement]
+            applications = 0
+            requirements_removed = 0
+            variables_removed = 0
+
+            [worker.full_preprocessing_sensitivity.audit.rule_counts.mandatory_requirement_carrier]
+            applications = 3
+            requirements_removed = 0
+            variables_removed = 3
+
+            [worker.full_preprocessing_sensitivity.audit.rule_counts.mandatory_strategy]
+            applications = 1
+            requirements_removed = 0
+            variables_removed = 1
+
+            [worker.full_preprocessing_sensitivity.audit.rule_counts.mandatory_strategy_propagation]
+            applications = 0
+            requirements_removed = 0
+            variables_removed = 0
+
+            [worker.full_preprocessing_sensitivity.audit.rule_counts.redundant_requirement]
+            applications = 0
+            requirements_removed = 0
+            variables_removed = 0
+
+    [worker.method_result]
+    algorithm = "multistart_random_deletion"
+    deletion_trace = []
+    exact_burden = "5//1"
+    instance_sha256 = "b3fd01834f0f047378321d4c3ae514128e7998eeffd61478f919e4f4154ccbb5"
+    order_indices = []
+    random_seed = "5525081789190951697"
+    schema_version = "journal-compression-certified-deletion-v1"
+    selected_strategy_ids = ["inactive", "s0002", "s0005", "s0007"]
+    status = "certified_irreducible_heuristic"
+    tie_declaration = "minimum certified endpoint burden across starts; ties by lexicographic selected-index tuple, then start index"
+
+        [worker.method_result.counters]
+        closure_checks = "32"
+        complete_scans = "32"
+        frontier_checks = "32"
+
+        [worker.method_result.final_feasibility_certificate]
+        burden_reconciled = true
+        closure_preserved = true
+        evidence_class = "exact finite rechecked-deletion computation"
+        exact_burden = "5//1"
+        frontier_preserved = true
+        lean_kernel_verified = false
+        mandatory_retained = true
+        search_complete = false
+        selected_strategy_indices = [1, 2, 3, 4]
+        solver_status_used = false
+        tagged_coverage = true
+
+        [worker.method_result.irreducibility_certificate]
+        checks = []
+        complete = true
+        complete_scan_index = 1
+        no_safe_nonmandatory_deletion = true
+
+        [worker.method_result.runtime]
+        algorithm_ns = "30374"
+        final_certification_ns = "217793"
+        total_ns = "41282375"
+
+        [[worker.method_result.start_summaries]]
+        deletion_count = 0
+        exact_burden = "5//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = []
+        random_seed = "5525081789190951697"
+        selected_indices = [1, 2, 3, 4]
+        start_index = 1
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1"
+            complete_scans = "1"
+            frontier_checks = "1"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 0
+        exact_burden = "5//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = []
+        random_seed = "9311027500400578611"
+        selected_indices = [1, 2, 3, 4]
+        start_index = 2
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1"
+            complete_scans = "1"
+            frontier_checks = "1"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 0
+        exact_burden = "5//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = []
+        random_seed = "5077392517929923692"
+        selected_indices = [1, 2, 3, 4]
+        start_index = 3
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1"
+            complete_scans = "1"
+            frontier_checks = "1"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 0
+        exact_burden = "5//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = []
+        random_seed = "3922584168010690837"
+        selected_indices = [1, 2, 3, 4]
+        start_index = 4
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1"
+            complete_scans = "1"
+            frontier_checks = "1"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 0
+        exact_burden = "5//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = []
+        random_seed = "2599429123179234487"
+        selected_indices = [1, 2, 3, 4]
+        start_index = 5
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1"
+            complete_scans = "1"
+            frontier_checks = "1"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 0
+        exact_burden = "5//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = []
+        random_seed = "12086011794894642081"
+        selected_indices = [1, 2, 3, 4]
+        start_index = 6
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1"
+            complete_scans = "1"
+            frontier_checks = "1"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 0
+        exact_burden = "5//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = []
+        random_seed = "7166104897819321115"
+        selected_indices = [1, 2, 3, 4]
+        start_index = 7
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1"
+            complete_scans = "1"
+            frontier_checks = "1"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 0
+        exact_burden = "5//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = []
+        random_seed = "8885073912357299238"
+        selected_indices = [1, 2, 3, 4]
+        start_index = 8
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1"
+            complete_scans = "1"
+            frontier_checks = "1"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 0
+        exact_burden = "5//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = []
+        random_seed = "8795407548009099442"
+        selected_indices = [1, 2, 3, 4]
+        start_index = 9
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1"
+            complete_scans = "1"
+            frontier_checks = "1"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 0
+        exact_burden = "5//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = []
+        random_seed = "17583991348025306552"
+        selected_indices = [1, 2, 3, 4]
+        start_index = 10
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1"
+            complete_scans = "1"
+            frontier_checks = "1"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 0
+        exact_burden = "5//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = []
+        random_seed = "10011306289029497169"
+        selected_indices = [1, 2, 3, 4]
+        start_index = 11
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1"
+            complete_scans = "1"
+            frontier_checks = "1"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 0
+        exact_burden = "5//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = []
+        random_seed = "14366274933627860208"
+        selected_indices = [1, 2, 3, 4]
+        start_index = 12
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1"
+            complete_scans = "1"
+            frontier_checks = "1"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 0
+        exact_burden = "5//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = []
+        random_seed = "15499402562966294680"
+        selected_indices = [1, 2, 3, 4]
+        start_index = 13
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1"
+            complete_scans = "1"
+            frontier_checks = "1"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 0
+        exact_burden = "5//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = []
+        random_seed = "12448540675393932778"
+        selected_indices = [1, 2, 3, 4]
+        start_index = 14
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1"
+            complete_scans = "1"
+            frontier_checks = "1"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 0
+        exact_burden = "5//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = []
+        random_seed = "7320780787571143265"
+        selected_indices = [1, 2, 3, 4]
+        start_index = 15
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1"
+            complete_scans = "1"
+            frontier_checks = "1"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 0
+        exact_burden = "5//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = []
+        random_seed = "17863555995846354074"
+        selected_indices = [1, 2, 3, 4]
+        start_index = 16
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1"
+            complete_scans = "1"
+            frontier_checks = "1"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 0
+        exact_burden = "5//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = []
+        random_seed = "2924711815164830557"
+        selected_indices = [1, 2, 3, 4]
+        start_index = 17
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1"
+            complete_scans = "1"
+            frontier_checks = "1"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 0
+        exact_burden = "5//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = []
+        random_seed = "14026694623639037228"
+        selected_indices = [1, 2, 3, 4]
+        start_index = 18
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1"
+            complete_scans = "1"
+            frontier_checks = "1"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 0
+        exact_burden = "5//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = []
+        random_seed = "7395172935713380772"
+        selected_indices = [1, 2, 3, 4]
+        start_index = 19
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1"
+            complete_scans = "1"
+            frontier_checks = "1"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 0
+        exact_burden = "5//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = []
+        random_seed = "17380334932018684958"
+        selected_indices = [1, 2, 3, 4]
+        start_index = 20
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1"
+            complete_scans = "1"
+            frontier_checks = "1"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 0
+        exact_burden = "5//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = []
+        random_seed = "11266531394620088770"
+        selected_indices = [1, 2, 3, 4]
+        start_index = 21
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1"
+            complete_scans = "1"
+            frontier_checks = "1"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 0
+        exact_burden = "5//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = []
+        random_seed = "2731266215122170411"
+        selected_indices = [1, 2, 3, 4]
+        start_index = 22
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1"
+            complete_scans = "1"
+            frontier_checks = "1"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 0
+        exact_burden = "5//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = []
+        random_seed = "17447316930403487723"
+        selected_indices = [1, 2, 3, 4]
+        start_index = 23
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1"
+            complete_scans = "1"
+            frontier_checks = "1"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 0
+        exact_burden = "5//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = []
+        random_seed = "12735513359700351279"
+        selected_indices = [1, 2, 3, 4]
+        start_index = 24
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1"
+            complete_scans = "1"
+            frontier_checks = "1"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 0
+        exact_burden = "5//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = []
+        random_seed = "13520847395509112583"
+        selected_indices = [1, 2, 3, 4]
+        start_index = 25
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1"
+            complete_scans = "1"
+            frontier_checks = "1"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 0
+        exact_burden = "5//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = []
+        random_seed = "11299825889588626247"
+        selected_indices = [1, 2, 3, 4]
+        start_index = 26
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1"
+            complete_scans = "1"
+            frontier_checks = "1"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 0
+        exact_burden = "5//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = []
+        random_seed = "11818754953856573509"
+        selected_indices = [1, 2, 3, 4]
+        start_index = 27
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1"
+            complete_scans = "1"
+            frontier_checks = "1"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 0
+        exact_burden = "5//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = []
+        random_seed = "1923964709372422376"
+        selected_indices = [1, 2, 3, 4]
+        start_index = 28
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1"
+            complete_scans = "1"
+            frontier_checks = "1"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 0
+        exact_burden = "5//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = []
+        random_seed = "112122721919264242"
+        selected_indices = [1, 2, 3, 4]
+        start_index = 29
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1"
+            complete_scans = "1"
+            frontier_checks = "1"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 0
+        exact_burden = "5//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = []
+        random_seed = "12886326880778682125"
+        selected_indices = [1, 2, 3, 4]
+        start_index = 30
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1"
+            complete_scans = "1"
+            frontier_checks = "1"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 0
+        exact_burden = "5//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = []
+        random_seed = "17030354041149114162"
+        selected_indices = [1, 2, 3, 4]
+        start_index = 31
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1"
+            complete_scans = "1"
+            frontier_checks = "1"
+        [[worker.method_result.start_summaries]]
+        deletion_count = 0
+        exact_burden = "5//1"
+        exact_feasible = true
+        irreducible = true
+        random_order_indices = []
+        random_seed = "14465302688391427078"
+        selected_indices = [1, 2, 3, 4]
+        start_index = 32
+
+            [worker.method_result.start_summaries.counters]
+            closure_checks = "1"
+            complete_scans = "1"
+            frontier_checks = "1"

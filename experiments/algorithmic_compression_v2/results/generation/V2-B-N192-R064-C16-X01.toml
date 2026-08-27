@@ -1,0 +1,74 @@
+instance_sha256 = "c86c2df0dde50b362bcf1bc4caabc8a2af538d5a98491e62418cf10c8375bcf4"
+schema_version = "algorithmic-compression-generator-record-v1"
+status = "GENERATED"
+
+[[attempts]]
+accepted = true
+attempt_index = 1
+attempt_seed = "2105807064234003454"
+reasons = []
+
+[realized]
+active_coverage_density = "3//8"
+active_incidence_count = 4584
+active_strategy_count = 191
+bundle_count = 24
+bundle_prevalence = "24//191"
+bundle_threshold = 48
+distinct_active_weights = ["1//1", "2//1", "3//1"]
+frontier_coverage_density = "1965//6112"
+frontier_module_rank_association = "2358//18145"
+frontier_row_count = 32
+mandatory_strategy_ids = ["inactive"]
+maximum_active_weight = "3//1"
+maximum_carrier_count = 83
+mean_pairwise_module_jaccard = "285579005//1067321568"
+minimum_active_weight = "1//1"
+minimum_carrier_count = 56
+module_coverage_density = "2619//6112"
+module_row_count = 32
+preprocessing_forced_strategy_ids = ["inactive", "s0002"]
+strategy_count = 192
+tagged_requirement_count = 64
+unique_carrier_count = 0
+unique_carrier_frequency = "0//1"
+unique_carrier_strategy_ids = []
+
+[requested]
+bundle_count_target = 24
+bundle_prevalence_level = "one_eighth"
+coverage_density_level = "three_eighths"
+coverage_density_target = "3//8"
+frontier_module_correlation_level = "independent"
+frontier_row_count = 32
+mandatory_strategy_count = 1
+module_overlap_level = "high_clustered"
+module_row_count = 32
+strategy_count = 192
+tagged_requirement_count = 64
+unique_carrier_count_target = 0
+unique_carrier_frequency_level = "zero"
+weight_dispersion_level = "low_1_to_3"
+
+[seed]
+execution_order_key = "7931522765249975328"
+generator_seed = "4671004157073593210"
+instance_id = "V2-B-N192-R064-C16-X01"
+mip_seed = "943127731"
+multistart_seed = "7113893050724341909"
+phase = "final"
+random_order_seed = "6010154673029706355"
+randomness_scope = "instance_generation_and_stochastic_algorithms;v2_eight_worker_domain"
+replicate_id = 1
+seed_id = "SEED-V2-B-N192-R064-C16-X01"
+
+[spec]
+analysis_included = true
+family = "structured"
+generator_id = "structured-tagged-incidence-v1"
+instance_id = "V2-B-N192-R064-C16-X01"
+mechanism = "none"
+mechanism_parameter = "none"
+phase = "final"
+replicate_id = 1
+seed_id = "SEED-V2-B-N192-R064-C16-X01"

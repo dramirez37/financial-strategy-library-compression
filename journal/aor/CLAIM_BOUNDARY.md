@@ -31,8 +31,8 @@ retrospective financial evidence are complementary but noninterchangeable.
 | Exact minimum-burden innovation-safe compression. | Established as a finite source-relative problem and characterization. | Exact frontier equality, exact closure equality, exact burden, mandatory inactivity. | Approximate equality presented as exact; claims outside the source library. |
 | Identity-closure tagged-cover equivalence. | Complete human proof in the journal overlay; exact core biconditional and burden identity separately Lean verified; exact finite Julia fixture and exhaustive declared small grid pass. | State the theorem only under identity closure and source inclusion; distinguish the Lean core, exact finite computation, and the still-separate complexity claim. | Extending independent raw-module rows to arbitrary closure, or calling SC-COMP Lean verified. |
 | Computational hardness. | HUMAN PROOF for the explicitly encoded identity-closure decision problem and its one-belief, all-zero-profile, full-union module subclass; exact finite schema-v2 fixture; no Lean theorem. | NP-completeness for that identity-closure problem and restricted subclass, unit-weight persistence, optimization NP-hardness, and inherited NP-hardness for any broader class containing the subclass. | Calling it Lean-verified; claiming strong NP-hardness, inapproximability, APX-hardness, or NP membership for arbitrary nonidentity closure without a polynomial exact closure-equality verifier. |
-| Safe local deletion can be globally inefficient. | Established by fixed cardinality and weighted witnesses. | The qualitative separation. | A parametric gap, unbounded ratio, or approximation lower bound. |
-| Parametric worst-case local/global gap family. | Absent. | Proposed future result only. | Any quantitative worst-case claim. |
+| Safe local deletion can be globally inefficient. | Established by fixed witnesses and the SC-GAP parameterized identity-closure family. | The qualitative separation; bad one-deletion-irreducible endpoints can have unbounded burden ratio. | Saying every irreducible endpoint, deletion rule, or deletion order is bad. |
+| Parametric worst-case local/global gap family. | HUMAN PROOF with exact finite Julia fixtures; no Lean declaration. | Ratio `k / (1 + epsilon)` for the stated identity-closure family; no constant guarantee for the specifically defined rechecked heaviest-safe-first rule; no constant guarantee from one-deletion irreducibility alone. | Extending the bound to every deletion order, forward weighted-cover construction, arbitrary closure, or every certified deletion heuristic. |
 | Exact enumeration. | Implemented and suitable as a small-instance oracle. | Exact finite results within the enumerated domain. | Scalability or asymptotic superiority without evidence. |
 | Exact bitmask dynamic programming. | Absent; current DP is only an operating-cover lower bound. | Refer to the existing lower bound by that name. | Calling it a joint frontier-and-closure optimizer. |
 | Preprocessing theory. | Absent. | Proposed reduction rules only. | Claiming safety or equivalence before proof and oracle tests. |
@@ -72,8 +72,10 @@ oracles where practical.
   belief obligations are omitted because the mandatory inactive strategy
   supplies zero; active weights are positive in the intended complexity
   reduction.
-- The existing local/global result is qualitative and finite. No stronger gap
-  rate may be inferred from its examples.
+- SC-GAP strengthens the fixed local/global witness only for its declared
+  identity-closure family and the specifically defined rechecked
+  heaviest-safe-first rule. A singleton-first maximal deletion sequence reaches
+  the optimum, so no every-order lower bound may be inferred.
 - Approximate compression is a distinct tolerance-based problem and cannot be
   used to support exact preservation claims.
 - Scientific meanings of existing theorems are fixed. Shortening, renaming, or

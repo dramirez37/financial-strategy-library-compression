@@ -22,7 +22,12 @@ a useful local feasibility test. Rechecking that certificate after each
 deletion produces a certified safe endpoint, but stepwise pruning need not
 solve the global minimum-resource problem. Inclusion-wise irreducibility and
 global optimality are distinct notions, so deletion order and a complete
-search over feasible sublibraries can matter.
+search over feasible sublibraries can matter.  More sharply, a parameterized
+identity-closure family gives the specific heaviest-safe-first rule an
+unbounded output-to-optimum burden ratio.  The same family also shows that
+one-deletion irreducibility alone has no constant burden guarantee, but it does
+not condemn every deletion order: deleting a singleton first reaches the
+bundle-only optimum.
 
 The complexity theorem makes that distinction algorithmic. Under identity
 closure, exact safe compression is weighted hitting set on frontier-attainer
@@ -30,8 +35,10 @@ and module-carrier obligations; the decision problem is NP-complete and the
 minimum-weight problem is NP-hard. Exact verification of a returned library is
 therefore much easier than establishing global optimality in general. The
 bounded greedy and Pareto-beam comparisons illustrate possible search tools,
-but their benchmark outcomes provide neither an approximation ratio nor a
-large-scale runtime claim.
+but their benchmark outcomes provide neither a positive approximation
+guarantee nor a large-scale runtime claim.  The worst-case theorem is a
+negative guarantee for one named deletion rule, not a performance claim for
+all certified heuristics or forward cover constructions.
 
 Preserving closure is economically substantive rather than a formal
 refinement. Frontier-only compression may leave all immediately available

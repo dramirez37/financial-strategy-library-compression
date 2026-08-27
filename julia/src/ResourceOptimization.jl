@@ -10,6 +10,7 @@ export ExactRetentionProblem,
        discrete_capacity_profile,
        enumerate_sublibraries,
        exact_safe_feasible,
+       heaviest_safe_first_trace,
        inclusion_irreducible,
        library_cardinality,
        library_closure,
@@ -34,6 +35,8 @@ export ExactRetentionProblem,
        penalized_optimal_masks,
        penalized_value,
        safe_feasible,
+       safe_deletion_gap_family,
+       safe_deletion_gap_problem,
        safe_pruning_trace,
        safe_sublibraries,
        safely_deletable,
@@ -441,6 +444,134 @@ function safe_pruning_trace(
         end
     end
     return (masks = masks, deletions = deletions, endpoint = current)
+end
+
+"""
+    heaviest_safe_first_trace(problem, source_mask)
+
+Repeatedly delete a currently safely deletable strategy of maximum exact
+weight. Equal-weight ties are resolved by the lowest strategy index. Safety
+is rechecked against the current library before every deletion.
+"""
+function heaviest_safe_first_trace(
+    problem::ExactRetentionProblem,
+    source_mask::UInt64,
+)
+    _validate_library_mask(problem, source_mask)
+    current = source_mask
+    masks = UInt64[current]
+    deletions = Int[]
+
+    while true
+        candidates = Int[
+            strategy_index for
+            strategy_index in 1:active_strategy_count(problem) if
+            safely_deletable(problem, current, strategy_index)
+        ]
+        isempty(candidates) && break
+        maximum_weight = maximum(problem.weights[index] for index in candidates)
+        strategy_index = first(
+            index for index in candidates if
+            problem.weights[index] == maximum_weight
+        )
+        bit = UInt64(1) << (strategy_index - 1)
+        current &= ~bit
+        push!(deletions, strategy_index)
+        push!(masks, current)
+    end
+
+    return (
+        masks = masks,
+        deletions = deletions,
+        endpoint = current,
+        selection_rule = :maximum_weight_then_lowest_strategy_index,
+        every_deletion_rechecked = true,
+    )
+end
+
+"""
+    safe_deletion_gap_family(k, epsilon)
+
+Generate the exact structural data for the identity-closure adversarial
+family with `k` singleton module carriers and one all-module bundle. The
+inactive strategy is implicit and has zero burden, a zero profile, and no
+modules. This structural generator supports `2 <= k <= 61`; it does not
+allocate the exponentially large library-value table used by exhaustive
+enumeration.
+"""
+function safe_deletion_gap_family(k::Integer, epsilon)
+    2 <= k <= 61 ||
+        throw(ArgumentError("the gap-family generator requires 2 <= k <= 61"))
+    singleton_count = Int(k)
+    exact_epsilon = exact_rational(epsilon)
+    exact_epsilon > 0 ||
+        throw(ArgumentError("epsilon must be strictly positive"))
+    1 + exact_epsilon < singleton_count ||
+        throw(ArgumentError("the gap family requires 1 + epsilon < k"))
+
+    bundle_mask = UInt64(1) << singleton_count
+    singleton_library_mask = bundle_mask - UInt64(1)
+    source_mask = singleton_library_mask | bundle_mask
+    module_universe_mask = singleton_library_mask
+    strategy_ids = vcat(
+        ["s_$index" for index in 1:singleton_count],
+        ["s_B"],
+    )
+    weights = vcat(
+        fill(one(ExactRational), singleton_count),
+        [one(ExactRational) + exact_epsilon],
+    )
+    profiles = zeros(ExactRational, singleton_count + 1, 1)
+    module_masks = vcat(
+        [UInt64(1) << (index - 1) for index in 1:singleton_count],
+        [module_universe_mask],
+    )
+
+    return (
+        k = singleton_count,
+        epsilon = exact_epsilon,
+        inactive_strategy_id = "inactive",
+        strategy_ids = strategy_ids,
+        weights = weights,
+        profiles = profiles,
+        module_masks = module_masks,
+        module_count = singleton_count,
+        singleton_indices = collect(1:singleton_count),
+        bundle_index = singleton_count + 1,
+        singleton_library_mask = singleton_library_mask,
+        bundle_mask = bundle_mask,
+        source_mask = source_mask,
+        module_universe_mask = module_universe_mask,
+    )
+end
+
+"""
+    safe_deletion_gap_problem(k, epsilon)
+
+Materialize a `safe_deletion_gap_family` as an `ExactRetentionProblem` for
+exact finite enumeration. The current oracle stores one value per active
+sublibrary, so materialization is deliberately limited to `k <= 18`; the
+parameterized mathematical family itself is not subject to this oracle cap.
+"""
+function safe_deletion_gap_problem(k::Integer, epsilon)
+    family = safe_deletion_gap_family(k, epsilon)
+    family.k <= 18 ||
+        throw(
+            ArgumentError(
+                "exact gap-family materialization requires k <= 18 because " *
+                "the finite oracle stores 2^(k+1) library values",
+            ),
+        )
+    library_count = Int(1) << length(family.strategy_ids)
+    problem = ExactRetentionProblem(
+        family.strategy_ids,
+        family.weights,
+        family.profiles,
+        family.module_masks,
+        family.module_count,
+        zeros(ExactRational, library_count),
+    )
+    return merge(family, (problem = problem,))
 end
 
 function inclusion_irreducible(

@@ -107,9 +107,12 @@ complete set of available optimal actions. Under identity closure, the exact
 decision problem is NP-complete by a weight-preserving set-cover reduction;
 the general optimization problem is NP-hard. Rechecking frontier and closure
 after each deletion certifies a safe path, but a deletion-irreducible endpoint
-need not be globally resource-minimal. A sharp bridge construction shows that
-frontier-only pruning can eliminate the complete attainable delayed descendant
-margin. Hard-capacity value is stepwise and can exhibit increasing increments,
+need not be globally resource-minimal. A parameterized identity-closure family
+shows that the specific heaviest-safe-first deletion rule has no constant
+approximation guarantee, while other deletion orders can reach the optimum. A
+sharp bridge construction shows that frontier-only pruning can eliminate the
+complete attainable delayed descendant margin. Hard-capacity value is stepwise
+and can exhibit increasing increments,
 whereas penalized value is a convex piecewise-affine envelope with discrete
 changes in the selected library. Exact rational fixtures, complete
 small-library searches, registered synthetic stress tests, and retrospective
@@ -128,6 +131,7 @@ combinatorial optimization, generative value, quantitative finance}
 \input{sections/02_literature_boundary}
 \input{sections/03_model}
 \input{sections/04_dynamic_innovation_equivalence}
+\input{../journal/aor/manuscript/06_safe_deletion_gap_family}
 \input{../journal/aor/sections/05_innovation_safe_compression}
 \input{sections/06_operational_generative_value}
 \input{sections/07_belief_space_coverage}

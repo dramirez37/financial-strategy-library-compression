@@ -92,6 +92,15 @@ KEYWORD_COUNT="$(
 
 "$JULIA_EXE" --startup-file=no --project="$ROOT/julia/test" -e '
     using StrategyInnovation, Test
+    include("julia/scripts/export_safe_deletion_gap_family.jl")
+    using .SafeDeletionGapFamilyFixture
+    include("julia/test/test_safe_deletion_gap_family.jl")
+'
+"$JULIA_EXE" --startup-file=no --project="$ROOT/julia" \
+    "$ROOT/julia/scripts/export_safe_deletion_gap_family.jl" --check
+
+"$JULIA_EXE" --startup-file=no --project="$ROOT/julia/test" -e '
+    using StrategyInnovation, Test
     include("julia/scripts/export_tagged_cover_theorem_fixture.jl")
     using .TaggedCoverTheoremFixture
     include("julia/test/test_tagged_cover.jl")

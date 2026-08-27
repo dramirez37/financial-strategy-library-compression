@@ -266,6 +266,72 @@ counterexamples later in this ledger.
   match CX-OPT-PRUNE-CARDINALITY-01 and CX-OPT-GREEDY-WEIGHT-01.
 - **Empirical relevance:** Not applicable.
 
+### SC-GAP — Unbounded gap for heaviest-safe-first deletion
+
+- **Theorem ID:** SC-GAP
+- **Informal statement:** For every integer `k >= 2` and positive rational
+  `epsilon` with `1 + epsilon < k`, the identity-closure library with `k`
+  unit-weight singleton module carriers and one all-module bundle of weight
+  `1 + epsilon` makes every active source strategy safely deletable. The
+  bundle is the unique heaviest safe strategy, so the rechecked
+  heaviest-safe-first rule deletes it and stops at an inclusion-wise
+  irreducible singleton library of burden `k`. The bundle-only library is the
+  unique global safe optimum of burden `1 + epsilon`; the rule's exact ratio
+  is `k / (1 + epsilon)` and is unbounded over the family. The family also
+  proves that one-deletion irreducibility alone has no constant burden
+  guarantee. It does not prove that every deletion order is bad.
+- **Exact assumptions:**
+  1. a finite identity-closure source library and exact source-relative
+     frontier--closure safety;
+  2. one belief, with zero operating profile for the mandatory inactive
+     strategy and every active strategy;
+  3. a mandatory inactive strategy with zero burden and no modules;
+  4. distinct modules `m_1, ..., m_k`, where singleton `s_i` carries only
+     `m_i` with burden one;
+  5. bundle `s_B` carries every module with burden `1 + epsilon`;
+  6. integer `k >= 2`, rational `epsilon > 0`, and `1 + epsilon < k`; and
+  7. `heaviest-safe-first` means that exact safety is recomputed at the
+     current library before every deletion and a maximum-weight currently
+     safe strategy is chosen.
+- **Assumption reconciliation:** The zero frontier is preserved by the
+  mandatory inactive strategy, so safety is exactly full module coverage in
+  this family. Positivity of `epsilon` makes the bundle uniquely heaviest at
+  the source; `1 + epsilon < k` makes it uniquely globally optimal. If the
+  bundle is deleted first, every singleton becomes an essential module
+  carrier. If any singleton is deleted first, the bundle becomes essential
+  and every remaining singleton can be deleted, yielding the optimum. Thus
+  the theorem targets the specified heaviest-safe-first rule and exhibits bad
+  irreducible endpoints; it is not a lower bound for every deletion order,
+  forward weighted-cover construction, or every certified heuristic.
+- **Human-readable proof:**
+  `journal/aor/manuscript/06_safe_deletion_gap_family.tex`.
+- **Lean declarations:** none.
+- **Lean files:** none added. Formalizing only the rational burden inequality
+  would not kernel-verify the safety characterization or the algorithmic
+  trace, so it was not used as a proxy for the human theorem.
+- **`#print axioms` result:** Not applicable; SC-GAP has no Lean declaration.
+- **Status:** HUMAN PROOF with exact finite Julia validation; not Lean
+  verified.
+- **Informal mathematical validity:** A safe active set contains the bundle or
+  all singletons. This exact characterization proves every deletion claim,
+  both endpoint burdens, uniqueness of the optimum, and the ratio. Fixing any
+  positive rational epsilon and taking sufficiently large `k` makes the ratio
+  exceed every proposed finite constant.
+- **Julia implementation validation:**
+  `julia/src/ResourceOptimization.jl` provides the structural family
+  generator, bounded exact-oracle materializer, and deterministically
+  tie-broken rechecked heaviest-safe-first trace.
+  `julia/test/test_safe_deletion_gap_family.jl` passes 3,014 targeted checks:
+  24 exact parameter instances and all 2,016 active-library masks in the
+  declared grid, all 870 deletion orders for `k = 2, ..., 5`, generator
+  boundaries, and byte equality for five committed exact fixtures. The
+  machine-readable artifact is
+  `journal/aor/fixtures/safe_deletion_gap_family_v1.json`. These computations
+  validate finite instances and implementation behavior; they are not the
+  universal proof.
+- **Empirical relevance:** Not applicable. No randomized, solver, runtime, or
+  financial evidence is used.
+
 ### SC — Exact safe-compression theorem
 
 - **Theorem ID:** SC

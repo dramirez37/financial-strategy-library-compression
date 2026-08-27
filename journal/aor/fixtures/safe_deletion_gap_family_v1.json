@@ -1,0 +1,728 @@
+{
+  "arithmetic": "Rational{BigInt}",
+  "evidence_class": "exact finite Julia computation; not a universal proof and not Lean verification",
+  "family_assumptions": {
+    "active_profiles": "zero at the single declared belief",
+    "closure": "identity",
+    "epsilon": "positive rational with 1 + epsilon < k",
+    "inactive": "mandatory, zero burden, zero profile, no modules",
+    "k": "integer k >= 2"
+  },
+  "fixtures": [
+    {
+      "approximation_ratio": "4//3",
+      "belief_count": 1,
+      "epsilon": "1//2",
+      "fixture_id": "GAP-K2-EPS-1-2",
+      "gates": {
+        "all_gates_pass": true,
+        "all_source_active_strategies_safely_deletable": true,
+        "bundle_only_unique_global_optimum": true,
+        "bundle_unique_heaviest_safely_deletable": true,
+        "endpoint_burden_equals_k": true,
+        "endpoint_inclusion_irreducible": true,
+        "endpoint_is_all_singletons": true,
+        "frontier_and_closure_rechecked_for_every_mask": true,
+        "heaviest_safe_first_deletes_bundle_first": true,
+        "heaviest_safe_first_steps_exactly_rechecked": true,
+        "heaviest_safe_first_stops_after_bundle": true,
+        "heaviest_safe_first_trace_source_safe": true,
+        "mandatory_inactive_retained": true,
+        "optimum_burden_equals_one_plus_epsilon": true,
+        "ratio_equals_k_over_one_plus_epsilon": true,
+        "safe_mask_count_matches_family": true,
+        "singleton_first_trace_reaches_optimum": true
+      },
+      "global_optimum": {
+        "algorithm": "complete submask enumeration",
+        "burden": "3//2",
+        "libraries": [
+          {
+            "burden": "3//2",
+            "closure": [
+              1,
+              2
+            ],
+            "frontier": [
+              "0//1"
+            ],
+            "mask": 4,
+            "strategies": [
+              "inactive",
+              "s_B"
+            ]
+          }
+        ],
+        "masks": [
+          4
+        ],
+        "ties_complete": true
+      },
+      "heaviest_safe_first": {
+        "deletions": [
+          "s_B"
+        ],
+        "endpoint": {
+          "burden": "2//1",
+          "closure": [
+            1,
+            2
+          ],
+          "frontier": [
+            "0//1"
+          ],
+          "mask": 3,
+          "strategies": [
+            "inactive",
+            "s_1",
+            "s_2"
+          ]
+        },
+        "exact_recheck_before_every_deletion": true,
+        "masks": [
+          7,
+          3
+        ],
+        "selection_rule": "maximum_weight_then_lowest_strategy_index"
+      },
+      "identity_closure": true,
+      "inactive": {
+        "id": "inactive",
+        "mandatory": true,
+        "modules": [],
+        "profile": [
+          "0//1"
+        ],
+        "weight": "0//1"
+      },
+      "k": 2,
+      "ratio_formula": "k//1 / (1//1 + epsilon)",
+      "safe_sublibrary_count": 5,
+      "safely_deletable_at_source": [
+        "s_1",
+        "s_2",
+        "s_B"
+      ],
+      "singleton_first_endpoint": {
+        "burden": "3//2",
+        "closure": [
+          1,
+          2
+        ],
+        "frontier": [
+          "0//1"
+        ],
+        "mask": 4,
+        "strategies": [
+          "inactive",
+          "s_B"
+        ]
+      },
+      "source": {
+        "burden": "7//2",
+        "closure": [
+          1,
+          2
+        ],
+        "frontier": [
+          "0//1"
+        ],
+        "mask": 7,
+        "strategies": [
+          "inactive",
+          "s_1",
+          "s_2",
+          "s_B"
+        ]
+      },
+      "unique_heaviest_safely_deletable": "s_B"
+    },
+    {
+      "approximation_ratio": "2//1",
+      "belief_count": 1,
+      "epsilon": "1//2",
+      "fixture_id": "GAP-K3-EPS-1-2",
+      "gates": {
+        "all_gates_pass": true,
+        "all_source_active_strategies_safely_deletable": true,
+        "bundle_only_unique_global_optimum": true,
+        "bundle_unique_heaviest_safely_deletable": true,
+        "endpoint_burden_equals_k": true,
+        "endpoint_inclusion_irreducible": true,
+        "endpoint_is_all_singletons": true,
+        "frontier_and_closure_rechecked_for_every_mask": true,
+        "heaviest_safe_first_deletes_bundle_first": true,
+        "heaviest_safe_first_steps_exactly_rechecked": true,
+        "heaviest_safe_first_stops_after_bundle": true,
+        "heaviest_safe_first_trace_source_safe": true,
+        "mandatory_inactive_retained": true,
+        "optimum_burden_equals_one_plus_epsilon": true,
+        "ratio_equals_k_over_one_plus_epsilon": true,
+        "safe_mask_count_matches_family": true,
+        "singleton_first_trace_reaches_optimum": true
+      },
+      "global_optimum": {
+        "algorithm": "complete submask enumeration",
+        "burden": "3//2",
+        "libraries": [
+          {
+            "burden": "3//2",
+            "closure": [
+              1,
+              2,
+              3
+            ],
+            "frontier": [
+              "0//1"
+            ],
+            "mask": 8,
+            "strategies": [
+              "inactive",
+              "s_B"
+            ]
+          }
+        ],
+        "masks": [
+          8
+        ],
+        "ties_complete": true
+      },
+      "heaviest_safe_first": {
+        "deletions": [
+          "s_B"
+        ],
+        "endpoint": {
+          "burden": "3//1",
+          "closure": [
+            1,
+            2,
+            3
+          ],
+          "frontier": [
+            "0//1"
+          ],
+          "mask": 7,
+          "strategies": [
+            "inactive",
+            "s_1",
+            "s_2",
+            "s_3"
+          ]
+        },
+        "exact_recheck_before_every_deletion": true,
+        "masks": [
+          15,
+          7
+        ],
+        "selection_rule": "maximum_weight_then_lowest_strategy_index"
+      },
+      "identity_closure": true,
+      "inactive": {
+        "id": "inactive",
+        "mandatory": true,
+        "modules": [],
+        "profile": [
+          "0//1"
+        ],
+        "weight": "0//1"
+      },
+      "k": 3,
+      "ratio_formula": "k//1 / (1//1 + epsilon)",
+      "safe_sublibrary_count": 9,
+      "safely_deletable_at_source": [
+        "s_1",
+        "s_2",
+        "s_3",
+        "s_B"
+      ],
+      "singleton_first_endpoint": {
+        "burden": "3//2",
+        "closure": [
+          1,
+          2,
+          3
+        ],
+        "frontier": [
+          "0//1"
+        ],
+        "mask": 8,
+        "strategies": [
+          "inactive",
+          "s_B"
+        ]
+      },
+      "source": {
+        "burden": "9//2",
+        "closure": [
+          1,
+          2,
+          3
+        ],
+        "frontier": [
+          "0//1"
+        ],
+        "mask": 15,
+        "strategies": [
+          "inactive",
+          "s_1",
+          "s_2",
+          "s_3",
+          "s_B"
+        ]
+      },
+      "unique_heaviest_safely_deletable": "s_B"
+    },
+    {
+      "approximation_ratio": "3//1",
+      "belief_count": 1,
+      "epsilon": "1//3",
+      "fixture_id": "GAP-K4-EPS-1-3",
+      "gates": {
+        "all_gates_pass": true,
+        "all_source_active_strategies_safely_deletable": true,
+        "bundle_only_unique_global_optimum": true,
+        "bundle_unique_heaviest_safely_deletable": true,
+        "endpoint_burden_equals_k": true,
+        "endpoint_inclusion_irreducible": true,
+        "endpoint_is_all_singletons": true,
+        "frontier_and_closure_rechecked_for_every_mask": true,
+        "heaviest_safe_first_deletes_bundle_first": true,
+        "heaviest_safe_first_steps_exactly_rechecked": true,
+        "heaviest_safe_first_stops_after_bundle": true,
+        "heaviest_safe_first_trace_source_safe": true,
+        "mandatory_inactive_retained": true,
+        "optimum_burden_equals_one_plus_epsilon": true,
+        "ratio_equals_k_over_one_plus_epsilon": true,
+        "safe_mask_count_matches_family": true,
+        "singleton_first_trace_reaches_optimum": true
+      },
+      "global_optimum": {
+        "algorithm": "complete submask enumeration",
+        "burden": "4//3",
+        "libraries": [
+          {
+            "burden": "4//3",
+            "closure": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "frontier": [
+              "0//1"
+            ],
+            "mask": 16,
+            "strategies": [
+              "inactive",
+              "s_B"
+            ]
+          }
+        ],
+        "masks": [
+          16
+        ],
+        "ties_complete": true
+      },
+      "heaviest_safe_first": {
+        "deletions": [
+          "s_B"
+        ],
+        "endpoint": {
+          "burden": "4//1",
+          "closure": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "frontier": [
+            "0//1"
+          ],
+          "mask": 15,
+          "strategies": [
+            "inactive",
+            "s_1",
+            "s_2",
+            "s_3",
+            "s_4"
+          ]
+        },
+        "exact_recheck_before_every_deletion": true,
+        "masks": [
+          31,
+          15
+        ],
+        "selection_rule": "maximum_weight_then_lowest_strategy_index"
+      },
+      "identity_closure": true,
+      "inactive": {
+        "id": "inactive",
+        "mandatory": true,
+        "modules": [],
+        "profile": [
+          "0//1"
+        ],
+        "weight": "0//1"
+      },
+      "k": 4,
+      "ratio_formula": "k//1 / (1//1 + epsilon)",
+      "safe_sublibrary_count": 17,
+      "safely_deletable_at_source": [
+        "s_1",
+        "s_2",
+        "s_3",
+        "s_4",
+        "s_B"
+      ],
+      "singleton_first_endpoint": {
+        "burden": "4//3",
+        "closure": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "frontier": [
+          "0//1"
+        ],
+        "mask": 16,
+        "strategies": [
+          "inactive",
+          "s_B"
+        ]
+      },
+      "source": {
+        "burden": "16//3",
+        "closure": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "frontier": [
+          "0//1"
+        ],
+        "mask": 31,
+        "strategies": [
+          "inactive",
+          "s_1",
+          "s_2",
+          "s_3",
+          "s_4",
+          "s_B"
+        ]
+      },
+      "unique_heaviest_safely_deletable": "s_B"
+    },
+    {
+      "approximation_ratio": "20//7",
+      "belief_count": 1,
+      "epsilon": "3//4",
+      "fixture_id": "GAP-K5-EPS-3-4",
+      "gates": {
+        "all_gates_pass": true,
+        "all_source_active_strategies_safely_deletable": true,
+        "bundle_only_unique_global_optimum": true,
+        "bundle_unique_heaviest_safely_deletable": true,
+        "endpoint_burden_equals_k": true,
+        "endpoint_inclusion_irreducible": true,
+        "endpoint_is_all_singletons": true,
+        "frontier_and_closure_rechecked_for_every_mask": true,
+        "heaviest_safe_first_deletes_bundle_first": true,
+        "heaviest_safe_first_steps_exactly_rechecked": true,
+        "heaviest_safe_first_stops_after_bundle": true,
+        "heaviest_safe_first_trace_source_safe": true,
+        "mandatory_inactive_retained": true,
+        "optimum_burden_equals_one_plus_epsilon": true,
+        "ratio_equals_k_over_one_plus_epsilon": true,
+        "safe_mask_count_matches_family": true,
+        "singleton_first_trace_reaches_optimum": true
+      },
+      "global_optimum": {
+        "algorithm": "complete submask enumeration",
+        "burden": "7//4",
+        "libraries": [
+          {
+            "burden": "7//4",
+            "closure": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "frontier": [
+              "0//1"
+            ],
+            "mask": 32,
+            "strategies": [
+              "inactive",
+              "s_B"
+            ]
+          }
+        ],
+        "masks": [
+          32
+        ],
+        "ties_complete": true
+      },
+      "heaviest_safe_first": {
+        "deletions": [
+          "s_B"
+        ],
+        "endpoint": {
+          "burden": "5//1",
+          "closure": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "frontier": [
+            "0//1"
+          ],
+          "mask": 31,
+          "strategies": [
+            "inactive",
+            "s_1",
+            "s_2",
+            "s_3",
+            "s_4",
+            "s_5"
+          ]
+        },
+        "exact_recheck_before_every_deletion": true,
+        "masks": [
+          63,
+          31
+        ],
+        "selection_rule": "maximum_weight_then_lowest_strategy_index"
+      },
+      "identity_closure": true,
+      "inactive": {
+        "id": "inactive",
+        "mandatory": true,
+        "modules": [],
+        "profile": [
+          "0//1"
+        ],
+        "weight": "0//1"
+      },
+      "k": 5,
+      "ratio_formula": "k//1 / (1//1 + epsilon)",
+      "safe_sublibrary_count": 33,
+      "safely_deletable_at_source": [
+        "s_1",
+        "s_2",
+        "s_3",
+        "s_4",
+        "s_5",
+        "s_B"
+      ],
+      "singleton_first_endpoint": {
+        "burden": "7//4",
+        "closure": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "frontier": [
+          "0//1"
+        ],
+        "mask": 32,
+        "strategies": [
+          "inactive",
+          "s_B"
+        ]
+      },
+      "source": {
+        "burden": "27//4",
+        "closure": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "frontier": [
+          "0//1"
+        ],
+        "mask": 63,
+        "strategies": [
+          "inactive",
+          "s_1",
+          "s_2",
+          "s_3",
+          "s_4",
+          "s_5",
+          "s_B"
+        ]
+      },
+      "unique_heaviest_safely_deletable": "s_B"
+    },
+    {
+      "approximation_ratio": "5//1",
+      "belief_count": 1,
+      "epsilon": "1//5",
+      "fixture_id": "GAP-K6-EPS-1-5",
+      "gates": {
+        "all_gates_pass": true,
+        "all_source_active_strategies_safely_deletable": true,
+        "bundle_only_unique_global_optimum": true,
+        "bundle_unique_heaviest_safely_deletable": true,
+        "endpoint_burden_equals_k": true,
+        "endpoint_inclusion_irreducible": true,
+        "endpoint_is_all_singletons": true,
+        "frontier_and_closure_rechecked_for_every_mask": true,
+        "heaviest_safe_first_deletes_bundle_first": true,
+        "heaviest_safe_first_steps_exactly_rechecked": true,
+        "heaviest_safe_first_stops_after_bundle": true,
+        "heaviest_safe_first_trace_source_safe": true,
+        "mandatory_inactive_retained": true,
+        "optimum_burden_equals_one_plus_epsilon": true,
+        "ratio_equals_k_over_one_plus_epsilon": true,
+        "safe_mask_count_matches_family": true,
+        "singleton_first_trace_reaches_optimum": true
+      },
+      "global_optimum": {
+        "algorithm": "complete submask enumeration",
+        "burden": "6//5",
+        "libraries": [
+          {
+            "burden": "6//5",
+            "closure": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6
+            ],
+            "frontier": [
+              "0//1"
+            ],
+            "mask": 64,
+            "strategies": [
+              "inactive",
+              "s_B"
+            ]
+          }
+        ],
+        "masks": [
+          64
+        ],
+        "ties_complete": true
+      },
+      "heaviest_safe_first": {
+        "deletions": [
+          "s_B"
+        ],
+        "endpoint": {
+          "burden": "6//1",
+          "closure": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "frontier": [
+            "0//1"
+          ],
+          "mask": 63,
+          "strategies": [
+            "inactive",
+            "s_1",
+            "s_2",
+            "s_3",
+            "s_4",
+            "s_5",
+            "s_6"
+          ]
+        },
+        "exact_recheck_before_every_deletion": true,
+        "masks": [
+          127,
+          63
+        ],
+        "selection_rule": "maximum_weight_then_lowest_strategy_index"
+      },
+      "identity_closure": true,
+      "inactive": {
+        "id": "inactive",
+        "mandatory": true,
+        "modules": [],
+        "profile": [
+          "0//1"
+        ],
+        "weight": "0//1"
+      },
+      "k": 6,
+      "ratio_formula": "k//1 / (1//1 + epsilon)",
+      "safe_sublibrary_count": 65,
+      "safely_deletable_at_source": [
+        "s_1",
+        "s_2",
+        "s_3",
+        "s_4",
+        "s_5",
+        "s_6",
+        "s_B"
+      ],
+      "singleton_first_endpoint": {
+        "burden": "6//5",
+        "closure": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "frontier": [
+          "0//1"
+        ],
+        "mask": 64,
+        "strategies": [
+          "inactive",
+          "s_B"
+        ]
+      },
+      "source": {
+        "burden": "36//5",
+        "closure": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "frontier": [
+          "0//1"
+        ],
+        "mask": 127,
+        "strategies": [
+          "inactive",
+          "s_1",
+          "s_2",
+          "s_3",
+          "s_4",
+          "s_5",
+          "s_6",
+          "s_B"
+        ]
+      },
+      "unique_heaviest_safely_deletable": "s_B"
+    }
+  ],
+  "gates": {
+    "all_fixture_gates_pass": true,
+    "fixture_count": 5
+  },
+  "schema_version": "safe-deletion-gap-family-v1"
+}

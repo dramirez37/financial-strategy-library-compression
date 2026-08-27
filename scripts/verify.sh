@@ -154,6 +154,14 @@ run_julia --project="$ROOT/julia/test" -e '
 '
 run_julia --project="$ROOT/julia" \
     "$ROOT/julia/scripts/verify_safe_compression_complexity_reductions.jl" --check
+run_julia --project="$ROOT/julia/test" -e '
+    using StrategyInnovation, Test
+    include("julia/scripts/export_safe_deletion_gap_family.jl")
+    using .SafeDeletionGapFamilyFixture
+    include("julia/test/test_safe_deletion_gap_family.jl")
+'
+run_julia --project="$ROOT/julia" \
+    "$ROOT/julia/scripts/export_safe_deletion_gap_family.jl" --check
 run_julia --project="$ROOT/julia" "$ROOT/julia/scripts/export_exact_fixtures.jl" --check
 run_julia --project="$ROOT/julia" \
     "$ROOT/julia/scripts/search_revision_counterexamples.jl" --check

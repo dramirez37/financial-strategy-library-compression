@@ -425,6 +425,40 @@ Every experiment must have:
   constructors. The universal NP-completeness proof is human-readable and has
   no Lean counterpart or axiom audit.
 
+### safe-deletion-gap-family-v1
+
+- **Entry point:**
+  `julia/scripts/export_safe_deletion_gap_family.jl`
+- **Environment:** Julia 1.12.6 with the committed Julia project and manifest
+- **Arithmetic:** `Rational{BigInt}` throughout; floating-point epsilon inputs
+  are rejected
+- **Randomness:** none
+- **Command:** `./.local_runtime/julia-1.12.6/bin/julia --project=julia
+  julia/scripts/export_safe_deletion_gap_family.jl`
+- **Non-mutating check:** same command with `--check`
+- **Output:**
+  `journal/aor/fixtures/safe_deletion_gap_family_v1.json`
+- **Expected invariants:** five exact fixtures; every active source strategy is
+  safely deletable; the bundle is uniquely heaviest; heaviest-safe-first ends
+  at all singletons with burden `k`; the bundle-only library is the unique
+  optimum with burden `1 + epsilon`; and the exact ratio is
+  `k / (1 + epsilon)`.
+- **Focused test:** `./.local_runtime/julia-1.12.6/bin/julia
+  --project=julia/test -e 'using StrategyInnovation, Test;
+  include("julia/scripts/export_safe_deletion_gap_family.jl");
+  using .SafeDeletionGapFamilyFixture;
+  include("julia/test/test_safe_deletion_gap_family.jl")'`
+- **Validation:** 3,014 targeted assertions, comprising generator boundaries,
+  24 parameter instances, all 2,016 active-library masks in the declared
+  grid, all 870 fixed scan orders for `k = 2, ..., 5`, and byte equality for
+  the five committed fixtures.
+- **Scope warning:** the universal ratio and unboundedness result has a human
+  proof and no Lean declaration. The exact finite computations validate the
+  implementation and selected instances; they are not a proof of the
+  parameterized theorem. The order audit shows that singleton-first maximal
+  deletion reaches the optimum, so the lower bound is not an every-order
+  statement.
+
 ### joint-descendant-bound-gauntlet-v1
 
 - **Configuration:**

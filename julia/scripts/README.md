@@ -52,6 +52,22 @@ It writes one complete audit plus 14 per-target JSON fixtures. The result is
 13 counterexamples and the surviving penalized-burden antitonicity claim. It
 does not write Lean source or confer theorem status.
 
+`export_safe_deletion_gap_family.jl` generates and exactly rechecks the
+exact identity-closure family used for the heaviest-safe-first worst-case
+theorem:
+
+```sh
+julia --project=julia \
+  julia/scripts/export_safe_deletion_gap_family.jl
+julia --project=julia \
+  julia/scripts/export_safe_deletion_gap_family.jl --check
+```
+
+The output is
+`journal/aor/fixtures/safe_deletion_gap_family_v1.json`. It uses exact
+`Rational{BigInt}` arithmetic and no randomness or solver. The fixtures are
+finite executable evidence, not Lean verification or the universal proof.
+
 `export_tagged_cover_theorem_fixture.jl` constructs the source-relative
 identity-closure tagged universe from the package's `StrategyCatalog` and
 `RawLibrary` types. It checks all sublibraries of a representative instance,

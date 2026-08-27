@@ -197,6 +197,17 @@ limits, not assumptions of the polynomial reduction. These exact finite checks
 validate the implementation; they are not a Lean or universal complexity
 proof.
 
+`src/ResourceOptimization.jl` also provides the structural
+`safe_deletion_gap_family` generator, a deliberately bounded exact-oracle
+materializer, and `heaviest_safe_first_trace`, which rechecks exact safety at
+the current library before every maximum-weight deletion. The renderer
+`scripts/export_safe_deletion_gap_family.jl` writes five exact rational
+fixtures to `journal/aor/fixtures/safe_deletion_gap_family_v1.json`.
+`test/test_safe_deletion_gap_family.jl` exhausts the declared small parameter
+grid and every fixed deletion order through the stated small-`k` boundary.
+Those computations validate instances and code behavior; the parameterized
+unbounded-gap statement remains a human proof with no Lean declaration.
+
 The compatibility F5/F8 layer in `src/DynamicProgramming.jl` adds exact
 finite-horizon Bellman recursion, delays and candidate distributions,
 cost-sensitive exact dynamic equivalence, exact small-state policy iteration,

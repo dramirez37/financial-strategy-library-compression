@@ -708,6 +708,85 @@ counterexamples later in this ledger.
 - **Empirical relevance:** None. No frozen randomized result, financial row,
   held-out information, or licensed workflow is read or changed.
 
+### SC-GREEDY — Weighted greedy construction and reverse deletion
+
+- **Theorem ID:** SC-GREEDY
+- **Journal manuscript label:** `thm:aor-weighted-greedy` in
+  `journal/aor/manuscript/08_weighted_greedy_construction.tex`, included by
+  `journal/aor/sections/05_innovation_safe_compression.tex`
+- **Evidence status:** HUMAN PROOF transferring a verified primary-source
+  theorem through SC-TAG, supported by exact finite Julia validation; no Lean
+  verification, solver-status, or exhaustive optimality claim for returned
+  heuristic solutions
+- **Informal statement:** After selecting every mandatory strategy and
+  removing the tagged requirements it covers, choose a positive-weight
+  residual strategy minimizing exact weight divided by its number of newly
+  covered requirements. Let (d) be the largest initial residual coverage
+  cardinality of one optional strategy. The constructed safe library has
+  total burden at most (H(d)) times the exact safe-compression optimum.
+  Deterministic reverse deletion cannot increase burden and therefore retains
+  the same guarantee. If no residual requirement remains, the mandatory
+  library is exactly optimal and the recorded factor is one.
+- **Primary theorem source:** Václav Chvátal, “A Greedy Heuristic for the
+  Set-Covering Problem,” *Mathematics of Operations Research* 4(3), 233--235
+  (1979), DOI `10.1287/moor.4.3.233`. The official INFORMS record and complete
+  primary paper were rechecked on 2026-08-27. The paper assumes positive set
+  costs, uses the cost-per-newly-covered-element rule, proves the (H(d))
+  bound for maximum set cardinality (d), and supplies the singleton-plus-
+  universe near-tight family.
+- **Exact assumptions:**
+  1. a valid finite `journal-compression-instance-v1` source library;
+  2. identity closure and the SC-TAG safe-feasibility equivalence;
+  3. all mandatory strategies fixed before greedy scoring, with nonnegative
+     exact mandatory weights;
+  4. strictly positive exact rational weights for every nonmandatory
+     strategy;
+  5. every residual tagged requirement has at least one residual carrier;
+  6. a fixed source-relative tagged universe throughout construction; and
+  7. exact ratio comparison with any deterministic choice among minimum-ratio
+     ties.
+- **Proof transfer:** On the residual weighted set-cover instance, Chvátal
+  gives (G\leq H(d)\operatorname{OPT}_R). If mandatory burden is
+  (W_0\geq0), then
+  (W_0+G\leq W_0+H(d)\operatorname{OPT}_R
+    \leq H(d)(W_0+\operatorname{OPT}_R)).
+  SC-TAG converts complete tagged coverage plus mandatory retention to exact
+  source frontier and identity-closure preservation. Reverse deletion removes
+  only a positive-weight optional strategy whose absence leaves full tagged
+  coverage, so burden never increases. A strategy rejected during the reverse
+  pass cannot become removable after later deletions, which also proves the
+  endpoint is one-deletion irreducible.
+- **Cardinality boundary:** The separately implemented cardinality rule uses
+  exact score (1/	ext{new coverage}). The same burden guarantee is declared
+  only when all residual optional weights are equal. No weighted-burden
+  approximation is claimed for cardinality greedy with unequal weights.
+- **General-closure boundary:** No approximation transfer is claimed for
+  arbitrary nonidentity closure. Independent raw-module rows can fail to
+  represent closure complementarities, as recorded under SC-TAG. Nor does this
+  theorem give the separate backward heaviest-safe-first heuristic a factor.
+- **Julia implementation:** `julia/src/GreedyJournalCompression.jl` provides
+  weighted greedy, cardinality greedy, weighted greedy plus reverse deletion,
+  the exact Chvátal near-tight generator, deterministic original-index tie
+  handling, exact step scores, new-coverage and uncovered-count traces, and
+  solution schema `journal-compression-greedy-solution-v1`. Every result has
+  status `feasible_heuristic` and a final independent certificate rechecking
+  mandatory retention, complete tagged coverage, source frontier, source
+  identity closure, and exact burden.
+- **Julia validation:** `julia/test/test_greedy_journal_compression.jl` passes
+  4,069 targeted exact assertions. It compares all three variants with the
+  exact enumeration oracle across 441 exhaustive small incidence systems;
+  checks the (H(d)) inequality and reverse-deletion burden monotonicity;
+  exercises deterministic ties, zero residual requirements, all-mandatory
+  inputs, unequal-weight cardinality boundaries, arbitrary-precision scores,
+  and a reverse-deletion witness; and validates Chvátal's near-tight family for
+  (m=2,\ldots,7) with exact rational epsilon. These finite checks are not a
+  proof of the universal approximation theorem.
+- **Lean declarations:** none. The classical approximation theorem and its
+  transfer are not represented as Lean kernel verification.
+- **Empirical relevance:** None. No frozen randomized benchmark, financial
+  input, held-out outcome, licensed workflow, runtime claim, or solver output
+  is used.
+
 ### PEN — Exact penalized affine-envelope theorem
 
 - **Theorem ID:** PEN

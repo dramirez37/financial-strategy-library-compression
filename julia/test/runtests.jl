@@ -41,6 +41,7 @@ include("test_journal_compression_instance.jl")
 include(joinpath(@__DIR__, "..", "scripts", "solve_journal_compression_instance.jl"))
 using .JournalCompressionExactCLI
 include("test_exact_journal_compression.jl")
+include("test_greedy_journal_compression.jl")
 
 include(joinpath(@__DIR__, "..", "scripts", "solve_canonical_model.jl"))
 using .CanonicalModelSolver

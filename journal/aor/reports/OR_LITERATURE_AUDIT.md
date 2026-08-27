@@ -4,6 +4,8 @@ Status: source audit completed before new theorem or algorithm implementation
 
 Access date: 2026-08-26
 
+Weighted-greedy primary-source recheck: 2026-08-27
+
 Scope: weighted covering, decision complexity, approximation, exact solution,
 preprocessing, benchmarking, control and policy libraries, partial-information
 control, and financial model governance/resource allocation.
@@ -97,6 +99,15 @@ column to a theorem that assumes positive costs. A safe statement is:
 This is a consequence of Chvátal's result, not a new approximation theorem.
 The existing backward rechecked-deletion heuristic is not this forward greedy
 algorithm and inherits no such factor.
+
+For implementation, the result was rechecked against the official INFORMS
+article record and the complete three-page primary paper. The official record
+confirms the positive-cost binary covering model, author, venue, date, pages,
+and DOI; the paper states the (H(d)) theorem and gives the near-tight family
+of singleton costs (1/j) plus a universe-covering set of cost just above one.
+Sources: [official INFORMS article page](https://pubsonline.informs.org/doi/10.1287/moor.4.3.233)
+and [primary-paper PDF](https://people.stfx.ca/tjsmith/lec/W23CSCI435/Chv79.pdf),
+accessed 2026-08-27.
 
 For inapproximability, Feige's 1998 threshold should not be paraphrased as a
 plain \(P\ne NP\) result: his \((1-o(1))\ln n\) threshold uses the assumption

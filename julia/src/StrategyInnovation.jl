@@ -250,15 +250,21 @@ export ArithmeticMode,
        satisfies_approximate_compression_ip_formulation,
        JOURNAL_COMPRESSION_INSTANCE_SCHEMA_VERSION,
        JOURNAL_EXACT_SOLUTION_SCHEMA_VERSION,
+       JOURNAL_GREEDY_SOLUTION_SCHEMA_VERSION,
        JournalCompressionInstance,
        JournalCompressionProvenance,
        JournalExactPreprocessingSummary,
        JournalExactRuntime,
        JournalExactSolutionResult,
        JournalExactSolveCounters,
+       JournalGreedyGuarantee,
+       JournalGreedySolutionResult,
+       JournalGreedyStep,
        JournalPreprocessingMap,
+       JournalReverseDeletionStep,
        JournalTieHandling,
        check_journal_compression_solution,
+       chvatal_weighted_greedy_tightness_instance,
        default_journal_tie_handling,
        deserialize_journal_compression_instance,
        identity_journal_preprocessing_map,
@@ -279,6 +285,9 @@ export ArithmeticMode,
        serialize_journal_compression_instance,
        solve_journal_compression_dp,
        solve_journal_compression_enumeration,
+       solve_journal_compression_cardinality_greedy,
+       solve_journal_compression_weighted_greedy,
+       solve_journal_compression_weighted_greedy_reverse_delete,
        validate_journal_compression_instance,
        write_journal_compression_instance,
        write_journal_exact_solution_certificate
@@ -303,5 +312,6 @@ include("Simulation.jl")
 include("IO.jl")
 include("JournalCompressionInstance.jl")
 include("ExactJournalCompression.jl")
+include("GreedyJournalCompression.jl")
 
 end

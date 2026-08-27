@@ -1,7 +1,8 @@
 # AoOR source-migration manifest
 
-Status: PARTIAL MIGRATION. The title, abstract, keywords, and Introduction are
-journal-draft prose; the remaining article sections are still scaffolded.
+Status: PARTIAL MIGRATION. The title, abstract, keywords, Introduction, and
+literature section are journal-draft prose; the remaining article sections are
+still scaffolded.
 
 The row-level authority is `SOURCE_MIGRATION_MANIFEST.csv`. Every paragraph in
 the scaffold that summarizes existing material has a paragraph row. Planned

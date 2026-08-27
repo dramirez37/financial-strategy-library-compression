@@ -14,6 +14,12 @@ parent_source_import = "committed cross-audit membership certificates plus licen
 parent_source_frontier_must_match_committed_certificate = true
 parent_source_closure_must_match_committed_certificate = true
 annual_parent_replay_status = "KNOWN_BLOCKED_BY_ANALYTICAL_VERSUS_TAXONOMY_HASH_IDENTITY"
+registered_weight_schedules = [
+  "uniform_cardinality",
+  "nonshared_modules",
+  "validation_computation",
+  "documented_complexity",
+]
 
 [algorithms]
 current_stepwise_safe_deletion = true
@@ -66,10 +72,3 @@ solver_no_incumbent = "record status and bound without fabricating a candidate"
 exact_recheck_failure = "reject candidate and fail the saved-result audit"
 historical_stepwise_exact_failure = "retain as historical endpoint but exclude from certified benchmark"
 parent_replay_hash_mismatch = "record failure; do not rewrite parent; reconstruct only the committed source object and exact-check it before algorithms"
-
-registered_weight_schedules = [
-  "uniform_cardinality",
-  "nonshared_modules",
-  "validation_computation",
-  "documented_complexity",
-]

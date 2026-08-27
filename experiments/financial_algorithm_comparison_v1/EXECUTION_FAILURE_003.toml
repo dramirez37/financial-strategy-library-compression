@@ -1,0 +1,15 @@
+schema_version = "financial-algorithm-comparison-execution-failure-v1"
+experiment_id = "retrospective-financial-algorithm-comparison-v1"
+failure_id = "EXECUTION_FAILURE_003"
+recorded_at_utc = "2026-08-27T21:02:00Z"
+prior_design_lock_sha256 = "f78c6ef54a09a70b3bc093b2f28a62d49805bed5117aec2fa15ad4805015b330"
+failure_stage = "configuration read after both design locks and parent-artifact hashes were verified"
+failure_class = "TOML table scoping placed the unchanged registered schedule list under failure_rules"
+licensed_rows_read_this_attempt = false
+parent_source_reconstruction_started = false
+algorithm_started = false
+comparison_outcome_observed = false
+local_result_artifact_written = false
+raw_licensed_row_printed_or_written = false
+scientific_design_change_required = false
+repair_scope = "move the unchanged four-schedule list to top-level TOML scope and assert it in the lock validator"

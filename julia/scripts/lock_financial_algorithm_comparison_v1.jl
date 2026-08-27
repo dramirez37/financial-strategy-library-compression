@@ -7,6 +7,7 @@ using TOML
 export create_design_lock,
     create_design_lock_amendment_001,
     create_design_lock_amendment_002,
+    create_design_lock_amendment_003,
     main,
     verify_design_lock
 
@@ -27,10 +28,14 @@ const AMENDMENT_LOCK_001_PATH =
     joinpath(STUDY_ROOT, "DESIGN_LOCK_AMENDMENT_001.json")
 const AMENDMENT_LOCK_002_PATH =
     joinpath(STUDY_ROOT, "DESIGN_LOCK_AMENDMENT_002.json")
+const AMENDMENT_LOCK_003_PATH =
+    joinpath(STUDY_ROOT, "DESIGN_LOCK_AMENDMENT_003.json")
 const FAILURE_001_PATH = joinpath(STUDY_ROOT, "EXECUTION_FAILURE_001.toml")
 const FAILURE_002_PATH = joinpath(STUDY_ROOT, "EXECUTION_FAILURE_002.toml")
+const FAILURE_003_PATH = joinpath(STUDY_ROOT, "EXECUTION_FAILURE_003.toml")
 const AMENDMENT_001_PATH = joinpath(STUDY_ROOT, "AMENDMENT_001.md")
 const AMENDMENT_002_PATH = joinpath(STUDY_ROOT, "AMENDMENT_002.md")
+const AMENDMENT_003_PATH = joinpath(STUDY_ROOT, "AMENDMENT_003.md")
 const REQUIRED_FILES = (
     "DATA_ACCESS.md",
     "journal/aor/CLAIM_BOUNDARY.md",
@@ -65,6 +70,11 @@ const AMENDMENT_002_FILES = (
     "experiments/financial_algorithm_comparison_v1/DESIGN_LOCK_AMENDMENT_001.json",
     "experiments/financial_algorithm_comparison_v1/EXECUTION_FAILURE_002.toml",
     "experiments/financial_algorithm_comparison_v1/AMENDMENT_002.md",
+)
+const AMENDMENT_003_FILES = (
+    "experiments/financial_algorithm_comparison_v1/DESIGN_LOCK_AMENDMENT_002.json",
+    "experiments/financial_algorithm_comparison_v1/EXECUTION_FAILURE_003.toml",
+    "experiments/financial_algorithm_comparison_v1/AMENDMENT_003.md",
 )
 
 
@@ -103,6 +113,12 @@ function _validate(config_path::AbstractString)
     config["annual_parent_replay_status"] ==
         "KNOWN_BLOCKED_BY_ANALYTICAL_VERSUS_TAXONOMY_HASH_IDENTITY" ||
         error("the annual parent replay limitation changed")
+    String.(config["registered_weight_schedules"]) == [
+        "uniform_cardinality",
+        "nonshared_modules",
+        "validation_computation",
+        "documented_complexity",
+    ] || error("the registered weight schedules or their order changed")
     algorithms = config["algorithms"]
     for algorithm in (
         "current_stepwise_safe_deletion",
@@ -173,6 +189,18 @@ function _amended_002_hashes()
             REQUIRED_FILES...,
             AMENDMENT_001_FILES...,
             AMENDMENT_002_FILES...,
+        )
+    )
+end
+
+
+function _amended_003_hashes()
+    return Dict(
+        path => _sha256_file(joinpath(REPOSITORY_ROOT, path)) for path in (
+            REQUIRED_FILES...,
+            AMENDMENT_001_FILES...,
+            AMENDMENT_002_FILES...,
+            AMENDMENT_003_FILES...,
         )
     )
 end
@@ -379,9 +407,102 @@ function create_design_lock_amendment_002(
 end
 
 
+function _render_amendment_lock_003(hashes, prior_lock_sha256, prior_aggregate)
+    rows = join(
+        ("    \"$path\": \"$(hashes[path])\"" for path in sort!(collect(keys(hashes)))),
+        ",\n",
+    )
+    return """{
+  "schema_version": "financial-algorithm-comparison-design-lock-amendment-v1",
+  "experiment_id": "retrospective-financial-algorithm-comparison-v1",
+  "amendment_id": "AMENDMENT_003",
+  "locked_at_utc": "$(Dates.format(Dates.now(Dates.UTC), dateformat"yyyy-mm-ddTHH:MM:SS.sssZ"))",
+  "prior_amendment_lock_sha256": "$prior_lock_sha256",
+  "prior_amendment_lock_aggregate_sha256": "$prior_aggregate",
+  "licensed_rows_have_previously_been_read": true,
+  "licensed_rows_read_in_failed_attempt": false,
+  "algorithm_outcome_observed_before_amendment": false,
+  "scientific_design_changed": false,
+  "repair_scope": "top-level TOML scoping for the unchanged registered weight-schedule list",
+  "aggregate_sha256": "$(_aggregate(hashes))",
+  "files": {
+$rows
+  }
+}
+"""
+end
+
+
+function create_design_lock_amendment_003(
+    config_path::AbstractString = DEFAULT_CONFIG,
+)
+    _validate(config_path)
+    for path in (
+        LOCK_PATH,
+        AMENDMENT_LOCK_001_PATH,
+        AMENDMENT_LOCK_002_PATH,
+        FAILURE_003_PATH,
+        AMENDMENT_003_PATH,
+    )
+        isfile(path) || error("required amendment-003 chain file is absent: $path")
+    end
+    local_results = joinpath(STUDY_ROOT, "local_results")
+    isdir(local_results) && !isempty(readdir(local_results)) && error(
+        "cannot lock amendment 003 after local comparison results exist",
+    )
+    prior_text = read(AMENDMENT_LOCK_002_PATH, String)
+    prior_sha256 = _sha256_file(AMENDMENT_LOCK_002_PATH)
+    failure = TOML.parsefile(FAILURE_003_PATH)
+    failure["prior_design_lock_sha256"] == prior_sha256 || error(
+        "failure 003 does not identify amendment lock 002",
+    )
+    for key in (
+        "licensed_rows_read_this_attempt",
+        "parent_source_reconstruction_started",
+        "algorithm_started",
+        "comparison_outcome_observed",
+        "local_result_artifact_written",
+        "raw_licensed_row_printed_or_written",
+        "scientific_design_change_required",
+    )
+        failure[key] === false || error("failure 003 flag is not false: $key")
+    end
+    hashes = _amended_003_hashes()
+    text = _render_amendment_lock_003(
+        hashes,
+        prior_sha256,
+        _original_aggregate(prior_text),
+    )
+    temporary = AMENDMENT_LOCK_003_PATH * ".tmp.$(getpid())"
+    open(temporary, "w") do io
+        write(io, text)
+    end
+    mv(temporary, AMENDMENT_LOCK_003_PATH; force = true)
+    println("created financial algorithm comparison amendment lock 003")
+    return AMENDMENT_LOCK_003_PATH
+end
+
+
 function verify_design_lock(config_path::AbstractString = DEFAULT_CONFIG)
     _validate(config_path)
     isfile(LOCK_PATH) || error("financial algorithm comparison design lock is absent")
+    if isfile(AMENDMENT_LOCK_003_PATH)
+        text = read(AMENDMENT_LOCK_003_PATH, String)
+        hashes = _amended_003_hashes()
+        for path in keys(hashes)
+            occursin("\"$path\": \"$(hashes[path])\"", text) || error(
+                "financial algorithm comparison amendment lock mismatch: $path",
+            )
+        end
+        occursin("\"aggregate_sha256\": \"$(_aggregate(hashes))\"", text) ||
+            error("financial algorithm comparison amendment aggregate mismatch")
+        prior_sha256 = _sha256_file(AMENDMENT_LOCK_002_PATH)
+        occursin("\"prior_amendment_lock_sha256\": \"$prior_sha256\"", text) ||
+            error("financial comparison amendment 003 has a stale prior lock")
+        occursin("\"algorithm_outcome_observed_before_amendment\": false", text) ||
+            error("financial comparison amendment outcome-access declaration is invalid")
+        return _aggregate(hashes)
+    end
     if isfile(AMENDMENT_LOCK_002_PATH)
         text = read(AMENDMENT_LOCK_002_PATH, String)
         hashes = _amended_002_hashes()
@@ -435,11 +556,12 @@ end
 
 function main(args = ARGS)
     length(args) == 1 || error(
-        "usage: lock_financial_algorithm_comparison_v1.jl --create|--amend-001|--amend-002|--check",
+        "usage: lock_financial_algorithm_comparison_v1.jl --create|--amend-001|--amend-002|--amend-003|--check",
     )
     only(args) == "--create" && return create_design_lock()
     only(args) == "--amend-001" && return create_design_lock_amendment_001()
     only(args) == "--amend-002" && return create_design_lock_amendment_002()
+    only(args) == "--amend-003" && return create_design_lock_amendment_003()
     only(args) == "--check" && return println(
         "financial algorithm comparison design lock valid: $(verify_design_lock())",
     )

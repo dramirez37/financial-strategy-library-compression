@@ -1,4 +1,5 @@
-% Journal-only algorithm draft. No global-optimality or Lean status is asserted.
+% Journal-only algorithm proposition. Generic rechecked-trace safety is Lean
+% verified; implementation control flow and the final complete scan are not.
 \subsection{Certified rechecked-deletion portfolio}
 \label{subsec:aor-certified-deletion-suite}
 
@@ -61,6 +62,14 @@ its deletion fails exact source-relative feasibility.  Hence no safe
 one-strategy deletion remains.  Random ordering changes only the choice among
 already certified candidates and does not alter this argument.
 \end{proof}
+
+The generic finite-trace safety implication in the first paragraph of the
+proof is Lean verified by
+\texttt{recheckedSafeDeletionEndpoint\_feasible}.  The declaration assumes a
+trace whose current-library redundancy certificates are already supplied.  It
+does not verify the Julia scan, scoring, randomization, termination counters,
+or the reported final irreducibility scan; those clauses remain human proof
+plus exact Julia tests.
 
 Safety and one-deletion irreducibility do not imply global resource
 efficiency.  The singleton--bundle family in

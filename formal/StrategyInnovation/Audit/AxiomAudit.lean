@@ -68,6 +68,31 @@ inventories are not part of the public repository.
 #print axioms StrategyInnovation.Optimization.generativeClosure_identity_eq_iff_sourceCarriers
 #print axioms StrategyInnovation.Optimization.safeCompressionFeasible_identity_iff_taggedCover
 
+-- SC-PRE/SC-DP supporting core: finite cover preprocessing and union identities.
+#print axioms StrategyInnovation.Optimization.TaggedCoverPreprocessing.SelectedCovers
+#print axioms StrategyInnovation.Optimization.TaggedCoverPreprocessing.selectedCoverage_insert
+#print axioms StrategyInnovation.Optimization.TaggedCoverPreprocessing.uniqueCarrier_mem_of_selectedCovers
+#print axioms StrategyInnovation.Optimization.TaggedCoverPreprocessing.replace_dominated_preserves_selectedCovers
+#print axioms StrategyInnovation.Optimization.TaggedCoverPreprocessing.erase_emptyContribution_preserves_selectedCovers
+#print axioms StrategyInnovation.Optimization.TaggedCoverPreprocessing.selectedCoverage_mem_iff_of_sameCarriers
+#print axioms StrategyInnovation.Optimization.TaggedCoverPreprocessing.erase_duplicateRequirement_selectedCovers_iff
+
+-- Shared exact Julia-Lean journal fixtures (supporting finite instances only).
+#print axioms StrategyInnovation.Fixtures.JournalAlgorithms.gapK
+#print axioms StrategyInnovation.Fixtures.JournalAlgorithms.gapEpsilon
+#print axioms StrategyInnovation.Fixtures.JournalAlgorithms.gapHeuristicBurden
+#print axioms StrategyInnovation.Fixtures.JournalAlgorithms.gapOptimumBurden
+#print axioms StrategyInnovation.Fixtures.JournalAlgorithms.gap_k4_half_ratio_exact
+#print axioms StrategyInnovation.Fixtures.JournalAlgorithms.maskOr
+#print axioms StrategyInnovation.Fixtures.JournalAlgorithms.requirementMask_take_union_exact
+#print axioms StrategyInnovation.Fixtures.JournalAlgorithms.preprocessingCoverage
+#print axioms StrategyInnovation.Fixtures.JournalAlgorithms.preprocessingRequirements
+#print axioms StrategyInnovation.Fixtures.JournalAlgorithms.preprocessing_unique_first_carrier
+#print axioms StrategyInnovation.Fixtures.JournalAlgorithms.preprocessing_fixture_forces_first
+#print axioms StrategyInnovation.Fixtures.JournalAlgorithms.greedySingletonBurden
+#print axioms StrategyInnovation.Fixtures.JournalAlgorithms.greedyBundleBurden
+#print axioms StrategyInnovation.Fixtures.JournalAlgorithms.greedy_three_row_ratio_exact
+
 -- Optimization T2--T4: exact-safe optimization and the greedy boundary.
 #print axioms StrategyInnovation.Optimization.SafeCompressionFeasible
 #print axioms StrategyInnovation.Optimization.DynamicEquivalentSafeCompressionFeasible

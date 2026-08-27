@@ -1,0 +1,26 @@
+evidence_boundary = "exact finite Julia-Lean agreement only; no universal complexity, preprocessing-optimality, dynamic-programming, approximation, or implementation proof"
+fixture_id = "AOR-JOURNAL-EVIDENCE-01"
+schema_version = "journal-formal-evidence-fixture-v1"
+
+[gap]
+epsilon = "1//2"
+heuristic_burden = "4//1"
+k = 4
+optimum_burden = "3//2"
+ratio = "8//3"
+
+[preprocessing]
+forced_strategy_index = 0
+requirement_count = 3
+strategy_coverage = [[true, false, false], [false, true, true], [false, false, true]]
+unique_requirement_index = 0
+
+[requirement_mask]
+left = [true, false, true]
+right = [false, true, false]
+take_union = [true, true, true]
+
+[weighted_greedy]
+bundle_burden = "13//12"
+ratio = "22//13"
+singleton_burden = "11//6"

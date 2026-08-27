@@ -1,4 +1,5 @@
-% Journal-only draft: human proof. No Lean status is asserted.
+% Journal-only universal theorem: human proof. A shared finite Lean fixture
+% checks one exact arithmetic instance without upgrading the universal status.
 \subsection{Worst-case gap for heaviest-safe-first deletion}
 \label{sec:aor-safe-deletion-gap}
 
@@ -75,6 +76,16 @@ and the endpoints themselves are one-deletion irreducible.  It does not say
 that every deletion rule reaches them.
 \end{proof}
 
+\begin{example}[Shared finite gap arithmetic]
+\label{ex:aor-gap-shared-formal-fixture}
+At \(k=4\) and \(\epsilon=1/2\), the heaviest-safe-first endpoint has
+burden \(4\), the bundle optimum has burden \(3/2\), and their exact ratio is
+\(8/3\).  The common Julia--Lean fixture checks this displayed arithmetic and
+the Julia generator separately checks the corresponding finite safety trace.
+The Lean declaration does not formalize the universal safety characterization,
+the named algorithm, or the unboundedness argument.
+\end{example}
+
 The deletion-order boundary is exact.  If a rechecked maximal deletion
 sequence removes the bundle first, each remaining singleton is essential and
 the sequence stops at burden \(k\).  If it removes any singleton first, the
@@ -93,4 +104,5 @@ instance of the parameterized result.  The universal statement above has a
 human-readable proof.  The accompanying committed Julia artifact uses exact
 \texttt{Rational\{BigInt\}} arithmetic on several finite fixtures and an
 exhaustive small grid; it is finite computation, not Lean kernel verification
-and not a substitute for the proof.
+and not a substitute for the proof.  The separate shared Lean fixture above is
+likewise only exact finite arithmetic.

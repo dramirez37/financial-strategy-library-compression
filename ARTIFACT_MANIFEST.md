@@ -311,7 +311,7 @@ MILP solver was invoked; `CMP-CORE-v1` records formulation data only.
 | `SGD-CODE-v1` | `julia/scripts/export_safe_deletion_gap_family.jl` | `1180d09989e7d8f857008370e6357316e274287cb8cedab8321ee904c6e15dfb` | deterministic exact fixture renderer with complete safe-sublibrary enumeration, heaviest-safe-first trace, singleton-first boundary trace, and byte-drift check |
 | `SGD-TEST-v1` | `julia/test/test_safe_deletion_gap_family.jl` | `b73297acd226b8ece59df91486639aacd96dc3bfdaa74af20cef038be0feaa99` | 3,014 exact generator, bounded-grid, complete sublibrary, complete small-order, claim, and artifact checks |
 | `SGD-FIXTURE-v1` | `journal/aor/fixtures/safe_deletion_gap_family_v1.json` | `5fd7432670f46f4ed4ce7ddf363d634e0a1980e0b7aaa2e0b104cf279abbea25` | five exact `Rational{BigInt}` parameter fixtures with separate frontier, closure, burden, inactive, optimum, heuristic, ratio, and evidence-boundary fields |
-| `SGD-PROOF-v1` | `journal/aor/manuscript/06_safe_deletion_gap_family.tex` | `6a4452726b196365e73ba33da0824aa3f9822832acc0fd3f8ac908867ef779e4` | human-readable parameterized theorem and proof, including the unbounded named-rule ratio and explicit nonextension to every deletion order; no Lean claim |
+| `SGD-PROOF-v1` | `journal/aor/manuscript/06_safe_deletion_gap_family.tex` | `22bce2cbce88f0226d52c29f5822f8f7ae869683f477d8783daf2ac17457b5d0` | HUMAN PROOF of the parameterized theorem, named-rule ratio, and nonextension to every deletion order; the shared finite ratio arithmetic is Lean verified but does not formalize the universal family or deletion trace |
 | `BEM-SPEC-v1` | `BRIDGE_ELASTICITY_SPEC.md` | `5253b0313c0e07f395291f46bf0443a234717a5483d5663139a20f3a11bda7ad` | complete human algebra plus Lean-verified named-coordinate derivatives, elasticities, corrected normalized-margin and fixed-threshold divergence, boundary, and exact example; no reusable Julia implementation |
 
 `RO-AUDIT-v1` links 14 committed per-target fixtures under
@@ -352,7 +352,23 @@ status, an approximation guarantee, or a runtime result.
 |---|---|---|---|
 | `SCP-CORE-v1` | `julia/src/TaggedCoverPreprocessing.jl` | `e37197742e59b95bca8f0f6aae3eb5c04b15c0d4e12523a6812ae169aa09774d` | exact rational residual cover model; deterministic fixed-point rules; forced objective offset; stable lifting; equal-weight duplicate reconstruction; per-rule audit trail |
 | `SCP-TEST-v1` | `julia/test/test_tagged_cover_preprocessing.jl` | `2ea0f00ce843a3672ac2151d44843c6f8dd955ecd081b25e0a39bffd87769cd0` | adversarial rule and optimizer-identity boundary cases plus exhaustive original/residual enumeration for 512 seeded small exact systems |
-| `SCP-PROOF-v1` | `journal/aor/reports/PREPROCESSING_THEORY.md` | `f6e7ad7a2a688d26d37613b43356797d84987794d2bea77f499f0555ce15a13b` | HUMAN PROOF propositions, assumptions, preservation matrix, fixed-point theorem, implementation contract, and claim boundaries; no Lean declaration |
+| `SCP-PROOF-v1` | `journal/aor/reports/PREPROCESSING_THEORY.md` | `bf0ea966fd0ea9b6372b317d8862f36dcbc0441ebed2bfb0b774d102d3641b22` | HUMAN PROOF propositions, assumptions, preservation matrix, fixed-point theorem, implementation contract, and claim boundaries; Lean verifies only the stated feasibility cores of P1, P2, P5, and P6 |
+
+## Shared Julia--Lean journal evidence fixtures
+
+| Artifact ID | Path | SHA-256 | Role |
+|---|---|---|---|
+| `JEF-CODE-v1` | `julia/scripts/export_journal_evidence_fixtures.jl` | `d264c0ace07d3f93564f409ea33af6419355cdfb298a81e515712971c06edb82` | deterministic exact-rational producer and nonmutating drift check for a TOML record and generated Lean fixture from one source of values |
+| `JEF-TEST-v1` | `julia/test/test_journal_evidence_fixtures.jl` | `9ab191618c736dafee4cf61363b83caad97e16d3fe98a002375727877371a0e5` | exact Julia checks for the deletion-gap ratio, coverage-mask union, unique preprocessing carrier, greedy ratio, and byte-stable shared outputs |
+| `JEF-RUNNER-v1` | `julia/test/run_journal_evidence_audit_tests.jl` | `eb2a88aa5ea14362b2b0e11994a2c5311b63b1b545d0a2a7cb1f705a638d6300` | focused Julia entry point used by `make aor-evidence-status-tests` |
+| `JEF-TOML-v1` | `journal/aor/fixtures/journal_formal_evidence_v1.toml` | `e0fe3902ea18deb23cf8f3a500297b9e9f7f8ce0db59a83d07e9f5abc9a56021` | machine-readable exact values shared with Lean; no solver, runtime, universal complexity, DP, or approximation claim |
+| `JEF-LEAN-v1` | `formal/StrategyInnovation/Fixtures/JournalAlgorithms.lean` | `c30e4800c98f00598c4ebc46edb4b1ed522287408c55cca43bc891e45297d174` | generated Lean finite arithmetic and mask/carrier fixtures; deliberately narrower than SC-GAP, SC-PRE, SC-DP, and SC-GREEDY universal claims |
+
+These fixtures prevent manual transcription between Julia and Lean.  Their
+finite kernel checks are supporting evidence only.  They do not upgrade the
+human-proof-only status of NP-completeness, the universal deletion-gap
+theorem, preprocessing optimum/reconstruction claims, DP correctness or
+complexity, or the weighted-greedy approximation transfer.
 
 ## Common journal compression instance artifacts
 
@@ -743,6 +759,10 @@ variation/component searches remain numerical evidence.
 | finite penalized-envelope proof audit | `formal/StrategyInnovation/Audit/PenalizedEnvelope.lean` | every manuscript-facing PEN-core declaration prints only `propext`, `Classical.choice`, and `Quot.sound`; focused namespace linter passes |
 | identity-closure tagged-cover equivalence | `formal/StrategyInnovation/Optimization/TaggedSafeCompression.lean` | disjoint belief/module tags, all-belief source universe, tie and zero-frontier handling, identity source-carrier equivalence, exact safe-feasible iff tagged-cover theorem, and weighted binary-objective identity kernel checked |
 | tagged-cover proof audit | `formal/StrategyInnovation/Audit/TaggedSafeCompression.lean` | principal SC-TAG declarations print only `propext`, `Classical.choice`, and `Quot.sound` as recorded in `THEOREM_LEDGER.md`; focused namespace linter passes |
+| tagged-cover preprocessing feasibility core | `formal/StrategyInnovation/Optimization/TaggedCoverPreprocessing.lean` | selected-cover union plus feasibility cores for the unique-carrier, coverage-dominance replacement, empty-contribution, and duplicate-requirement rules; no objective, reconstruction, fixed-point, DP, or approximation theorem |
+| tagged-cover preprocessing proof audit | `formal/StrategyInnovation/Audit/TaggedCoverPreprocessing.lean` | all seven declarations print only `propext`, `Classical.choice`, and `Quot.sound`; focused namespace linter passes |
+| shared journal finite fixtures | `formal/StrategyInnovation/Fixtures/JournalAlgorithms.lean` | exact `k=4`, `epsilon=1/2` gap arithmetic, one Boolean mask union, one unique-carrier cover implication, and one three-row greedy ratio; no universal algorithm theorem |
+| shared journal fixture proof audit | `formal/StrategyInnovation/Audit/JournalAlgorithms.lean` | all fourteen finite fixture definitions and theorems print no axioms beyond `propext`, `Classical.choice`, and `Quot.sound`; focused namespace linter passes |
 | real-parameter elasticity core | `formal/StrategyInnovation/{Optimization/Elasticity,Compression/BridgeMarginElasticity,Coverage/InnovationDuration,Value/ChannelElasticity}.lean` | shared point-elasticity algebra, positive bridge-loss derivatives and fragility limits, finite duration/variance identities, signed channel contributions, positive-channel weighted average, actual derivative corollaries, and exact finite examples kernel checked |
 | real elasticity proof audit | `formal/StrategyInnovation/Audit/Elasticity.lean` | shared elasticity algebra, BEM, IDCV, CED, exact examples, and actual-breakpoint local envelope slope print only `propext`, `Classical.choice`, and `Quot.sound`; focused namespace linters pass |
 | value/coverage proof audits | `formal/StrategyInnovation/Audit/{FiniteHorizon,Decomposition,InnovationEquation,Contraction,CoveragePotential,DiscountSurvivalInteraction,KernelComparativeStatics,SingleGap,MultiGapRegion}.lean` | focused linters pass and exact F5--F8/S4--S7/C2 dependencies are recorded in `THEOREM_LEDGER.md` |

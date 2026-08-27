@@ -34,6 +34,28 @@ full claim gate below.
 
 Multiple statuses may eventually apply, but no status implies another.
 
+## AoOR theory and algorithm evidence audit
+
+Audit date: 2026-08-27. The first status in the third column is the status of
+the complete universal manuscript result. Supporting evidence is listed
+separately and never upgrades that result by association. `SOLVER EVIDENCE`
+does not establish any result in this table.
+
+| Result | Ledger record | Complete-result status | Supporting evidence and exact boundary |
+|---|---|---|---|
+| Tagged-cover equivalence and weighted objective identity | SC-TAG | **LEAN VERIFIED** for the encoded universal biconditional and burden identity | The composite manuscript discussion is also a human proof; boundary cases are **EXACT COMPUTATIONAL FIXTURE** and **JULIA TESTED**. No complexity or approximation statement is included. |
+| Identity-closure safe-compression NP-completeness | SC-COMP | **HUMAN PROOF ONLY** | The finite reduction grid is **EXACT COMPUTATIONAL FIXTURE** and **JULIA TESTED**. A complexity-theory encoding and reduction framework are absent, so Lean verification is **NOT YET ESTABLISHED**. |
+| Unbounded heaviest-safe-first deletion gap | SC-GAP | **HUMAN PROOF ONLY** | The parameter grid and traces are **EXACT COMPUTATIONAL FIXTURE** and **JULIA TESTED**. One shared `k=4`, `epsilon=1/2` ratio calculation is **LEAN VERIFIED**, but the universal safety characterization, algorithm trace, and unboundedness theorem are not. |
+| Complete preprocessing propositions P1--P7 | SC-PRE | **HUMAN PROOF ONLY** | Feasibility cores of P1, P2, P5, and P6 are **LEAN VERIFIED**. Objective preservation, reconstruction, propagation, and fixed-point claims are **EXACT COMPUTATIONAL FIXTURE** and **JULIA TESTED**, not formally verified. |
+| Complete enumeration and exact requirement-mask DP correctness, complexity, and FPT classification | SC-DP | **HUMAN PROOF ONLY** | Cross-method oracles are **EXACT COMPUTATIONAL FIXTURE** and **JULIA TESTED**. Finite selected-coverage union and one take-mask calculation are **LEAN VERIFIED** support only; the recurrence invariant, reconstruction, and complexity claims are not. |
+| Weighted-greedy approximation transfer and reverse-deletion guarantee | SC-GREEDY | **HUMAN PROOF ONLY** | The external Chvátal theorem is not re-formalized. Small-instance inequalities and near-tight families are **EXACT COMPUTATIONAL FIXTURE** and **JULIA TESTED**; one three-row ratio calculation is **LEAN VERIFIED** arithmetic only. |
+| Rechecked-deletion algorithm feasibility invariants | SC-DEL-SUITE / OPT-T2T4 | **LEAN VERIFIED** for the abstract theorem that a supplied rechecked redundancy trace ends safely; **HUMAN PROOF ONLY** for termination and the complete-final-scan irreducibility clause of the concrete suite | The Julia scan, scores, stale-certificate invalidation, randomness, counters, feasibility, and final irreducibility are **JULIA TESTED** with **EXACT COMPUTATIONAL FIXTURE** regressions. No approximation quality follows from feasibility. |
+
+No row assigns **SOLVER EVIDENCE** as mathematical proof. MIP results elsewhere
+in the repository are numerical search evidence followed by exact finite
+rechecks. In particular, solver status does not establish feasibility
+invariants, approximation quality, NP-completeness, or any universal theorem.
+
 ## Resource-layer claim boundary
 
 The resource layer adopts fixed additive rational retention burden as a
@@ -305,11 +327,19 @@ counterexamples later in this ledger.
   forward weighted-cover construction, or every certified heuristic.
 - **Human-readable proof:**
   `journal/aor/manuscript/06_safe_deletion_gap_family.tex`.
-- **Lean declarations:** none.
-- **Lean files:** none added. Formalizing only the rational burden inequality
-  would not kernel-verify the safety characterization or the algorithmic
-  trace, so it was not used as a proxy for the human theorem.
-- **`#print axioms` result:** Not applicable; SC-GAP has no Lean declaration.
+- **Lean declarations:** No declaration proves the universal SC-GAP theorem.
+  The supporting finite fixture
+  `StrategyInnovation.Fixtures.JournalAlgorithms.gap_k4_half_ratio_exact`
+  verifies only the displayed `k=4`, `epsilon=1/2` burden ratio.
+- **Lean files:** The supporting generated fixture is
+  `formal/StrategyInnovation/Fixtures/JournalAlgorithms.lean`; its focused
+  audit is `formal/StrategyInnovation/Audit/JournalAlgorithms.lean`.
+  Formalizing the rational burden comparison does not kernel-verify the safety
+  characterization, named algorithmic trace, or unboundedness argument and is
+  not used as a proxy for the human theorem.
+- **`#print axioms` result:** The finite ratio declaration reports exactly
+  `[propext, Classical.choice, Quot.sound]`. There is no axiom report for a
+  universal SC-GAP declaration because none exists.
 - **Status:** HUMAN PROOF with exact finite Julia validation; not Lean
   verified.
 - **Informal mathematical validity:** A safe active set contains the bundle or
@@ -328,7 +358,9 @@ counterexamples later in this ledger.
   machine-readable artifact is
   `journal/aor/fixtures/safe_deletion_gap_family_v1.json`. These computations
   validate finite instances and implementation behavior; they are not the
-  universal proof.
+  universal proof. The additional shared fixture
+  `journal/aor/fixtures/journal_formal_evidence_v1.toml` checks Julia--Lean
+  equality for one exact ratio only.
 - **Empirical relevance:** Not applicable. No randomized, solver, runtime, or
   financial evidence is used.
 
@@ -408,12 +440,11 @@ counterexamples later in this ledger.
 - **Journal manuscript label:**
   `thm:aor-tagged-cover-equivalence` in
   `journal/aor/manuscript/04_tagged_cover_equivalence.tex`
-- **Journal theorem status:** **HUMAN PROOF** for the complete manuscript
-  presentation, including its explicit assumptions, weighted binary
-  formulation, and three exact boundary examples. The universal core
-  equivalence and weighted-objective identity have also been separately
-  formalized and kernel checked as stated below; this does not upgrade the
-  distinct SC-COMP complexity claim.
+- **Journal theorem status:** **LEAN VERIFIED** for the universal core
+  equivalence and weighted-objective identity. The surrounding composite
+  manuscript presentation—including assumption interpretation and three
+  boundary examples—also has a human proof plus exact Julia fixtures. This
+  status does not upgrade the distinct SC-COMP complexity claim.
 - **Informal statement:** Let `L'` be an inactive-containing source
   sublibrary of `L`. Under identity module closure, `L'` has exactly the
   source operational frontier and source generative closure if and only if
@@ -491,8 +522,10 @@ counterexamples later in this ledger.
 ### SC-PRE — Exact preprocessing for the identity-closure tagged cover
 
 - **Theorem ID:** SC-PRE
-- **Evidence status:** HUMAN PROOF with exact finite Julia validation; no Lean
-  declaration and no solver-status claim.
+- **Evidence status:** **HUMAN PROOF ONLY** for the complete P1--P7
+  optimum/reconstruction/fixed-point suite, with exact finite Julia
+  validation. The finite feasibility cores of P1, P2, P5, and P6 are
+  separately **LEAN VERIFIED**; no solver-status claim is used.
 - **Human-readable propositions and proofs:**
   `journal/aor/reports/PREPROCESSING_THEORY.md`.
 - **Informal statement:** In the positive-weight binary covering formulation
@@ -555,9 +588,26 @@ counterexamples later in this ledger.
   identity-closure-realizable incidence systems. Whenever the audit claims
   complete identity reconstruction, the full reconstructed optimizer set is
   compared with unreduced enumeration.
-- **Lean declarations:** none. No burden-only or matrix-only Lean lemma is
-  used as a proxy for formalizing the complete preprocessing semantics and
-  reconstruction theorem.
+- **Lean declarations:**
+  `StrategyInnovation.Optimization.TaggedCoverPreprocessing.SelectedCovers`;
+  `selectedCoverage_insert`;
+  `uniqueCarrier_mem_of_selectedCovers`;
+  `replace_dominated_preserves_selectedCovers`;
+  `erase_emptyContribution_preserves_selectedCovers`;
+  `selectedCoverage_mem_iff_of_sameCarriers`; and
+  `erase_duplicateRequirement_selectedCovers_iff`.
+  These declarations prove finite coverage and feasibility identities only.
+  They do not prove weight comparisons, objective-value preservation,
+  optimizer reconstruction, propagation, fixed-point termination,
+  idempotence, or correctness of the Julia implementation.
+- **Lean files:**
+  `formal/StrategyInnovation/Optimization/TaggedCoverPreprocessing.lean` and
+  focused audit
+  `formal/StrategyInnovation/Audit/TaggedCoverPreprocessing.lean`.
+- **`#print axioms` result:** Every listed declaration reports exactly
+  `[propext, Classical.choice, Quot.sound]`. No user-declared axiom or hidden
+  placeholder occurs. This is supporting Lean verification, not a formal proof
+  of the complete SC-PRE record.
 - **Claim boundary:** This record proves no rule for arbitrary nonidentity
   closure, no validity under additional identity-sensitive constraints, no
   approximation guarantee, no runtime or scaling result, and no global
@@ -573,8 +623,9 @@ counterexamples later in this ledger.
 - **Journal manuscript label:** `thm:aor-safe-compression-complexity` in
   `journal/aor/manuscript/05_identity_closure_complexity.tex`, included by
   `journal/aor/sections/05_innovation_safe_compression.tex`
-- **Evidence status:** HUMAN PROOF, supported by exact finite Julia reduction
-  checks; no Lean verification claim
+- **Evidence status:** **HUMAN PROOF ONLY**, supported by **EXACT
+  COMPUTATIONAL FIXTURE** and **JULIA TESTED** reduction checks; Lean
+  verification is **NOT YET ESTABLISHED** and no solver evidence is used.
 - **Informal statement:** With an explicit finite binary encoding, positive
   integer active weights, a nonnegative integer threshold, mandatory
   zero-burden inactivity, and identity closure, the safe-compression decision
@@ -646,8 +697,11 @@ counterexamples later in this ledger.
   `prop:aor-complete-enumeration` and `thm:aor-requirement-mask-dp` in
   `journal/aor/manuscript/07_exact_requirement_mask_algorithms.tex`, included
   by `journal/aor/sections/05_innovation_safe_compression.tex`
-- **Evidence status:** HUMAN PROOF, supported by exact finite Julia
-  cross-checks; no Lean verification claim
+- **Evidence status:** **HUMAN PROOF ONLY** for enumeration correctness, the
+  DP recurrence invariant, reconstruction, complexity, and FPT classification,
+  supported by exact finite Julia cross-checks. Lean verifies only the
+  supporting finite selected-coverage union identity and one shared mask
+  calculation.
 - **Informal statement:** After fixing mandatory strategies and removing the
   requirements they satisfy, complete residual-subset enumeration returns an
   exact minimum-burden safe source library. A second, independent recurrence
@@ -692,8 +746,18 @@ counterexamples later in this ledger.
   optima, dominated columns, duplicate masks and reconstruction, arbitrary
   precision weights, fail-closed malformed inputs, lossy preprocessing
   boundaries, counters, certificate serialization, and the CLI path.
-- **Lean declarations:** none. No finite fixture or executable evaluation is
-  described as Lean kernel verification.
+- **Lean declarations:**
+  `StrategyInnovation.Optimization.TaggedCoverPreprocessing.selectedCoverage_insert`
+  proves the generic finite selected-coverage union identity used by a take
+  transition, and
+  `StrategyInnovation.Fixtures.JournalAlgorithms.requirementMask_take_union_exact`
+  checks one shared three-bit take transition. Neither declaration proves the
+  DP invariant, optimum reconstruction, operation count, memory bound, or FPT
+  classification.
+- **`#print axioms` result:** `selectedCoverage_insert` reports exactly
+  `[propext, Classical.choice, Quot.sound]`; the finite mask fixture reports
+  `[propext]`. The focused audits are
+  `Audit/TaggedCoverPreprocessing.lean` and `Audit/JournalAlgorithms.lean`.
 - **Complexity boundary:** The displayed $O(n2^r)$ count is for the DP
   recurrence in representative mode. Exact arithmetic contributes polynomial
   bit-operation factors. Complete-tie output can be exponential in the number
@@ -714,10 +778,12 @@ counterexamples later in this ledger.
 - **Journal manuscript label:** `thm:aor-weighted-greedy` in
   `journal/aor/manuscript/08_weighted_greedy_construction.tex`, included by
   `journal/aor/sections/05_innovation_safe_compression.tex`
-- **Evidence status:** HUMAN PROOF transferring a verified primary-source
-  theorem through SC-TAG, supported by exact finite Julia validation; no Lean
-  verification, solver-status, or exhaustive optimality claim for returned
-  heuristic solutions
+- **Evidence status:** **HUMAN PROOF ONLY** transferring a verified
+  primary-source theorem through SC-TAG, supported by exact finite Julia
+  validation. A shared three-row ratio calculation is Lean verified arithmetic
+  only; the approximation theorem and transfer are not Lean verified. No
+  solver-status or exhaustive optimality claim is made for returned heuristic
+  solutions.
 - **Informal statement:** After selecting every mandatory strategy and
   removing the tagged requirements it covers, choose a positive-weight
   residual strategy minimizing exact weight divided by its number of newly
@@ -781,8 +847,15 @@ counterexamples later in this ledger.
   and a reverse-deletion witness; and validates Chvátal's near-tight family for
   (m=2,\ldots,7) with exact rational epsilon. These finite checks are not a
   proof of the universal approximation theorem.
-- **Lean declarations:** none. The classical approximation theorem and its
-  transfer are not represented as Lean kernel verification.
+- **Lean declarations:** The supporting finite declaration
+  `StrategyInnovation.Fixtures.JournalAlgorithms.greedy_three_row_ratio_exact`
+  verifies only that the registered `m=3`, `epsilon=1/12` fixture has burden
+  ratio `22/13`. The classical approximation theorem, mandatory-offset
+  transfer, safe-compression feasibility of the algorithm, and reverse-
+  deletion guarantee are not represented as Lean kernel verification.
+- **`#print axioms` result:** The finite arithmetic declaration reports exactly
+  `[propext, Classical.choice, Quot.sound]` in
+  `formal/StrategyInnovation/Audit/JournalAlgorithms.lean`.
 - **Empirical relevance:** None. No frozen randomized benchmark, financial
   input, held-out outcome, licensed workflow, runtime claim, or solver output
   is used.
@@ -793,9 +866,12 @@ counterexamples later in this ledger.
 - **Journal manuscript label:** `prop:aor-certified-deletion-endpoint` in
   `journal/aor/manuscript/09_certified_deletion_suite.tex`, included by
   `journal/aor/sections/05_innovation_safe_compression.tex`
-- **Evidence status:** HUMAN PROOF for stepwise safety, termination, and final
-  one-deletion irreducibility, supported by exact finite Julia validation; no
-  global-optimality, approximation, solver-status, or Lean-verification claim
+- **Evidence status:** **LEAN VERIFIED** for the abstract implication from a
+  supplied rechecked redundancy trace to endpoint safety; **HUMAN PROOF ONLY**
+  for concrete-suite termination and the complete-final-scan implication to
+  one-deletion irreducibility. The Julia implementation is **JULIA TESTED**
+  with exact finite fixtures. No global-optimality, approximation, or
+  solver-status claim follows.
 - **Informal statement:** Starting from the complete source library, each
   suite method performs a complete fresh scan after every accepted deletion.
   A deletion is eligible only after recomputation confirms mandatory
@@ -856,9 +932,18 @@ counterexamples later in this ledger.
   $k/(1+\epsilon)$ for heaviest-safe-first and its equivalent immediate-
   release name. No comparison ordering among the other methods is claimed
   beyond explicitly tested finite fixtures.
-- **Lean declarations:** none added. Existing Lean results about rechecked
-  safe deletion sequences are not presented as kernel verification of this
-  Julia control flow, scoring logic, randomization, counters, or result schema.
+- **Lean declarations:**
+  `StrategyInnovation.Optimization.recheckedSafeDeletionEndpoint_feasible`
+  verifies the generic safety conclusion from a supplied current-library
+  `RedundantDeletionSequence`. The related
+  `RedundantDeletionSequence.final_le_initial` and
+  `compressedLibraryState_final_eq_initial` establish its two components.
+  These declarations do not verify the Julia scan, scoring logic,
+  randomization, termination counters, final complete scan, irreducibility
+  certificate, or result schema.
+- **`#print axioms` result:** The generic endpoint theorem reports exactly
+  `[propext, Classical.choice, Quot.sound]` in the existing
+  `Audit/SafeCompressionOptimization.lean` and complete axiom gate.
 - **Empirical relevance:** None. The implementation reads no licensed row,
   realized financial outcome, held-out quality, dynamic value, or benchmark
   result. No frozen experiment or registered seed is changed.

@@ -1,0 +1,19 @@
+import StrategyInnovation.Optimization.TaggedCoverPreprocessing
+
+/-!
+# Focused audit for journal covering identities
+
+Only finite feasibility and coverage-union statements are audited here. The
+larger preprocessing, dynamic-programming, and approximation theorems remain
+outside this formal scope as recorded in the theorem ledger.
+-/
+
+#print axioms StrategyInnovation.Optimization.TaggedCoverPreprocessing.SelectedCovers
+#print axioms StrategyInnovation.Optimization.TaggedCoverPreprocessing.selectedCoverage_insert
+#print axioms StrategyInnovation.Optimization.TaggedCoverPreprocessing.uniqueCarrier_mem_of_selectedCovers
+#print axioms StrategyInnovation.Optimization.TaggedCoverPreprocessing.replace_dominated_preserves_selectedCovers
+#print axioms StrategyInnovation.Optimization.TaggedCoverPreprocessing.erase_emptyContribution_preserves_selectedCovers
+#print axioms StrategyInnovation.Optimization.TaggedCoverPreprocessing.selectedCoverage_mem_iff_of_sameCarriers
+#print axioms StrategyInnovation.Optimization.TaggedCoverPreprocessing.erase_duplicateRequirement_selectedCovers_iff
+
+#lint- only checkType unusedArguments simpNF in StrategyInnovation.Optimization.TaggedCoverPreprocessing

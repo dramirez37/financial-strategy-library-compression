@@ -111,6 +111,9 @@ KEYWORD_COUNT="$(
     "$ROOT/julia/scripts/export_tagged_cover_theorem_fixture.jl" --check
 
 "$JULIA_EXE" --startup-file=no --project="$ROOT/julia" \
+    "$ROOT/julia/scripts/export_journal_evidence_fixtures.jl" --check
+
+"$JULIA_EXE" --startup-file=no --project="$ROOT/julia" \
     "$JOURNAL_ROOT/scripts/generate_journal_artifacts.jl" --check
 
 "$ROOT/scripts/check_manuscript_sources.sh"

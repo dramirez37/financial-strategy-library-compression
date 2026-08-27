@@ -1,4 +1,5 @@
-% Journal-only draft: human proof. No Lean status is asserted.
+% Journal-only algorithm theorems: human proofs. Lean checks only the explicitly
+% identified finite-cover feasibility and mask-union identities.
 \subsection{Independent exact algorithms}
 \label{subsec:aor-exact-algorithms}
 
@@ -17,6 +18,39 @@ all optimizer identities.  If a serialized instance already contains a valid
 stronger preprocessing map, the algorithms use its residual model, exact
 offset, and declared reconstruction map; complete-tie output is rejected when
 that map says that some equal-cost identities are unreconstructable.
+
+\subsubsection{Feasibility-safe preprocessing core}
+
+\begin{proposition}[Finite covering identities used in preprocessing]
+\label{prop:aor-preprocessing-feasibility-core}
+For a finite residual pure covering model: every feasible selection contains
+the unique carrier of a required row; replacing a selected column by a column
+whose residual coverage contains it preserves feasibility; a nonmandatory
+column covering no residual requirement may be erased; and one of two
+requirement rows with identical carrier predicates may be erased without
+changing the feasible selections.
+\end{proposition}
+
+\begin{proof}
+The unique-carrier statement follows directly from the covering inequality.
+For dominance, redirect any row witnessed by the replaced column to the
+coverage superset.  An empty-contribution column witnesses no residual row,
+so erasing it preserves every existing witness.  Identical carrier predicates
+make the two covering inequalities logically identical.  These arguments are
+finite-set feasibility identities.  Weight inequalities, objective offsets,
+optimizer identities, reconstruction maps, and fixed-point termination require
+the additional propositions and proofs in the preprocessing report.
+\end{proof}
+
+The four feasibility clauses above are Lean verified.  They are supporting
+lemmas, not a Lean proof of the complete preprocessing pipeline: optimum-value
+preservation, tie reconstruction, propagation, and fixed-point termination
+remain human proofs with exhaustive exact Julia tests.
+The shared finite incidence fixture has three required rows and cover sets
+\(R_0=\{0\}\), \(R_1=\{1,2\}\), and \(R_2=\{2\}\); its Lean declaration
+checks that row zero has unique carrier zero and hence every complete cover
+selects strategy zero.  This is one exact instance of the first clause, not a
+replacement for the universal proposition.
 
 \subsubsection{Complete enumeration}
 The enumeration method visits every one of the $2^n$ residual binary
@@ -77,6 +111,11 @@ complete-tie mode it stores the complete optimal predecessor DAG and expands
 it only during reconstruction.  Thus iteration and representative tie
 selection are deterministic; hash-table iteration order does not determine
 output.
+
+The shared finite fixture checks the take-transition identity
+\([1,0,1]\mathbin{\mathrm{OR}}[0,1,0]=[1,1,1]\) in both Julia and Lean.
+That calculation validates one mask union only; it is not a Lean proof of the
+inductive optimum invariant, reconstruction, complexity, or FPT statement.
 
 \begin{theorem}[Exact requirement-mask dynamic programming]
 \label{thm:aor-requirement-mask-dp}
@@ -139,7 +178,8 @@ input.
 
 \subsubsection{Evidence boundary and counters}
 Both methods are exact finite computations, not Lean kernel verification and
-not mixed-integer solver evidence.  The standard result object records the
+not mixed-integer solver evidence.  The supporting mask-union declaration
+does not change that status.  The standard result object records the
 exact objective and checked selections separately from wall-clock
 measurements.  For enumeration, candidate count is the number of binary
 subsets tested.  For the DP, a visited state is a reachable mask at one

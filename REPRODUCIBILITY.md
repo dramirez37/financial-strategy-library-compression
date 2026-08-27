@@ -1535,7 +1535,7 @@ The command runs these stages in dependency order:
 |---:|---|
 | 1 | exact Julia, Lean, Lake, mathlib-lock, and LaTeX/BibTeX environment and version checks |
 | 2 | `lake clean` followed by the complete Lean library build |
-| 3 | prohibited-marker scan, comprehensive 752-declaration `#print axioms` audit, accepted-standard-axiom check, and manuscript Lean linter |
+| 3 | prohibited-marker scan, comprehensive 784-declaration `#print axioms` audit, accepted-standard-axiom check, and manuscript Lean linter |
 | 4 | Julia root-environment instantiation and complete package test suite |
 | 5 | exact Lean--Julia fixture drift, revision gauntlet, resource-optimization witness, and safe-compression reduction fixtures |
 | 6 | unified benchmark search, canonical solution, comparative statics, resource benchmark, and elasticity/switching replication |

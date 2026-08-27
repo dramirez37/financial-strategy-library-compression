@@ -5,9 +5,12 @@
 This report gives human-readable propositions and proofs for exact
 preprocessing of the source-relative tagged covering formulation under
 identity closure. The implementation is in
-`julia/src/TaggedCoverPreprocessing.jl`. The propositions are human proofs;
-the Julia tests are exact finite validation, not Lean kernel verification and
-not a substitute for the proofs.
+`julia/src/TaggedCoverPreprocessing.jl`. The complete proposition suite,
+including objective-value preservation, optimizer reconstruction, propagation,
+and fixed-point termination, has status **HUMAN PROOF ONLY**. Lean separately
+verifies the finite feasibility cores of P1, P2, P5, and P6; those supporting
+lemmas do not formalize the complete preprocessing theorem. The Julia tests
+are exact finite validation and not a substitute for the universal proofs.
 
 The semantic starting point is the already established identity-closure
 equivalence. The tagged requirement set is frozen from the source library:
@@ -401,6 +404,22 @@ Every original and residual binary selection is enumerated. The targeted test
 run passes 9,433 assertions. This is exact bounded computation, not a
 universal proof or runtime study.
 
+## Formal verification boundary
+
+`formal/StrategyInnovation/Optimization/TaggedCoverPreprocessing.lean`
+kernel-checks four finite pure-covering feasibility statements corresponding
+exactly to the feasibility clauses of P1, P2, P5, and P6, plus the finite-union
+identity used by the requirement-mask recurrence. The focused audit is
+`formal/StrategyInnovation/Audit/TaggedCoverPreprocessing.lean`. Every audited
+declaration depends only on `propext`, `Classical.choice`, and `Quot.sound`.
+
+The Lean file does **not** prove the P2 weight comparison, optimum-value
+preservation, all-optimizer-identity boundaries, P3 substitution maps, P4
+objective offsets and propagation, P7 termination or idempotence, or correctness
+of the Julia fixed-point implementation. Those claims retain **HUMAN PROOF
+ONLY** status, supported by **EXACT COMPUTATIONAL FIXTURE** and **JULIA TESTED**
+evidence. No preprocessing theorem has **SOLVER EVIDENCE** as its proof basis.
+
 ## Claim boundary and remaining risks
 
 - The semantic result applies to identity closure because the tagged
@@ -417,4 +436,6 @@ universal proof or runtime study.
 - No held-out financial information, solver tolerance, floating-point weight,
   randomized-study result, or licensed row enters preprocessing.
 - The tests establish correctness on declared finite instances. The universal
-  claims rest on the human proofs above; no Lean formalization is asserted.
+  optimum, reconstruction, propagation, and fixed-point claims rest on the
+  human proofs above; the supporting Lean feasibility lemmas do not upgrade
+  those complete claims.

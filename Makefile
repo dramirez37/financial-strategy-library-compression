@@ -12,7 +12,8 @@ export ALGOLIB_CRSP_ROOT
 	aor-financial-algorithms aor-financial-algorithm-audit \
 	aor-financial-algorithm-promote aor-financial-weight-robustness-tests \
 	aor-financial-weight-robustness-lock aor-financial-weight-robustness \
-	aor-financial-weight-robustness-audit aor-financial-weight-robustness-promote
+	aor-financial-weight-robustness-audit aor-financial-weight-robustness-promote \
+	aor-evidence-status-tests
 
 help:
 	@printf '%s\n' \
@@ -40,6 +41,7 @@ help:
 		'make aor-financial-weight-robustness Run the locked three-schedule robustness study' \
 		'make aor-financial-weight-robustness-audit Audit saved robustness results without solving' \
 		'make aor-financial-weight-robustness-promote Promote audited robustness aggregates' \
+		'make aor-evidence-status-tests Check exact Julia-Lean journal evidence fixtures' \
 		'make financial-licensed Run both licensed-data audits and the cross-audit optimization' \
 		'make verify             Run the complete release gate'
 
@@ -136,6 +138,9 @@ aor-financial-weight-robustness-audit: aor-financial-weight-robustness-lock
 
 aor-financial-weight-robustness-promote: aor-financial-weight-robustness-lock
 	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/run_financial_weight_robustness_v1.jl --promote-public
+
+aor-evidence-status-tests:
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/test/run_journal_evidence_audit_tests.jl
 
 financial-licensed:
 	@./scripts/run_financial_licensed.sh

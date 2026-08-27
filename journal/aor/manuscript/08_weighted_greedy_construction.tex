@@ -1,5 +1,5 @@
-% Journal-only draft: human proof and inherited approximation theorem.
-% No Lean, solver-status, or arbitrary-closure guarantee is asserted.
+% Journal-only theorem: human transfer proof and inherited approximation
+% theorem. Lean checks one finite arithmetic fixture, not the guarantee.
 \subsection{Approximation-guaranteed greedy construction}
 \label{subsec:aor-weighted-greedy}
 
@@ -110,6 +110,14 @@ $\epsilon\downarrow0$.  The journal fixture realizes each requirement as an
 identity-closure module tag and lets the mandatory zero-weight inactive
 strategy cover the sole zero-frontier tag.  Reverse deletion removes no
 singleton from the greedy endpoint.
+
+\begin{example}[Shared three-row greedy arithmetic]
+\label{ex:aor-greedy-shared-formal-fixture}
+For \(m=3\) and \(\epsilon=1/12\), the singleton burden is
+\(1+1/2+1/3=11/6\), the bundle burden is \(1+1/12=13/12\), and the exact
+ratio is \(22/13\).  The Julia--Lean shared fixture checks only this arithmetic;
+it does not formalize Chv\'atal's theorem or the transfer to safe compression.
+\end{example}
 
 \paragraph{Limitations and evidence boundary.}
 The guarantee is inherited set-cover theory; the contribution here is its

@@ -8,7 +8,8 @@ counterexample environment in the final manuscript.  A result without an
 exact counterpart is marked explicitly rather than being assigned a
 supporting declaration.  The theorem ledger records the corresponding
 assumptions and axiom audits.  Candidate Theorems T1--T7 and the active
-optimization, capacity, envelope, and elasticity results are included.
+optimization, capacity, envelope, elasticity, and AoOR journal-only algorithm
+results are included.
 Superseded primitive-transition declarations and compatibility aliases are
 deliberately excluded; their migration-only record is maintained in the Lean
 \texttt{MIGRATION.md} files.
@@ -148,6 +149,70 @@ Manuscript label & Ledger & Lean declaration or definition \\
 \LeanName{StrategyInnovation.Optimization.SafeCompressionCounterexample.greedy_bundle_weight_eq_three};
 \LeanName{StrategyInnovation.Optimization.SafeCompressionCounterexample.bundle_is_uniqueHeaviestSafeDeletion};
 \LeanName{StrategyInnovation.Optimization.SafeCompressionCounterexample.strictHeaviestFirst_greedy_not_globallyOptimal} \\
+
+\cref{thm:aor-tagged-cover-equivalence} & SC-TAG &
+\LeanName{StrategyInnovation.Optimization.safeCompressionFeasible_identity_iff_taggedCover};
+\LeanName{StrategyInnovation.Optimization.libraryBurden_eq_weightedBinaryObjective} \\
+
+\cref{thm:aor-safe-compression-complexity} & SC-COMP &
+\emph{No Lean counterpart claimed.  NP membership, the polynomial reduction,
+and NP-completeness are human-proof-only; the executable reductions are exact
+finite Julia fixtures.} \\
+
+\cref{thm:aor-heaviest-safe-first-gap} & SC-GAP &
+\emph{No Lean counterpart to the universal family or unboundedness claim.
+Finite arithmetic support only:}
+\LeanName{StrategyInnovation.Fixtures.JournalAlgorithms.gapK};
+\LeanName{StrategyInnovation.Fixtures.JournalAlgorithms.gapEpsilon};
+\LeanName{StrategyInnovation.Fixtures.JournalAlgorithms.gapHeuristicBurden};
+\LeanName{StrategyInnovation.Fixtures.JournalAlgorithms.gapOptimumBurden};
+\LeanName{StrategyInnovation.Fixtures.JournalAlgorithms.gap_k4_half_ratio_exact} \\
+
+\cref{ex:aor-gap-shared-formal-fixture} & SC-GAP fixture &
+\LeanName{StrategyInnovation.Fixtures.JournalAlgorithms.gap_k4_half_ratio_exact}
+\emph{ (exact ratio arithmetic only, not the deletion trace).} \\
+
+\cref{prop:aor-preprocessing-feasibility-core} & SC-PRE support &
+\LeanName{StrategyInnovation.Optimization.TaggedCoverPreprocessing.SelectedCovers};
+\LeanName{StrategyInnovation.Optimization.TaggedCoverPreprocessing.uniqueCarrier_mem_of_selectedCovers};
+\LeanName{StrategyInnovation.Optimization.TaggedCoverPreprocessing.replace_dominated_preserves_selectedCovers};
+\LeanName{StrategyInnovation.Optimization.TaggedCoverPreprocessing.erase_emptyContribution_preserves_selectedCovers};
+\LeanName{StrategyInnovation.Optimization.TaggedCoverPreprocessing.selectedCoverage_mem_iff_of_sameCarriers};
+\LeanName{StrategyInnovation.Fixtures.JournalAlgorithms.preprocessingCoverage};
+\LeanName{StrategyInnovation.Fixtures.JournalAlgorithms.preprocessingRequirements};
+\LeanName{StrategyInnovation.Fixtures.JournalAlgorithms.preprocessing_unique_first_carrier};
+\LeanName{StrategyInnovation.Fixtures.JournalAlgorithms.preprocessing_fixture_forces_first};
+\LeanName{StrategyInnovation.Optimization.TaggedCoverPreprocessing.erase_duplicateRequirement_selectedCovers_iff}
+\emph{ (feasibility only; not objective preservation, reconstruction, propagation,
+or the fixed-point implementation).} \\
+
+\cref{prop:aor-complete-enumeration} & SC-DP &
+\emph{No exact Lean counterpart claimed; correctness is a human proof with
+exhaustive exact Julia cross-checks.} \\
+
+\cref{thm:aor-requirement-mask-dp} & SC-DP &
+\emph{No Lean counterpart to the recurrence invariant, reconstruction,
+complexity, or FPT classification.  Supporting finite identities only:}
+\LeanName{StrategyInnovation.Optimization.TaggedCoverPreprocessing.selectedCoverage_insert};
+\LeanName{StrategyInnovation.Fixtures.JournalAlgorithms.maskOr};
+\LeanName{StrategyInnovation.Fixtures.JournalAlgorithms.requirementMask_take_union_exact} \\
+
+\cref{thm:aor-weighted-greedy} & SC-GREEDY &
+\emph{No Lean counterpart claimed for the external weighted-set-cover theorem,
+its transfer, or reverse deletion.  Finite arithmetic support only:}
+\LeanName{StrategyInnovation.Fixtures.JournalAlgorithms.greedy_three_row_ratio_exact} \\
+
+\cref{ex:aor-greedy-shared-formal-fixture} & SC-GREEDY fixture &
+\LeanName{StrategyInnovation.Fixtures.JournalAlgorithms.greedySingletonBurden};
+\LeanName{StrategyInnovation.Fixtures.JournalAlgorithms.greedyBundleBurden};
+\LeanName{StrategyInnovation.Fixtures.JournalAlgorithms.greedy_three_row_ratio_exact}
+\emph{ (exact ratio arithmetic only, not the approximation theorem).} \\
+
+\cref{prop:aor-certified-deletion-endpoint} & SC-DEL-SUITE &
+\LeanName{StrategyInnovation.Optimization.recheckedSafeDeletionEndpoint_feasible}
+\emph{ for a supplied valid rechecked trace.  The concrete Julia suite's
+termination, counters, and complete-final-scan irreducibility are not formally
+verified.} \\
 
 \cref{thm:normalized-frontier-pruning-loss} & T4 &
 \LeanName{StrategyInnovation.Projection.Model.NormalizedPruningLoss.canonicalConstruction_certificate};

@@ -14,6 +14,7 @@ import StrategyInnovation.Coverage.KernelComparativeStatics
 import StrategyInnovation.Coverage.InnovationDuration
 import StrategyInnovation.Coverage.SingleGap
 import StrategyInnovation.Fixtures.Generated
+import StrategyInnovation.Fixtures.JournalAlgorithms
 import StrategyInnovation.Fixtures.TheoremFeasibility
 import StrategyInnovation.Fixtures.UnifiedBellman
 import StrategyInnovation.Fixtures.UnifiedCanonical
@@ -27,6 +28,7 @@ import StrategyInnovation.Optimization.Elasticity
 import StrategyInnovation.Optimization.PenalizedEnvelope
 import StrategyInnovation.Optimization.SafeCompressionCounterexample
 import StrategyInnovation.Optimization.TaggedSafeCompression
+import StrategyInnovation.Optimization.TaggedCoverPreprocessing
 import StrategyInnovation.Projection
 import StrategyInnovation.Quotient.DynamicInnovation
 import StrategyInnovation.Quotient.FrontierClosure

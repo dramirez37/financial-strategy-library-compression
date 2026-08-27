@@ -26,6 +26,7 @@ import StrategyInnovation.Optimization.CapacityValue
 import StrategyInnovation.Optimization.Elasticity
 import StrategyInnovation.Optimization.PenalizedEnvelope
 import StrategyInnovation.Optimization.SafeCompressionCounterexample
+import StrategyInnovation.Optimization.TaggedSafeCompression
 import StrategyInnovation.Projection
 import StrategyInnovation.Quotient.DynamicInnovation
 import StrategyInnovation.Quotient.FrontierClosure

@@ -20,6 +20,12 @@
    and an explicit request before the long final run.
 7. Keep personal affiliation, funding, competing-interest, and contribution
    statements as visible blockers until the author confirms them.
+8. State SC-TAG as an identity-closure theorem with all belief tags retained,
+   a disjoint module-tag carrier, mandatory inactive retention, exact weighted
+   binary formulation, and an explicit nonidentity-closure boundary. The
+   manuscript proof remains labeled HUMAN PROOF; its exact core biconditional
+   and burden identity are separately Lean verified, while the Julia fixture
+   is identified only as exact finite computation.
 
 ## Baseline gate finding
 

@@ -336,6 +336,92 @@ counterexamples later in this ledger.
   `Rational{BigInt}`. This is not proof of the universal clauses.
 - **Empirical relevance:** Not assessed.
 
+### SC-TAG — Tagged-cover equivalence under identity closure
+
+- **Theorem ID:** SC-TAG
+- **Journal manuscript label:**
+  `thm:aor-tagged-cover-equivalence` in
+  `journal/aor/manuscript/04_tagged_cover_equivalence.tex`
+- **Journal theorem status:** **HUMAN PROOF** for the complete manuscript
+  presentation, including its explicit assumptions, weighted binary
+  formulation, and three exact boundary examples. The universal core
+  equivalence and weighted-objective identity have also been separately
+  formalized and kernel checked as stated below; this does not upgrade the
+  distinct SC-COMP complexity claim.
+- **Informal statement:** Let `L'` be an inactive-containing source
+  sublibrary of `L`. Under identity module closure, `L'` has exactly the
+  source operational frontier and source generative closure if and only if
+  its retained strategies cover the disjoint tagged universe consisting of
+  one frontier tag for every declared belief and one module tag for every
+  module in the source identity closure. A strategy covers a frontier tag
+  exactly when its profile ties the source frontier there, and covers a module
+  tag exactly when it carries that raw module. Consequently minimum-burden
+  exact safe compression is the displayed weighted binary covering model with
+  one row per tag and the inactive variable fixed to one.
+- **Exact assumptions:**
+  1. finite nonempty belief, strategy, and module carriers and the existing
+     exact rational `StrategyCatalog` profile data;
+  2. an admissible source library and candidate library, both containing the
+     catalog's mandatory inactive strategy;
+  3. candidate source inclusion `L' ⊆ L`;
+  4. zero profile and empty raw-module set for the inactive strategy;
+  5. exact attained pointwise maxima, with no unique-attainer assumption;
+  6. identity closure, so generative closure equals raw module union; and
+  7. only for the optimization corollary, exact rational weights with zero
+     inactive weight and positive active weights.
+- **Tie, zero, and carrier reconciliation:** Every exact source attainer is a
+  valid frontier-row carrier, so ties remain existential. All belief rows are
+  present. If the source frontier is zero at a belief, the fixed inactive
+  strategy automatically covers that row. Every source-closure module has at
+  least one source raw carrier under identity closure, and any one of multiple
+  retained carriers satisfies its row.
+- **General-closure boundary:** No independent raw-carrier-row equivalence is
+  claimed for arbitrary closure. The exact complementary closure fixture
+  `CX-TAG-CLOSURE-COMPLEMENTARITY-01` has
+  `cl({a,b})={a,b,c}` although no source strategy carries `c`; raw rows for
+  all members of the closed set reject even the source. General closure must
+  retain direct closure equality or use a separately proved extended
+  formulation.
+- **Lean declarations:**
+  `StrategyInnovation.Optimization.TaggedRequirement`;
+  `identityModuleClosure`; `sourceTaggedRequirements`;
+  `strategyTaggedCoverage`; `selectedTaggedCoverage`;
+  `TaggedCoverFeasible`;
+  `operationalFrontier_eq_iff_sourceAttainers`;
+  `inactive_covers_zero_frontier`;
+  `generativeClosure_identity_eq_iff_sourceCarriers`;
+  `safeCompressionFeasible_identity_iff_taggedCover`; and
+  `libraryBurden_eq_weightedBinaryObjective`.
+- **Lean file:**
+  `formal/StrategyInnovation/Optimization/TaggedSafeCompression.lean`.
+- **`#print axioms` result:** The main biconditional, the two component
+  equivalences, and the weighted-objective identity report exactly
+  `[propext, Classical.choice, Quot.sound]`. The requirement type and identity
+  closure report `[propext, Quot.sound]`. No `sorry`, `admit`, user-declared
+  axiom, or hidden placeholder occurs. The focused executable audit is
+  `formal/StrategyInnovation/Audit/TaggedSafeCompression.lean`.
+- **Controlled overall status:** Lean verified for the exact encoded core
+  biconditional and burden identity; HUMAN PROOF remains the manuscript-facing
+  status for the composite presentation and boundary discussion
+- **Julia counterpart:** `julia/src/TaggedCover.jl`, with stable disjoint tag
+  types, identity-closure rejection, exact rational weights, solver-neutral
+  incidence export, and an independent certificate that rechecks source
+  inclusion, inactive retention, frontier equality, closure equality, and
+  burden.
+- **Julia validation:** `julia/test/test_tagged_cover.jl` exhausts all 5,184
+  inactive-containing sublibraries of 1,296 exact two-active catalogs on the
+  declared two-belief, two-module grid. It separately exercises tied frontier
+  attainers, a zero-frontier row, multiple module carriers, and the three
+  boundary counterexamples. These are exact finite computations, not a proof
+  over arbitrary finite instances.
+- **Registered fixture:**
+  `journal/aor/fixtures/tagged_cover_equivalence_v1.json`, generated and drift
+  checked by `julia/scripts/export_tagged_cover_theorem_fixture.jl`.
+- **Complexity and approximation boundary:** This record proves no
+  NP-hardness, polynomial-time encoding claim, solver status, approximation
+  ratio, or greedy guarantee. Those require their separate ledger records.
+- **Empirical relevance:** Not applicable.
+
 ### SC-COMP — Complexity of exact safe compression
 
 - **Theorem ID:** SC-COMP
@@ -348,10 +434,13 @@ counterexamples later in this ledger.
   minimum-weight optimization problem is NP-hard. Frontier preservation alone
   is NP-complete. Closure preservation alone is exactly weighted set cover
   and is NP-complete. Under identity closure, the combined problem is exactly
-  weighted hitting set on positive-frontier attainer obligations and
-  source-module carrier obligations. The lower bounds persist under unit
-  weights. A general-closure class containing identity closure is NP-hard and
-  is NP-complete when its closure equality is polynomial-time verifiable.
+  weighted hitting set on the SC-TAG belief-attainer and source-module carrier
+  obligations. All belief rows may be retained; zero-frontier rows are
+  automatically covered by the fixed inactive strategy and can therefore be
+  removed in the reduced complexity instance without changing feasible
+  selections. The lower bounds persist under unit weights. A general-closure
+  class containing identity closure is NP-hard and is NP-complete when its
+  closure equality is polynomial-time verifiable.
 - **Exact assumptions:**
   1. A-FIN, A-LIBRARY, A-PROFILE, A-FRONTIER, A-CLOSURE, and
      A-RESOURCE-WEIGHT for the finite exact source problem;
@@ -381,8 +470,9 @@ counterexamples later in this ledger.
   weighted set cover to closure-only, frontier-only, and combined safe
   compression with identical feasible masks. Unit weights transfer ordinary
   set-cover hardness. The exact combined hitting-set characterization follows
-  by listing all positive-frontier attainer sets and source-module carrier
-  sets.
+  by listing all SC-TAG belief-attainer sets and source-module carrier sets;
+  deleting the automatically satisfied zero-frontier rows yields the earlier
+  positive-frontier-only reduced representation.
 - **Lean kernel verification:** Not established. No active manuscript result
   may call SC-COMP Lean verified.
 - **Julia implementation validation:** All masks in the registered fixture

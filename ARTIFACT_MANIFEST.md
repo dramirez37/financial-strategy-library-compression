@@ -329,6 +329,21 @@ Exhaustive optimizer enumeration is used only to validate small fixtures. The
 artifact is not a universal proof; SC-COMP has no Lean declaration or axiom
 audit.
 
+## Exact identity-closure tagged-cover artifacts
+
+| Artifact ID | Path | SHA-256 | Role |
+|---|---|---|---|
+| `SCT-CORE-v1` | `julia/src/TaggedCover.jl` | `e98ba20ba668b4a857b9845644c12468ea8420233a9bc8fd621045b652c6bf1e` | source-relative disjoint tagged universe, exact incidence representation, exact rational burden, solver-neutral binary formulation, and independent frontier/closure/burden/inactive certificate; rejects nonidentity closure |
+| `SCT-CODE-v1` | `julia/scripts/export_tagged_cover_theorem_fixture.jl` | `9b7c520a5269763dc2f2b5ebfc07fb0ab03a0602f6e062c36247e8a90a20bd68` | deterministic exact fixture producer and nonmutating drift check; invokes no solver |
+| `SCT-TEST-v1` | `julia/test/test_tagged_cover.jl` | `0cab278a43166589dd58d8dd49db0fd081c153597573ba4fee246bdc1050da1c` | exact tie, zero-frontier, multiple-carrier, boundary, artifact-drift, and exhaustive declared small-grid tests |
+| `SCT-FIXTURE-v1` | `journal/aor/fixtures/tagged_cover_equivalence_v1.json` | `9f4b98e9c00650aac7f5134033eea186e3c227a66af6a1c9dc0027180c55bf99` | machine-readable exact representative incidence system, all eight candidate masks, 1,296-catalog/5,184-sublibrary audit, and three counterexamples |
+
+The fixture and Julia checks are exact finite computation, not universal
+proof, mixed-integer solver evidence, or empirical evidence. The separate
+Lean declaration below kernel-checks the universal identity-closure
+biconditional and the weighted-objective identity; it makes no complexity or
+approximation claim.
+
 ## Finite discounted dynamic-program artifacts
 
 | Artifact ID | Path | SHA-256 | Producer and validation |
@@ -702,6 +717,8 @@ variation/component searches remain numerical evidence.
 | raw T3 proof audit | `formal/StrategyInnovation/Audit/UnifiedSafeDeletion.lean` | every publication-facing T3 declaration prints only the accepted standard foundations and the focused linter passes |
 | finite penalized affine envelope | `formal/StrategyInnovation/Optimization/PenalizedEnvelope.lean` | fixed nonempty finite family, attained real-price maximum, continuity, convexity, nonincrease, finite switching candidates, local affine slopes, and antitone optimal burden kernel checked |
 | finite penalized-envelope proof audit | `formal/StrategyInnovation/Audit/PenalizedEnvelope.lean` | every manuscript-facing PEN-core declaration prints only `propext`, `Classical.choice`, and `Quot.sound`; focused namespace linter passes |
+| identity-closure tagged-cover equivalence | `formal/StrategyInnovation/Optimization/TaggedSafeCompression.lean` | disjoint belief/module tags, all-belief source universe, tie and zero-frontier handling, identity source-carrier equivalence, exact safe-feasible iff tagged-cover theorem, and weighted binary-objective identity kernel checked |
+| tagged-cover proof audit | `formal/StrategyInnovation/Audit/TaggedSafeCompression.lean` | principal SC-TAG declarations print only `propext`, `Classical.choice`, and `Quot.sound` as recorded in `THEOREM_LEDGER.md`; focused namespace linter passes |
 | real-parameter elasticity core | `formal/StrategyInnovation/{Optimization/Elasticity,Compression/BridgeMarginElasticity,Coverage/InnovationDuration,Value/ChannelElasticity}.lean` | shared point-elasticity algebra, positive bridge-loss derivatives and fragility limits, finite duration/variance identities, signed channel contributions, positive-channel weighted average, actual derivative corollaries, and exact finite examples kernel checked |
 | real elasticity proof audit | `formal/StrategyInnovation/Audit/Elasticity.lean` | shared elasticity algebra, BEM, IDCV, CED, exact examples, and actual-breakpoint local envelope slope print only `propext`, `Classical.choice`, and `Quot.sound`; focused namespace linters pass |
 | value/coverage proof audits | `formal/StrategyInnovation/Audit/{FiniteHorizon,Decomposition,InnovationEquation,Contraction,CoveragePotential,DiscountSurvivalInteraction,KernelComparativeStatics,SingleGap,MultiGapRegion}.lean` | focused linters pass and exact F5--F8/S4--S7/C2 dependencies are recorded in `THEOREM_LEDGER.md` |
@@ -714,7 +731,7 @@ artifact checksum is assigned. The focused Git commit is their provenance.
 | Class | Expected future location or form | Current status |
 |---|---|---|
 | remaining primary research theorem declarations | future extensions under `formal/StrategyInnovation/` | none in the adopted T1--T7 package; F0, F1--F8, S4--S7, C2, and CS1 are supporting results |
-| higher-level Julia research algorithms | `julia/src/{Compression,InnovationValue,DynamicProgramming,Coverage,RawDynamicProgramming,ComparativeStatics,ApproximateCompression}.jl` | safe and approximate compression, raw generation/admission, unified timing and Bellman operators, exact/Float64 comparative statics, reusable S4/S5/S6/S7/C2 coverage algorithms, exact T6 scalar bound/fixture, and exact T7 interaction surfaces exist |
+| higher-level Julia research algorithms | `julia/src/{Compression,TaggedCover,InnovationValue,DynamicProgramming,Coverage,RawDynamicProgramming,ComparativeStatics,ApproximateCompression}.jl` | safe and approximate compression, exact identity-closure tagged covering, raw generation/admission, unified timing and Bellman operators, exact/Float64 comparative statics, reusable S4/S5/S6/S7/C2 coverage algorithms, exact T6 scalar bound/fixture, and exact T7 interaction surfaces exist |
 | additional experiment configurations | immutable committed configs | theorem-feasibility, single-gap geometry, multi-gap topology, safe and approximate compression, dynamic-program, coverage, kernel-persistence response, system interaction, controlled theorem-mechanism, and limited financial configs exist |
 | empirical outputs | generated, checksummed data | separate locked-terminal and annual walk-forward aggregate mechanism summaries and derived compression-characteristic tables exist and are publishable under D-0041/D-0043/D-0068; licensed rows remain excluded |
 | figures and tables | Julia-generated artifacts | eighteen SVGs have complete source CSVs and generated metadata; six financial figures are publication artifacts |

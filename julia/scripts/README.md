@@ -52,6 +52,24 @@ It writes one complete audit plus 14 per-target JSON fixtures. The result is
 13 counterexamples and the surviving penalized-burden antitonicity claim. It
 does not write Lean source or confer theorem status.
 
+`export_tagged_cover_theorem_fixture.jl` constructs the source-relative
+identity-closure tagged universe from the package's `StrategyCatalog` and
+`RawLibrary` types. It checks all sublibraries of a representative instance,
+exhausts the declared two-belief/two-module/two-active exact grid, and records
+the frontier-only, module-only, and nonidentity-closure complementarity
+boundaries. It uses `Rational{BigInt}` throughout and invokes no solver:
+
+```sh
+./.local_runtime/julia-1.12.6/bin/julia --project=julia \
+  julia/scripts/export_tagged_cover_theorem_fixture.jl
+./.local_runtime/julia-1.12.6/bin/julia --project=julia \
+  julia/scripts/export_tagged_cover_theorem_fixture.jl --check
+```
+
+The output is
+`journal/aor/fixtures/tagged_cover_equivalence_v1.json`. It is exact finite
+implementation evidence, not the universal proof or a solver certificate.
+
 `run_safe_compression_scaling.jl` builds deterministic exact-rational set-cover
 instances with increasing strategy and belief counts, solves them with the
 JuMP/HiGHS safe-compression adapter, and prints variables, constraints,

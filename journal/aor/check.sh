@@ -89,6 +89,16 @@ KEYWORD_COUNT="$(
 
 "$JULIA_EXE" --startup-file=no --project="$ROOT/julia" \
     "$ROOT/julia/scripts/verify_safe_compression_complexity_reductions.jl" --check
+
+"$JULIA_EXE" --startup-file=no --project="$ROOT/julia/test" -e '
+    using StrategyInnovation, Test
+    include("julia/scripts/export_tagged_cover_theorem_fixture.jl")
+    using .TaggedCoverTheoremFixture
+    include("julia/test/test_tagged_cover.jl")
+'
+"$JULIA_EXE" --startup-file=no --project="$ROOT/julia" \
+    "$ROOT/julia/scripts/export_tagged_cover_theorem_fixture.jl" --check
+
 "$JULIA_EXE" --startup-file=no --project="$ROOT/julia" \
     "$JOURNAL_ROOT/scripts/generate_journal_artifacts.jl" --check
 

@@ -3,7 +3,7 @@
 `ManuscriptLint.lean` is the release linter for the complete imported
 development. It checks unused arguments across `StrategyInnovation` and
 `simpNF` on the major theorem-bearing publication namespace families.
-`AxiomAudit.lean` is the comprehensive release axiom audit: its 752 distinct
+`AxiomAudit.lean` is the comprehensive release axiom audit: its 763 distinct
 commands include all 276 distinct declarations and definitions named in the
 active manuscript correspondence. The claim-by-claim status and
 correspondence are in `../../../THEOREM_LEDGER.md`.
@@ -113,6 +113,11 @@ local affine representation and slope, and burden antitonicity.
 `CapacityValue.lean` audits finite hard-capacity attainment, monotonicity,
 constancy and breakpoints, discrete shadows, the complementarity
 counterexample, and the separate sorted-additive sufficient condition.
+
+`TaggedSafeCompression.lean` audits the disjoint belief/module requirement
+carrier, identity module closure, per-strategy coverage sets, weighted binary
+objective identity, and the exact source-relative safe-feasible-if-and-only-if-
+cover theorem. It does not audit complexity or approximation claims.
 
 `Elasticity.lean` audits the shared real elasticity algebra, positive
 bridge-loss derivatives and normalized-margin blow-up, finite innovation

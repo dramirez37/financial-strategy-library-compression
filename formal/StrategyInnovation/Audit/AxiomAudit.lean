@@ -55,6 +55,19 @@ inventories are not part of the public repository.
 #print axioms StrategyInnovation.Optimization.CapacityFeasible.mono_budget
 #print axioms StrategyInnovation.Optimization.CapacityFeasible.of_sublibrary
 
+-- SC-TAG: exact tagged covering under identity closure.
+#print axioms StrategyInnovation.Optimization.TaggedRequirement
+#print axioms StrategyInnovation.Optimization.identityModuleClosure
+#print axioms StrategyInnovation.Optimization.sourceTaggedRequirements
+#print axioms StrategyInnovation.Optimization.strategyTaggedCoverage
+#print axioms StrategyInnovation.Optimization.selectedTaggedCoverage
+#print axioms StrategyInnovation.Optimization.TaggedCoverFeasible
+#print axioms StrategyInnovation.Optimization.libraryBurden_eq_weightedBinaryObjective
+#print axioms StrategyInnovation.Optimization.operationalFrontier_eq_iff_sourceAttainers
+#print axioms StrategyInnovation.Optimization.inactive_covers_zero_frontier
+#print axioms StrategyInnovation.Optimization.generativeClosure_identity_eq_iff_sourceCarriers
+#print axioms StrategyInnovation.Optimization.safeCompressionFeasible_identity_iff_taggedCover
+
 -- Optimization T2--T4: exact-safe optimization and the greedy boundary.
 #print axioms StrategyInnovation.Optimization.SafeCompressionFeasible
 #print axioms StrategyInnovation.Optimization.DynamicEquivalentSafeCompressionFeasible

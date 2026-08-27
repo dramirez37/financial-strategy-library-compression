@@ -55,6 +55,10 @@ export ArithmeticMode,
        Strategy,
        StrategyCatalog,
        StrategyId,
+       TaggedCoverRepresentation,
+       TaggedRequirement,
+       FrontierRequirement,
+       ModuleRequirement,
        UnifiedEmbeddedOutcome,
        UnifiedComparativeParameters,
        UnifiedPolicyIterationResult,
@@ -194,8 +198,15 @@ export ArithmeticMode,
        satisfies_compression_formulation,
        strategy,
        strategy_modules,
+       strategy_tagged_coverage,
        state_value,
        terminal_belief,
+       tagged_binary_cover_formulation,
+       tagged_cover_burden,
+       tagged_cover_certificate,
+       tagged_cover_feasible,
+       tagged_cover_representation,
+       tagged_requirement_universe,
        transition_distribution,
        transition_probability,
        transition_row,
@@ -231,6 +242,7 @@ include("Beliefs.jl")
 include("Profiles.jl")
 include("Libraries.jl")
 include("Compression.jl")
+include("TaggedCover.jl")
 include("DynamicProgramming.jl")
 include("RawDynamicProgramming.jl")
 include("RealizableRectangles.jl")

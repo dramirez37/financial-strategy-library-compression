@@ -67,13 +67,14 @@ lake env lean StrategyInnovation/Audit/CoveragePotential.lean
 lake env lean StrategyInnovation/Audit/SingleGap.lean
 lake env lean StrategyInnovation/Audit/MultiGapRegion.lean
 lake env lean StrategyInnovation/Audit/SafeCompressionOptimization.lean
+lake env lean StrategyInnovation/Audit/TaggedSafeCompression.lean
 lake env lean StrategyInnovation/Audit/PenalizedEnvelope.lean
 lake env lean StrategyInnovation/Audit/CapacityValue.lean
 lake env lean StrategyInnovation/Audit/Elasticity.lean
 ```
 
 The first command is the release linter; the second executes the comprehensive
-752-command axiom audit, including every declaration and definition named in
+763-command axiom audit, including every declaration and definition named in
 the active manuscript correspondence. See `../THEOREM_LEDGER.md` for the
 current reconciliation.
 

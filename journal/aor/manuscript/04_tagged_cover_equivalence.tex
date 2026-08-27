@@ -1,0 +1,175 @@
+% Draft journal overlay.  This fragment is not yet included by journal/aor/main.tex.
+% The raw module inventory is denoted U_L^{raw} in the current preprint, so the
+% tagged universe below carries an explicit superscript to prevent a collision.
+
+\subsection{An exact tagged covering representation under identity closure}
+\label{subsec:aor-tagged-cover}
+
+Fix a finite belief set \(B\), a finite module carrier \(M\), a finite
+strategy catalog \(S\), and a source library \(L\subseteq S\).  Every
+admissible library contains the distinguished inactive strategy \(s_0\).
+Profiles are exact rational functions \(j_s:B\to\Q\),
+\(j_{s_0}(b)=0\) for every \(b\), and \(\mods(s_0)=\varnothing\).  Each
+\(\mods(s)\) is a subset of \(M\).  For an admissible library \(A\), let
+\[
+ F_A(b):=\max_{s\in A}j_s(b),\qquad
+ U_A^{\rm raw}:=\bigcup_{s\in A}\mods(s),\qquad
+ C_A:=\cl(U_A^{\rm raw}).
+\]
+The maximum is attained because \(A\) is finite and nonempty.  The inactive
+strategy also implies \(F_A(b)\geq 0\).
+
+In this subsection only, closure is the identity on \(2^M\).  Thus
+\(C_A=U_A^{\rm raw}\) for every \(A\).  Define the source-relative tagged
+requirement universe
+\begin{equation}
+ \mathcal U_L^{\rm tag}
+ :=\{\mathsf{frontier}(b):b\in B\}
+   \mathbin{\dot\cup}
+   \{\mathsf{module}(m):m\in C_L\}.
+ \label{eq:tagged-requirement-universe}
+\end{equation}
+The constructors are disjoint: a frontier tag and a module tag are different
+even if their underlying identifiers have the same printed label.  For each
+source strategy \(s\in L\), define
+\begin{equation}
+ \mathcal R_s
+ :=\{\mathsf{frontier}(b):j_s(b)=F_L(b)\}
+   \cup
+   \{\mathsf{module}(m):m\in\mods(s)\}.
+ \label{eq:strategy-tagged-coverage}
+\end{equation}
+Equality in the first set is exact.  Consequently every tied source
+maximizer covers the frontier row; no tie-breaking rule or distinguished
+maximizer enters the construction.
+
+\begin{theorem}[Tagged-cover equivalence under identity closure]
+\label{thm:aor-tagged-cover-equivalence}
+Under the assumptions above, let \(L'\) be an admissible source sublibrary:
+\(s_0\in L'\subseteq L\).  Then
+\begin{equation}
+ F_{L'}=F_L\ \text{and}\ C_{L'}=C_L
+ \quad\Longleftrightarrow\quad
+ \mathcal U_L^{\rm tag}\subseteq
+       \bigcup_{s\in L'}\mathcal R_s.
+ \label{eq:tagged-cover-equivalence}
+\end{equation}
+All belief rows are retained in \eqref{eq:tagged-cover-equivalence}.  If
+\(F_L(b)=0\), the mandatory inactive strategy attains that frontier and
+automatically covers \(\mathsf{frontier}(b)\).
+\end{theorem}
+
+\begin{proof}
+Suppose first that \(F_{L'}=F_L\) and \(C_{L'}=C_L\).  Fix \(b\in B\).
+The finite maximum defining \(F_{L'}(b)\) has an attainer
+\(s\in L'\).  Frontier equality gives
+\(j_s(b)=F_{L'}(b)=F_L(b)\), so
+\(\mathsf{frontier}(b)\in\mathcal R_s\).  This argument is existential and
+therefore permits any number of tied attainers.  Next fix \(m\in C_L\).
+Identity closure and closure equality give
+\[
+ m\in C_{L'}=U_{L'}^{\rm raw}
+   =\bigcup_{s\in L'}\mods(s).
+\]
+Hence some \(s\in L'\) carries \(m\), so
+\(\mathsf{module}(m)\in\mathcal R_s\).  Every tagged requirement is covered.
+
+Conversely, suppose every tagged requirement is covered.  Because
+\(L'\subseteq L\), maximization over the smaller set gives
+\(F_{L'}(b)\leq F_L(b)\) for every \(b\).  Coverage of
+\(\mathsf{frontier}(b)\) supplies some \(s\in L'\) with
+\(j_s(b)=F_L(b)\).  Therefore
+\(F_L(b)=j_s(b)\leq F_{L'}(b)\), proving frontier equality pointwise.  This
+also covers the zero-frontier case: \(s_0\in L'\) is itself a valid attainer.
+
+For modules, source inclusion implies
+\(U_{L'}^{\rm raw}\subseteq U_L^{\rm raw}\).  If
+\(m\in U_L^{\rm raw}=C_L\), coverage of
+\(\mathsf{module}(m)\) supplies a retained carrier, so
+\(m\in U_{L'}^{\rm raw}\).  Thus the two raw unions are equal.  Identity
+closure converts this equality into \(C_{L'}=C_L\).  A module may have one or
+many source carriers; the row constraint requires at least one and does not
+select a canonical carrier.
+\end{proof}
+
+\paragraph{Weighted binary formulation.}
+Let the exact rational retention weights satisfy \(w_{s_0}=0\) and
+\(w_s>0\) for \(s\neq s_0\).  Introduce one variable \(x_s\in\{0,1\}\) for
+each \(s\in L\), where \(x_s=1\) means that \(s\) is retained.  The theorem
+gives the exact formulation
+\begin{align}
+ \min_{x}\quad &\sum_{s\in L}w_sx_s,
+     \label{eq:tagged-cover-objective}\\
+ \text{s.t.}\quad
+ &\sum_{s\in L:\,j_s(b)=F_L(b)}x_s\geq 1,
+       && b\in B,\label{eq:tagged-frontier-rows}\\
+ &\sum_{s\in L:\,m\in\mods(s)}x_s\geq 1,
+       && m\in C_L,\label{eq:tagged-module-rows}\\
+ &x_{s_0}=1,\qquad x_s\in\{0,1\},
+       &&s\in L.\label{eq:tagged-binary-domain}
+\end{align}
+The source-sublibrary restriction is built into the column set \(L\).  The
+selected library is \(L_x=\{s\in L:x_s=1\}\), its burden is exactly the
+objective in \eqref{eq:tagged-cover-objective}, and
+Theorem~\ref{thm:aor-tagged-cover-equivalence} identifies its feasible vectors
+with the exact innovation-safe sublibraries.  Zero-frontier rows are
+redundant after \(x_{s_0}=1\), but retaining them makes the representation a
+literal tagged copy of every declared belief and avoids a hidden
+positive-frontier convention.
+
+\paragraph{Why arbitrary closure is different.}
+For a nonidentity closure operator, equality of closed unions need not be
+equivalent to retaining a raw carrier for each member of the source closure.
+Capabilities may be generated jointly.  A correct general-closure model must
+enforce the set-valued equality
+\[
+ \cl\!\left(\bigcup_{s:x_s=1}\mods(s)\right)=C_L
+\]
+or use a separately proved valid extended formulation.  The independent
+module rows in \eqref{eq:tagged-module-rows} have no automatic validity in
+that setting.
+
+\paragraph{Exact boundary examples.}
+The following finite examples use integer profiles and exact finite sets.
+
+\begin{enumerate}
+\item \emph{Frontier rows alone are insufficient.}  Take one belief, one
+module \(m\), identity closure, and
+\(L=\{s_0,s_m\}\), with both profiles zero,
+\(\mods(s_0)=\varnothing\), and \(\mods(s_m)=\{m\}\).  The sublibrary
+\(\{s_0\}\) covers the only frontier row and preserves the zero frontier, but
+its closure is empty rather than \(\{m\}\).
+
+\item \emph{Module rows alone are insufficient.}  Take one belief, identity
+closure, and \(L=\{s_0,s_1\}\), with
+\(j_{s_0}=0\), \(j_{s_1}=1\), and both module sets empty.  The source module
+row family is empty, so \(\{s_0\}\) satisfies it vacuously, but its frontier
+is zero rather than one.
+
+\item \emph{Independent raw-module rows can fail under closure
+complementarity.}  Let \(M=\{a,b,c\}\) and
+\[
+ \cl(A)=
+ \begin{cases}
+ A\cup\{c\},&\{a,b\}\subseteq A,\\
+ A,&\text{otherwise}.
+ \end{cases}
+\]
+This map is extensive, monotone, and idempotent.  Let the zero-profile source
+be \(L=\{s_0,s_a,s_b\}\), where \(s_a\) carries only \(a\) and \(s_b\)
+carries only \(b\).  Then \(C_L=\{a,b,c\}\), and the source is of course
+safe-feasible relative to itself.  Nevertheless a raw-carrier row for
+\(c\in C_L\) has no covering source strategy.  The naive independent-row
+model therefore rejects even the source library.
+\end{enumerate}
+
+The deterministic machine-readable realization is
+\path{journal/aor/fixtures/tagged_cover_equivalence_v1.json}.  It records
+exact finite computation in Julia, including all sublibraries of its declared
+small-library grid; it is neither an exhaustive proof over arbitrary finite
+instances nor a solver optimality certificate.  The universal core
+biconditional and exact burden identity are separately checked in the Lean
+source \path{TaggedSafeCompression.lean} under
+\path{formal/StrategyInnovation/Optimization/}.
+Those declarations formalize neither a complexity result nor an
+approximation guarantee.

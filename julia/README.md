@@ -240,8 +240,9 @@ juliaup default 1.12.6
 julia --project=julia -e 'using Pkg; Pkg.instantiate(); Pkg.test()'
 ```
 
-The current suite runs 3,785 deterministic checks, including 215 reusable
-raw-model checks, 63 raw-first rectangle checks, 80 unified
+The current suite runs 14,195 deterministic checks, including 10,410 focused
+tagged-cover checks, 215 reusable raw-model checks, 63 raw-first rectangle
+checks, 80 unified
 comparative-statics checks, 102 randomized-library checks, 119
 approximate-compression checks, exhaustive foundational/compression
 properties, 226 dynamic-program checks, 249 coverage checks, 35
@@ -250,6 +251,18 @@ system-interaction checks, 38 primitive-substitution checks, 37 joint-law
 gauntlet checks, 110 Lean–Julia bridge checks, 61 controlled
 theorem-mechanism checks, 70 financial-illustration/presentation checks, and
 the existing exact counterexample regressions.
+
+Run only the tagged-cover theorem adapter, exhaustive declared small grid, and
+artifact-drift checks with:
+
+```sh
+./.local_runtime/julia-1.12.6/bin/julia --project=julia/test -e '
+    using StrategyInnovation, Test
+    include("julia/scripts/export_tagged_cover_theorem_fixture.jl")
+    using .TaggedCoverTheoremFixture
+    include("julia/test/test_tagged_cover.jl")
+'
+```
 
 The unified comparative-static artifacts can be regenerated with:
 

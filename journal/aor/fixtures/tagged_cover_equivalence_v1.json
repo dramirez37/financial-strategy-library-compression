@@ -1,0 +1,342 @@
+{
+  "arithmetic": "Rational{BigInt}",
+  "counterexamples": [
+    {
+      "candidate_closure": [],
+      "candidate_frontier": [
+        "0//1"
+      ],
+      "candidate_strategies": [
+        "inactive"
+      ],
+      "closure": "identity",
+      "counterexample_id": "CX-TAG-FRONTIER-ONLY-01",
+      "exact_safe_feasible": false,
+      "frontier_rows_feasible": true,
+      "source_closure": [
+        "m"
+      ],
+      "source_frontier": [
+        "0//1"
+      ],
+      "source_strategies": [
+        "inactive",
+        "carrier"
+      ]
+    },
+    {
+      "candidate_closure": [],
+      "candidate_frontier": [
+        "0//1"
+      ],
+      "candidate_strategies": [
+        "inactive"
+      ],
+      "closure": "identity",
+      "counterexample_id": "CX-TAG-MODULE-ONLY-01",
+      "exact_safe_feasible": false,
+      "module_rows_feasible": true,
+      "source_closure": [],
+      "source_frontier": [
+        "1//1"
+      ],
+      "source_strategies": [
+        "inactive",
+        "leader"
+      ]
+    },
+    {
+      "candidate_closure": [
+        "a",
+        "b",
+        "c"
+      ],
+      "candidate_strategies": [
+        "inactive",
+        "a_carrier",
+        "b_carrier"
+      ],
+      "closure_rule": "close({a,b})={a,b,c}; otherwise identity, extended monotonically",
+      "counterexample_id": "CX-TAG-CLOSURE-COMPLEMENTARITY-01",
+      "exact_safe_feasible": true,
+      "identity_only_adapter_rejected_nonidentity_closure": true,
+      "naive_independent_closed_module_rows_feasible": false,
+      "raw_carriers_by_closed_module": {
+        "a": [
+          "a_carrier"
+        ],
+        "b": [
+          "b_carrier"
+        ],
+        "c": []
+      },
+      "source_closure": [
+        "a",
+        "b",
+        "c"
+      ],
+      "source_raw_modules": [
+        "a",
+        "b"
+      ],
+      "source_strategies": [
+        "inactive",
+        "a_carrier",
+        "b_carrier"
+      ]
+    }
+  ],
+  "evidence_class": "exact finite computation; not a universal mathematical proof or solver certificate",
+  "exhaustive_small_library_audit": {
+    "active_strategy_count": 2,
+    "all_correspondences_hold": true,
+    "belief_count": 2,
+    "catalogs_checked": 1296,
+    "mismatch_count": 0,
+    "mismatches": [],
+    "module_count": 2,
+    "profile_value_grid": [
+      -1,
+      0,
+      1
+    ],
+    "sublibraries_checked": 5184
+  },
+  "gates": {
+    "all_exhaustive_small_correspondences_hold": true,
+    "all_gates_pass": true,
+    "all_representative_correspondences_hold": true,
+    "all_representative_sublibraries_checked": true,
+    "frontier_rows_alone_rejected": true,
+    "general_closure_raw_rows_rejected": true,
+    "module_rows_alone_rejected": true
+  },
+  "representative_instance": {
+    "beliefs": [
+      "shared",
+      "zero"
+    ],
+    "binary_formulation": {
+      "domain": "x_s in {0,1} for source strategies",
+      "inactive_constraint": "x_inactive = 1",
+      "objective": "min sum_s w_s x_s",
+      "row_constraints": "sum_s incidence[u,s] x_s >= 1 for every tagged row u"
+    },
+    "candidate_rows": [
+      {
+        "closure_preserved": false,
+        "equivalence_holds": true,
+        "exact_burden": "0//1",
+        "exact_safe_feasible": false,
+        "frontier_preserved": false,
+        "inactive_retained": true,
+        "mask": 0,
+        "selected_strategies": [
+          "inactive"
+        ],
+        "tagged_cover_feasible": false
+      },
+      {
+        "closure_preserved": false,
+        "equivalence_holds": true,
+        "exact_burden": "3//2",
+        "exact_safe_feasible": false,
+        "frontier_preserved": true,
+        "inactive_retained": true,
+        "mask": 1,
+        "selected_strategies": [
+          "inactive",
+          "alpha"
+        ],
+        "tagged_cover_feasible": false
+      },
+      {
+        "closure_preserved": true,
+        "equivalence_holds": true,
+        "exact_burden": "7//3",
+        "exact_safe_feasible": true,
+        "frontier_preserved": true,
+        "inactive_retained": true,
+        "mask": 2,
+        "selected_strategies": [
+          "inactive",
+          "beta"
+        ],
+        "tagged_cover_feasible": true
+      },
+      {
+        "closure_preserved": true,
+        "equivalence_holds": true,
+        "exact_burden": "23//6",
+        "exact_safe_feasible": true,
+        "frontier_preserved": true,
+        "inactive_retained": true,
+        "mask": 3,
+        "selected_strategies": [
+          "inactive",
+          "alpha",
+          "beta"
+        ],
+        "tagged_cover_feasible": true
+      },
+      {
+        "closure_preserved": false,
+        "equivalence_holds": true,
+        "exact_burden": "5//4",
+        "exact_safe_feasible": false,
+        "frontier_preserved": false,
+        "inactive_retained": true,
+        "mask": 4,
+        "selected_strategies": [
+          "inactive",
+          "gamma"
+        ],
+        "tagged_cover_feasible": false
+      },
+      {
+        "closure_preserved": true,
+        "equivalence_holds": true,
+        "exact_burden": "11//4",
+        "exact_safe_feasible": true,
+        "frontier_preserved": true,
+        "inactive_retained": true,
+        "mask": 5,
+        "selected_strategies": [
+          "inactive",
+          "alpha",
+          "gamma"
+        ],
+        "tagged_cover_feasible": true
+      },
+      {
+        "closure_preserved": true,
+        "equivalence_holds": true,
+        "exact_burden": "43//12",
+        "exact_safe_feasible": true,
+        "frontier_preserved": true,
+        "inactive_retained": true,
+        "mask": 6,
+        "selected_strategies": [
+          "inactive",
+          "beta",
+          "gamma"
+        ],
+        "tagged_cover_feasible": true
+      },
+      {
+        "closure_preserved": true,
+        "equivalence_holds": true,
+        "exact_burden": "61//12",
+        "exact_safe_feasible": true,
+        "frontier_preserved": true,
+        "inactive_retained": true,
+        "mask": 7,
+        "selected_strategies": [
+          "inactive",
+          "alpha",
+          "beta",
+          "gamma"
+        ],
+        "tagged_cover_feasible": true
+      }
+    ],
+    "inactive_covers_zero_frontier": true,
+    "inactive_strategy": "inactive",
+    "incidence_rows": [
+      {
+        "covered_by": [
+          "alpha",
+          "beta"
+        ],
+        "requirement": "frontier:shared"
+      },
+      {
+        "covered_by": [
+          "inactive",
+          "alpha",
+          "gamma"
+        ],
+        "requirement": "frontier:zero"
+      },
+      {
+        "covered_by": [
+          "alpha",
+          "beta"
+        ],
+        "requirement": "module:shared"
+      },
+      {
+        "covered_by": [
+          "beta",
+          "gamma"
+        ],
+        "requirement": "module:other"
+      }
+    ],
+    "modules": [
+      "shared",
+      "other"
+    ],
+    "multiple_carriers": {
+      "other": [
+        "beta",
+        "gamma"
+      ],
+      "shared": [
+        "alpha",
+        "beta"
+      ]
+    },
+    "requirements": [
+      {
+        "belief": "shared",
+        "tag": "frontier"
+      },
+      {
+        "belief": "zero",
+        "tag": "frontier"
+      },
+      {
+        "module": "shared",
+        "tag": "module"
+      },
+      {
+        "module": "other",
+        "tag": "module"
+      }
+    ],
+    "source_closure": [
+      "shared",
+      "other"
+    ],
+    "source_frontier": [
+      "2//1",
+      "0//1"
+    ],
+    "source_strategies": [
+      "inactive",
+      "alpha",
+      "beta",
+      "gamma"
+    ],
+    "tie_frontier_attainers_at_shared": [
+      "alpha",
+      "beta"
+    ],
+    "weights": {
+      "alpha": "3//2",
+      "beta": "7//3",
+      "gamma": "5//4",
+      "inactive": "0//1"
+    },
+    "zero_frontier_belief": "zero"
+  },
+  "schema_version": "tagged-cover-equivalence-v1",
+  "scope": {
+    "candidate_domain": "inactive-containing source sublibraries",
+    "closure": "identity",
+    "frontier_rows": "all declared beliefs, including zero-frontier beliefs",
+    "module_rows": "all modules in the source identity closure"
+  },
+  "theorem_id": "SC-TAG"
+}

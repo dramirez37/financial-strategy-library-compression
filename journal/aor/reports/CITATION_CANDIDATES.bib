@@ -1,0 +1,503 @@
+% Candidate bibliography for the AoOR journal revision.
+% Audited 2026-08-26. Do not merge mechanically into the manuscript bibliography.
+% The comments on each entry record publication status, exact support, intended
+% citation location, role, and whether the key already exists in references.bib.
+
+% status: Published book chapter; primary source.
+% supports: The classic SET COVERING decision problem is among Karp's NP-complete problems; use only after a complete polynomial reduction for the journal subclass.
+% cite: Sections 2 and 4 (complexity antecedent and reduction source problem).
+% role: foundational. existing_bib: no.
+@incollection{Karp1972,
+  author = {Karp, Richard M.},
+  title = {Reducibility among Combinatorial Problems},
+  booktitle = {Complexity of Computer Computations},
+  editor = {Miller, Raymond E. and Thatcher, James W. and Bohlinger, Jean D.},
+  year = {1972},
+  pages = {85--103},
+  publisher = {Springer US},
+  doi = {10.1007/978-1-4684-2001-2_9},
+  url = {https://link.springer.com/chapter/10.1007/978-1-4684-2001-2_9}
+}
+
+% status: Published peer-reviewed journal article; primary source.
+% supports: Early logarithmic greedy approximation analysis for ordinary unweighted set cover; Chvatal is the direct weighted source.
+% cite: Section 2, historical approximation antecedent only.
+% role: foundational. existing_bib: no.
+@article{Johnson1974,
+  author = {Johnson, David S.},
+  title = {Approximation Algorithms for Combinatorial Problems},
+  journal = {Journal of Computer and System Sciences},
+  year = {1974},
+  volume = {9},
+  number = {3},
+  pages = {256--278},
+  doi = {10.1016/S0022-0000(74)80044-9},
+  url = {https://www.sciencedirect.com/science/article/pii/S0022000074800449}
+}
+
+% status: Published peer-reviewed journal article; primary source.
+% supports: The integral-to-fractional cover ratio is at most 1+log(d), with d the maximum degree in the paper's formulation.
+% cite: Section 2 or Section 5 only if the LP/greedy lineage is discussed.
+% role: foundational. existing_bib: no.
+@article{Lovasz1975,
+  author = {Lov{\'a}sz, L{\'a}szl{\'o}},
+  title = {On the Ratio of Optimal Integral and Fractional Covers},
+  journal = {Discrete Mathematics},
+  year = {1975},
+  volume = {13},
+  number = {4},
+  pages = {383--390},
+  doi = {10.1016/0012-365X(75)90058-8},
+  url = {https://www.sciencedirect.com/science/article/pii/0012365X75900588}
+}
+
+% status: Published peer-reviewed journal article; primary source.
+% supports: Positive-cost weighted set cover as a binary covering model and the cost-per-newly-covered-element greedy H(d) approximation, d=max column sum.
+% cite: Sections 2, 4, and 5 (standard formulation and inherited weighted-greedy guarantee).
+% role: foundational and methodological. existing_bib: no.
+@article{Chvatal1979,
+  author = {Chv{\'a}tal, Va{\v{s}}ek},
+  title = {A Greedy Heuristic for the Set-Covering Problem},
+  journal = {Mathematics of Operations Research},
+  year = {1979},
+  volume = {4},
+  number = {3},
+  pages = {233--235},
+  doi = {10.1287/moor.4.3.233},
+  url = {https://pubsonline.informs.org/doi/10.1287/moor.4.3.233}
+}
+
+% status: Published peer-reviewed journal article; primary source.
+% supports: Unless NP has slightly superpolynomial-time algorithms, set cover cannot be approximated below (1-o(1)) ln(n); this is not a plain P != NP assumption.
+% cite: Section 4 only if a tight approximation-threshold discussion is retained.
+% role: foundational. existing_bib: no.
+@article{Feige1998,
+  author = {Feige, Uriel},
+  title = {A Threshold of {ln n} for Approximating Set Cover},
+  journal = {Journal of the ACM},
+  year = {1998},
+  volume = {45},
+  number = {4},
+  pages = {634--652},
+  doi = {10.1145/285055.285059},
+  url = {https://doi.org/10.1145/285055.285059}
+}
+
+% status: Published peer-reviewed conference paper; primary source.
+% supports: For every fixed alpha>0, approximating set cover within (1-alpha) ln(n) is NP-hard (Corollary 1.5); the reduction time depends on alpha.
+% cite: Section 4 only if a modern fixed-alpha inapproximability statement is needed.
+% role: foundational. existing_bib: no.
+@inproceedings{DinurSteurer2014,
+  author = {Dinur, Irit and Steurer, David},
+  title = {Analytical Approach to Parallel Repetition},
+  booktitle = {Proceedings of the Forty-Sixth Annual ACM Symposium on Theory of Computing},
+  year = {2014},
+  pages = {624--633},
+  publisher = {Association for Computing Machinery},
+  doi = {10.1145/2591796.2591884},
+  url = {https://arxiv.org/abs/1305.1979}
+}
+
+% status: Published peer-reviewed journal article; primary source.
+% supports: For nondecreasing submodular z on a finite ground set, with z(empty)=0 and integer values, greedy submodular cover has ratio H(max_j z({j})).
+% cite: Sections 2 and 5 only after proving all theorem assumptions for a proposed variant.
+% role: foundational and methodological. existing_bib: no.
+@article{Wolsey1982,
+  author = {Wolsey, Laurence A.},
+  title = {An Analysis of the Greedy Algorithm for the Submodular Set Covering Problem},
+  journal = {Combinatorica},
+  year = {1982},
+  volume = {2},
+  pages = {385--393},
+  doi = {10.1007/BF02579435},
+  url = {https://link.springer.com/article/10.1007/BF02579435}
+}
+
+% status: Published peer-reviewed journal article; primary source.
+% supports: For nondecreasing normalized submodular maximization under |S|<=K, greedy attains at least 1-((K-1)/K)^K of optimum, approaching 1-1/e.
+% cite: Sections 2 or 6 solely to distinguish budgeted maximum coverage/submodular maximization from exact set cover.
+% role: foundational. existing_bib: no.
+@article{NemhauserWolseyFisher1978,
+  author = {Nemhauser, George L. and Wolsey, Laurence A. and Fisher, Marshall L.},
+  title = {An Analysis of Approximations for Maximizing Submodular Set Functions---I},
+  journal = {Mathematical Programming},
+  year = {1978},
+  volume = {14},
+  pages = {265--294},
+  doi = {10.1007/BF01588971},
+  url = {https://link.springer.com/article/10.1007/BF01588971}
+}
+
+% status: Published peer-reviewed journal article; primary source.
+% supports: Adaptive-greedy guarantees require adaptive monotonicity and adaptive submodularity in sequential stochastic selection with revealed outcomes.
+% cite: Section 2, to distinguish adaptive stochastic selection from static retention.
+% role: methodological and comparative. existing_bib: yes.
+@article{GolovinKrause2011,
+  author = {Golovin, Daniel and Krause, Andreas},
+  title = {Adaptive Submodularity: Theory and Applications in Active Learning and Stochastic Optimization},
+  journal = {Journal of Artificial Intelligence Research},
+  year = {2011},
+  volume = {42},
+  pages = {427--486},
+  doi = {10.1613/jair.3278},
+  url = {https://www.jair.org/index.php/jair/article/view/10731}
+}
+
+% status: Published peer-reviewed journal article; primary source.
+% supports: A practical set-cover algorithm combining reduction tests, dual ascent, subgradient optimization, and LP, with reported tests up to 400 rows and 4000 columns.
+% cite: Section 5, exact/practical set-cover solution and reduction antecedent.
+% role: methodological. existing_bib: no.
+@article{Beasley1987,
+  author = {Beasley, John E.},
+  title = {An Algorithm for Set Covering Problem},
+  journal = {European Journal of Operational Research},
+  year = {1987},
+  volume = {31},
+  number = {1},
+  pages = {85--93},
+  doi = {10.1016/0377-2217(87)90141-X},
+  url = {https://www.sciencedirect.com/science/article/pii/037722178790141X}
+}
+
+% status: Published peer-reviewed journal article; primary source.
+% supports: Exact branch-and-bound solution of set covering/partitioning models using dual LP heuristics.
+% cite: Section 5, exact set-cover algorithm antecedent.
+% role: methodological. existing_bib: no.
+@article{FisherKedia1990,
+  author = {Fisher, Marshall L. and Kedia, Pradeep},
+  title = {Optimal Solution of Set Covering/Partitioning Problems Using Dual Heuristics},
+  journal = {Management Science},
+  year = {1990},
+  volume = {36},
+  number = {6},
+  pages = {674--688},
+  doi = {10.1287/mnsc.36.6.674},
+  url = {https://pubsonline.informs.org/doi/10.1287/mnsc.36.6.674}
+}
+
+% status: Published peer-reviewed journal article; primary source.
+% supports: Large zero-one programs benefit from preprocessing, cutting planes, and branch-and-bound; it does not certify this paper's semantic rules.
+% cite: Section 5, general MILP implementation context.
+% role: methodological. existing_bib: no.
+@article{CrowderJohnsonPadberg1983,
+  author = {Crowder, Harlan and Johnson, Ellis L. and Padberg, Manfred},
+  title = {Solving Large-Scale Zero-One Linear Programming Problems},
+  journal = {Operations Research},
+  year = {1983},
+  volume = {31},
+  number = {5},
+  pages = {803--834},
+  doi = {10.1287/opre.31.5.803},
+  url = {https://pubsonline.informs.org/doi/10.1287/opre.31.5.803}
+}
+
+% status: Published peer-reviewed journal article; primary source.
+% supports: General MIP preprocessing/probing identifies infeasibility and redundancy, strengthens bounds/coefficients, fixes binaries, and derives logical consequences.
+% cite: Section 5, preprocessing context; not as proof of a journal-specific reduction.
+% role: methodological. existing_bib: no.
+@article{Savelsbergh1994,
+  author = {Savelsbergh, Martin W. P.},
+  title = {Preprocessing and Probing Techniques for Mixed Integer Programming Problems},
+  journal = {ORSA Journal on Computing},
+  year = {1994},
+  volume = {6},
+  number = {4},
+  pages = {445--454},
+  doi = {10.1287/ijoc.6.4.445},
+  url = {https://pubsonline.informs.org/doi/10.1287/ijoc.6.4.445}
+}
+
+% status: Published peer-reviewed journal article; primary source.
+% supports: A large-scale set-cover heuristic combining Lagrangian relaxation, subgradient optimization, greedy construction, dynamic pricing, and column fixing.
+% cite: Section 5, comparative set-cover heuristic literature.
+% role: methodological and comparative. existing_bib: no.
+@article{CapraraFischettiToth1999,
+  author = {Caprara, Alberto and Fischetti, Matteo and Toth, Paolo},
+  title = {A Heuristic Method for the Set Covering Problem},
+  journal = {Operations Research},
+  year = {1999},
+  volume = {47},
+  number = {5},
+  pages = {730--743},
+  doi = {10.1287/opre.47.5.730},
+  url = {https://pubsonline.informs.org/doi/10.1287/opre.47.5.730}
+}
+
+% status: Published graduate textbook; official publisher metadata and the stated theorem text were inspected.
+% supports: Chapter 6.1.1, Theorem 6.1 gives a subset-indexed DP for cardinality set cover in time 2^|U| (|U|+|F|)^O(1); weighted costs and deterministic reconstruction require the journal's own proof.
+% cite: Section 5 and the Online Resource for the standard coverage-mask DP antecedent.
+% role: methodological. existing_bib: no.
+@book{CyganEtAl2015,
+  author = {Cygan, Marek and Fomin, Fedor V. and Kowalik, {\L}ukasz and Lokshtanov, Daniel and Marx, D{\'a}niel and Pilipczuk, Marcin and Pilipczuk, Micha{\l} and Saurabh, Saket},
+  title = {Parameterized Algorithms},
+  year = {2015},
+  publisher = {Springer},
+  doi = {10.1007/978-3-319-21275-3},
+  url = {https://link.springer.com/chapter/10.1007/978-3-319-21275-3_6}
+}
+
+% status: Published peer-reviewed journal article; primary source.
+% supports: Performance profiles are distribution functions of per-problem performance ratios for benchmarking optimization software.
+% cite: Section 7, if performance profiles are predeclared in the registered benchmark.
+% role: methodological. existing_bib: no.
+@article{DolanMore2002,
+  author = {Dolan, Elizabeth D. and Mor{\'e}, Jorge J.},
+  title = {Benchmarking Optimization Software with Performance Profiles},
+  journal = {Mathematical Programming},
+  year = {2002},
+  volume = {91},
+  pages = {201--213},
+  doi = {10.1007/s101070100263},
+  url = {https://link.springer.com/article/10.1007/s101070100263}
+}
+
+% status: Published peer-reviewed journal article; primary source.
+% supports: Data profiles compare solver performance under computational budgets in derivative-free optimization benchmarking.
+% cite: Section 7 only if the registered design uses budget-based progress profiles.
+% role: methodological. existing_bib: no.
+@article{MoreWild2009,
+  author = {Mor{\'e}, Jorge J. and Wild, Stefan M.},
+  title = {Benchmarking Derivative-Free Optimization Algorithms},
+  journal = {SIAM Journal on Optimization},
+  year = {2009},
+  volume = {20},
+  number = {1},
+  pages = {172--191},
+  doi = {10.1137/080724083},
+  url = {https://epubs.siam.org/doi/10.1137/080724083}
+}
+
+% status: Published peer-reviewed conference article; primary source.
+% supports: Selects and orders compact maneuver/trajectory control libraries using submodular-sequence methods and performance guarantees.
+% cite: Section 2 as the closest classical control-library comparator; Section 5 if comparing algorithms.
+% role: comparative. existing_bib: yes.
+@article{DeyEtAl2012,
+  author = {Dey, Debadeepta and Liu, Tian Yu and Sofman, Boris and Bagnell, J. Andrew},
+  title = {Efficient Optimization of Control Libraries},
+  journal = {Proceedings of the AAAI Conference on Artificial Intelligence},
+  year = {2012},
+  volume = {26},
+  number = {1},
+  pages = {1983--1989},
+  doi = {10.1609/aaai.v26i1.8383},
+  url = {https://ojs.aaai.org/index.php/AAAI/article/view/8383}
+}
+
+% status: Published peer-reviewed conference paper; primary official proceedings source.
+% supports: Reward-free policy-space representatives defined by Renyi-divergence state-action coverage; formulated as set cover and stated NP-hard.
+% cite: Section 2 as the closest policy-compression comparator and a direct novelty constraint.
+% role: comparative. existing_bib: yes.
+@inproceedings{MuttiDelColRestelli2022,
+  author = {Mutti, Mirco and Del Col, Stefano and Restelli, Marcello},
+  title = {Reward-Free Policy Space Compression for Reinforcement Learning},
+  booktitle = {Proceedings of the 25th International Conference on Artificial Intelligence and Statistics},
+  year = {2022},
+  series = {Proceedings of Machine Learning Research},
+  volume = {151},
+  pages = {3187--3203},
+  publisher = {PMLR},
+  url = {https://proceedings.mlr.press/v151/mutti22a.html}
+}
+
+% status: Published peer-reviewed journal article; primary source.
+% supports: Finite-horizon finite-state POMDP control on belief states and piecewise-linear convex payoff representations.
+% cite: Sections 2 and 3 for established belief-state control architecture.
+% role: foundational. existing_bib: yes.
+@article{SmallwoodSondik1973,
+  author = {Smallwood, Richard D. and Sondik, Edward J.},
+  title = {The Optimal Control of Partially Observable Markov Processes over a Finite Horizon},
+  journal = {Operations Research},
+  year = {1973},
+  volume = {21},
+  number = {5},
+  pages = {1071--1088},
+  doi = {10.1287/opre.21.5.1071},
+  url = {https://pubsonline.informs.org/doi/10.1287/opre.21.5.1071}
+}
+
+% status: Published peer-reviewed journal article; primary source.
+% supports: Infinite-horizon discounted partially observable control over the belief simplex, including finitely transient policies and piecewise-linear approximations.
+% cite: Sections 2 and 3 if infinite-horizon POMDP antecedents are discussed.
+% role: foundational. existing_bib: no.
+@article{Sondik1978,
+  author = {Sondik, Edward J.},
+  title = {The Optimal Control of Partially Observable Markov Processes over the Infinite Horizon: Discounted Costs},
+  journal = {Operations Research},
+  year = {1978},
+  volume = {26},
+  number = {2},
+  pages = {282--304},
+  doi = {10.1287/opre.26.2.282},
+  url = {https://pubsonline.informs.org/doi/10.1287/opre.26.2.282}
+}
+
+% status: Published peer-reviewed journal article; primary source.
+% supports: A sufficient-statistic dynamic program for a finite-horizon, finite-state, partially observed semi-Markov optimization problem.
+% cite: Sections 2 and 3 for semi-Markov partial-information control antecedents.
+% role: foundational. existing_bib: yes.
+@article{White1976,
+  author = {White, Chelsea C.},
+  title = {Procedures for the Solution of a Finite-Horizon, Partially Observed, Semi-Markov Optimization Problem},
+  journal = {Operations Research},
+  year = {1976},
+  volume = {24},
+  number = {2},
+  pages = {348--358},
+  doi = {10.1287/opre.24.2.348},
+  url = {https://pubsonline.informs.org/doi/10.1287/opre.24.2.348}
+}
+
+% status: Published peer-reviewed conference paper; primary author-hosted version.
+% supports: Incremental pruning is an exact method for removing redundant alpha vectors during finite POMDP dynamic-programming backups.
+% cite: Section 2 to distinguish value-representation pruning from source-library carrier retention.
+% role: methodological and comparative. existing_bib: yes.
+@inproceedings{CassandraLittmanZhang1997,
+  author = {Cassandra, Anthony R. and Littman, Michael L. and Zhang, Nevin Lianwen},
+  title = {Incremental Pruning: A Simple, Fast, Exact Method for Partially Observable Markov Decision Processes},
+  booktitle = {Proceedings of the Thirteenth Conference on Uncertainty in Artificial Intelligence},
+  year = {1997},
+  pages = {54--61},
+  publisher = {Morgan Kaufmann Publishers Inc.},
+  url = {https://arxiv.org/abs/1302.1525}
+}
+
+% status: Published peer-reviewed journal article; primary source.
+% supports: Behavioral equivalence notions support state aggregation and model minimization in MDPs.
+% cite: Section 2 to distinguish state/model minimization from strategy-library retention.
+% role: comparative. existing_bib: yes.
+@article{GivanDeanGreig2003,
+  author = {Givan, Robert and Dean, Thomas and Greig, Matthew},
+  title = {Equivalence Notions and Model Minimization in {Markov} Decision Processes},
+  journal = {Artificial Intelligence},
+  year = {2003},
+  volume = {147},
+  number = {1--2},
+  pages = {163--223},
+  doi = {10.1016/S0004-3702(02)00376-4},
+  url = {https://doi.org/10.1016/S0004-3702(02)00376-4}
+}
+
+% status: Published peer-reviewed journal article; primary source.
+% supports: Formalizes metareasoning and the value of computational actions for resource-bounded decision making.
+% cite: Section 2 as contextual research-computation allocation literature.
+% role: contextual. existing_bib: yes.
+@article{RussellWefald1991,
+  author = {Russell, Stuart J. and Wefald, Eric},
+  title = {Principles of Metareasoning},
+  journal = {Artificial Intelligence},
+  year = {1991},
+  volume = {49},
+  number = {1--3},
+  pages = {361--395},
+  doi = {10.1016/0004-3702(91)90015-C},
+  url = {https://www.sciencedirect.com/science/article/pii/000437029190015C}
+}
+
+% status: Published peer-reviewed journal article; primary source.
+% supports: Gives an optimal reservation-value rule for costly sequential search among alternatives.
+% cite: Section 2 only as contextual research-option/resource-allocation antecedent.
+% role: contextual. existing_bib: no.
+@article{Weitzman1979,
+  author = {Weitzman, Martin L.},
+  title = {Optimal Search for the Best Alternative},
+  journal = {Econometrica},
+  year = {1979},
+  volume = {47},
+  number = {3},
+  pages = {641--654},
+  doi = {10.2307/1910412},
+  url = {https://www.jstor.org/stable/1910412}
+}
+
+% status: Published peer-reviewed journal article; primary source.
+% supports: Models budget allocation across R&D alternatives in a large hierarchical organization under organizational and technical constraints.
+% cite: Section 2 only as contextual research-resource allocation literature.
+% role: contextual. existing_bib: no.
+@article{BakerEtAl1976,
+  author = {Baker, Norman R. and Souder, William E. and Shumway, Charles R. and Maher, Patricia M. and Rubenstein, Albert H.},
+  title = {A Budget Allocation Model for Large Hierarchical {R\&D} Organizations},
+  journal = {Management Science},
+  year = {1976},
+  volume = {23},
+  number = {1},
+  pages = {59--70},
+  doi = {10.1287/mnsc.23.1.59},
+  url = {https://pubsonline.informs.org/doi/10.1287/mnsc.23.1.59}
+}
+
+% status: Official supervisory guidance, issued 2011; current regulator scope must be checked before broad claims because the OCC revised its guidance in 2026.
+% supports: Model development, implementation, validation, monitoring, inventory, and governance impose organizational controls and resources.
+% cite: Sections 2 or 8 as financial model-governance context only.
+% role: contextual. existing_bib: no.
+@misc{FederalReserveOCC2011,
+  author = {{Board of Governors of the Federal Reserve System} and {Office of the Comptroller of the Currency}},
+  title = {Supervisory Guidance on Model Risk Management},
+  year = {2011},
+  howpublished = {Supervision and Regulation Letter SR 11-7, attachment},
+  note = {Official supervisory guidance},
+  url = {https://www.federalreserve.gov/boarddocs/srletters/2011/sr1107a1.pdf}
+}
+
+% status: Published peer-reviewed journal article; primary source.
+% supports: Analyzes derivative-pricing model uncertainty and its quantitative impact; it does not formulate strategy-library retention.
+% cite: Section 2 or 8 as quantitative-finance model-risk context.
+% role: contextual. existing_bib: no.
+@article{Cont2006,
+  author = {Cont, Rama},
+  title = {Model Uncertainty and Its Impact on the Pricing of Derivative Instruments},
+  journal = {Mathematical Finance},
+  year = {2006},
+  volume = {16},
+  number = {3},
+  pages = {519--547},
+  doi = {10.1111/j.1467-9965.2006.00281.x},
+  url = {https://onlinelibrary.wiley.com/doi/10.1111/j.1467-9965.2006.00281.x}
+}
+
+% status: Published peer-reviewed journal article; primary source.
+% supports: Develops robust risk-measurement methods for model error and model risk; it does not establish library-compression efficiency.
+% cite: Section 2 or 8 as quantitative-finance model-risk context.
+% role: contextual. existing_bib: no.
+@article{GlassermanXu2014,
+  author = {Glasserman, Paul and Xu, Xingbo},
+  title = {Robust Risk Measurement and Model Risk},
+  journal = {Quantitative Finance},
+  year = {2014},
+  volume = {14},
+  number = {1},
+  pages = {29--58},
+  doi = {10.1080/14697688.2013.822989},
+  url = {https://www.tandfonline.com/doi/abs/10.1080/14697688.2013.822989}
+}
+
+% status: Published peer-reviewed journal article; primary source.
+% supports: Optimal switching under partial information using filtered beliefs, including finite/infinite-horizon control structure.
+% cite: Section 2 as a financial partial-information switching antecedent.
+% role: comparative and contextual. existing_bib: yes.
+@article{LiNystromOlofsson2015,
+  author = {Li, Kai and Nystr{\"o}m, Kaj and Olofsson, Marcus},
+  title = {Optimal Switching Problems under Partial Information},
+  journal = {Monte Carlo Methods and Applications},
+  year = {2015},
+  volume = {21},
+  number = {2},
+  pages = {91--120},
+  doi = {10.1515/mcma-2014-0013},
+  url = {https://doi.org/10.1515/mcma-2014-0013}
+}
+
+% status: Published peer-reviewed journal article; primary source.
+% supports: A regime-switching trend-following control model in quantitative finance.
+% cite: Section 2 as a regime-dependent financial control antecedent.
+% role: comparative and contextual. existing_bib: yes.
+@article{DaiZhangZhu2010,
+  author = {Dai, Min and Zhang, Qing and Zhu, Qiji J.},
+  title = {Trend Following Trading under a Regime Switching Model},
+  journal = {SIAM Journal on Financial Mathematics},
+  year = {2010},
+  volume = {1},
+  number = {1},
+  pages = {780--810},
+  doi = {10.1137/090770552},
+  url = {https://doi.org/10.1137/090770552}
+}

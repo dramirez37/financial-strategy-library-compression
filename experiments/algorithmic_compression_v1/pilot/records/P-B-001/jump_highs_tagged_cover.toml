@@ -1,0 +1,716 @@
+algorithm_execution_position = 1
+algorithm_id = "jump_highs_tagged_cover"
+analysis_included = false
+applicable = true
+compile_time_seconds = 0.028207417
+complete_solver_log_path = "experiments/algorithmic_compression_v1/pilot/solver_logs/P-B-001.log"
+complete_solver_log_sha256 = "9b21f4e9bc270d144d14557011a1917453fe643d3fbb11425eb70300e4f17c7d"
+cumulative_process_maxrss_after = 0x6bbc0000
+evidence_class = "exact finite preprocessing computation"
+exact_burden = "4//1"
+experiment_id = "registered-algorithmic-compression-benchmark-v1"
+family = "structured"
+finished_at_utc = "2026-08-27T06:25:19.702Z"
+gc_time_seconds = 0.0
+generator_seed = "7430552101821641141"
+input_artifact_path = "experiments/algorithmic_compression_v1/pilot/instances/P-B-001.toml"
+instance_execution_position = 7
+instance_id = "P-B-001"
+instance_sha256 = "c5f9dee94085b8baa74c56e57b49eb6cb49d257d5b450cc212379c58b81b17e8"
+julia_allocated_bytes = 398806696
+mechanism = "none"
+memory_limit_enforced = false
+mip_seed = "1065576180"
+multistart_seed = "5246907160939341584"
+peak_memory_bytes = "UNAVAILABLE"
+phase = "pilot"
+pilot_label = "IMPLEMENTATION PILOT — EXCLUDED FROM FINAL ANALYSIS"
+preprocessing_variant = "full_fixed_point"
+random_order_seed = "3008056591920151740"
+registered_memory_limit_bytes = 17179869184
+registered_time_limit_seconds = 900.0
+registry_position = 6
+replicate_id = 1
+schema_version = "algorithmic-compression-pilot-run-v1"
+seed_id = "SEED-P-B-001"
+solved = true
+started_at_utc = "2026-08-27T06:25:19.338Z"
+status = "SOLVED_BY_EXACT_PREPROCESSING"
+tie_rule = "one deterministic representative; tied optima are not claimed complete"
+time_limit_enforced = true
+wall_clock_ns = 363832958
+
+[exact_recheck]
+burden_reconciled = true
+closure_preserved = true
+exact_burden = "4//1"
+exact_feasible = true
+frontier_preserved = true
+mandatory_retained = true
+tagged_coverage = true
+
+[method_result]
+algorithm = "jump_highs_tagged_cover"
+binary_value_rejection_reason = ""
+binary_values_exact = true
+candidate_accepted = true
+evidence_class = "mixed-integer solver evidence plus exact finite post-check"
+exact_global_optimum_verified = true
+instance_sha256 = "c5f9dee94085b8baa74c56e57b49eb6cb49d257d5b450cc212379c58b81b17e8"
+raw_reduced_variable_values = []
+reconstructed_candidate_available = true
+reconstructed_candidate_indices = [1, 8, 17, 28, 30]
+schema_version = "journal-compression-mip-solution-v1"
+selected_strategy_id_kinds = ["string", "string", "string", "string", "string"]
+selected_strategy_id_values = ["inactive", "s0007", "s0016", "s0027", "s0029"]
+selected_strategy_indices = [1, 8, 17, 28, 30]
+solver_claimed_optimal = false
+solver_optimality_is_formal_proof = false
+status = "exactly_rechecked_solver_candidate"
+warm_start_source = "none"
+
+    [method_result.controls]
+    absolute_mip_gap_tolerance = 0.0
+    complete_log_captured = true
+    log_to_console = false
+    parallel = "off"
+    presolve = "on"
+    random_seed = 1065576180
+    relative_mip_gap_tolerance = 0.0
+    threads = 1
+
+        [method_result.controls.time_limit_seconds]
+        set = true
+        value = 900.0
+
+    [method_result.crosscheck]
+    algorithm = "requirement_mask_dp"
+    applicability_declaration = "auto-selected requirement-mask DP under the declared requirement limit"
+    candidate_available = true
+    dp_requirement_count = 16
+    dp_requirement_limit = 18
+    enumeration_limit = 20
+    enumeration_optional_count = 31
+    performed = true
+    requested_mode = "auto"
+
+        [method_result.crosscheck.candidate_matches_exact_optimum]
+        available = true
+        value = true
+
+        [method_result.crosscheck.exact_optimum_burden]
+        available = true
+        value = "4//1"
+
+    [method_result.exact_burden]
+    available = true
+    value = "4//1"
+
+    [method_result.exact_feasibility_certificate]
+    arithmetic = "Rational{BigInt}"
+    available = true
+    burden_reconciled = true
+    closure_preserved = true
+    evidence_class = "exact finite post-solve computation"
+    exact_burden = "4//1"
+    exact_feasible = true
+    frontier_preserved = true
+    lean_kernel_verified = false
+    mandatory_retained = true
+    selected_strategy_indices = [1, 8, 17, 28, 30]
+    solver_status_used_as_proof = false
+    tagged_coverage = true
+
+    [method_result.formulation]
+    closure_kind = "identity"
+    mandatory_equalities_substituted_by_exact_preprocessing = true
+    objective_scale = "1"
+    original_binary_strategy_count = 32
+    original_mandatory_equality_count = 1
+    original_tagged_cover_row_count = 16
+    residual_binary_variable_count = 0
+    residual_nonzero_count = 0
+    residual_scaled_objective = []
+    residual_tagged_cover_row_count = 0
+    scaled_objective_offset = 4
+
+    [method_result.preprocessing]
+    all_optimizer_identities_reconstructable = false
+    exact_objective_offset = "4//1"
+    fixed_point_iterations = 33
+    forced_strategy_indices = [1, 8, 17, 28, 30]
+    input_preprocessing_was_present = false
+    original_requirement_count = 16
+    original_strategy_count = 32
+    reduced_requirement_count = 0
+    reduced_strategy_count = 0
+    remaining_requirement_indices = []
+    remaining_strategy_indices = []
+    requirements_removed = 16
+    rerun_from_original_instance = true
+    variables_removed = 32
+
+        [method_result.preprocessing.audit]
+        all_optimizer_identities_reconstructable_by_declared_maps = false
+        arithmetic = "Rational{BigInt}"
+        feasible = true
+        fixed_point = true
+        fixed_point_iterations = 33
+        forced_strategy_ids = ["StrategyId(\"inactive\")", "StrategyId(\"s0016\")", "StrategyId(\"s0027\")", "StrategyId(\"s0007\")", "StrategyId(\"s0029\")"]
+        forced_strategy_indices = [1, 17, 28, 8, 30]
+        objective_offset = "4//1"
+        original_requirement_count = 16
+        original_variable_count = 32
+        reduced_requirement_count = 0
+        reduced_variable_count = 0
+        remaining_requirement_indices = []
+        remaining_strategy_indices = []
+        requirement_representative = [0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 0]
+        requirement_status = ["satisfied_by_forced_selection", "satisfied_by_forced_selection", "duplicate_requirement", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "satisfied_by_forced_selection", "duplicate_requirement", "satisfied_by_forced_selection"]
+        schema_version = "tagged-cover-preprocessing-audit-v1"
+        strategy_elimination_target = [0, 28, 0, 0, 8, 7, 30, 0, 28, 0, 0, 0, 8, 0, 0, 8, 0, 0, 28, 0, 8, 17, 0, 0, 0, 0, 17, 0, 17, 0, 30, 0]
+        strategy_status = ["mandatory_selected", "dominated_strict_weight", "empty_contribution", "empty_contribution", "dominated_strict_weight", "dominated_strict_weight", "duplicate_heavier", "forced_selected", "dominated_equal_weight", "empty_contribution", "empty_contribution", "empty_contribution", "dominated_strict_weight", "empty_contribution", "empty_contribution", "dominated_strict_weight", "forced_selected", "empty_contribution", "dominated_strict_weight", "empty_contribution", "dominated_strict_weight", "dominated_strict_weight", "empty_contribution", "empty_contribution", "empty_contribution", "empty_contribution", "dominated_equal_weight", "forced_selected", "dominated_equal_weight", "forced_selected", "duplicate_heavier", "empty_contribution"]
+
+            [method_result.preprocessing.audit.equal_coverage_reconstruction_map]
+
+            [[method_result.preprocessing.audit.events]]
+            event_index = 1
+            iteration = 0
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"inactive\")"]
+            removed_strategy_indices = [1]
+            rule = "mandatory_strategy"
+
+                [method_result.preprocessing.audit.events.details]
+                action = "fixed_to_one"
+            [[method_result.preprocessing.audit.events]]
+            event_index = 2
+            iteration = 1
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0002\")"]
+            removed_strategy_indices = [3]
+            rule = "empty_contribution"
+
+                [method_result.preprocessing.audit.events.details]
+            [[method_result.preprocessing.audit.events]]
+            event_index = 3
+            iteration = 2
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0003\")"]
+            removed_strategy_indices = [4]
+            rule = "empty_contribution"
+
+                [method_result.preprocessing.audit.events.details]
+            [[method_result.preprocessing.audit.events]]
+            event_index = 4
+            iteration = 3
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0009\")"]
+            removed_strategy_indices = [10]
+            rule = "empty_contribution"
+
+                [method_result.preprocessing.audit.events.details]
+            [[method_result.preprocessing.audit.events]]
+            event_index = 5
+            iteration = 4
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0010\")"]
+            removed_strategy_indices = [11]
+            rule = "empty_contribution"
+
+                [method_result.preprocessing.audit.events.details]
+            [[method_result.preprocessing.audit.events]]
+            event_index = 6
+            iteration = 5
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0011\")"]
+            removed_strategy_indices = [12]
+            rule = "empty_contribution"
+
+                [method_result.preprocessing.audit.events.details]
+            [[method_result.preprocessing.audit.events]]
+            event_index = 7
+            iteration = 6
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0013\")"]
+            removed_strategy_indices = [14]
+            rule = "empty_contribution"
+
+                [method_result.preprocessing.audit.events.details]
+            [[method_result.preprocessing.audit.events]]
+            event_index = 8
+            iteration = 7
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0014\")"]
+            removed_strategy_indices = [15]
+            rule = "empty_contribution"
+
+                [method_result.preprocessing.audit.events.details]
+            [[method_result.preprocessing.audit.events]]
+            event_index = 9
+            iteration = 8
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0017\")"]
+            removed_strategy_indices = [18]
+            rule = "empty_contribution"
+
+                [method_result.preprocessing.audit.events.details]
+            [[method_result.preprocessing.audit.events]]
+            event_index = 10
+            iteration = 9
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0022\")"]
+            removed_strategy_indices = [23]
+            rule = "empty_contribution"
+
+                [method_result.preprocessing.audit.events.details]
+            [[method_result.preprocessing.audit.events]]
+            event_index = 11
+            iteration = 10
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0023\")"]
+            removed_strategy_indices = [24]
+            rule = "empty_contribution"
+
+                [method_result.preprocessing.audit.events.details]
+            [[method_result.preprocessing.audit.events]]
+            event_index = 12
+            iteration = 11
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0024\")"]
+            removed_strategy_indices = [25]
+            rule = "empty_contribution"
+
+                [method_result.preprocessing.audit.events.details]
+            [[method_result.preprocessing.audit.events]]
+            event_index = 13
+            iteration = 12
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0025\")"]
+            removed_strategy_indices = [26]
+            rule = "empty_contribution"
+
+                [method_result.preprocessing.audit.events.details]
+            [[method_result.preprocessing.audit.events]]
+            event_index = 14
+            iteration = 13
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0031\")"]
+            removed_strategy_indices = [32]
+            rule = "empty_contribution"
+
+                [method_result.preprocessing.audit.events.details]
+            [[method_result.preprocessing.audit.events]]
+            event_index = 15
+            iteration = 14
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0005\")"]
+            removed_strategy_indices = [6]
+            rule = "coverage_dominance"
+
+                [method_result.preprocessing.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0006\")"
+                dominating_strategy_index = 7
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[method_result.preprocessing.audit.events]]
+            event_index = 16
+            iteration = 15
+            removed_requirement_indices = [15]
+            removed_requirements = ["ModuleRequirement(\"m0011\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [method_result.preprocessing.audit.events.details]
+                representative_requirement = "ModuleRequirement(\"m0010\")"
+                representative_requirement_index = 14
+            [[method_result.preprocessing.audit.events]]
+            event_index = 17
+            iteration = 16
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0008\")"]
+            removed_strategy_indices = [9]
+            rule = "coverage_dominance"
+
+                [method_result.preprocessing.audit.events.details]
+                all_optimizer_identities_preserved = false
+                dominating_strategy = "StrategyId(\"s0027\")"
+                dominating_strategy_index = 28
+                unreconstructable_equal_weight_identity_indices = [9]
+                weight_relation = "equal"
+            [[method_result.preprocessing.audit.events]]
+            event_index = 18
+            iteration = 17
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0015\")"]
+            removed_strategy_indices = [16]
+            rule = "coverage_dominance"
+
+                [method_result.preprocessing.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0007\")"
+                dominating_strategy_index = 8
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[method_result.preprocessing.audit.events]]
+            event_index = 19
+            iteration = 18
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0021\")"]
+            removed_strategy_indices = [22]
+            rule = "coverage_dominance"
+
+                [method_result.preprocessing.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0016\")"
+                dominating_strategy_index = 17
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[method_result.preprocessing.audit.events]]
+            event_index = 20
+            iteration = 19
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0026\")"]
+            removed_strategy_indices = [27]
+            rule = "coverage_dominance"
+
+                [method_result.preprocessing.audit.events.details]
+                all_optimizer_identities_preserved = false
+                dominating_strategy = "StrategyId(\"s0016\")"
+                dominating_strategy_index = 17
+                unreconstructable_equal_weight_identity_indices = [27]
+                weight_relation = "equal"
+            [[method_result.preprocessing.audit.events]]
+            event_index = 21
+            iteration = 20
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0028\")"]
+            removed_strategy_indices = [29]
+            rule = "coverage_dominance"
+
+                [method_result.preprocessing.audit.events.details]
+                all_optimizer_identities_preserved = false
+                dominating_strategy = "StrategyId(\"s0016\")"
+                dominating_strategy_index = 17
+                unreconstructable_equal_weight_identity_indices = [29]
+                weight_relation = "equal"
+            [[method_result.preprocessing.audit.events]]
+            event_index = 22
+            iteration = 21
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0016\")"]
+            removed_strategy_indices = [17]
+            rule = "mandatory_requirement_carrier"
+
+                [method_result.preprocessing.audit.events.details]
+                equal_coverage_choice_indices = [17]
+                triggering_requirement = "ModuleRequirement(\"m0001\")"
+                triggering_requirement_index = 5
+            [[method_result.preprocessing.audit.events]]
+            event_index = 23
+            iteration = 21
+            removed_requirement_indices = [1, 5, 6, 7, 8]
+            removed_requirements = ["FrontierRequirement(\"b0001\")", "ModuleRequirement(\"m0001\")", "ModuleRequirement(\"m0002\")", "ModuleRequirement(\"m0003\")", "ModuleRequirement(\"m0004\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "forced_selection_propagation"
+
+                [method_result.preprocessing.audit.events.details]
+                forced_strategy_index = 17
+            [[method_result.preprocessing.audit.events]]
+            event_index = 24
+            iteration = 22
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0001\")"]
+            removed_strategy_indices = [2]
+            rule = "coverage_dominance"
+
+                [method_result.preprocessing.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0027\")"
+                dominating_strategy_index = 28
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[method_result.preprocessing.audit.events]]
+            event_index = 25
+            iteration = 23
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0004\")"]
+            removed_strategy_indices = [5]
+            rule = "coverage_dominance"
+
+                [method_result.preprocessing.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0007\")"
+                dominating_strategy_index = 8
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[method_result.preprocessing.audit.events]]
+            event_index = 26
+            iteration = 24
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0012\")"]
+            removed_strategy_indices = [13]
+            rule = "coverage_dominance"
+
+                [method_result.preprocessing.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0007\")"
+                dominating_strategy_index = 8
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[method_result.preprocessing.audit.events]]
+            event_index = 27
+            iteration = 25
+            removed_requirement_indices = [3]
+            removed_requirements = ["FrontierRequirement(\"b0003\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "redundant_requirement"
+
+                [method_result.preprocessing.audit.events.details]
+                representative_requirement = "FrontierRequirement(\"b0002\")"
+                representative_requirement_index = 2
+            [[method_result.preprocessing.audit.events]]
+            event_index = 28
+            iteration = 26
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0018\")"]
+            removed_strategy_indices = [19]
+            rule = "coverage_dominance"
+
+                [method_result.preprocessing.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0027\")"
+                dominating_strategy_index = 28
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[method_result.preprocessing.audit.events]]
+            event_index = 29
+            iteration = 27
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0027\")"]
+            removed_strategy_indices = [28]
+            rule = "mandatory_requirement_carrier"
+
+                [method_result.preprocessing.audit.events.details]
+                equal_coverage_choice_indices = [28]
+                triggering_requirement = "ModuleRequirement(\"m0006\")"
+                triggering_requirement_index = 10
+            [[method_result.preprocessing.audit.events]]
+            event_index = 30
+            iteration = 27
+            removed_requirement_indices = [4, 9, 10, 11, 12]
+            removed_requirements = ["FrontierRequirement(\"b0004\")", "ModuleRequirement(\"m0005\")", "ModuleRequirement(\"m0006\")", "ModuleRequirement(\"m0007\")", "ModuleRequirement(\"m0008\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "forced_selection_propagation"
+
+                [method_result.preprocessing.audit.events.details]
+                forced_strategy_index = 28
+            [[method_result.preprocessing.audit.events]]
+            event_index = 31
+            iteration = 28
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0019\")"]
+            removed_strategy_indices = [20]
+            rule = "empty_contribution"
+
+                [method_result.preprocessing.audit.events.details]
+            [[method_result.preprocessing.audit.events]]
+            event_index = 32
+            iteration = 29
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0020\")"]
+            removed_strategy_indices = [21]
+            rule = "coverage_dominance"
+
+                [method_result.preprocessing.audit.events.details]
+                all_optimizer_identities_preserved = true
+                dominating_strategy = "StrategyId(\"s0007\")"
+                dominating_strategy_index = 8
+                unreconstructable_equal_weight_identity_indices = []
+                weight_relation = "strictly_lower"
+            [[method_result.preprocessing.audit.events]]
+            event_index = 33
+            iteration = 30
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0007\")"]
+            removed_strategy_indices = [8]
+            rule = "mandatory_requirement_carrier"
+
+                [method_result.preprocessing.audit.events.details]
+                equal_coverage_choice_indices = [8]
+                triggering_requirement = "FrontierRequirement(\"b0002\")"
+                triggering_requirement_index = 2
+            [[method_result.preprocessing.audit.events]]
+            event_index = 34
+            iteration = 30
+            removed_requirement_indices = [2, 13, 14]
+            removed_requirements = ["FrontierRequirement(\"b0002\")", "ModuleRequirement(\"m0009\")", "ModuleRequirement(\"m0010\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "forced_selection_propagation"
+
+                [method_result.preprocessing.audit.events.details]
+                forced_strategy_index = 8
+            [[method_result.preprocessing.audit.events]]
+            event_index = 35
+            iteration = 31
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0006\")", "StrategyId(\"s0030\")"]
+            removed_strategy_indices = [7, 31]
+            rule = "duplicate_coverage"
+
+                [method_result.preprocessing.audit.events.details]
+                equal_weight_tie_indices = []
+                representative_strategy = "StrategyId(\"s0029\")"
+                representative_strategy_index = 30
+                strictly_heavier_indices = [7, 31]
+            [[method_result.preprocessing.audit.events]]
+            event_index = 36
+            iteration = 32
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"s0029\")"]
+            removed_strategy_indices = [30]
+            rule = "mandatory_requirement_carrier"
+
+                [method_result.preprocessing.audit.events.details]
+                equal_coverage_choice_indices = [30]
+                triggering_requirement = "ModuleRequirement(\"m0012\")"
+                triggering_requirement_index = 16
+            [[method_result.preprocessing.audit.events]]
+            event_index = 37
+            iteration = 32
+            removed_requirement_indices = [16]
+            removed_requirements = ["ModuleRequirement(\"m0012\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "forced_selection_propagation"
+
+                [method_result.preprocessing.audit.events.details]
+                forced_strategy_index = 30
+
+            [method_result.preprocessing.audit.rule_counts.coverage_dominance]
+            applications = 11
+            requirements_removed = 0
+            variables_removed = 11
+
+            [method_result.preprocessing.audit.rule_counts.duplicate_coverage]
+            applications = 1
+            requirements_removed = 0
+            variables_removed = 2
+
+            [method_result.preprocessing.audit.rule_counts.empty_contribution]
+            applications = 14
+            requirements_removed = 0
+            variables_removed = 14
+
+            [method_result.preprocessing.audit.rule_counts.forced_selection_propagation]
+            applications = 4
+            requirements_removed = 14
+            variables_removed = 0
+
+            [method_result.preprocessing.audit.rule_counts.infeasible_requirement]
+            applications = 0
+            requirements_removed = 0
+            variables_removed = 0
+
+            [method_result.preprocessing.audit.rule_counts.mandatory_requirement_carrier]
+            applications = 4
+            requirements_removed = 0
+            variables_removed = 4
+
+            [method_result.preprocessing.audit.rule_counts.mandatory_strategy]
+            applications = 1
+            requirements_removed = 0
+            variables_removed = 1
+
+            [method_result.preprocessing.audit.rule_counts.mandatory_strategy_propagation]
+            applications = 0
+            requirements_removed = 0
+            variables_removed = 0
+
+            [method_result.preprocessing.audit.rule_counts.redundant_requirement]
+            applications = 2
+            requirements_removed = 2
+            variables_removed = 0
+
+    [method_result.runtime_ns]
+    crosscheck = 338755166
+    evidence_class = "single-run wall-clock instrumentation"
+    model_build = 678041
+    optimization_wall = 0
+    preprocessing = 2025083
+    reconstruction_and_certification = 23375
+    total = 342718000
+
+    [method_result.solver_diagnostics]
+    complete_solver_log = """HiGHS not invoked: exact fixed-point preprocessing removed all residual variables and requirements.\n"""
+    dual_status = "NO_SOLUTION"
+    highs_julia_version = "1.24.1"
+    jump_version = "1.31.1"
+    primal_status = "NO_SOLUTION"
+    raw_status = "exact preprocessing produced an empty residual model"
+    solver_invoked = false
+    solver_name = "HiGHS"
+    solver_version = "v1.15.1"
+    termination_status = "NOT_CALLED_PREPROCESSING_SOLVED"
+
+        [method_result.solver_diagnostics.best_bound]
+        available = true
+        value = 4.0
+
+        [method_result.solver_diagnostics.node_count]
+        available = false
+
+        [method_result.solver_diagnostics.objective_value]
+        available = true
+        value = 4.0
+
+        [method_result.solver_diagnostics.presolve_rows_removed]
+        available = false
+
+        [method_result.solver_diagnostics.presolve_variables_removed]
+        available = false
+
+        [method_result.solver_diagnostics.reported_relative_gap]
+        available = true
+        value = 0.0
+
+        [method_result.solver_diagnostics.solve_time_seconds]
+        available = true
+        value = 0.0

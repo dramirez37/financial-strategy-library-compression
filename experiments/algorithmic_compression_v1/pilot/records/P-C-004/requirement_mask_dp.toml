@@ -1,0 +1,108 @@
+algorithm_execution_position = 8
+algorithm_id = "requirement_mask_dp"
+analysis_included = false
+applicable = true
+compile_time_seconds = 0.0
+cumulative_process_maxrss_after = 0x49520000
+evidence_class = "exact finite computation"
+exact_burden = "2//1"
+experiment_id = "registered-algorithmic-compression-benchmark-v1"
+family = "adversarial"
+finished_at_utc = "2026-08-27T06:25:06.569Z"
+gc_time_seconds = 0.0
+generator_seed = "4345547310347329302"
+input_artifact_path = "experiments/algorithmic_compression_v1/pilot/instances/P-C-004.toml"
+instance_execution_position = 2
+instance_id = "P-C-004"
+instance_sha256 = "3a4d645cf15ed4469f7848e5689e5a2ee0ebdbf2efd26ec4da3afea9b69c0e4c"
+julia_allocated_bytes = 280592
+mechanism = "dominance_heavy"
+memory_limit_enforced = false
+mip_seed = "1793904858"
+multistart_seed = "5742083821028315376"
+peak_memory_bytes = "UNAVAILABLE"
+phase = "pilot"
+pilot_label = "IMPLEMENTATION PILOT — EXCLUDED FROM FINAL ANALYSIS"
+preprocessing_variant = "mandatory_only"
+random_order_seed = "5041794653721543481"
+registered_memory_limit_bytes = 17179869184
+registered_time_limit_seconds = 300.0
+registry_position = 11
+replicate_id = 1
+schema_version = "algorithmic-compression-pilot-run-v1"
+seed_id = "SEED-P-C-004"
+solved = true
+started_at_utc = "2026-08-27T06:25:06.568Z"
+status = "SOLVED"
+tie_rule = "one deterministic representative; tied optima are not claimed complete"
+time_limit_enforced = false
+wall_clock_ns = 716334
+
+[exact_recheck]
+burden_reconciled = true
+closure_preserved = true
+exact_burden = "2//1"
+exact_feasible = true
+frontier_preserved = true
+mandatory_retained = true
+tagged_coverage = true
+
+[method_result]
+algorithm = "requirement_mask_dp"
+arithmetic = "Rational{BigInt}"
+evidence_class = "exact finite computation"
+exact_burden = "2//1"
+instance_sha256 = "3a4d645cf15ed4469f7848e5689e5a2ee0ebdbf2efd26ec4da3afea9b69c0e4c"
+optimal_selection_count_returned = 2
+schema_version = "journal-compression-exact-solution-v1"
+search_complete = true
+selected_strategy_id_kinds = ["string", "string", "string"]
+selected_strategy_id_values = ["inactive", "s0001", "s0004"]
+selected_strategy_indices = [1, 2, 5]
+solver_status_used = false
+status = "exact_optimum"
+tie_declaration = "all exact optimizer identities retained"
+ties_complete = true
+
+    [method_result.counters]
+    candidate_selections_evaluated = "0"
+    final_reachable_states = "16"
+    integer_encoding = "decimal BigInt string"
+    state_layer_pairs_visited = "62"
+    transitions_evaluated = "124"
+
+    [[method_result.optimal_selections]]
+    burden_reconciled = true
+    closure_preserved = true
+    exact_burden = "2//1"
+    frontier_preserved = true
+    mandatory_retained = true
+    selected_strategy_indices = [1, 2, 5]
+    selection_index = 1
+    tagged_coverage = true
+    [[method_result.optimal_selections]]
+    burden_reconciled = true
+    closure_preserved = true
+    exact_burden = "2//1"
+    frontier_preserved = true
+    mandatory_retained = true
+    selected_strategy_indices = [1, 8, 9]
+    selection_index = 2
+    tagged_coverage = true
+
+    [method_result.preprocessing]
+    all_optimizer_identities_reconstructable = true
+    exact_objective_offset = "0//1"
+    forced_strategy_indices = [1]
+    input_preprocessing_reused = false
+    original_requirement_count = 5
+    original_strategy_count = 9
+    reduced_requirement_count = 4
+    reduced_strategy_count = 8
+
+    [method_result.runtime_ns]
+    evidence_class = "single-run wall-clock measurement"
+    preprocessing = 137625
+    reconstruction_and_certification = 35750
+    search = 98542
+    total = 272000

@@ -1,0 +1,74 @@
+instance_sha256 = "65cbe49716284c74f44acbf3b8694a797df4e9dab0d02930629bb536ead8e9b6"
+schema_version = "algorithmic-compression-generator-record-v1"
+status = "GENERATED"
+
+[[attempts]]
+accepted = true
+attempt_index = 1
+attempt_seed = "4417288771642174398"
+reasons = []
+
+[realized]
+active_coverage_density = "13//25"
+active_incidence_count = 13
+active_strategy_count = 5
+bundle_count = 1
+bundle_prevalence = "1//5"
+bundle_threshold = 4
+distinct_active_weights = ["1//1", "3//2"]
+frontier_coverage_density = "1//1"
+frontier_module_rank_association = "0//1"
+frontier_row_count = 1
+mandatory_strategy_ids = ["inactive"]
+maximum_active_weight = "3//2"
+maximum_carrier_count = 6
+mean_pairwise_module_jaccard = "1//10"
+minimum_active_weight = "1//1"
+minimum_carrier_count = 2
+module_coverage_density = "2//5"
+module_row_count = 4
+preprocessing_forced_strategy_ids = ["inactive"]
+strategy_count = 6
+tagged_requirement_count = 5
+unique_carrier_count = 0
+unique_carrier_frequency = "0//1"
+unique_carrier_strategy_ids = []
+
+[requested]
+bundle_count_target = -1
+bundle_prevalence_level = "mechanism"
+coverage_density_level = "mechanism"
+coverage_density_target = "UNSPECIFIED"
+frontier_module_correlation_level = "mechanism"
+frontier_row_count = 1
+mandatory_strategy_count = 1
+module_overlap_level = "mechanism"
+module_row_count = 4
+strategy_count = 6
+tagged_requirement_count = 5
+unique_carrier_count_target = -1
+unique_carrier_frequency_level = "mechanism"
+weight_dispersion_level = "mechanism"
+
+[seed]
+execution_order_key = "4556718724421607472"
+generator_seed = "1295206206593477792"
+instance_id = "P-C-001"
+mip_seed = "1874275812"
+multistart_seed = "8005628653145247470"
+phase = "pilot"
+random_order_seed = "1674523942503411521"
+randomness_scope = "label_permutation_and_stochastic_algorithms"
+replicate_id = 1
+seed_id = "SEED-P-C-001"
+
+[spec]
+analysis_included = false
+family = "adversarial"
+generator_id = "adversarial-mechanism-v1"
+instance_id = "P-C-001"
+mechanism = "unbounded_heaviest_safe_first_gap"
+mechanism_parameter = "k=4;epsilon=1//2"
+phase = "pilot"
+replicate_id = 1
+seed_id = "SEED-P-C-001"

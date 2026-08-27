@@ -1,0 +1,74 @@
+instance_sha256 = "119ec64e2f02b61e98c8dc67e561951528949bd56e3ebf1aa89385aa8a99397e"
+schema_version = "algorithmic-compression-generator-record-v1"
+status = "GENERATED"
+
+[[attempts]]
+accepted = true
+attempt_index = 1
+attempt_seed = "2962036744035333619"
+reasons = []
+
+[realized]
+active_coverage_density = "13//25"
+active_incidence_count = 13
+active_strategy_count = 5
+bundle_count = 0
+bundle_prevalence = "0//1"
+bundle_threshold = 4
+distinct_active_weights = ["1//1"]
+frontier_coverage_density = "1//1"
+frontier_module_rank_association = "0//1"
+frontier_row_count = 1
+mandatory_strategy_ids = ["inactive", "s0002"]
+maximum_active_weight = "1//1"
+maximum_carrier_count = 6
+mean_pairwise_module_jaccard = "1//5"
+minimum_active_weight = "1//1"
+minimum_carrier_count = 1
+module_coverage_density = "2//5"
+module_row_count = 4
+preprocessing_forced_strategy_ids = ["inactive", "s0002"]
+strategy_count = 6
+tagged_requirement_count = 5
+unique_carrier_count = 1
+unique_carrier_frequency = "1//5"
+unique_carrier_strategy_ids = ["s0002"]
+
+[requested]
+bundle_count_target = -1
+bundle_prevalence_level = "mechanism"
+coverage_density_level = "mechanism"
+coverage_density_target = "UNSPECIFIED"
+frontier_module_correlation_level = "mechanism"
+frontier_row_count = 1
+mandatory_strategy_count = 2
+module_overlap_level = "mechanism"
+module_row_count = 4
+strategy_count = 6
+tagged_requirement_count = 5
+unique_carrier_count_target = -1
+unique_carrier_frequency_level = "mechanism"
+weight_dispersion_level = "mechanism"
+
+[seed]
+execution_order_key = "7211424261155719975"
+generator_seed = "2632434358579353864"
+instance_id = "P-C-005"
+mip_seed = "1252653993"
+multistart_seed = "1458410187763294394"
+phase = "pilot"
+random_order_seed = "1001737692451246491"
+randomness_scope = "label_permutation_and_stochastic_algorithms"
+replicate_id = 1
+seed_id = "SEED-P-C-005"
+
+[spec]
+analysis_included = false
+family = "adversarial"
+generator_id = "adversarial-mechanism-v1"
+instance_id = "P-C-005"
+mechanism = "rare_mandatory_requirements"
+mechanism_parameter = "modules=4;rare_rows=1"
+phase = "pilot"
+replicate_id = 1
+seed_id = "SEED-P-C-005"

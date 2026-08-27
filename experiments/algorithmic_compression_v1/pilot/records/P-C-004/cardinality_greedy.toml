@@ -1,0 +1,101 @@
+algorithm_execution_position = 11
+algorithm_id = "cardinality_greedy"
+analysis_included = false
+applicable = true
+compile_time_seconds = 0.0
+cumulative_process_maxrss_after = 0x49534000
+evidence_class = "exact finite greedy heuristic computation"
+exact_burden = "2//1"
+experiment_id = "registered-algorithmic-compression-benchmark-v1"
+family = "adversarial"
+finished_at_utc = "2026-08-27T06:25:07.033Z"
+gc_time_seconds = 0.0
+generator_seed = "4345547310347329302"
+input_artifact_path = "experiments/algorithmic_compression_v1/pilot/instances/P-C-004.toml"
+instance_execution_position = 2
+instance_id = "P-C-004"
+instance_sha256 = "3a4d645cf15ed4469f7848e5689e5a2ee0ebdbf2efd26ec4da3afea9b69c0e4c"
+julia_allocated_bytes = 195544
+mechanism = "dominance_heavy"
+memory_limit_enforced = false
+mip_seed = "1793904858"
+multistart_seed = "5742083821028315376"
+peak_memory_bytes = "UNAVAILABLE"
+phase = "pilot"
+pilot_label = "IMPLEMENTATION PILOT — EXCLUDED FROM FINAL ANALYSIS"
+preprocessing_variant = "mandatory_only"
+random_order_seed = "5041794653721543481"
+registered_memory_limit_bytes = 17179869184
+registered_time_limit_seconds = 60.0
+registry_position = 11
+replicate_id = 1
+schema_version = "algorithmic-compression-pilot-run-v1"
+seed_id = "SEED-P-C-004"
+solved = true
+started_at_utc = "2026-08-27T06:25:07.033Z"
+status = "SOLVED"
+tie_rule = "one deterministic representative; tied optima are not claimed complete"
+time_limit_enforced = false
+wall_clock_ns = 659958
+
+[exact_recheck]
+burden_reconciled = true
+closure_preserved = true
+exact_burden = "2//1"
+exact_feasible = true
+frontier_preserved = true
+mandatory_retained = true
+tagged_coverage = true
+
+[method_result]
+algorithm = "cardinality_greedy"
+exact_burden = "2//1"
+greedy_burden_before_reverse_deletion = "2//1"
+instance_sha256 = "3a4d645cf15ed4469f7848e5689e5a2ee0ebdbf2efd26ec4da3afea9b69c0e4c"
+reverse_deletion_trace = []
+schema_version = "journal-compression-greedy-solution-v1"
+selected_strategy_ids = ["inactive", "s0001", "s0004"]
+status = "feasible_heuristic"
+tie_declaration = "minimum exact score, then lowest original strategy index in canonical order"
+uncovered_counts = [4, 2, 0]
+
+    [method_result.final_certificate]
+    burden_reconciled = true
+    closure_preserved = true
+    evidence_class = "exact finite heuristic computation"
+    exact_burden = "2//1"
+    frontier_preserved = true
+    lean_kernel_verified = false
+    mandatory_retained = true
+    search_complete = false
+    selected_strategy_indices = [1, 2, 5]
+    solver_status_used = false
+    tagged_coverage = true
+
+    [method_result.guarantee]
+    applies_to_exact_burden = false
+    declaration = "Cardinality greedy ignores unequal weights; no approximation guarantee for exact burden is asserted."
+    exact_harmonic_factor = "3//2"
+    maximum_residual_set_cardinality = 2
+    primary_source_key = "Chvatal1979"
+
+    [[method_result.step_trace]]
+    exact_score = "1//2"
+    exact_weight = "1//1"
+    newly_covered_count = 2
+    newly_covered_requirement_indices = [3, 4]
+    step_index = 1
+    strategy_id = "s0001"
+    strategy_index = 2
+    uncovered_after = 2
+    uncovered_before = 4
+    [[method_result.step_trace]]
+    exact_score = "1//2"
+    exact_weight = "1//1"
+    newly_covered_count = 2
+    newly_covered_requirement_indices = [2, 5]
+    step_index = 2
+    strategy_id = "s0004"
+    strategy_index = 5
+    uncovered_after = 0
+    uncovered_before = 2

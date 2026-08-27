@@ -1,0 +1,170 @@
+algorithm_execution_position = 11
+algorithm_id = "lightest_safe_first"
+analysis_included = false
+applicable = true
+compile_time_seconds = 0.0
+cumulative_process_maxrss_after = 0x49904000
+evidence_class = "exact finite rechecked-deletion heuristic computation"
+exact_burden = "6//1"
+experiment_id = "registered-algorithmic-compression-benchmark-v1"
+family = "adversarial"
+finished_at_utc = "2026-08-27T06:25:11.491Z"
+gc_time_seconds = 0.0
+generator_seed = "2493576314675317222"
+input_artifact_path = "experiments/algorithmic_compression_v1/pilot/instances/P-C-007.toml"
+instance_execution_position = 4
+instance_id = "P-C-007"
+instance_sha256 = "4df0a0ae08125cf414f82aa0456b56150258f5c9bd90e25abf921e631689e77e"
+julia_allocated_bytes = 212784
+mechanism = "bundle_versus_singleton"
+memory_limit_enforced = false
+mip_seed = "1566459954"
+multistart_seed = "836472860403794062"
+peak_memory_bytes = "UNAVAILABLE"
+phase = "pilot"
+pilot_label = "IMPLEMENTATION PILOT — EXCLUDED FROM FINAL ANALYSIS"
+preprocessing_variant = "mandatory_only"
+random_order_seed = "2644815444298068373"
+registered_memory_limit_bytes = 17179869184
+registered_time_limit_seconds = 60.0
+registry_position = 14
+replicate_id = 1
+schema_version = "algorithmic-compression-pilot-run-v1"
+seed_id = "SEED-P-C-007"
+solved = true
+started_at_utc = "2026-08-27T06:25:11.491Z"
+status = "SOLVED"
+tie_rule = "one deterministic representative; tied optima are not claimed complete"
+time_limit_enforced = false
+wall_clock_ns = 536542
+
+[exact_recheck]
+burden_reconciled = true
+closure_preserved = true
+exact_burden = "6//1"
+exact_feasible = true
+frontier_preserved = true
+mandatory_retained = true
+tagged_coverage = true
+
+[method_result]
+algorithm = "lightest_safe_first"
+exact_burden = "6//1"
+instance_sha256 = "4df0a0ae08125cf414f82aa0456b56150258f5c9bd90e25abf921e631689e77e"
+order_indices = [2, 3, 4, 5, 6, 7]
+random_seed = "NOT_APPLICABLE"
+schema_version = "journal-compression-certified-deletion-v1"
+selected_strategy_ids = ["inactive", "s0002", "s0004"]
+start_summaries = []
+status = "certified_irreducible_heuristic"
+tie_declaration = "minimum exact weight among currently safe deletions; ties by lowest canonical original strategy index"
+
+    [method_result.counters]
+    closure_checks = "21"
+    complete_scans = "5"
+    frontier_checks = "21"
+
+    [[method_result.deletion_trace]]
+    closure_preserved = true
+    complete_scan_index = 1
+    exact_burden_after = "9//1"
+    exact_burden_release = "1//1"
+    frontier_preserved = true
+    mandatory_retained = true
+    selected_after_indices = [1, 3, 4, 5, 6, 7]
+    selected_before_indices = [1, 2, 3, 4, 5, 6, 7]
+    step_index = 1
+    strategy_id = "s0001"
+    strategy_index = 2
+    tagged_coverage_preserved = true
+
+        [method_result.deletion_trace.selection_score]
+        exact_weight = "1//1"
+    [[method_result.deletion_trace]]
+    closure_preserved = true
+    complete_scan_index = 2
+    exact_burden_after = "8//1"
+    exact_burden_release = "1//1"
+    frontier_preserved = true
+    mandatory_retained = true
+    selected_after_indices = [1, 3, 5, 6, 7]
+    selected_before_indices = [1, 3, 4, 5, 6, 7]
+    step_index = 2
+    strategy_id = "s0003"
+    strategy_index = 4
+    tagged_coverage_preserved = true
+
+        [method_result.deletion_trace.selection_score]
+        exact_weight = "1//1"
+    [[method_result.deletion_trace]]
+    closure_preserved = true
+    complete_scan_index = 3
+    exact_burden_after = "7//1"
+    exact_burden_release = "1//1"
+    frontier_preserved = true
+    mandatory_retained = true
+    selected_after_indices = [1, 3, 5, 7]
+    selected_before_indices = [1, 3, 5, 6, 7]
+    step_index = 3
+    strategy_id = "s0005"
+    strategy_index = 6
+    tagged_coverage_preserved = true
+
+        [method_result.deletion_trace.selection_score]
+        exact_weight = "1//1"
+    [[method_result.deletion_trace]]
+    closure_preserved = true
+    complete_scan_index = 4
+    exact_burden_after = "6//1"
+    exact_burden_release = "1//1"
+    frontier_preserved = true
+    mandatory_retained = true
+    selected_after_indices = [1, 3, 5]
+    selected_before_indices = [1, 3, 5, 7]
+    step_index = 4
+    strategy_id = "s0006"
+    strategy_index = 7
+    tagged_coverage_preserved = true
+
+        [method_result.deletion_trace.selection_score]
+        exact_weight = "1//1"
+
+    [method_result.final_feasibility_certificate]
+    burden_reconciled = true
+    closure_preserved = true
+    evidence_class = "exact finite rechecked-deletion computation"
+    exact_burden = "6//1"
+    frontier_preserved = true
+    lean_kernel_verified = false
+    mandatory_retained = true
+    search_complete = false
+    selected_strategy_indices = [1, 3, 5]
+    solver_status_used = false
+    tagged_coverage = true
+
+    [method_result.irreducibility_certificate]
+    complete = true
+    complete_scan_index = 5
+    no_safe_nonmandatory_deletion = true
+
+        [[method_result.irreducibility_certificate.checks]]
+        closure_preserved = false
+        deletion_safe = false
+        frontier_preserved = true
+        mandatory_retained = true
+        strategy_id = "s0002"
+        strategy_index = 3
+        tagged_coverage_preserved = false
+        [[method_result.irreducibility_certificate.checks]]
+        closure_preserved = false
+        deletion_safe = false
+        frontier_preserved = true
+        mandatory_retained = true
+        strategy_id = "s0004"
+        strategy_index = 5
+        tagged_coverage_preserved = false
+
+    [method_result.runtime]
+    algorithm_ns = "81667"
+    final_certification_ns = "5416"
+    total_ns = "450792"

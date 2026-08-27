@@ -1,0 +1,124 @@
+identity_closure = true
+requirement_ordering = "frontier-then-module-canonical-identifier-order"
+schema_version = "journal-compression-instance-v1"
+source_closure_id_kinds = ["string", "string", "string", "string"]
+source_closure_id_values = ["m0001", "m0002", "m0003", "m0004"]
+source_frontier = ["0//1"]
+strategy_ordering = "canonical-identifier-order"
+
+[preprocessing]
+all_optimizer_identities_reconstructable = true
+applied = false
+equal_coverage_groups = []
+forced_strategy_indices = []
+objective_offset = "0//1"
+remaining_requirement_indices = [1, 2, 3, 4, 5]
+remaining_strategy_indices = [1, 2, 3, 4, 5, 6]
+
+[provenance]
+generator = "adversarial-mechanism-v1"
+instance_id = "P-C-005"
+instance_kind = "adversarial"
+parent_hashes = []
+redistributable = true
+source = "Registered Algorithmic Compression Benchmark v1 registry"
+
+    [[provenance.attributes]]
+    key = "accepted_attempt_seed"
+    value = "2962036744035333619"
+    [[provenance.attributes]]
+    key = "evidence_class"
+    value = "exact adversarial construction"
+    [[provenance.attributes]]
+    key = "generator_seed"
+    value = "2632434358579353864"
+    [[provenance.attributes]]
+    key = "mechanism"
+    value = "rare_mandatory_requirements"
+    [[provenance.attributes]]
+    key = "phase"
+    value = "pilot"
+    [[provenance.attributes]]
+    key = "seed_id"
+    value = "SEED-P-C-005"
+
+[[requirements]]
+id_kind = "string"
+id_value = "b0001"
+tag = "frontier"
+[[requirements]]
+id_kind = "string"
+id_value = "m0001"
+tag = "module"
+[[requirements]]
+id_kind = "string"
+id_value = "m0002"
+tag = "module"
+[[requirements]]
+id_kind = "string"
+id_value = "m0003"
+tag = "module"
+[[requirements]]
+id_kind = "string"
+id_value = "m0004"
+tag = "module"
+
+[[strategies]]
+covered_requirement_indices = [1]
+id_kind = "string"
+id_value = "inactive"
+mandatory = true
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1"]
+weight = "0//1"
+[[strategies]]
+covered_requirement_indices = [1, 3, 5]
+id_kind = "string"
+id_value = "s0001"
+mandatory = false
+module_id_kinds = ["string", "string"]
+module_id_values = ["m0002", "m0004"]
+profile = ["0//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = [1, 2]
+id_kind = "string"
+id_value = "s0002"
+mandatory = true
+module_id_kinds = ["string"]
+module_id_values = ["m0001"]
+profile = ["0//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = [1, 3]
+id_kind = "string"
+id_value = "s0003"
+mandatory = false
+module_id_kinds = ["string"]
+module_id_values = ["m0002"]
+profile = ["0//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = [1, 3, 4]
+id_kind = "string"
+id_value = "s0004"
+mandatory = false
+module_id_kinds = ["string", "string"]
+module_id_values = ["m0002", "m0003"]
+profile = ["0//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = [1, 4, 5]
+id_kind = "string"
+id_value = "s0005"
+mandatory = false
+module_id_kinds = ["string", "string"]
+module_id_values = ["m0003", "m0004"]
+profile = ["0//1"]
+weight = "1//1"
+
+[tie_handling]
+declaration = "one deterministic representative; tied optima are not claimed complete"
+mode = "declared_representative"
+stable_selector = "lexicographic binary selection in canonical strategy order"

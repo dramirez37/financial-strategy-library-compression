@@ -1,0 +1,290 @@
+algorithm_execution_position = 12
+algorithm_id = "jump_highs_tagged_cover"
+analysis_included = false
+applicable = true
+compile_time_seconds = 0.014517042
+complete_solver_log_path = "experiments/algorithmic_compression_v1/pilot/solver_logs/P-C-001.log"
+complete_solver_log_sha256 = "0b34c76ae1cd533bc47c0775ea017622f5088ad7da3ba7df1b7210100249d37a"
+cumulative_process_maxrss_after = 0x75e2c000
+evidence_class = "mixed-integer solver evidence plus exact post-check"
+exact_burden = "3//2"
+experiment_id = "registered-algorithmic-compression-benchmark-v1"
+family = "adversarial"
+finished_at_utc = "2026-08-27T06:25:24.715Z"
+gc_time_seconds = 0.0
+generator_seed = "1295206206593477792"
+input_artifact_path = "experiments/algorithmic_compression_v1/pilot/instances/P-C-001.toml"
+instance_execution_position = 8
+instance_id = "P-C-001"
+instance_sha256 = "65cbe49716284c74f44acbf3b8694a797df4e9dab0d02930629bb536ead8e9b6"
+julia_allocated_bytes = 659344
+mechanism = "unbounded_heaviest_safe_first_gap"
+memory_limit_enforced = false
+mip_seed = "1874275812"
+multistart_seed = "8005628653145247470"
+peak_memory_bytes = "UNAVAILABLE"
+phase = "pilot"
+pilot_label = "IMPLEMENTATION PILOT — EXCLUDED FROM FINAL ANALYSIS"
+preprocessing_variant = "full_fixed_point"
+random_order_seed = "1674523942503411521"
+registered_memory_limit_bytes = 17179869184
+registered_time_limit_seconds = 300.0
+registry_position = 8
+replicate_id = 1
+schema_version = "algorithmic-compression-pilot-run-v1"
+seed_id = "SEED-P-C-001"
+solved = true
+started_at_utc = "2026-08-27T06:25:24.691Z"
+status = "SOLVED"
+tie_rule = "one deterministic representative; tied optima are not claimed complete"
+time_limit_enforced = true
+wall_clock_ns = 24559875
+
+[exact_recheck]
+burden_reconciled = true
+closure_preserved = true
+exact_burden = "3//2"
+exact_feasible = true
+frontier_preserved = true
+mandatory_retained = true
+tagged_coverage = true
+
+[method_result]
+algorithm = "jump_highs_tagged_cover"
+binary_value_rejection_reason = ""
+binary_values_exact = true
+candidate_accepted = true
+evidence_class = "mixed-integer solver evidence plus exact finite post-check"
+exact_global_optimum_verified = true
+instance_sha256 = "65cbe49716284c74f44acbf3b8694a797df4e9dab0d02930629bb536ead8e9b6"
+raw_reduced_variable_values = [0.0, -0.0, 0.0, 0.0, 1.0]
+reconstructed_candidate_available = true
+reconstructed_candidate_indices = [1, 6]
+schema_version = "journal-compression-mip-solution-v1"
+selected_strategy_id_kinds = ["string", "string"]
+selected_strategy_id_values = ["inactive", "s0005"]
+selected_strategy_indices = [1, 6]
+solver_claimed_optimal = true
+solver_optimality_is_formal_proof = false
+status = "exactly_rechecked_solver_candidate"
+warm_start_source = "none"
+
+    [method_result.controls]
+    absolute_mip_gap_tolerance = 0.0
+    complete_log_captured = true
+    log_to_console = false
+    parallel = "off"
+    presolve = "on"
+    random_seed = 1874275812
+    relative_mip_gap_tolerance = 0.0
+    threads = 1
+
+        [method_result.controls.time_limit_seconds]
+        set = true
+        value = 300.0
+
+    [method_result.crosscheck]
+    algorithm = "complete_enumeration"
+    applicability_declaration = "auto-selected complete enumeration under the declared optional-strategy limit"
+    candidate_available = true
+    dp_requirement_count = 4
+    dp_requirement_limit = 18
+    enumeration_limit = 20
+    enumeration_optional_count = 5
+    performed = true
+    requested_mode = "auto"
+
+        [method_result.crosscheck.candidate_matches_exact_optimum]
+        available = true
+        value = true
+
+        [method_result.crosscheck.exact_optimum_burden]
+        available = true
+        value = "3//2"
+
+    [method_result.exact_burden]
+    available = true
+    value = "3//2"
+
+    [method_result.exact_feasibility_certificate]
+    arithmetic = "Rational{BigInt}"
+    available = true
+    burden_reconciled = true
+    closure_preserved = true
+    evidence_class = "exact finite post-solve computation"
+    exact_burden = "3//2"
+    exact_feasible = true
+    frontier_preserved = true
+    lean_kernel_verified = false
+    mandatory_retained = true
+    selected_strategy_indices = [1, 6]
+    solver_status_used_as_proof = false
+    tagged_coverage = true
+
+    [method_result.formulation]
+    closure_kind = "identity"
+    mandatory_equalities_substituted_by_exact_preprocessing = true
+    objective_scale = "2"
+    original_binary_strategy_count = 6
+    original_mandatory_equality_count = 1
+    original_tagged_cover_row_count = 5
+    residual_binary_variable_count = 5
+    residual_nonzero_count = 8
+    residual_scaled_objective = [2, 2, 2, 2, 3]
+    residual_tagged_cover_row_count = 4
+    scaled_objective_offset = 0
+
+    [method_result.preprocessing]
+    all_optimizer_identities_reconstructable = true
+    exact_objective_offset = "0//1"
+    fixed_point_iterations = 1
+    forced_strategy_indices = [1]
+    input_preprocessing_was_present = false
+    original_requirement_count = 5
+    original_strategy_count = 6
+    reduced_requirement_count = 4
+    reduced_strategy_count = 5
+    remaining_requirement_indices = [2, 3, 4, 5]
+    remaining_strategy_indices = [2, 3, 4, 5, 6]
+    requirements_removed = 1
+    rerun_from_original_instance = true
+    variables_removed = 1
+
+        [method_result.preprocessing.audit]
+        all_optimizer_identities_reconstructable_by_declared_maps = true
+        arithmetic = "Rational{BigInt}"
+        feasible = true
+        fixed_point = true
+        fixed_point_iterations = 1
+        forced_strategy_ids = ["StrategyId(\"inactive\")"]
+        forced_strategy_indices = [1]
+        objective_offset = "0//1"
+        original_requirement_count = 5
+        original_variable_count = 6
+        reduced_requirement_count = 4
+        reduced_variable_count = 5
+        remaining_requirement_indices = [2, 3, 4, 5]
+        remaining_strategy_indices = [2, 3, 4, 5, 6]
+        requirement_representative = [0, 2, 3, 4, 5]
+        requirement_status = ["satisfied_by_mandatory", "remaining", "remaining", "remaining", "remaining"]
+        schema_version = "tagged-cover-preprocessing-audit-v1"
+        strategy_elimination_target = [0, 0, 0, 0, 0, 0]
+        strategy_status = ["mandatory_selected", "remaining", "remaining", "remaining", "remaining", "remaining"]
+
+            [method_result.preprocessing.audit.equal_coverage_reconstruction_map]
+
+            [[method_result.preprocessing.audit.events]]
+            event_index = 1
+            iteration = 0
+            removed_requirement_indices = []
+            removed_requirements = []
+            removed_strategy_ids = ["StrategyId(\"inactive\")"]
+            removed_strategy_indices = [1]
+            rule = "mandatory_strategy"
+
+                [method_result.preprocessing.audit.events.details]
+                action = "fixed_to_one"
+            [[method_result.preprocessing.audit.events]]
+            event_index = 2
+            iteration = 0
+            removed_requirement_indices = [1]
+            removed_requirements = ["FrontierRequirement(\"b0001\")"]
+            removed_strategy_ids = []
+            removed_strategy_indices = []
+            rule = "mandatory_strategy_propagation"
+
+                [method_result.preprocessing.audit.events.details]
+
+            [method_result.preprocessing.audit.rule_counts.coverage_dominance]
+            applications = 0
+            requirements_removed = 0
+            variables_removed = 0
+
+            [method_result.preprocessing.audit.rule_counts.duplicate_coverage]
+            applications = 0
+            requirements_removed = 0
+            variables_removed = 0
+
+            [method_result.preprocessing.audit.rule_counts.empty_contribution]
+            applications = 0
+            requirements_removed = 0
+            variables_removed = 0
+
+            [method_result.preprocessing.audit.rule_counts.forced_selection_propagation]
+            applications = 0
+            requirements_removed = 0
+            variables_removed = 0
+
+            [method_result.preprocessing.audit.rule_counts.infeasible_requirement]
+            applications = 0
+            requirements_removed = 0
+            variables_removed = 0
+
+            [method_result.preprocessing.audit.rule_counts.mandatory_requirement_carrier]
+            applications = 0
+            requirements_removed = 0
+            variables_removed = 0
+
+            [method_result.preprocessing.audit.rule_counts.mandatory_strategy]
+            applications = 1
+            requirements_removed = 0
+            variables_removed = 1
+
+            [method_result.preprocessing.audit.rule_counts.mandatory_strategy_propagation]
+            applications = 1
+            requirements_removed = 1
+            variables_removed = 0
+
+            [method_result.preprocessing.audit.rule_counts.redundant_requirement]
+            applications = 0
+            requirements_removed = 0
+            variables_removed = 0
+
+    [method_result.runtime_ns]
+    crosscheck = 539125
+    evidence_class = "single-run wall-clock instrumentation"
+    model_build = 588917
+    optimization_wall = 8054458
+    preprocessing = 188833
+    reconstruction_and_certification = 26292
+    total = 9903292
+
+    [method_result.solver_diagnostics]
+    complete_solver_log = """Running HiGHS 1.15.1 (git hash: 04024d701f): Copyright (c) 2026 under MIT licence terms\nIncludes third-party software components, see THIRD_PARTY_NOTICES.md for full details\nUsing BLAS: Apple Accelerate \nMIP has 4 rows; 5 cols; 8 nonzeros; 5 integer variables (5 binary)\nCoefficient ranges:\n  Matrix  [1e+00, 1e+00]\n  Cost    [2e+00, 3e+00]\n  Bound   [1e+00, 1e+00]\n  RHS     [1e+00, 1e+00]\nPresolving model\n4 rows, 5 cols, 8 nonzeros 0s\n4 rows, 5 cols, 8 nonzeros 0s\nPresolve reductions: rows 4(-0); columns 5(-0); nonzeros 8(-0) - Not reduced\nObjective function is integral with scale 1\n\nSolving MIP model with:\n   4 rows\n   5 cols (5 binary, 0 integer, 0 implied int., 0 continuous, 0 domain fixed)\n   8 nonzeros\n   Thread count 1 (of 10 threads). Using 1 max workers. Parallel search off\n\nSrc: B => Branching; C => Central rounding; F => Feasibility pump; H => Heuristic;\n     I => Shifting; J => Feasibility jump; L => Sub-MIP; P => Empty MIP; R => Randomized rounding;\n     S => Solve LP; T => Evaluate node; U => Unbounded; X => User solution; Y => HiGHS solution;\n     Z => ZI Round; l => Trivial lower; p => Trivial point; u => Trivial upper; z => Trivial zero\n\n        Nodes      |    B&B Tree     |            Objective Bounds              |  Dynamic Constraints |       Work      \nSrc  Proc. InQueue |  Leaves   Expl. | BestBound       BestSol              Gap |   Cuts   InLp Confl. | LpIters     Time\n\n u       0       0         0   0.00%   -inf            11                 Large        0      0      0         0     0.0s\n J       0       0         0   0.00%   -inf            8                  Large        0      0      0         0     0.0s\n T       0       0         0 100.00%   2               3                 33.33%        0      0      0         2     0.0s\n         1       0         1 100.00%   3               3                  0.00%        0      0      0         2     0.0s\n\nSolving report\n  Status            Optimal\n  Primal bound      3\n  Dual bound        3\n  Gap               0%\n  P-D integral      0.000221246766159\n  Solution status   feasible\n                    3 (objective)\n                    0 (bound viol.)\n                    0 (int. viol.)\n                    0 (row viol.)\n  Timing            0.01\n                    0.00 (Presolve)\n                    0.01 (Solve)\n                    0.00 (Postsolve)\n  Max sub-MIP depth 0\n  Nodes             1\n  Repair LPs        0\n  LP iterations     2\n                    0 (strong br.)\n                    0 (separation)\n                    0 (heuristics)\n"""
+    dual_status = "NO_SOLUTION"
+    highs_julia_version = "1.24.1"
+    jump_version = "1.31.1"
+    primal_status = "FEASIBLE_POINT"
+    raw_status = "kHighsModelStatusOptimal"
+    solver_invoked = true
+    solver_name = "HiGHS"
+    solver_version = "v1.15.1"
+    termination_status = "OPTIMAL"
+
+        [method_result.solver_diagnostics.best_bound]
+        available = true
+        value = 1.5
+
+        [method_result.solver_diagnostics.node_count]
+        available = true
+        value = 1
+
+        [method_result.solver_diagnostics.objective_value]
+        available = true
+        value = 1.5
+
+        [method_result.solver_diagnostics.presolve_rows_removed]
+        available = true
+        value = 0
+
+        [method_result.solver_diagnostics.presolve_variables_removed]
+        available = true
+        value = 0
+
+        [method_result.solver_diagnostics.reported_relative_gap]
+        available = true
+        value = 0.0
+
+        [method_result.solver_diagnostics.solve_time_seconds]
+        available = true
+        value = 0.007503292057663202

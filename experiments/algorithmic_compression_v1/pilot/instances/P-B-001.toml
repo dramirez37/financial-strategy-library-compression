@@ -1,0 +1,402 @@
+identity_closure = true
+requirement_ordering = "frontier-then-module-canonical-identifier-order"
+schema_version = "journal-compression-instance-v1"
+source_closure_id_kinds = ["string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string", "string"]
+source_closure_id_values = ["m0001", "m0002", "m0003", "m0004", "m0005", "m0006", "m0007", "m0008", "m0009", "m0010", "m0011", "m0012"]
+source_frontier = ["1//1", "1//1", "1//1", "1//1"]
+strategy_ordering = "canonical-identifier-order"
+
+[preprocessing]
+all_optimizer_identities_reconstructable = true
+applied = false
+equal_coverage_groups = []
+forced_strategy_indices = []
+objective_offset = "0//1"
+remaining_requirement_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+remaining_strategy_indices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32]
+
+[provenance]
+generator = "structured-tagged-incidence-v1"
+instance_id = "P-B-001"
+instance_kind = "synthetic"
+parent_hashes = []
+redistributable = true
+source = "Registered Algorithmic Compression Benchmark v1 registry"
+
+    [[provenance.attributes]]
+    key = "accepted_attempt_seed"
+    value = "6036933442963682249"
+    [[provenance.attributes]]
+    key = "evidence_class"
+    value = "synthetic registered generator"
+    [[provenance.attributes]]
+    key = "generator_seed"
+    value = "7430552101821641141"
+    [[provenance.attributes]]
+    key = "mechanism"
+    value = "none"
+    [[provenance.attributes]]
+    key = "phase"
+    value = "pilot"
+    [[provenance.attributes]]
+    key = "seed_id"
+    value = "SEED-P-B-001"
+
+[[requirements]]
+id_kind = "string"
+id_value = "b0001"
+tag = "frontier"
+[[requirements]]
+id_kind = "string"
+id_value = "b0002"
+tag = "frontier"
+[[requirements]]
+id_kind = "string"
+id_value = "b0003"
+tag = "frontier"
+[[requirements]]
+id_kind = "string"
+id_value = "b0004"
+tag = "frontier"
+[[requirements]]
+id_kind = "string"
+id_value = "m0001"
+tag = "module"
+[[requirements]]
+id_kind = "string"
+id_value = "m0002"
+tag = "module"
+[[requirements]]
+id_kind = "string"
+id_value = "m0003"
+tag = "module"
+[[requirements]]
+id_kind = "string"
+id_value = "m0004"
+tag = "module"
+[[requirements]]
+id_kind = "string"
+id_value = "m0005"
+tag = "module"
+[[requirements]]
+id_kind = "string"
+id_value = "m0006"
+tag = "module"
+[[requirements]]
+id_kind = "string"
+id_value = "m0007"
+tag = "module"
+[[requirements]]
+id_kind = "string"
+id_value = "m0008"
+tag = "module"
+[[requirements]]
+id_kind = "string"
+id_value = "m0009"
+tag = "module"
+[[requirements]]
+id_kind = "string"
+id_value = "m0010"
+tag = "module"
+[[requirements]]
+id_kind = "string"
+id_value = "m0011"
+tag = "module"
+[[requirements]]
+id_kind = "string"
+id_value = "m0012"
+tag = "module"
+
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "inactive"
+mandatory = true
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1"]
+weight = "0//1"
+[[strategies]]
+covered_requirement_indices = [7, 8, 9, 10]
+id_kind = "string"
+id_value = "s0001"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string"]
+module_id_values = ["m0003", "m0004", "m0005", "m0006"]
+profile = ["0//1", "0//1", "0//1", "0//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0002"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0003"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = [1, 2, 3, 4]
+id_kind = "string"
+id_value = "s0004"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["1//1", "1//1", "1//1", "1//1"]
+weight = "3//1"
+[[strategies]]
+covered_requirement_indices = [15, 16]
+id_kind = "string"
+id_value = "s0005"
+mandatory = false
+module_id_kinds = ["string", "string"]
+module_id_values = ["m0011", "m0012"]
+profile = ["0//1", "0//1", "0//1", "0//1"]
+weight = "3//1"
+[[strategies]]
+covered_requirement_indices = [13, 14, 15, 16]
+id_kind = "string"
+id_value = "s0006"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string"]
+module_id_values = ["m0009", "m0010", "m0011", "m0012"]
+profile = ["0//1", "0//1", "0//1", "0//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = [2, 3, 4, 12, 13, 14, 15]
+id_kind = "string"
+id_value = "s0007"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string"]
+module_id_values = ["m0008", "m0009", "m0010", "m0011"]
+profile = ["0//1", "1//1", "1//1", "1//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = [10, 11, 12]
+id_kind = "string"
+id_value = "s0008"
+mandatory = false
+module_id_kinds = ["string", "string", "string"]
+module_id_values = ["m0006", "m0007", "m0008"]
+profile = ["0//1", "0//1", "0//1", "0//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0009"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0010"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1"]
+weight = "3//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0011"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1"]
+weight = "3//1"
+[[strategies]]
+covered_requirement_indices = [1, 2]
+id_kind = "string"
+id_value = "s0012"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["1//1", "1//1", "0//1", "0//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0013"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1"]
+weight = "3//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0014"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = [3, 4]
+id_kind = "string"
+id_value = "s0015"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "1//1", "1//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = [1, 5, 6, 7, 8]
+id_kind = "string"
+id_value = "s0016"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003", "m0004"]
+profile = ["1//1", "0//1", "0//1", "0//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0017"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = [8, 9, 10, 11]
+id_kind = "string"
+id_value = "s0018"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string"]
+module_id_values = ["m0004", "m0005", "m0006", "m0007"]
+profile = ["0//1", "0//1", "0//1", "0//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = [6, 7, 8, 9]
+id_kind = "string"
+id_value = "s0019"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string"]
+module_id_values = ["m0002", "m0003", "m0004", "m0005"]
+profile = ["0//1", "0//1", "0//1", "0//1"]
+weight = "3//1"
+[[strategies]]
+covered_requirement_indices = [1, 2, 3, 11, 12, 13]
+id_kind = "string"
+id_value = "s0020"
+mandatory = false
+module_id_kinds = ["string", "string", "string"]
+module_id_values = ["m0007", "m0008", "m0009"]
+profile = ["1//1", "1//1", "1//1", "0//1"]
+weight = "3//1"
+[[strategies]]
+covered_requirement_indices = [5, 6, 7]
+id_kind = "string"
+id_value = "s0021"
+mandatory = false
+module_id_kinds = ["string", "string", "string"]
+module_id_values = ["m0001", "m0002", "m0003"]
+profile = ["0//1", "0//1", "0//1", "0//1"]
+weight = "3//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0022"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0023"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1"]
+weight = "3//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0024"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1"]
+weight = "3//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0025"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = [5, 6]
+id_kind = "string"
+id_value = "s0026"
+mandatory = false
+module_id_kinds = ["string", "string"]
+module_id_values = ["m0001", "m0002"]
+profile = ["0//1", "0//1", "0//1", "0//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = [4, 9, 10, 11, 12]
+id_kind = "string"
+id_value = "s0027"
+mandatory = false
+module_id_kinds = ["string", "string", "string", "string"]
+module_id_values = ["m0005", "m0006", "m0007", "m0008"]
+profile = ["0//1", "0//1", "0//1", "1//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = [5]
+id_kind = "string"
+id_value = "s0028"
+mandatory = false
+module_id_kinds = ["string"]
+module_id_values = ["m0001"]
+profile = ["0//1", "0//1", "0//1", "0//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = [16]
+id_kind = "string"
+id_value = "s0029"
+mandatory = false
+module_id_kinds = ["string"]
+module_id_values = ["m0012"]
+profile = ["0//1", "0//1", "0//1", "0//1"]
+weight = "1//1"
+[[strategies]]
+covered_requirement_indices = [14, 15, 16]
+id_kind = "string"
+id_value = "s0030"
+mandatory = false
+module_id_kinds = ["string", "string", "string"]
+module_id_values = ["m0010", "m0011", "m0012"]
+profile = ["0//1", "0//1", "0//1", "0//1"]
+weight = "2//1"
+[[strategies]]
+covered_requirement_indices = []
+id_kind = "string"
+id_value = "s0031"
+mandatory = false
+module_id_kinds = []
+module_id_values = []
+profile = ["0//1", "0//1", "0//1", "0//1"]
+weight = "2//1"
+
+[tie_handling]
+declaration = "one deterministic representative; tied optima are not claimed complete"
+mode = "declared_representative"
+stable_selector = "lexicographic binary selection in canonical strategy order"

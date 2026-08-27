@@ -1,0 +1,74 @@
+instance_sha256 = "3a4d645cf15ed4469f7848e5689e5a2ee0ebdbf2efd26ec4da3afea9b69c0e4c"
+schema_version = "algorithmic-compression-generator-record-v1"
+status = "GENERATED"
+
+[[attempts]]
+accepted = true
+attempt_index = 1
+attempt_seed = "1328032163996901957"
+reasons = []
+
+[realized]
+active_coverage_density = "1//2"
+active_incidence_count = 20
+active_strategy_count = 8
+bundle_count = 0
+bundle_prevalence = "0//1"
+bundle_threshold = 4
+distinct_active_weights = ["1//1", "2//1"]
+frontier_coverage_density = "1//1"
+frontier_module_rank_association = "0//1"
+frontier_row_count = 1
+mandatory_strategy_ids = ["inactive"]
+maximum_active_weight = "2//1"
+maximum_carrier_count = 9
+mean_pairwise_module_jaccard = "4//21"
+minimum_active_weight = "1//1"
+minimum_carrier_count = 3
+module_coverage_density = "3//8"
+module_row_count = 4
+preprocessing_forced_strategy_ids = ["inactive"]
+strategy_count = 9
+tagged_requirement_count = 5
+unique_carrier_count = 0
+unique_carrier_frequency = "0//1"
+unique_carrier_strategy_ids = []
+
+[requested]
+bundle_count_target = -1
+bundle_prevalence_level = "mechanism"
+coverage_density_level = "mechanism"
+coverage_density_target = "UNSPECIFIED"
+frontier_module_correlation_level = "mechanism"
+frontier_row_count = 1
+mandatory_strategy_count = 1
+module_overlap_level = "mechanism"
+module_row_count = 4
+strategy_count = 9
+tagged_requirement_count = 5
+unique_carrier_count_target = -1
+unique_carrier_frequency_level = "mechanism"
+weight_dispersion_level = "mechanism"
+
+[seed]
+execution_order_key = "2173825575430937462"
+generator_seed = "4345547310347329302"
+instance_id = "P-C-004"
+mip_seed = "1793904858"
+multistart_seed = "5742083821028315376"
+phase = "pilot"
+random_order_seed = "5041794653721543481"
+randomness_scope = "label_permutation_and_stochastic_algorithms"
+replicate_id = 1
+seed_id = "SEED-P-C-004"
+
+[spec]
+analysis_included = false
+family = "adversarial"
+generator_id = "adversarial-mechanism-v1"
+instance_id = "P-C-004"
+mechanism = "dominance_heavy"
+mechanism_parameter = "base_dimension=4"
+phase = "pilot"
+replicate_id = 1
+seed_id = "SEED-P-C-004"

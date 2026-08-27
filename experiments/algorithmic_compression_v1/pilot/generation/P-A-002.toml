@@ -1,0 +1,74 @@
+instance_sha256 = "81e5508433d648106a9006a29c2126c99601e40e12b0f4eb0805252fbd16ce38"
+schema_version = "algorithmic-compression-generator-record-v1"
+status = "GENERATED"
+
+[[attempts]]
+accepted = true
+attempt_index = 1
+attempt_seed = "7077856281913028550"
+reasons = []
+
+[realized]
+active_coverage_density = "7//18"
+active_incidence_count = 14
+active_strategy_count = 6
+bundle_count = 1
+bundle_prevalence = "1//6"
+bundle_threshold = 5
+distinct_active_weights = ["1//1", "2//1", "4//1", "8//1", "16//1"]
+frontier_coverage_density = "5//12"
+frontier_module_rank_association = "3//5"
+frontier_row_count = 2
+mandatory_strategy_ids = ["inactive"]
+maximum_active_weight = "16//1"
+maximum_carrier_count = 3
+mean_pairwise_module_jaccard = "1//8"
+minimum_active_weight = "1//1"
+minimum_carrier_count = 2
+module_coverage_density = "3//8"
+module_row_count = 4
+preprocessing_forced_strategy_ids = ["inactive", "s0006"]
+strategy_count = 7
+tagged_requirement_count = 6
+unique_carrier_count = 0
+unique_carrier_frequency = "0//1"
+unique_carrier_strategy_ids = []
+
+[requested]
+bundle_count_target = 1
+bundle_prevalence_level = "one_eighth"
+coverage_density_level = "three_eighths"
+coverage_density_target = "3//8"
+frontier_module_correlation_level = "positive_aligned"
+frontier_row_count = 2
+mandatory_strategy_count = 1
+module_overlap_level = "high_clustered"
+module_row_count = 4
+strategy_count = 7
+tagged_requirement_count = 6
+unique_carrier_count_target = 0
+unique_carrier_frequency_level = "zero"
+weight_dispersion_level = "high_powers_of_two"
+
+[seed]
+execution_order_key = "3986324421469796649"
+generator_seed = "7019899298458075885"
+instance_id = "P-A-002"
+mip_seed = "2119534285"
+multistart_seed = "6501224586189424940"
+phase = "pilot"
+random_order_seed = "8633602950992099226"
+randomness_scope = "instance_generation_and_stochastic_algorithms"
+replicate_id = 2
+seed_id = "SEED-P-A-002"
+
+[spec]
+analysis_included = false
+family = "small_exact"
+generator_id = "small-exact-tagged-v1"
+instance_id = "P-A-002"
+mechanism = "none"
+mechanism_parameter = "none"
+phase = "pilot"
+replicate_id = 2
+seed_id = "SEED-P-A-002"

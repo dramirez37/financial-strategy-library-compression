@@ -1,0 +1,74 @@
+instance_sha256 = "c75a64c83c01a506b7737df5b20171f97bc5f73aa317a10dfd258818192292e5"
+schema_version = "algorithmic-compression-generator-record-v1"
+status = "GENERATED"
+
+[[attempts]]
+accepted = true
+attempt_index = 1
+attempt_seed = "307314843519502216"
+reasons = []
+
+[realized]
+active_coverage_density = "1//1"
+active_incidence_count = 20
+active_strategy_count = 4
+bundle_count = 4
+bundle_prevalence = "1//1"
+bundle_threshold = 4
+distinct_active_weights = ["1//1"]
+frontier_coverage_density = "1//1"
+frontier_module_rank_association = "0//1"
+frontier_row_count = 1
+mandatory_strategy_ids = ["inactive"]
+maximum_active_weight = "1//1"
+maximum_carrier_count = 5
+mean_pairwise_module_jaccard = "1//1"
+minimum_active_weight = "1//1"
+minimum_carrier_count = 4
+module_coverage_density = "1//1"
+module_row_count = 4
+preprocessing_forced_strategy_ids = ["inactive", "s0001"]
+strategy_count = 5
+tagged_requirement_count = 5
+unique_carrier_count = 0
+unique_carrier_frequency = "0//1"
+unique_carrier_strategy_ids = []
+
+[requested]
+bundle_count_target = -1
+bundle_prevalence_level = "mechanism"
+coverage_density_level = "mechanism"
+coverage_density_target = "UNSPECIFIED"
+frontier_module_correlation_level = "mechanism"
+frontier_row_count = 1
+mandatory_strategy_count = 1
+module_overlap_level = "mechanism"
+module_row_count = 4
+strategy_count = 5
+tagged_requirement_count = 5
+unique_carrier_count_target = -1
+unique_carrier_frequency_level = "mechanism"
+weight_dispersion_level = "mechanism"
+
+[seed]
+execution_order_key = "2394184562376353552"
+generator_seed = "3365407568233404441"
+instance_id = "P-C-002"
+mip_seed = "2065421779"
+multistart_seed = "7438604524861638326"
+phase = "pilot"
+random_order_seed = "5122782117170165265"
+randomness_scope = "label_permutation_and_stochastic_algorithms"
+replicate_id = 1
+seed_id = "SEED-P-C-002"
+
+[spec]
+analysis_included = false
+family = "adversarial"
+generator_id = "adversarial-mechanism-v1"
+instance_id = "P-C-002"
+mechanism = "many_tied_optima"
+mechanism_parameter = "q=4"
+phase = "pilot"
+replicate_id = 1
+seed_id = "SEED-P-C-002"

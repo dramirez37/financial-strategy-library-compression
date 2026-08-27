@@ -1,0 +1,74 @@
+instance_sha256 = "4df0a0ae08125cf414f82aa0456b56150258f5c9bd90e25abf921e631689e77e"
+schema_version = "algorithmic-compression-generator-record-v1"
+status = "GENERATED"
+
+[[attempts]]
+accepted = true
+attempt_index = 1
+attempt_seed = "627464442708587593"
+reasons = []
+
+[realized]
+active_coverage_density = "8//15"
+active_incidence_count = 16
+active_strategy_count = 6
+bundle_count = 2
+bundle_prevalence = "1//3"
+bundle_threshold = 4
+distinct_active_weights = ["1//1", "11//4", "13//4"]
+frontier_coverage_density = "1//1"
+frontier_module_rank_association = "0//1"
+frontier_row_count = 1
+mandatory_strategy_ids = ["inactive"]
+maximum_active_weight = "13//4"
+maximum_carrier_count = 7
+mean_pairwise_module_jaccard = "1//6"
+minimum_active_weight = "1//1"
+minimum_carrier_count = 2
+module_coverage_density = "5//12"
+module_row_count = 4
+preprocessing_forced_strategy_ids = ["inactive"]
+strategy_count = 7
+tagged_requirement_count = 5
+unique_carrier_count = 0
+unique_carrier_frequency = "0//1"
+unique_carrier_strategy_ids = []
+
+[requested]
+bundle_count_target = -1
+bundle_prevalence_level = "mechanism"
+coverage_density_level = "mechanism"
+coverage_density_target = "UNSPECIFIED"
+frontier_module_correlation_level = "mechanism"
+frontier_row_count = 1
+mandatory_strategy_count = 1
+module_overlap_level = "mechanism"
+module_row_count = 4
+strategy_count = 7
+tagged_requirement_count = 5
+unique_carrier_count_target = -1
+unique_carrier_frequency_level = "mechanism"
+weight_dispersion_level = "mechanism"
+
+[seed]
+execution_order_key = "2891934117218585572"
+generator_seed = "2493576314675317222"
+instance_id = "P-C-007"
+mip_seed = "1566459954"
+multistart_seed = "836472860403794062"
+phase = "pilot"
+random_order_seed = "2644815444298068373"
+randomness_scope = "label_permutation_and_stochastic_algorithms"
+replicate_id = 1
+seed_id = "SEED-P-C-007"
+
+[spec]
+analysis_included = false
+family = "adversarial"
+generator_id = "adversarial-mechanism-v1"
+instance_id = "P-C-007"
+mechanism = "bundle_versus_singleton"
+mechanism_parameter = "k=4;bundles=2"
+phase = "pilot"
+replicate_id = 1
+seed_id = "SEED-P-C-007"

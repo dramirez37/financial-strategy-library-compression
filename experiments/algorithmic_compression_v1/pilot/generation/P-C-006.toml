@@ -1,0 +1,74 @@
+instance_sha256 = "59669c7d4ef8942a6ff0d1a1bde9a9b2249415ee5289efc477e11f13f8e3b322"
+schema_version = "algorithmic-compression-generator-record-v1"
+status = "GENERATED"
+
+[[attempts]]
+accepted = true
+attempt_index = 1
+attempt_seed = "3746064709569573986"
+reasons = []
+
+[realized]
+active_coverage_density = "5//8"
+active_incidence_count = 35
+active_strategy_count = 7
+bundle_count = 0
+bundle_prevalence = "0//1"
+bundle_threshold = 6
+distinct_active_weights = ["1//1"]
+frontier_coverage_density = "1//1"
+frontier_module_rank_association = "0//1"
+frontier_row_count = 1
+mandatory_strategy_ids = ["inactive"]
+maximum_active_weight = "1//1"
+maximum_carrier_count = 8
+mean_pairwise_module_jaccard = "113//315"
+minimum_active_weight = "1//1"
+minimum_carrier_count = 4
+module_coverage_density = "4//7"
+module_row_count = 7
+preprocessing_forced_strategy_ids = ["inactive"]
+strategy_count = 8
+tagged_requirement_count = 8
+unique_carrier_count = 0
+unique_carrier_frequency = "0//1"
+unique_carrier_strategy_ids = []
+
+[requested]
+bundle_count_target = -1
+bundle_prevalence_level = "mechanism"
+coverage_density_level = "mechanism"
+coverage_density_target = "UNSPECIFIED"
+frontier_module_correlation_level = "mechanism"
+frontier_row_count = 1
+mandatory_strategy_count = 1
+module_overlap_level = "mechanism"
+module_row_count = 7
+strategy_count = 8
+tagged_requirement_count = 8
+unique_carrier_count_target = -1
+unique_carrier_frequency_level = "mechanism"
+weight_dispersion_level = "mechanism"
+
+[seed]
+execution_order_key = "2022915029334374027"
+generator_seed = "5170753603290382011"
+instance_id = "P-C-006"
+mip_seed = "952394220"
+multistart_seed = "6684637852272013277"
+phase = "pilot"
+random_order_seed = "8022609563374843191"
+randomness_scope = "label_permutation_and_stochastic_algorithms"
+replicate_id = 1
+seed_id = "SEED-P-C-006"
+
+[spec]
+analysis_included = false
+family = "adversarial"
+generator_id = "adversarial-mechanism-v1"
+instance_id = "P-C-006"
+mechanism = "symmetric_hard"
+mechanism_parameter = "cyclic_order=7"
+phase = "pilot"
+replicate_id = 1
+seed_id = "SEED-P-C-006"

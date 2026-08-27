@@ -107,6 +107,10 @@ experiments/financial_annual_walkforward_audit/data/*
 !experiments/financial_annual_walkforward_audit/data/README.md
 !experiments/financial_annual_walkforward_audit/data/provenance.template.toml
 
+# New financial algorithm comparisons remain local until separately audited
+# and explicitly promoted as public-safe aggregates.
+experiments/financial_algorithm_comparison_v1/local_results/
+
 # Public local-data template. Everything below data/licensed is deny-by-default
 # except the empty placeholder; researchers supply their own licensed files.
 data/licensed/*

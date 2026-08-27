@@ -255,6 +255,7 @@ export ArithmeticMode,
        JOURNAL_EXACTNESS_AUDIT_SCHEMA_VERSION,
        JOURNAL_EXACTNESS_MANIFEST_SCHEMA_VERSION,
        JOURNAL_MIP_SOLUTION_SCHEMA_VERSION,
+       FINANCIAL_ALGORITHM_COMPARISON_SCHEMA_VERSION,
        ALGORITHMIC_COMPRESSION_GENERATOR_SCHEMA_VERSION,
        DEFAULT_ALGORITHMIC_INSTANCE_REGISTRY,
        DEFAULT_ALGORITHMIC_SEED_REGISTRY,
@@ -291,6 +292,8 @@ export ArithmeticMode,
        JournalMIPRuntime,
        JournalMIPSolutionResult,
        JournalMIPSolverDiagnostics,
+       FinancialAlgorithmComparisonControls,
+       FinancialAlgorithmComparisonResult,
        JournalPreprocessingMap,
        JournalReverseDeletionStep,
        JournalTieHandling,
@@ -333,6 +336,10 @@ export ArithmeticMode,
        solve_journal_compression_mip,
        solve_journal_compression_random_order,
        audit_journal_mip_output,
+       audit_financial_algorithm_comparison,
+       compare_financial_algorithm_suite,
+       financial_algorithm_comparison_payload,
+       serialize_financial_algorithm_comparison,
        audit_journal_result_directory,
        audit_journal_small_instance,
        algorithmic_benchmark_registry_entry,
@@ -373,5 +380,6 @@ include("GreedyJournalCompression.jl")
 include("CertifiedDeletionJournalCompression.jl")
 include("JournalCompressionMIP.jl")
 include("JournalExactnessAudit.jl")
+include("FinancialAlgorithmComparison.jl")
 
 end

@@ -1,0 +1,75 @@
+schema_version = "financial-algorithm-comparison-design-v1"
+experiment_id = "retrospective-financial-algorithm-comparison-v1"
+protocol_date = "2026-08-27"
+evidence_class = "retrospective financial algorithm audit"
+identity_closure_required = true
+exact_arithmetic = "Rational{BigInt}"
+parent_resource_config = "experiments/configs/financial_resource_optimization.toml"
+local_results_root = "experiments/financial_algorithm_comparison_v1/local_results"
+public_aggregate_promotion_automatic = false
+public_summary_path = "experiments/results/summaries/financial_algorithm_comparison_v1.csv"
+public_status_path = "experiments/results/summaries/financial_algorithm_comparison_v1_status.toml"
+public_report_path = "journal/aor/reports/FINANCIAL_ALGORITHM_RESULTS.md"
+parent_source_import = "committed cross-audit membership certificates plus licensed validation-profile recomputation"
+parent_source_frontier_must_match_committed_certificate = true
+parent_source_closure_must_match_committed_certificate = true
+annual_parent_replay_status = "KNOWN_BLOCKED_BY_ANALYTICAL_VERSUS_TAXONOMY_HASH_IDENTITY"
+
+[algorithms]
+current_stepwise_safe_deletion = true
+heaviest_safe_first = true
+weighted_greedy = true
+weighted_greedy_reverse_delete = true
+multistart_random_deletion = true
+preprocessed_highs_mip = true
+requirement_mask_dp = true
+optional_second_solver = "UNAVAILABLE_NOT_INSTALLED"
+
+[controls]
+dp_residual_requirement_limit = 22
+multistart_count = 32
+multistart_seed = 20260827
+mip_seed = 0
+mip_time_limit_seconds = 300.0
+mip_relative_gap_tolerance = 0.0
+mip_absolute_gap_tolerance = 0.0
+mip_warm_start = "none"
+highs_threads = 1
+highs_parallel = "off"
+
+[tie_rules]
+strategy_order = "canonical original strategy identifier order"
+weighted_greedy = "exact score, then exact weight, then canonical strategy order"
+reverse_deletion = "declared deterministic reverse order from the greedy trace"
+heaviest_safe_first = "exact decreasing weight, then canonical strategy order"
+multistart = "StableRNG seed plus stable lowest-burden and canonical-selection tie rule"
+mip = "one solver incumbent; optimizer identities are not claimed complete"
+dp = "one canonical representative optimizer"
+
+[information_boundary]
+heldout_may_define_weights = false
+heldout_may_define_preprocessing = false
+heldout_may_define_algorithm_choice = false
+heldout_may_define_warm_start = false
+heldout_may_define_pruning_order = false
+heldout_may_define_objective = false
+heldout_reported_after_all_optimization = true
+terminal_annual_units_pooled = false
+raw_licensed_rows_written = false
+raw_licensed_rows_committed = false
+
+[failure_rules]
+inapplicable_dp = "record explicit NOT_APPLICABLE_REQUIREMENT_LIMIT row"
+unavailable_second_solver = "record explicit UNAVAILABLE row"
+solver_timeout = "retain incumbent, bound, status, and gap; accept only after exact recheck"
+solver_no_incumbent = "record status and bound without fabricating a candidate"
+exact_recheck_failure = "reject candidate and fail the saved-result audit"
+historical_stepwise_exact_failure = "retain as historical endpoint but exclude from certified benchmark"
+parent_replay_hash_mismatch = "record failure; do not rewrite parent; reconstruct only the committed source object and exact-check it before algorithms"
+
+registered_weight_schedules = [
+  "uniform_cardinality",
+  "nonshared_modules",
+  "validation_computation",
+  "documented_complexity",
+]

@@ -7,7 +7,10 @@ export ALGOLIB_CRSP_ROOT
 	journal journal-check journal-submission-check financial-licensed public-audit verify \
 	aor-algorithm-tests aor-generator-tests aor-benchmark aor-benchmark-audit \
 	aor-benchmark-v2-tests aor-benchmark-v2-lock aor-benchmark-v2 aor-benchmark-v2-audit \
-	aor-benchmark-v2-analysis
+	aor-benchmark-v2-analysis \
+	aor-financial-algorithm-tests aor-financial-algorithm-lock \
+	aor-financial-algorithms aor-financial-algorithm-audit \
+	aor-financial-algorithm-promote
 
 help:
 	@printf '%s\n' \
@@ -27,6 +30,11 @@ help:
 		'make aor-benchmark-v2      Run locked v2 with eight deterministic worker lanes' \
 		'make aor-benchmark-v2-audit Independently audit saved v2 benchmark artifacts' \
 		'make aor-benchmark-v2-analysis Generate and test locked v2 tables and figures' \
+		'make aor-financial-algorithm-tests Test the public-safe financial comparison layer' \
+		'make aor-financial-algorithm-lock  Verify the financial comparison design lock' \
+		'make aor-financial-algorithms Run the locked local licensed comparison' \
+		'make aor-financial-algorithm-audit Audit saved local comparison results without solving' \
+		'make aor-financial-algorithm-promote Promote only audited public-safe aggregates' \
 		'make financial-licensed Run both licensed-data audits and the cross-audit optimization' \
 		'make verify             Run the complete release gate'
 
@@ -93,6 +101,21 @@ aor-benchmark-v2-audit:
 aor-benchmark-v2-analysis:
 	@"$(JULIA_EXE)" --startup-file=no --project=julia/test julia/test/run_algorithmic_compression_v2_analysis_tests.jl
 	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/analyze_algorithmic_compression_v2.jl
+
+aor-financial-algorithm-tests:
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/test/run_financial_algorithm_comparison_tests.jl
+
+aor-financial-algorithm-lock:
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/lock_financial_algorithm_comparison_v1.jl --check
+
+aor-financial-algorithms: aor-financial-algorithm-lock
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/run_financial_algorithm_comparison_v1.jl --licensed
+
+aor-financial-algorithm-audit: aor-financial-algorithm-lock
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/run_financial_algorithm_comparison_v1.jl --audit-only
+
+aor-financial-algorithm-promote: aor-financial-algorithm-lock
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/run_financial_algorithm_comparison_v1.jl --promote-public
 
 financial-licensed:
 	@./scripts/run_financial_licensed.sh

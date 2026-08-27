@@ -1,0 +1,14 @@
+schema_version = "financial-algorithm-comparison-execution-failure-v1"
+experiment_id = "retrospective-financial-algorithm-comparison-v1"
+failure_id = "EXECUTION_FAILURE_001"
+recorded_at_utc = "2026-08-27T00:00:00Z"
+original_design_lock_sha256 = "da86c82dcd09e901950d9a06bf4f7676b1c14acea0c8c0695231b935586bd5f9"
+failure_stage = "wrapper module dispatch before parent artifact verification"
+failure_class = "Julia 1.12 world-age error from lazy Base.include"
+licensed_rows_read = false
+parent_audit_started = false
+algorithm_started = false
+comparison_outcome_observed = false
+local_result_artifact_written = false
+scientific_design_change_required = false
+repair_scope = "load the existing frozen FinancialResourceOptimization module at script load time"

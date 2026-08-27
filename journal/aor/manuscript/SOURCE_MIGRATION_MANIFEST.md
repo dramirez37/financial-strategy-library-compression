@@ -1,6 +1,7 @@
 # AoOR source-migration manifest
 
-Status: DRAFT scaffold inventory; no full prose migration has occurred.
+Status: PARTIAL MIGRATION. The title, abstract, keywords, and Introduction are
+journal-draft prose; the remaining article sections are still scaffolded.
 
 The row-level authority is `SOURCE_MIGRATION_MANIFEST.csv`. Every paragraph in
 the scaffold that summarizes existing material has a paragraph row. Planned
@@ -9,6 +10,8 @@ scaffold currently renders placeholders instead of their content.
 
 Reuse states are:
 
+- `MIGRATED_PARAPHRASE`: journal-draft prose derived from the named committed
+  sources; no source paragraph was copied verbatim;
 - `SCAFFOLD_PARAPHRASE`: new summary prose derived from the named sources; no
   source paragraph was copied verbatim;
 - `EXACT_METADATA_COPY`: verified bibliographic metadata copied without a

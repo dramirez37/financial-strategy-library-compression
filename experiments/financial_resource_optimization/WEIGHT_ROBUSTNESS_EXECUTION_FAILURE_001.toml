@@ -1,0 +1,16 @@
+schema_version = "financial-weight-robustness-execution-failure-v1"
+experiment_id = "financial-retention-weight-robustness-v1"
+failure_id = "EXECUTION_FAILURE_001"
+recorded_at_utc = "2026-08-27T21:44:00Z"
+initial_design_lock_sha256 = "e895fef2b61e1cdbf66051d0e47c9e8fd7136da14b99f369f37070f0ccf09ebb"
+attempted_command = "make aor-financial-weight-robustness"
+failure_stage = "parent design-lock verification"
+failure_reason = "The new robustness aggregate prefix had been added to DATA_ACCESS.md, which is hashed by the already committed parent financial-algorithm-comparison lock."
+licensed_rows_read_this_attempt = false
+parent_source_reconstruction_started = false
+algorithm_started = false
+comparison_outcome_observed = false
+local_result_artifact_written = false
+raw_licensed_row_printed_or_written = false
+scientific_design_change_required = false
+repair_scope = "Restore the parent-locked DATA_ACCESS.md and place robustness aggregates under the already permitted financial_resource_optimization_* prefix."

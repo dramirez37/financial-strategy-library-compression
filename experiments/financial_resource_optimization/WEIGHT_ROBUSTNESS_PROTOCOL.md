@@ -137,5 +137,6 @@ Licensed panels may be read locally to reconstruct the locked source profiles.
 Raw rows, row-level derivatives, local exact instances, solver logs, and
 completed licensed provenance remain ignored. Existing policy permits public
 aggregate strategy identifiers, exact burdens and certificates, structural
-counts, overlap statistics, and postdecision diagnostics. Promotion requires
-the independent local audit and writes only the locked aggregate files.
+counts, overlap statistics, and postdecision diagnostics under the existing
+`financial_resource_optimization_*` aggregate prefix. Promotion requires the
+independent local audit and writes only the locked aggregate files.

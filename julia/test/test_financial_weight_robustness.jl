@@ -84,6 +84,22 @@ end
     @test config["prior_schedule_outcomes_exist"] === true
     @test config["analysis"]["terminal_annual_units_pooled"] === false
     @test all(value === false for value in values(config["information_boundary"]))
+    for key in (
+        "public_summary_path",
+        "public_selections_path",
+        "public_overlap_path",
+        "public_rank_path",
+        "public_certificate_path",
+        "public_status_path",
+    )
+        @test startswith(
+            config[key],
+            "experiments/results/summaries/financial_resource_optimization_",
+        )
+    end
+    @test WeightRobustness.FinancialComparison.verify_design_lock(
+        config["financial_algorithm_config"],
+    ) isa String
 end
 
 

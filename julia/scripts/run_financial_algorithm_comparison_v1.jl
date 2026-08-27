@@ -342,10 +342,11 @@ end
 
 
 function _heldout_unit(parent)
-    parent.audit_id == "locked_terminal_v1" && return
-        "terminal locked-2020-2024 enabled-descendant net-utility opportunity units"
-    parent.audit_id == "annual_walk_forward_v2" && return
-        "annual mean next-year enabled-descendant opportunity units"
+    if parent.audit_id == "locked_terminal_v1"
+        return "terminal locked-2020-2024 enabled-descendant net-utility opportunity units"
+    elseif parent.audit_id == "annual_walk_forward_v2"
+        return "annual mean next-year enabled-descendant opportunity units"
+    end
     error("unknown financial audit unit: $(parent.audit_id)")
 end
 

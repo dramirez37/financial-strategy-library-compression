@@ -261,3 +261,15 @@ end
               [Dict("x" => "1", "y" => "two,three")]
     end
 end
+
+
+@testset "financial held-out units remain distinct strings" begin
+    terminal = FinancialComparisonCLI._heldout_unit((; audit_id = "locked_terminal_v1"))
+    annual = FinancialComparisonCLI._heldout_unit((; audit_id = "annual_walk_forward_v2"))
+    @test terminal isa String
+    @test annual isa String
+    @test terminal != annual
+    @test occursin("terminal", terminal)
+    @test occursin("annual", annual)
+    @test_throws ErrorException FinancialComparisonCLI._heldout_unit((; audit_id = "unknown"))
+end

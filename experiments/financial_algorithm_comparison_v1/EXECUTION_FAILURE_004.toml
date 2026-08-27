@@ -1,0 +1,15 @@
+schema_version = "financial-algorithm-comparison-execution-failure-v1"
+experiment_id = "retrospective-financial-algorithm-comparison-v1"
+failure_id = "EXECUTION_FAILURE_004"
+recorded_at_utc = "2026-08-27T21:04:22Z"
+prior_design_lock_sha256 = "3883218ee34b9cb1ef5d669521341bce56824d4b5fabcbc48db44c54d4ff3c14"
+failure_stage = "terminal source reconstruction completed; keyword type validation before first algorithm call"
+failure_class = "line-broken Julia return expression produced nothing for the held-out unit label"
+licensed_rows_read_this_attempt = true
+parent_source_reconstruction_started = true
+algorithm_started = false
+comparison_outcome_observed = false
+local_result_artifact_written = false
+raw_licensed_row_printed_or_written = false
+scientific_design_change_required = false
+repair_scope = "use explicit if/elseif returns and regression-test distinct String units for both audits"

@@ -8,6 +8,7 @@ export create_design_lock,
     create_design_lock_amendment_001,
     create_design_lock_amendment_002,
     create_design_lock_amendment_003,
+    create_design_lock_amendment_004,
     main,
     verify_design_lock
 
@@ -30,12 +31,16 @@ const AMENDMENT_LOCK_002_PATH =
     joinpath(STUDY_ROOT, "DESIGN_LOCK_AMENDMENT_002.json")
 const AMENDMENT_LOCK_003_PATH =
     joinpath(STUDY_ROOT, "DESIGN_LOCK_AMENDMENT_003.json")
+const AMENDMENT_LOCK_004_PATH =
+    joinpath(STUDY_ROOT, "DESIGN_LOCK_AMENDMENT_004.json")
 const FAILURE_001_PATH = joinpath(STUDY_ROOT, "EXECUTION_FAILURE_001.toml")
 const FAILURE_002_PATH = joinpath(STUDY_ROOT, "EXECUTION_FAILURE_002.toml")
 const FAILURE_003_PATH = joinpath(STUDY_ROOT, "EXECUTION_FAILURE_003.toml")
+const FAILURE_004_PATH = joinpath(STUDY_ROOT, "EXECUTION_FAILURE_004.toml")
 const AMENDMENT_001_PATH = joinpath(STUDY_ROOT, "AMENDMENT_001.md")
 const AMENDMENT_002_PATH = joinpath(STUDY_ROOT, "AMENDMENT_002.md")
 const AMENDMENT_003_PATH = joinpath(STUDY_ROOT, "AMENDMENT_003.md")
+const AMENDMENT_004_PATH = joinpath(STUDY_ROOT, "AMENDMENT_004.md")
 const REQUIRED_FILES = (
     "DATA_ACCESS.md",
     "journal/aor/CLAIM_BOUNDARY.md",
@@ -75,6 +80,11 @@ const AMENDMENT_003_FILES = (
     "experiments/financial_algorithm_comparison_v1/DESIGN_LOCK_AMENDMENT_002.json",
     "experiments/financial_algorithm_comparison_v1/EXECUTION_FAILURE_003.toml",
     "experiments/financial_algorithm_comparison_v1/AMENDMENT_003.md",
+)
+const AMENDMENT_004_FILES = (
+    "experiments/financial_algorithm_comparison_v1/DESIGN_LOCK_AMENDMENT_003.json",
+    "experiments/financial_algorithm_comparison_v1/EXECUTION_FAILURE_004.toml",
+    "experiments/financial_algorithm_comparison_v1/AMENDMENT_004.md",
 )
 
 
@@ -201,6 +211,19 @@ function _amended_003_hashes()
             AMENDMENT_001_FILES...,
             AMENDMENT_002_FILES...,
             AMENDMENT_003_FILES...,
+        )
+    )
+end
+
+
+function _amended_004_hashes()
+    return Dict(
+        path => _sha256_file(joinpath(REPOSITORY_ROOT, path)) for path in (
+            REQUIRED_FILES...,
+            AMENDMENT_001_FILES...,
+            AMENDMENT_002_FILES...,
+            AMENDMENT_003_FILES...,
+            AMENDMENT_004_FILES...,
         )
     )
 end
@@ -483,9 +506,104 @@ function create_design_lock_amendment_003(
 end
 
 
+function _render_amendment_lock_004(hashes, prior_lock_sha256, prior_aggregate)
+    rows = join(
+        ("    \"$path\": \"$(hashes[path])\"" for path in sort!(collect(keys(hashes)))),
+        ",\n",
+    )
+    return """{
+  "schema_version": "financial-algorithm-comparison-design-lock-amendment-v1",
+  "experiment_id": "retrospective-financial-algorithm-comparison-v1",
+  "amendment_id": "AMENDMENT_004",
+  "locked_at_utc": "$(Dates.format(Dates.now(Dates.UTC), dateformat"yyyy-mm-ddTHH:MM:SS.sssZ"))",
+  "prior_amendment_lock_sha256": "$prior_lock_sha256",
+  "prior_amendment_lock_aggregate_sha256": "$prior_aggregate",
+  "licensed_rows_read_in_failed_attempt": true,
+  "parent_source_reconstruction_started": true,
+  "algorithm_outcome_observed_before_amendment": false,
+  "scientific_design_changed": false,
+  "repair_scope": "explicit held-out unit string returns plus direct regression tests",
+  "aggregate_sha256": "$(_aggregate(hashes))",
+  "files": {
+$rows
+  }
+}
+"""
+end
+
+
+function create_design_lock_amendment_004(
+    config_path::AbstractString = DEFAULT_CONFIG,
+)
+    _validate(config_path)
+    for path in (
+        LOCK_PATH,
+        AMENDMENT_LOCK_001_PATH,
+        AMENDMENT_LOCK_002_PATH,
+        AMENDMENT_LOCK_003_PATH,
+        FAILURE_004_PATH,
+        AMENDMENT_004_PATH,
+    )
+        isfile(path) || error("required amendment-004 chain file is absent: $path")
+    end
+    local_results = joinpath(STUDY_ROOT, "local_results")
+    isdir(local_results) && !isempty(readdir(local_results)) && error(
+        "cannot lock amendment 004 after local comparison results exist",
+    )
+    prior_text = read(AMENDMENT_LOCK_003_PATH, String)
+    prior_sha256 = _sha256_file(AMENDMENT_LOCK_003_PATH)
+    failure = TOML.parsefile(FAILURE_004_PATH)
+    failure["prior_design_lock_sha256"] == prior_sha256 || error(
+        "failure 004 does not identify amendment lock 003",
+    )
+    for key in ("licensed_rows_read_this_attempt", "parent_source_reconstruction_started")
+        failure[key] === true || error("failure 004 flag is not true: $key")
+    end
+    for key in (
+        "algorithm_started",
+        "comparison_outcome_observed",
+        "local_result_artifact_written",
+        "raw_licensed_row_printed_or_written",
+        "scientific_design_change_required",
+    )
+        failure[key] === false || error("failure 004 flag is not false: $key")
+    end
+    hashes = _amended_004_hashes()
+    text = _render_amendment_lock_004(
+        hashes,
+        prior_sha256,
+        _original_aggregate(prior_text),
+    )
+    temporary = AMENDMENT_LOCK_004_PATH * ".tmp.$(getpid())"
+    open(temporary, "w") do io
+        write(io, text)
+    end
+    mv(temporary, AMENDMENT_LOCK_004_PATH; force = true)
+    println("created financial algorithm comparison amendment lock 004")
+    return AMENDMENT_LOCK_004_PATH
+end
+
+
 function verify_design_lock(config_path::AbstractString = DEFAULT_CONFIG)
     _validate(config_path)
     isfile(LOCK_PATH) || error("financial algorithm comparison design lock is absent")
+    if isfile(AMENDMENT_LOCK_004_PATH)
+        text = read(AMENDMENT_LOCK_004_PATH, String)
+        hashes = _amended_004_hashes()
+        for path in keys(hashes)
+            occursin("\"$path\": \"$(hashes[path])\"", text) || error(
+                "financial algorithm comparison amendment lock mismatch: $path",
+            )
+        end
+        occursin("\"aggregate_sha256\": \"$(_aggregate(hashes))\"", text) ||
+            error("financial algorithm comparison amendment aggregate mismatch")
+        prior_sha256 = _sha256_file(AMENDMENT_LOCK_003_PATH)
+        occursin("\"prior_amendment_lock_sha256\": \"$prior_sha256\"", text) ||
+            error("financial comparison amendment 004 has a stale prior lock")
+        occursin("\"algorithm_outcome_observed_before_amendment\": false", text) ||
+            error("financial comparison amendment outcome-access declaration is invalid")
+        return _aggregate(hashes)
+    end
     if isfile(AMENDMENT_LOCK_003_PATH)
         text = read(AMENDMENT_LOCK_003_PATH, String)
         hashes = _amended_003_hashes()
@@ -556,12 +674,13 @@ end
 
 function main(args = ARGS)
     length(args) == 1 || error(
-        "usage: lock_financial_algorithm_comparison_v1.jl --create|--amend-001|--amend-002|--amend-003|--check",
+        "usage: lock_financial_algorithm_comparison_v1.jl --create|--amend-001|--amend-002|--amend-003|--amend-004|--check",
     )
     only(args) == "--create" && return create_design_lock()
     only(args) == "--amend-001" && return create_design_lock_amendment_001()
     only(args) == "--amend-002" && return create_design_lock_amendment_002()
     only(args) == "--amend-003" && return create_design_lock_amendment_003()
+    only(args) == "--amend-004" && return create_design_lock_amendment_004()
     only(args) == "--check" && return println(
         "financial algorithm comparison design lock valid: $(verify_design_lock())",
     )

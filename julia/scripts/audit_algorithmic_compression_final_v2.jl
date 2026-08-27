@@ -197,6 +197,12 @@ function _raw_manifest_paths()
         joinpath(RESULTS_ROOT, "execution_state.toml"),
         joinpath(RESULTS_ROOT, "final_algorithm_runs.csv"),
     ]
+    for optional in (
+        AlgorithmicCompressionFinalV2.EXECUTION_LOCK_AMENDMENT_PATH,
+        AlgorithmicCompressionFinalV2.ENVIRONMENT_AMENDMENT_PATH,
+    )
+        isfile(optional) && push!(roots, optional)
+    end
     for directory in ("instances", "generation", "raw_runs", "solver_logs", "control")
         root = joinpath(RESULTS_ROOT, directory)
         isdir(root) || continue
@@ -380,9 +386,14 @@ end
 function audit_final_benchmark()
     readiness = validate_final_runner_readiness()
     errors = String[]
+    active_execution_lock = isfile(
+        AlgorithmicCompressionFinalV2.EXECUTION_LOCK_AMENDMENT_PATH,
+    ) ? AlgorithmicCompressionFinalV2.EXECUTION_LOCK_AMENDMENT_PATH :
+        AlgorithmicCompressionFinalV2.EXECUTION_LOCK_PATH
+    active_environment = AlgorithmicCompressionFinalV2._active_environment_path()
     for path in (
-        AlgorithmicCompressionFinalV2.EXECUTION_LOCK_PATH,
-        AlgorithmicCompressionFinalV2.ENVIRONMENT_PATH,
+        active_execution_lock,
+        active_environment,
         AlgorithmicCompressionFinalV2.RUN_STATUS_PATH,
         joinpath(RESULTS_ROOT, "execution_state.toml"),
     )
@@ -390,9 +401,9 @@ function audit_final_benchmark()
     end
     isempty(errors) || error(join(errors, '\n'))
     execution_lock = _execution_lock_payload(
-        AlgorithmicCompressionFinalV2.EXECUTION_LOCK_PATH,
+        active_execution_lock,
     )
-    environment = TOML.parsefile(AlgorithmicCompressionFinalV2.ENVIRONMENT_PATH)
+    environment = TOML.parsefile(active_environment)
     environment["end_time_utc"] != "PENDING" || push!(errors, "execution end time is pending")
     get(environment, "process_concurrency", 0) == 8 || push!(
         errors,

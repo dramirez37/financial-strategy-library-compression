@@ -209,3 +209,18 @@ end
         changed,
     )
 end
+
+@testset "execution-start amendment preserves predecessor identity" begin
+    hashes = Dict("fixture" => repeat("a", 64))
+    prior = repeat("b", 64)
+    failure = repeat("c", 64)
+    text = V2._execution_amendment_lock_text(
+        hashes,
+        "2000-01-01T00:00:00.000Z",
+        prior,
+        failure,
+    )
+    @test occursin("\"prior_execution_start_lock_sha256\": \"$prior\"", text)
+    @test occursin("\"execution_failure_002_sha256\": \"$failure\"", text)
+    @test occursin("\"raw_algorithm_record_count_before_execution_amendment\": 0", text)
+end

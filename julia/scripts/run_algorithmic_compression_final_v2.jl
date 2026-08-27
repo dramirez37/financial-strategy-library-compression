@@ -29,7 +29,22 @@ const INSTANCE_REGISTRY_PATH = joinpath(STUDY_ROOT, "registry", "INSTANCE_REGIST
 const SEED_REGISTRY_PATH = joinpath(STUDY_ROOT, "registry", "SEED_REGISTRY.csv")
 const RESULTS_ROOT = joinpath(STUDY_ROOT, "results")
 const ENVIRONMENT_PATH = joinpath(RESULTS_ROOT, "environment.toml")
+const ENVIRONMENT_AMENDMENT_PATH = joinpath(RESULTS_ROOT, "environment_amendment_002.toml")
 const EXECUTION_LOCK_PATH = joinpath(RESULTS_ROOT, "EXECUTION_START_LOCK.json")
+const EXECUTION_LOCK_AMENDMENT_PATH = joinpath(
+    RESULTS_ROOT,
+    "EXECUTION_START_LOCK_AMENDMENT_002.json",
+)
+const DESIGN_LOCK_AMENDMENT_002_PATH = joinpath(
+    STUDY_ROOT,
+    "amendments",
+    "DESIGN_LOCK_AMENDMENT_002.json",
+)
+const EXECUTION_FAILURE_002_PATH = joinpath(
+    STUDY_ROOT,
+    "amendments",
+    "EXECUTION_FAILURE_002.toml",
+)
 const EXECUTION_START_FAILURE_PATH = joinpath(
     RESULTS_ROOT,
     "EXECUTION_START_FAILURE_001.toml",
@@ -264,6 +279,12 @@ end
 function _execution_lock_hashes()
     paths = (
         "experiments/algorithmic_compression_v2/DESIGN_LOCK.json",
+        "experiments/algorithmic_compression_v2/amendments/AMENDMENT_001.md",
+        "experiments/algorithmic_compression_v2/amendments/AMENDMENT_002.md",
+        "experiments/algorithmic_compression_v2/amendments/DESIGN_LOCK_AMENDMENT_001.json",
+        "experiments/algorithmic_compression_v2/amendments/DESIGN_LOCK_AMENDMENT_002.json",
+        "experiments/algorithmic_compression_v2/amendments/EXECUTION_FAILURE_001.toml",
+        "experiments/algorithmic_compression_v2/amendments/EXECUTION_FAILURE_002.toml",
         "experiments/algorithmic_compression_v2/DESIGN.md",
         "experiments/algorithmic_compression_v2/ANALYSIS_PLAN.md",
         "experiments/algorithmic_compression_v2/REPORTING_RULES.md",
@@ -283,6 +304,71 @@ function _execution_lock_hashes()
         "Makefile",
     )
     return Dict(path => _sha256_file(joinpath(REPOSITORY_ROOT, path)) for path in paths)
+end
+
+function _execution_amendment_lock_text(hashes, created_at, prior_lock_hash, failure_hash)
+    rows = join(
+        (
+            "    \"$path\": \"$(hashes[path])\"" for
+            path in sort!(collect(keys(hashes)))
+        ),
+        ",\n",
+    )
+    aggregate = _sha256_text(join(
+        ("$path\0$(hashes[path])\n" for path in sort!(collect(keys(hashes)))),
+    ))
+    return """{
+  "schema_version": "algorithmic-compression-final-execution-start-lock-amendment-v2",
+  "experiment_id": "registered-algorithmic-compression-benchmark-v2",
+  "amendment_id": "AMENDMENT_002",
+  "created_at_utc": "$created_at",
+  "runner_gate_status": "READY",
+  "registered_worker_count": 8,
+  "worker_julia_threads": 1,
+  "prior_execution_start_lock_sha256": "$prior_lock_hash",
+  "execution_failure_002_sha256": "$failure_hash",
+  "raw_algorithm_record_count_before_execution_amendment": 0,
+  "aggregate_sha256": "$aggregate",
+  "files": {
+$rows
+  }
+}
+"""
+end
+
+
+function _verify_or_create_execution_lock_amendment()
+    hashes = _execution_lock_hashes()
+    original_hash = _sha256_file(EXECUTION_LOCK_PATH)
+    failure_hash = _sha256_file(EXECUTION_FAILURE_002_PATH)
+    failure = TOML.parsefile(EXECUTION_FAILURE_002_PATH)
+    original_hash == failure["execution_start_lock_sha256"] || error(
+        "original execution-start lock changed before Amendment 002",
+    )
+    if isfile(EXECUTION_LOCK_AMENDMENT_PATH)
+        text = read(EXECUTION_LOCK_AMENDMENT_PATH, String)
+        for (path, hash) in hashes
+            occursin("\"$path\": \"$hash\"", text) || error(
+                "execution-start amendment is stale: $path",
+            )
+        end
+        occursin("\"prior_execution_start_lock_sha256\": \"$original_hash\"", text) ||
+            error("execution-start amendment does not bind its predecessor")
+        return :amendment_002_verified
+    end
+    raw_root = joinpath(RESULTS_ROOT, "raw_runs")
+    raw_count = isdir(raw_root) ? sum(length(files) for (_, _, files) in walkdir(raw_root)) : 0
+    raw_count == 0 || error("cannot create execution amendment after an algorithm raw record")
+    _write_atomic(
+        EXECUTION_LOCK_AMENDMENT_PATH,
+        _execution_amendment_lock_text(
+            hashes,
+            _utc_now(),
+            original_hash,
+            failure_hash,
+        ),
+    )
+    return :amendment_002_created
 end
 
 
@@ -328,6 +414,9 @@ end
 
 
 function _verify_or_create_execution_lock()
+    if isfile(DESIGN_LOCK_AMENDMENT_002_PATH)
+        return _verify_or_create_execution_lock_amendment()
+    end
     hashes = _execution_lock_hashes()
     if isfile(EXECUTION_LOCK_PATH)
         text = read(EXECUTION_LOCK_PATH, String)
@@ -392,6 +481,10 @@ function _verify_or_create_execution_lock()
     )
     return :created
 end
+
+
+_active_environment_path() = isfile(DESIGN_LOCK_AMENDMENT_002_PATH) ?
+    ENVIRONMENT_AMENDMENT_PATH : ENVIRONMENT_PATH
 
 
 function _hardware_environment()
@@ -985,12 +1078,20 @@ end
 function run_final_benchmark()
     readiness = validate_final_runner_readiness()
     execution_lock_status = _verify_or_create_execution_lock()
-    environment = if isfile(ENVIRONMENT_PATH)
-        TOML.parsefile(ENVIRONMENT_PATH)
+    environment_path = _active_environment_path()
+    environment = if isfile(environment_path)
+        TOML.parsefile(environment_path)
     else
         value = _hardware_environment()
+        if environment_path == ENVIRONMENT_AMENDMENT_PATH
+            value["prior_environment_path"] = _relative(ENVIRONMENT_PATH)
+            value["prior_environment_sha256"] = _sha256_file(ENVIRONMENT_PATH)
+            value["design_lock_amendment_path"] = _relative(DESIGN_LOCK_AMENDMENT_002_PATH)
+            value["design_lock_amendment_sha256"] =
+                _sha256_file(DESIGN_LOCK_AMENDMENT_002_PATH)
+        end
         _verify_environment(value)
-        _write_atomic_toml(ENVIRONMENT_PATH, value)
+        _write_atomic_toml(environment_path, value)
         value
     end
     environment["execution_lock_status_for_run"] = string(execution_lock_status)
@@ -999,7 +1100,7 @@ function run_final_benchmark()
             _relative(EXECUTION_START_FAILURE_PATH)
         environment["pre_final_execution_start_failure_sha256"] =
             _sha256_file(EXECUTION_START_FAILURE_PATH)
-        _replace_toml(ENVIRONMENT_PATH, environment)
+        _replace_toml(environment_path, environment)
     end
     _verify_environment(environment)
     config = TOML.parsefile(CONFIG_PATH)
@@ -1098,7 +1199,7 @@ function run_final_benchmark()
     length(records) == readiness.total_units || error("final result matrix is incomplete")
     environment["end_time_utc"] = _utc_now()
     environment["terminal_record_count"] = length(records)
-    _replace_toml(ENVIRONMENT_PATH, environment)
+    _replace_toml(environment_path, environment)
     println("final benchmark complete: terminal_records=$(length(records)), final_seeds_only=true")
     return true
 end

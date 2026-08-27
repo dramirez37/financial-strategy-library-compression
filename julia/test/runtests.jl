@@ -47,6 +47,7 @@ include("test_journal_compression_mip.jl")
 include(joinpath(@__DIR__, "..", "scripts", "audit_journal_result_directory.jl"))
 using .JournalExactnessAuditCLI
 include("test_journal_exactness_audit.jl")
+include("test_algorithmic_compression_generators_v1.jl")
 
 include(joinpath(@__DIR__, "..", "scripts", "solve_canonical_model.jl"))
 using .CanonicalModelSolver

@@ -255,6 +255,16 @@ export ArithmeticMode,
        JOURNAL_EXACTNESS_AUDIT_SCHEMA_VERSION,
        JOURNAL_EXACTNESS_MANIFEST_SCHEMA_VERSION,
        JOURNAL_MIP_SOLUTION_SCHEMA_VERSION,
+       ALGORITHMIC_COMPRESSION_GENERATOR_SCHEMA_VERSION,
+       DEFAULT_ALGORITHMIC_INSTANCE_REGISTRY,
+       DEFAULT_ALGORITHMIC_SEED_REGISTRY,
+       AlgorithmicBenchmarkInstanceSpec,
+       AlgorithmicBenchmarkSeedSpec,
+       AlgorithmicGeneratedInstance,
+       AlgorithmicGenerationAttempt,
+       AlgorithmicGenerationFailure,
+       AlgorithmicStructuralRequest,
+       AlgorithmicStructuralStatistics,
        JournalCertifiedDeletionStep,
        JournalCompressionInstance,
        JournalCompressionProvenance,
@@ -325,6 +335,12 @@ export ArithmeticMode,
        audit_journal_mip_output,
        audit_journal_result_directory,
        audit_journal_small_instance,
+       algorithmic_benchmark_registry_entry,
+       algorithmic_generation_record_sha256,
+       algorithmic_structural_statistics,
+       generate_algorithmic_benchmark_instance,
+       load_algorithmic_benchmark_registries,
+       serialize_algorithmic_generation_record,
        validate_journal_compression_instance,
        write_journal_compression_instance,
        write_journal_exact_solution_certificate,
@@ -351,6 +367,7 @@ include("Coverage.jl")
 include("Simulation.jl")
 include("IO.jl")
 include("JournalCompressionInstance.jl")
+include("AlgorithmicCompressionGenerators.jl")
 include("ExactJournalCompression.jl")
 include("GreedyJournalCompression.jl")
 include("CertifiedDeletionJournalCompression.jl")

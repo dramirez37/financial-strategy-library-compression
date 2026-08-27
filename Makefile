@@ -5,7 +5,7 @@ export ALGOLIB_CRSP_ROOT
 
 .PHONY: help preprint-check canonical randomized formal manuscript arxiv-bundle \
 	journal journal-check journal-submission-check financial-licensed public-audit verify \
-	aor-algorithm-tests
+	aor-algorithm-tests aor-generator-tests
 
 help:
 	@printf '%s\n' \
@@ -19,6 +19,7 @@ help:
 		'make journal-check      Run the targeted journal-source and artifact gate' \
 		'make journal-submission-check  Reject unresolved author confirmations' \
 		'make aor-algorithm-tests  Triangulate journal algorithms and audit saved certificates' \
+		'make aor-generator-tests  Validate registered benchmark generators without final runs' \
 		'make financial-licensed Run both licensed-data audits and the cross-audit optimization' \
 		'make verify             Run the complete release gate'
 
@@ -57,6 +58,9 @@ journal-submission-check:
 
 aor-algorithm-tests:
 	@"$(JULIA_EXE)" --startup-file=no --project=julia/test julia/test/run_aor_algorithm_tests.jl
+
+aor-generator-tests:
+	@"$(JULIA_EXE)" --startup-file=no --project=julia/test julia/test/run_algorithmic_compression_generator_tests.jl
 
 financial-licensed:
 	@./scripts/run_financial_licensed.sh

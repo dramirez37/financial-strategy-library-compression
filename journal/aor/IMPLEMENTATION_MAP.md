@@ -85,6 +85,27 @@ The theorem ledger's `SC-COMP` record is the authoritative claim boundary. No
 corresponding Lean file, finite-complexity encoding, polynomial-time reduction
 framework, or NP-completeness bridge exists.
 
+### Exact tagged-cover preprocessing
+
+`julia/src/TaggedCover.jl` is the canonical package representation of the
+source-relative identity-closure tagged cover. The new
+`julia/src/TaggedCoverPreprocessing.jl` operates on that representation or on
+its solver-neutral `ExactTaggedCoverModel` adapter.
+
+| Capability | Symbols | Evidence boundary |
+|---|---|---|
+| Exact residual model | `ExactTaggedCoverModel`, `exact_tagged_cover_model` | Stores stable tags and strategy IDs, bit incidence, exact rational weights, and mandatory flags. Floating weights and nonpositive nonmandatory weights are rejected. |
+| Fixed-point reduction | `preprocess_tagged_cover` | Initializes mandatory columns, merges duplicate rows, detects zero-carrier infeasibility, forces unique carriers, propagates satisfied rows, removes empty columns, reduces duplicate coverage, and applies strict residual coverage dominance in a stable restart order. |
+| Objective and feasibility | `preprocessed_tagged_cover_burden`, `preprocessed_tagged_cover_feasible` | Adds the exact forced-selection offset to the residual objective. These checks concern the covering model, not the independent original-library certificate. |
+| Lifting and tied identities | `lift_preprocessed_tagged_selection`, `reconstruct_equal_coverage_ties` | Lifts residual selections in source order and reconstructs exact equal-weight duplicate substitutions. It deliberately does not reconstruct identities lost by equal-weight strict dominance. |
+| Machine-readable audit | `TaggedCoverPreprocessingResult.audit` | Schema `tagged-cover-preprocessing-audit-v1` reports applications, variables removed, and requirements removed per rule, with original indices, labels, offsets, statuses, targets, and reconstruction classes. |
+
+The human proofs and preservation matrix are in
+`journal/aor/reports/PREPROCESSING_THEORY.md`; `THEOREM_LEDGER.md` record
+SC-PRE is authoritative. The targeted test exhausts original and residual
+binary selections on adversarial cases and 512 seeded small exact systems. No
+runtime, solver, nonidentity-closure, or Lean claim follows from that audit.
+
 ## Approximate algorithms and partial dynamic programming
 
 `julia/src/ApproximateCompression.jl` can be reused as a candidate-generation
@@ -203,6 +224,7 @@ algorithm look more sophisticated.
 | Domain model | Exact probability/belief core, catalog validation, 314 frontier/closure properties, exact IO, explicit Float64 mode. |
 | Rechecked deletion | Single and fixed-point deletion, stale/batch-certificate rejection, frontier-only loss witness, deterministic deletion order. |
 | Exact enumeration/formulation | Minimum cardinality, solver-neutral formulation satisfaction, 1,376 seeded small-library properties. |
+| Tagged-cover preprocessing | Every accepted rule and mandatory/infeasible boundary; exact unreduced/reduced objective and lift checks; equal-weight duplicate identity reconstruction; explicit equal-weight dominance identity-loss witness; fixed-point replay; 512 seeded exhaustive small systems and 9,433 assertions. |
 | JuMP/HiGHS | Identity and general closure, cardinality versus weight, all-optimum ties, exact objective scaling failures, Float weight rejection, exact postchecks, 12 random MILP-versus-independent-enumeration instances, deletion traces. |
 | Complexity | Closure-only SC-COMP reduction, explicit inactive identifier and budget, five registered yes/no fixtures, and 5,565 budgeted variants of all 265 full-union three-set/three-element incidence systems (44,520 selected masks), with exact feasibility/weight/threshold/decision correspondence and artifact drift. |
 | Approximate methods | Exact loss definitions, complete subset and Pareto oracles, four greedy rules, multistart, beam search, operational lower bound, complete/partial no-good cut behavior, committed outputs. |
@@ -218,9 +240,11 @@ algorithm look more sophisticated.
 2. Formal and Julia equivalence tests covering every source-relative identity
    instance, including zero-frontier beliefs and source modules with multiple
    carriers.
-3. Preprocessing rule tests for soundness, optimum/tie-set preservation,
-   deterministic lifting, chained reductions, empty obligations, and fail-closed
-   reconstruction.
+3. Extend the implemented preprocessing oracle if new side constraints or
+   nonidentity-closure reductions are proposed. The current pure-cover gate
+   already checks soundness, exact optimum value, declared tie reconstruction,
+   deterministic fixed points, chained reductions, empty obligations, and
+   fail-closed zero-carrier instances.
 4. Full exact DP versus two independent oracles (package enumeration and
    `ResourceOptimization`) on exhaustive and seeded small instances, for both
    weight and cardinality with ties.

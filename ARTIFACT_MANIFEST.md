@@ -346,6 +346,14 @@ status, an approximation guarantee, or a runtime result.
 | `SCT-TEST-v1` | `julia/test/test_tagged_cover.jl` | `0cab278a43166589dd58d8dd49db0fd081c153597573ba4fee246bdc1050da1c` | exact tie, zero-frontier, multiple-carrier, boundary, artifact-drift, and exhaustive declared small-grid tests |
 | `SCT-FIXTURE-v1` | `journal/aor/fixtures/tagged_cover_equivalence_v1.json` | `9f4b98e9c00650aac7f5134033eea186e3c227a66af6a1c9dc0027180c55bf99` | machine-readable exact representative incidence system, all eight candidate masks, 1,296-catalog/5,184-sublibrary audit, and three counterexamples |
 
+## Exact tagged-cover preprocessing artifacts
+
+| Artifact ID | Path | SHA-256 | Role |
+|---|---|---|---|
+| `SCP-CORE-v1` | `julia/src/TaggedCoverPreprocessing.jl` | `e37197742e59b95bca8f0f6aae3eb5c04b15c0d4e12523a6812ae169aa09774d` | exact rational residual cover model; deterministic fixed-point rules; forced objective offset; stable lifting; equal-weight duplicate reconstruction; per-rule audit trail |
+| `SCP-TEST-v1` | `julia/test/test_tagged_cover_preprocessing.jl` | `2ea0f00ce843a3672ac2151d44843c6f8dd955ecd081b25e0a39bffd87769cd0` | adversarial rule and optimizer-identity boundary cases plus exhaustive original/residual enumeration for 512 seeded small exact systems |
+| `SCP-PROOF-v1` | `journal/aor/reports/PREPROCESSING_THEORY.md` | `f6e7ad7a2a688d26d37613b43356797d84987794d2bea77f499f0555ce15a13b` | HUMAN PROOF propositions, assumptions, preservation matrix, fixed-point theorem, implementation contract, and claim boundaries; no Lean declaration |
+
 The fixture and Julia checks are exact finite computation, not universal
 proof, mixed-integer solver evidence, or empirical evidence. The separate
 Lean declaration below kernel-checks the universal identity-closure
@@ -739,7 +747,7 @@ artifact checksum is assigned. The focused Git commit is their provenance.
 | Class | Expected future location or form | Current status |
 |---|---|---|
 | remaining primary research theorem declarations | future extensions under `formal/StrategyInnovation/` | none in the adopted T1--T7 package; F0, F1--F8, S4--S7, C2, and CS1 are supporting results |
-| higher-level Julia research algorithms | `julia/src/{Compression,TaggedCover,InnovationValue,DynamicProgramming,Coverage,RawDynamicProgramming,ComparativeStatics,ApproximateCompression}.jl` | safe and approximate compression, exact identity-closure tagged covering, raw generation/admission, unified timing and Bellman operators, exact/Float64 comparative statics, reusable S4/S5/S6/S7/C2 coverage algorithms, exact T6 scalar bound/fixture, and exact T7 interaction surfaces exist |
+| higher-level Julia research algorithms | `julia/src/{Compression,TaggedCover,TaggedCoverPreprocessing,InnovationValue,DynamicProgramming,Coverage,RawDynamicProgramming,ComparativeStatics,ApproximateCompression}.jl` | safe and approximate compression, exact identity-closure tagged covering and fixed-point preprocessing, raw generation/admission, unified timing and Bellman operators, exact/Float64 comparative statics, reusable S4/S5/S6/S7/C2 coverage algorithms, exact T6 scalar bound/fixture, and exact T7 interaction surfaces exist |
 | additional experiment configurations | immutable committed configs | theorem-feasibility, single-gap geometry, multi-gap topology, safe and approximate compression, dynamic-program, coverage, kernel-persistence response, system interaction, controlled theorem-mechanism, and limited financial configs exist |
 | empirical outputs | generated, checksummed data | separate locked-terminal and annual walk-forward aggregate mechanism summaries and derived compression-characteristic tables exist and are publishable under D-0041/D-0043/D-0068; licensed rows remain excluded |
 | figures and tables | Julia-generated artifacts | eighteen SVGs have complete source CSVs and generated metadata; six financial figures are publication artifacts |

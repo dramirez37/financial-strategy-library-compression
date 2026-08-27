@@ -488,6 +488,85 @@ counterexamples later in this ledger.
   ratio, or greedy guarantee. Those require their separate ledger records.
 - **Empirical relevance:** Not applicable.
 
+### SC-PRE — Exact preprocessing for the identity-closure tagged cover
+
+- **Theorem ID:** SC-PRE
+- **Evidence status:** HUMAN PROOF with exact finite Julia validation; no Lean
+  declaration and no solver-status claim.
+- **Human-readable propositions and proofs:**
+  `journal/aor/reports/PREPROCESSING_THEORY.md`.
+- **Informal statement:** In the positive-weight binary covering formulation
+  supplied by SC-TAG, the following residual rules preserve feasibility,
+  exact optimum value including forced-selection offsets, and at least one
+  liftable optimum: unique residual carrier forcing, strict coverage
+  dominance by a no-heavier available column, duplicate residual coverage,
+  forced-selection propagation, empty residual contribution, and duplicate
+  requirement rows. Strictly cheaper coverage dominance, strictly heavier
+  duplicates, empty positive-weight columns, forced columns, and duplicate
+  rows preserve every original optimizer identity. Equal-weight duplicate
+  coverage preserves all optimizer identities only through the recorded
+  substitution map. Equal-weight strict coverage dominance need not preserve
+  every optimizer identity and is explicitly marked as such.
+- **Exact assumptions:**
+  1. the source-defined tagged requirement universe and incidence matrix from
+     SC-TAG are held fixed;
+  2. identity module closure for the semantic interpretation of those rows;
+  3. exact additive rational weights, with nonnegative mandatory weights and
+     strictly positive nonmandatory weights;
+  4. mandatory columns, including the inactive strategy, are fixed to one and
+     removed from generic dominance eligibility;
+  5. previously fixed selections are propagated before residual coverage and
+     carrier sets are recomputed;
+  6. no identity-sensitive side constraints, group constraints, exact-
+     cardinality constraints, or mutual exclusions beyond the covering model;
+     and
+  7. all subset, equality, carrier-count, and weight comparisons are exact.
+- **Optimizer-identity boundary:** When `R_s` is a strict subset of `R_t` and
+  `w_t = w_s`, swapping `s` for `t` proves optimum-value preservation but can
+  remove an original optimum that used `s` while other selected columns
+  covered `t`'s extra rows. The implementation therefore records that the
+  declared maps do not reconstruct every identity. Identical equal-weight
+  coverage is handled separately: positive weights imply that an optimum
+  chooses at most one member of the class, and exact substitutions recover
+  every tied identity.
+- **Fixed-point statement:** Mandatory selections are initialized once. The
+  stable scan then merges duplicate rows, fails closed on a zero-carrier row,
+  forces a unique residual carrier and propagates it, removes an empty column,
+  reduces a duplicate class, or removes a strictly coverage-dominated column.
+  The scan restarts after every transformation. Every successful step removes
+  a row or column, so the finite iteration terminates. Reprocessing the
+  residual model makes no further change and adds zero offset.
+- **Julia implementation:**
+  `julia/src/TaggedCoverPreprocessing.jl` provides
+  `ExactTaggedCoverModel`, `TaggedCoverPreprocessingResult`,
+  `preprocess_tagged_cover`, exact residual feasibility and burden functions,
+  stable lifting, and equal-coverage tie reconstruction. Its audit schema
+  `tagged-cover-preprocessing-audit-v1` reports applications, variables
+  removed, and requirements removed separately for every rule, together with
+  original indices, labels, statuses, elimination targets, forced columns,
+  objective offset, and reconstruction classes.
+- **Julia validation:**
+  `julia/test/test_tagged_cover_preprocessing.jl` passes 9,433 targeted exact
+  assertions. Adversarial fixtures cover every accepted rule, mandatory
+  semantics, fail-closed infeasibility, equal-weight dominance identity loss,
+  equal-weight duplicate reconstruction, and exact original-library
+  certificates. A deterministic `MersenneTwister` audit exhausts every binary
+  selection in both the original and residual models for 512 seeded small
+  identity-closure-realizable incidence systems. Whenever the audit claims
+  complete identity reconstruction, the full reconstructed optimizer set is
+  compared with unreduced enumeration.
+- **Lean declarations:** none. No burden-only or matrix-only Lean lemma is
+  used as a proxy for formalizing the complete preprocessing semantics and
+  reconstruction theorem.
+- **Claim boundary:** This record proves no rule for arbitrary nonidentity
+  closure, no validity under additional identity-sensitive constraints, no
+  approximation guarantee, no runtime or scaling result, and no global
+  optimality from a solver status. Every lifted algorithm or solver library
+  still requires the existing exact original-problem checks for frontier,
+  closure, burden, and mandatory inactive retention.
+- **Empirical relevance:** Not applicable. No licensed or held-out financial
+  information, randomized-study outcome, or mixed-integer result is used.
+
 ### SC-COMP — Complexity of exact safe compression
 
 - **Theorem ID:** SC-COMP

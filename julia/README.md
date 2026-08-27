@@ -119,6 +119,17 @@ The public entry points are `build_safe_compression_milp`,
 `solve_safe_compression_milp`, and `certify_safe_compression`. The deterministic
 scaling probe is documented in `scripts/README.md`.
 
+The identity-closure tagged cover also has an exact, solver-neutral
+preprocessing layer in `src/TaggedCoverPreprocessing.jl`. It fixes and
+propagates mandatory or unique-carrier selections, removes duplicate rows,
+empty columns, duplicate coverage, and valid strict coverage-dominated
+columns, and iterates to a deterministic fixed point. It stores exact rational
+objective offsets, original-index lift maps, per-rule removal counts, and an
+explicit equal-weight duplicate reconstruction map. Equal-weight strict
+dominance is marked as optimum-value preserving but not all-optimizer-identity
+preserving. Every lifted strategy library still requires the original exact
+frontier, closure, burden, and inactive-retention certificate.
+
 ## Approximate library compression
 
 `src/ApproximateCompression.jl` defines the source-relative finite-horizon
@@ -253,8 +264,9 @@ juliaup default 1.12.6
 julia --project=julia -e 'using Pkg; Pkg.instantiate(); Pkg.test()'
 ```
 
-The current suite includes 10,410 focused tagged-cover checks, 215 reusable
-raw-model checks, 63 raw-first rectangle checks, 80 unified comparative-
+The current suite includes 10,410 focused tagged-cover equivalence checks,
+9,433 exact preprocessing checks, 215 reusable raw-model checks, 63 raw-first
+rectangle checks, 80 unified comparative-
 statics checks, 102 randomized-library checks, 119
 approximate-compression checks, exhaustive foundational/compression
 properties, 226 dynamic-program checks, 249 coverage checks, 35
@@ -273,6 +285,7 @@ artifact-drift checks with:
     include("julia/scripts/export_tagged_cover_theorem_fixture.jl")
     using .TaggedCoverTheoremFixture
     include("julia/test/test_tagged_cover.jl")
+    include("julia/test/test_tagged_cover_preprocessing.jl")
 '
 ```
 

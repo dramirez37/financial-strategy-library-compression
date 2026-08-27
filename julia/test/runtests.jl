@@ -36,6 +36,7 @@ include("test_compression.jl")
 include(joinpath(@__DIR__, "..", "scripts", "export_tagged_cover_theorem_fixture.jl"))
 using .TaggedCoverTheoremFixture
 include("test_tagged_cover.jl")
+include("test_tagged_cover_preprocessing.jl")
 
 include(joinpath(@__DIR__, "..", "scripts", "solve_canonical_model.jl"))
 using .CanonicalModelSolver

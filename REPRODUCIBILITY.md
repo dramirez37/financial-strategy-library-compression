@@ -459,6 +459,37 @@ Every experiment must have:
   deletion reaches the optimum, so the lower bound is not an every-order
   statement.
 
+### tagged-cover-preprocessing-audit-v1
+
+- **Implementation:** `julia/src/TaggedCoverPreprocessing.jl`
+- **Environment:** Julia 1.12.6 with the committed Julia test project and
+  manifest
+- **Arithmetic:** `Rational{BigInt}` weights and bit incidence throughout;
+  floating-point weights are rejected
+- **Randomness:** deterministic `MersenneTwister` with seed
+  `0x70_72_65_70_72_6f_63`
+- **Command:** `./.local_runtime/julia-1.12.6/bin/julia --startup-file=no
+  --project=julia/test -e 'using StrategyInnovation, Test;
+  include("julia/test/test_tagged_cover_preprocessing.jl")'`
+- **Output:** no committed experimental result; the API returns an in-memory
+  audit dictionary with schema `tagged-cover-preprocessing-audit-v1`
+- **Expected invariants:** exact original/residual optimum-value agreement;
+  feasible and burden-preserving canonical lifts; full equal-weight duplicate
+  reconstruction; complete optimizer-set agreement whenever the audit claims
+  reconstruction by its declared maps; deterministic residual fixed point;
+  separate per-rule variable and requirement counts; and fail-closed
+  zero-carrier infeasibility
+- **Validation:** 9,433 targeted assertions. Adversarial fixtures exercise all
+  accepted rules and the equal-weight strict-dominance identity boundary. The
+  seeded audit exhausts every original and residual binary selection for 512
+  small exact identity-closure-realizable incidence systems.
+- **Scope warning:** this is bounded exact finite computation supporting the
+  separate human proofs in
+  `journal/aor/reports/PREPROCESSING_THEORY.md`. It is not Lean kernel
+  verification, a solver result, a runtime study, or evidence for arbitrary
+  nonidentity closure. Every lifted library still requires exact original
+  frontier, closure, burden, and inactive-retention checks.
+
 ### joint-descendant-bound-gauntlet-v1
 
 - **Configuration:**

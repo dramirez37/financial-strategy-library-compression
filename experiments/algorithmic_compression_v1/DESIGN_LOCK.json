@@ -1,0 +1,26 @@
+{
+  "schema_version": "registered-algorithmic-compression-benchmark-lock-v1",
+  "experiment_id": "registered-algorithmic-compression-benchmark-v1",
+  "study_title": "Registered Algorithmic Compression Benchmark v1",
+  "locked_at_utc": "2026-08-27T05:43:33Z",
+  "lock_stage": "initial pre-pilot and pre-final-outcome lock",
+  "pilot_outcomes_read_before_lock": false,
+  "final_outcomes_read_before_lock": false,
+  "outcome_files_absent_at_lock": true,
+  "dry_run_trivial_only": true,
+  "dry_run_fixture_count": 3,
+  "pilot_instance_count": 11,
+  "final_instance_count": 173,
+  "registered_seed_value_count": 935,
+  "design_sha256": "c5340efc257be1282aabf54ce971a79dcb66d54fd36e0a0cb2e9bac6e2725166",
+  "files": {
+    "experiments/algorithmic_compression_v1/DESIGN.md": "25d3c20224d4915bc4adbba8ada0abd88b07b01030309b5742535ad1a8ba5729",
+    "experiments/algorithmic_compression_v1/ANALYSIS_PLAN.md": "5d55316345a2b757db222ad80ffbe6175ae0dd256265db2a6e0878e4768a84ff",
+    "experiments/algorithmic_compression_v1/REPORTING_RULES.md": "4d9a47ca53e963e2bb9adfd5c39664b384604fff440633c0eff408f3cc1b73c7",
+    "experiments/algorithmic_compression_v1/registry/SEED_REGISTRY.csv": "be449d39ae69c58e5c3b7b920cb668bfad58b4e60683e47b700c3f71304c05c4",
+    "experiments/algorithmic_compression_v1/registry/INSTANCE_REGISTRY.csv": "555c4409e2727fc12a5905d1945a5d32f08fb22c38330bc3e1df7179d4bc1504",
+    "experiments/configs/algorithmic_compression_v1.toml": "16d5422889c02a1c4ffa7169567ce6ef9b1fe52d3a058b00220ba9705ecbba32",
+    "journal/aor/reports/BENCHMARK_DESIGN_SUMMARY.md": "642db55e9c794e95ea28e792d0182f6935de8462ff8cf51a74485a1b5b3faddf",
+    "julia/scripts/lock_algorithmic_compression_design_v1.jl": "6daba864e868d9c941a60c22875f09c7d3bbae464a0040d244ebf64c56110f95"
+  }
+}

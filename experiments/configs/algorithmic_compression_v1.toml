@@ -1,0 +1,385 @@
+schema_version = "registered-algorithmic-compression-benchmark-v1"
+experiment_id = "registered-algorithmic-compression-benchmark-v1"
+study_title = "Registered Algorithmic Compression Benchmark v1"
+registration_status = "prospective_design_outcomes_not_run"
+registered_date = "2026-08-27"
+julia_version = "1.12.6"
+arithmetic = "Rational{BigInt} for instances, burdens, feasibility, and small exact oracles; Float64 only for solver diagnostics and recorded runtime"
+identity_closure_only = true
+theorem_evidence = false
+population_claims_about_financial_libraries = false
+final_benchmark_run_in_this_task = false
+
+[counts]
+dry_run_instances = 3
+pilot_instances = 11
+final_instances = 173
+final_small_exact = 24
+final_structured = 128
+final_adversarial = 21
+structured_design_cells = 64
+structured_replicates_per_cell = 2
+adversarial_mechanisms = 7
+adversarial_scales_per_mechanism = 3
+
+[seeds]
+derivation = "SplitMix64 with domain-separated UInt64 salts and nonnegative Int64 masking"
+dry_run_master_seed = 202608270001
+pilot_master_seed = 202608270101
+final_master_seed = 202608271001
+unrecorded_random_streams_permitted = false
+pilot_final_seed_overlap_permitted = false
+generator_attempt_rule = "attempt j uses SplitMix64(generator_seed xor attempt_salt xor UInt64(j)); first structurally valid attempt wins"
+maximum_generator_attempts = 128
+random_multistart_count = 32
+random_multistart_derivation = "start j uses SplitMix64(multistart_seed xor start_salt xor UInt64(j))"
+
+[registries]
+instance_path = "experiments/algorithmic_compression_v1/registry/INSTANCE_REGISTRY.csv"
+seed_path = "experiments/algorithmic_compression_v1/registry/SEED_REGISTRY.csv"
+instance_order = "phase dry_run then pilot then final; within final A then B then C; stable lexicographic IDs"
+seed_order = "same instance order as INSTANCE_REGISTRY.csv"
+
+instance_columns = [
+  "instance_id",
+  "phase",
+  "analysis_included",
+  "family",
+  "generator_id",
+  "replicate_id",
+  "strategy_count",
+  "tagged_requirement_count",
+  "frontier_row_count",
+  "module_row_count",
+  "coverage_density_level",
+  "module_overlap_level",
+  "bundle_prevalence_level",
+  "unique_carrier_frequency_level",
+  "weight_dispersion_level",
+  "frontier_module_correlation_level",
+  "mechanism",
+  "mechanism_parameter",
+  "seed_id",
+  "exact_enumeration_required",
+  "exact_dp_required",
+  "mip_required",
+]
+
+seed_columns = [
+  "seed_id",
+  "instance_id",
+  "phase",
+  "replicate_id",
+  "execution_order_key",
+  "generator_seed",
+  "random_order_seed",
+  "multistart_seed",
+  "mip_seed",
+  "randomness_scope",
+]
+
+[family_a]
+name = "small_exact"
+strategy_counts_including_inactive = [7, 11, 15]
+tagged_requirement_counts = [6, 10]
+replicates_per_size_cell = 4
+frontier_rows_by_requirement_count = [2, 4]
+enumeration_optional_strategy_limit = 14
+dp_requirement_limit = 10
+all_exact_methods_required = true
+exact_heuristic_gap_required = true
+complete_exact_ties_retained = true
+instance_tie_handling = "declared_representative"
+exact_method_tie_override = "retain_all_ties with maximum_ties=100000"
+
+[family_b]
+name = "structured"
+strategy_counts_including_inactive = [64, 192]
+tagged_requirement_counts = [32, 64]
+structure_cells = 16
+replicates_per_cell = 2
+array_construction = "full 2^4 base array; seven declared factors are distinct nonzero GF(2) contrasts, giving balance and pairwise orthogonality"
+frontier_share_levels = ["one_quarter", "one_half"]
+coverage_density_levels = ["one_eighth", "three_eighths"]
+module_overlap_levels = ["low_clustered", "high_clustered"]
+bundle_prevalence_levels = ["zero", "one_eighth"]
+unique_carrier_frequency_levels = ["zero", "one_eighth"]
+weight_dispersion_levels = ["low_1_to_3", "high_powers_of_two"]
+frontier_module_correlation_levels = ["independent", "positive_aligned"]
+base_contrast_masks = [1, 2, 4, 8, 3, 5, 9]
+interaction_estimation_registered = false
+
+[family_b.generator]
+generator_id = "structured-tagged-incidence-v1"
+inactive_profile = "zero at every belief"
+inactive_modules = "empty"
+inactive_weight = "0//1"
+active_weights_positive = true
+frontier_profile_rule = "profile is one on registered frontier-carrier rows and zero otherwise; source frontier is one"
+module_rule = "raw strategy modules equal registered module-row incidence; closure is identity"
+coverage_density_targets = ["1//8", "3//8"]
+coverage_density_tolerance = "1//64"
+unique_carrier_targets = ["0//1", "1//8"]
+bundle_active_fraction_targets = ["0//1", "1//8"]
+low_weight_support = [1, 2, 3]
+high_weight_support = [1, 2, 4, 8, 16]
+structural_gate_only_resampling = true
+outcome_based_resampling = false
+
+[family_c]
+name = "adversarial"
+mechanisms = [
+  "unbounded_heaviest_safe_first_gap",
+  "many_tied_optima",
+  "dense_duplicate_coverage",
+  "dominance_heavy",
+  "rare_mandatory_requirements",
+  "symmetric_hard",
+  "bundle_versus_singleton",
+]
+scale_labels = ["small", "medium", "large"]
+replicates_per_mechanism_scale = 1
+randomness = "registered seed permutes labels and source order only; mathematical incidence and weights are deterministic"
+symmetric_hard_claim = "symmetry-stress construction only; no claim that every solver run is hard"
+
+[algorithms]
+exact_enumeration = "complete_enumeration"
+exact_dp = "requirement_mask_dp"
+mip = "jump_highs_tagged_cover"
+weighted_greedy = "weighted_greedy"
+cardinality_greedy = "cardinality_greedy"
+weighted_greedy_reverse_delete = "weighted_greedy_reverse_delete"
+heaviest_safe_first = "heaviest_safe_first"
+lightest_safe_first = "lightest_safe_first"
+maximum_immediate_burden_release = "maximum_immediate_burden_release"
+minimum_unique_carrier_exposure = "minimum_unique_carrier_exposure"
+declared_source_order = "declared_source_order"
+random_order = "random_order_rechecked_deletion"
+multistart_random = "multistart_random_rechecked_deletion_32"
+
+[preprocessing]
+primary_exact_enumeration = "mandatory_only"
+primary_exact_dp = "mandatory_only"
+primary_mip = "full_fixed_point"
+primary_greedy_and_deletion = "mandatory_only"
+paired_mip_variants = ["mandatory_only", "full_fixed_point"]
+paired_dp_variants_family_a = ["mandatory_only", "full_fixed_point"]
+secondary_heuristic_variant = "full_fixed_point_then_reconstruct"
+rules = [
+  "mandatory_requirement_carrier",
+  "forced_selection_propagation",
+  "coverage_dominance",
+  "duplicate_coverage",
+  "empty_contribution",
+  "duplicate_requirement_rows",
+]
+fixed_point_required = true
+exact_audit_trail_required = true
+
+[limits]
+family_b_large_rule = "large if strategy_count=192 or tagged_requirement_count=64; otherwise medium"
+family_c_size_rule = "use registered adversarial scale label"
+
+[limits.small]
+enumeration_seconds = 300
+dp_seconds = 300
+mip_seconds = 300
+deterministic_heuristic_seconds = 60
+randomized_heuristic_seconds = 120
+memory_gib_per_process = 16
+
+[limits.medium]
+mip_seconds = 900
+deterministic_heuristic_seconds = 300
+randomized_heuristic_seconds = 600
+memory_gib_per_process = 16
+
+[limits.large]
+mip_seconds = 1800
+deterministic_heuristic_seconds = 600
+randomized_heuristic_seconds = 900
+memory_gib_per_process = 16
+
+[limits.adversarial_exact]
+enumeration_seconds = 300
+dp_seconds = 300
+maximum_ties = 100000
+memory_gib_per_process = 16
+
+[solver.highs]
+threads = 1
+parallel = "off"
+presolve = "on"
+relative_mip_gap_tolerance = 0.0
+absolute_mip_gap_tolerance = 0.0
+seed_source = "SEED_REGISTRY.csv mip_seed"
+time_limit_source = "registered size-family limit"
+log_to_console = false
+complete_log_captured = true
+fractional_binary_rounding_permitted = false
+solver_optimal_status_is_formal_proof = false
+
+[execution]
+process_concurrency_for_timing = 1
+julia_threads = 1
+blas_threads = 1
+warmup_instances_excluded = true
+garbage_collection_before_timed_run = true
+instance_order = "ascending registered execution_order_key within phase"
+algorithm_order = "deterministic Latin rotation by instance registry index; order stored in run output"
+rerun_after_timeout_permitted = false
+rerun_after_failure_permitted = false
+peak_memory_measure = "operating-system maximum resident set size when available; otherwise UNAVAILABLE"
+runtime_clock = "monotonic wall clock"
+
+[hardware]
+required_fields = [
+  "machine_id",
+  "cpu_model",
+  "physical_core_count",
+  "logical_core_count",
+  "installed_memory_bytes",
+  "operating_system",
+  "kernel_version",
+  "architecture",
+  "julia_version",
+  "git_commit",
+  "project_toml_sha256",
+  "manifest_toml_sha256",
+  "highs_version",
+  "highs_julia_version",
+  "jump_version",
+  "julia_threads",
+  "blas_threads",
+  "started_at_utc",
+]
+hardware_change_midrun = "stop the batch; do not pool silently; record a protocol deviation and restart the affected batch only under amendment"
+
+[outcomes]
+exact_burden = true
+relative_burden_gap = true
+optimum_attained = true
+solved = true
+wall_clock_seconds = true
+peak_memory_bytes = true
+mip_node_count = true
+mip_best_bound = true
+mip_reported_gap = true
+dp_state_count = true
+dp_transition_count = true
+preprocessing_variable_reduction = true
+preprocessing_requirement_reduction = true
+frontier_evaluation_count = true
+closure_evaluation_count = true
+complete_trace = true
+exact_feasibility_certificate = true
+certificate_sha256 = true
+
+[analysis]
+primary_estimands = [
+  "relative_burden_gap",
+  "optimum_attainment_frequency",
+  "solved_fraction",
+  "wall_clock_time",
+  "mip_node_count",
+  "dp_state_count",
+  "preprocessing_reduction",
+  "frontier_closure_evaluation_count",
+]
+family_a_is_exact_reference = true
+family_b_reference = "exactly feasible incumbent with HiGHS-reported OPTIMAL status; label as MIP-reference evidence, not exhaustive or formal proof"
+family_b_population_inference = false
+family_c_population_inference = false
+financial_population_inference = false
+confidence_level = 0.95
+multiple_testing_adjustment = "Holm within each declared secondary model family; primary finite-design summaries are not filtered by significance"
+
+[failure]
+timeout_status = "TIME_LIMIT"
+memory_status = "MEMORY_LIMIT"
+generator_failure_status = "GENERATION_FAILED"
+solver_error_status = "SOLVER_ERROR"
+certificate_failure_status = "EXACT_RECHECK_FAILED"
+disagreement_status = "EXACT_METHOD_DISAGREEMENT"
+timeout_runtime_recording = "registered time limit"
+failed_instances_replaced = false
+disagreements_retained = true
+minimized_failure_fixture_required = true
+
+[exclusions]
+permitted = [
+  "registry row cannot be generated within 128 structural attempts",
+  "instance fails schema validation before any algorithm result is inspected",
+  "hardware record is incomplete before timed execution begins",
+]
+forbidden = [
+  "slow runtime",
+  "timeout",
+  "unexpected burden gap",
+  "solver disagreement",
+  "unfavorable heuristic ranking",
+  "large node count",
+]
+excluded_rows_remain_in_denominators = true
+
+[peeking]
+pilot_outcomes_may_be_used_for_code_debugging = true
+pilot_outcomes_may_change_primary_estimands = false
+pilot_outcomes_pooled_with_final = false
+final_outcomes_read_before_lock = false
+final_seeds_used_during_pilot = false
+interim_final_analysis_permitted = false
+outcome_dependent_stopping_permitted = false
+final_registry_replacement_permitted = false
+
+[outputs]
+pilot_runs = "experiments/algorithmic_compression_v1/pilot/pilot_runs.csv"
+pilot_failures = "experiments/algorithmic_compression_v1/pilot/pilot_failures.csv"
+final_instances = "experiments/algorithmic_compression_v1/results/final_instances.toml"
+final_runs = "experiments/algorithmic_compression_v1/results/final_algorithm_runs.csv"
+final_preprocessing = "experiments/algorithmic_compression_v1/results/final_preprocessing.csv"
+final_exactness_audits = "experiments/algorithmic_compression_v1/results/exactness_audits"
+final_failure_fixtures = "experiments/algorithmic_compression_v1/results/failure_fixtures"
+final_solver_logs = "experiments/algorithmic_compression_v1/results/solver_logs"
+final_summary = "experiments/algorithmic_compression_v1/results/summary.toml"
+final_report = "experiments/algorithmic_compression_v1/results/REPORT.md"
+
+[design_lock]
+path = "experiments/algorithmic_compression_v1/DESIGN_LOCK.json"
+schema_version = "registered-algorithmic-compression-benchmark-lock-v1"
+lock_stage = "initial pre-pilot and pre-final-outcome lock"
+pilot_outcomes_read_before_lock = false
+final_outcomes_read_before_lock = false
+dry_run_scope = "three trivial schema-and-solver fixtures only"
+required_files = [
+  "experiments/algorithmic_compression_v1/DESIGN.md",
+  "experiments/algorithmic_compression_v1/ANALYSIS_PLAN.md",
+  "experiments/algorithmic_compression_v1/REPORTING_RULES.md",
+  "experiments/algorithmic_compression_v1/registry/SEED_REGISTRY.csv",
+  "experiments/algorithmic_compression_v1/registry/INSTANCE_REGISTRY.csv",
+  "experiments/configs/algorithmic_compression_v1.toml",
+  "journal/aor/reports/BENCHMARK_DESIGN_SUMMARY.md",
+  "julia/scripts/lock_algorithmic_compression_design_v1.jl",
+]
+required_absent_outputs = [
+  "experiments/algorithmic_compression_v1/pilot/pilot_runs.csv",
+  "experiments/algorithmic_compression_v1/pilot/pilot_failures.csv",
+  "experiments/algorithmic_compression_v1/results/final_instances.toml",
+  "experiments/algorithmic_compression_v1/results/final_algorithm_runs.csv",
+  "experiments/algorithmic_compression_v1/results/final_preprocessing.csv",
+  "experiments/algorithmic_compression_v1/results/exactness_audits",
+  "experiments/algorithmic_compression_v1/results/failure_fixtures",
+  "experiments/algorithmic_compression_v1/results/solver_logs",
+  "experiments/algorithmic_compression_v1/results/summary.toml",
+  "experiments/algorithmic_compression_v1/results/REPORT.md",
+]
+
+[amendments]
+directory = "experiments/algorithmic_compression_v1/amendments"
+filename_rule = "AMENDMENT_NNN.md plus DESIGN_LOCK_AMENDMENT_NNN.json"
+prospective_only = true
+must_list_reason = true
+must_list_changed_files = true
+must_list_outcomes_seen = true
+must_preserve_prior_lock = true
+silent_edits_forbidden = true

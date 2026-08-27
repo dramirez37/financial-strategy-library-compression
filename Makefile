@@ -10,7 +10,9 @@ export ALGOLIB_CRSP_ROOT
 	aor-benchmark-v2-analysis \
 	aor-financial-algorithm-tests aor-financial-algorithm-lock \
 	aor-financial-algorithms aor-financial-algorithm-audit \
-	aor-financial-algorithm-promote
+	aor-financial-algorithm-promote aor-financial-weight-robustness-tests \
+	aor-financial-weight-robustness-lock aor-financial-weight-robustness \
+	aor-financial-weight-robustness-audit aor-financial-weight-robustness-promote
 
 help:
 	@printf '%s\n' \
@@ -35,6 +37,9 @@ help:
 		'make aor-financial-algorithms Run the locked local licensed comparison' \
 		'make aor-financial-algorithm-audit Audit saved local comparison results without solving' \
 		'make aor-financial-algorithm-promote Promote only audited public-safe aggregates' \
+		'make aor-financial-weight-robustness Run the locked three-schedule robustness study' \
+		'make aor-financial-weight-robustness-audit Audit saved robustness results without solving' \
+		'make aor-financial-weight-robustness-promote Promote audited robustness aggregates' \
 		'make financial-licensed Run both licensed-data audits and the cross-audit optimization' \
 		'make verify             Run the complete release gate'
 
@@ -116,6 +121,21 @@ aor-financial-algorithm-audit: aor-financial-algorithm-lock
 
 aor-financial-algorithm-promote: aor-financial-algorithm-lock
 	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/run_financial_algorithm_comparison_v1.jl --promote-public
+
+aor-financial-weight-robustness-tests:
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/test/run_financial_weight_robustness_tests.jl
+
+aor-financial-weight-robustness-lock:
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/lock_financial_weight_robustness_v1.jl --check
+
+aor-financial-weight-robustness: aor-financial-weight-robustness-lock
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/run_financial_weight_robustness_v1.jl --licensed
+
+aor-financial-weight-robustness-audit: aor-financial-weight-robustness-lock
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/run_financial_weight_robustness_v1.jl --audit-only
+
+aor-financial-weight-robustness-promote: aor-financial-weight-robustness-lock
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/run_financial_weight_robustness_v1.jl --promote-public
 
 financial-licensed:
 	@./scripts/run_financial_licensed.sh

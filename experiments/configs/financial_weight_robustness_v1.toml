@@ -1,0 +1,67 @@
+schema_version = "financial-weight-robustness-design-v1"
+experiment_id = "financial-retention-weight-robustness-v1"
+protocol_date = "2026-08-27"
+evidence_class = "prospectively specified robustness replay of retrospective financial audits"
+prior_schedule_outcomes_exist = true
+prior_schedule_outcomes_acknowledged = true
+robustness_specific_outputs_observed_before_lock = false
+identity_closure_required = true
+exact_arithmetic = "Rational{BigInt}"
+financial_algorithm_config = "experiments/configs/financial_algorithm_comparison_v1.toml"
+financial_resource_config = "experiments/configs/financial_resource_optimization.toml"
+local_results_root = "experiments/financial_resource_optimization/weight_robustness_local_results"
+public_summary_path = "experiments/results/summaries/financial_weight_robustness_summary.csv"
+public_selections_path = "experiments/results/summaries/financial_weight_robustness_selections.csv"
+public_overlap_path = "experiments/results/summaries/financial_weight_robustness_identity_overlap.csv"
+public_rank_path = "experiments/results/summaries/financial_weight_robustness_rank_stability.csv"
+public_certificate_path = "experiments/results/summaries/financial_weight_robustness_empty_residual_certificates.csv"
+public_status_path = "experiments/results/summaries/financial_weight_robustness_status.toml"
+public_report_path = "experiments/financial_resource_optimization/WEIGHT_ROBUSTNESS_RESULTS.md"
+
+[[schedules]]
+schedule_id = "equal_active_strategy"
+source_schedule_id = "uniform_cardinality"
+formula = "w_s = 1"
+expected_min = 1
+expected_max = 1
+
+[[schedules]]
+schedule_id = "validation_computation"
+source_schedule_id = "validation_computation"
+formula = "w_s = 1 + signal_lookback/5 + 20*I(entry_filter=trend_100) + 4*I(risk_constraint=vol_target_10) + I(exit_rule=signal_flip)"
+expected_min = 2
+expected_max = 38
+
+[[schedules]]
+schedule_id = "governance_complexity"
+source_schedule_id = "documented_complexity"
+formula = "w_s = 1 + I(signal!=momentum_20) + I(filter!=always) + I(horizon!=5) + I(sizing!=unit) + I(exit!=horizon) + I(risk!=notional_cap_1)"
+expected_min = 1
+expected_max = 7
+
+[analysis]
+algorithm_rank_rule = "competition rank by exact burden among exactly feasible returned endpoints; ties receive the same rank"
+identity_overlap = "active-strategy Jaccard intersection over union for the same algorithm across schedule pairs"
+compression_ratio = "selected active strategy count divided by source active strategy count"
+burden_savings_ratio = "source exact burden minus selected exact burden, divided by source exact burden"
+global_stepwise_gap = "historical stepwise burden minus the exact empty-residual preprocessing optimum when certified"
+unique_carrier_stability = "every distinct active strategy that is the sole source carrier of at least one tagged requirement must be retained"
+terminal_annual_units_pooled = false
+heldout_reported_postdecision_only = true
+
+[information_boundary]
+heldout_may_define_schedule = false
+heldout_may_define_weight = false
+heldout_may_define_algorithm = false
+heldout_may_define_preprocessing = false
+heldout_may_define_tie_rule = false
+heldout_may_define_rank = false
+heldout_may_define_report_exclusion = false
+raw_licensed_rows_written = false
+raw_licensed_rows_committed = false
+
+[publication]
+selected_strategy_identifiers_are_aggregate = true
+raw_or_row_level_licensed_data_permitted = false
+public_promotion_requires_exact_audit = true
+public_promotion_is_automatic = false

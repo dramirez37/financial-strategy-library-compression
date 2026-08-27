@@ -158,7 +158,8 @@ CRSP/WRDS access:
 - public aggregate CSV and JSON outputs with prefixes
   `financial_terminal_audit_*`, `financial_annual_walkforward_audit_*`, and
   `financial_resource_optimization_*`, together with the independently audited
-  aggregate-only `financial_algorithm_comparison_v1*` outputs, under
+  aggregate-only `financial_algorithm_comparison_v1*` and
+  `financial_weight_robustness_*` outputs, under
   `experiments/results/summaries/`;
 - the financial figures and generated table sources under
   `manuscript/figures/` and `manuscript/tables/`;

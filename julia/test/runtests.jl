@@ -43,6 +43,7 @@ using .JournalCompressionExactCLI
 include("test_exact_journal_compression.jl")
 include("test_greedy_journal_compression.jl")
 include("test_certified_deletion_journal_compression.jl")
+include("test_journal_compression_mip.jl")
 
 include(joinpath(@__DIR__, "..", "scripts", "solve_canonical_model.jl"))
 using .CanonicalModelSolver

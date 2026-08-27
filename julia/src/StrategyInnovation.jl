@@ -252,6 +252,7 @@ export ArithmeticMode,
        JOURNAL_EXACT_SOLUTION_SCHEMA_VERSION,
        JOURNAL_GREEDY_SOLUTION_SCHEMA_VERSION,
        JOURNAL_DELETION_SOLUTION_SCHEMA_VERSION,
+       JOURNAL_MIP_SOLUTION_SCHEMA_VERSION,
        JournalCertifiedDeletionStep,
        JournalCompressionInstance,
        JournalCompressionProvenance,
@@ -268,6 +269,12 @@ export ArithmeticMode,
        JournalGreedyGuarantee,
        JournalGreedySolutionResult,
        JournalGreedyStep,
+       JournalMIPControls,
+       JournalMIPCrossCheck,
+       JournalMIPPreprocessingSummary,
+       JournalMIPRuntime,
+       JournalMIPSolutionResult,
+       JournalMIPSolverDiagnostics,
        JournalPreprocessingMap,
        JournalReverseDeletionStep,
        JournalTieHandling,
@@ -284,12 +291,14 @@ export ArithmeticMode,
        journal_compression_instance_from_mask_problem,
        journal_compression_instance_sha256,
        journal_exact_solution_certificate,
+       journal_mip_solution_certificate,
        journal_reduced_cover_model,
        lift_journal_compression_solution,
        read_journal_compression_instance,
        preprocess_mandatory_journal_instance,
        reconstruct_journal_compression_solutions,
        serialize_journal_exact_solution,
+       serialize_journal_mip_solution,
        serialize_journal_compression_instance,
        solve_journal_compression_dp,
        solve_journal_compression_declared_order,
@@ -303,10 +312,12 @@ export ArithmeticMode,
        solve_journal_compression_maximum_immediate_burden_release,
        solve_journal_compression_minimum_unique_carrier_exposure,
        solve_journal_compression_multistart_random,
+       solve_journal_compression_mip,
        solve_journal_compression_random_order,
        validate_journal_compression_instance,
        write_journal_compression_instance,
-       write_journal_exact_solution_certificate
+       write_journal_exact_solution_certificate,
+       write_journal_mip_solution_certificate
 
 include("Types.jl")
 include("Beliefs.jl")
@@ -330,5 +341,6 @@ include("JournalCompressionInstance.jl")
 include("ExactJournalCompression.jl")
 include("GreedyJournalCompression.jl")
 include("CertifiedDeletionJournalCompression.jl")
+include("JournalCompressionMIP.jl")
 
 end

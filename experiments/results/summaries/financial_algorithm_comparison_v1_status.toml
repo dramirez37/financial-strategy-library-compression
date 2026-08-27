@@ -1,0 +1,48 @@
+algorithm_ids = ["current_stepwise_safe_deletion", "heaviest_safe_first", "weighted_greedy", "weighted_greedy_reverse_delete", "multistart_random_deletion", "preprocessed_highs_mip", "requirement_mask_dp", "optional_second_solver_crosscheck"]
+annual_parent_replay_limitation = "known analytical-lock versus taxonomy-lock certificate identity drift; see AMENDMENT_002.md"
+annual_parent_replay_passed = false
+audit_ids = ["locked_terminal_v1", "annual_walk_forward_v2"]
+design_lock_aggregate_sha256 = "136322032ebf47bab0b41129def0e3fb92c719ed1a214a1f363cf650650580e4"
+execution_dirty_worktree = true
+execution_git_commit = "0f0c99cdcaf9de4491923f7d3502ce4fcb83cf24"
+experiment_id = "retrospective-financial-algorithm-comparison-v1"
+heldout_units_pooled = false
+julia_version = "1.12.6"
+licensed_rows_included = false
+local_audit_sha256 = "bd89a6d9c488cf70be0225395fe2205ea4dc398f97e445364bdc5025fe15be21"
+local_exact_audit_passed = true
+local_manifest_sha256 = "127d8671e0b56540cc7357ddd15263959633b439c7ebf9205a3667624fa2120b"
+local_source_import_certificate_sha256 = "ccfaaf9e320f2dd91463cdde3a251c78ba4b98fd4bbf6668920f53abf670ccfd"
+manifest_sha256 = "4f75e819e1e3fa28cc39e0600937d0d28345e74ee3e0f9a092aa71dfd1a6f666"
+public_report_path = "journal/aor/reports/FINANCIAL_ALGORITHM_RESULTS.md"
+public_report_sha256 = "02620ee2d3a7e33b87124acbd83608414b8d4d4d0fa6f06ae6831aa27a475a57"
+public_summary_path = "experiments/results/summaries/financial_algorithm_comparison_v1.csv"
+public_summary_sha256 = "97edde869be03b07b0f97c33ee8b8909e11d07b431edbeb5f841d33b067e2011"
+raw_or_row_level_data_included = false
+row_count = 64
+schedule_ids = ["uniform_cardinality", "nonshared_modules", "validation_computation", "documented_complexity"]
+schema_version = "financial-algorithm-comparison-public-status-v1"
+selected_strategy_identifiers_included = false
+solver_status_used_as_exact_proof = false
+
+[source_import_certificates.annual_walk_forward_v2]
+annual_parent_replay_claimed = false
+committed_membership_reused = true
+exact_closure_matches_committed = true
+exact_frontier_matches_committed = true
+historical_stepwise_strategy_count = 100
+licensed_validation_profiles_recomputed = true
+registered_weights_match_committed = true
+source_strategy_count = 202
+stepwise_endpoint_schedule_invariant = true
+
+[source_import_certificates.locked_terminal_v1]
+annual_parent_replay_claimed = false
+committed_membership_reused = true
+exact_closure_matches_committed = true
+exact_frontier_matches_committed = true
+historical_stepwise_strategy_count = 25
+licensed_validation_profiles_recomputed = true
+registered_weights_match_committed = true
+source_strategy_count = 80
+stepwise_endpoint_schedule_invariant = true

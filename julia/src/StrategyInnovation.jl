@@ -249,8 +249,13 @@ export ArithmeticMode,
        raw_passive_finite_horizon_value,
        satisfies_approximate_compression_ip_formulation,
        JOURNAL_COMPRESSION_INSTANCE_SCHEMA_VERSION,
+       JOURNAL_EXACT_SOLUTION_SCHEMA_VERSION,
        JournalCompressionInstance,
        JournalCompressionProvenance,
+       JournalExactPreprocessingSummary,
+       JournalExactRuntime,
+       JournalExactSolutionResult,
+       JournalExactSolveCounters,
        JournalPreprocessingMap,
        JournalTieHandling,
        check_journal_compression_solution,
@@ -264,13 +269,19 @@ export ArithmeticMode,
        journal_compression_instance_from_financial,
        journal_compression_instance_from_mask_problem,
        journal_compression_instance_sha256,
+       journal_exact_solution_certificate,
        journal_reduced_cover_model,
        lift_journal_compression_solution,
        read_journal_compression_instance,
+       preprocess_mandatory_journal_instance,
        reconstruct_journal_compression_solutions,
+       serialize_journal_exact_solution,
        serialize_journal_compression_instance,
+       solve_journal_compression_dp,
+       solve_journal_compression_enumeration,
        validate_journal_compression_instance,
-       write_journal_compression_instance
+       write_journal_compression_instance,
+       write_journal_exact_solution_certificate
 
 include("Types.jl")
 include("Beliefs.jl")
@@ -291,5 +302,6 @@ include("Coverage.jl")
 include("Simulation.jl")
 include("IO.jl")
 include("JournalCompressionInstance.jl")
+include("ExactJournalCompression.jl")
 
 end

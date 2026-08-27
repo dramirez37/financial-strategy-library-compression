@@ -241,6 +241,50 @@ These checks certify a returned library's exact feasibility and burden. They
 do not prove algorithmic optimality, reproduce a solver search, or establish
 that two implementations are independent.
 
+## Exact algorithm result schema
+
+The independent exact enumeration and requirement-mask dynamic-programming
+methods use the separate result schema
+`journal-compression-exact-solution-v1`, implemented in
+`julia/src/ExactJournalCompression.jl`. This does not change the version-1
+instance schema or any frozen experiment result schema.
+
+`JournalExactSolutionResult` records:
+
+- algorithm identity and `:exact_optimum` completion status;
+- the canonical instance SHA-256;
+- exact `Rational{BigInt}` optimum burden;
+- one deterministic original-order selection and, when requested, every
+  retained exact tie;
+- a mandatory-preprocessing dimension and objective-offset summary;
+- algorithm-independent counters for reachable state-layer pairs,
+  transitions, enumerated candidate selections, and final reachable states;
+- separate wall-clock nanoseconds for preprocessing, search, and
+  reconstruction/certification; and
+- one independent original-library certificate per returned selection.
+
+The certificate payload repeats mandatory retention, tagged coverage, exact
+source-frontier equality, exact source-closure equality, and exact burden
+reconciliation separately. Its `evidence_class` is `exact finite
+computation`, and `solver_status_used=false`; neither the status label nor the
+certificate is a Lean or mixed-integer-solver claim. Runtime fields are
+single-run measurements and are not scaling evidence.
+
+`serialize_journal_exact_solution` emits sorted TOML. Exact rationals and
+arbitrary-size counters use canonical strings. The command
+
+```text
+./.local_runtime/julia-1.12.6/bin/julia --project=julia \
+  julia/scripts/solve_journal_compression_instance.jl INSTANCE.toml \
+  --algorithm dp --output CERTIFICATE.toml
+```
+
+reads a validated serialized instance and emits that machine-readable
+certificate. `--algorithm enumeration` selects the independent small-library
+oracle. `--all-ties` requests complete tie storage; both methods fail closed
+if the caller's `--maximum-ties` cap is exceeded or if a supplied preprocessing
+map declares optimizer identities unreconstructable.
+
 ## Serialization and deterministic hash
 
 `serialize_journal_compression_instance` emits sorted TOML using the pinned

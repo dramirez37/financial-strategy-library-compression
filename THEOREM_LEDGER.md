@@ -639,6 +639,75 @@ counterexamples later in this ledger.
   approximation ratios, solver evidence, and runtime/scaling claims.
 - **Empirical relevance:** Not applicable.
 
+### SC-DP — Exact enumeration and requirement-mask dynamic programming
+
+- **Theorem ID:** SC-DP
+- **Journal manuscript labels:**
+  `prop:aor-complete-enumeration` and `thm:aor-requirement-mask-dp` in
+  `journal/aor/manuscript/07_exact_requirement_mask_algorithms.tex`, included
+  by `journal/aor/sections/05_innovation_safe_compression.tex`
+- **Evidence status:** HUMAN PROOF, supported by exact finite Julia
+  cross-checks; no Lean verification claim
+- **Informal statement:** After fixing mandatory strategies and removing the
+  requirements they satisfy, complete residual-subset enumeration returns an
+  exact minimum-burden safe source library. A second, independent recurrence
+  stores the least exact residual burden for each tagged-requirement mask and
+  reconstructs at least one optimizer. In representative mode the DP uses
+  $O(n2^r)$ recurrence operations, $O(2^r)$ exact cost states, and
+  $O(n2^r)$ reconstruction-aware predecessor records. It is fixed-parameter
+  tractable in the number $r$ of residual tagged requirements and is not
+  claimed polynomial in unrestricted input size. Complete-tie storage is
+  output-sensitive.
+- **Exact assumptions:**
+  1. the validated `journal-compression-instance-v1` semantics and canonical
+     ordering;
+  2. finite identity closure and the SC-TAG equivalence;
+  3. exact `Rational{BigInt}` weights, nonnegative mandatory weights, and
+     strictly positive optional weights;
+  4. every residual requirement has a carrier;
+  5. mandatory selections contribute a selection-independent exact offset;
+     and
+  6. a supplied stronger preprocessing map is valid and, for a complete-tie
+     claim, declares every optimizer identity reconstructable.
+- **Proof outline:** For enumeration, every admissible source library is a
+  forced set plus one enumerated residual subset. For the DP, $D_i(q)$ is
+  the minimum burden of a subset of the first $i$ residual strategies whose
+  coverage union is exactly mask $q$. The base layer contains only mask zero.
+  The skip/take recurrence exhausts the cases excluding or including strategy
+  $i$, proving the invariant by induction. The all-ones terminal mask is
+  precisely tagged-cover feasibility. The fixed mandatory offset and SC-TAG
+  then give source-safe optimality.
+- **Julia implementation:** `julia/src/ExactJournalCompression.jl` provides
+  mandatory-only preprocessing, independent enumeration and DP searches,
+  deterministic representative/all-tie handling, original-library
+  reconstruction, exact semantic certificates, counters, scoped runtimes, and
+  solution schema `journal-compression-exact-solution-v1`.
+  `julia/scripts/solve_journal_compression_instance.jl` reads a serialized
+  common instance and emits a sorted TOML certificate.
+- **Julia validation:**
+  `julia/test/test_exact_journal_compression.jl` passes 2,736 targeted exact
+  assertions. It cross-checks both optimum burden and the complete optimizer
+  set on every one of 441 exhaustively generated small incidence systems and
+  separately checks zero residual requirements, all-mandatory inputs, tied
+  optima, dominated columns, duplicate masks and reconstruction, arbitrary
+  precision weights, fail-closed malformed inputs, lossy preprocessing
+  boundaries, counters, certificate serialization, and the CLI path.
+- **Lean declarations:** none. No finite fixture or executable evaluation is
+  described as Lean kernel verification.
+- **Complexity boundary:** The displayed $O(n2^r)$ count is for the DP
+  recurrence in representative mode. Exact arithmetic contributes polynomial
+  bit-operation factors. Complete-tie output can be exponential in the number
+  of strategies, and its implementation stops with an error if a caller's
+  explicit storage cap is exceeded. No polynomial-time full-input claim,
+  scaling result, approximation result, or solver-status inference is made.
+- **Certificate boundary:** Every returned selection is independently checked
+  for mandatory retention, tagged coverage, exact source frontier, exact
+  source identity closure, and exact burden. This is exact finite computation,
+  not exhaustive proof beyond the supplied finite instance and not formal
+  verification of the implementation.
+- **Empirical relevance:** None. No frozen randomized result, financial row,
+  held-out information, or licensed workflow is read or changed.
+
 ### PEN — Exact penalized affine-envelope theorem
 
 - **Theorem ID:** PEN

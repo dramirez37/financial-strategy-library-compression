@@ -38,6 +38,9 @@ using .TaggedCoverTheoremFixture
 include("test_tagged_cover.jl")
 include("test_tagged_cover_preprocessing.jl")
 include("test_journal_compression_instance.jl")
+include(joinpath(@__DIR__, "..", "scripts", "solve_journal_compression_instance.jl"))
+using .JournalCompressionExactCLI
+include("test_exact_journal_compression.jl")
 
 include(joinpath(@__DIR__, "..", "scripts", "solve_canonical_model.jl"))
 using .CanonicalModelSolver

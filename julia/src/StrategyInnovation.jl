@@ -2,6 +2,8 @@ module StrategyInnovation
 
 using StableRNGs: StableRNG
 using Random: rand, randperm, shuffle!
+using SHA: sha256
+using TOML
 
 export ArithmeticMode,
        BinaryCompressionFormulation,
@@ -245,7 +247,30 @@ export ArithmeticMode,
        pareto_beam_compression,
        pareto_compression_records,
        raw_passive_finite_horizon_value,
-       satisfies_approximate_compression_ip_formulation
+       satisfies_approximate_compression_ip_formulation,
+       JOURNAL_COMPRESSION_INSTANCE_SCHEMA_VERSION,
+       JournalCompressionInstance,
+       JournalCompressionProvenance,
+       JournalPreprocessingMap,
+       JournalTieHandling,
+       check_journal_compression_solution,
+       default_journal_tie_handling,
+       deserialize_journal_compression_instance,
+       identity_journal_preprocessing_map,
+       journal_compression_burden,
+       journal_compression_feasible,
+       journal_compression_instance,
+       journal_compression_instance_from_components,
+       journal_compression_instance_from_financial,
+       journal_compression_instance_from_mask_problem,
+       journal_compression_instance_sha256,
+       journal_reduced_cover_model,
+       lift_journal_compression_solution,
+       read_journal_compression_instance,
+       reconstruct_journal_compression_solutions,
+       serialize_journal_compression_instance,
+       validate_journal_compression_instance,
+       write_journal_compression_instance
 
 include("Types.jl")
 include("Beliefs.jl")
@@ -265,5 +290,6 @@ include("InnovationValue.jl")
 include("Coverage.jl")
 include("Simulation.jl")
 include("IO.jl")
+include("JournalCompressionInstance.jl")
 
 end

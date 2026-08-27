@@ -354,6 +354,14 @@ status, an approximation guarantee, or a runtime result.
 | `SCP-TEST-v1` | `julia/test/test_tagged_cover_preprocessing.jl` | `2ea0f00ce843a3672ac2151d44843c6f8dd955ecd081b25e0a39bffd87769cd0` | adversarial rule and optimizer-identity boundary cases plus exhaustive original/residual enumeration for 512 seeded small exact systems |
 | `SCP-PROOF-v1` | `journal/aor/reports/PREPROCESSING_THEORY.md` | `f6e7ad7a2a688d26d37613b43356797d84987794d2bea77f499f0555ce15a13b` | HUMAN PROOF propositions, assumptions, preservation matrix, fixed-point theorem, implementation contract, and claim boundaries; no Lean declaration |
 
+## Common journal compression instance artifacts
+
+| Artifact ID | Path | SHA-256 | Role |
+|---|---|---|---|
+| `JCI-CORE-v1` | `julia/src/JournalCompressionInstance.jl` | `575cadde78181067803fd6c38582c1881fe3baeb373cd75635ea9d63da250a3c` | versioned canonical identity-closure instance; raw, tagged, preprocessing, redistributable financial aggregate, and synthetic-mask adapters; exact validation/certification; sorted TOML; deterministic SHA-256; reconstruction |
+| `JCI-TEST-v1` | `julia/test/test_journal_compression_instance.jl` | `8e2f006e0e9ec0206e5ec1f71e1e4d944e91012e72dec3fc6a3655bfe7aa6f8c` | 59 exact boundary, feasibility, burden, ordering, serialization/hash, adapter, legal-boundary, and reconstruction assertions |
+| `JCI-SCHEMA-v1` | `journal/aor/reports/INSTANCE_SCHEMA.md` | `04015ac974caa8b4b2c94d23a3352beb37ee29af94107907c9df57ab3f78a44e` | field contract, canonical ordering, preprocessing and tie semantics, provenance and licensed-data boundary, adapters, serialization, validation, and versioning rule |
+
 The fixture and Julia checks are exact finite computation, not universal
 proof, mixed-integer solver evidence, or empirical evidence. The separate
 Lean declaration below kernel-checks the universal identity-closure
@@ -747,7 +755,7 @@ artifact checksum is assigned. The focused Git commit is their provenance.
 | Class | Expected future location or form | Current status |
 |---|---|---|
 | remaining primary research theorem declarations | future extensions under `formal/StrategyInnovation/` | none in the adopted T1--T7 package; F0, F1--F8, S4--S7, C2, and CS1 are supporting results |
-| higher-level Julia research algorithms | `julia/src/{Compression,TaggedCover,TaggedCoverPreprocessing,InnovationValue,DynamicProgramming,Coverage,RawDynamicProgramming,ComparativeStatics,ApproximateCompression}.jl` | safe and approximate compression, exact identity-closure tagged covering and fixed-point preprocessing, raw generation/admission, unified timing and Bellman operators, exact/Float64 comparative statics, reusable S4/S5/S6/S7/C2 coverage algorithms, exact T6 scalar bound/fixture, and exact T7 interaction surfaces exist |
+| higher-level Julia research algorithms | `julia/src/{Compression,TaggedCover,TaggedCoverPreprocessing,JournalCompressionInstance,InnovationValue,DynamicProgramming,Coverage,RawDynamicProgramming,ComparativeStatics,ApproximateCompression}.jl` | safe and approximate compression, exact identity-closure tagged covering, fixed-point preprocessing, common versioned journal inputs and certification, raw generation/admission, unified timing and Bellman operators, exact/Float64 comparative statics, reusable S4/S5/S6/S7/C2 coverage algorithms, exact T6 scalar bound/fixture, and exact T7 interaction surfaces exist |
 | additional experiment configurations | immutable committed configs | theorem-feasibility, single-gap geometry, multi-gap topology, safe and approximate compression, dynamic-program, coverage, kernel-persistence response, system interaction, controlled theorem-mechanism, and limited financial configs exist |
 | empirical outputs | generated, checksummed data | separate locked-terminal and annual walk-forward aggregate mechanism summaries and derived compression-characteristic tables exist and are publishable under D-0041/D-0043/D-0068; licensed rows remain excluded |
 | figures and tables | Julia-generated artifacts | eighteen SVGs have complete source CSVs and generated metadata; six financial figures are publication artifacts |

@@ -130,6 +130,26 @@ dominance is marked as optimum-value preserving but not all-optimizer-identity
 preserving. Every lifted strategy library still requires the original exact
 frontier, closure, burden, and inactive-retention certificate.
 
+## Common journal compression instances
+
+`src/JournalCompressionInstance.jl` defines
+`journal-compression-instance-v1`, the solver-neutral input shared by the
+journal algorithms. It reuses `StrategyId`, `Belief`, `ModuleId`, tagged
+requirements, exact rational weights, and preprocessing maps. The schema also
+retains independent exact profiles and raw module memberships, allowing every
+solution to be checked against the original source frontier and identity
+closure rather than incidence alone.
+
+Adapters cover the current exact raw-library and tagged-cover models,
+preprocessed tagged instances, legally redistributable financial aggregates,
+and `ExactRetentionProblem`-compatible synthetic mask generators. Strategies
+and requirements are canonically ordered. Sorted TOML serialization,
+validation on deserialization, SHA-256 hashing, exact burden checks, stable
+lifting, and declared equal-coverage tie reconstruction are public APIs.
+Version 1 rejects nonidentity closure, floating-point weights/profiles,
+unstable ordering, and financial inputs not explicitly marked
+redistributable. It does not replace the future algorithm-result schema.
+
 ## Approximate library compression
 
 `src/ApproximateCompression.jl` defines the source-relative finite-horizon
@@ -265,8 +285,8 @@ julia --project=julia -e 'using Pkg; Pkg.instantiate(); Pkg.test()'
 ```
 
 The current suite includes 10,410 focused tagged-cover equivalence checks,
-9,433 exact preprocessing checks, 215 reusable raw-model checks, 63 raw-first
-rectangle checks, 80 unified comparative-
+9,433 exact preprocessing checks, 59 common-instance schema checks, 215
+reusable raw-model checks, 63 raw-first rectangle checks, 80 unified comparative-
 statics checks, 102 randomized-library checks, 119
 approximate-compression checks, exhaustive foundational/compression
 properties, 226 dynamic-program checks, 249 coverage checks, 35

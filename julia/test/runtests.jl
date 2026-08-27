@@ -37,6 +37,7 @@ include(joinpath(@__DIR__, "..", "scripts", "export_tagged_cover_theorem_fixture
 using .TaggedCoverTheoremFixture
 include("test_tagged_cover.jl")
 include("test_tagged_cover_preprocessing.jl")
+include("test_journal_compression_instance.jl")
 
 include(joinpath(@__DIR__, "..", "scripts", "solve_canonical_model.jl"))
 using .CanonicalModelSolver
@@ -152,9 +153,9 @@ end
 end
 
 @testset "Aqua" begin
-    # Printf and TOML are direct project dependencies for the repository's shipped
-    # experiment runners; the package module does not load script-only IO.
-    Aqua.test_all(StrategyInnovation; stale_deps = (ignore = [:Printf, :TOML],))
+    # Printf remains a direct dependency of shipped experiment runners. TOML
+    # is now used directly by the common journal instance serializer.
+    Aqua.test_all(StrategyInnovation; stale_deps = (ignore = [:Printf],))
 end
 
 @testset "exact theorem feasibility witnesses" begin

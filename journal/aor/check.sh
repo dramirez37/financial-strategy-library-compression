@@ -105,6 +105,7 @@ KEYWORD_COUNT="$(
     using .TaggedCoverTheoremFixture
     include("julia/test/test_tagged_cover.jl")
     include("julia/test/test_tagged_cover_preprocessing.jl")
+    include("julia/test/test_journal_compression_instance.jl")
 '
 "$JULIA_EXE" --startup-file=no --project="$ROOT/julia" \
     "$ROOT/julia/scripts/export_tagged_cover_theorem_fixture.jl" --check

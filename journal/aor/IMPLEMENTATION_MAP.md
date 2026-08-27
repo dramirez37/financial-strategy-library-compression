@@ -106,6 +106,28 @@ SC-PRE is authoritative. The targeted test exhausts original and residual
 binary selections on adversarial cases and 512 seeded small exact systems. No
 runtime, solver, nonidentity-closure, or Lean claim follows from that audit.
 
+### Common journal algorithm instance schema
+
+`julia/src/JournalCompressionInstance.jl` provides the versioned
+`journal-compression-instance-v1` internal representation shared by later
+journal algorithms. It reuses the package's typed identifiers, tagged
+requirements, exact rational arithmetic, tagged incidence, and preprocessing
+maps while retaining independent exact profiles and module memberships for
+original-semantic certification.
+
+| Capability | Symbols | Evidence boundary |
+|---|---|---|
+| Canonical exact instance | `JournalCompressionInstance` | Identity-closure-only schema with canonical strategy and frontier-then-module ordering, exact weights, mandatory flags, independent profiles/modules, source frontier/closure, preprocessing map, tie declaration, and provenance. |
+| Source adapters | `journal_compression_instance` | Converts the current exact `StrategyCatalog`/`RawLibrary` model or `TaggedCoverRepresentation`; optional preprocessing results are ownership-checked and remapped to canonical indices. |
+| Financial adapter | `journal_compression_instance_from_financial` | Accepts only explicitly redistributable exact aggregate profiles, module labels, weights, and source state. It accepts no raw market row interface and does not alter frozen financial schemas. |
+| Synthetic adapter | `journal_compression_instance_from_mask_problem`, `journal_compression_instance_from_components` | Converts `ExactRetentionProblem`-compatible mask generators or exact registered components while preserving `ResourceOptimization` as an independent oracle. |
+| Exact certification | `check_journal_compression_solution`, `journal_compression_feasible`, `journal_compression_burden` | Separates mandatory retention, tagged incidence, independently recomputed frontier, independently recomputed identity closure, and burden. It proves no optimality or solver claim. |
+| Residual reconstruction | `journal_reduced_cover_model`, `lift_journal_compression_solution`, `reconstruct_journal_compression_solutions` | Restores forced columns, reconciles exact offsets, reconstructs declared equal-weight duplicates, and rechecks every lifted selection. |
+| Stable interchange | `serialize_journal_compression_instance`, `deserialize_journal_compression_instance`, `journal_compression_instance_sha256` | Sorted TOML, canonical rational tokens, full validation on read, and SHA-256 over canonical bytes. This is an instance schema, not the still-future cross-algorithm result schema. |
+
+The field contract, legal-data boundary, tie semantics, and versioning rule are
+documented in `journal/aor/reports/INSTANCE_SCHEMA.md`.
+
 ## Approximate algorithms and partial dynamic programming
 
 `julia/src/ApproximateCompression.jl` can be reused as a candidate-generation
@@ -173,7 +195,9 @@ before the new algorithms are validated.
 
 ## Result export and machine-readable schemas
 
-There is no single generic result-schema library. Reusable pieces are:
+There is now one common versioned algorithm **instance** schema, but there is
+still no single generic **result**-schema library. Reusable result-export
+pieces are:
 
 - `encode_exact_rational`, `write_exact_matrix`, and `read_exact_matrix` in
   `julia/src/IO.jl:7-53`;
@@ -225,6 +249,7 @@ algorithm look more sophisticated.
 | Rechecked deletion | Single and fixed-point deletion, stale/batch-certificate rejection, frontier-only loss witness, deterministic deletion order. |
 | Exact enumeration/formulation | Minimum cardinality, solver-neutral formulation satisfaction, 1,376 seeded small-library properties. |
 | Tagged-cover preprocessing | Every accepted rule and mandatory/infeasible boundary; exact unreduced/reduced objective and lift checks; equal-weight duplicate identity reconstruction; explicit equal-weight dominance identity-loss witness; fixed-point replay; 512 seeded exhaustive small systems and 9,433 assertions. |
+| Common instance schema | Invalid carrier/identifier/weight/mandatory/source-state/ordering/tie cases; exact semantic certificates and burdens; order-invariant adapters, canonical serialization, integer-type round trips, and hashes; raw, tagged, preprocessing, financial aggregate, and adversarial generator conversions; 59 assertions. |
 | JuMP/HiGHS | Identity and general closure, cardinality versus weight, all-optimum ties, exact objective scaling failures, Float weight rejection, exact postchecks, 12 random MILP-versus-independent-enumeration instances, deletion traces. |
 | Complexity | Closure-only SC-COMP reduction, explicit inactive identifier and budget, five registered yes/no fixtures, and 5,565 budgeted variants of all 265 full-union three-set/three-element incidence systems (44,520 selected masks), with exact feasibility/weight/threshold/decision correspondence and artifact drift. |
 | Approximate methods | Exact loss definitions, complete subset and Pareto oracles, four greedy rules, multistart, beam search, operational lower bound, complete/partial no-good cut behavior, committed outputs. |

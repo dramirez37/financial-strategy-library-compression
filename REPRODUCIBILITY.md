@@ -490,6 +490,33 @@ Every experiment must have:
   nonidentity closure. Every lifted library still requires exact original
   frontier, closure, burden, and inactive-retention checks.
 
+### journal-compression-instance-v1
+
+- **Implementation:** `julia/src/JournalCompressionInstance.jl`
+- **Documentation:** `journal/aor/reports/INSTANCE_SCHEMA.md`
+- **Environment:** Julia 1.12.6 with the committed Julia test project and
+  manifest
+- **Arithmetic:** `Rational{BigInt}` for weights, profiles, source frontier,
+  objective offsets, and burdens; floating-point inputs are rejected
+- **Randomness:** none
+- **Command:** `./.local_runtime/julia-1.12.6/bin/julia --startup-file=no
+  --project=julia/test -e 'using StrategyInnovation, Test;
+  include("julia/test/test_journal_compression_instance.jl")'`
+- **Serialization:** sorted TOML with canonical identifier encodings and
+  rational tokens; SHA-256 covers the exact serialized bytes
+- **Validation:** 59 targeted assertions covering invalid carriers,
+  identifiers, weights, mandatory selections, source states, ordering and tie
+  declarations; exact feasibility and burden; byte-stable round trips; raw,
+  tagged, preprocessing, financial aggregate, and synthetic generator
+  conversions
+- **Licensed-data boundary:** the financial adapter accepts no market-row API
+  and requires financial provenance explicitly marked redistributable. The
+  targeted fixture is synthetic and contains no licensed observation.
+- **Scope warning:** this is an internal identity-closure instance schema and
+  exact software validation. It is not a result schema, theorem, Lean
+  verification, solver status, runtime study, synthetic finding, or
+  retrospective financial finding.
+
 ### joint-descendant-bound-gauntlet-v1
 
 - **Configuration:**

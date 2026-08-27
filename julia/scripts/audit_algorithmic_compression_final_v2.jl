@@ -254,7 +254,7 @@ facts, not interpretive performance claims.
 
 | Field | Recorded value |
 |---|---|
-| Design lock | `$(execution_lock["aggregate_sha256"])` |
+| Active execution-start lock aggregate | `$(execution_lock["aggregate_sha256"])` |
 | Git commit at execution start | `$(environment["git_commit"])` |
 | Dirty worktree at execution start | $dirty |
 | Dirty-status hash | `$(environment["dirty_worktree_status_sha256"])` |
@@ -271,13 +271,15 @@ facts, not interpretive performance claims.
 | UTC end | `$(environment["end_time_utc"])` |
 
 The machine identifier is stored only as `$(environment["machine_id"])`.
-The raw dirty-worktree paths are retained in `results/environment.toml`.
+The raw dirty-worktree paths are retained in the active environment artifact;
+the original and amended environment records are both included in the manifest.
 
 ## Registered execution controls
 
 The runner used final registry rows only, deterministic registry schedule-key
-order, the registered Latin rotation, one process at a time, exact registered
-seeds, registered size-class time limits, and a 16 GiB process cap. It requested
+order, the registered Latin rotation, eight concurrent worker lanes with at
+most one isolated subprocess per lane, exact registered seeds, registered
+size-class time limits, and a 1.5 GiB resident-memory cap per worker. It requested
 a full garbage collection before each timing handshake. All HiGHS runs used one
 thread, parallel mode off, presolve on, zero relative and absolute MIP gap
 tolerances, and their registered MIP seed. The mandatory-only MIP formulation is
@@ -296,8 +298,8 @@ records, and hashes are retained below `results/`.
 ## Commands
 
 ```text
-make aor-benchmark
-make aor-benchmark-audit
+make aor-benchmark-v2
+make aor-benchmark-v2-audit
 ```
 """
 end

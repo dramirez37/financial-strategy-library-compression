@@ -6,6 +6,7 @@ using StrategyInnovation
 using TOML
 
 export create_design_lock_amendment_002_v2,
+       create_design_lock_amendment_003_v2,
        create_design_lock_amendment_v2,
        create_design_lock_v2,
        main,
@@ -29,6 +30,11 @@ const AMENDMENT_LOCK_PATH = joinpath(AMENDMENT_ROOT, "DESIGN_LOCK_AMENDMENT_001.
 const EXECUTION_FAILURE_PATH = joinpath(AMENDMENT_ROOT, "EXECUTION_FAILURE_001.toml")
 const AMENDMENT_002_LOCK_PATH = joinpath(AMENDMENT_ROOT, "DESIGN_LOCK_AMENDMENT_002.json")
 const EXECUTION_FAILURE_002_PATH = joinpath(AMENDMENT_ROOT, "EXECUTION_FAILURE_002.toml")
+const AMENDMENT_003_LOCK_PATH = joinpath(AMENDMENT_ROOT, "DESIGN_LOCK_AMENDMENT_003.json")
+const REPORTING_CORRECTION_PATH = joinpath(
+    AMENDMENT_ROOT,
+    "REPORTING_CORRECTION_001.toml",
+)
 const INSTANCE_PATH = joinpath(STUDY_ROOT, "registry", "INSTANCE_REGISTRY.csv")
 const SEED_PATH = joinpath(STUDY_ROOT, "registry", "SEED_REGISTRY.csv")
 const V1_REGISTRY_ROOT = joinpath(
@@ -66,6 +72,11 @@ const AMENDMENT_002_FILES = (
     "experiments/algorithmic_compression_v2/amendments/DESIGN_LOCK_AMENDMENT_001.json",
     "experiments/algorithmic_compression_v2/amendments/AMENDMENT_002.md",
     "experiments/algorithmic_compression_v2/amendments/EXECUTION_FAILURE_002.toml",
+)
+const AMENDMENT_003_FILES = (
+    "experiments/algorithmic_compression_v2/amendments/DESIGN_LOCK_AMENDMENT_002.json",
+    "experiments/algorithmic_compression_v2/amendments/AMENDMENT_003.md",
+    "experiments/algorithmic_compression_v2/amendments/REPORTING_CORRECTION_001.toml",
 )
 
 _sha256_file(path) = open(path, "r") do io
@@ -143,6 +154,16 @@ end
 
 function _amended_002_hashes()
     paths = (REQUIRED_FILES..., AMENDMENT_FILES..., AMENDMENT_002_FILES...)
+    return Dict(path => _sha256_file(joinpath(REPOSITORY_ROOT, path)) for path in paths)
+end
+
+function _amended_003_hashes()
+    paths = (
+        REQUIRED_FILES...,
+        AMENDMENT_FILES...,
+        AMENDMENT_002_FILES...,
+        AMENDMENT_003_FILES...,
+    )
     return Dict(path => _sha256_file(joinpath(REPOSITORY_ROOT, path)) for path in paths)
 end
 
@@ -303,16 +324,77 @@ function create_design_lock_amendment_002_v2(config_path::AbstractString = DEFAU
     return AMENDMENT_002_LOCK_PATH
 end
 
+function _render_amendment_003_lock(hashes, prior_lock_sha256, audit_summary_sha256)
+    rows = join(
+        ("    \"$path\": \"$(hashes[path])\"" for path in sort!(collect(keys(hashes)))),
+        ",\n",
+    )
+    return """{
+  "schema_version": "registered-algorithmic-compression-benchmark-lock-amendment-v2",
+  "experiment_id": "registered-algorithmic-compression-benchmark-v2",
+  "amendment_id": "AMENDMENT_003",
+  "locked_at_utc": "$(Dates.format(Dates.now(Dates.UTC), dateformat"yyyy-mm-ddTHH:MM:SS.sssZ"))",
+  "prior_amendment_lock_sha256": "$prior_lock_sha256",
+  "pre_correction_audit_summary_sha256": "$audit_summary_sha256",
+  "benchmark_complete_before_amendment": true,
+  "audit_passed_before_amendment": true,
+  "scientific_result_changed": false,
+  "audit_calculation_changed": false,
+  "repair_scope": "execution-record provenance labels and registered-control prose only",
+  "aggregate_sha256": "$(_aggregate(hashes))",
+  "files": {
+$rows
+  }
+}
+"""
+end
+
+function create_design_lock_amendment_003_v2(config_path::AbstractString = DEFAULT_CONFIG)
+    _validate(config_path)
+    isfile(AMENDMENT_002_LOCK_PATH) || error("Amendment 002 lock is absent")
+    isfile(REPORTING_CORRECTION_PATH) || error("reporting-correction record is absent")
+    correction = TOML.parsefile(REPORTING_CORRECTION_PATH)
+    prior_hash = _sha256_file(AMENDMENT_002_LOCK_PATH)
+    prior_hash == correction["prior_amendment_lock_sha256"] || error(
+        "Amendment 002 lock no longer matches the reporting-correction record",
+    )
+    audit_summary = joinpath(STUDY_ROOT, "results", "audit", "audit_summary.toml")
+    isfile(audit_summary) || error("pre-correction audit summary is absent")
+    audit_hash = _sha256_file(audit_summary)
+    audit_hash == correction["pre_correction_audit_summary_sha256"] || error(
+        "pre-correction audit summary changed before Amendment 003",
+    )
+    text = _render_amendment_003_lock(_amended_003_hashes(), prior_hash, audit_hash)
+    temporary = AMENDMENT_003_LOCK_PATH * ".tmp.$(getpid())"
+    open(temporary, "w") do io
+        write(io, text)
+    end
+    mv(temporary, AMENDMENT_003_LOCK_PATH; force = true)
+    return AMENDMENT_003_LOCK_PATH
+end
+
 function verify_design_lock_v2(config_path::AbstractString = DEFAULT_CONFIG)
     _validate(config_path)
     isfile(LOCK_PATH) || error("v2 design lock is absent")
-    active_lock = isfile(AMENDMENT_002_LOCK_PATH) ? AMENDMENT_002_LOCK_PATH :
+    active_lock = isfile(AMENDMENT_003_LOCK_PATH) ? AMENDMENT_003_LOCK_PATH :
+                  isfile(AMENDMENT_002_LOCK_PATH) ? AMENDMENT_002_LOCK_PATH :
                   isfile(AMENDMENT_LOCK_PATH) ? AMENDMENT_LOCK_PATH : LOCK_PATH
     text = read(active_lock, String)
-    hashes = isfile(AMENDMENT_002_LOCK_PATH) ? _amended_002_hashes() :
+    hashes = isfile(AMENDMENT_003_LOCK_PATH) ? _amended_003_hashes() :
+             isfile(AMENDMENT_002_LOCK_PATH) ? _amended_002_hashes() :
              isfile(AMENDMENT_LOCK_PATH) ? _amended_hashes() : _hashes()
     _verify_hash_manifest(text, hashes)
-    if isfile(AMENDMENT_002_LOCK_PATH)
+    if isfile(AMENDMENT_003_LOCK_PATH)
+        correction = TOML.parsefile(REPORTING_CORRECTION_PATH)
+        prior_hash = _sha256_file(AMENDMENT_002_LOCK_PATH)
+        prior_hash == correction["prior_amendment_lock_sha256"] || error(
+            "Amendment 002 lock changed after Amendment 003",
+        )
+        occursin("\"prior_amendment_lock_sha256\": \"$prior_hash\"", text) ||
+            error("Amendment 003 does not bind Amendment 002")
+        occursin("\"scientific_result_changed\": false", text) ||
+            error("Amendment 003 scientific boundary is not locked")
+    elseif isfile(AMENDMENT_002_LOCK_PATH)
         failure = TOML.parsefile(EXECUTION_FAILURE_002_PATH)
         prior_hash = _sha256_file(AMENDMENT_LOCK_PATH)
         prior_hash == failure["amendment_001_lock_sha256"] || error(
@@ -344,8 +426,9 @@ function main(args = ARGS)
     mode == "--create" && return create_design_lock_v2()
     mode == "--create-amendment-001" && return create_design_lock_amendment_v2()
     mode == "--create-amendment-002" && return create_design_lock_amendment_002_v2()
+    mode == "--create-amendment-003" && return create_design_lock_amendment_003_v2()
     mode == "--check" && return verify_design_lock_v2()
-    error("usage: lock_algorithmic_compression_design_v2.jl [--create|--create-amendment-001|--create-amendment-002|--check]")
+    error("usage: lock_algorithmic_compression_design_v2.jl [--create|--create-amendment-001|--create-amendment-002|--create-amendment-003|--check]")
 end
 
 end

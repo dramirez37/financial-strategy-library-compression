@@ -1,0 +1,17 @@
+audit_id,algorithm_id,equal_active_strategy_rank,validation_computation_rank,governance_complexity_rank,feasible_schedule_count,top_rank_count,minimum_rank,maximum_rank,rank_range
+locked_terminal_v1,current_stepwise_safe_deletion,1,6,6,3,1,1,6,5
+locked_terminal_v1,heaviest_safe_first,1,1,1,3,3,1,1,0
+locked_terminal_v1,weighted_greedy,1,4,1,3,2,1,4,3
+locked_terminal_v1,weighted_greedy_reverse_delete,1,3,1,3,2,1,3,2
+locked_terminal_v1,multistart_random_deletion,1,5,5,3,1,1,5,4
+locked_terminal_v1,preprocessed_highs_mip,1,1,1,3,3,1,1,0
+locked_terminal_v1,requirement_mask_dp,,,,0,0,,,
+locked_terminal_v1,optional_second_solver_crosscheck,,,,0,0,,,
+annual_walk_forward_v2,current_stepwise_safe_deletion,1,5,6,3,1,1,6,5
+annual_walk_forward_v2,heaviest_safe_first,1,1,1,3,3,1,1,0
+annual_walk_forward_v2,weighted_greedy,1,4,1,3,2,1,4,3
+annual_walk_forward_v2,weighted_greedy_reverse_delete,1,1,1,3,3,1,1,0
+annual_walk_forward_v2,multistart_random_deletion,1,6,5,3,1,1,6,5
+annual_walk_forward_v2,preprocessed_highs_mip,1,1,1,3,3,1,1,0
+annual_walk_forward_v2,requirement_mask_dp,,,,0,0,,,
+annual_walk_forward_v2,optional_second_solver_crosscheck,,,,0,0,,,

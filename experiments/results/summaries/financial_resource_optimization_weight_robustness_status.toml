@@ -1,0 +1,28 @@
+algorithm_row_count = 48
+audit_count = 2
+design_lock_aggregate_sha256 = "b1260597986a5bcaf0633bea3c1f254dd1f1b4b7a2e8516d732e6ad0a8a9e4b3"
+execution_dirty_worktree = true
+execution_git_commit = "094471bf01a3fc32269600da161a0df02dfdb009"
+experiment_id = "financial-retention-weight-robustness-v1"
+julia_version = "1.12.6"
+licensed_rows_included = false
+local_audit_sha256 = "95a01eb14256bb87a6197909f3731ad5171e668a167227f540070f2ee6c9d550"
+local_exact_audit_passed = true
+local_manifest_sha256 = "9c8b0de03728d0bb240bc8675c5c7b2620c6edd083d07d746af910bf2f930dc4"
+manifest_sha256 = "4f75e819e1e3fa28cc39e0600937d0d28345e74ee3e0f9a092aa71dfd1a6f666"
+prior_schedule_outcomes_exist = true
+raw_or_row_level_data_included = false
+robustness_specific_analysis_locked_before_outputs = true
+schedule_count = 3
+schema_version = "financial-weight-robustness-public-status-v1"
+selected_strategy_identifiers_are_aggregate = true
+solver_status_used_as_exact_proof = false
+terminal_annual_units_pooled = false
+
+[public_files]
+"experiments/financial_resource_optimization/WEIGHT_ROBUSTNESS_RESULTS.md" = "5de75b0d660ce407204e15343c379ed7eb82df3f53a70bd4874ebf37f216a3da"
+"experiments/results/summaries/financial_resource_optimization_weight_robustness_empty_residual_certificates.csv" = "3b924418ec3453134a9636c26b5ceba1c4450b5cd23025237dee58da5fc6a493"
+"experiments/results/summaries/financial_resource_optimization_weight_robustness_identity_overlap.csv" = "3d755eedb55373c7760dbe6decf11f6363fc858c5638ccc684234c53ba1c7d56"
+"experiments/results/summaries/financial_resource_optimization_weight_robustness_rank_stability.csv" = "0694429d61d901dc922949422de3f0180f4ea7c6d7329b9310b5e370550233f4"
+"experiments/results/summaries/financial_resource_optimization_weight_robustness_selections.csv" = "c02af69e6bf461a63e0f189321c2311bc79c61f5465fd1db0a809023b5f9b24e"
+"experiments/results/summaries/financial_resource_optimization_weight_robustness_summary.csv" = "f8dea6e50e643f4e8e3df671a3a0b9289acdaf3f0a9e17af329e229d348b3795"

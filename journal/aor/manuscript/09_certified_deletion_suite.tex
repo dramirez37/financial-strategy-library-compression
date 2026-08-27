@@ -1,0 +1,72 @@
+% Journal-only algorithm draft. No global-optimality or Lean status is asserted.
+\subsection{Certified rechecked-deletion portfolio}
+\label{subsec:aor-certified-deletion-suite}
+
+Forward greedy constructs a cover from the mandatory library.  Rechecked
+deletion instead starts from the source and removes one entry at a time.  The
+common implementation performs a complete fresh scan after every accepted
+deletion.  For each retained nonmandatory strategy, it constructs the trial
+library and recomputes exact source-frontier equality and exact source-closure
+equality from the original profiles and module memberships.  A deletion is
+accepted only after both equalities, mandatory retention, tagged coverage,
+and burden reconciliation pass.  All other certificates are then discarded.
+
+The deterministic portfolio contains heaviest-safe-first,
+lightest-safe-first, maximum immediate burden release, minimum remaining
+unique-carrier exposure, and declared source order.  Under additive burden,
+the release from deleting one strategy is exactly its weight, so maximum
+immediate release and heaviest-safe-first are two names for the same ordering
+on this model; they are not treated as independent evidence.
+
+For current retained set $S$, safe deletion candidate $s$, fixed tagged
+universe $U_L$, and tagged coverage $R_t$, define
+\[
+ E(s\mid S)
+ =\left|\left\{u\in U_L:
+   \sum_{t\in S\setminus\{s\}}\mathbf 1\{u\in R_t\}=1
+ \right\}\right|.
+\]
+The exposure rule minimizes $E(s\mid S)$, then maximizes exact immediate
+burden release, then uses the lowest canonical original strategy index.  It
+uses only the source-defined incidence structure; it does not use dynamic
+value, held-out financial quality, realized return, or descendant outcomes.
+Heaviest and lightest rules break exact weight ties by lowest canonical
+original index.  Declared-order deletion uses a complete caller-supplied
+permutation, or canonical original order by default.
+
+The stochastic portfolio first draws a stable seeded permutation and then
+uses its earliest currently safe strategy at every fresh scan.  Multi-start
+random deletion returns the lowest-burden certified endpoint across the
+declared starts; equal burdens are resolved by the lexicographically smallest
+selected-index tuple and then earliest start.  The master seed, each derived
+seed, every random order, and every endpoint summary are retained.
+
+\begin{proposition}[Certified deletion endpoint]
+\label{prop:aor-certified-deletion-endpoint}
+Every algorithm in the rechecked-deletion portfolio returns a safe source
+sublibrary.  Its reported endpoint is one-deletion irreducible after a
+complete exact final scan.
+\end{proposition}
+
+\begin{proof}
+The source is safe relative to itself.  At every accepted step, the trial
+library has been recomputed and certified to have the source frontier and
+source closure while retaining all mandatory entries.  It is therefore safe,
+independently of the score used to choose it.  Induction over the finite
+deletion trace gives safety of the endpoint.  Every accepted deletion removes
+one retained nonmandatory strategy, so the trace terminates.
+
+The final scan examines every retained nonmandatory strategy and records that
+its deletion fails exact source-relative feasibility.  Hence no safe
+one-strategy deletion remains.  Random ordering changes only the choice among
+already certified candidates and does not alter this argument.
+\end{proof}
+
+Safety and one-deletion irreducibility do not imply global resource
+efficiency.  The singleton--bundle family in
+Theorem~\ref{thm:aor-heaviest-safe-first-gap} remains a regression test:
+heaviest-safe-first and maximum immediate release return burden $k$ while the
+global optimum has burden $1+\epsilon$.  Exact enumeration and mask dynamic
+programming, rather than any deletion status, supply small-instance optimum
+comparisons.  Runtime counters are instrumentation for the separately
+registered computational study, not scaling evidence in this draft.

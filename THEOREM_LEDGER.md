@@ -787,6 +787,82 @@ counterexamples later in this ledger.
   input, held-out outcome, licensed workflow, runtime claim, or solver output
   is used.
 
+### SC-DEL-SUITE — Certified rechecked-deletion portfolio
+
+- **Theorem ID:** SC-DEL-SUITE
+- **Journal manuscript label:** `prop:aor-certified-deletion-endpoint` in
+  `journal/aor/manuscript/09_certified_deletion_suite.tex`, included by
+  `journal/aor/sections/05_innovation_safe_compression.tex`
+- **Evidence status:** HUMAN PROOF for stepwise safety, termination, and final
+  one-deletion irreducibility, supported by exact finite Julia validation; no
+  global-optimality, approximation, solver-status, or Lean-verification claim
+- **Informal statement:** Starting from the complete source library, each
+  suite method performs a complete fresh scan after every accepted deletion.
+  A deletion is eligible only after recomputation confirms mandatory
+  retention, complete tagged coverage, exact source-frontier equality, exact
+  source identity-closure equality, and exact burden. Therefore every finite
+  accepted trace ends at a safe source sublibrary. The terminating complete
+  scan examines every retained nonmandatory strategy and proves the endpoint
+  has no safe one-strategy deletion.
+- **Implemented deterministic rules:** heaviest-safe-first;
+  lightest-safe-first; maximum immediate burden release; minimum remaining
+  unique-carrier exposure; and a complete declared source order. Exact weight
+  ties use lowest canonical original index. Declared order is a full
+  permutation of nonmandatory original indices and defaults to canonical
+  order.
+- **Immediate-release identity:** Under the declared additive burden,
+  deleting strategy $s$ releases exactly $w_s$. Thus maximum immediate
+  burden release and heaviest-safe-first have identical choices and endpoints.
+  Both API names are implemented for the registered comparison vocabulary,
+  but they must not be counted as independent algorithms or evidence.
+- **Unique-carrier score:** For safe candidate $s$ at current set $S$,
+  $E(s\mid S)$ is the number of fixed tagged requirements having exactly one
+  selected carrier in $S\setminus\{s\}$. The rule minimizes $E$, then
+  maximizes exact immediate release, then uses lowest canonical original
+  index. It uses only source-defined tagged incidence, not held-out outcomes,
+  financial quality, dynamic value, or forecasts. No optimality theorem is
+  asserted for this structural fragility score.
+- **Stochastic rules:** Random-order deletion uses one `StableRNG` permutation
+  determined by a returned `UInt64` seed. Multi-start derives every run seed
+  deterministically from a returned master seed, certifies every endpoint,
+  minimizes exact endpoint burden, and breaks ties by lexicographic selected
+  indices then earliest start. Per-start seeds, orders, burdens, selections,
+  counters, and certification booleans are retained.
+- **Freshness and counting:** Every accepted deletion uses a certificate from
+  the current complete scan; after the state changes, all other candidate
+  certificates are discarded. The result separately records paired frontier
+  and closure check counts and complete scan count. Candidate scans plus one
+  independent endpoint check determine the reported semantic-check totals.
+- **Julia implementation:** `julia/src/CertifiedDeletionJournalCompression.jl`
+  provides the common
+  `solve_journal_compression_deletion(instance; algorithm, ...)` API,
+  convenience methods for all seven variants, solution schema
+  `journal-compression-certified-deletion-v1`, complete accepted-deletion
+  traces, nanosecond runtime scopes, exact endpoint feasibility certificates,
+  and complete irreducibility certificates. Runtime is instrumentation only.
+- **Julia validation:** `julia/test/test_certified_deletion_journal_compression.jl`
+  passes 15,209 targeted exact assertions. It checks all deterministic scores
+  and ties, accepted-step certificates, stale-certificate rescanning, semantic
+  counters, final irreducibility scans, exact tie rules, a mandatory-only
+  endpoint, declared-order validation, stable random replay, multi-start
+  seed/order replay and best-endpoint selection,
+  and the SC-GAP singleton--bundle regression for $k=2,\ldots,7$. It also
+  cross-checks all seven variants against exact enumeration on every one of
+  441 exhaustive small incidence systems. Endpoint burden is checked against
+  the exact optimum without asserting equality where the heuristic is
+  suboptimal.
+- **Optimization boundary:** Safety and one-deletion irreducibility are kept
+  separate from optimization quality. SC-GAP still gives ratio
+  $k/(1+\epsilon)$ for heaviest-safe-first and its equivalent immediate-
+  release name. No comparison ordering among the other methods is claimed
+  beyond explicitly tested finite fixtures.
+- **Lean declarations:** none added. Existing Lean results about rechecked
+  safe deletion sequences are not presented as kernel verification of this
+  Julia control flow, scoring logic, randomization, counters, or result schema.
+- **Empirical relevance:** None. The implementation reads no licensed row,
+  realized financial outcome, held-out quality, dynamic value, or benchmark
+  result. No frozen experiment or registered seed is changed.
+
 ### PEN — Exact penalized affine-envelope theorem
 
 - **Theorem ID:** PEN

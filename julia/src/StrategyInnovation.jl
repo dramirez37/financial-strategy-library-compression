@@ -251,8 +251,16 @@ export ArithmeticMode,
        JOURNAL_COMPRESSION_INSTANCE_SCHEMA_VERSION,
        JOURNAL_EXACT_SOLUTION_SCHEMA_VERSION,
        JOURNAL_GREEDY_SOLUTION_SCHEMA_VERSION,
+       JOURNAL_DELETION_SOLUTION_SCHEMA_VERSION,
+       JournalCertifiedDeletionStep,
        JournalCompressionInstance,
        JournalCompressionProvenance,
+       JournalDeletionCounters,
+       JournalDeletionIrreducibilityCertificate,
+       JournalDeletionIrreducibilityCheck,
+       JournalDeletionRuntime,
+       JournalDeletionSolutionResult,
+       JournalDeletionStartSummary,
        JournalExactPreprocessingSummary,
        JournalExactRuntime,
        JournalExactSolutionResult,
@@ -284,10 +292,18 @@ export ArithmeticMode,
        serialize_journal_exact_solution,
        serialize_journal_compression_instance,
        solve_journal_compression_dp,
+       solve_journal_compression_declared_order,
+       solve_journal_compression_deletion,
        solve_journal_compression_enumeration,
        solve_journal_compression_cardinality_greedy,
        solve_journal_compression_weighted_greedy,
        solve_journal_compression_weighted_greedy_reverse_delete,
+       solve_journal_compression_heaviest_safe_first,
+       solve_journal_compression_lightest_safe_first,
+       solve_journal_compression_maximum_immediate_burden_release,
+       solve_journal_compression_minimum_unique_carrier_exposure,
+       solve_journal_compression_multistart_random,
+       solve_journal_compression_random_order,
        validate_journal_compression_instance,
        write_journal_compression_instance,
        write_journal_exact_solution_certificate
@@ -313,5 +329,6 @@ include("IO.jl")
 include("JournalCompressionInstance.jl")
 include("ExactJournalCompression.jl")
 include("GreedyJournalCompression.jl")
+include("CertifiedDeletionJournalCompression.jl")
 
 end

@@ -1,0 +1,168 @@
+\documentclass[pdflatex,sn-mathphys-ay]{sn-jnl}
+
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsfonts,mathtools}
+\usepackage{booktabs,longtable,array}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage[capitalise,noabbrev]{cleveref}
+
+\numberwithin{equation}{section}
+\allowdisplaybreaks
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{assumption}[definition]{Assumption}
+\newtheorem{example}[definition]{Example}
+\newtheorem{counterexample}[definition]{Counterexample}
+
+\theoremstyle{plain}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+
+\crefname{assumption}{Assumption}{Assumptions}
+\Crefname{assumption}{Assumption}{Assumptions}
+\crefname{counterexample}{Counterexample}{Counterexamples}
+\Crefname{counterexample}{Counterexample}{Counterexamples}
+
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\cl}{\operatorname{cl}}
+\newcommand{\mods}{\operatorname{mods}}
+\newcommand{\DraftTag}{\textcolor{red!70!black}{\textbf{DRAFT}}}
+\newcommand{\DraftPlaceholder}[1]{%
+  \par\medskip\noindent
+  \fcolorbox{red!70!black}{red!3}{%
+    \parbox{0.94\linewidth}{\raggedright\DraftTag\ PLACEHOLDER: #1\par}}%
+  \par\medskip}
+\newcommand{\DraftSectionSummary}[1]{%
+  \par\noindent\textit{Scaffold summary.} #1\par\medskip}
+\newcommand{\DeclarationHead}[1]{%
+  \par\medskip\noindent\textbf{#1.}\enspace}
+
+\input{author_metadata}
+\input{tables/generated_inputs}
+\input{figures/generated_inputs}
+
+\hypersetup{
+  pdftitle={DRAFT - Innovation-Safe Financial Strategy-Library Compression},
+  pdfauthor={David Ramirez},
+  pdfsubject={Original Research scaffold for Annals of Operations Research},
+  pdfkeywords={strategy-library compression, quantitative finance, set cover, partial information, resource allocation, model governance}
+}
+
+\begin{document}
+
+\articletype{Original Research}
+\title[Innovation-safe strategy-library compression]{Innovation-Safe Financial Strategy-Library Compression: Productive-State Preservation and Minimum-Cost Retention\\\DraftTag\ MANUSCRIPT SCAFFOLD}
+
+\author*[1]{\fnm{David} \sur{Ramirez}}\email{\AORCorrespondingEmail}
+\affil*[1]{\orgname{\AORAffiliationOrganization},
+  \orgaddress{\city{\AORAffiliationCity}, \country{\AORAffiliationCountry}};
+  \href{https://orcid.org/\AORCorrespondingORCID}{ORCID:
+  \AORCorrespondingORCID}}
+
+\abstract{\textbf{DRAFT scaffold abstract.}
+Financial strategy libraries impose validation, monitoring, computing, and
+governance burdens, while retained strategies can support both current
+operation and the generation of future strategies. This article studies a
+finite, source-relative retention problem under partial information. Under the
+declared process, the operating frontier and generative closure form the
+productive library state. Innovation-safe compression seeks a minimum-burden
+sublibrary that retains the inactive strategy and preserves both objects
+exactly. The journal version will connect this semantic reduction to a tagged
+weighted covering representation under identity closure, its computational
+complexity, and a portfolio of exact, mixed-integer, approximation-guaranteed,
+and certified-deletion methods. Universal mathematical claims will be
+distinguished from Lean kernel verification, exact finite computation, solver
+diagnostics, and synthetic evidence. A registered algorithmic benchmark and
+two retrospective financial library audits will provide separate
+computational and application evidence using only committed, auditable
+artifacts. Licensed CRSP/WRDS rows will not be redistributed, and held-out
+financial quantities will be used only after retention decisions. The study
+makes no causal, forecasting, alpha, or deployable-performance claim. This
+scaffold fixes the submission architecture and evidence boundaries; it does
+not yet constitute the full journal prose.}
+
+\keywords{strategy-library compression, quantitative finance, set cover,
+partial information, resource allocation, model governance}
+
+\maketitle
+
+\noindent\fcolorbox{red!70!black}{red!3}{%
+  \parbox{0.96\linewidth}{\DraftTag: This PDF is an architectural scaffold.
+  Section summaries, migration notes, and declarations marked for confirmation
+  are not submission-ready prose. No placeholder is a scientific finding.}}
+
+\input{01_introduction}
+\input{02_literature}
+\input{03_model_projection}
+\input{04_cover_complexity}
+\input{05_algorithms}
+\input{06_economic_implications}
+\input{07_computational_study}
+\input{08_financial_case_studies}
+\input{09_conclusion}
+
+\appendix
+\input{appendices/a_proofs_and_assumptions}
+\input{appendices/b_algorithm_certificates}
+\input{appendices/c_evidence_and_reproducibility}
+
+\backmatter
+
+\section*{Supplementary information}
+Online Resource~1 is planned to contain extended proofs, exact fixtures,
+registered-study documentation and secondary outputs, financial-audit design
+details, formal correspondence, and reproducibility records. Every submitted
+resource will be cited explicitly and supplied with the metadata required by
+the journal. \DraftTag: final filenames, captions, and metadata remain to be
+confirmed.
+
+\section*{Statements and Declarations}
+
+\DeclarationHead{Funding}
+\AORFundingStatement
+
+\DeclarationHead{Competing interests}
+\AORCompetingInterestsStatement
+
+\DeclarationHead{Ethics approval and consent to participate}
+Not applicable. The study does not involve human participants or animals.
+
+\DeclarationHead{Consent for publication}
+Not applicable.
+
+\DeclarationHead{Data availability}
+Exact fixtures, synthetic-study inputs and public-safe aggregate outputs,
+generated tables, and generated figures supporting the journal version are
+provided in the project repository. The retrospective financial audits use
+licensed CRSP/WRDS source data. Raw and row-level licensed observations cannot
+be redistributed. Researchers with independent licensed access can reproduce
+the licensed-data stages using the documented input contracts. Any final
+repository link, archive identifier, and reuse condition remains subject to
+release-time verification.
+
+\DeclarationHead{Code availability}
+The project repository contains Julia 1.12.6 and Lean 4.32.0 source, pinned
+environments, exact fixtures, registered configurations, and reproducibility
+commands. \DraftTag: the final repository URL, release tag, archive identifier,
+and command list require release-time verification.
+
+\DeclarationHead{Author contributions}
+\AORAuthorContributionStatement
+
+\DeclarationHead{Acknowledgements}
+\AORAcknowledgementsStatement
+
+\DeclarationHead{Generative-AI disclosure}
+\AORGenerativeAIDisclosureStatement
+
+\DeclarationHead{Preprint disclosure}
+\AORPreprintDisclosureStatement
+
+\bibliography{bibliography/references}
+
+\end{document}

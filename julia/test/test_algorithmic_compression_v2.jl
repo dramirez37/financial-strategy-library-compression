@@ -172,6 +172,32 @@ end
     end
 end
 
+@testset "generation-failure expansion uses v2 schedule metadata" begin
+    registries = load_algorithmic_benchmark_registries(
+        V2.INSTANCE_REGISTRY_PATH,
+        V2.SEED_REGISTRY_PATH,
+    )
+    item = first(V2._registered_schedule(registries))
+    mktempdir() do directory
+        generation_path = joinpath(directory, "generation.toml")
+        write(generation_path, "status = \"REJECTED\"\n")
+        record = V2._generation_failure_record(
+            item.spec,
+            item.seed,
+            item,
+            1.0,
+            generation_path,
+        )
+        @test record["status"] == "GENERATION_FAILED"
+        @test record["algorithm_id"] == string(item.unit.algorithm)
+        @test record["preprocessing_variant"] == string(item.unit.variant)
+        @test record["worker_lane"] == item.worker_lane
+        @test record["lane_position"] == item.lane_position
+        @test record["global_schedule_position"] == item.global_schedule_position
+        @test record["launch_wave"] == item.launch_wave
+    end
+end
+
 @testset "lock manifest detects any changed input hash" begin
     hashes = V2.LockAlgorithmicCompressionDesignV2._hashes()
     text = V2.LockAlgorithmicCompressionDesignV2._render_lock(hashes)

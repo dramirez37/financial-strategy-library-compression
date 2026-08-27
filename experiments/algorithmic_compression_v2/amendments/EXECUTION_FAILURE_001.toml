@@ -1,0 +1,23 @@
+schema_version = "algorithmic-compression-v2-execution-failure-v1"
+experiment_id = "registered-algorithmic-compression-benchmark-v2"
+recorded_at_utc = "2026-08-27T14:55:24.000Z"
+failure_stage = "generation_failure_expansion_before_algorithm_launch"
+exception_type = "MethodError"
+failure_code = "GENERATION_FAILURE_DISPATCH_ARITY"
+registered_command = "caffeinate -dimsu env AOR_PROGRESS=1 make aor-benchmark-v2"
+registered_final_seed_consumed = true
+generation_record_count = 1
+raw_algorithm_record_count = 0
+solver_log_count = 0
+algorithm_worker_started = false
+generation_status_mechanically_observed = true
+generation_attempt_payload_inspected = false
+algorithm_outcome_observed = false
+scientific_comparison_performed = false
+design_or_limit_tuning_performed = false
+original_design_lock_sha256 = "66b882cae96796bc44621c576bd0856b8f96bf41f99f6209123eeab21d93d5fa"
+execution_start_lock_sha256 = "02ba356214c75b7462ff583fe454012fecb6cc186dffd19cbb1f60a1901ff883"
+environment_record_sha256 = "385ef75080ebf606778a468edbe51226d2da3f84c976698f6155e2fc3c89c665"
+generation_record_sha256 = "a4f0c7d7595420469eed5a674e80dc2b03475dcd372b9bad669741e08b3f80e7"
+generation_record_path = "experiments/algorithmic_compression_v2/results/generation/V2-B-N192-R064-C09-X01.toml"
+repair = "remove obsolete standalone run-unit argument; retain schedule-item argument"

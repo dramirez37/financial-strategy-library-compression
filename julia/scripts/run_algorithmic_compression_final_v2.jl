@@ -755,7 +755,6 @@ function _expand_generation_failure!(spec, seed, schedule_items, config, generat
         record = _generation_failure_record(
             spec,
             seed,
-            unit,
             schedule_item,
             _time_limit(config, spec, unit.algorithm),
             generation_path,

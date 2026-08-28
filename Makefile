@@ -15,6 +15,7 @@ export ALGOLIB_CRSP_ROOT
 	aor-financial-algorithm-promote aor-financial-weight-robustness-tests \
 	aor-financial-weight-robustness-lock aor-financial-weight-robustness \
 	aor-financial-weight-robustness-audit aor-financial-weight-robustness-promote \
+	aor-financial-panel-v1-design-check \
 	aor-evidence-status-tests
 
 help:
@@ -47,6 +48,7 @@ help:
 		'make aor-financial-weight-robustness Run the locked three-schedule robustness study' \
 		'make aor-financial-weight-robustness-audit Audit saved robustness results without solving' \
 		'make aor-financial-weight-robustness-promote Promote audited robustness aggregates' \
+		'make aor-financial-panel-v1-design-check Verify the prospective panel registries and design lock' \
 		'make aor-evidence-status-tests Check exact Julia-Lean journal evidence fixtures' \
 		'make financial-licensed Run both licensed-data audits and the cross-audit optimization' \
 		'make verify             Run the complete release gate'
@@ -165,6 +167,11 @@ aor-financial-weight-robustness-audit: aor-financial-weight-robustness-lock
 
 aor-financial-weight-robustness-promote: aor-financial-weight-robustness-lock
 	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/run_financial_weight_robustness_v1.jl --promote-public
+
+aor-financial-panel-v1-design-check:
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/create_financial_strategy_library_panel_v1_registries.jl --check
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/lock_financial_strategy_library_panel_v1.jl --check
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/test/run_financial_strategy_library_panel_v1_registration_tests.jl
 
 aor-evidence-status-tests:
 	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/test/run_journal_evidence_audit_tests.jl

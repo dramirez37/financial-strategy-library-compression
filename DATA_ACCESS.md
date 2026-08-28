@@ -65,6 +65,14 @@ The security-history file must contain:
 permno,secinfostartdt,secinfoenddt,ticker,securitytype,securitysubtype
 ```
 
+The prospectively registered point-in-time panel additionally requires
+`securitynm` and `securityactiveflg`. Its origin universe is determined only
+from security-history state at the origin and observations at or before the
+origin; a later ticker, later survival, delisting, or return may not determine
+eligibility. The available CRSP extract is a current vendor snapshot rather
+than a database-revision vintage, so the design is origin-eligible but does
+not claim vintage-database certification.
+
 The ignored prepared ETF panels contain:
 
 ```text
@@ -96,6 +104,14 @@ experiments/financial_annual_walkforward_audit/data/provenance.toml
 All six paths are ignored by Git. The only distributed files in those data
 directories are `README.md` and `provenance.template.toml`. Do not add licensed
 files to Git, archives, issue attachments, or public replication bundles.
+
+The new panel keeps every licensed derivative under the ignored paths
+`experiments/financial_strategy_library_panel_v1/local_data/` and
+`experiments/financial_strategy_library_panel_v1/local_results/`. Registration,
+registry generation, lock creation, and lock verification never open the
+licensed source files. Only a separately implemented licensed runner may do
+so, and any promotion of aggregate results requires a subsequent exact and
+public-boundary audit.
 
 ## Preparation and replay commands
 

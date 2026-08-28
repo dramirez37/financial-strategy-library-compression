@@ -1,0 +1,188 @@
+schema_version = "financial-strategy-library-panel-design-v1"
+experiment_id = "financial-strategy-library-panel-v1"
+study_title = "Registered Point-in-Time Financial Strategy-Library Panel v1"
+protocol_date = "2026-08-28"
+status = "prospective_design_locked_before_licensed_rows_or_outcomes"
+julia_version = "1.12.6"
+parent_commit = "56f3ad781bc69388e36b7c422e21c32a9a83b7fd"
+licensed_rows_read_for_registration = false
+financial_outcomes_observed_for_registration = false
+prior_financial_audit_outcomes_known = true
+identity_closure_primary = true
+exact_arithmetic = "Rational{BigInt} after lossless conversion of committed instance coordinates"
+
+[source]
+provider = "CRSP/WRDS"
+dataset_name = "CRSP US Stock Database daily security and date-varying security history"
+repository_root_default = "../curv-risk/curvrisk/research/bachelier_revision"
+repository_root_environment = "ALGOLIB_CRSP_ROOT"
+security_history = "data/raw/crsp_a_stock/security_history/stksecurityinfohist.csv"
+daily_files = [
+  "data/raw/crsp_a_stock/daily_security/stkdlysecuritydata_00_10.csv.gz",
+  "data/raw/crsp_a_stock/daily_security/stkdlysecuritydata_10_20.csv.gz",
+  "data/raw/crsp_a_stock/daily_security/stkdlysecuritydata_20_25.csv.gz",
+]
+source_snapshot_end = "2025-12-31"
+revision_vintage_available = false
+raw_redistribution_permitted = false
+aggregate_publication_requires_separate_audit = true
+
+[source.required_security_history_columns]
+columns = ["permno", "secinfostartdt", "secinfoenddt", "ticker", "securitynm", "securitytype", "securitysubtype", "securityactiveflg"]
+
+[source.required_daily_columns]
+columns = ["permno", "dlycaldt", "dlyret", "dlyclose", "dlyprc", "dlyvol", "dlydelflg", "dlyretmissflg"]
+
+[origins]
+registry = "experiments/financial_strategy_library_panel_v1/registry/ORIGIN_REGISTRY.csv"
+first_decision_year = 2005
+last_decision_year = 2024
+decision_date_rule = "last CRSP trading session on or before December 31 of decision_year"
+construction_window_rule = "calendar years decision_year-4 through decision_year-2 inclusive"
+compression_window_rule = "calendar years decision_year-1 through decision_year inclusive"
+postdecision_window_rule = "calendar year decision_year+1"
+origin_count = 20
+windows_overlap_across_origins = true
+postdecision_years_overlap = false
+
+[universe]
+identifier = "PERMNO"
+security_type = "FUND"
+security_subtype = "ETF"
+require_active_at_origin = true
+require_active_at_future_endpoint = false
+require_same_ticker_at_future_endpoint = false
+minimum_preorigin_daily_observations = 1000
+minimum_compression_window_liquidity_observations = 400
+minimum_median_close = 5.0
+minimum_median_dollar_volume = 5000000.0
+maximum_eligible_by_liquidity = 150
+minimum_eligible_for_analysis = 20
+required_reference_ticker = "SPY"
+exclude_name_keywords = ["2X", "3X", "BEAR", "DIREXION", "DOUBLE", "INVERSE", "LEVERAGED", "PROSHARES", "TRIPLE", "ULTRA"]
+liquidity_tie_rule = "descending median dollar volume, then ascending PERMNO; retain exactly the first maximum_eligible_by_liquidity"
+preorigin_daily_row_count_may_define_universe = true
+postdecision_return_fields_may_define_universe = false
+future_identity_or_survival_may_define_universe = false
+delisted_after_origin_is_excluded = false
+
+[grammar]
+directional_signal = ["momentum_20", "momentum_60", "mean_reversion_5"]
+entry_filter = ["always", "trend_100"]
+holding_horizon = [5, 20]
+sizing_rule = ["unit", "half"]
+exit_rule = ["horizon", "signal_flip"]
+risk_constraint = ["notional_cap_1", "vol_target_10"]
+strategies_per_instrument_full_factorial = 96
+strategy_identifier_rule = "origin_id|library_id|PERMNO|signal|filter|horizon|sizing|exit|risk"
+ordering_rule = "ascending origin_id, library registry order, PERMNO, and grammar tuple"
+
+[operating_profiles]
+belief_reference = "SPY"
+belief_signal = "trailing_60_session_return"
+belief_state_count = 5
+belief_cutpoints = [0.2, 0.4, 0.6, 0.8]
+cutpoint_estimation_window = "construction window only"
+profile_estimation_window = "compression window only"
+annualization_sessions = 252
+risk_aversion = 3
+one_way_transaction_cost_bps = 5
+decision_to_first_return_lag_sessions = 2
+minimum_profile_observations = 25
+floating_profile_tolerance_before_instance_freeze = 1.0e-10
+construction_score_tie_rule = "bitwise-equal deterministic Float64 score; tolerance is not used to create ties"
+instance_frontier_tie_rule = "exact equality after lossless rational conversion of frozen coordinates"
+
+[libraries]
+registry = "experiments/financial_strategy_library_panel_v1/registry/LIBRARY_CONSTRUCTION_REGISTRY.csv"
+library_count = 3
+capability_completion_uses_postorigin_information = false
+
+[capabilities]
+registry = "experiments/financial_strategy_library_panel_v1/registry/CAPABILITY_REGISTRY.csv"
+ownership_protocol = "experiments/financial_strategy_library_panel_v1/CAPABILITY_OWNERSHIP.md"
+closure = "identity union of registered atomic and interface capability identifiers carried by retained strategy specifications"
+owner_scope = "active-maintenance responsibility in this registered catalog; not intellectual property or sole physical storage"
+unresolved_ownership_policy = "reject the source instance"
+carrier_map_output = "local_results/instances/capability_carriers.csv"
+carrier_map_is_public_aggregate = true
+
+[burdens]
+registry = "experiments/financial_strategy_library_panel_v1/registry/BURDEN_SCHEDULE_REGISTRY.csv"
+calibration_protocol = "experiments/financial_strategy_library_panel_v1/BURDEN_CALIBRATION.md"
+primary_schedule = "validation_work_units"
+schedule_count = 3
+weights_positive_integer_for_active = true
+mandatory_inactive_weight = 0
+heldout_may_define_weight = false
+
+[algorithms]
+algorithm_ids = [
+  "jump_highs_tagged_cover",
+  "requirement_mask_dp",
+  "complete_enumeration",
+  "weighted_greedy_reverse_delete",
+  "heaviest_safe_first",
+  "declared_source_order",
+  "multistart_random_rechecked_deletion_32",
+]
+preprocessing = "full_fixed_point_then_reconstruct"
+dp_requirement_limit = 22
+enumeration_optional_strategy_limit = 24
+multistart_count = 32
+seed_registry = "experiments/financial_strategy_library_panel_v1/registry/SEED_REGISTRY.csv"
+highs_time_limit_seconds = 900
+highs_relative_gap = 0.0
+highs_absolute_gap = 0.0
+highs_threads = 1
+highs_random_seed = 0
+warm_start = "weighted_greedy_reverse_delete exactly feasible endpoint"
+solver_optimal_is_formal_proof = false
+every_returned_solution_exactly_rechecked = true
+
+[parallel]
+supervisor_threads = 8
+worker_processes = 8
+worker_julia_threads = 1
+worker_blas_threads = 1
+worker_highs_threads = 1
+stable_assignment = "round robin over origin, library, burden schedule, algorithm"
+progress_reads_outcomes = false
+
+[analysis]
+plan = "experiments/financial_strategy_library_panel_v1/ANALYSIS_PLAN.md"
+reporting_rules = "experiments/financial_strategy_library_panel_v1/REPORTING_RULES.md"
+primary_unit = "origin-library-burden instance"
+origin_is_dependence_cluster = true
+terminal_and_annual_units_pooled = false
+structural_outcomes_primary = true
+postdecision_financial_diagnostics_secondary = true
+hypothesis_tests_primary = false
+unsuccessful_runs_retained = true
+
+[information_boundary]
+postdecision_returns_may_define_universe = false
+postdecision_returns_may_define_library = false
+postdecision_returns_may_define_capabilities = false
+postdecision_returns_may_define_weights = false
+postdecision_returns_may_define_preprocessing = false
+postdecision_returns_may_define_algorithm = false
+postdecision_returns_may_define_warm_start = false
+postdecision_returns_may_define_tie_rule = false
+postdecision_returns_may_define_exclusion = false
+raw_licensed_rows_may_be_logged = false
+raw_licensed_rows_may_be_committed = false
+
+[paths]
+design_root = "experiments/financial_strategy_library_panel_v1"
+local_data_root = "experiments/financial_strategy_library_panel_v1/local_data"
+local_results_root = "experiments/financial_strategy_library_panel_v1/local_results"
+public_results_root = "experiments/results/summaries/financial_strategy_library_panel_v1"
+design_lock = "experiments/financial_strategy_library_panel_v1/DESIGN_LOCK.json"
+
+[publication]
+public_promotion_automatic = false
+public_promotion_requires_exact_audit = true
+permitted_public_rows = "aggregate strategy specifications, hashes, capability-carrier mappings, burdens, certificates, and origin-level summaries"
+prohibited_public_rows = "market observations, security-history rows, row-level derivatives, vendor extracts, and credentials"
+nonclaims = ["causal", "forecasting", "alpha", "deployable performance", "population resource savings"]

@@ -4,6 +4,13 @@ set -euo pipefail
 export LC_ALL=C
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+if [[ -n "${JULIA_EXE:-}" ]]; then
+    JULIA_CMD="$JULIA_EXE"
+elif [[ -x "$ROOT/.local_runtime/julia-1.12.6/bin/julia" ]]; then
+    JULIA_CMD="$ROOT/.local_runtime/julia-1.12.6/bin/julia"
+else
+    JULIA_CMD="julia"
+fi
 
 fail() {
     printf 'aor-check: %s\n' "$1" >&2
@@ -19,6 +26,12 @@ cached_before="$(git diff --cached --binary HEAD | shasum -a 256 | awk '{print $
 "$ROOT/scripts/aor_theory_check.sh"
 "$ROOT/scripts/aor_algorithm_tests.sh"
 "$ROOT/scripts/aor_benchmark_audit.sh"
+"$JULIA_CMD" --startup-file=no --project=julia \
+    julia/scripts/create_financial_strategy_library_panel_v1_registries.jl --check
+"$JULIA_CMD" --startup-file=no --project=julia \
+    julia/scripts/lock_financial_strategy_library_panel_v1.jl --check
+"$JULIA_CMD" --startup-file=no --project=julia \
+    julia/test/run_financial_strategy_library_panel_v1_registration_tests.jl
 "$ROOT/scripts/aor_manuscript.sh"
 "$ROOT/scripts/aor_public_boundary_audit.sh"
 "$ROOT/scripts/build_aor_release.sh" --check-inputs

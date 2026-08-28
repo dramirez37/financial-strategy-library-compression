@@ -816,6 +816,17 @@ artifact checksum is assigned. The focused Git commit is their provenance.
 
 ## Absent substantive artifact classes
 
+### Prospective point-in-time financial panel
+
+The files under `experiments/financial_strategy_library_panel_v1/`, its
+configuration, deterministic registry generator, registration tests, and
+`DESIGN_LOCK.json` form a prospective design artifact. They register 20 annual
+origins, three distinct source-library constructions, 27 auditable
+specification-owned capabilities, three predecision burden schedules, and the
+information boundary before any study-specific licensed row or outcome is
+read. They are not empirical results. `make aor-financial-panel-v1-design-check`
+verifies this artifact without accessing licensed data.
+
 | Class | Expected future location or form | Current status |
 |---|---|---|
 | remaining primary research theorem declarations | future extensions under `formal/StrategyInnovation/` | none in the adopted T1--T7 package; F0, F1--F8, S4--S7, C2, and CS1 are supporting results |

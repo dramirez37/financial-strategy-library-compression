@@ -133,7 +133,7 @@ The final recorder audit is based on:
 ```sh
 ./journal/aor/manuscript/build.sh
 ./journal/aor/online_resource/build.sh
-rg '^INPUT /Users/david/Coding/Julia/algolib' \
+rg '^INPUT .*/journal/aor/' \
   journal/aor/manuscript/build/aor-journal-manuscript.fls
 rg '^INPUT' journal/aor/online_resource/build/aor-online-resource-1.fls
 ```

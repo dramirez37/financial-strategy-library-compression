@@ -56,16 +56,16 @@ end as a future gate.
 | `thm:passive-innovation-equation`, Passive gap-sum identity | `manuscript/online_supplement/s1_belief_occupation_coverage.tex` | MOVE TO ONLINE RESOURCE | Supports interpretation of operating gains without occupying main. |
 | `cor:zero-current-gap-positive-future-value`, Zero current gap, positive future operating value | `manuscript/online_supplement/s1_belief_occupation_coverage.tex` | MOVE TO ONLINE RESOURCE | Compact supporting mechanism. |
 | `prop:diminishing-operational-innovation`, Diminishing marginal operational innovation | `manuscript/online_supplement/s1_belief_occupation_coverage.tex` | MOVE TO ONLINE RESOURCE | Secondary property of the operating component. |
-| `thm:coverage-potential-representation`, Exact finite coverage representation | `manuscript/online_supplement/s1_belief_occupation_coverage.tex` | REMOVE FROM JOURNAL VERSION | Begins a broad occupation-coverage branch outside the locked exact-retention identity. |
+| `thm:coverage-potential-representation`, Exact finite coverage representation | `manuscript/online_supplement/s1_belief_occupation_coverage.tex` | MOVE TO ONLINE RESOURCE | Supporting occupation-coverage branch retained outside the main compression spine. |
 | `cor:coverage-potential-bounds`, Finite occupation bounds | same | REMOVE FROM JOURNAL VERSION | Dependent coverage result outside the narrowed contribution. |
 | `thm:finite-monotone-coverage`, Monotone-gap upper-threshold theorem | same | REMOVE FROM JOURNAL VERSION | Comparative-statics geometry is not a principal contribution here. |
-| `thm:discount-survival-complementarity`, Finite patience--survival complementarity | same | REMOVE FROM JOURNAL VERSION | Secondary comparative statics outside the journal spine. |
+| `thm:discount-survival-complementarity`, Finite patience--survival complementarity | same | MOVE TO ONLINE RESOURCE | Secondary comparative statics retained outside the journal spine. |
 | `prop:no-universal-persistence-sign`, Opposite persistence effects | same | REMOVE FROM JOURNAL VERSION | Boundary result for the removed coverage branch. |
 | `thm:kernel-occupation-alignment`, Advantage-region occupation alignment | same | REMOVE FROM JOURNAL VERSION | Kernel geometry lies outside the exact compression focus. |
-| `thm:frontier-closure-substitution`, Frontier--closure substitution under relative saturation | `manuscript/online_supplement/s2_frontier_closure_interaction.tex` | REMOVE FROM JOURNAL VERSION | Interesting interaction theorem, but it would preserve a second theory arc. |
+| `thm:frontier-closure-substitution`, Frontier--closure substitution under relative saturation | `manuscript/online_supplement/s2_frontier_closure_interaction.tex` | MOVE TO ONLINE RESOURCE | Preserved as extended theory without creating a second main-paper arc. |
 | `prop:primitive-frontier-saturation`, Primitive common-gap frontier saturation | same | REMOVE FROM JOURNAL VERSION | Technical support for the removed interaction arc. |
 | `prop:t7-interaction-examples`, Complementarity from project switching | same | REMOVE FROM JOURNAL VERSION | Example family is not needed for the locked OR contribution. |
-| `prop:one-shot-cutoff-comparative-statics`, One-shot cutoff comparative statics | `manuscript/online_supplement/s3_comparative_statics_counterexamples.tex` | REMOVE FROM JOURNAL VERSION | One-shot coverage geometry is outside scope. |
+| `prop:one-shot-cutoff-comparative-statics`, One-shot cutoff comparative statics | `manuscript/online_supplement/s3_comparative_statics_counterexamples.tex` | MOVE TO ONLINE RESOURCE | One-shot coverage geometry is supporting material outside the main article. |
 | `cx:single-peaked-disconnected`, A nonmonotone kernel defeats the upper threshold | same | REMOVE FROM JOURNAL VERSION | Counterexample belongs only to the removed coverage branch. |
 | `cx:arbitrary-cost-disconnected`, Non-antitone cost disconnects a monotone covering set | same | REMOVE FROM JOURNAL VERSION | Counterexample belongs only to the removed coverage branch. |
 | `cx:multi-gap-disconnection`, One-project multi-gap disconnection | same | REMOVE FROM JOURNAL VERSION | Counterexample belongs only to the removed coverage branch. |
@@ -119,7 +119,7 @@ immutable even when presentation moves.
 | Unified benchmark selected | `experiments/configs/unified_benchmark_selected.toml` | RETAIN ONLY IN REPOSITORY | Selection trail for the canonical example. |
 | Unified canonical benchmark | `experiments/configs/unified_canonical_benchmark.toml` | MOVE TO ONLINE RESOURCE | Complete dynamic-control example supporting economic interpretation. |
 | Unified canonical resources | `experiments/configs/unified_canonical_resources.toml` | MOVE TO ONLINE RESOURCE | Exact capacity/price paths supporting condensed Section 6 claims. |
-| Unified comparative statics | `experiments/configs/unified_comparative_statics.toml` | REMOVE FROM JOURNAL VERSION | Broad comparative-statics arc outside scope. |
+| Unified comparative statics | `experiments/configs/unified_comparative_statics.toml` | MOVE TO ONLINE RESOURCE | Broad comparative-statics records retained as supporting material, not a main contribution. |
 | Unified elasticity and switching v1 | `experiments/configs/unified_elasticity_switching_v1.toml` | REMOVE FROM JOURNAL VERSION | Broad sensitivity surface outside scope. |
 | SC-COMP exact reduction fixture | `experiments/results/safe_compression_complexity_reduction_fixture.json` | MOVE TO ONLINE RESOURCE | Exact finite validation of the complexity construction; not a proof. |
 
@@ -175,8 +175,8 @@ the frozen (N=1024) registry, seeds, locks, amendments, or results.
 | `manuscript/figures/unified_canonical_resource_value_capacity.svg` | MOVE TO ONLINE RESOURCE | Detailed value-capacity path. |
 | `manuscript/figures/unified_canonical_resource_value_price.svg` | MOVE TO ONLINE RESOURCE | Detailed value-price path. |
 | `manuscript/figures/unified_canonical_transition.tex` | MOVE TO ONLINE RESOURCE | Complete finite transition diagram. |
-| `manuscript/figures/unified_comparative_statics_policy.svg` | REMOVE FROM JOURNAL VERSION | Broad comparative-statics branch. |
-| `manuscript/figures/unified_comparative_statics_value.svg` | REMOVE FROM JOURNAL VERSION | Broad comparative-statics branch. |
+| `manuscript/figures/unified_comparative_statics_policy.svg` | MOVE TO ONLINE RESOURCE | Broad comparative-statics branch retained only as supporting evidence. |
+| `manuscript/figures/unified_comparative_statics_value.svg` | MOVE TO ONLINE RESOURCE | Broad comparative-statics branch retained only as supporting evidence. |
 | `manuscript/figures/unified_economic_geometry.tex` | CONDENSE IN MAIN ARTICLE | At most one compact composite for capacity and price consequences. |
 | `manuscript/figures/unified_elasticity_switching_v1_innovation_duration.svg` | REMOVE FROM JOURNAL VERSION | Broad elasticity branch. |
 | `manuscript/figures/unified_elasticity_switching_v1_margin_elasticity.svg` | REMOVE FROM JOURNAL VERSION | Broad elasticity branch. |
@@ -217,14 +217,14 @@ records.
 | `tab:supp-path-admission-atoms` | same | MOVE TO ONLINE RESOURCE | Complete finite transition atoms. |
 | `tab:supp-penalized-intervals` | same | MOVE TO ONLINE RESOURCE | Exact penalized-envelope intervals. |
 | `tab:supp-randomized-library-v2` | `manuscript/online_supplement/s5_complete_registered_randomized_study.tex` | MOVE TO ONLINE RESOURCE | Frozen (N=1024) aggregate record. |
-| `tab:supp-randomized-pilot-comparison` | same | RETAIN ONLY IN REPOSITORY | Pilot comparison is not needed in the submitted resource. |
+| `tab:supp-randomized-pilot-comparison` | same | MOVE TO ONLINE RESOURCE | Historical pilot provenance retained and explicitly excluded from final-evidence claims. |
 | `tab:supp-randomized-v2-stability-events` | same | MOVE TO ONLINE RESOURCE | Frozen stability events. |
 | `tab:supp-randomized-v2-stability-means` | same | MOVE TO ONLINE RESOURCE | Frozen stability means. |
 | `tab:supp-safe-compression` | `manuscript/online_supplement/s4_complete_canonical_numerical_records.tex`; related generated table `manuscript/tables/appendix_canonical_safe_compression.tex` | MOVE TO ONLINE RESOURCE | Exact canonical compression record. |
 | `tab:supp-stationary-solution` | same; `manuscript/tables/main_canonical_stationary_solution.tex` | MOVE TO ONLINE RESOURCE | Complete stationary solution. |
 | Main local/global greedy comparison (unlabeled) | `manuscript/tables/main_greedy_global_comparison.tex`, included by `manuscript/sections/04_dynamic_innovation_equivalence.tex` | CONDENSE IN MAIN ARTICLE | Compact exact witness for the proved local/global distinction; must not imply a worst-case ratio. |
 | Main validation/evidence-status matrix (unlabeled) | `manuscript/appendices/f_validation_status.tex` | MOVE TO ONLINE RESOURCE | Useful evidence-class summary, too detailed for main. |
-| Comparative-statics direction table (unlabeled) | `manuscript/online_supplement/s3_comparative_statics_counterexamples.tex` | REMOVE FROM JOURNAL VERSION | Belongs to removed coverage/comparative-statics branch. |
+| Comparative-statics direction table (unlabeled) | `manuscript/online_supplement/s3_comparative_statics_counterexamples.tex` | MOVE TO ONLINE RESOURCE | Supporting table retained outside the main compression argument. |
 | Detailed result-by-result validation matrix (unlabeled) | `manuscript/online_supplement/validation_matrix.tex` | RETAIN ONLY IN REPOSITORY | Repository audit trail; replace any submitted status table from the authoritative ledger. |
 | One-page manuscript/formal summary (unlabeled) | `manuscript/online_supplement/validation_matrix.tex` | RETAIN ONLY IN REPOSITORY | Repository audit trail; may be stale relative to the theorem ledger. |
 | Canonical display-burden/resource summary (standalone, unlabeled) | `manuscript/tables/appendix_canonical_resource_summary.tex` | MOVE TO ONLINE RESOURCE | Exact resource schedule support for Section 6. |

@@ -1,0 +1,45 @@
+\section{Solver Diagnostics and Independent Exactness Records}
+\label{sec:or-solver-exactness}
+
+The baseline binary covering model fixes mandatory columns, places one
+at-least-one constraint on every residual tagged row, and minimizes the exact
+weighted burden after a verified integer scaling. HiGHS runs record solver and
+wrapper versions, deterministic controls, time limit, gap tolerances, primal,
+dual, and termination status, objective, best bound, reported gap, solve time,
+node count where exposed, preprocessing audit, warm-start source, selected
+original identifiers, and log location.
+
+Every returned vector must already be binary under the declared exact
+acceptance rule; no fractional candidate is rounded. Reconstruction is followed
+by independent exact checks of mandatory retention, tagged coverage, burden,
+the original frontier, and the original identity closure. A returned
+\texttt{OPTIMAL} status is solver evidence plus an exact feasibility recheck,
+not exhaustive enumeration, a Lean theorem, or a formal optimality proof.
+When exact preprocessing empties the residual model, the record states that no
+solver was invoked.
+
+The authoritative benchmark audit is
+\path{experiments/algorithmic_compression_v2/RESULT_AUDIT.md}; machine
+certificates and hashes are below
+\path{experiments/algorithmic_compression_v2/results/audit/certificates/} and
+\path{experiments/algorithmic_compression_v2/results/ARTIFACT_MANIFEST.csv}.
+The complete MIP logs, worker handshakes, stdout, stderr, instances, and raw
+TOML records are retained under the committed v2 result tree. No second
+open-source MIP solver was pinned, so medium and large cases receive exact
+feasibility and burden rechecks plus HiGHS bound/status/log diagnostics rather
+than a second-solver optimality claim.
+
+For the two financial source instances and each of the three prospectively
+locked weight schedules, fixed-point exact preprocessing leaves zero residual
+strategies and zero residual requirements. The resulting six certificates
+prove the optimum value by the human preprocessing propositions together with
+exact finite computation and original-instance rechecks. They are not Lean
+verified and do not use a solver status as proof. The authoritative rows are
+\path{experiments/results/summaries/financial_resource_optimization_weight_robustness_empty_residual_certificates.csv}.
+
+The audit command is nonmutating with respect to saved result records:
+\begin{verbatim}
+make aor-benchmark-v2-audit
+\end{verbatim}
+It reads the committed raw records and certificates; it does not rerun any
+solver or heuristic.

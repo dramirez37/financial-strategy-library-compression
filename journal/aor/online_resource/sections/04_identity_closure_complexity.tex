@@ -1,0 +1,208 @@
+\subsection{Computational complexity of exact compression}
+\label{subsec:aor-safe-compression-complexity}
+
+We use an explicit finite encoding. A source instance lists a finite strategy
+library $L=\{s_0,s_1,\ldots,s_n\}$, a finite nonempty belief set
+$\mathcal B$, exact binary-rational profiles $j_s(b)$, a finite module
+universe $\mathcal M$, and the incidence rows
+$\mods(s)\subseteq\mathcal M$. Strategy $s_0$ is the mandatory inactive
+strategy, has profile zero at every belief, carries no modules, and has zero
+burden. Every active strategy has a positive binary-integer weight $w_i$, and
+the threshold $B$ is a nonnegative binary integer. Closure is identity
+closure,
+
+\[
+  C(A)=\bigcup_{s\in A}\mods(s).
+\]
+
+The source frontier is $F_L(b)=\max_{s\in L}j_s(b)$, and the burden of a
+sublibrary is $W(A)=\sum_{s_i\in A,\,i\geq 1}w_i$. The decision problem
+\textsc{Identity-Closure Safe Compression} (\textsc{ISC-ID}) asks whether
+there is an $A\subseteq L$ such that $s_0\in A$, $W(A)\leq B$,
+$F_A=F_L$ at every listed belief, and $C(A)=C(L)$.
+
+The hardness source below is a deliberately normalized version of weighted
+set cover. In \textsc{Full-Union Weighted Set Cover} (\textsc{FU-WSC}), the
+input is a nonempty finite universe $U$, an indexed finite family
+$(A_i)_{i=1}^n$ whose union is $U$, positive binary-integer costs $c_i$, and a
+nonnegative binary-integer budget $B$. The question is whether some index set
+$I\subseteq\{1,\ldots,n\}$ satisfies
+$\bigcup_{i\in I}A_i=U$ and $\sum_{i\in I}c_i\leq B$.
+Encodings that fail these stated syntactic restrictions are rejected, so
+\textsc{FU-WSC} is a language rather than an unverified promise problem.
+
+\begin{lemma}[Normalized weighted set cover]
+\label{lem:aor-full-union-weighted-set-cover}
+\textnormal{\textsc{FU-WSC}} is NP-complete.
+\end{lemma}
+
+\begin{proof}
+Input validity is checkable in polynomial time. A selected-index bit vector is
+a polynomial certificate: unioning its listed incidence rows and adding its
+binary-integer costs verifies feasibility in polynomial time. Thus
+\textsc{FU-WSC} is in NP.
+
+For hardness, reduce the standard \textsc{Set Cover} decision problem, one of
+Karp's NP-complete covering problems \citep{Karp1972}. Write an input as
+$(U,(A_i)_{i=1}^n,k)$, with nonnegative cardinality bound $k$. If
+$U=\varnothing$, output the fixed yes-instance consisting of universe
+$\{u\}$, the one set $\{u\}$, cost one, and budget one. If
+$U\neq\varnothing$ but $\bigcup_i A_i\neq U$, output the fixed no-instance
+with universe $\{u\}$, the one set $\{u\}$, cost two, and budget one.
+Otherwise retain the universe and family, assign every set unit cost, and set
+the budget to $k$. Every output has a nonempty universe, a full-union family,
+positive integer costs, and a nonnegative integer budget. The first branch
+preserves the fact that the empty universe is coverable; the second preserves
+the fact that an uncovered element makes the source instance a no-instance;
+and in the third branch cost is exactly selected-set cardinality. The case
+split, union check, and copied incidence representation have polynomial size
+and construction time. Hence the mapping preserves yes- and no-instances and
+proves NP-hardness.
+\end{proof}
+
+\begin{theorem}[Identity-closure safe-compression complexity]
+\label{thm:aor-safe-compression-complexity}
+\textnormal{\textsc{ISC-ID}} is NP-complete. More specifically, it remains
+NP-complete on
+the subclass with exactly one belief, zero profiles for every active strategy,
+an inactive strategy with zero profile, zero burden, and no modules, and a
+source library whose active module rows have full union. The result holds even
+when every active weight is one. Consequently, minimum-burden identity-closure
+safe compression is NP-hard. Any broader safe-compression model class
+containing this identity-closure subclass is NP-hard; no membership claim for
+an arbitrary nonidentity closure operator follows without a polynomial
+closure-equality verifier in its declared encoding.
+\end{theorem}
+
+\begin{proof}
+\emph{Membership in NP.}
+Encode a proposed retained library by one bit per source strategy. Inactive
+retention and source inclusion are direct bit checks. Binary-integer addition
+checks $W(A)\leq B$. For every explicitly listed belief, exact rational
+comparison finds the source and candidate maxima and checks their equality.
+Under identity closure, bitwise union of the listed module-incidence rows
+checks $C(A)=C(L)$. Integer and rational operations have bit complexity
+polynomial in the explicit input length. Thus \textsc{ISC-ID} is in NP.
+
+\emph{Reduction algorithm.}
+Given a valid \textsc{FU-WSC} instance
+$(U,(A_i)_{i=1}^n,(c_i)_{i=1}^n,B)$, create one module $m_u$ for each
+$u\in U$, one active strategy $s_i$ for each set $A_i$, and one mandatory
+inactive strategy $s_0$. Use one belief $b_0$. Set
+
+\[
+  j_{s_i}(b_0)=j_{s_0}(b_0)=0,
+  \qquad
+  \mods(s_i)=\{m_u:u\in A_i\},
+  \qquad
+  \mods(s_0)=\varnothing.
+\]
+
+Give $s_i$ weight $c_i$, give $s_0$ weight zero, take the complete constructed
+library as the source, use identity closure, and copy the budget without
+alteration.
+
+\emph{Polynomial construction size.}
+The construction adds one module per universe element, one active strategy per
+set, one inactive strategy, and one belief. Its module-incidence table is the
+set-cover incidence table; the remaining profiles are $n+1$ zero entries, and
+costs and budget are copied. A dense encoding has size $O(n|U|)$ plus the
+copied identifier and integer bit lengths, while a sparse encoding is linear
+in the copied incidence list plus this overhead. Either encoding is polynomial
+in the corresponding explicit source encoding.
+
+\emph{Forward feasibility.}
+Suppose $I$ is a set cover with $\sum_{i\in I}c_i\leq B$. Retain
+$A=\{s_0\}\cup\{s_i:i\in I\}$. Both source and retained frontiers equal zero
+at $b_0$, with $s_0$ itself attaining that value. Identity closure gives
+
+\[
+ C(A)=\bigcup_{i\in I}\mods(s_i)
+     =\{m_u:u\in U\}
+     =\bigcup_{i=1}^n\mods(s_i)=C(L),
+\]
+
+where the last equality uses the full-union condition. The inactive strategy
+is retained, and $W(A)=\sum_{i\in I}c_i\leq B$, so $A$ is a yes-certificate
+for the constructed \textsc{ISC-ID} instance.
+
+\emph{Reverse feasibility.}
+Suppose $A$ is a safe constructed sublibrary within threshold, and let
+$I=\{i:s_i\in A\}$. Exact closure preservation and the empty inactive module
+row imply
+
+\[
+ \bigcup_{i\in I}\{m_u:u\in A_i\}
+   =C(A)=C(L)=\{m_u:u\in U\}.
+\]
+
+The module labels are in one-to-one correspondence with $U$, so
+$\bigcup_{i\in I}A_i=U$. Thus $I$ is a set cover. Frontier preservation adds
+no hidden selection requirement because the mandatory inactive strategy
+already attains the common zero frontier.
+
+\emph{Threshold preservation.}
+The inactive strategy has zero burden, active weights are copied exactly, and
+the threshold is copied exactly. Therefore
+$W(A)=\sum_{i\in I}c_i$ for every selected index set $I$, not merely for
+optimal selections. Hence $W(A)\leq B$ if and only if the corresponding set
+cover has cost at most $B$. The reduction is a polynomial many-one reduction.
+Together with membership in NP and
+\cref{lem:aor-full-union-weighted-set-cover}, this proves NP-completeness of
+the stated restricted subclass and therefore of \textsc{ISC-ID}. The
+normalization proof uses unit costs on its nontrivial branch, so the restricted
+subclass remains NP-complete with unit active weights. Solving the associated
+minimum-burden problem would decide whether its optimum is at most $B$, which
+proves NP-hardness of the optimization problem.
+\end{proof}
+
+\subsubsection*{Reduction audit}
+
+The proof depends on each of the following points; none is supplied by the
+executable examples alone.
+
+\begin{enumerate}
+\item The hardness source is the decision problem with an at-most budget, not
+the optimization problem and not maximum coverage.
+\item The source family has full union. The preceding lemma proves that this
+normalization preserves NP-completeness instead of assuming it silently.
+Invalid encodings are rejected, so the restricted source is a language rather
+than a promise supplied by an oracle.
+\item The universe is nonempty. Empty-universe source inputs are mapped to a
+fixed valid yes-instance before the compression reduction.
+\item Costs are positive binary integers and the budget is a nonnegative
+binary integer. No pseudo-polynomial expansion of either number occurs.
+\item Sets are indexed. Duplicate or empty sets are allowed and become
+distinct active strategies; neither feature affects the two directions.
+\item The mandatory inactive strategy is part of every candidate, carries no
+modules, has zero profile, and has zero burden. If its burden were positive,
+the copied-threshold argument would require an explicit offset.
+\item All active profiles are exactly zero at the single belief. Therefore the
+inactive strategy preserves the source frontier without selecting any active
+strategy, including when a set row is empty.
+\item Module names are distinct and correspond one-to-one with universe
+elements. Identity closure is exactly row union; no module derivation,
+complementarity, multiplicity, provenance, or parent-conditioned production is
+present in the restricted subclass.
+\item Safety means exact source-relative equality of both frontier and
+closure, source inclusion, mandatory inactive retention, and burden at most
+the threshold. No tolerance or held-out outcome enters the decision.
+\item The source library contains every constructed active strategy. Its
+closure is the entire module universe precisely because the source family has
+full union.
+\item The explicit encoding lists profiles and module incidences. The
+fixture's 62-bit masks are an implementation limit, not an assumption of the
+complexity theorem.
+\item NP membership for a broader nonidentity-closure model is not inherited
+from this reduction. It requires a polynomial-time verifier for exact closure
+equality under that model's own encoding.
+\end{enumerate}
+
+This theorem and proof are human-readable mathematical evidence. The exact
+Julia fixture separately enumerates five representative budgeted reductions,
+and the focused test exhausts 5,565 full-union three-set/three-element
+instances and all 44,520 corresponding selected masks. Those exact finite
+computations check the implemented feasibility, weight, and threshold
+correspondences; they are not a Lean kernel proof, an exhaustive proof over
+arbitrary inputs, a solver-status claim, an approximation result, or a runtime
+result.

@@ -1,0 +1,103 @@
+\section{Registered Algorithmic Compression Benchmark v2}
+\label{sec:or-algorithmic-benchmark-v2}
+
+\begin{center}
+\fbox{\parbox{0.93\linewidth}{\textbf{New journal-program evidence.}
+This prospectively registered algorithmic benchmark is distinct from the
+frozen preprint-era \(N=1024\) randomized study in Section~S11. No seed,
+registry row, design lock, or result is shared or relabeled across the two
+programs.}}
+\end{center}
+
+The locked v2 analysis population contains (AORBenchmarkInstances) instances:
+(AORBenchmarkSmallExact) small exact, (AORBenchmarkStructured) structured,
+and (AORBenchmarkAdversarial) adversarial. Its
+(AORBenchmarkRuns) registered run units retain every terminal outcome;
+(AORBenchmarkAccepted) returned libraries passed independent exact checks
+and (AORBenchmarkUnsuccessful) records returned no accepted library. These
+counts are generated from the committed audit summary through
+\path{tables/evidence_macros.tex}.
+
+The design, analysis plan, reporting rules, seed and instance registries,
+amendments, active design lock, execution-start lock, environment record, raw
+run matrix, and independent audit are under
+\path{experiments/algorithmic_compression_v2/}. The final runner used
+(AORWorkerCount) concurrent one-thread subprocesses. Runtime is therefore an
+eight-worker contention estimand on an (AORCPU), not a claim about serial
+algorithm complexity or another machine.
+
+\subsection{Realized registered design}
+
+The committed realized-design table records requested and measured structure;
+invalid generator outcomes remain terminal failures rather than silently
+repaired instances.
+
+\begin{landscape}
+\input{tables/registered_design_realized}
+\end{landscape}
+
+\subsection{Exact-method agreement}
+
+On (AORExactCapable) exact-capable instances, complete burden agreement was
+available on (AORExactAgreement); (AORExactUnavailable) comparisons were
+unavailable after recorded failures. Equal objective burdens accompanied by
+different returned optimizer identities occurred in
+(AOROptimizerIdentityDifferences) cases. The table is exact finite
+computation plus exact semantic audit, not Lean verification.
+
+\input{tables/exact_method_agreement}
+
+\subsection{Complete scaling and failure records}
+
+The scaling table preserves per-family, per-size, per-algorithm solved counts,
+PAR-2 summaries, MIP nodes, DP states, and exact semantic-evaluation counts.
+Unavailable diagnostics print as dashes, never as zeros. The status table
+retains failed generation, implementation errors, memory limits, interruptions,
+nonbinary candidates, and no-primal outcomes in their registered denominators.
+
+\begin{landscape}
+\input{tables/computational_scaling}
+\end{landscape}
+
+\begin{landscape}
+\input{tables/failure_statuses}
+\end{landscape}
+
+\subsection{Preprocessing, multi-start, and registered models}
+
+\input{tables/preprocessing_multistart_compact}
+
+The complete per-cell preprocessing summaries, per-rule removal counts, and
+multi-start quantiles remain machine-readable in
+\path{journal/aor/tables/preprocessing_summary.csv},
+\path{preprocessing_rule_counts.csv}, and
+\path{multistart_summary.csv}. They are not expanded into thousands of PDF
+rows because the compact table preserves the registered journal comparison
+while the CSV files preserve every auditable row.
+
+No registered run ended with terminal status \texttt{TIME\_LIMIT}. The
+machine-readable timeout-best-bound table is therefore deliberately
+header-only; it is not omitted and no bound-gap distribution is inferred.
+
+The corresponding committed file is
+\path{journal/aor/tables/timeout_best_bound_gaps.csv}.
+
+The registered model suite used the declared structural covariates and retained
+failed or nonestimable specifications without changing links, penalties, or
+covariates after outcomes were observed.
+
+\begin{landscape}
+\input{tables/registered_model_diagnostics}
+\end{landscape}
+
+The full coefficients, paired comparisons, heuristic-quality summaries,
+adversarial tables, plot-data tables, row trace, and SVGs remain generated
+inputs under \path{journal/aor/tables/} and \path{journal/aor/figures/}. The
+source-to-output map is
+\path{journal/aor/tables/ANALYSIS_ARTIFACT_MANIFEST.csv}. The main article uses
+a compact selection of those inputs; this resource preserves the complete
+computational records without reproducing the main article's narrative.
+
+The benchmark is synthetic and identity-closure only. It is not a probability
+sample of financial libraries and supports no population, causal, forecasting,
+alpha, or deployable-performance claim.

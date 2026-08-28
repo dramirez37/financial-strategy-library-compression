@@ -1,0 +1,397 @@
+\section{Belief Occupation and Coverage}
+\label{supp:belief-occupation-coverage}
+\label{app:coverage-details}\label{sec:coverage}\label{app:proofs-coverage}
+
+The main paper's operational--generative value decomposition separates the
+passive operating channel from the research premium.  This section develops
+the passive channel through discounted belief occupation and then gives the
+associated finite coverage, threshold, and belief-dynamics results.  These
+are supporting results: a one-shot cost-covering region is not an optimized
+Bellman research region.
+
+Throughout, expectations and occupation rows are conditional on the displayed
+initial belief.  Every horizon and state carrier is finite.  Finiteness
+justifies the sum rearrangements and attained extrema below; no limiting
+argument, closure-detectability condition, stationary contraction, or
+path--outcome independence is used.
+
+\subsection{Discounted gap sums and operational insertion}
+
+\begin{definition}[Positive gap and discounted gap sum]
+\label{def:frontier-gap-sum}
+For a fixed candidate \(s\), define
+\begin{align}
+ \Delta_{s,L}(b)&:=\max\{j_s(b)-F_L(b),0\},\nonumber\\
+ G_0(b;L,s)&=0,\nonumber\\
+ G_{n+1}(b;L,s)&=\Delta_{s,L}(b)
+ +\beta\sum_{b'}P_B(b,b')G_n(b';L,s).
+ \label{eq:discounted-gap-recursion}
+\end{align}
+\end{definition}
+Let
+\[
+ w_n(b,b'):=\sum_{t=0}^{n-1}\beta^t
+   \Pr(B_t=b'\mid B_0=b)
+\]
+be discounted expected occupation, not a normalized probability.
+
+For the supporting frozen-library process, set
+\(\Delta_n^{\op,\mathrm{aux}}(s\mid b,L)
+:=P_n(b,L\cup\{s\})-P_n(b,L)\), where \(P_n\) is its passive value.
+
+\begin{proposition}[Passive gap-sum identity]
+\label{thm:passive-innovation-equation}
+For the supporting frozen-library process,
+\begin{equation}\label{eq:passive-innovation-equation}
+ \Delta_n^{\op,\mathrm{aux}}(s\mid b,L)
+ =G_n(b;L,s)
+ =\sum_{b'}w_n(b,b')\Delta_{s,L}(b').
+\end{equation}
+\end{proposition}
+
+When the unified process has this frozen-library no-research counterfactual,
+combining the occupancy identity with the operational--generative value
+decomposition in the main paper gives
+\begin{equation}\label{eq:strategy-innovation-equation}
+ \mathcal I_n
+ =\sum_{b'}w_n(b,b')\Delta_{s,L}(b')
+  +\Delta_n^{\gen}.
+\end{equation}
+The occupancy formula shows why a zero current gap does not make a candidate
+worthless if the belief process later visits states with positive gaps.
+
+\begin{corollary}[Zero current gap, positive future operating value]
+\label{cor:zero-current-gap-positive-future-value}
+With a deterministic move to a gap-two belief, \(n=2\), and
+\(\beta=1/2\), operational insertion value is one.
+\end{corollary}
+
+\begin{proposition}[Diminishing marginal operational innovation]
+\label{prop:diminishing-operational-innovation}
+If \(L\subseteq L'\), then every fixed candidate satisfies
+\[
+ \Delta_n^{\op}(s\mid b,L')
+ \le \Delta_n^{\op}(s\mid b,L).
+\]
+\end{proposition}
+
+For \cref{thm:passive-innovation-equation}, insertion replaces the frontier
+pointwise by \(\max\{F_L,j_s\}\).  Subtracting \(F_L\) gives
+\(\Delta_{s,L}\).  Conditional on the displayed initial belief and frozen
+library, subtracting the two passive recursions and inducting on the horizon
+gives \eqref{eq:discounted-gap-recursion}.  Unrolling that finite recursion
+gives the discounted-occupancy representation; only finite sums are
+rearranged.  The delayed-coverage specialization in
+\cref{cor:zero-current-gap-positive-future-value} follows by placing unit
+discounted mass on the future belief with gap two.  For
+\cref{prop:diminishing-operational-innovation}, library inclusion raises the
+frontier and lowers the pointwise positive gap, and nonnegative discounted
+expectation preserves the order.
+
+Persistence itself is ambiguous because it may keep the process in, or away
+from, the candidate's advantage region.  The valid positive comparison is
+occupation alignment on positive-gap beliefs, developed below, not
+persistence in isolation.
+
+\subsection{Coverage potential and occupation bounds}
+
+Coverage links a candidate's operational advantage to the beliefs at which
+that advantage will matter.
+
+\begin{definition}[Certified gap and coverage potential]
+\label{def:coverage-potential}
+For a fixed project \(q\), library \(K\), candidate profile \(j_q\), and
+operational frontier \(F_K\), define the certified gap
+\[
+  \Delta(q,K,b):=\max\{j_q(b)-F_K(b),0\}.
+\]
+Let \(\omega_t(b,b')\ge0\) be the date-\(t\) occupation weight of future
+belief \(b'\) from initial belief \(b\).  For horizon \(H\), discount
+\(\beta\), and candidate-survival factor \(\rho_q\), set
+\begin{align}
+  W_H^{\beta,\rho_q}(b,b')
+    &:=\sum_{t<H}\beta^t\rho_q^t\omega_t(b,b'),
+    \label{eq:discounted-coverage-occupation}\\
+  \Psi_H(q,K,b)
+    &:=\sum_{b'\in B}W_H^{\beta,\rho_q}(b,b')
+      \Delta(q,K,b').
+    \label{eq:coverage-potential}
+\end{align}
+\end{definition}
+
+The potential \(\Psi_H\) is discounted exposure to beliefs at which the
+candidate improves the current frontier.  The weight
+\(W_H^{\beta,\rho_q}\) need not itself be a probability: it combines belief
+occupation, discounting, and survival of the candidate's advantage.
+
+\begin{theorem}[Exact finite coverage representation]
+\label{thm:coverage-potential-representation}
+For every finite horizon, occupation table, gap table, project, library, and
+initial belief,
+\begin{equation}\label{eq:coverage-representation}
+  \Psi_H(q,K,b)
+  =\sum_{t<H}\sum_{b'\in B}
+    \beta^t\rho_q^t\omega_t(b,b')\Delta(q,K,b').
+\end{equation}
+The right-hand side is the date-by-date one-shot gross operational value of
+the supplied candidate.
+\end{theorem}
+
+With nonnegative inputs, the same finite order argument makes
+\(\Psi_H\) increasing in the gap, discount, survival, and occupation weights.
+A pointwise higher frontier lowers the positive-part gap of a fixed candidate
+and therefore weakly lowers its coverage potential.
+
+\begin{corollary}[Finite occupation bounds]
+\label{cor:coverage-potential-bounds}
+For any nonempty \(A\subseteq B\), its attained minimum gap times its
+discounted occupation is a lower bound for \(\Psi_H\).  The attained global
+maximum gap times total discounted occupation is an upper bound.  If the gap
+vanishes outside \(A\), the upper bound may use occupation restricted to
+\(A\).
+\end{corollary}
+
+\begin{example}[Delayed coverage]
+\label{ex:delayed-coverage}
+On a two-belief grid, let date zero occupy the current belief and date one the
+other belief.  With \(H=2\), \(\beta=1/2\), \(\rho_q=1\), current gap zero,
+and future gap two,
+\[
+  \Delta(q,K,b_{\mathrm{current}})=0,
+  \qquad
+  \Psi_2(q,K,b_{\mathrm{current}})=1>0.
+\]
+Screening only at the current belief would discard this future advantage.
+\end{example}
+
+Fix \((q,K,b,H)\).  Substitute
+\eqref{eq:discounted-coverage-occupation} into
+\eqref{eq:coverage-potential}.  Since both index sets are finite,
+distributivity and finite-sum commutation give
+\[
+\begin{aligned}
+ \Psi_H(q,K,b)
+ &=\sum_{b'\in B}
+   \left[\sum_{t<H}\beta^t\rho_q^t\omega_t(b,b')\right]
+   \Delta(q,K,b')\\
+ &=\sum_{b'\in B}\sum_{t<H}
+   \beta^t\rho_q^t\omega_t(b,b')\Delta(q,K,b')\\
+ &=\sum_{t<H}\sum_{b'\in B}
+   \beta^t\rho_q^t\omega_t(b,b')\Delta(q,K,b'),
+\end{aligned}
+\]
+which is \eqref{eq:coverage-representation}.  This proof uses no limiting
+argument.
+
+For a nonempty region \(A\subseteq B\), write
+\[
+ \underline\Delta_A:=\min_{b'\in A}\Delta(q,K,b'),
+ \qquad
+ \overline\Delta:=\max_{b'\in B}\Delta(q,K,b').
+\]
+All weights and gaps are nonnegative.  Hence
+\[
+ \underline\Delta_A
+ \sum_{b'\in A}W_H^{\beta,\rho_q}(b,b')
+ \le \Psi_H(q,K,b)
+ \le
+ \overline\Delta
+ \sum_{b'\in B}W_H^{\beta,\rho_q}(b,b').
+\]
+If the gap vanishes outside \(A\), the last sum can be restricted to \(A\).
+The four supporting monotonicities follow term by term: raising a
+nonnegative gap, discount, survival factor, or occupation weight raises every
+affected summand.  If \(F_0\le F_1\), then
+\(\max\{j_q-F_1,0\}\le\max\{j_q-F_0,0\}\), proving frontier saturation for a
+fixed candidate.
+
+\subsection{Monotone one-shot coverage}
+
+For a one-step project, let \(p(b)\ge0\) scale survival or admission and let
+\(\kappa(b)\) be initiation cost.
+
+\begin{definition}[One-shot cost-covering region]
+\label{def:single-gap-region}
+On a finite linearly ordered belief grid with exact transition kernel \(P\),
+define
+\[
+  G(b):=\beta p(b)\sum_{b'\in B}P(b,b')\Delta(b'),
+  \qquad
+  \mathcal C:=\{b\in B:\kappa(b)\le G(b)\}.
+\]
+The set \(\mathcal C\) is the \emph{one-shot cost-covering region}.
+\end{definition}
+
+\begin{theorem}[Monotone-gap upper-threshold theorem]
+\label{thm:finite-monotone-coverage}
+Assume that \(B\) is a nonempty finite linearly ordered grid; \(P\) is an
+exact nonnegative row-stochastic kernel that is first-order stochastically
+monotone; \(\Delta\) is nonnegative and increasing; \(p\) is nonnegative and
+increasing; \(\beta\ge0\); and \(\kappa\) is antitone.  Then \(G\) is
+increasing and \(\mathcal C\) is an upper set.  Consequently, either
+\(\mathcal C=\varnothing\), or there is \(b^*\in B\) such that
+\begin{equation}\label{eq:finite-upper-threshold}
+  \mathcal C=\{b\in B:b^*\le b\}.
+\end{equation}
+In the latter case the region is order-connected on the finite grid.
+\end{theorem}
+
+The theorem is about the displayed one-shot cost-covering region.  We reserve
+\emph{optimal research region} for the action selected by the Bellman policy.
+Continuation-value differences need not inherit the order properties used
+above, so the theorem does not characterize that Bellman region.
+
+For each current belief \(b\), let
+\[
+ E_\Delta(b):=\sum_{b'\in B}P(b,b')\Delta(b').
+\]
+Here \(E_\Delta(b)\) is the conditional expected gap after one transition.
+First-order stochastic monotonicity of \(P\) and monotonicity of \(\Delta\)
+make it increasing.  Exact row stochasticity and \(\Delta\ge0\) make it
+nonnegative.  If \(p\ge0\) is increasing, then for
+\(b\le\widetilde b\),
+\[
+ p(b)E_\Delta(b)
+ \le p(\widetilde b)E_\Delta(b)
+ \le p(\widetilde b)E_\Delta(\widetilde b).
+\]
+Multiplication by \(\beta\ge0\) therefore makes \(G\) increasing.
+
+Suppose \(b\in\mathcal C\) and \(b\le\widetilde b\).  Antitonicity of cost
+and monotonicity of gross value yield
+\[
+ \kappa(\widetilde b)
+ \le\kappa(b)
+ \le G(b)
+ \le G(\widetilde b),
+\]
+so \(\widetilde b\in\mathcal C\).  Thus \(\mathcal C\) is an upper set.  A
+nonempty upper set in a finite linear order has a least element \(b^*\) and
+equals \(\{b:b^*\le b\}\); the empty case is separate.
+
+The cutoff directions and the exact failures of the threshold assumptions
+are collected in \cref{supp:additional-comparative-statics}.
+
+\subsection{Patience, survival, and belief dynamics}
+
+\begin{theorem}[Finite patience--survival complementarity]
+\label{thm:discount-survival-complementarity}
+Let \(P\) be an exact finite row-stochastic matrix, \(g\ge0\), and
+\[
+  \Psi_H(\beta,\rho)
+    :=\sum_{t=0}^{H-1}(\beta\rho)^tP^tg .
+\]
+The potential is pointwise increasing in either nonnegative \(\beta\) or
+\(\rho\).  If \(0\le\beta_0\le\beta_1\) and
+\(0\le\rho_0\le\rho_1\), then, componentwise,
+\begin{equation}\label{eq:discount-survival-cross-difference}
+  \Psi_H(\beta_1,\rho_1)+\Psi_H(\beta_0,\rho_0)
+  \ge
+  \Psi_H(\beta_1,\rho_0)+\Psi_H(\beta_0,\rho_1).
+\end{equation}
+\end{theorem}
+
+Conditional on an initial belief, row stochasticity implies that \(P^t\) is
+nonnegative, so \(P^tg\ge0\).  Monotonicity in either nonnegative scalar
+follows term by term.  For the four displayed corners,
+\begin{align}
+ &\Psi_H(\beta_1,\rho_1)+\Psi_H(\beta_0,\rho_0)
+ -\Psi_H(\beta_1,\rho_0)-\Psi_H(\beta_0,\rho_1)\notag\\
+ &\qquad=
+ \sum_{t<H}
+ (\beta_1^t-\beta_0^t)(\rho_1^t-\rho_0^t)P^tg
+ \ge0.
+ \label{eq:discount-survival-factorization}
+\end{align}
+Indeed, the date-\(t\) coefficient factorizes exactly as
+\[
+ (\beta_1\rho_1)^t+(\beta_0\rho_0)^t
+ -(\beta_1\rho_0)^t-(\beta_0\rho_1)^t
+ =
+ (\beta_1^t-\beta_0^t)(\rho_1^t-\rho_0^t).
+\]
+Every factor is nonnegative.  Finiteness of \(H\) justifies the displayed
+termwise expansion.  No independence, inverse, infinite series, real
+derivative, detectability, or contraction enters the result.
+
+A scalar persistence parameter does not order coverage.  Consider
+\[
+ P(\theta)=
+ \begin{pmatrix}
+   \theta&1-\theta\\
+   1-\theta&\theta
+ \end{pmatrix},
+ \qquad 0\le\theta\le1.
+\]
+
+\begin{proposition}[Opposite persistence effects]
+\label{prop:no-universal-persistence-sign}
+Let \(H=2\), effective discount \(\alpha=1/2\), initial belief \(0\), and
+compare \(\theta_0=1/4\) with \(\theta_1=3/4\).  Exact evaluation gives
+\[
+\begin{array}{c@{\qquad}c@{\qquad}c}
+g & \Psi_2(\theta_0) & \Psi_2(\theta_1)\\
+\midrule
+(1,0) & 9/8 & 11/8\\
+(0,1) & 3/8 & 1/8\\
+(1,1) & 3/2 & 3/2.
+\end{array}
+\]
+Thus greater persistence can raise, lower, or leave coverage unchanged.
+\end{proposition}
+
+Persistence raises coverage when it retains occupation at an uncovered
+current belief, but lowers it when it traps the process away from uncovered
+beliefs elsewhere.  The positive order must therefore be stated in terms of
+where occupation moves.  Define
+\[
+ W^P_{H,\alpha}(b,x)
+ :=\sum_{t=0}^{H-1}\alpha^t(P^t)(b,x).
+\]
+
+\begin{theorem}[Advantage-region occupation alignment]
+\label{thm:kernel-occupation-alignment}
+Let \(P_0,P_1\) be finite row-stochastic kernels and \(g\ge0\).  If, for every
+initial belief \(b\) and every \(x\) with \(g(x)>0\),
+\[
+  W^{P_1}_{H,\alpha}(b,x)\ge W^{P_0}_{H,\alpha}(b,x),
+\]
+then
+\[
+  \sum_{t=0}^{H-1}\alpha^tP_1^tg
+  \ge
+  \sum_{t=0}^{H-1}\alpha^tP_0^tg
+\]
+componentwise.
+\end{theorem}
+
+Fix the initial belief \(b\).  Finite sum exchange yields
+\[
+\begin{aligned}
+ \Psi^P_{H,\alpha}(b)
+ &=\sum_{t<H}\alpha^t
+   \sum_x(P^t)(b,x)g(x)\\
+ &=\sum_x
+   \left[\sum_{t<H}\alpha^t(P^t)(b,x)\right]g(x)\\
+ &=\sum_xW^P_{H,\alpha}(b,x)g(x).
+\end{aligned}
+\]
+Outside the advantage region \(g(x)=0\).  Inside it, the assumed occupation
+difference and the gap are nonnegative.  Termwise comparison proves
+\cref{thm:kernel-occupation-alignment}.
+
+For the exact persistence boundary, \(H=2\) gives
+\(\Psi_2=g+\alpha P(\theta)g\).  At initial belief zero and
+\(\alpha=1/2\),
+\[
+\begin{array}{ccl}
+g=(1,0)&:&\Psi_2=1+\theta/2,\\
+g=(0,1)&:&\Psi_2=(1-\theta)/2,\\
+g=(1,1)&:&\Psi_2=3/2.
+\end{array}
+\]
+Substitution of \(\theta=1/4\) and \(3/4\) gives respectively
+\(9/8\to11/8\), \(3/8\to1/8\), and \(3/2\to3/2\).  Both matrices are exactly
+row stochastic.  The sign changes because persistence reallocates occupation;
+it does not order occupation on the positive-gap region without an alignment
+condition.

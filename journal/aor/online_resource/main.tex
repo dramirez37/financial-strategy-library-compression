@@ -1,0 +1,114 @@
+\documentclass[pdflatex,sn-mathphys-ay]{sn-jnl}
+
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsfonts,mathtools}
+\usepackage{booktabs,longtable,array}
+\usepackage{pdflscape}
+\usepackage{graphicx}
+\usepackage{capt-of}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage[l3]{csvsimple}
+\usepackage[capitalise,noabbrev]{cleveref}
+
+\renewcommand{\thesection}{S\arabic{section}}
+\renewcommand{\thetable}{S\arabic{table}}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\renewcommand{\thepage}{S\arabic{page}}
+\numberwithin{equation}{section}
+\allowdisplaybreaks
+\setcounter{tocdepth}{2}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{assumption}[definition]{Assumption}
+\newtheorem{example}[definition]{Example}
+\newtheorem{counterexample}[definition]{Counterexample}
+
+\theoremstyle{plain}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+
+\crefname{assumption}{Assumption}{Assumptions}
+\Crefname{assumption}{Assumption}{Assumptions}
+\crefname{counterexample}{Counterexample}{Counterexamples}
+\Crefname{counterexample}{Counterexample}{Counterexamples}
+
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Fin}{\operatorname{Fin}}
+\newcommand{\cl}{\operatorname{cl}}
+\newcommand{\mods}{\operatorname{mods}}
+\newcommand{\DI}{\mathrm{DI}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\gen}{\mathrm{gen}}
+\newcommand{\one}{\mathbf{1}}
+\newcommand{\powersetfin}{\mathcal{P}_{\mathrm{fin}}}
+
+\input{tables/evidence_macros}
+
+\hypersetup{
+  pdftitle={Online Resource 1: Proofs, Extended Results, Computational Records, and Reproducibility Materials},
+  pdfauthor={David Ramirez},
+  pdfsubject={Online Resource 1 for Annals of Operations Research},
+  pdfkeywords={financial strategy libraries, safe compression, supplementary proofs, computational records, reproducibility}
+}
+
+\begin{document}
+
+\articletype{Supplementary Information}
+\title[Online Resource 1]{Online Resource 1: Proofs, Extended Results,
+Computational Records, and Reproducibility Materials\\[0.5em]
+for ``Innovation-Safe Compression of Financial Strategy Libraries under
+Partial Information: Complexity, Algorithms, and Financial Evidence''}
+
+\author*[1]{\fnm{David} \sur{Ramirez}}\email{ramirezdavv@gmail.com}
+\affil*[1]{\orgname{Independent Researcher},
+  \orgaddress{\city{Orlando}, \state{FL}, \country{USA}};
+  \href{https://orcid.org/0009-0000-3128-5123}{ORCID:
+  0009-0000-3128-5123}}
+
+\abstract{Online Resource 1 for the journal article submitted to
+\emph{Annals of Operations Research}. It contains complete supporting proofs,
+extended theoretical results and counterexamples, canonical numerical records,
+the frozen preprint-era randomized-library study, the distinct registered
+algorithmic benchmark, financial secondary analyses, solver and exactness
+records, theorem--evidence correspondence, and reproducibility commands. Raw
+licensed CRSP/WRDS observations are excluded.}
+
+\maketitle
+
+\noindent\textbf{Journal:} \emph{Annals of Operations Research}.\par
+\noindent\textbf{Online Resource number:} 1.\par
+\noindent\textbf{Corresponding author:} David Ramirez,
+\href{mailto:ramirezdavv@gmail.com}{\texttt{ramirezdavv@gmail.com}}.\par
+\noindent\textbf{Evidence boundary:} Human proof, Lean kernel verification,
+exact finite computation, floating-point numerical evidence, mixed-integer
+solver evidence, synthetic experimental evidence, and retrospective financial
+evidence are labeled separately throughout.
+
+\tableofcontents
+\clearpage
+
+\input{sections/01_probability_normalization}
+\input{sections/02_productive_equivalence}
+\input{sections/03_belief_occupation_coverage}
+\input{sections/04_cover_complexity_proofs}
+\input{sections/05_preprocessing_proofs}
+\input{sections/06_algorithm_proofs}
+\input{sections/07_local_global_gap}
+\input{sections/08_frontier_closure_interaction}
+\input{sections/09_extended_comparative_statics}
+\input{sections/10_canonical_numerical_records}
+\input{sections/11_frozen_randomized_library_v2}
+\input{sections/12_registered_algorithmic_benchmark_v2}
+\input{sections/13_financial_secondary_tests}
+\input{sections/14_solver_exactness_records}
+\input{sections/15_theorem_evidence_correspondence}
+\input{sections/16_reproducibility_records_legacy}
+
+\bibliography{bibliography/references}
+
+\end{document}

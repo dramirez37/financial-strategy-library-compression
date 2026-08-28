@@ -1,0 +1,60 @@
+\section{Productive Preservation and the Frontier--Closure Quotient}
+\label{sec:or-productive-equivalence}
+
+For a finite library $A$ containing the inactive strategy, write
+\[
+ F_A(b)=\max_{s\in A}j_s(b),\qquad
+ C_A=\cl\!\left(\bigcup_{s\in A}\mods(s)\right),\qquad
+ K_A=(F_A,C_A).
+\]
+
+The forward preservation result uses only the process factorization and local
+update assumptions stated in Section~S1. A converse needs a distinct
+detectability assumption: whenever two libraries have equal frontiers but
+unequal closures, at least one availability-tagged project cost, duration,
+incumbent-reward block, or joint terminal observation differs after the
+declared generation, verification, admission, and projection steps.
+
+\begin{theorem}[Frontier--closure characterization]
+\label{thm:or-frontier-closure-characterization}
+If $F_A=F_L$ and $C_A=C_L$, then $A$ and $L$ induce identical
+productive observations and identical finite-horizon values and maximizing
+actions. The stationary conclusions of Section~S1 also agree under its
+discount clause. If closure is detectable in the preceding sense, equality
+of all productive observations together with frontier equality implies
+$C_A=C_L$.
+\end{theorem}
+
+\begin{proof}
+Frontier--closure equality is $K_A=K_L$. The factorization assumption then
+identifies project availability, cost, duration, incumbent operating rewards,
+generation and verification laws, and the conditional joint completion law.
+The normalized admission map and deterministic pushforward from Section~S1
+therefore identify the complete productive transition observations. The
+finite-horizon and stationary value and action claims follow from
+Theorem~\ref{thm:or-raw-compressed-projection}. Conversely, suppose the
+frontiers and all named productive observations agree. If the closures
+differed, detectability would produce a named observation that differs, a
+contradiction. Hence the closures agree. Detectability is used only for this
+reverse implication.
+\end{proof}
+
+\begin{corollary}[Source-relative safe compression]
+\label{cor:or-safe-compression}
+For $s_0\in A\subseteq L$, exact equality $F_A=F_L$ and $C_A=C_L$
+is sufficient for productive preservation. With exact positive active
+weights and $w_{s_0}=0$, the finite safe-feasible family contains $L$
+and therefore has at least one minimum-burden member.
+\end{corollary}
+
+\begin{proof}
+The productive claim is the forward direction of the theorem. The source is
+safe relative to itself. A finite source has finitely many sublibraries, so
+the nonempty feasible set has an attained minimum under exact weights.
+\end{proof}
+
+The converse characterization is deliberately restricted. It is not a claim
+that $K$ is a generic coarsest bisimulation or a full-abstraction theorem.
+It states that the declared finite process factors through $K$, and that the
+additional detectability clause is sufficient to recover closure equality
+from the named productive observations.

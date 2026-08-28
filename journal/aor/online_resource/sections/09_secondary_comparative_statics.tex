@@ -1,0 +1,196 @@
+\subsection{Secondary sensitivity results}
+\label{or:aor-secondary-comparative-statics}
+
+This section retains sensitivity calculations that are useful for interpreting
+the economic model but are not needed for the safe-compression reduction.
+Each calculation holds along the named parameter path or conditional on the
+displayed initial belief and fixed action. Unnamed primitives are fixed.
+Finiteness is used for termwise differentiation and finite action
+maximization. No closure-detectability or stationary-contraction argument is
+used.
+
+\subsection{Bridge-margin sensitivity}
+
+Write
+\begin{equation}
+ A_{\mathrm{br}}:=\beta^d\rho^d\pi C,
+ \qquad M_{\mathrm{br}}:=A_{\mathrm{br}}-\kappa,
+ \qquad m_{\mathrm{br}}:=\frac{M_{\mathrm{br}}}{A_{\mathrm{br}}}.
+ \label{eq:or-bridge-margin}
+\end{equation}
+On the declared real extension with fixed integer \(d\), positive gross
+coordinates, and \(M_{\mathrm{br}}>0\), realized bridge value equals the
+margin. Its named-coordinate elasticities are
+\begin{equation}
+ (\varepsilon_\beta^M,\varepsilon_\rho^M,
+   \varepsilon_\pi^M,\varepsilon_C^M,\varepsilon_\kappa^M)
+ =\left(\frac d{m_{\mathrm{br}}},\frac d{m_{\mathrm{br}}},
+   \frac1{m_{\mathrm{br}}},\frac1{m_{\mathrm{br}}},
+   -\frac{1-m_{\mathrm{br}}}{m_{\mathrm{br}}}\right).
+ \label{eq:or-bridge-elasticities}
+\end{equation}
+Threshold fragility is governed by the normalized positive margin
+\(m_{\mathrm{br}}\). The magnitudes diverge as
+\(m_{\mathrm{br}}\downarrow0\), but not merely because
+\(M_{\mathrm{br}}\downarrow0\): if cost is zero and gross scale vanishes,
+then \(m_{\mathrm{br}}=1\). At \(M_{\mathrm{br}}=0\), bridge-value
+elasticity is undefined. At and below that threshold, the signed margin,
+action region, or exact finite changes in realized value replace a percentage
+elasticity.
+
+For the derivation, condition on the canonical project and hold every unnamed
+coordinate fixed. Differentiating on the positive real extension gives
+\[
+ \beta\,\partial_\beta M_{\mathrm{br}}=dA_{\mathrm{br}},
+ \quad
+ \rho\,\partial_\rho M_{\mathrm{br}}=dA_{\mathrm{br}},
+ \quad
+ \pi\,\partial_\pi M_{\mathrm{br}}
+ =C\,\partial_C M_{\mathrm{br}}=A_{\mathrm{br}},
+ \quad
+ \kappa\,\partial_\kappa M_{\mathrm{br}}=-\kappa.
+\]
+On \(M_{\mathrm{br}}>0\), realized value
+\([M_{\mathrm{br}}]_+\) equals the signed margin. Dividing by
+\(M_{\mathrm{br}}\) and using
+\(m_{\mathrm{br}}=M_{\mathrm{br}}/A_{\mathrm{br}}\) gives
+\eqref{eq:or-bridge-elasticities}. At the threshold, the positive-part value
+has no ordinary percentage elasticity. The costless path
+\(\kappa=0\), \(A_{\mathrm{br}}\downarrow0\) keeps
+\(m_{\mathrm{br}}=1\), so a vanishing net level alone does not imply the
+threshold-fragility limit.
+
+\subsection{Operational and generative elasticity contributions}
+
+Let one named positive scalar \(x\) vary the same primitive in total insertion
+value \(I(x)\), operational value \(O(x)\), and generative value \(G(x)\),
+holding every unlisted primitive fixed and remaining on a differentiable
+branch. Differentiating \(I=O+G\) gives
+\[
+ xI'(x)=xO'(x)+xG'(x).
+\]
+
+\begin{proposition}[Operational--generative elasticity contributions]
+\label{prop:or-channel-elasticity}
+At \(x_0>0\), suppose \(I(x)=O(x)+G(x)\) throughout a neighborhood of
+\(x_0\), and the three channel paths are differentiable there along the same
+named perturbation. If \(I(x_0)>0\), define
+\[
+ C_x^{\mathrm{op}}:=\frac{x_0O'(x_0)}{I(x_0)},
+ \qquad
+ C_x^{\mathrm{gen}}:=\frac{x_0G'(x_0)}{I(x_0)}.
+\]
+Then
+\[
+ \varepsilon_x^I=C_x^{\mathrm{op}}+C_x^{\mathrm{gen}}.
+\]
+Only when both channel levels are positive may this be written as
+\[
+ \varepsilon_x^I
+ =\frac{O}{I}\varepsilon_x^{\mathrm{op}}
+  +\frac{G}{I}\varepsilon_x^{\mathrm{gen}}.
+\]
+\end{proposition}
+
+The contribution form remains meaningful when one channel level is zero; the
+corresponding ordinary component log elasticity does not. If total value is
+zero, no total elasticity or total-normalized contribution is reported. The
+scaled derivative identity above, or the exact finite-change identity
+\(\Delta I=\Delta O+\Delta G\), remains well defined.
+
+Along one fixed differentiable scalar path, differentiating the level identity
+and applying common scaling gives
+\[
+ xI'(x)=xO'(x)+xG'(x).
+\]
+If \(I(x)>0\), division by the total level gives the two signed contributions
+in \cref{prop:or-channel-elasticity}. Rewriting a contribution as
+\[
+ \frac{xO'}I=\frac OI\frac{xO'}O
+\]
+requires \(O>0\), and the analogous rewrite requires \(G>0\). If a component
+vanishes, its scaled derivative remains available but its log elasticity does
+not. If \(I=0\), neither total elasticity nor a total-normalized contribution
+is defined; the level derivative or exact finite-change identity is used.
+
+\begin{table}[ht]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2.5pt}
+\input{tables/unified_canonical_resource_channel_elasticities}
+\caption{Exact productive value, channel levels, and fixed-policy discount
+elasticity in the canonical benchmark. A dash marks an undefined ordinary
+component elasticity at a zero component level; it is never recorded as
+zero. Scaled contributions are evaluated directly.}
+\label{tab:or-canonical-channel-elasticities}
+\end{table}
+
+\subsection{Fixed-exposure innovation duration}
+
+For a fixed nonnegative, nonzero exposure sequence
+\(z_0,\ldots,z_{H-1}\) and effective discount \(\alpha>0\), let
+\begin{equation}
+ \Psi_H(\alpha):=\sum_{t=0}^{H-1}\alpha^tz_t,
+ \quad \omega_t:=\frac{\alpha^tz_t}{\Psi_H(\alpha)},
+ \quad D_\Psi:=\sum_t t\omega_t,
+ \quad C_\Psi:=\sum_t\omega_t(t-D_\Psi)^2.
+ \label{eq:or-innovation-potential-duration}
+\end{equation}
+Because the sequence is nonzero, \(\Psi_H(\alpha)>0\). The exact finite
+scaled-derivative identities are
+\begin{equation}
+ \alpha\Psi_H'(\alpha)=D_\Psi\Psi_H(\alpha),
+ \qquad
+ \alpha D_\Psi'(\alpha)=C_\Psi\geq0.
+ \label{eq:or-innovation-duration}
+\end{equation}
+Equivalently, \(D_\Psi\) is the derivative of \(\log\Psi_H\) with respect to
+\(\log\alpha\), and \(C_\Psi\) is the corresponding derivative of
+\(D_\Psi\). These are interpretations of the displayed scaled identities.
+Innovation duration is the contribution-weighted date at which fixed
+uncovered value arrives, and innovation convexity is its timing variance. A
+higher effective discount shifts weight toward later exposures and weakly
+raises duration. This is not primitive project delay, time to admission, or a
+convexity theorem for an optimized Bellman value whose exposure sequence or
+selected action changes. If exposure is zero, duration and log elasticity are
+undefined; level contributions or finite differences are used instead.
+
+For the derivation, introduce
+\[
+ N_1(\alpha):=\sum_t t\alpha^tz_t,
+ \qquad
+ N_2(\alpha):=\sum_t t^2\alpha^tz_t.
+\]
+Termwise finite differentiation gives
+\[
+ \alpha\Psi_H'(\alpha)=N_1(\alpha),
+ \qquad
+ \alpha N_1'(\alpha)=N_2(\alpha).
+\]
+Since \(\Psi_H>0\), \(D_\Psi=N_1/\Psi_H\), and the quotient rule yields
+\[
+ \alpha D_\Psi'
+ =\frac{N_2\Psi_H-N_1^2}{\Psi_H^2}
+ =\sum_t\omega_t(t-D_\Psi)^2=C_\Psi\geq0.
+\]
+The nonnegative curvature is curvature of \(\log\Psi_H\) in
+\(\log\alpha\) for a fixed exposure sequence. Changing project duration,
+belief dynamics, completion laws, or the selected action changes the sequence
+and lies outside this derivative.
+
+\subsection{Finite switch and one-sided-change conventions}
+
+Within a strictly dominant price branch, the penalized envelope inherits the
+branch slope \(-W(L')\). A pairwise crossing is only a candidate switch; it
+becomes a resource-price breakpoint only when both branches are globally
+active. At an unequal-burden tie the optimizer is set-valued, so one-sided
+slopes or cross-breakpoint finite changes replace a derivative selected by an
+unstated tie breaker.
+
+For a finite library family, record the best-versus-second-best objective
+margin; for a Bellman node, record the corresponding action-value margin. A
+positive margin measures distance from a tie in value space. A zero margin
+flags a possible switch, but distinct libraries or actions may generate
+identical branches, so it is not sufficient for a change of optimizer. At an
+actual switch with positive value, one-sided or arc elasticities may be
+reported; at zero value, only level slopes and finite differences are defined.

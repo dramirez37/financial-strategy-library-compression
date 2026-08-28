@@ -5,6 +5,9 @@
 \usepackage{amsmath,amssymb,amsfonts,mathtools}
 \usepackage{booktabs,longtable,array}
 \usepackage{graphicx}
+\usepackage{capt-of}
+\usepackage{tikz}
+\usepackage{placeins}
 \usepackage{xcolor}
 \usepackage[capitalise,noabbrev]{cleveref}
 
@@ -45,6 +48,7 @@
 \input{author_metadata}
 \input{tables/generated_inputs}
 \input{figures/generated_inputs}
+\input{tables/evidence_macros}
 
 \hypersetup{
   pdftitle={Innovation-Safe Compression of Financial Strategy Libraries under Partial Information: Complexity, Algorithms, and Financial Evidence},
@@ -60,7 +64,8 @@
 
 \author*[1]{\fnm{David} \sur{Ramirez}}\email{\AORCorrespondingEmail}
 \affil*[1]{\orgname{\AORAffiliationOrganization},
-  \orgaddress{\city{\AORAffiliationCity}, \country{\AORAffiliationCountry}};
+  \orgaddress{\city{\AORAffiliationCity}, \state{\AORAffiliationState},
+  \country{\AORAffiliationCountry}};
   \href{https://orcid.org/\AORCorrespondingORCID}{ORCID:
   \AORCorrespondingORCID}}
 
@@ -97,8 +102,8 @@ set cover, partial information, exact algorithms, model governance}
 
 \noindent\fcolorbox{red!70!black}{red!3}{%
   \parbox{0.96\linewidth}{\DraftTag: The title, abstract, keywords, and
-  Sections 1--5 are journal-draft prose. Sections 6--9, appendices, migration
-  notes, and declarations marked for confirmation remain scaffold material.
+  Sections 1--9 are journal-draft prose. Appendices, migration notes, and
+  declarations marked for confirmation remain scaffold material.
   No placeholder is a scientific finding.}}
 
 \input{01_introduction}
@@ -107,8 +112,12 @@ set cover, partial information, exact algorithms, model governance}
 \input{04_cover_complexity}
 \input{05_algorithms}
 \input{06_economic_implications}
+\FloatBarrier
 \input{07_computational_study}
+\FloatBarrier
+\clearpage
 \input{08_financial_case_studies}
+\FloatBarrier
 \input{09_conclusion}
 
 \appendix

@@ -1,11 +1,32 @@
 % This file is intentionally an input layer. No scientific result is drawn or
 % transcribed here. Final macros must use \input or \includegraphics on a
 % generated, source-traceable artifact listed in the migration manifest.
-\newcommand{\AORPerformanceProfileFigure}{%
-  \DraftPlaceholder{Generated performance-profile figure input reserved.
-  Source candidate: \texttt{journal/aor/figures/performance\_profile.svg}; the
-  submission build requires an editable or journal-accepted rendering.}}
+\newcommand{\AOREconomicGeometryFigure}{%
+  \begin{figure}[tbp]
+    \centering
+    \resizebox{\textwidth}{!}{%
+      \input{../../../manuscript/figures/unified_economic_geometry}%
+    }
+    \caption{Exact finite illustrations of hard-capacity and resource-price
+    geometry. Panel (a) shows right-continuous capacity steps; panel (b) the
+    upper envelope of affine net-value branches; panel (c) the associated
+    optimizer burden under the declared tie rule. Solid and dashed lines are
+    distinguishable without color. Coordinates are generated from committed
+    exact rows and are illustrative fixtures, not statistical estimates.}
+    \label{fig:canonical-economic-geometry}
+  \end{figure}}
 \newcommand{\AORFinancialComparisonFigure}{%
-  \DraftPlaceholder{Generated financial comparison figure input reserved.
-  The final artifact must be public-safe, accessible without color alone, and
-  traceable to audited aggregate rows.}}
+  \begin{figure}[tbp]
+    \centering
+    \resizebox{\textwidth}{!}{%
+      \input{../../../manuscript/figures/financial_innovation_safe_compression}%
+    }
+    \caption{Retrospective financial safety--compression comparison for the
+    historical stepwise endpoints. Panels (a)--(b) report retained shares of
+    each fixed source library and its module closure. Panel (c) reports the
+    postdecision change in the best enabled-descendant opportunity diagnostic;
+    the terminal and annual audit units are separate and are not pooled. Both
+    rules preserve the validation frontier, but only innovation-safe retention
+    preserves closure. Displayed diagnostics were never pruning inputs.}
+    \label{fig:financial-safe-compression}
+  \end{figure}}

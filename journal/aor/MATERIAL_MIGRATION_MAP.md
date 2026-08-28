@@ -97,6 +97,7 @@ immutable even when presentation moves.
 | Annual-universe construction audit | `experiments/configs/financial_annual_universe_audit.toml` | MOVE TO ONLINE RESOURCE | Documents the larger-universe information set and selection boundary. |
 | Annual walk-forward financial audit | `experiments/configs/financial_annual_walkforward_audit.toml`; `experiments/financial_annual_walkforward_audit/` | CONDENSE IN MAIN ARTICLE | One of the two retrospective financial case studies; full design and secondary results online. |
 | Cross-audit financial resource optimization | `experiments/configs/financial_resource_optimization.toml`; `experiments/financial_resource_optimization/` | CONDENSE IN MAIN ARTICLE | Supplies the main comparable resource-retention outputs. |
+| Locked financial weight robustness | `experiments/financial_resource_optimization/WEIGHT_ROBUSTNESS_PROTOCOL.md`; public aggregate robustness tables | CONDENSE IN MAIN ARTICLE | Supplies the three prespecified schedule comparison and empty-residual optimum certificates; identity detail online. |
 | Terminal financial audit | `experiments/configs/financial_terminal_audit.toml`; `experiments/financial_terminal_audit/` | CONDENSE IN MAIN ARTICLE | One of the two retrospective financial case studies; full design and secondary results online. |
 | Joint-descendant bound gauntlet | `experiments/configs/joint_descendant_bound_gauntlet.toml` | MOVE TO ONLINE RESOURCE | Exact/numerical support for the lower-bound result moved online. |
 | Kernel persistence response | `experiments/configs/kernel_persistence_response.toml` | REMOVE FROM JOURNAL VERSION | Supports removed occupation/kernel theory. |
@@ -122,9 +123,11 @@ immutable even when presentation moves.
 | Unified elasticity and switching v1 | `experiments/configs/unified_elasticity_switching_v1.toml` | REMOVE FROM JOURNAL VERSION | Broad sensitivity surface outside scope. |
 | SC-COMP exact reduction fixture | `experiments/results/safe_compression_complexity_reduction_fixture.json` | MOVE TO ONLINE RESOURCE | Exact finite validation of the complexity construction; not a proof. |
 
-The proposed `experiments/algorithmic_compression_v1/` benchmark is absent and
-therefore has no migration disposition. It must not reuse or alter the frozen
-(N=1024) registry, seeds, locks, amendments, or results.
+Registered Algorithmic Compression Benchmark v2 is the only final algorithmic
+study assigned to the journal article. Its compact audited summaries are kept
+in Section 7 and its complete rows and figures move to Online Resource 1. The
+incomplete v1 output directory is excluded, and neither study reuses or alters
+the frozen (N=1024) registry, seeds, locks, amendments, or results.
 
 ## Existing figures
 

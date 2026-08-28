@@ -1,0 +1,52 @@
+schema_version = "financial-strategy-library-panel-execution-amendment-v1"
+experiment_id = "financial-strategy-library-panel-v1"
+amendment_id = "AMENDMENT_001"
+amendment_date = "2026-08-28"
+licensed_rows_read_before_amendment = false
+registered_seed_consumed_before_amendment = false
+study_instance_constructed_before_amendment = false
+study_outcome_observed_before_amendment = false
+scientific_estimands_changed = false
+origin_registry_changed = false
+library_registry_changed = false
+burden_schedule_registry_changed = false
+seed_registry_changed = false
+algorithm_registry_changed = false
+
+[threading]
+execution_model = "single Julia process with eight stable round-robin threaded lanes"
+julia_threads = 8
+worker_processes = 1
+concurrent_lanes = 8
+blas_threads = 1
+highs_threads_per_model = 1
+scheduling = "lane i executes registered jobs i,i+8,i+16,..."
+progress_bar_reads = "terminal record count only"
+
+[lookbacks]
+belief_sessions = 60
+trend_filter_sessions = 100
+volatility_sessions = 20
+
+[validation_counters]
+signal_evaluations = "T"
+always_filter_evaluations = "0"
+trend_filter_evaluations = "T"
+notional_risk_updates = "0"
+volatility_risk_updates = "T"
+position_decisions = "ceil(T/holding_horizon)"
+horizon_exit_evaluations = "position_decisions"
+signal_flip_exit_evaluations = "T"
+
+[postdecision]
+phase_requires_all_structural_records_terminal = true
+phase_requires_structural_exact_audit = true
+belief_loss = "source postdecision frontier minus retained postdecision frontier"
+aggregate_loss = "unweighted mean of five belief losses"
+no_loss_share = "share of five belief losses exactly zero after lossless rational conversion"
+postdecision_may_change_structural_output = false
+
+[information_firewall]
+structural_return_maps = "origin scoped; one-year signal warm-up through that origin's compression endpoint only"
+postdecision_return_maps = "origin scoped; one-year signal warm-up through that origin's postdecision endpoint only"
+shared_cross_origin_return_map_permitted = false

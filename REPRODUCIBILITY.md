@@ -62,6 +62,10 @@ numerical rule.
 | `make aor-theory-check` | Run the journal theorem fixtures, drift checks, incremental Lean build, manuscript linter, and axiom audit. | Medium to long; first Lean build is cache dependent. | Public Julia/Lean sources only. | Pass/fail diagnostics; ignored Lean build products only. |
 | `make aor-algorithm-tests` | Exercise tagged-cover preprocessing, enumeration, requirement-mask DP, weighted/cardinality greedy, certified deletion, HiGHS MIP, reconstruction, and exact three-method agreement on small fixtures. | Medium; solver startup and package cache dependent. | Public synthetic exact fixtures only. | Test results and temporary certificates; no committed result rewrite. |
 | `make aor-financial-panel-v1-design-check` | Regenerate the expected point-in-time panel registries in memory, verify their committed bytes, verify the prospective design lock, and run registration-only synthetic tests. | Short. | Public design files only; it does not open licensed rows or result files. | Pass/fail diagnostics only; no outcome computation. |
+| `make aor-financial-panel-v1-tests` | Test the origin-scoped information firewall, exact carrier-count deletion, serialization, eight stable lanes, and all seven registered algorithms. | Short to medium. | Public synthetic fixtures only. | Test diagnostics and temporary solver records only. |
+| `make aor-financial-panel-v1-smoke` | Execute the exact local command topology on eight synthetic lanes with a progress bar and independent solution checks. | Short to medium. | Public synthetic fixtures only; no licensed row is opened. | Pass/fail diagnostics; all smoke files are temporary. |
+| `make aor-financial-panel-v1-run` | Run or resume the locked point-in-time CRSP strategy-library panel using one Julia 1.12.6 process, eight stable threaded lanes, single-threaded BLAS, and single-threaded HiGHS models. | Long; empirical construction and 1,260 registered algorithm rows are host dependent. | Local licensed CRSP/WRDS delivery at `ALGOLIB_CRSP_ROOT` or the registered default. | Ignored origin-scoped inputs, 180 exact instances, 1,260 terminal algorithm rows, solver logs, structural audit, postdecision diagnostics, and final result audit. |
+| `make aor-financial-panel-v1-audit` | Independently reread and exactly audit a completed local panel without rerunning algorithms. | Medium. | Completed ignored panel artifacts; raw licensed rows are not opened. | Recomputed local structural and full audit certificates. |
 | `make aor-benchmark-audit` | Read and independently audit the committed final Algorithmic Compression Benchmark v2 artifacts with exact feasibility/burden checks and byte-drift comparison. | Medium to long; reads the complete saved result tree. | Public committed synthetic results only. | Pass/fail report; no solver, heuristic, generator, or result writer is invoked. |
 | `make aor-manuscript` | Compile the Springer article and independently compiled Online Resource 1, then audit their recorder dependency graphs. | Short to medium. | Public editable LaTeX, bibliography, table, figure, and canonical CSV inputs. | `journal/aor/manuscript/build/aor-journal-manuscript.pdf` and `journal/aor/online_resource/build/aor-online-resource-1.pdf`. |
 | `make aor-check` | Run every nonmutating journal theory, algorithm, committed-result, manuscript, source-completeness, release-input, and public/licensed-boundary check. | Long but bounded; no final-study execution. | Public clone only; no licensed rows. | Pass/fail diagnostics; it fingerprints the worktree and index before and after. |
@@ -70,6 +74,18 @@ numerical rule.
 `make help` prints this component list. `JULIA_EXE` may point to an absolute
 Julia 1.12.6 executable; otherwise Make prefers the ignored repository-local
 runtime when present and falls back to `julia` on `PATH`.
+
+The licensed panel command is resume-safe: existing terminal records are
+hash- and certificate-checked and skipped. Set the source root only when the
+registered sibling default is not the local CRSP checkout:
+
+```sh
+ALGOLIB_CRSP_ROOT=/absolute/path/to/licensed/source make aor-financial-panel-v1-run
+```
+
+Progress bars read terminal counts only. Structural return maps are scoped to
+each origin and stop at its compression endpoint. The postdecision phase is
+not opened until the 180 structural records pass the independent exact audit.
 
 ### AoOR journal release gate
 

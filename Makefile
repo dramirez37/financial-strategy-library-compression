@@ -15,7 +15,9 @@ export ALGOLIB_CRSP_ROOT
 	aor-financial-algorithm-promote aor-financial-weight-robustness-tests \
 	aor-financial-weight-robustness-lock aor-financial-weight-robustness \
 	aor-financial-weight-robustness-audit aor-financial-weight-robustness-promote \
-	aor-financial-panel-v1-design-check \
+	aor-financial-panel-v1-design-check aor-financial-panel-v1-tests \
+	aor-financial-panel-v1-execution-lock aor-financial-panel-v1-smoke \
+	aor-financial-panel-v1-run aor-financial-panel-v1-audit \
 	aor-evidence-status-tests
 
 help:
@@ -49,6 +51,10 @@ help:
 		'make aor-financial-weight-robustness-audit Audit saved robustness results without solving' \
 		'make aor-financial-weight-robustness-promote Promote audited robustness aggregates' \
 		'make aor-financial-panel-v1-design-check Verify the prospective panel registries and design lock' \
+		'make aor-financial-panel-v1-tests Test the eight-thread panel execution and exact certificates' \
+		'make aor-financial-panel-v1-smoke Run the eight-lane synthetic execution smoke' \
+		'make aor-financial-panel-v1-run Run/resume the locked licensed panel with eight threads' \
+		'make aor-financial-panel-v1-audit Audit completed local panel results without solving' \
 		'make aor-evidence-status-tests Check exact Julia-Lean journal evidence fixtures' \
 		'make financial-licensed Run both licensed-data audits and the cross-audit optimization' \
 		'make verify             Run the complete release gate'
@@ -172,6 +178,22 @@ aor-financial-panel-v1-design-check:
 	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/create_financial_strategy_library_panel_v1_registries.jl --check
 	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/lock_financial_strategy_library_panel_v1.jl --check
 	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/test/run_financial_strategy_library_panel_v1_registration_tests.jl
+
+aor-financial-panel-v1-tests:
+	@"$(JULIA_EXE)" --threads=8 --startup-file=no --project=julia julia/test/run_financial_strategy_library_panel_v1_execution_tests.jl
+
+aor-financial-panel-v1-execution-lock:
+	@"$(JULIA_EXE)" --threads=8 --startup-file=no --project=julia julia/scripts/lock_financial_strategy_library_panel_v1_execution.jl --check
+
+aor-financial-panel-v1-smoke: aor-financial-panel-v1-execution-lock
+	@"$(JULIA_EXE)" --threads=8 --startup-file=no --project=julia julia/scripts/run_financial_strategy_library_panel_v1.jl --smoke
+
+aor-financial-panel-v1-run: aor-financial-panel-v1-execution-lock
+	@"$(JULIA_EXE)" --threads=8 --startup-file=no --project=julia julia/scripts/run_financial_strategy_library_panel_v1.jl --check
+	@"$(JULIA_EXE)" --threads=8 --startup-file=no --project=julia julia/scripts/run_financial_strategy_library_panel_v1.jl --run
+
+aor-financial-panel-v1-audit: aor-financial-panel-v1-execution-lock
+	@"$(JULIA_EXE)" --threads=8 --startup-file=no --project=julia julia/scripts/audit_financial_strategy_library_panel_v1.jl --all
 
 aor-evidence-status-tests:
 	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/test/run_journal_evidence_audit_tests.jl

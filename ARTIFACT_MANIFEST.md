@@ -29,8 +29,34 @@ provenance are outside this manifest's distributable artifact surface.
 | Formal claim and axiom status | `THEOREM_LEDGER.md` and `formal/StrategyInnovation/Audit/AxiomAudit.lean` |
 | Licensed-data input contract | `DATA_ACCESS.md` |
 | Public/private packaging boundary | `make public-audit`, `.gitignore`, and `DATA_ACCESS.md` |
-| Citation metadata | `CITATION.cff` |
+| Citation and deposit metadata | `CITATION.cff` and `.zenodo.json` |
 | Software, content, and third-party rights | `LICENSE` |
+
+## AoOR v0.2.0 submission-release inventory
+
+`make aor-release` creates `release/v0.2.0-aor-submission/` from a clean,
+committed source tree after the nonmutating journal gates pass and author-only
+declarations are resolved. The release's `SHA256SUMS` is the authoritative
+byte manifest; `COMMIT_METADATA.toml` records the source commit and archive
+hashes without pretending that a committed file can contain the hash of its
+own future artifact commit.
+
+| Release artifact | Producer | Contents and evidence boundary |
+|---|---|---|
+| `aor-journal-manuscript.pdf` | `journal/aor/manuscript/build.sh` through `make aor-manuscript` | Springer-formatted journal article; presentation of separately classified human proof, Lean, exact, solver, synthetic, and retrospective evidence. |
+| `aor-online-resource-1.pdf` | `journal/aor/online_resource/build.sh` through `make aor-manuscript` | Independently compiled Online Resource 1 with S-prefixed numbering and public-safe inputs only. |
+| `algolib-v0.2.0-aor-submission-source.tar.gz` | `scripts/build_aor_release.sh` | Exact Git-archive snapshot of journal, Julia, Lean, shared-fixture, workflow, and public financial-protocol sources required by the release. It is not an empirical result. |
+| `registered-algorithmic-compression-benchmark-v2-public.tar.gz` | `scripts/build_aor_release.sh` from the committed `experiments/algorithmic_compression_v2/` tree | Registered synthetic benchmark design locks, final and unsuccessful canonical terminal records, solver logs, exact certificates, and audit manifest. Machine-local process-control files remain immutable in Git but are explicitly excluded from this redistributable archive. It contains no financial source rows. |
+| `SHA256SUMS` | `scripts/build_aor_release.sh` | SHA-256 for every other top-level release file; verified by the same script's `--check` mode. |
+| `COMMIT_METADATA.toml` | `scripts/build_aor_release.sh` | Source branch, source commit/date, clean-worktree assertion, and exact source/benchmark archive hashes. |
+| `SOFTWARE_ENVIRONMENT.md` | `scripts/build_aor_release.sh` | Julia/Lean/LaTeX identifiers and manifest/template hashes for the packaging host; the benchmark's original execution environment remains inside its archive. |
+| `CITATION.cff` and `zenodo.json` | Root citation metadata copied verbatim | Citation and Zenodo-compatible deposit metadata. Neither file claims a DOI. |
+| `RELEASE_NOTES.md` | `journal/aor/release/RELEASE_NOTES.md` | Contribution, provenance, evidence, historical-release, and licensed-data boundaries. |
+
+The release gate does not rerun the final algorithmic benchmark, the frozen
+`N=1024` study, or either licensed financial analysis. Solver `OPTIMAL` remains
+solver evidence; exact postchecks establish returned feasibility and burden,
+not a general formal proof. Raw and row-level CRSP/WRDS files are excluded.
 
 ## Preprint v0.1.1-arxiv manuscript-facing release inventory
 

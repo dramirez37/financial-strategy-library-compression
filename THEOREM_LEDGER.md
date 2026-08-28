@@ -291,6 +291,8 @@ counterexamples later in this ledger.
 ### SC-GAP — Unbounded gap for heaviest-safe-first deletion
 
 - **Theorem ID:** SC-GAP
+- **Journal manuscript label:** `thm:aor-heaviest-safe-first-gap` in
+  `journal/aor/manuscript/05_algorithms.tex`
 - **Informal statement:** For every integer `k >= 2` and positive rational
   `epsilon` with `1 + epsilon < k`, the identity-closure library with `k`
   unit-weight singleton module carriers and one all-module bundle of weight
@@ -439,7 +441,7 @@ counterexamples later in this ledger.
 - **Theorem ID:** SC-TAG
 - **Journal manuscript label:**
   `thm:aor-tagged-cover-equivalence` in
-  `journal/aor/manuscript/04_tagged_cover_equivalence.tex`
+  `journal/aor/manuscript/04_cover_complexity.tex`
 - **Journal theorem status:** **LEAN VERIFIED** for the universal core
   equivalence and weighted-objective identity. The surrounding composite
   manuscript presentation—including assumption interpretation and three
@@ -621,8 +623,7 @@ counterexamples later in this ledger.
 
 - **Theorem ID:** SC-COMP
 - **Journal manuscript label:** `thm:aor-safe-compression-complexity` in
-  `journal/aor/manuscript/05_identity_closure_complexity.tex`, included by
-  `journal/aor/sections/05_innovation_safe_compression.tex`
+  `journal/aor/manuscript/04_cover_complexity.tex`
 - **Evidence status:** **HUMAN PROOF ONLY**, supported by **EXACT
   COMPUTATIONAL FIXTURE** and **JULIA TESTED** reduction checks; Lean
   verification is **NOT YET ESTABLISHED** and no solver evidence is used.
@@ -695,8 +696,7 @@ counterexamples later in this ledger.
 - **Theorem ID:** SC-DP
 - **Journal manuscript labels:**
   `prop:aor-complete-enumeration` and `thm:aor-requirement-mask-dp` in
-  `journal/aor/manuscript/07_exact_requirement_mask_algorithms.tex`, included
-  by `journal/aor/sections/05_innovation_safe_compression.tex`
+  `journal/aor/manuscript/05_algorithms.tex`
 - **Evidence status:** **HUMAN PROOF ONLY** for enumeration correctness, the
   DP recurrence invariant, reconstruction, complexity, and FPT classification,
   supported by exact finite Julia cross-checks. Lean verifies only the
@@ -776,8 +776,7 @@ counterexamples later in this ledger.
 
 - **Theorem ID:** SC-GREEDY
 - **Journal manuscript label:** `thm:aor-weighted-greedy` in
-  `journal/aor/manuscript/08_weighted_greedy_construction.tex`, included by
-  `journal/aor/sections/05_innovation_safe_compression.tex`
+  `journal/aor/manuscript/05_algorithms.tex`
 - **Evidence status:** **HUMAN PROOF ONLY** transferring a verified
   primary-source theorem through SC-TAG, supported by exact finite Julia
   validation. A shared three-row ratio calculation is Lean verified arithmetic
@@ -864,8 +863,7 @@ counterexamples later in this ledger.
 
 - **Theorem ID:** SC-DEL-SUITE
 - **Journal manuscript label:** `prop:aor-certified-deletion-endpoint` in
-  `journal/aor/manuscript/09_certified_deletion_suite.tex`, included by
-  `journal/aor/sections/05_innovation_safe_compression.tex`
+  `journal/aor/manuscript/05_algorithms.tex`
 - **Evidence status:** **LEAN VERIFIED** for the abstract implication from a
   supplied rechecked redundancy trace to endpoint safety; **HUMAN PROOF ONLY**
   for concrete-suite termination and the complete-final-scan implication to
@@ -951,9 +949,9 @@ counterexamples later in this ledger.
 ### PEN — Exact penalized affine-envelope theorem
 
 - **Theorem ID:** PEN
-- **Manuscript label:** `thm:penalized-envelope`
-- **Specification and human proof:** manuscript Theorem
-  `thm:penalized-envelope` and Appendix B
+- **Online Resource label:** `thm:or-penalized-envelope` in
+  `journal/aor/online_resource/sections/09_extended_comparative_statics.tex`
+- **Specification and human proof:** Online Resource 1, Section S9
 - **Informal statement:** For a fixed nonempty finite feasible library family,
   finite productive values, and nonnegative burdens, the real-price extension
   $$
@@ -1062,9 +1060,9 @@ counterexamples later in this ledger.
 ### CAP — Exact capacity-constrained value theorem
 
 - **Theorem ID:** CAP
-- **Manuscript label:** `thm:capacity-value`
-- **Specification and human proof:** manuscript Theorem `thm:capacity-value`
-  and Appendix B
+- **Online Resource label:** `thm:or-capacity-value` in
+  `journal/aor/online_resource/sections/09_extended_comparative_statics.tex`
+- **Specification and human proof:** Online Resource 1, Section S9
 - **Informal statement:** For the fixed finite outer-certified library family
   with a zero-burden inactive library, the capacity-constrained productive
   value
@@ -2814,7 +2812,8 @@ modules. No assumption was silently added during adjudication.
 ### T1 — Raw-to-compressed controlled Markov projection
 
 - **Theorem ID:** T1
-- **Manuscript label:** `thm:raw-to-compressed-projection`
+- **Journal manuscript label:** `thm:raw-to-compressed-projection` in
+  `journal/aor/manuscript/03_model_projection.tex`
 - **Informal statement:** In the unified semi-Markov raw model, admitted
   outcomes update $K_L=(F_L,C_L)$ locally; the induced joint
   terminal-belief/compressed-state law is a controlled Markov projection; and

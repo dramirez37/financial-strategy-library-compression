@@ -1,0 +1,188 @@
+name: AoOR journal gates
+
+on:
+  push:
+    branches:
+      - main
+      - journal/aor-v0.2.0
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: aor-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  julia-algorithms:
+    name: Targeted Julia algorithm tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Julia 1.12.6
+        uses: julia-actions/setup-julia@fa02766e078afaaf09b14210362cee14137e6a32 # v3
+        with:
+          version: '1.12.6'
+          arch: x64
+
+      - name: Restore Julia cache
+        uses: julia-actions/cache@a45e8fa8be21c18a06b7177052533149e61e9b38 # v3
+        with:
+          cache-name: aor-julia-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('julia/Manifest.toml', 'julia/test/Manifest.toml') }}
+          save-always: 'false'
+          delete-old-caches: 'false'
+
+      - name: Instantiate pinned test environment
+        run: julia --startup-file=no --project=julia/test -e 'using Pkg; Pkg.instantiate()'
+
+      - name: Run exact and heuristic agreement suite
+        run: make aor-algorithm-tests JULIA_EXE=julia
+
+  lean-theory:
+    name: Lean and theorem audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Julia 1.12.6
+        uses: julia-actions/setup-julia@fa02766e078afaaf09b14210362cee14137e6a32 # v3
+        with:
+          version: '1.12.6'
+          arch: x64
+
+      - name: Restore Julia cache
+        uses: julia-actions/cache@a45e8fa8be21c18a06b7177052533149e61e9b38 # v3
+        with:
+          cache-name: aor-theory-julia-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('julia/Manifest.toml', 'julia/test/Manifest.toml') }}
+          save-always: 'false'
+          delete-old-caches: 'false'
+
+      - name: Set up Lean and mathlib cache
+        uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9 # v1
+        with:
+          lake-package-directory: formal
+          auto-config: false
+          build: false
+          test: false
+          lint: false
+          use-github-cache: true
+          use-mathlib-cache: true
+
+      - name: Instantiate Julia environments
+        run: |
+          julia --startup-file=no --project=julia -e 'using Pkg; Pkg.instantiate()'
+          julia --startup-file=no --project=julia/test -e 'using Pkg; Pkg.instantiate()'
+
+      - name: Run theorem fixtures, Lean build, linter, and axiom audit
+        run: make aor-theory-check JULIA_EXE=julia
+
+  journal-latex:
+    name: Journal LaTeX compilation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Install LaTeX and PDF tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends \
+            latexmk poppler-utils ripgrep \
+            texlive-fonts-recommended texlive-latex-base \
+            texlive-latex-extra texlive-latex-recommended texlive-pictures
+
+      - name: Compile article and Online Resource 1
+        run: make aor-manuscript
+
+      - name: Upload PDFs and logs on failure
+        if: failure()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        with:
+          name: aor-latex-failure
+          path: |
+            journal/aor/manuscript/build/*.log
+            journal/aor/online_resource/build/*.log
+            journal/aor/manuscript/build/*.pdf
+            journal/aor/online_resource/build/*.pdf
+          if-no-files-found: warn
+          retention-days: 7
+
+  source-completeness:
+    name: Editable source completeness
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Install LaTeX and PDF tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends \
+            latexmk poppler-utils ripgrep \
+            texlive-fonts-recommended texlive-latex-base \
+            texlive-latex-extra texlive-latex-recommended texlive-pictures
+
+      - name: Build source graphs
+        run: make aor-manuscript
+
+      - name: Audit recorder dependencies and editable inputs
+        run: ./scripts/aor_source_completeness.sh
+
+  benchmark-audit:
+    name: Committed benchmark-result audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Set up Julia 1.12.6
+        uses: julia-actions/setup-julia@fa02766e078afaaf09b14210362cee14137e6a32 # v3
+        with:
+          version: '1.12.6'
+          arch: x64
+
+      - name: Restore Julia cache
+        uses: julia-actions/cache@a45e8fa8be21c18a06b7177052533149e61e9b38 # v3
+        with:
+          cache-name: aor-benchmark-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('julia/Manifest.toml') }}
+          save-always: 'false'
+          delete-old-caches: 'false'
+
+      - name: Instantiate pinned environment
+        run: julia --startup-file=no --project=julia -e 'using Pkg; Pkg.instantiate()'
+
+      - name: Audit committed final outputs without rerunning methods
+        run: make aor-benchmark-audit JULIA_EXE=julia
+
+  public-boundary:
+    name: Public and licensed-data boundary
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Install audit tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends file poppler-utils ripgrep
+
+      - name: Audit public tree and release archives
+        run: ./scripts/aor_public_boundary_audit.sh

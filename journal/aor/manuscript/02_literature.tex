@@ -24,7 +24,7 @@ logic: \citet{White1976} gives a finite-horizon, partially observed semi-Markov
 dynamic program on a sufficient statistic. Financial switching and
 regime-switching models likewise use filtered information to choose among a
 fixed menu of operating modes or positions
-\citep{LiNystromOlofsson2015,DaiZhangZhu2010}.
+\citep{Lakner1998,LiNystromOlofsson2015,DaiZhangZhu2010}.
 
 Those results supply the control architecture used here, not a novelty claim.
 The present reduction concerns a different component of state. Conditional on
@@ -71,15 +71,13 @@ parent-conditioned generative closure. Reward-free policy compression can
 therefore retain a representative for broad downstream usefulness without
 preserving the same objects as innovation-safe compression.
 
-A related but directionally different problem expands rather than compresses
-the available action set. \citet{XuEtAl2026GenerativeActions} study online
-decisions in which an agent can pay to generate a reusable new action and must
-balance creation, exploration, and exploitation. The performance object is
-regret in a growing menu. In our model, generation is conditioned on modules
-carried by retained parents, and the decision is which existing entries can be
-deleted without changing either current opportunities or attainable
-descendants. Generative action-set expansion is thus prior art for costly
-action creation, but not for source-relative closure-preserving deletion.
+A directionally different problem expands rather than compresses the available
+action set. In such models the performance object may be learning or regret in
+a growing menu. Here generation is conditioned on modules carried by retained
+parents, and the decision is which existing entries can be deleted without
+changing either current opportunities or attainable descendants. The present
+problem is therefore distinct from generative action-set expansion: it concerns
+source-relative closure-preserving deletion rather than costly action creation.
 
 \subsection{Weighted covering and combinatorial representation}
 
@@ -101,6 +99,18 @@ The tagged-cover equivalence is therefore a computational subclass
 interpretation imposed on an arbitrary set-cover instance, and it does not
 extend automatically to a nonidentity closure with complementarities among
 raw modules.
+
+Computational benchmarking has a separate methodological literature.
+Performance profiles compare solvers only after defining a common problem set
+and success measure \citep{DolanMore2002}; feature-balanced benchmark
+construction, as in MIPLIB 2017, is designed to avoid overrepresenting a narrow
+instance family \citep{GleixnerEtAl2021}. These principles expose limits of the
+present locked experiment rather than repairing it after the fact. Its methods
+have unequal success targets, some infeasible generator cells, and a structured
+block dominated by complete preprocessing. A future registered benchmark must
+therefore balance realized residual structure and separate feasibility,
+quality-qualified, and exact-completion targets before using comparative
+profiles.
 
 Adjacent covering models optimize different objects. Budgeted maximum coverage
 and monotone submodular maximization seek the largest attainable value under a
@@ -141,30 +151,12 @@ resource-allocation question.
 Library learning and program synthesis establish that reusable components can
 shape later construction. For example, \citet{BowersEtAl2023} synthesize
 libraries of reusable abstractions rather than treating candidate programs as
-independent outputs. Recent agent-library preprints bring maintenance and
-compression closer to the present vocabulary. The two SkillZip formulations
-compress recurring internal workflow structure while preserving contracts,
-dependency reachability, source expansion, or extracted procedural
-requirements \citep{TanEtAl2026SkillZipGraph,BaiEtAl2026SkillZipMDL}. Their
-decision unit is internal procedural structure, and their preserved object is
-an executable or description-level contract inside skill artifacts. They do
-not select a sublibrary of whole strategies that must jointly preserve both a
-belief-indexed operating envelope and future parent-conditioned generation.
-
-Other recent systems treat the library itself as a maintained ecosystem.
-SkillFoundry uses validation to create, repair, merge, and prune executable
-scientific skills; SkillOps represents typed contracts and dependency or
-compatibility links; and Programmatic Skill Networks use invocation structure,
-duplicate removal, link redirection, and rollback validation
-\citep{ShenEtAl2026SkillFoundry,PuSongZhao2026SkillOps,ShiYuanLiu2026PSN}.
-These are the closest dependency-aware comparisons because removing an entry
-can affect later composition or construction. Their preservation targets are
-tests, typed interfaces, graph consistency, retrieval, or observed task
-success. Innovation-safe compression abstracts from those engineering
-criteria and imposes a stronger but narrower finite-model condition: exact
-equality of every declared current frontier requirement and the entire declared
-generative closure. It is not a substitute for provenance, repair, versioning,
-or rollback controls.
+independent outputs. Its decision unit is internal program structure, and its
+preserved object is reusable abstraction within synthesis. The present problem
+instead selects a sublibrary of whole strategies that must jointly preserve a
+belief-indexed operating envelope and parent-conditioned generation.
+Innovation-safe compression is therefore not a substitute for procedural
+compression, provenance, repair, versioning, or rollback controls.
 
 \subsection{Automated financial strategy construction and governance}
 
@@ -180,22 +172,26 @@ governance \citep{FederalReserveOCC2011}. This supports the existence of
 organizational burdens, not the paper's optimization model or empirical
 findings.
 
-Recent financial agent systems make the comparison more direct. FactorMiner
-uses skills and experience memory in later factor construction, while ReCAP
-maintains regime-specific portfolio policies
-\citep{WangEtAl2026FactorMiner,PanEtAl2026ReCAP}. AlgoEvolve uses selected
-trading programs as parents for later mutations, and EVOQUANT combines typed
-strategy representations, provenance, controlled edits, and verification
-gates \citep{SharmaShroff2026AlgoEvolve,MaoEtAl2026EvoQuant}. These systems
-establish automated generation, persistent experience, parent-based evolution,
-and verifier-gated admission as prior art. Their preserved or optimized objects
-are empirical fitness, screening criteria, reusable experience, or
-regime-specific performance. The present paper begins after a finite
-generation--verification--admission law has been declared and asks which
-source entries can be removed without changing its operating frontier or
-generative closure. Its financial audits assess retention burden and semantic
-preservation, not improved returns, forecasting ability, alpha, or deployable
-performance.
+The finance literature also gives a direct warning about the interpretation of
+large rule catalogs. \citet{SullivanTimmermannWhite1999} evaluate technical-rule
+performance while accounting for the universe from which the rules were
+selected, and \citet{White2000} develops a general reality-check framework for
+data snooping. Multiple-testing concerns are especially acute in large return-
+predictor collections \citep{HarveyLiuZhu2016}, while post-publication evidence
+shows that reported anomaly returns can attenuate out of sample
+\citep{McLeanPontiff2016}. The article's ex post maximum over enabled descendants
+is not a corrected performance test under any of these frameworks. It is used
+only to witness the mechanical implication of preserving or losing the declared
+catalog, and no significance or investment claim is attached to it.
+
+An accepted recent financial comparator, ReCAP, maintains regime-adaptive
+portfolio policies \citep{PanEtAl2026ReCAP}. Its optimized object is
+regime-specific portfolio performance, not minimum-burden preservation of a
+source frontier and generative closure. The present paper begins after a finite
+generation--verification--admission law has been declared and asks which source
+entries can be removed without changing those two objects. Its financial
+audits assess retention burden and semantic preservation, not improved returns,
+forecasting ability, alpha, or deployable performance.
 
 \medskip\noindent\textbf{Claim boundary.}
 The paper claims novelty neither for state, value, policy, action-set,

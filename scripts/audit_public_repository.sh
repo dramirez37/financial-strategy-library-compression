@@ -118,8 +118,15 @@ MAC_HOME_PREFIX="/""Users/"
 UNIX_HOME_PREFIX="/""home/"
 LOCAL_PATH_PATTERN="(${MAC_HOME_PREFIX}[^/[:space:]]+|${UNIX_HOME_PREFIX}[^/[:space:]]+|[A-Za-z]:\\\\Users\\\\[^\\\\[:space:]]+)"
 LOCAL_PATH_FILES="$(git grep -IlE "$LOCAL_PATH_PATTERN" -- . || true)"
-[[ -z "$LOCAL_PATH_FILES" ]] ||
-    print_paths_and_fail "absolute local home-directory paths found" "$LOCAL_PATH_FILES"
+UNAPPROVED_LOCAL_PATH_FILES="$(printf '%s\n' "$LOCAL_PATH_FILES" | rg -v \
+    '^experiments/algorithmic_compression_v2/results/control/[^/]+/[^/]+\.(job\.toml|stderr\.log)$' || true)"
+[[ -z "$UNAPPROVED_LOCAL_PATH_FILES" ]] ||
+    print_paths_and_fail "absolute local home-directory paths found" "$UNAPPROVED_LOCAL_PATH_FILES"
+if [[ -n "$LOCAL_PATH_FILES" ]]; then
+    [[ "$(git check-attr export-ignore -- experiments/algorithmic_compression_v2/results/control)" == \
+       "experiments/algorithmic_compression_v2/results/control: export-ignore: set" ]] ||
+        fail "machine-local v2 process controls are not excluded from release exports"
+fi
 
 PRIVATE_SSH_PATTERN="((~|${MAC_HOME_PREFIX}[^/[:space:]]+|${UNIX_HOME_PREFIX}[^/[:space:]]+)/\\.ssh/[^[:space:]]+|IdentityFile[[:space:]]+[^[:space:]]*\\.ssh/[^[:space:]]+)"
 PRIVATE_SSH_FILES="$(git grep -IlE "$PRIVATE_SSH_PATTERN" -- . || true)"
@@ -130,7 +137,7 @@ EMAIL_PATTERN='[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}'
 PUBLICATION_EMAIL='ramirezdavv'@'gmail.com'
 EMAIL_FILES="$(git grep -IlE "$EMAIL_PATTERN" -- . || true)"
 UNAPPROVED_EMAIL_FILES="$(printf '%s\n' "$EMAIL_FILES" | rg -v \
-    '^(CITATION\.cff|manuscript/main\.tex|manuscript/online_supplement/main\.tex|release/v0\.1\.1-arxiv/arxiv-source/(paper|supplement)\.tex)$' || true)"
+    '^(\.zenodo\.json|CITATION\.cff|manuscript/main\.tex|manuscript/online_supplement/main\.tex|journal/aor/(cover_letter\.md|main\.tex|supplement\.tex)|journal/aor/manuscript/author_metadata\.tex|journal/aor/online_resource/main\.tex|journal/aor/requirements/COMPLIANCE_REPORT\.md|release/v0\.1\.1-arxiv/arxiv-source/(paper|supplement)\.tex|release/v0\.2\.0-aor-submission/(CITATION\.cff|zenodo\.json))$' || true)"
 [[ -z "$UNAPPROVED_EMAIL_FILES" ]] ||
     print_paths_and_fail "email addresses require publication review; values suppressed" "$UNAPPROVED_EMAIL_FILES"
 
@@ -143,6 +150,8 @@ for publication_email_path in \
     CITATION.cff \
     manuscript/main.tex \
     manuscript/online_supplement/main.tex \
+    journal/aor/manuscript/author_metadata.tex \
+    journal/aor/online_resource/main.tex \
     release/v0.1.1-arxiv/arxiv-source/paper.tex \
     release/v0.1.1-arxiv/arxiv-source/supplement.tex; do
     rg -qF "$PUBLICATION_EMAIL" "$publication_email_path" ||
@@ -161,6 +170,12 @@ while IFS= read -r path; do
         case "$mime" in
             text/*|application/json|image/svg+xml)
                 LARGE_TEXT_COUNT=$((LARGE_TEXT_COUNT + 1))
+                ;;
+            application/gzip)
+                case "$path" in
+                    release/v0.2.0-aor-submission/*.tar.gz) ;;
+                    *) fail "tracked binary artifact exceeds 5 MB: $path ($bytes bytes, $mime)" ;;
+                esac
                 ;;
             *)
                 fail "tracked binary artifact exceeds 5 MB: $path ($bytes bytes, $mime)"

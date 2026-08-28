@@ -3,164 +3,134 @@
 \label{sec:computational-study}
 \label{sec:experiments}
 
-The theory identifies what each algorithm guarantees, but it does not say
-which structural instances are computationally difficult or how much burden
-is lost by a heuristic in a finite design. Registered Algorithmic Compression
-Benchmark v2 addresses four questions: when do the independent exact methods
-agree; how do runtime and diagnostic counts vary with problem size and
-structure; how often do certified heuristics attain the available reference
-burden; and how much model reduction and endpoint improvement come from
-preprocessing and multi-start deletion? The study is synthetic and
-identity-closure only. It makes no population claim about real financial
-libraries.
+Registered Algorithmic Compression Benchmark v2 is a finite synthetic study of
+tagged identity-closure instances. It can test exact-method agreement, certified
+burden quality, preprocessing prevalence, and the declared adversarial
+mechanisms. It cannot establish average-case complexity, steady-state runtime
+rankings, or a population law for financial libraries.
 
-\subsection{Registered design and execution}
+\subsection{Registered design, execution, and audit}
 
 The final registry contains \AORBenchmarkInstances\ analysis instances:
-\AORBenchmarkSmallExact\ small exact instances,
-\AORBenchmarkStructured\ structured finite-design instances, and
-\AORBenchmarkAdversarial\ adversarial mechanism instances. Family A is
-small enough for the registered exact comparisons. Family B varies strategy
-and tagged-row counts, coverage density, module overlap, bundle prevalence,
-unique-carrier frequency, weight dispersion, and frontier--module coverage
-correlation. Family C contains the predeclared gap, tie, duplicate,
-dominance, rare-carrier, symmetry, and bundle-versus-singleton mechanisms.
-Realized rather than requested structural statistics enter the analysis.
+\AORBenchmarkSmallExact\ small exact, \AORBenchmarkStructured\ structured,
+and \AORBenchmarkAdversarial\ adversarial. Family B requested variation in
+strategy and tagged-row counts, coverage density, module overlap, bundle
+prevalence, unique-carrier frequency, weight dispersion, and
+frontier--module association. Family C contains the predeclared gap, tie,
+duplicate, dominance, rare-carrier, symmetry, and bundle mechanisms. Failed
+generation remains a terminal result; no failed row is silently repaired or
+dropped.
 
-The algorithm grid comprises complete enumeration, requirement-mask dynamic
-programming, both registered HiGHS formulations, weighted and cardinality
-greedy construction, greedy followed by reverse deletion, five deterministic
-rechecked-deletion orders, a seeded random order, and multi-start random
-deletion. Mandatory-only and full fixed-point preprocessing variants are
-retained as registered. Every returned library is reconstructed in original
-coordinates and rechecked for the inactive strategy, exact tagged coverage,
-frontier equality, identity closure, and exact burden.
+The algorithm grid contains enumeration, requirement-mask DP, two registered
+HiGHS formulations, weighted and cardinality greedy, greedy plus reverse
+deletion, rechecked deletion orders, seeded random deletion, and 32-start
+deletion. Maximum immediate additive burden release is exactly the
+heaviest-safe-first ordering. Both labels remain in the immutable registered
+records, but they are one method rather than independent scientific baselines.
 
-Execution used Julia \AORJuliaVersion, HiGHS \AORHiGHSVersion, and an
-\AORCPU. The locked supervisor dispatched \AORWorkerCount\ isolated serial
-workers; each worker used serial BLAS and serial HiGHS. Thus wall-clock time
-is conditional on the registered concurrent environment, including cache,
-memory-bandwidth, and CPU contention. The execution record also preserves
-that the worktree was dirty at launch, together with its status hash. That
-provenance limitation prevents interpreting these times as a pristine-release
-benchmark, although the result files and audit hashes remain internally
-traceable. HiGHS used presolve, deterministic registered seeds, and zero
-requested relative and absolute MIP gaps. A solver status is still solver
-evidence, not an exhaustive or formal proof.
+The audit passed all \AORBenchmarkRuns\ registered run units and accepted
+\AORBenchmarkAccepted\ returned libraries after original-coordinate mandatory,
+coverage, frontier, identity-closure, and exact-burden checks. It retained
+\AORBenchmarkUnsuccessful\ unsuccessful records in their terminal categories.
+HiGHS \texttt{OPTIMAL} remains solver evidence plus an exact incumbent check,
+not formal or exhaustive proof.
 
-\subsection{Audit and exact-method validation}
+\subsection{Exact agreement and applicability}
 
-The independent audit passed all \AORBenchmarkRuns\ registered run units.
-It accepted \AORBenchmarkAccepted\ returned libraries after exact semantic
-and burden checks and retained \AORBenchmarkUnsuccessful\ unsuccessful
-records. Among \AORExactCapable\ exact-capable instances, complete
-cross-method burden agreement was available on \AORExactAgreement; the
-remaining \AORExactUnavailable\ had a recorded unavailable method rather
-than an imputed optimum. Optimizer identities differed at equal burden on
-\AOROptimizerIdentityDifferences\ agreed instances. Such identity ties are
-valid alternative optimizers, not disagreements. These statements are exact
-finite computation plus independent rechecking; they are not Lean
-verification.
+Among \AORExactCapable\ registry instances, all required exact-method burdens
+were available and equal on \AORExactAgreement; \AORExactUnavailable\ did not
+have a complete comparison. \AORImplementationErrors\ adversarial enumeration
+jobs are recorded as
+\texttt{IMPLEMENTATION\_ERROR}, but their substantive cause is known: the
+residual optional count exceeded the declared enumeration cap. Their historical
+statuses are not rewritten. They are enumeration-inapplicable under that cap,
+and exact agreement is unavailable rather than inferred. Optimizer identities
+differed at equal burden on \AOROptimizerIdentityDifferences\ complete
+comparisons, which records valid tied optima rather than disagreement.
 
-Family B has \AORStructuredReferences\ exactly feasible,
-HiGHS-\texttt{OPTIMAL} references. Those rows support a consistent finite
-comparison but do not upgrade the solver claim. No second solver was pinned.
-The complete instance-level agreement and certificate hashes are in Online
-Resource~1.
+These are exact finite facts about specified instances. The medium structured
+references are HiGHS-optimal incumbents that pass exact feasibility and burden
+rechecks; no second solver was pinned.
 
-\subsection{Scaling and diagnostic counts}
+\subsection{Certified burden quality}
 
-Table~\ref{tab:aor-computational-scaling-compact} reports the compact scaling
-view. Enumeration visits all subsets after mandatory preprocessing, whereas
-the DP state count depends on reachable requirement masks. The observed DP
-state medians remain far below the worst-case mask bound in these small cells;
-this is a finite-design observation and does not change the exponential
-complexity proved in Section~\ref{sec:algorithms}. In the structured cells,
-median MIP wall time rises when the strategy count moves to the larger level,
-while the exposed node medians are small because fixed-point preprocessing
-often resolves most or all of the cover before branch-and-bound. Node counts
-are unavailable for most such runs and are never replaced by zero.
-
-\AORComputationalScalingTable
-
-The registered penalized-runtime models use log PAR--2, keep every run unit,
-and include the declared structural effects, replicate block, fixed lane, and
-only the registered algorithm-by-size interactions. The structured model
-associates larger strategy count with longer penalized runtime after these
-controls. The small-exact and adversarial solved-probability fits encountered
-separation, while the structured solved-probability model converged. These
-finite-design associations are descriptive; they are not causal performance
-laws or cross-machine predictions. Complete coefficients, HC3 intervals, and
-Holm-adjusted probabilities are assigned to Online Resource~1.
-
-\subsection{Heuristic quality and structural difficulty}
-
-The two evidence classes in
-Table~\ref{tab:aor-heuristic-quality-compact} are intentionally separate.
-On Family A, multi-start deletion attains every available exact reference;
-heaviest-safe-first and maximum immediate release also perform well in this
-random small design. On Family B, weighted greedy followed by reverse deletion
-has the highest reference-attainment count among the reported deterministic
-constructions and small upper-tail gaps, whereas lightest-safe-first, declared
-source order, and a single random deletion order show substantially larger
-tails. These are comparative synthetic outcomes, not guarantees.
+Table~\ref{tab:aor-heuristic-quality-compact} separates Family A exact finite
+references from Family B exactly rechecked HiGHS-optimal references. Within
+those distinct evidence classes, weighted greedy plus reverse deletion and
+heaviest-safe-first often attain the available reference, while several other
+deletion orders have larger observed tails. Multi-start attains every available
+Family A reference but not every Family B reference. These are descriptive
+outcomes of the registered instances, not approximation guarantees or an
+algorithm ranking beyond the design.
 
 \AORHeuristicQualityTable
 
-The registered relative-gap models reinforce the need for method-specific
-interpretation. Greater unique-carrier frequency is associated with smaller
-gaps for several deletion rules, and greater weight dispersion with larger
-gaps for cardinality, lightest-first, source-order, random-order, and
-multi-start variants. Bundle prevalence is negatively associated with the
-weighted-greedy gap. Other declared structural terms are not uniformly
-selected after multiplicity adjustment, so the evidence does not support a
-single scalar notion of instance difficulty. The separately requested
-regression for the probability of reference attainment was not prespecified;
-it remains labeled \textsc{exploratory} in Online Resource~1 and is not used
-for a confirmatory claim here.
-
-\subsection{Preprocessing, multi-start deletion, and adversarial mechanisms}
-
-Full fixed-point preprocessing has a strong structural effect: the median
-variable and requirement reductions in every structured size cell are
-complete among available preprocessing records. That does not translate
-mechanically into lower end-to-end runtime. The registered full pipeline
-includes construction, audit-trail, and reconstruction overhead; its median
-log PAR--2 ratio relative to mandatory-only preprocessing is positive in every
-structured cell. The two prespecified preprocessing regressions are rank
-deficient, so no adjusted causal or universal speedup claim is made.
-
-Multi-start deletion completes all registered starts on
-\AORMultistartComplete\ instances and improves over its first start on
-\AORMultistartImproved. Improvement is therefore common but not automatic,
-and the primary mandatory-only workflow includes the recorded memory-limit
-failures rather than substituting successful sensitivity runs.
-
-\AORPreprocessingMultistartTable
-
-The adversarial family connects the experiment back to the theorem without
-using experiment to establish it. For the registered heaviest-safe-first gap
-instances, the exactly rechecked observed ratios equal the formula from
+The registered heaviest-safe-first gap family gives a different kind of
+evidence. Its exactly rechecked finite ratios match
 Theorem~\ref{thm:aor-heaviest-safe-first-gap} at every registered scale. The
-small reference is exact finite computation; the larger references remain
-HiGHS solver evidence plus exact feasibility checks.
+theorem establishes the universal family statement; the experiment checks the
+implementation on the named fixtures.
 
 \AORAdversarialGapTable
 
-\subsection{Timeouts, failures, and limitations}
+\subsection{Preprocessing and realized design limits}
 
-No final run ended at \texttt{TIME\_LIMIT}, so the registered timeout
-best-bound-gap table is correctly empty. This is not evidence that time limits
-are irrelevant: \AORGenerationFailed\ run units correspond to rejected
-structured generations, \AORMemoryLimited\ multi-start run units reached
-the memory cap, and implementation, interruption, missing-primal, and
-nonbinary-candidate failures remain in the machine-readable census. Solved
-fractions and PAR--2 summaries retain those outcomes in their denominators.
+Full fixed-point preprocessing has a strong realized effect. In every
+structured size cell, median variable and requirement reduction is complete
+among available records. This is evidence that forced-carrier propagation is
+important for these generators. It is simultaneously a limitation: most
+structured instances do not exercise a difficult residual MIP or DP search, so
+the study cannot identify general residual-search scaling.
 
-The remaining boundaries are substantive. The benchmark covers finite tagged
-identity-closure instances, not arbitrary closure. Its structural grid is not
-a probability sample of financial libraries. Runtime is machine- and
-contention-conditional, MIP reference quality rests on one open-source solver,
-and unavailable diagnostics remain missing. Accordingly, the study identifies
-where the implemented methods differ within the locked design; it does not
-prove average-case complexity or a universal ranking of algorithms.
+\AORPreprocessingMultistartTable
+
+The registered generator also contains infeasible requested cells. All
+\AORGenerationFailed\ run units arising from
+\AORGenerationFailedInstances\ structured source-instance cells are retained,
+and the artifact audit shows that
+the failures remove complete combinations of low density and bundle/unique-
+carrier settings rather than occurring at random. Effects and interactions
+requiring those absent cells are not estimable from this design.
+
+Multi-start deletion completes all registered starts on
+\AORMultistartComplete\ instances and improves on the first start on
+\AORMultistartImproved. Memory-limited primary runs remain failures; successful
+sensitivity records are not substituted into their denominators.
+
+\subsection{Why runtime and registered regressions are not inferential evidence}
+
+The v2 worker timed first-call Julia execution without an algorithm-specific
+warm-up. Compilation can constitute nearly all recorded algorithm time in
+representative raw records. Execution also used \AORWorkerCount\ concurrent
+one-thread subprocesses on a dirty worktree, so cache, memory-bandwidth, launch
+wave, and compilation effects are part of each observation. The saved wall
+times remain auditable cold-start concurrent records, but the article does not
+use them to rank algorithms or infer steady-state scaling.
+
+The registered performance profile also combines unlike success events:
+heuristics need an exactly feasible candidate, whereas exact methods must
+complete search. It is therefore excluded from the submission's comparative
+evidence. A valid future study must separate feasibility construction,
+quality-qualified attainment, and exact completion.
+
+The prespecified regressions used HC3 uncertainty on repeated algorithm and
+preprocessing rows from the same instance. HC3 addresses heteroskedasticity,
+not within-instance dependence. Complete generator cells are also absent.
+Accordingly, their coefficients, intervals, and adjusted probabilities are
+preserved in Online Resource~1 as an executed-analysis record but are not used
+for inferential or structural-driver claims. No unregistered clustered model is
+substituted after seeing the results.
+
+\subsection{Failure handling and next experimental boundary}
+
+No final run ended at \texttt{TIME\_LIMIT}, so v2 supplies no empirical
+distribution of timeout incumbent gaps. Generation failures, memory limits,
+interruptions, missing primals, and nonbinary-candidate rejections remain in the
+machine-readable census and all applicable denominators.
+
+A stronger performance study requires a new registration rather than an
+amendment to v2: warm-up outside timing, repeated blocked measurements on a
+clean tree, prospective generator-feasibility checks, nonempty residual cover
+families, common success targets, instance-level paired or clustered analysis,
+prevalidated method applicability, and bounded-exchange and LP-bound baselines.
+No outcome from such a study is claimed here.

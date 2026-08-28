@@ -3,43 +3,48 @@
 \label{sec:introduction}
 
 Financial research is cumulative. Candidate signals, transformations,
-execution rules, and risk controls enter a strategy library after development
+execution rules, and risk controls enter maintained catalogs after development
 and validation, where they remain available for operation, comparison, and
-reuse. As the library grows, so do its storage and computing footprint, its
-validation and monitoring queue, its documentation and governance obligations,
-and the human attention required to understand and maintain it. Retention is
-therefore not merely a data-management decision. It is an operations-research
-problem about allocating scarce research and governance resources across a
-maintained portfolio of strategies.
+reuse. As a catalog grows, so do its computing footprint, validation and
+monitoring queue, documentation burden, and the attention needed to understand
+it. The decision studied here is removal from an \emph{active maintenance and
+validation set}. It is not destruction of code, data, model history, or records
+whose archival retention is required by law, contract, audit policy, or
+disaster-recovery practice.
 
 The apparent redundancy of a strategy depends on which role is being assessed.
-For current operation, a strategy is redundant if deleting it leaves every
+For current operation, a strategy is redundant if removing it leaves every
 regime-dependent operating opportunity unchanged. For future research, the
-same strategy may be the only carrier of a signal, transformation, execution
-component, or risk-control module that can be reused in a later project. A
+same strategy may be the only declared carrier of a signal, transformation,
+execution component, or risk-control tag used by a later project. A
 strategy can consequently be dominated at every current belief and still be
 generatively indispensable. Pruning only the current payoff envelope can
 preserve what the library can operate now while silently changing what it can
-help create later.
+help create later. This carrier interpretation is a modeling declaration: in
+the financial cases the tags describe a fixed tuple grammar, not evidence that
+the underlying code, data, tests, or organizational knowledge exist only in a
+strategy row.
 
 We represent these roles by two source-library objects. The operating frontier
 \(F_L\) records the best current operating value attainable from a source
 library \(L\) at each declared belief. The generative closure \(C_L\) records
 the modules available to the modeled strategy-generation process after its
-closure rules have been applied. Under the paper's finite factorization and
-detectability assumptions, the pair \((F_L,C_L)\) is the library component of
-the productive state: replacing \(L\) by a sublibrary with the same frontier
-and closure leaves the modeled operating opportunities and generative menus
-unchanged. The filtered belief and any active-project variables remain part of
-the full controlled state; the reduction is not a claim that the two library
-objects replace the entire stochastic state.
+closure rules have been applied. Conditional on the paper's finite
+library-invariance assumptions, the pair \((F_L,C_L)\) is the library component
+of a controlled representation: replacing \(L\) by a sublibrary with the same
+frontier and closure leaves the declared operating opportunities and
+generative menus unchanged. The theorem is a factorization result for a
+specified information architecture, not a generic coarsest-state or minimality
+theorem. The filtered belief and any active-project variables remain part of
+the full controlled state.
 
 This semantic reduction defines \emph{innovation-safe compression}. Given a
 source library, additive retention burdens, and a mandatory inactive strategy,
 we seek a minimum-burden source sublibrary whose frontier and closure equal
-those of the source exactly. Equality is source-relative and exact: it is not a
-prediction criterion, a statistical tolerance, or a claim of equivalence in
-unobserved markets. The source itself is feasible, but choosing the least-cost
+those of the source exactly. Equality is source-relative and exact for the
+declared finite tables: it is not a prediction criterion, statistical
+certainty, or a claim of equivalence in unobserved markets. The source itself
+is feasible, but choosing the least-burden
 feasible representation is a global combinatorial optimization problem.
 Sequential deletion can certify that every accepted step is safe, yet an
 inclusion-wise irreducible endpoint need not have minimum burden.
@@ -70,35 +75,37 @@ reduce its burden without weakening that guarantee. Deterministic and
 multi-start deletion heuristics provide certified feasible endpoints, but
 their feasibility certificates are not certificates of optimality.
 
-The computational evidence is designed to reveal where these distinctions
-matter. A prospectively registered benchmark separates small instances with
-exact cross-method comparisons, structured instances with controlled and
-realized coverage features, and adversarial mechanism families. Its audited
-results identify settings in which inexpensive methods attain exact or
-certified reference burdens and settings in which method choice changes the
-retained burden. Failed and resource-limited runs remain part of the reporting
-denominators. The benchmark is synthetic evidence about the registered
-generators, not a population claim about financial research libraries.
+The computational evidence asks a narrower question: how do certified burdens
+differ within one registered synthetic design? Small instances support exact
+cross-method comparisons, and the adversarial family connects finite
+calculation to the worst-case theorem. The structured generator frequently
+collapses under forced preprocessing and contains infeasible requested factor
+cells. Moreover, recorded wall times include first-call Julia compilation
+under concurrent worker contention. We therefore use the study for exact
+agreement, burden quality, failure accounting, and preprocessing prevalence,
+not for steady-state runtime rankings, complete factorial inference, or a
+population claim about financial libraries.
 
-The application evidence comes from separate retrospective terminal and
-annual walk-forward financial library audits. They compare safe algorithms
-under predeclared burden schedules and recheck mandatory retention,
-frontier equality, closure equality, and burden exactly. The audits quantify
-resource savings and show why equal-cardinality conclusions need not settle a
-heterogeneous-burden retention decision. Financial quantities from held-out
+The application evidence consists of separate retrospective terminal and
+annual financial tuple-grammar audits. They compare safe algorithms under
+predeclared burden indices and recheck mandatory retention, frontier equality,
+closure equality, and burden. Both residual cover models are resolved by exact
+preprocessing, so the cases illustrate semantics and burden accounting rather
+than difficult financial optimization. Financial quantities from later audit
 periods do not enter weights, preprocessing, algorithm choice, warm starts,
-pruning order, or optimization; they are read only as postdecision opportunity
-diagnostics. Terminal and annual units remain separate. These exercises do not
-claim causality, forecasting skill, alpha, or deployable performance.
+pruning order, or optimization; the resulting ex post catalog witness is read
+only after selection. Terminal and annual units remain separate. The cases do
+not establish population savings, causality, forecasting skill, alpha, or
+deployable performance.
 
 \subsection{Research questions}
 
 The analysis is organized around four questions.
 
 \begin{enumerate}
-\item[\textbf{RQ1.}] Under the declared finite partial-information process,
-which library summary is sufficient to preserve both current operating
-opportunities and future strategy-generation capabilities?
+\item[\textbf{RQ1.}] Under which declared library-invariance conditions does
+frontier--closure equality preserve both current operating opportunities and
+the modeled strategy-generation menu?
 
 \item[\textbf{RQ2.}] How does exact minimum-burden preservation become a
 covering problem under identity closure, what computational barrier follows,
@@ -108,10 +115,9 @@ and how far can a certified local-deletion rule be from the global optimum?
 certified heuristic methods can exploit this structure while preserving exact
 feasibility and an auditable reconstruction to original strategy identities?
 
-\item[\textbf{RQ4.}] Across the registered synthetic benchmark and the
-retrospective financial audits, when do inexpensive safe methods match a
-certified reference, and when does exact global optimization change retention
-burden or selected identities?
+\item[\textbf{RQ4.}] Within the registered synthetic design and two
+retrospective financial cases, when do certified heuristics match an available
+reference burden, and when do safe endpoints differ in burden or identities?
 \end{enumerate}
 
 \subsection{Contributions}
@@ -119,12 +125,12 @@ burden or selected identities?
 The paper makes four principal contributions.
 
 \begin{enumerate}
-\item \emph{Dynamic semantic reduction.} We identify the operating frontier
-and generative closure as the sufficient library summary under the declared
-finite process and formulate innovation-safe compression as exact,
-source-relative preservation of both objects. This separates operational
-redundancy from generative redundancy without replacing the belief and project
-components of the controlled state.
+\item \emph{Conditional semantic representation.} We identify operationally
+checkable library-invariance conditions under which the operating frontier and
+generative closure form a sufficient library summary, and we formulate
+innovation-safe compression as source-relative preservation of both objects.
+This separates operational from generative redundancy without claiming a
+generic minimal state.
 
 \item \emph{Complexity and worst-case theory.} For identity closure, we prove
 the tagged-cover equivalence and NP-completeness of a restricted safe-compression
@@ -133,20 +139,20 @@ heaviest-safe-first endpoint to the global optimum and shows that this named
 deletion rule has no constant approximation guarantee. The result does not
 apply to every deletion order.
 
-\item \emph{Algorithms and preprocessing.} We provide a common exact instance
-representation; optimum-preserving preprocessing with reconstruction;
-complete enumeration; exact requirement-mask dynamic programming; an auditable
-mixed-integer workflow; weighted greedy and reverse deletion; and deterministic
-and randomized certified deletion methods. Exact postchecks establish returned
-feasibility and burden. They do not turn a solver status into a formal or
-exhaustive proof of global optimality.
+\item \emph{Certified computational reduction.} We map the semantic constraint
+to established weighted-cover machinery under identity closure and provide a
+common exact representation, optimum-preserving preprocessing with
+reconstruction, enumeration, requirement-mask dynamic programming, an
+auditable mixed-integer workflow, weighted greedy, and certified deletion.
+These are implementation and certification contributions, not claims that the
+underlying generic cover algorithms are new.
 
-\item \emph{Registered computational and financial evidence.} The locked and
-audited benchmark compares exact, solver-based, and heuristic methods across
-registered structural and adversarial families. The terminal and annual
-walk-forward audits then quantify burden savings and selection sensitivity
-under predeclared weights while preserving the licensed-data and
-held-out-information boundaries. The two evidence layers remain distinct.
+\item \emph{Bounded computational and financial evidence.} The locked
+benchmark supplies exact-agreement, certified burden-quality, preprocessing,
+and adversarial records within its realized design. Two retrospective financial
+cases report table-exact preservation and burden-index sensitivity while
+preserving licensed-data and postdecision-information boundaries. Neither
+layer is generalized beyond its registered instances.
 \end{enumerate}
 
 The theoretical, computational, solver, and financial evidence levels are not
@@ -160,6 +166,12 @@ financial results describe the audited source instances. The algorithmic
 guarantees in this article apply to identity closure unless a result explicitly
 states otherwise; we do not claim a covering algorithm for arbitrary
 nonidentity closure.
+
+OpenAI ChatGPT and Codex assisted with drafting and editing, software
+development and review, literature-metadata checking, and repository-based
+analysis and reproducibility tasks. The author reviewed, revised, and verified
+all AI-assisted material and remains solely responsible for the work. A full
+disclosure appears in Statements and Declarations.
 
 \subsection{Article organization}
 
@@ -177,4 +189,4 @@ Section~\ref{sec:computational-study} reports the registered computational
 study, and Section~\ref{sec:financial-case-studies} reports the retrospective
 financial audits. Section~\ref{sec:conclusion} concludes. Proof details,
 certificates, extended outputs, registered-study documentation, and
-reproducibility records are assigned to the appendices and Online Resource~1.
+reproducibility records are provided in Online Resource~1.

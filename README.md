@@ -1,20 +1,24 @@
-# Financial Strategy Library Compression under Partial Information
+# Innovation-Safe Compression of Financial Strategy Libraries
 
 ## Paper
 
-- **Full title:** *Financial Strategy Library Compression under Partial
-  Information: Resource Constraints and Generative Value*
+- **Journal title:** *Innovation-Safe Compression of Financial Strategy
+  Libraries under Partial Information: Complexity, Algorithms, and Financial
+  Evidence*
 - **Author:** David Ramirez
 - **ORCID:** [0009-0000-3128-5123](https://orcid.org/0009-0000-3128-5123)
-- **Release candidate:** `v0.1.1-arxiv`
-- **Preprint date:** August 25, 2026
+- **Journal release candidate:** `v0.2.0-aor-submission`
+- **Historical preprint release:** `v0.1.1-arxiv` (August 25, 2026)
 - **Repository:**
   [github.com/dramirez37/financial-strategy-library-compression](https://github.com/dramirez37/financial-strategy-library-compression)
-- **Preprint record:** URL forthcoming
+- **Journal status:** submission release candidate; no acceptance, peer-review,
+  or DOI claim
 
-The versioned release candidate includes the compiled
-[`main paper`](release/v0.1.1-arxiv/financial-strategy-library-compression-preprint.pdf)
-and [`Online Supplement`](release/v0.1.1-arxiv/financial-strategy-library-compression-online-supplement.pdf).
+`make aor-release` creates the versioned Springer article, Online Resource 1,
+editable-source archive, public registered benchmark archive, checksums, and
+metadata under `release/v0.2.0-aor-submission/`. The immutable historical
+[`v0.1.1-arxiv`](release/v0.1.1-arxiv/) PDFs and arXiv source bundle remain
+available with their original provenance.
 
 The paper studies exact compression of finite financial-strategy libraries
 when a retained strategy may contribute both current operating value and
@@ -34,7 +38,8 @@ constrained, penalized, and dynamic retention problems.
    amendment locks, complete outputs, and an independent result audit.
 5. Two retrospective financial mechanism audits based on licensed CRSP/WRDS
    data, with redistributable aggregate outputs but no distributed source rows.
-6. LaTeX source for the paper and standalone online supplement.
+6. Isolated Springer-compatible LaTeX sources for the journal article and
+   Online Resource 1, alongside the preserved preprint sources.
 
 ## Evidence hierarchy
 
@@ -53,20 +58,27 @@ validation-status appendix.
 ## Quick start
 
 The pinned versions are Lean 4.32.0 and Julia 1.12.6. Run commands from the
-repository root. Start with the nonmutating public-release check; it does not
-rerun the registered (N=1024) study:
+repository root. Start with the nonmutating journal gate; it does not rerun the
+long final algorithmic benchmark, the frozen `N=1024` study, or a licensed
+financial workflow:
 
 ```sh
-make preprint-check
+make aor-check
 ```
 
-Run the component workflows as needed:
+Run the journal components independently as needed:
 
 ```sh
-make formal
-make canonical
-make manuscript
+make aor-theory-check
+make aor-algorithm-tests
+make aor-benchmark-audit
+make aor-manuscript
 ```
+
+After the author declarations and release metadata are final and the worktree
+is clean, create and verify the versioned candidate with `make aor-release`.
+The historical preprint gates remain available as `make preprint-check`,
+`make manuscript`, and `make arxiv-bundle`.
 
 The registered randomized replay is intentionally separate because it is the
 long-running (N=1024) workflow:
@@ -110,9 +122,13 @@ contract, commands, and public outputs available without licensed access.
 | `experiments/financial_terminal_audit/` | Terminal financial-audit protocol, public records, and ignored local-data contract. |
 | `experiments/financial_annual_walkforward_audit/` | Annual walk-forward financial-audit protocol, public records, and ignored local-data contract. |
 | `experiments/financial_resource_optimization/` | Cross-audit resource-optimization protocol and public certificates. |
+| `experiments/algorithmic_compression_v2/` | Locked journal benchmark, committed final outputs, solver logs, and exact audit certificates. |
 | `manuscript/` | Main-paper source, appendices, bibliography, generated figures/tables, and build script. |
 | `manuscript/online_supplement/` | Standalone supplement source and build script. |
+| `journal/aor/manuscript/` | Springer-compatible journal article and its local editable inputs. |
+| `journal/aor/online_resource/` | Independently compiled Online Resource 1 and public-safe canonical inputs. |
 | `release/v0.1.1-arxiv/` | Versioned PDFs, arXiv-ready TeX bundle, and SHA-256/commit metadata. |
+| `release/v0.2.0-aor-submission/` | Journal PDFs, source and public-benchmark archives, checksums, environment, citation, and Zenodo metadata. |
 | `scripts/` | Public disclosure audit and complete verification orchestration. |
 
 ## Reproducibility

@@ -5,19 +5,18 @@ export LC_ALL=C
 
 TREE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT="$(cd "$TREE/../../.." && pwd)"
-TEMPLATE="$ROOT/journal/aor/template"
 OUT="$TREE/build"
 
-test -f "$TEMPLATE/sn-jnl.cls"
-test -f "$TEMPLATE/bst/sn-mathphys-ay.bst"
+test -f "$TREE/sn-jnl.cls"
+test -f "$TREE/sn-mathphys-ay.bst"
 mkdir -p "$OUT"
 
-export TEXINPUTS="$TREE:$TEMPLATE:"
+export TEXINPUTS="$TREE:"
 export BIBINPUTS="$TREE:"
-export BSTINPUTS="$TEMPLATE/bst:"
+export BSTINPUTS="$TREE:"
 
 cd "$TREE"
 latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error \
-  -outdir="$OUT" -jobname=aor-journal-scaffold main.tex
+  -outdir="$OUT" -jobname=aor-journal-manuscript main.tex
 
-printf 'aor-scaffold-build: wrote %s\n' "$OUT/aor-journal-scaffold.pdf"
+printf 'aor-journal-build: wrote %s\n' "$OUT/aor-journal-manuscript.pdf"

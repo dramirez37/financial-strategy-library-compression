@@ -7,12 +7,21 @@
 \usepackage{graphicx}
 \usepackage{capt-of}
 \usepackage{tikz}
+\usetikzlibrary{patterns}
 \usepackage{placeins}
 \usepackage{xcolor}
 \usepackage[capitalise,noabbrev]{cleveref}
 
 \numberwithin{equation}{section}
 \allowdisplaybreaks
+
+% The distributed v3.1 class contains a literal "ddd" in its plain-page
+% footer. Keep the vendor file unchanged and correct only that page style.
+\makeatletter
+\def\ps@plain{\let\@mkboth\@gobbletwo\let\@oddhead\@empty
+  \let\@evenhead\@empty\def\@oddfoot{\hfill\thepage\hfill}%
+  \let\@evenfoot\@oddfoot}
+\makeatother
 
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
@@ -34,14 +43,6 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\cl}{\operatorname{cl}}
 \newcommand{\mods}{\operatorname{mods}}
-\newcommand{\DraftTag}{\textcolor{red!70!black}{\textbf{DRAFT}}}
-\newcommand{\DraftPlaceholder}[1]{%
-  \par\medskip\noindent
-  \fcolorbox{red!70!black}{red!3}{%
-    \parbox{0.94\linewidth}{\raggedright\DraftTag\ PLACEHOLDER: #1\par}}%
-  \par\medskip}
-\newcommand{\DraftSectionSummary}[1]{%
-  \par\noindent\textit{Scaffold summary.} #1\par\medskip}
 \newcommand{\DeclarationHead}[1]{%
   \par\medskip\noindent\textbf{#1.}\enspace}
 
@@ -51,16 +52,16 @@
 \input{tables/evidence_macros}
 
 \hypersetup{
-  pdftitle={Innovation-Safe Compression of Financial Strategy Libraries under Partial Information: Complexity, Algorithms, and Financial Evidence},
+  pdftitle={Innovation-Safe Compression of Financial Strategy Libraries: Semantics, Complexity, and Algorithms},
   pdfauthor={David Ramirez},
   pdfsubject={Original Research for Annals of Operations Research},
-  pdfkeywords={financial strategy libraries, innovation-safe compression, weighted set cover, partial information, exact algorithms, model governance}
+  pdfkeywords={financial strategy libraries, innovation-safe compression, weighted set cover, exact algorithms, model governance}
 }
 
 \begin{document}
 
 \articletype{Original Research}
-\title[Innovation-safe strategy-library compression]{Innovation-Safe Compression of Financial Strategy Libraries under Partial Information: Complexity, Algorithms, and Financial Evidence}
+\title[Innovation-safe strategy-library compression]{Innovation-Safe Compression of Financial Strategy Libraries: Semantics, Complexity, and Algorithms}
 
 \author*[1]{\fnm{David} \sur{Ramirez}}\email{\AORCorrespondingEmail}
 \affil*[1]{\orgname{\AORAffiliationOrganization},
@@ -69,42 +70,33 @@
   \href{https://orcid.org/\AORCorrespondingORCID}{ORCID:
   \AORCorrespondingORCID}}
 
-\abstract{Financial strategy libraries accumulate storage, validation,
-monitoring, governance, computing, and human-attention burdens. Yet an entry
-that is redundant for current operation may remain essential as a carrier of
-capabilities used to generate future strategies. We study source-relative,
-minimum-cost retention under a finite partial-information research process.
-The operating frontier and generative closure form the library component of
-the productive state, so innovation-safe compression requires exact
-preservation of both objects and retention of the inactive strategy. Under
-identity closure, this condition is equivalent to covering a tagged universe
-of frontier-attainment and module requirements. The associated restricted
-decision problem is complete for nondeterministic polynomial time
-(NP-complete). We develop exact enumeration and
-requirement-mask dynamic programming, exact preprocessing, an auditable
-mixed-integer formulation, a weighted greedy construction with a transferred
-set-cover guarantee, and certified deletion heuristics. A parameterized family
-shows that heaviest-safe-first deletion has no constant approximation
-guarantee. A prospectively registered and audited computational benchmark
-distinguishes settings in which heuristics attain exact or certified reference
-burdens from settings in which method choice changes retention burden.
-Retrospective terminal and annual walk-forward financial audits quantify
-burden savings under predeclared retention-weight schedules, with
-exact frontier and closure rechecks. Held-out financial diagnostics are
-evaluated only after retention decisions. The evidence is computational and
-retrospective: it supports no causal, forecasting, alpha, or
-deployable-performance claim.}
+\abstract{Financial strategy libraries impose maintenance, validation,
+monitoring, governance, computing, and attention burdens. An entry that is
+redundant for current operation may nevertheless carry a capability used by a
+later strategy-generation process. We formulate source-relative minimum-burden
+retention that preserves both a regime-indexed operating frontier and a
+declared generative closure. Under explicit library-invariance assumptions,
+these objects form the library component of a controlled finite-state
+representation; this is a conditional semantic result, not a general
+minimality claim. Under identity closure, safe retention is exactly weighted
+set cover on disjoint frontier and module tags. This established combinatorial
+class yields a restricted NP-completeness boundary and supports enumeration,
+requirement-mask dynamic programming, exact preprocessing, mixed-integer
+optimization, weighted greedy construction, and certified deletion. A
+parameterized family proves that heaviest-safe-first deletion has no constant
+approximation guarantee. A registered and audited synthetic benchmark verifies
+exact-method agreement where applicable, reports certified burden gaps, and
+shows that preprocessing frequently resolves the generated instances; its
+cold-start concurrent timings are not used to rank algorithms. Two
+retrospective financial tuple-grammar audits illustrate table-exact frontier
+and closure preservation under predeclared burden indices. They are bounded
+case studies, not evidence of alpha, forecasting ability, causal effects, or
+deployable performance.}
 
 \keywords{financial strategy libraries, innovation-safe compression, weighted
-set cover, partial information, exact algorithms, model governance}
+set cover, exact algorithms, model governance}
 
 \maketitle
-
-\noindent\fcolorbox{red!70!black}{red!3}{%
-  \parbox{0.96\linewidth}{\DraftTag: The title, abstract, keywords, and
-  Sections 1--9 are journal-draft prose. Appendices, migration notes, and
-  declarations marked for confirmation remain scaffold material.
-  No placeholder is a scientific finding.}}
 
 \input{01_introduction}
 \input{02_literature}
@@ -119,11 +111,6 @@ set cover, partial information, exact algorithms, model governance}
 \input{08_financial_case_studies}
 \FloatBarrier
 \input{09_conclusion}
-
-\appendix
-\input{appendices/a_proofs_and_assumptions}
-\input{appendices/b_algorithm_certificates}
-\input{appendices/c_evidence_and_reproducibility}
 
 \backmatter
 
@@ -164,14 +151,14 @@ release-time verification.
 \DeclarationHead{Code availability}
 The project repository contains Julia 1.12.6 and Lean 4.32.0 source, pinned
 environments, exact fixtures, registered configurations, and reproducibility
-commands. \DraftTag: the final repository URL, release tag, archive identifier,
-and command list require release-time verification.
+commands. The editable article and Online Resource source trees include every
+public-safe table, figure, and canonical-data input they consume; public-safe
+Julia and Lean source remains in the project repository. Any final public
+repository link or archival identifier remains subject to release-time
+verification.
 
 \DeclarationHead{Author contributions}
 \AORAuthorContributionStatement
-
-\DeclarationHead{Acknowledgements}
-\AORAcknowledgementsStatement
 
 \DeclarationHead{Generative-AI disclosure}
 \AORGenerativeAIDisclosureStatement

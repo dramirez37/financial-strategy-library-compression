@@ -9,12 +9,24 @@ registry row, design lock, or result is shared or relabeled across the two
 programs.}}
 \end{center}
 
-The locked v2 analysis population contains (AORBenchmarkInstances) instances:
-(AORBenchmarkSmallExact) small exact, (AORBenchmarkStructured) structured,
-and (AORBenchmarkAdversarial) adversarial. Its
-(AORBenchmarkRuns) registered run units retain every terminal outcome;
-(AORBenchmarkAccepted) returned libraries passed independent exact checks
-and (AORBenchmarkUnsuccessful) records returned no accepted library. These
+The predecessor v1 final execution was stopped at the author's request on
+2026-08-27 after \AORVOneTerminalRuns\ of \AORVOneRegisteredRuns\ registered
+run records had become terminal and \AORVOneGeneratedInstances\ of
+\AORVOneRegisteredInstances\ final instances had been generated. The visible
+information was incomplete infrastructure progress; no result-level burden,
+runtime, solver, or algorithm comparison was used to alter a v1 row, seed,
+limit, method, or analysis rule. V1 remains an incomplete historical record.
+V2 used new identifiers, seeds, configuration, result root, and lock; it changed
+execution infrastructure by parallelizing independent one-thread run units and
+did not pool v1 outcomes. This chronology is recorded in the committed v1
+incomplete-execution notice.
+
+The locked v2 analysis population contains \AORBenchmarkInstances\ instances:
+\AORBenchmarkSmallExact\ small exact, \AORBenchmarkStructured\ structured,
+and \AORBenchmarkAdversarial\ adversarial. Its
+\AORBenchmarkRuns\ registered run units retain every terminal outcome;
+\AORBenchmarkAccepted\ returned libraries passed independent exact checks
+and \AORBenchmarkUnsuccessful\ records returned no accepted library. These
 counts are generated from the committed audit summary through
 \path{tables/evidence_macros.tex}.
 
@@ -22,8 +34,8 @@ The design, analysis plan, reporting rules, seed and instance registries,
 amendments, active design lock, execution-start lock, environment record, raw
 run matrix, and independent audit are under
 \path{experiments/algorithmic_compression_v2/}. The final runner used
-(AORWorkerCount) concurrent one-thread subprocesses. Runtime is therefore an
-eight-worker contention estimand on an (AORCPU), not a claim about serial
+\AORWorkerCount\ concurrent one-thread subprocesses. Runtime is therefore an
+eight-worker contention estimand on an \AORCPU, not a claim about serial
 algorithm complexity or another machine.
 
 \subsection{Realized registered design}
@@ -38,11 +50,11 @@ repaired instances.
 
 \subsection{Exact-method agreement}
 
-On (AORExactCapable) exact-capable instances, complete burden agreement was
-available on (AORExactAgreement); (AORExactUnavailable) comparisons were
+On \AORExactCapable\ exact-capable instances, complete burden agreement was
+available on \AORExactAgreement; \AORExactUnavailable\ comparisons were
 unavailable after recorded failures. Equal objective burdens accompanied by
 different returned optimizer identities occurred in
-(AOROptimizerIdentityDifferences) cases. The table is exact finite
+\AOROptimizerIdentityDifferences\ cases. The table is exact finite
 computation plus exact semantic audit, not Lean verification.
 
 \input{tables/exact_method_agreement}
@@ -54,6 +66,10 @@ PAR-2 summaries, MIP nodes, DP states, and exact semantic-evaluation counts.
 Unavailable diagnostics print as dashes, never as zeros. The status table
 retains failed generation, implementation errors, memory limits, interruptions,
 nonbinary candidates, and no-primal outcomes in their registered denominators.
+Of the unavailable exact comparisons, \AORImplementationErrors\ are preserved
+with the registered \texttt{IMPLEMENTATION\_ERROR} status. They arose when
+complete enumeration crossed its declared applicability cap; the raw statuses
+are immutable, and no absent enumeration solution is imputed.
 
 \begin{landscape}
 \input{tables/computational_scaling}
@@ -89,6 +105,39 @@ covariates after outcomes were observed.
 \begin{landscape}
 \input{tables/registered_model_diagnostics}
 \end{landscape}
+
+These model outputs are retained as the executed registered record, not as
+valid confirmatory inference. HC3 standard errors do not account for repeated
+algorithm observations within an instance, and structurally missing generator
+cells impair estimability. No unregistered clustered refit is substituted.
+
+\subsection{Interpretation limits and future design}
+
+The structured generator requested cells that were mathematically incompatible
+with its incidence constraints. Those failures account for
+\AORGenerationFailed\ terminal records from
+\AORGenerationFailedInstances\ source-instance cells and are retained in every
+denominator.
+Among generated structured instances, fixed-point preprocessing commonly
+selected all forced carriers and left an empty residual cover. Family B
+therefore documents the prevalence and consequences of that preprocessing
+mechanism in this design; it is weak evidence about residual MIP or dynamic-
+programming search difficulty.
+
+All recorded times include cold Julia startup and compilation within each
+subprocess, one observation per run unit, eight-worker contention, and a dirty
+worktree recorded in the execution metadata. They are execution records, not
+steady-state speed estimates or a basis for close algorithm rankings. A
+performance profile is not interpreted because feasibility heuristics, exact
+methods, and time-limited solvers do not share one registered success target.
+
+A defensible follow-up requires its own registry, seeds, and lock. It should
+warm algorithms outside timed regions; block repeated clean-tree runs by
+instance; validate generator feasibility before locking; balance realized
+nonempty residual structure; define separate feasibility, quality-qualified,
+and exact-completion targets; and include a bounded certified-exchange method
+and LP-relaxation diagnostic. These are prospective design requirements, not
+post hoc additions to v2.
 
 The full coefficients, paired comparisons, heuristic-quality summaries,
 adversarial tables, plot-data tables, row trace, and SVGs remain generated

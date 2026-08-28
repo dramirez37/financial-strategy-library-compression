@@ -7,9 +7,11 @@ const REPOSITORY_ROOT = normpath(joinpath(@__DIR__, "..", ".."))
 const ALGORITHM_TABLE_ROOT = joinpath(REPOSITORY_ROOT, "journal", "aor", "tables")
 const FINANCIAL_ROOT = joinpath(REPOSITORY_ROOT, "experiments", "results", "summaries")
 const OUTPUT_ROOT = joinpath(REPOSITORY_ROOT, "journal", "aor", "manuscript", "tables")
+const RESOURCE_OUTPUT_ROOT = joinpath(REPOSITORY_ROOT, "journal", "aor", "online_resource", "tables")
 
 const OUTPUTS = Dict(
     "macros" => joinpath(OUTPUT_ROOT, "evidence_macros.tex"),
+    "resource_macros" => joinpath(RESOURCE_OUTPUT_ROOT, "evidence_macros.tex"),
     "scaling" => joinpath(OUTPUT_ROOT, "computational_scaling_compact.tex"),
     "heuristics" => joinpath(OUTPUT_ROOT, "heuristic_quality_compact.tex"),
     "preprocessing" => joinpath(OUTPUT_ROOT, "preprocessing_multistart_compact.tex"),
@@ -139,13 +141,55 @@ function audit_inputs()
     environment["process_concurrency"] == 8 || error("unexpected worker concurrency")
     environment["worker_julia_threads"] == 1 || error("unexpected worker thread count")
     environment["highs_threads"] == 1 || error("unexpected HiGHS thread count")
-    return (; audit, family_counts, environment)
+
+    v1_notice_path = joinpath(
+        REPOSITORY_ROOT,
+        "experiments",
+        "algorithmic_compression_v1",
+        "INCOMPLETE_EXECUTION_NOTICE.md",
+    )
+    v1_notice = read(v1_notice_path, String)
+    v1_match = match(
+        r"after\s+([0-9,]+) of ([0-9,]+) registered run records had become terminal and ([0-9,]+) of ([0-9,]+) final\s+instances had been generated",
+        v1_notice,
+    )
+    v1_match === nothing && error("could not parse v1 incomplete-execution notice")
+    v1_counts = parse.(Int, replace.(collect(v1_match.captures), "," => ""))
+    v1_counts == [1634, 3907, 68, 173] || error("unexpected v1 incomplete-execution counts")
+
+    terminal_financial_path = joinpath(
+        REPOSITORY_ROOT,
+        "experiments",
+        "configs",
+        "financial_terminal_audit.toml",
+    )
+    annual_financial_path = joinpath(
+        REPOSITORY_ROOT,
+        "experiments",
+        "configs",
+        "financial_annual_walkforward_audit.toml",
+    )
+    terminal_financial = TOML.parsefile(terminal_financial_path)["backtest"]
+    annual_financial = TOML.parsefile(annual_financial_path)["backtest"]
+    for key in ("annualization_sessions", "one_way_transaction_cost_bps", "risk_aversion", "cost_sensitivity_bps")
+        terminal_financial[key] == annual_financial[key] || error("financial config mismatch: $key")
+    end
+    terminal_financial["annualization_sessions"] == 252 || error("unexpected financial annualization")
+    terminal_financial["one_way_transaction_cost_bps"] == 5.0 || error("unexpected primary transaction cost")
+    terminal_financial["risk_aversion"] == 3.0 || error("unexpected financial risk-aversion index")
+    terminal_financial["cost_sensitivity_bps"] == [1.0, 5.0, 10.0] || error("unexpected cost sensitivity grid")
+    terminal_financial["frontier_tolerance"] == 1.0e-12 || error("unexpected terminal frontier tolerance")
+    annual_financial["frontier_tolerance"] == 1.0e-10 || error("unexpected annual frontier tolerance")
+
+    return (; audit, family_counts, environment, v1_counts, terminal_financial, annual_financial)
 end
 
 function macros_source(inputs)
     audit = inputs.audit
     counts = inputs.family_counts
     environment = inputs.environment
+    v1_counts = inputs.v1_counts
+    financial = inputs.terminal_financial
     status = audit["status_counts"]
     multistart = read_csv(joinpath(ALGORITHM_TABLE_ROOT, "multistart_summary.csv"))
     multistart_complete = sum(parse(Int, row["complete_32_start_n"]) for row in multistart)
@@ -161,12 +205,24 @@ function macros_source(inputs)
     )
     structured_reference["reference_available_n"] == "111" ||
         error("unexpected structured reference count")
+    preprocessing = read_csv(joinpath(ALGORITHM_TABLE_ROOT, "preprocessing_reductions.csv"))
+    generation_failed_instances = count(
+        row -> row["full_status"] == "GENERATION_FAILED" &&
+               row["mandatory_status"] == "GENERATION_FAILED",
+        preprocessing,
+    )
+    generation_failed_instances == 16 ||
+        error("unexpected generation-failed instance count")
     return source_comment(
         "experiments/algorithmic_compression_v2/results/audit/audit_summary.toml",
         "experiments/algorithmic_compression_v2/registry/INSTANCE_REGISTRY.csv",
         "experiments/algorithmic_compression_v2/results/environment_amendment_002.toml",
         "journal/aor/tables/heuristic_quality.csv",
         "journal/aor/tables/multistart_summary.csv",
+        "journal/aor/tables/preprocessing_reductions.csv",
+        "experiments/algorithmic_compression_v1/INCOMPLETE_EXECUTION_NOTICE.md",
+        "experiments/configs/financial_terminal_audit.toml",
+        "experiments/configs/financial_annual_walkforward_audit.toml",
     ) * """
 \\newcommand{\\AORBenchmarkInstances}{$(sum(values(counts)))}
 \\newcommand{\\AORBenchmarkSmallExact}{$(counts["small_exact"])}
@@ -180,6 +236,8 @@ function macros_source(inputs)
 \\newcommand{\\AORExactUnavailable}{$(audit["exact_agreement_unavailable_count"])}
 \\newcommand{\\AOROptimizerIdentityDifferences}{$(audit["optimizer_identity_difference_count"])}
 \\newcommand{\\AORGenerationFailed}{$(status["GENERATION_FAILED"])}
+\\newcommand{\\AORGenerationFailedInstances}{$generation_failed_instances}
+\\newcommand{\\AORImplementationErrors}{$(status["IMPLEMENTATION_ERROR"])}
 \\newcommand{\\AORMemoryLimited}{$(status["MEMORY_LIMIT"])}
 \\newcommand{\\AORStructuredReferences}{$(structured_reference["reference_available_n"])}
 \\newcommand{\\AORMultistartComplete}{$multistart_complete}
@@ -188,6 +246,16 @@ function macros_source(inputs)
 \\newcommand{\\AORHiGHSVersion}{$(environment["highs_version"])}
 \\newcommand{\\AORWorkerCount}{$(environment["process_concurrency"])}
 \\newcommand{\\AORCPU}{$(environment["cpu"])}
+\\newcommand{\\AORVOneTerminalRuns}{$(v1_counts[1])}
+\\newcommand{\\AORVOneRegisteredRuns}{$(v1_counts[2])}
+\\newcommand{\\AORVOneGeneratedInstances}{$(v1_counts[3])}
+\\newcommand{\\AORVOneRegisteredInstances}{$(v1_counts[4])}
+\\newcommand{\\AORFinancialAnnualization}{$(financial["annualization_sessions"])}
+\\newcommand{\\AORFinancialRiskAversion}{$(Int(financial["risk_aversion"]))}
+\\newcommand{\\AORFinancialPrimaryCostBps}{$(Int(financial["one_way_transaction_cost_bps"]))}
+\\newcommand{\\AORFinancialSensitivityBps}{1, 5, and 10}
+\\newcommand{\\AORTerminalFrontierTolerance}{10^{-12}}
+\\newcommand{\\AORAnnualFrontierTolerance}{10^{-10}}
 """
 end
 
@@ -393,6 +461,7 @@ function financial_instance_source(inputs)
     println(io, "\\begin{minipage}{\\textwidth}")
     println(io, "\\centering\\scriptsize")
     println(io, "\\setlength{\\tabcolsep}{3.2pt}")
+    println(io, "\\resizebox{\\textwidth}{!}{%")
     println(io, "\\begin{tabular}{@{}lrrrrrrrrr@{}}")
     println(io, "\\toprule")
     println(io, "Audit & Active & Frontier & Modules & Density & Unique & Forced & Vars & Rows & Residual \\\\")
@@ -409,6 +478,7 @@ function financial_instance_source(inputs)
     end
     println(io, "\\bottomrule")
     println(io, "\\end{tabular}")
+    println(io, "}")
     println(io, "\\captionof{table}{Public-safe source-instance structure and exact fixed-point preprocessing. Active counts exclude the mandatory inactive entry; binary-variable counts include it. Density is exact active strategy--requirement incidence. Duplicate coverage and dominance removals are zero in both sources. ``Empty'' is an exact finite preprocessing certificate under the human-proved rules, followed by original-instance rechecks; it is neither Lean nor solver proof.}")
     println(io, "\\label{tab:aor-financial-instances}")
     println(io, "\\end{minipage}")
@@ -499,6 +569,7 @@ function sources()
     financial = financial_inputs()
     return Dict(
         "macros" => macros_source(algorithm_inputs),
+        "resource_macros" => macros_source(algorithm_inputs),
         "scaling" => scaling_source(),
         "heuristics" => heuristic_source(),
         "preprocessing" => preprocessing_source(),

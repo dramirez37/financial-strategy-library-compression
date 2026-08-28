@@ -1,13 +1,10 @@
 # Isolated AoOR journal manuscript
 
-This tree is the DRAFT journal-facing manuscript source. The front matter,
-Introduction, literature section, model, covering/complexity section, and
-algorithm section contain journal-draft prose; Sections 6--9 remain scaffolded.
-The tree does not modify or compile from the
+This tree is the canonical journal-facing manuscript source. It does not
+modify or compile from the
 historical `manuscript/` tree or the frozen arXiv release.
-The only shared LaTeX dependency is the repository's audited Springer working
-template in `journal/aor/template/`; a submission bundle must later copy the
-class and bibliography style into the upload package.
+The audited Springer Nature class and author--year bibliography style are
+included locally so the editable source package is self-contained.
 The `sn-mathphys-ay` option is a local implementation choice that supplies the
 verified author--year behavior; the official audit does not claim that AoOR
 mandates that exact option or `.bst` filename.
@@ -27,7 +24,8 @@ Build from the repository root with:
 ```
 
 The PDF is written to
-`journal/aor/manuscript/build/aor-journal-scaffold.pdf`. All visible DRAFT
-markers and author-confirmation placeholders are intentional stop conditions
-for submission. `SOURCE_MIGRATION_MANIFEST.csv` records content provenance and
-`LABEL_MAP.csv` reserves the retained mathematical labels.
+`journal/aor/manuscript/build/aor-journal-manuscript.pdf`.
+`SOURCE_MIGRATION_MANIFEST.csv` records content provenance and `LABEL_MAP.csv`
+records retained mathematical labels. The compliance report in
+`journal/aor/requirements/COMPLIANCE_REPORT.md` records submission-time checks
+and any remaining author or Editorial Manager confirmations.

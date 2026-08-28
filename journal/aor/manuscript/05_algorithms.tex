@@ -246,6 +246,11 @@ The exposure score uses only source incidence and no held-out financial
 quantity.  Random-order deletion uses the first safe strategy in a recorded
 stable seeded permutation.
 
+Maximum immediate release is retained as an API alias and as a historical label
+in the locked benchmark because those raw records are immutable. It is not an
+independent scientific baseline, and coincident results under the two names are
+not corroborating replications.
+
 \begin{proposition}[Certified deletion endpoint]
 \label{prop:aor-certified-deletion-endpoint}
 Let the source be finite and safe relative to itself, let all mandatory
@@ -326,3 +331,9 @@ endpoints but remain heuristics.  The MIP in
 returned-library postcheck.  Complete proofs and machine-readable certificate
 schemas are in Online Resource~1; benchmark runtimes and method comparisons
 are experimental evidence reported separately in Section~7.
+
+The suite does not include a certified multi-exchange neighborhood or an LP
+relaxation baseline. Accordingly, the local--global theorem isolates the named
+heaviest-safe-first rule and one-deletion irreducibility; it says nothing about
+stronger local search. Adding those baselines after seeing the locked benchmark
+would be post hoc and is reserved for a separately registered study.

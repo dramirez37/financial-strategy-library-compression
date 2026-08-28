@@ -2,5 +2,10 @@
 # creating an impossible self-referential commit hash in the working tree.
 release/v0.1.1-arxiv/RELEASE_METADATA.md export-subst
 
+# The registered v2 control directory retains machine-local process handshakes
+# for the immutable execution record.  Canonical raw run records, instances,
+# solver logs, certificates, and summaries are exported; control files are not.
+experiments/algorithmic_compression_v2/results/control export-ignore
+
 # Deprecated compatibility wrapper; public commands use `scripts/verify.sh`.
 scripts/full_check.sh export-ignore

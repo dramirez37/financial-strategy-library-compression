@@ -5,7 +5,9 @@ export ALGOLIB_CRSP_ROOT
 
 .PHONY: help preprint-check canonical randomized formal manuscript arxiv-bundle \
 	journal journal-check journal-submission-check financial-licensed public-audit verify \
-	aor-algorithm-tests aor-generator-tests aor-benchmark aor-benchmark-audit \
+	aor-theory-check aor-algorithm-tests aor-generator-tests aor-benchmark \
+	aor-benchmark-v1-audit aor-benchmark-audit aor-manuscript \
+	aor-source-completeness aor-public-boundary aor-check aor-release \
 	aor-benchmark-v2-tests aor-benchmark-v2-lock aor-benchmark-v2 aor-benchmark-v2-audit \
 	aor-benchmark-v2-analysis \
 	aor-financial-algorithm-tests aor-financial-algorithm-lock \
@@ -26,10 +28,14 @@ help:
 		'make journal            Build the Annals of Operations Research journal draft' \
 		'make journal-check      Run the targeted journal-source and artifact gate' \
 		'make journal-submission-check  Reject unresolved author confirmations' \
+		'make aor-theory-check    Run journal theorem fixtures, Lean build, linter, and axiom audit' \
 		'make aor-algorithm-tests  Triangulate journal algorithms and audit saved certificates' \
 		'make aor-generator-tests  Validate registered benchmark generators without final runs' \
 		'make aor-benchmark       Run the locked final algorithmic benchmark (resume-safe)' \
-		'make aor-benchmark-audit Independently audit saved final benchmark artifacts' \
+		'make aor-benchmark-audit Read-only audit of committed final v2 benchmark artifacts' \
+		'make aor-manuscript      Compile the Springer article and Online Resource 1' \
+		'make aor-check           Run every nonmutating AoOR release gate (no long/licensed replay)' \
+		'make aor-release         Build and verify release/v0.2.0-aor-submission/' \
 		'make aor-benchmark-v2      Run locked v2 with eight deterministic worker lanes' \
 		'make aor-benchmark-v2-audit Independently audit saved v2 benchmark artifacts' \
 		'make aor-benchmark-v2-analysis Generate and test locked v2 tables and figures' \
@@ -78,8 +84,11 @@ journal-check:
 journal-submission-check:
 	@./journal/aor/check.sh --submission-ready
 
+aor-theory-check:
+	@./scripts/aor_theory_check.sh
+
 aor-algorithm-tests:
-	@"$(JULIA_EXE)" --startup-file=no --project=julia/test julia/test/run_aor_algorithm_tests.jl
+	@./scripts/aor_algorithm_tests.sh
 
 aor-generator-tests:
 	@"$(JULIA_EXE)" --startup-file=no --project=julia/test julia/test/run_algorithmic_compression_generator_tests.jl
@@ -89,8 +98,26 @@ aor-benchmark:
 	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/run_algorithmic_compression_final_v1.jl --check
 	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/run_algorithmic_compression_final_v1.jl --run
 
-aor-benchmark-audit:
+aor-benchmark-v1-audit:
 	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/audit_algorithmic_compression_final_v1.jl
+
+aor-benchmark-audit:
+	@./scripts/aor_benchmark_audit.sh
+
+aor-manuscript:
+	@./scripts/aor_manuscript.sh
+
+aor-source-completeness:
+	@./scripts/aor_source_completeness.sh
+
+aor-public-boundary:
+	@./scripts/aor_public_boundary_audit.sh
+
+aor-check:
+	@./scripts/aor_check.sh
+
+aor-release: aor-check
+	@./scripts/build_aor_release.sh --build
 
 aor-benchmark-v2-tests:
 	@"$(JULIA_EXE)" --threads=8 --startup-file=no --project=julia/test julia/test/run_algorithmic_compression_v2_tests.jl
@@ -103,7 +130,7 @@ aor-benchmark-v2: aor-benchmark-v2-tests aor-benchmark-v2-lock
 	@"$(JULIA_EXE)" --threads=8 --startup-file=no --project=julia julia/scripts/run_algorithmic_compression_final_v2.jl --run
 
 aor-benchmark-v2-audit:
-	@"$(JULIA_EXE)" --threads=8 --startup-file=no --project=julia julia/scripts/audit_algorithmic_compression_final_v2.jl
+	@./scripts/aor_benchmark_audit.sh
 
 aor-benchmark-v2-analysis:
 	@"$(JULIA_EXE)" --startup-file=no --project=julia/test julia/test/run_algorithmic_compression_v2_analysis_tests.jl

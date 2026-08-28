@@ -4,10 +4,12 @@
 \usepackage{microtype}
 \usepackage{amsmath,amssymb,amsfonts,mathtools}
 \usepackage{booktabs,longtable,array}
+\usepackage{tocloft}
 \usepackage{pdflscape}
 \usepackage{graphicx}
 \usepackage{capt-of}
 \usepackage{tikz}
+\usetikzlibrary{patterns}
 \usepackage{xcolor}
 \usepackage[l3]{csvsimple}
 \usepackage[capitalise,noabbrev]{cleveref}
@@ -19,6 +21,16 @@
 \numberwithin{equation}{section}
 \allowdisplaybreaks
 \setcounter{tocdepth}{2}
+\setlength{\cftsecnumwidth}{3.4em}
+\setlength{\cftsubsecnumwidth}{4.4em}
+
+% The distributed v3.1 class contains a literal "ddd" in its plain-page
+% footer. Keep the vendor file unchanged and correct only that page style.
+\makeatletter
+\def\ps@plain{\let\@mkboth\@gobbletwo\let\@oddhead\@empty
+  \let\@evenhead\@empty\def\@oddfoot{\hfill\thepage\hfill}%
+  \let\@evenfoot\@oddfoot}
+\makeatother
 
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
@@ -61,8 +73,8 @@
 \articletype{Supplementary Information}
 \title[Online Resource 1]{Online Resource 1: Proofs, Extended Results,
 Computational Records, and Reproducibility Materials\\[0.5em]
-for ``Innovation-Safe Compression of Financial Strategy Libraries under
-Partial Information: Complexity, Algorithms, and Financial Evidence''}
+for ``Innovation-Safe Compression of Financial Strategy Libraries:
+Semantics, Complexity, and Algorithms''}
 
 \author*[1]{\fnm{David} \sur{Ramirez}}\email{ramirezdavv@gmail.com}
 \affil*[1]{\orgname{Independent Researcher},
@@ -89,6 +101,7 @@ exact finite computation, floating-point numerical evidence, mixed-integer
 solver evidence, synthetic experimental evidence, and retrospective financial
 evidence are labeled separately throughout.
 
+\clearpage
 \tableofcontents
 \clearpage
 
@@ -108,6 +121,14 @@ evidence are labeled separately throughout.
 \input{sections/14_solver_exactness_records}
 \input{sections/15_theorem_evidence_correspondence}
 \input{sections/16_reproducibility_records_legacy}
+
+\section*{Generative-AI disclosure}
+OpenAI ChatGPT and Codex were used during preparation of this Online Resource
+to assist with LaTeX drafting and editing, software development and review,
+literature-metadata checking, and repository-based analysis and reproducibility
+tasks. The author reviewed, revised, and verified all AI-assisted material and
+remains solely responsible for the resource. No AI system is listed as an
+author, and no generative-AI image is used.
 
 \bibliography{bibliography/references}
 

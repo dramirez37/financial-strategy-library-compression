@@ -59,10 +59,42 @@ numerical rule.
 | `make manuscript` | Compile the main preprint and standalone Online Supplement with their existing warning gates. | Short to medium; normally minutes. | Public LaTeX, bibliography, figure, and table sources; no Julia or licensed data. | `manuscript/build/main.pdf` and `manuscript/build/online_supplement/main.pdf`. |
 | `make arxiv-bundle` | Assemble the two top-level TeX documents and only their required public inputs into the versioned arXiv source directory. | Short; normally seconds after `make manuscript`. | Public LaTeX sources plus the generated `main.bbl`; no Julia, Lean, or licensed data. | `release/v0.1.1-arxiv/arxiv-source/` and its uploadable `.tar.gz` archive. |
 | `make financial-licensed` | Validate independently supplied licensed inputs, prepare both ignored panels, run the terminal and annual walk-forward audits, and run/check the cross-audit resource optimization. | Long; data volume, storage, and host dependent. | Independent CRSP/WRDS license, the four source files in `DATA_ACCESS.md`, and `ALGOLIB_CRSP_ROOT`. | Six ignored local panel/provenance/audit files; registered public aggregate CSV/JSON/report/figure artifacts; cross-audit exact certificates. |
+| `make aor-theory-check` | Run the journal theorem fixtures, drift checks, incremental Lean build, manuscript linter, and axiom audit. | Medium to long; first Lean build is cache dependent. | Public Julia/Lean sources only. | Pass/fail diagnostics; ignored Lean build products only. |
+| `make aor-algorithm-tests` | Exercise tagged-cover preprocessing, enumeration, requirement-mask DP, weighted/cardinality greedy, certified deletion, HiGHS MIP, reconstruction, and exact three-method agreement on small fixtures. | Medium; solver startup and package cache dependent. | Public synthetic exact fixtures only. | Test results and temporary certificates; no committed result rewrite. |
+| `make aor-benchmark-audit` | Read and independently audit the committed final Algorithmic Compression Benchmark v2 artifacts with exact feasibility/burden checks and byte-drift comparison. | Medium to long; reads the complete saved result tree. | Public committed synthetic results only. | Pass/fail report; no solver, heuristic, generator, or result writer is invoked. |
+| `make aor-manuscript` | Compile the Springer article and independently compiled Online Resource 1, then audit their recorder dependency graphs. | Short to medium. | Public editable LaTeX, bibliography, table, figure, and canonical CSV inputs. | `journal/aor/manuscript/build/aor-journal-manuscript.pdf` and `journal/aor/online_resource/build/aor-online-resource-1.pdf`. |
+| `make aor-check` | Run every nonmutating journal theory, algorithm, committed-result, manuscript, source-completeness, release-input, and public/licensed-boundary check. | Long but bounded; no final-study execution. | Public clone only; no licensed rows. | Pass/fail diagnostics; it fingerprints the worktree and index before and after. |
+| `make aor-release` | Run `aor-check`, require confirmed declarations and a clean committed source tree, then assemble and verify the versioned journal release candidate. | Medium to long, dominated by checks and compression of the public benchmark. | Public committed source/results only. | `release/v0.2.0-aor-submission/` with two PDFs, two archives, checksums, provenance, environment, citation, Zenodo metadata, and release notes. |
 
 `make help` prints this component list. `JULIA_EXE` may point to an absolute
 Julia 1.12.6 executable; otherwise Make prefers the ignored repository-local
 runtime when present and falls back to `julia` on `PATH`.
+
+### AoOR journal release gate
+
+```sh
+make aor-check
+```
+
+The gate calls the five journal component checks above and compares the Git
+status, unstaged diff, and staged diff before and after. A separate read-only
+adapter invokes the locked v2 auditor with persistence replaced by byte-for-
+byte comparisons, so expected certificates and reports are recomputed in
+memory without changing the registered auditor or saved results. The gate never
+calls `run_algorithmic_compression_final_v2.jl --run`, the frozen `N=1024`
+replay, `run_financial_licensed.sh`, or any `--licensed` financial entry point.
+
+`make aor-release` is intentionally stricter. It fails if funding or
+competing-interest declarations remain unconfirmed, if the official-
+requirements compliance report is blocked, or if the source worktree is not a
+clean commit. The source archive is created from that recorded commit. The
+separate public-benchmark archive preserves the committed v2 design, locks,
+registries, canonical terminal records, unsuccessful outcomes, solver logs,
+and audit certificates. Machine-local process-control handshakes remain in the
+immutable Git record but are omitted from the redistributable archive.
+`SHA256SUMS` authenticates every top-level release file.
+The Zenodo JSON contains no DOI field; add one only after an identifier has
+actually been assigned.
 
 ### Preprint release check
 
@@ -743,6 +775,12 @@ Every experiment must have:
 - **Development commands:** `make journal` builds the article and Online
   Resource 1; `make journal-check` adds frozen-surface, theorem-fixture,
   artifact-drift, source, bibliography, and PDF checks.
+- **Submission-release commands:** `make aor-theory-check`,
+  `make aor-algorithm-tests`, `make aor-benchmark-audit`, and
+  `make aor-manuscript` are the component gates. `make aor-check` composes
+  them with source-completeness and public/licensed-boundary audits while
+  fingerprinting the worktree. `make aor-release` creates and verifies
+  `release/v0.2.0-aor-submission/` only from a clean committed tree.
 - **Submission boundary:** `make journal-submission-check` additionally
   rejects unresolved author affiliation, funding, competing-interest,
   contribution, and cover-letter confirmations. It does not replay the

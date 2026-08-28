@@ -1,10 +1,12 @@
 \section{Full Financial Audits and Secondary Tests}
 \label{sec:supp-financial-audit}
 
-The empirical layer audits ex post whether a financial library can be
-compressed without discarding access to useful descendants.  The primary
-comparison is innovation-safe versus frontier-only pruning; coverage ranking
-is a secondary stress test.  The information-set boundary is summarized in
+The empirical layer audits two declared tuple-grammar libraries ex post. It
+does not observe institutional source-code, validation, or knowledge
+inventories and does not establish that deleting an active row destroys a
+separately archived artifact. The primary comparison is innovation-safe versus
+frontier-only pruning; coverage ranking is a secondary stress test. The
+information-set boundary is summarized in
 the repository's locked experiment protocols and applies to every definition
 and result below.
 The terminal financial audit is the fixed-split protocol, whereas the annual
@@ -35,6 +37,22 @@ and 427,900 rows, respectively, each with 4,279 complete common dates.
 
 \subsection{Compression and descendant-quality estimands}
 \label{sec:supp-financial-estimands}
+
+For net validation returns \(r_t\), the implemented profile coordinate is
+\[
+ \widehat j=\AORFinancialAnnualization\,\overline r
+ -\frac12(\AORFinancialRiskAversion)(\AORFinancialAnnualization)
+  \widehat{\operatorname{Var}}(r).
+\]
+The variance uses the sample denominator when at least two observations are
+available, and net returns deduct a one-way turnover charge of
+\AORFinancialPrimaryCostBps\ basis points, with the locked
+\AORFinancialSensitivityBps\ basis-point sensitivity grid. The score is an
+annualized estimated mean--variance audit quantity, not a true opportunity or
+a measured institutional cost. The original terminal and annual equality gates
+use tolerances \(\AORTerminalFrontierTolerance\) and
+\(\AORAnnualFrontierTolerance\), respectively. Journal algorithm instances
+freeze those profile tables and recheck the frozen coordinates exactly.
 
 Write \(a\in\{\mathrm{T},\mathrm{A}\}\) for the locked terminal and annual
 walk-forward audits, \(L_a\) for the source library, \(L_a^F\) for
@@ -70,11 +88,13 @@ audit outcomes.  Define
 \end{align}
 The enabled set \(E_a(L')\) is structurally derivable from the fixed catalog
 and closure before the holdout, but neither pruning rule tests candidate-set
-equality.  The quantity \(Q_a(L')\), the \emph{ex post enabled-descendant
-opportunity quality}, measures whether the modules retained in \(L'\) would
-have preserved access to candidates that realized high quality in the held-out
-audit.  It is evaluated only after pruning decisions are fixed and is neither
-a forecast, a policy score, nor a deployable selection criterion.
+equality. The quantity \(Q_a(L')\) is the \emph{ex post catalog-maximum
+witness}. It records the maximum realized score among descendants enabled by
+the declared tuple grammar. It is evaluated only after pruning decisions are
+fixed and is neither a forecast, a policy score, an independent validation
+test, nor a deployable selection criterion. Equality of \(Q_a\) for any two
+exactly safe libraries follows mechanically because closure equality makes
+their enabled catalogs identical.
 
 For the locked terminal audit, \(q_{\mathrm T}\) is locked-period candidate net
 utility.  For the annual walk-forward audit, \(q_{\mathrm A}\) is mean realized
@@ -124,7 +144,7 @@ its weighted scalar change.  Operational contribution and frontier sparsity
 are post-compression, validation-derived descriptions.  Module uniqueness
 and descendant dependence are post-compression structural descriptions of the
 final safe library and use no held-out outcome.  Generative contribution is
-computed from held-out \(Q_a\), and the ``supports best descendant'' flag also
+computed from held-out \(Q_a\), and the ``supports the catalog maximum'' flag also
 uses the ex post identity of the maximizing candidate.  None of these
 policy-characteristic statistics enters pruning.
 
@@ -143,15 +163,18 @@ satisfies
 \]
 The frontier-only libraries retain 12 of 38 and 14 of 113 source-closure
 modules, whereas the innovation-safe closure identities are \(38=38\) and
-\(113=113\).  Thus the financial audits show, using held-out outcomes, that
-present-frontier preservation alone did not preserve access to the
-highest-quality enabled descendants in these two audits.  This diagnostic
-statement neither changes either pruning rule nor turns realized quality into
-information known at deletion time.
+\(113=113\). Thus the two audits give an ex post witness that frontier-only
+preservation changed the enabled catalog and its realized maximum under these
+audit-specific scores. This is not independent evidence for safe compression:
+safe-library equality is already implied by closure equality. Nor is the
+catalog maximum corrected for testing or selecting across many descendants
+\citep{SullivanTimmermannWhite1999,White2000,HarveyLiuZhu2016}. The diagnostic
+neither changes either pruning rule nor turns realized quality into information
+known at deletion time.
 
-Each safe library has exactly one positive ex post generative carrier: GLD has
+Each safe library has exactly one positive ex post catalog carrier: GLD has
 \((O,G)=(0,0.0016)\) and UNG has \((O,G)=(0,0.0534)\).  Both uniquely support
-the audit's best enabled descendant.  With only two carriers, the structural
+the audit's catalog-maximizing descendant. With only two carriers, the structural
 patterns remain descriptive.
 
 \begin{table}[htbp]
@@ -170,7 +193,7 @@ patterns remain descriptive.
   \label{tab:supp-financial-design-summary}
 \end{table}
 
-\subsection{Journal algorithm comparison and locked weight robustness}
+\subsection{Journal algorithm comparison and locked retrospective weight replay}
 \label{sec:or-financial-algorithm-robustness}
 
 The journal extension evaluates the common algorithm suite against the same
@@ -188,11 +211,13 @@ floating-point objective, is the reported quantity.
 
 \input{tables/financial_algorithm_burdens}
 
-The three prospectively locked schedules are equal active-strategy burden,
+The three replayed schedules are equal active-strategy burden,
 validation-computation burden, and governance complexity constructed only from
 fields available at compression time. The resource protocol records formulae,
 units, permitted inputs, prohibited held-out inputs, tie handling, range, and
-missing-data rules before outcomes. Schedule agreement and the
+missing-data rules for a reproducible post-outcome lock. The schedules and some
+earlier outcomes predate that lock, so this is not first-look prospective
+evidence. Schedule agreement and the
 global-versus-stepwise burden difference are shown without pooling terminal and
 annual opportunity units.
 
@@ -210,8 +235,17 @@ rows, and unique-carrier records are under
 Raw CRSP/WRDS observations and row-level licensed transformations are excluded
 from this resource. Public tables contain only redistributable aggregates and
 library identifiers allowed by the repository data-rights policy. These
-retrospective audits support resource-allocation and governance interpretation,
-not causal, forecasting, alpha, or deployable-performance claims.
+retrospective audits illustrate burden allocation within the declared grammar,
+not population resource savings or causal, forecasting, alpha, or deployable-
+performance claims. Both source instances preprocess to empty residual models,
+and the weights are additive engineering indices rather than measured dollars,
+hours, or compute consumption. Their current snapshot and endpoint-survivor
+construction create population-level survivorship and revision limits despite
+the within-origin outcome firewall. A stronger licensed-data study therefore
+requires a new prospective lock with multiple point-in-time decision origins,
+origin-eligible and discontinued securities where available, documented module
+artifacts, independently calibrated maintenance costs, and nonempty residual
+cases retained rather than selected after preprocessing.
 
 \subsection{Secondary coverage-ranking definitions}
 \label{sec:supp-financial-coverage}

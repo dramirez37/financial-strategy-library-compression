@@ -5,8 +5,8 @@ This directory is the independently compilable source tree for:
 > **Online Resource 1: Proofs, Extended Results, Computational Records, and
 > Reproducibility Materials**
 
-It accompanies *Innovation-Safe Compression of Financial Strategy Libraries
-under Partial Information: Complexity, Algorithms, and Financial Evidence*.
+It accompanies *Innovation-Safe Compression of Financial Strategy Libraries:
+Semantics, Complexity, and Algorithms*.
 The journal is *Annals of Operations Research*. David Ramirez is the sole and
 corresponding author (Independent Researcher, Orlando, FL, USA; ORCID
 0009-0000-3128-5123).
@@ -17,9 +17,11 @@ Build from this directory with:
 ./build.sh
 ```
 
-The build reads committed public-safe tables and figures but does not rerun a
-solver, simulation, registered benchmark, or licensed workflow. Raw CRSP/WRDS
-rows are neither inputs to the LaTeX build nor part of this tree.
+The build reads only local committed public-safe tables, figures, and canonical
+CSV extracts, but does not rerun a solver, simulation, registered benchmark, or
+licensed workflow. Raw CRSP/WRDS rows are neither inputs to the LaTeX build nor
+part of this tree. The Springer Nature class and author--year bibliography
+style are included locally, so the editable source compiles independently.
 
 Evidence provenance is explicit:
 

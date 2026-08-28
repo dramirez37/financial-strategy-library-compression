@@ -51,7 +51,7 @@ residual-bound column in the convergence table.
     \shortstack{Float64 a-posteriori\\contraction bound}\\
     \midrule\endhead
     \bottomrule\endfoot}
-]{../../../experiments/results/summaries/unified_canonical_convergence.csv}{
+]{data/unified_canonical_convergence.csv}{
   iteration=\iteration,
   float64_iteration_increment=\increment,
   float64_bellman_residual=\bellmanresidual,
@@ -66,7 +66,10 @@ residual-bound column in the convergence table.
 \begin{landscape}
 \begin{center}
 \small
+\begingroup
+\renewcommand{\arraystretch}{1.55}
 \input{tables/main_canonical_stationary_solution}
+\endgroup
 \refstepcounter{table}\label{tab:supp-stationary-solution}
 
 \smallskip
@@ -88,7 +91,7 @@ paper.
     Research (Q) & Margin & Duration & Reward block & Discounted continuation\\
     \midrule\endhead
     \bottomrule\endfoot}
-]{../../../experiments/results/unified_benchmark_policy_value.csv}{
+]{data/unified_benchmark_policy_value.csv}{
   compressed_state=\state,
   belief=\belief,
   value=\stationaryvalue,
@@ -130,7 +133,7 @@ comparison.
     Solution & Horizon & Arithmetic & State & Belief & Value\\
     \midrule\endhead
     \bottomrule\endfoot}
-]{../../../experiments/results/summaries/unified_canonical_values.csv}{
+]{data/unified_canonical_values.csv}{
   solution=\solution,
   horizon=\horizon,
   arithmetic=\arithmetic,
@@ -155,7 +158,7 @@ comparison.
     Solution & Horizon & State & Belief & Action\\
     \midrule\endhead
     \bottomrule\endfoot}
-]{../../../experiments/results/summaries/unified_canonical_policies.csv}{
+]{data/unified_canonical_policies.csv}{
   solution=\solution,
   horizon=\horizon,
   compressed_state=\state,
@@ -182,7 +185,7 @@ comparison.
     Admitted & Joint mass & Path mass & Conditional admission\\
     \midrule\endhead
     \bottomrule\endfoot}
-]{../../../experiments/results/summaries/unified_canonical_duration_paths.csv}{
+]{data/unified_canonical_duration_paths.csv}{
   project=\project,
   start_state=\startstate,
   start_belief=\startbelief,
@@ -213,7 +216,7 @@ comparison.
     Incumbent reward & Net reward block\\
     \midrule\endhead
     \bottomrule\endfoot}
-]{../../../experiments/results/summaries/unified_canonical_operating_rewards.csv}{
+]{data/unified_canonical_operating_rewards.csv}{
   compressed_state=\state,
   belief=\belief,
   action=\action,
@@ -258,7 +261,7 @@ common-unit translation.  The capacity theorem and Lean formalization use
     Optimal masks & Optimal libraries & \shortstack{Burden reduction\\\(\Delta\widetilde W=\Delta W\)} & Frontier & Closure & Ties complete\\
     \midrule\endhead
     \bottomrule\endfoot}
-]{../../../experiments/results/summaries/unified_canonical_resource_safe_compression.csv}{
+]{data/unified_canonical_resource_safe_compression.csv}{
   schedule=\schedule,
   source_mask=\sourcemask,
   source_library=\sourcelibrary,
@@ -293,7 +296,7 @@ common-unit translation.  The capacity theorem and Lean formalization use
     \shortstack{Optimal display\\burdens \(\widetilde W\)} & Selected library & Op. value & Gen. value & Total value & Ties complete\\
     \midrule\endhead
     \bottomrule\endfoot}
-]{../../../experiments/results/summaries/unified_canonical_resource_capacity.csv}{
+]{data/unified_canonical_resource_capacity.csv}{
   schedule=\schedule,
   belief=\belief,
   capacity=\capacity,
@@ -337,7 +340,7 @@ that never reach the upper envelope, and the globally active breakpoints.
     Optimal masks & Optimal libraries & \shortstack{Optimal display\\burdens \(\widetilde W\)} & Selected & \(\widetilde J^\star\) & Ties complete\\
     \midrule\endhead
     \bottomrule\endfoot}
-]{../../../experiments/results/summaries/unified_canonical_resource_penalized_intervals.csv}{
+]{data/unified_canonical_resource_penalized_intervals.csv}{
   schedule=\schedule,
   belief=\belief,
   cell_kind=\cellkind,
@@ -377,7 +380,7 @@ that never reach the upper envelope, and the globally active breakpoints.
     Right value & \shortstack{Right display\\burden \(\widetilde W\)} & Relation & Price & Nonnegative & Globally active\\
     \midrule\endhead
     \bottomrule\endfoot}
-]{../../../experiments/results/summaries/unified_canonical_resource_switching_prices.csv}{
+]{data/unified_canonical_resource_switching_prices.csv}{
   schedule=\schedule,
   belief=\belief,
   left_mask=\leftmask,

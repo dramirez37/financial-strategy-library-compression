@@ -8,3 +8,74 @@ financial retention decisions.
 \input{sections/09_comparative_statics_counterexamples}
 \input{sections/09_auxiliary_models}
 \input{sections/09_secondary_comparative_statics}
+
+\subsection{Finite capacity and resource-price geometry}
+\label{sec:or-capacity-price-geometry}
+
+Let \(\mathfrak L_\theta\) be a nonempty finite family of outer-certified
+libraries, let \(W(L')\geq0\) be retention burden, and let
+\(V_\theta(b,L')\) be productive value under the unchanged inner process.
+Define
+\[
+ V_\theta^\star(b;B)
+ :=\max_{L'\in\mathfrak L_\theta:\,W(L')\leq B}V_\theta(b,L').
+\]
+
+\begin{theorem}[Finite hard-capacity retention]
+\label{thm:or-capacity-value}
+Suppose \(\mathfrak L_\theta\) is finite and contains the zero-burden
+inactive-only library. For every \(B\geq0\), the maximum is attained. The
+function \(B\mapsto V_\theta^\star(b;B)\) is nondecreasing, is constant
+between consecutive attainable burdens, and can change only at an attainable
+burden. Every exact forward capacity increment is nonnegative. Neither
+uniqueness nor inclusion nesting of maximizing libraries follows.
+\end{theorem}
+
+\begin{proof}
+For fixed \(B\), the feasible family is a nonempty subset of a finite set, so
+the maximum is attained. If capacity rises, feasible families are nested,
+which proves monotonicity. Between consecutive values in the finite set
+\(\{W(L'):L'\in\mathfrak L_\theta\}\), the feasible family does not change.
+The hypotheses impose neither strict value comparisons nor inclusion relations
+among maximizers.
+\end{proof}
+
+Discreteness matters. With two unit-burden capabilities that produce no value
+separately and value one jointly, successive attainable values are
+\((0,0,1)\). The capacity function is not generally concave, marginal capacity
+increments need not diminish, and a finite nonconcave capacity optimum need
+not be supported by a scalar price.
+
+For \(\lambda\geq0\), define the penalized problem
+\[
+ J_\theta^\star(b;\lambda)
+ :=\max_{L'\in\mathfrak L_\theta}
+ \{V_\theta(b,L')-\lambda W(L')\}.
+\]
+
+\begin{theorem}[Finite resource-price envelope]
+\label{thm:or-penalized-envelope}
+For a fixed nonempty finite eligible family, the maximum is attained. The
+optimized value is continuous, nonincreasing, convex, and piecewise affine in
+the real price \(\lambda\geq0\), with switching candidates among finitely many
+pairwise branch intersections. If \(0\leq\lambda_1<\lambda_2\), every optimizer
+at \(\lambda_2\) has weakly lower burden than every optimizer at
+\(\lambda_1\). Wherever one library is strictly dominant, the local slope is
+\(-W(L')\).
+\end{theorem}
+
+\begin{proof}
+Each eligible library supplies the affine branch
+\(V_\theta(b,L')-\lambda W(L')\). The maximum of finitely many continuous
+affine functions is continuous, convex, and piecewise affine; nonnegative
+burdens make every branch nonincreasing. Let \(L_i\) optimize at
+\(\lambda_i\), \(i=1,2\). Adding the two optimality inequalities and using
+\(\lambda_2>\lambda_1\) gives \(W(L_2)\leq W(L_1)\). On an interval with a
+unique active branch, differentiation gives slope \(-W(L')\).
+\end{proof}
+
+For two unequal-burden libraries, their value difference divided by their
+burden difference is only a candidate crossing price; it is an actual
+breakpoint only if both branches reach the upper envelope. At a tie the
+optimizer is set-valued. The burden ordering across prices does not imply that
+raw strategy identities are nested.

@@ -3,23 +3,27 @@
 \label{sec:financial-case-studies}
 \label{sec:financial-compression-audit}
 
-We apply the algorithm suite to two licensed-data source libraries through a
-public-safe aggregate layer. The cases answer a resource-allocation question:
-given the strategies and validation information already available at a
-compression decision, how much declared retention burden can be removed while
-preserving the source frontier and generative closure? They do not test a
-trading strategy, estimate alpha, or compare deployable portfolios.
+We apply the algorithm suite to two declared tuple-grammar libraries constructed
+from licensed-data workflows and exposed through a public-safe aggregate layer.
+They are stylized retrospective cases, not observed inventories of a financial
+institution. The question is: given the strategy rows, validation profiles,
+module tags, and burden index already available at a compression decision, how
+much active-maintenance burden can be removed while preserving the declared
+source frontier and identity-union closure? The cases do not test a trading
+strategy, estimate alpha, compare deployable portfolios, or measure population
+resource savings.
 
 \subsection{Protocols and information timing}
 
 The terminal audit makes one retention decision after development and
-validation and then evaluates a fixed later period. The annual walk-forward
-audit repeats the decision at annual origins using only trailing information
-available through the preceding year. Their held-out opportunity diagnostics
-have different definitions and units, so neither levels nor changes are
-pooled. The two designs are complementary: the terminal case gives one fixed
-source comparison, while the annual case preserves chronological decision
-timing across its locked episodes.
+validation and then evaluates a fixed later period. The annual audit repeats
+the decision at annual origins using trailing information through the
+preceding year. Their postdecision diagnostics have different definitions and
+units, so neither levels nor changes are pooled. Neither design is prospective:
+both use endpoint-stable surviving ETF universes drawn from a current licensed
+snapshot without revision timestamps. The annual chronology prevents direct
+target-year input to a decision but does not remove this population-level
+survivorship and snapshot look-ahead.
 
 Both algorithm inputs contain only aggregate strategy identifiers, exact
 validation-profile coordinates, the source frontier, module labels, the
@@ -29,6 +33,28 @@ No held-out quantity can enter weights, preprocessing, applicability,
 algorithm choice, warm starts, deletion order, pruning, or the objective.
 Only after a selected library passes every exact certificate does a separate
 evaluator read the frozen postdecision diagnostic.
+
+For validation return observations \(r_t\) net of the declared turnover cost,
+both workflows use the estimated annualized score
+\begin{equation}
+ \widehat j=\AORFinancialAnnualization\,\overline r-
+ \frac{1}{2}(\AORFinancialRiskAversion)(\AORFinancialAnnualization)\,
+ \widehat{\operatorname{Var}}(r),
+ \label{eq:financial-validation-score}
+\end{equation}
+where the variance uses the sample denominator when at least two observations
+are present. Net returns subtract one-way cost in proportion to turnover. The
+primary cost is \AORFinancialPrimaryCostBps\ basis points and the locked
+sensitivity grid is \AORFinancialSensitivityBps\
+basis points. Thus the frontier coordinates are estimated mean--variance audit
+scores in annualized return units under risk-aversion index
+\AORFinancialRiskAversion, not true or
+preference-free economic opportunities. The original terminal and annual
+workflows compare these floating profiles with registered tolerances
+\(\AORTerminalFrontierTolerance\) and
+\(\AORAnnualFrontierTolerance\); the journal algorithm layer freezes the resulting
+profile coordinates in its committed instance artifacts and rechecks those
+tables exactly.
 
 The source structures differ materially, as
 Table~\ref{tab:aor-financial-instances} shows. In each case, unique tagged-row
@@ -40,6 +66,15 @@ the global cover optimum under the human-proved optimum-preserving
 preprocessing propositions, followed by exact reconstruction and
 original-instance rechecking. No solver is invoked to create that certificate,
 and it is not Lean verification.
+
+The module field is a declared tuple grammar: it records signal family,
+lookback, rebalance rule, and related construction labels. It does not establish
+that every tag corresponds to a separately archived, documented, and reusable
+institutional component. Identity closure further treats the union of those
+tags as frictionlessly available. Consequently, the case studies validate the
+optimization layer for the declared grammar; they do not estimate the cost of
+recovering code, data lineage, approvals, or tacit knowledge from a real
+organization.
 
 \AORFinancialResourceTable
 
@@ -55,8 +90,8 @@ second open-source solver is pinned; no proprietary dependency is introduced.
 Every feasible endpoint passes exact inactive-retention, tagged-coverage,
 frontier, identity-closure, and rational-burden checks.
 
-Table~\ref{tab:aor-financial-algorithm-burdens} shows why safety and resource
-efficiency must remain separate. The historical stepwise libraries are safe,
+Table~\ref{tab:aor-financial-algorithm-burdens} shows why safety and burden
+optimality must remain separate. The historical stepwise libraries are safe,
 but they carry more validation-computation and governance burden than the
 empty-residual optima. Heaviest-safe-first attains the certified optimum for
 both sources under both displayed nonuniform schedules. Weighted greedy is
@@ -68,7 +103,7 @@ worst-case result for heaviest-safe-first.
 
 \AORFinancialAlgorithmTable
 
-\subsection{Prospectively locked weight robustness}
+\subsection{Locked retrospective weight replay}
 
 The limited robustness replay fixes three defensible schedules. Equal active
 weights treat every maintained strategy as one common slot. The
@@ -80,11 +115,13 @@ positive exact integers for active strategies, the inactive strategy has zero
 burden, missing grammar fields cause rejection, and held-out outcomes are
 prohibited inputs.
 
-This replay is not first-look evidence: the schedules and earlier outcomes
-predate the dedicated robustness lock. The prospective contribution is the
-locked subset, algorithm grid, identity-overlap statistic, burden formulas,
-tie rule, unique-carrier audit, and reporting schema. No schedule was searched
-or tuned after comparing savings.
+This replay is not prospective evidence: the schedules and earlier outcomes
+predate the dedicated robustness lock. The lock records a reproducible,
+nonadaptive replay subset, algorithm grid, identity-overlap statistic, burden
+formulas, tie rule, unique-carrier audit, and reporting schema. It prevents
+further outcome-dependent changes within this replay, but it cannot convert a
+retrospective analysis into a prospective one. No schedule was searched or
+tuned in this replay to favor a reported burden result.
 
 Table~\ref{tab:aor-financial-robustness} gives the exact
 global-versus-historical-stepwise comparison. Under equal weights, the
@@ -110,21 +147,28 @@ rows.
 
 \subsection{Postdecision diagnostics and licensed-data boundary}
 
-Exact closure equality makes the enabled descendant set identical across all
-safe endpoints. Accordingly, the held-out opportunity diagnostic is unchanged
-across the exactly safe algorithmic libraries within each audit. The terminal
+Exact closure equality makes the enabled descendant catalog identical across
+all safe endpoints. The reported held-out opportunity statistic is the maximum
+ex post score over that catalog. Accordingly, its equality across exactly safe
+libraries is largely a mechanical consequence of closure equality, not an
+independent validation test. The terminal
 quantity remains in its locked-period enabled-descendant net-utility unit; the
 annual quantity remains a mean next-year enabled-descendant opportunity unit.
 They are evaluated after all selections, gaps, ranks, and exclusions are
-fixed, and they are never pooled.
+fixed, and they are never pooled. Because the maximum is evaluated over a
+catalog of candidate descendants, it is also exposed to familiar multiple-
+testing and selection concerns; we use it only as a mechanism witness and do
+not attach inferential or investment-performance meaning to its level.
 
 Figure~\ref{fig:financial-safe-compression} supplies a separate mechanism
 check using the historical stepwise endpoint. A frontier-only comparator can
 retain a smaller library but loses module closure and lowers the later
 enabled-opportunity diagnostic in both audit-specific scales. The safe
 endpoint preserves both objects and hence leaves that diagnostic unchanged.
-This retrospective pattern illustrates the bridge mechanism; it does not show
-that compression forecasts returns or improves investment performance.
+This retrospective pattern illustrates the bridge mechanism within the
+declared tuple grammar. Because the diagnostic is an ex post catalog maximum,
+the comparison does not show that compression forecasts returns, improves
+investment performance, or controls selection bias.
 
 \AORFinancialComparisonFigure
 
@@ -136,12 +180,14 @@ burdens, structural counts, exact certificates, and permitted postdecision
 summaries. Researchers require independent licensed access to rerun the
 source-data stages.
 
-For research governance, the main implication is practical but bounded. A
-team can first declare what operating opportunities and generative
-capabilities must survive, then attach auditable resource weights and solve or
-approximate the resulting cover. Exact rechecks make the preservation promise
-independent of the construction method. The cases show that a historically
-reasonable one-at-a-time deletion process can leave avoidable maintenance
-burden, while the robustness schedules show why the cost model should be
-declared before optimization rather than selected to favor a particular
-library.
+For research governance, the implication is practical but bounded. A team can
+first declare what operating opportunities and generative capabilities must
+survive, then attach auditable active-maintenance weights and solve or
+approximate the resulting cover. A strategy removed from the maintained
+working library may still have to remain in a legal, compliance, or
+reproducibility archive. Exact rechecks make the declared preservation promise
+independent of the construction method. In these two cases, a historically
+reasonable one-at-a-time process leaves avoidable burden under the nonuniform
+indices. A new institutional claim requires prospectively recorded inventories,
+point-in-time eligibility, documented capability artifacts, and calibrated
+maintenance costs rather than more reuse of the same survivor-defined cases.

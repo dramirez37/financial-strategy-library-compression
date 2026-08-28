@@ -112,77 +112,20 @@ the entire positive net value of a future bridge. It does not assert an
 unbounded normalized loss or a general value formula for arbitrary deleted
 libraries.
 
-\subsection{Hard retention capacity and complementarity}
+\subsection{Capacity and price extensions}
 
-Let \(\mathfrak L_\theta\) be a nonempty finite family of outer-certified
-libraries, let \(W(L')\ge0\) be retention burden, and let \(V_\theta(b,L')\)
-be productive value under the unchanged inner process. Capacity selection is
+Exact source-relative compression holds productive state fixed. A different
+managerial problem allows productive value to vary under a hard maintenance
+capacity or a unit burden price. For a finite eligible family, the hard-capacity
+value is a nondecreasing step function of capacity; complementarity can make it
+nonconcave and can leave a capacity-optimal library unsupported by any scalar
+price. The price-penalized value is the upper envelope of finitely many affine
+branches, hence is continuous, nonincreasing, convex, and piecewise affine, with
+optimizer burden weakly decreasing in price.
 
-\begin{equation}
- V_\theta^\star(b;B)
- :=\max_{L'\in\mathfrak L_\theta:\,W(L')\le B}V_\theta(b,L').
- \label{eq:capacity-value}
-\end{equation}
-
-Unlike exact source-relative compression, this problem permits a productive
-trade-off when capacity is insufficient to preserve a designated source.
-
-\begin{theorem}[Finite hard-capacity retention]
-\label{thm:capacity-value}
-Suppose \(\mathfrak L_\theta\) is finite and contains the zero-burden
-inactive-only library. For every \(B\ge0\), the maximum in
-\eqref{eq:capacity-value} is attained. The function
-\(B\mapsto V_\theta^\star(b;B)\) is nondecreasing, is constant between
-consecutive attainable burdens, and can change only at an attainable burden.
-Every exact forward capacity increment is nonnegative. Neither uniqueness
-nor inclusion nesting of maximizing libraries follows.
-\end{theorem}
-
-The proof is finite maximization plus set inclusion of the feasible families
-as \(B\) rises. Discreteness matters. With two unit-burden capabilities that
-produce no value separately and value one jointly, successive attainable
-values are \((0,0,1)\). The capacity function is therefore not generally
-concave, and marginal capacity increments need not diminish. A hard-capacity
-optimizer can also be unsupported by every scalar resource price because a
-finite nonconcave point need not lie on the upper convex envelope selected by
-penalization.
-
-\subsection{Resource-price envelope}
-
-For a nonnegative unit price \(\lambda\), the corresponding outer penalized
-problem is
-
-\begin{equation}
- J_\theta^\star(b;\lambda)
- :=\max_{L'\in\mathfrak L_\theta}
- \{V_\theta(b,L')-\lambda W(L')\}.
- \label{eq:penalized-value}
-\end{equation}
-
-\begin{theorem}[Finite resource-price envelope]
-\label{thm:penalized-envelope}
-For a fixed nonempty finite eligible family, the maximum in
-\eqref{eq:penalized-value} is attained. The optimized value is continuous,
-nonincreasing, convex, and piecewise affine in the real price \(\lambda\ge0\),
-with switching candidates among finitely many pairwise branch intersections.
-If \(0\le\lambda_1<\lambda_2\), every optimizer at \(\lambda_2\) has weakly
-lower burden than every optimizer at \(\lambda_1\). Wherever one library is
-strictly dominant, the local slope is \(-W(L')\).
-\end{theorem}
-
-Each eligible library supplies the affine branch
-\(V_\theta(b,L')-\lambda W(L')\), so the conclusions follow from the upper
-envelope. For two unequal-burden libraries the pairwise candidate crossing
-price is their value difference divided by their burden difference, but it is
-an actual breakpoint only when both branches are envelope-active. At a tie
-the optimizer is set-valued. The theorem orders optimizer burdens across
-prices; it does not imply that their raw identities are nested.
-
-\AOREconomicGeometryFigure
-
-Together, the hard-capacity and price formulations translate library design
-into familiar resource-allocation objects while preserving the model's
-semantics. Their finite step and envelope geometry is the main-text economic
-content. Detailed elasticity, belief-occupation, threshold, persistence, and
-frontier--closure interaction results are assigned to Online Resource~1 and
-are not needed for the compression, complexity, or algorithmic conclusions.
+These facts are standard finite resource-allocation geometry rather than a
+second principal contribution. Complete assumptions, theorem statements,
+proofs, and counterexamples are moved to Online Resource~1, Section~S9. The
+main article uses only their implication: local
+safety, global minimum burden, and value under an insufficient capacity are
+three different questions.

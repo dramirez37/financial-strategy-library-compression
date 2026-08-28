@@ -1,20 +1,328 @@
-% Migration IDs: P-05-001 through P-05-004 and T-05-* in the manifest.
+% Migration IDs: P-05-001 through P-05-019 and T-05-001 through T-05-006.
 \section{Algorithms and guarantees}
 \label{sec:algorithms}
 
-\DraftSectionSummary{This section will present one shared instance contract
-and exact output certificate before describing enumeration, preprocessing,
-requirement-mask dynamic programming, mixed-integer optimization, weighted
-greedy construction, and certified deletion. Feasibility guarantees will be
-kept separate from approximation and global-optimality guarantees.}
+All methods in this section consume the same validated
+identity-closure instance.  Strategies and tagged requirements have canonical
+original order; weights are exact rationals; mandatory flags, source profiles,
+raw module memberships, the source frontier, and the source closure are stored
+independently of the incidence matrix.  Preprocessing supplies an exact
+objective offset and a reconstruction map.  The number of residual optional
+strategies is \(n\), the number of residual tagged requirements is \(r\), and
+strategy \(i\) has residual mask \(R_i\) and positive weight \(w_i\).
 
-Every returned library will be independently checked for exact source-frontier
-equality, exact source-closure equality, exact burden, and mandatory inactive
-retention. A solver's reported status will remain solver evidence, even when
-the selected library passes the exact certificate.
+\begin{center}
+\fcolorbox{blue!70!black}{blue!3}{%
+\parbox{0.92\linewidth}{\textbf{APPLICABILITY BOUNDARY.}
+Enumeration, requirement-mask dynamic programming, the tagged-cover MIP,
+weighted greedy, and the journal preprocessing pipeline solve only the
+identity-closure subclass established in
+\cref{subsec:aor-tagged-cover}.  They are not algorithms for arbitrary
+closure.  Rechecked deletion is semantically valid for a general declared
+closure only when every trial deletion is evaluated by a separate exact
+general-closure checker; the common implementation and benchmark use identity
+closure.}}
+\end{center}
+
+\subsection{Common output and certificate}
+\label{subsec:aor-common-certificate}
+
+Every algorithm returns original strategy identifiers in canonical order, the
+exact burden, its declared completion status, its tie rule, an algorithm trace
+or search counters, and any required random seed.  A result is reportable only
+after an independent certificate recomputes from the original catalog:
+\begin{enumerate}
+ \item every mandatory strategy is retained;
+ \item every tagged requirement is covered;
+ \item the complete source operating frontier is preserved exactly;
+ \item the complete source identity closure is preserved exactly; and
+ \item the exact burden agrees with the returned burden.
+\end{enumerate}
+Passing this certificate establishes feasibility and burden for the returned
+library.  It does not establish heuristic optimality, convert a solver status
+into a proof, or show that two implementations are independent.  Complete-tie
+output is permitted only when the preprocessing map declares every optimizer
+identity reconstructable; otherwise the result is one explicitly declared
+representative.
 
 \AORAlgorithmGuaranteeTable
 
-\DraftPlaceholder{Migrate algorithm statements, pseudocode, and proofs only
-after reconciling each label with the theorem ledger. Put implementation
-details, complete traces, and certificates in Online Resource~1.}
+\subsection{Independent exact methods}
+\label{subsec:aor-exact-algorithms}
+
+\subsubsection{Complete enumeration}
+
+\noindent\textbf{Pseudocode: complete enumeration.}
+\begin{enumerate}
+ \item \textbf{Input:} a validated residual cover, forced selections and
+       exact offset \(W_0\), a tie mode, and a finite output cap.
+ \item Visit every residual binary selection in increasing canonical mask
+       order; test full tagged coverage and sum its weight exactly.
+ \item Keep the lower burden.  On equality, retain every selection in complete
+       mode or the minimum selected-index list in representative mode.
+ \item Lift forced selections and reconstruction classes, run the independent
+       certificate, and return the optimizer set or declared representative,
+       exact burden, number of candidates, tie status, and certificates.
+\end{enumerate}
+
+\begin{proposition}[Correctness of complete enumeration]
+\label{prop:aor-complete-enumeration}
+Let the input be a valid finite identity-closure tagged instance with exact
+nonnegative mandatory weights, strictly positive optional weights, at least one
+carrier for every residual requirement, and a valid preprocessing
+reconstruction map.  Complete enumeration returns a minimum-burden safe source
+sublibrary after checking all \(2^n\) residual selections.  If complete ties
+are requested, the map preserves all optimizer identities, and the output cap
+is not exceeded, it returns every original optimizer; otherwise it returns the
+declared stable representative.
+\end{proposition}
+
+\noindent\emph{Proof.}
+Every admissible library is a forced set plus one residual subset.
+Enumeration evaluates every such subset and takes the exact minimum; the fixed
+offset and valid lift preserve burden and feasibility.  The final certificate
+maps tagged feasibility back to the original source semantics through
+\cref{thm:aor-tagged-cover-equivalence}.  Complete reconstruction follows only
+under the stated map and output-cap conditions.  Time is
+\(2^n\operatorname{poly}(|I|)\), so enumeration is exact but exponential in
+the number of optional strategies.
+
+\subsubsection{Requirement-mask dynamic programming}
+
+Encode a residual requirement subset by an \(r\)-bit mask.  With
+\(D_i(q)\) the least exact burden that attains mask \(q\) using the first
+\(i\) strategies, the recurrence is
+\begin{equation}
+ D_i(q)=\min\left\{
+ D_{i-1}(q),\
+ \min_{p:\,p\mathbin{\mathrm{OR}}R_i=q}
+      \bigl(D_{i-1}(p)+w_i\bigr)
+ \right\}.
+ \label{eq:aor-mask-dp-recurrence}
+\end{equation}
+
+\noindent\textbf{Pseudocode: requirement-mask DP.}
+\begin{enumerate}
+ \item \textbf{Input:} the same validated residual cover, exact offset, tie
+       mode, and output cap used by enumeration.
+ \item Initialize \(D_0(0)=0\) and every other mask as unreachable.
+ \item For strategies in canonical order and masks in increasing order, emit
+       the skip transition before the take transition
+       \(q\mapsto q\mathbin{\mathrm{OR}}R_i\).  Keep the lower exact burden.
+ \item On an exact tie, store the first predecessor under this traversal or
+       every predecessor in complete-tie mode.
+ \item Read the all-ones mask, reconstruct, add \(W_0\), lift to original
+       identifiers, certify, and return burden, selections, visited states,
+       transitions, tie status, and certificates.
+\end{enumerate}
+
+\begin{theorem}[Exact requirement-mask dynamic programming]
+\label{thm:aor-requirement-mask-dp}
+Let the input satisfy every assumption of
+\cref{prop:aor-complete-enumeration}.  The recurrence in
+\eqref{eq:aor-mask-dp-recurrence} reconstructs at least one minimum-burden safe
+source sublibrary.  Representative mode uses \(O(n2^r)\) recurrence operations,
+\(O(2^r)\) exact cost states, and \(O(n2^r)\) predecessor records when full
+reconstruction is retained.  Value-only two-layer storage uses \(O(2^r)\)
+memory.  Materializing \(T\) tied optimizers adds \(O(Tn)\) output bits and may
+be exponential in \(n\).  Its bit time is
+\(2^r\operatorname{poly}(|I|)\): the method is fixed-parameter tractable in
+\(r\), but it is not polynomial in unrestricted input size.
+\end{theorem}
+
+\noindent\emph{Proof sketch.}
+Induct on \(i\).  At \(i=0\), only the empty subset attains mask zero.  Every
+subset of the first \(i\) strategies either skips \(i\), or removes \(i\) to
+give a predecessor mask and then takes it.  The two transitions are exhaustive
+and construct valid subsets, so the recurrence stores the least exact burden
+for each mask.  The all-ones mask is precisely residual feasibility.  Offset,
+lifting, and \cref{thm:aor-tagged-cover-equivalence} yield a safe global
+optimum.  The state, transition, memory, and output counts give the displayed
+bounds.  The complete induction and reconstruction proof is in Online
+Resource~1, Section~S6.
+
+\subsection{Weighted greedy construction}
+\label{subsec:aor-weighted-greedy}
+
+After selecting every mandatory or forced strategy, let \(U^0\) be the
+remaining tagged requirements and let
+\[
+ d:=\max_i |R_i|,\qquad H(d):=\sum_{j=1}^d\frac1j.
+\]
+
+\noindent\textbf{Pseudocode: weighted greedy and reverse deletion.}
+\begin{enumerate}
+ \item \textbf{Input:} a valid residual identity-closure cover and a Boolean
+       reverse-deletion flag.
+ \item While requirements remain, choose a strategy minimizing
+       \(w_i/|R_i\cap U|\), comparing exact rationals; break ties by the lowest
+       canonical original strategy index.  Add it and delete its newly covered
+       rows.  If no carrier exists, return an explicit infeasibility failure.
+ \item If requested, examine the greedily selected optional strategies in
+       reverse selection order and delete one only when complete tagged
+       coverage and the original semantic checks remain true.
+ \item \textbf{Output:} the selected original library, exact burden, step
+       scores, uncovered counts, reverse-deletion trace, tie declaration, and
+       final independent certificate.
+\end{enumerate}
+
+\begin{theorem}[Transferred weighted-greedy guarantee]
+\label{thm:aor-weighted-greedy}
+Let the source be a finite identity-closure instance satisfying
+\cref{thm:aor-tagged-cover-equivalence}; let every residual requirement have a
+carrier; let mandatory weights be nonnegative and every optional weight be
+positive; and apply only mandatory/forced preprocessing with a valid exact
+offset and lift.  If \(U^0\neq\varnothing\), weighted greedy returns a safe
+library of burden \(W_G\) satisfying
+\[
+ W_G\leq H(d)\operatorname{OPT}\leq H(r)\operatorname{OPT}.
+\]
+Reverse deletion returns a safe, inclusion-wise irreducible library with
+\(W_{GR}\leq W_G\), so it satisfies the same bound.  If \(U^0=\varnothing\),
+the forced library is optimal and the factor is one.  The guarantee does not
+extend to arbitrary nonidentity closure.
+\end{theorem}
+
+\noindent\emph{Proof sketch.}
+On the residual tagged universe, the rule is precisely the positive-cost
+weighted set-cover greedy algorithm of \citet{Chvatal1979}, which gives
+\(G\leq H(d)\operatorname{OPT}_R\).  Adding a nonnegative fixed burden
+\(W_0\) preserves the displayed factor.  Reverse deletion accepts only
+feasibility-preserving removals of positive-weight strategies and therefore
+cannot increase burden.  Later removals cannot restore coverage lost by an
+earlier rejected removal, so one reverse pass is irreducible.  The theorem
+transfers the classical guarantee through
+\cref{thm:aor-tagged-cover-equivalence}; it does not reprove the classical
+set-cover theorem.  The cardinality variant replaces \(w_i\) by one in the
+score and has no retention-burden approximation guarantee when weights differ.
+
+With straightforward incidence scans, greedy and reverse deletion each use a
+polynomial number of exact operations (at most \(n\) selection/deletion rounds
+and \(O(nr)\) incidence work per round).  This implementation bound does not
+alter the approximation factor.
+
+\subsection{Certified rechecked deletion}
+\label{subsec:aor-certified-deletion-suite}
+
+Rechecked deletion starts from the full source and never infers safety from a
+stale certificate.  At every scan, each nonmandatory trial deletion is checked
+against the original source frontier and closure; after an accepted deletion,
+all candidate certificates are discarded and the scan restarts.
+
+\noindent\textbf{Pseudocode: rechecked deletion.}
+\begin{enumerate}
+ \item \textbf{Input:} a validated source library, one declared deterministic
+       score or a seeded stable random order, and an exact feasibility checker.
+ \item Recompute the safety of every currently retained nonmandatory
+       one-strategy deletion.  If none is safe, stop.
+ \item Choose among safe candidates by the declared score and tie rule, append
+       the exact check to the trace, accept the deletion, and restart.
+ \item Perform a complete final scan.  Return the endpoint, exact burden,
+       trace, frontier/closure check counts, complete-scan count, seed and
+       order when stochastic, feasibility certificate, and irreducibility
+       certificate.
+\end{enumerate}
+
+The deterministic scores are:
+\begin{itemize}
+ \item heaviest-safe-first, with exact weight ties broken by canonical index;
+ \item lightest-safe-first, with the same tie rule;
+ \item maximum immediate burden release, which equals heaviest-safe-first
+       under additive burden;
+ \item minimum remaining unique-carrier exposure, defined for safe deletion
+       \(s\) from retained set \(A\) by
+       \[
+       E(s\mid A):=
+       \left|\left\{u:
+       \sum_{t\in A\setminus\{s\}}\mathbf1\{u\in\mathcal R_t\}=1
+       \right\}\right|,
+       \]
+       with ties resolved by greater exact burden release and then canonical
+       index; and
+ \item declared source order, using a complete caller-supplied permutation or
+       canonical order by default.
+\end{itemize}
+The exposure score uses only source incidence and no held-out financial
+quantity.  Random-order deletion uses the first safe strategy in a recorded
+stable seeded permutation.
+
+\begin{proposition}[Certified deletion endpoint]
+\label{prop:aor-certified-deletion-endpoint}
+Let the source be finite and safe relative to itself, let all mandatory
+strategies be protected, and suppose every accepted trial deletion is
+recomputed exactly and shown to preserve the original frontier, declared
+closure, and burden identity.  Then every deterministic or seeded-random
+rechecked-deletion variant above terminates at a safe source sublibrary.  A
+complete exact final scan certifies that no retained nonmandatory strategy can
+be safely deleted.  This is a one-deletion irreducibility certificate, not a
+global-optimality or approximation certificate.
+\end{proposition}
+
+\noindent\emph{Proof.}
+The source is safe.  Exact certification of each accepted trial preserves
+safety inductively, and each step removes one strategy, so the trace is finite.
+The final scan checks every remaining eligible deletion.  The score and random
+order choose only among already certified candidates and therefore do not
+change the argument.  If closure is nonidentity, this proposition requires the
+separate exact closure checker stipulated in its assumptions.
+
+\subsubsection{Multi-start random deletion}
+
+\noindent\textbf{Pseudocode: multi-start deletion.}
+Run rechecked random-order deletion for a declared number \(p\) of independently
+derived, recorded seeds.  Retain the certified endpoint of lowest exact burden;
+break endpoint ties by the lexicographically smallest selected-index tuple and
+then the earliest start.  Return every seed and endpoint summary, the winning
+trace, aggregate check counts, and the winner's feasibility and irreducibility
+certificates.  The method costs \(p\) certified deletion runs and provides no
+approximation factor; additional starts cannot worsen the best observed
+burden, but they do not prove optimality.
+
+\subsection{Worst-case local--global separation}
+\label{sec:aor-safe-deletion-gap}
+
+\begin{theorem}[Unbounded gap for heaviest-safe-first deletion]
+\label{thm:aor-heaviest-safe-first-gap}
+Let \(k\geq2\) be an integer and let
+\(\epsilon\in\mathbb Q\) satisfy \(0<\epsilon<k-1\).  Use one belief,
+identity closure, modules \(m_1,\ldots,m_k\), and a mandatory inactive
+strategy with zero profile, zero burden, and no modules.  For each \(i\), let
+singleton \(s_i\) have zero profile, weight one, and module set \(\{m_i\}\).
+Let bundle \(s_B\) have zero profile, weight \(1+\epsilon\), and all \(k\)
+modules.  Rechecked heaviest-safe-first deletes the uniquely heaviest safe
+bundle, terminates at the \(k\)-singleton library of burden \(k\), and returns
+an inclusion-wise irreducible endpoint.  The unique global optimum retains
+only the bundle and has burden \(1+\epsilon\).  The exact ratio is
+\[
+  \frac{k}{1+\epsilon},
+\]
+so heaviest-safe-first and one-deletion irreducibility alone have no constant
+burden guarantee over this family.  The conclusion does not apply to every
+deletion order or every certified deletion heuristic.
+\end{theorem}
+
+\noindent\emph{Proof.}
+All profiles are zero, so safety is exactly coverage of all modules.  At the
+source, the bundle makes every singleton deletable and all singletons together
+make the bundle deletable.  Since \(\epsilon>0\), the bundle is uniquely
+heaviest and is deleted first; afterward each singleton uniquely carries its
+module.  Any safe library without the bundle must therefore retain all
+singletons and costs \(k\), whereas the bundle alone is safe and costs
+\(1+\epsilon<k\); positive weights make it the unique optimum.  Fixing, for
+example, \(\epsilon=1/2\) makes the ratio unbounded as \(k\) grows.  A
+singleton-first order instead reaches the bundle optimum, proving the stated
+order boundary.  Full finite fixtures and the reduction to the earlier small
+example are in Online Resource~1, Section~S7.
+
+\subsection{Guarantee and evidence boundary}
+
+Enumeration and mask DP are exact finite methods under their stated
+identity-closure assumptions; the former is exponential in \(n\), and the
+latter is exponential in \(r\).  Weighted greedy is approximate but has the
+transferred \(H(d)\) bound; reverse deletion preserves that bound.  Rechecked
+deletion and multi-start return exactly certified feasible, irreducible
+endpoints but remain heuristics.  The MIP in
+\cref{subsec:aor-baseline-mip} supplies solver evidence plus an exact
+returned-library postcheck.  Complete proofs and machine-readable certificate
+schemas are in Online Resource~1; benchmark runtimes and method comparisons
+are experimental evidence reported separately in Section~7.

@@ -1,8 +1,9 @@
 # Isolated AoOR journal manuscript
 
 This tree is the DRAFT journal-facing manuscript source. The front matter,
-Introduction, and literature section contain journal-draft prose; later
-sections remain scaffolded. The tree does not modify or compile from the
+Introduction, literature section, model, covering/complexity section, and
+algorithm section contain journal-draft prose; Sections 6--9 remain scaffolded.
+The tree does not modify or compile from the
 historical `manuscript/` tree or the frozen arXiv release.
 The only shared LaTeX dependency is the repository's audited Springer working
 template in `journal/aor/template/`; a submission bundle must later copy the

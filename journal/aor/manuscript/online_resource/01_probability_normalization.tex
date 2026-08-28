@@ -1,0 +1,69 @@
+\section{Exact probability normalization and projection identities}
+\label{or:aor-probability-normalization}
+
+For a finite carrier \(A\), every probability law in the model is an exact
+rational table
+\[
+  \Delta_{\mathbb Q}(A):=
+  \left\{p:A\to\mathbb Q:
+  p(a)\geq0\ \text{for every }a,
+  \sum_{a\in A}p(a)=1\right\}.
+\]
+Beliefs, belief-kernel rows, and candidate-generation rows use this convention.
+At fixed project \(q\), belief \(b\), and closure \(C\), verification assigns
+\begin{align}
+ \Gamma(q,b,C)(s)
+   &=G(q,b,C)(s)\nu(q,b,C,s),\qquad s\in S,
+   \label{eq:or-admission-some}\\
+ \Gamma(q,b,C)(\mathsf{none})
+   &=G(q,b,C)(\mathsf{none})
+     +\sum_{s\in S}G(q,b,C)(s)
+       \bigl(1-\nu(q,b,C,s)\bigr).
+   \label{eq:or-admission-none}
+\end{align}
+Every term is nonnegative. Summing
+\eqref{eq:or-admission-some}--\eqref{eq:or-admission-none} cancels the
+verification split and recovers the unit mass of \(G\), so \(\Gamma\) is
+normalized.
+
+Conditional on initial belief \(b\), productive state \(K=(F,C)\), and
+project \(q\) of duration \(d_q\), let
+\(\Lambda_q(\mathbf b,o\mid b,K)\) be the exact joint law of the belief path
+\(\mathbf b=(b_0,\ldots,b_{d_q})\) and admitted outcome \(o\). Its specified
+marginals are
+\begin{align}
+ \sum_o\Lambda_q(\mathbf b,o\mid b,K)
+   &=\mathbf1\{b_0=b\}
+     \prod_{t=0}^{d_q-1}P_B(b_t,b_{t+1}),
+   \label{eq:or-completion-path-marginal}\\
+ \sum_{\mathbf b}\Lambda_q(\mathbf b,o\mid b,K)
+   &=\Gamma(q,b,C)(o).
+   \label{eq:or-completion-outcome-marginal}
+\end{align}
+These equations do not impose independence between the belief path and the
+admitted outcome.
+
+For a raw source library \(L\), deterministic update gives
+\[
+ \mathcal Q_q^{\mathrm{raw}}(b',L'\mid b,L)
+ :=\sum_{\substack{\mathbf b,o:\ b_{d_q}=b'\\L\oplus o=L'}}
+   \Lambda_q(\mathbf b,o\mid b,K_L).
+\]
+For realizable \(K=(F,C)\), the two compressed pushforwards are
+\begin{align}
+ \overline T_q(K'\mid b,K)
+   &:=\sum_{o:\operatorname{addK}(K,o)=K'}
+       \Gamma(q,b,C)(o),
+   \label{eq:or-compressed-outcome-law}\\
+ \overline{\mathcal Q}_q(b',K'\mid b,K)
+   &:=\sum_{\substack{\mathbf b,o:\ b_{d_q}=b'\\
+       \operatorname{addK}(K,o)=K'}}
+       \Lambda_q(\mathbf b,o\mid b,K).
+   \label{eq:or-compressed-joint-law}
+\end{align}
+Finite deterministic pushforward preserves nonnegativity and total mass.
+The local update identity
+\(K_{L\oplus o}=\operatorname{addK}(K_L,o)\) also makes every compressed
+successor realizable. These identities supply the normalization clause of the
+raw-to-compressed projection theorem; they do not supply the factorization,
+positive-duration induction, or contraction arguments by themselves.

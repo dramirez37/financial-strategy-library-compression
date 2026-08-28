@@ -1,8 +1,9 @@
 # AoOR source-migration manifest
 
-Status: PARTIAL MIGRATION. The title, abstract, keywords, Introduction, and
-literature section are journal-draft prose; the remaining article sections are
-still scaffolded.
+Status: PARTIAL MIGRATION. The title, abstract, keywords, and Sections 1--5
+are journal-draft prose; Sections 6--9 and the compiled appendices remain
+scaffolded. Long proof, normalization, certificate, and secondary
+comparative-statics material is assigned to Online Resource 1.
 
 The row-level authority is `SOURCE_MIGRATION_MANIFEST.csv`. Every paragraph in
 the scaffold that summarizes existing material has a paragraph row. Planned
@@ -17,6 +18,8 @@ Reuse states are:
   source paragraph was copied verbatim;
 - `EXACT_METADATA_COPY`: verified bibliographic metadata copied without a
   scientific claim;
+- `EXACT_GENERATED_COPY`: a committed generated input was copied without
+  altering its numbers and its generator remains named in the row;
 - `PLANNED_MIGRATION`: the object is assigned a destination but is not yet
   inserted;
 - `PLACEHOLDER_ONLY`: the scaffold reserves an input location and contains no

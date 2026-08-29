@@ -8,8 +8,8 @@ using TOML
 include(joinpath(@__DIR__, "..", "src", "FinancialStrategyLibraryPanelV1.jl"))
 using .FinancialStrategyLibraryPanelV1
 
-include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_002.jl"))
-using .LockFinancialStrategyLibraryPanelV1Execution002: verify_execution_lock_002
+include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_003.jl"))
+using .LockFinancialStrategyLibraryPanelV1Execution003: verify_execution_lock_003
 
 export audit_all_results, audit_structural_results, main
 
@@ -32,9 +32,12 @@ _sha256_text(value) = bytes2hex(sha256(codeunits(value)))
 
 function _paths(config)
     root = joinpath(REPOSITORY_ROOT, String(config["paths"]["local_results_root"]))
+    local_data = joinpath(REPOSITORY_ROOT, String(config["paths"]["local_data_root"]))
     return (
         root,
         instances = joinpath(root, "instances"),
+        preparation_failures = joinpath(root, "preparation_failures"),
+        origin_failures = joinpath(local_data, "origin_failures"),
         preparation = joinpath(root, "PREPARATION_MANIFEST.toml"),
         structural = joinpath(root, "structural"),
         solver_logs = joinpath(root, "solver_logs"),
@@ -86,8 +89,16 @@ function _audit_preparation(paths, errors)
         return Dict{String,String}()
     end
     manifest = TOML.parsefile(paths.preparation)
-    get(manifest, "instance_count", 0) == 180 ||
-        push!(errors, "preparation manifest does not contain 180 instances")
+    get(manifest, "registered_slot_count", 0) == 180 ||
+        push!(errors, "preparation manifest does not contain 180 registered slots")
+    get(manifest, "serialized_instance_count", 0) == 108 ||
+        push!(errors, "preparation manifest does not contain 108 source instances")
+    get(manifest, "preparation_failure_slot_count", 0) == 72 ||
+        push!(errors, "preparation manifest does not contain 72 failure slots")
+    get(manifest, "successful_origin_count", 0) == 12 ||
+        push!(errors, "preparation manifest does not contain 12 successful origins")
+    get(manifest, "failed_origin_count", 0) == 8 ||
+        push!(errors, "preparation manifest does not contain 8 failed origins")
     get(manifest, "return_values_used_for_universe_selection", true) === false ||
         push!(errors, "universe selection return firewall is false")
     get(manifest, "structural_return_maps_origin_scoped", false) === true ||
@@ -118,6 +129,62 @@ function _audit_preparation(paths, errors)
     return entries
 end
 
+function _audit_preparation_failure_payload(payload, preparation_failure, errors, stem)
+    get(payload, "terminal", false) === true || push!(errors, "$stem failure is nonterminal")
+    get(payload, "source_instance_available", true) === false ||
+        push!(errors, "$stem preparation failure claims a source instance")
+    get(payload, "source_instance_fabricated", true) === false ||
+        push!(errors, "$stem preparation failure fabricated a source instance")
+    get(payload, "algorithm_terminal_row_count", 0) == 7 ||
+        push!(errors, "$stem preparation failure does not preserve seven terminal rows")
+    String.(get(payload, "registered_algorithm_ids", String[])) == collect(ALGORITHM_IDS) ||
+        push!(errors, "$stem preparation failure algorithm registry differs")
+    get(payload, "preparation_failure_sha256", "") == preparation_failure["record_sha256"] ||
+        push!(errors, "$stem preparation failure link hash differs")
+    get(payload, "postdecision_opened", true) === false ||
+        push!(errors, "$stem preparation failure says postdecision was opened")
+    get(payload, "licensed_rows_included", true) === false ||
+        push!(errors, "$stem preparation failure contains licensed rows")
+    return nothing
+end
+
+function _audit_preparation_failure_record(payload, paths, errors, stem)
+    get(payload, "schema_version", "") ==
+    "financial-strategy-library-panel-preparation-failure-v1" ||
+        push!(errors, "$stem has an unrecognized preparation-failure schema")
+    get(payload, "terminal", false) === true ||
+        push!(errors, "$stem preparation-failure record is nonterminal")
+    get(payload, "source_instance_available", true) === false ||
+        push!(errors, "$stem preparation-failure record claims an instance")
+    get(payload, "source_instance_fabricated", true) === false ||
+        push!(errors, "$stem preparation-failure record fabricated an instance")
+    get(payload, "algorithm_terminal_row_count", 0) == 7 ||
+        push!(errors, "$stem preparation-failure record does not preserve seven rows")
+    String.(get(payload, "registered_algorithm_ids", String[])) == collect(ALGORITHM_IDS) ||
+        push!(errors, "$stem preparation-failure record algorithm registry differs")
+    origin_relative = String(get(payload, "origin_failure_path", ""))
+    origin_path = normpath(joinpath(paths.root, origin_relative))
+    if !isfile(origin_path)
+        push!(errors, "$stem linked origin-failure record is absent")
+    elseif _sha256_file(origin_path) != get(payload, "origin_failure_sha256", "")
+        push!(errors, "$stem linked origin-failure hash differs")
+    else
+        origin_payload = TOML.parsefile(origin_path)
+        get(origin_payload, "schema_version", "") ==
+        "financial-strategy-library-panel-origin-construction-failure-v1" ||
+            push!(errors, "$stem linked origin-failure schema differs")
+        get(origin_payload, "terminal", false) === true ||
+            push!(errors, "$stem linked origin failure is nonterminal")
+        get(origin_payload, "source_instance_fabricated", true) === false ||
+            push!(errors, "$stem linked origin failure fabricated an instance")
+        get(origin_payload, "profile_imputed", true) === false ||
+            push!(errors, "$stem linked origin failure imputed a profile")
+        get(origin_payload, "licensed_rows_included", true) === false ||
+            push!(errors, "$stem linked origin failure contains licensed rows")
+    end
+    return nothing
+end
+
 function _audit_failure_payload(payload, instance, errors, stem)
     get(payload, "terminal", false) === true || push!(errors, "$stem failure is nonterminal")
     get(payload, "algorithm_terminal_row_count", 0) == 7 ||
@@ -134,19 +201,30 @@ function _audit_failure_payload(payload, instance, errors, stem)
 end
 
 function audit_structural_results(; write_report::Bool = true)
-    execution_lock = verify_execution_lock_002()
+    execution_lock = verify_execution_lock_003()
     config, _ = load_panel_config()
     paths = _paths(config)
     errors = String[]
     prepared_hashes = _audit_preparation(paths, errors)
     expected = _expected_stems()
-    _toml_stems(paths.instances) == expected ||
-        push!(errors, "serialized instance set differs from the 180 registered keys")
+    instance_stems = _toml_stems(paths.instances)
+    preparation_failure_stems = _toml_stems(paths.preparation_failures)
+    isempty(intersect(instance_stems, preparation_failure_stems)) ||
+        push!(errors, "a registered key has both an instance and a preparation failure")
+    sort!(union(instance_stems, preparation_failure_stems)) == expected ||
+        push!(errors, "instances and preparation failures do not cover the 180 registered keys")
+    length(instance_stems) == 108 || push!(errors, "serialized instance set does not contain 108 keys")
+    length(preparation_failure_stems) == 72 ||
+        push!(errors, "preparation failure set does not contain 72 keys")
+    failed_origins = sort!(unique([first(split(stem, "__")) for stem in preparation_failure_stems]))
+    _toml_stems(paths.origin_failures) == failed_origins ||
+        push!(errors, "origin-failure records do not match failed preparation origins")
     _toml_stems(paths.structural) == expected ||
         push!(errors, "structural result set differs from the 180 registered keys")
 
     result_hashes = Dict{String,String}()
     success_count = 0
+    preparation_failure_count = 0
     execution_failure_count = 0
     algorithm_error_count = 0
     inapplicable_count = 0
@@ -156,8 +234,43 @@ function audit_structural_results(; write_report::Bool = true)
     checked_algorithm_rows = 0
     for stem in expected
         instance_path = joinpath(paths.instances, stem * ".toml")
+        preparation_failure_path = joinpath(paths.preparation_failures, stem * ".toml")
         result_path = joinpath(paths.structural, stem * ".toml")
-        isfile(instance_path) && isfile(result_path) || continue
+        isfile(result_path) || continue
+        if isfile(preparation_failure_path)
+            isfile(instance_path) && begin
+                push!(errors, "$stem has both an instance and a preparation failure")
+                continue
+            end
+            preparation_failure = try
+                TOML.parsefile(preparation_failure_path)
+            catch exception
+                push!(errors, "$stem preparation failure cannot be parsed: $(sprint(showerror, exception))")
+                continue
+            end
+            preparation_failure["record_sha256"] = _sha256_file(preparation_failure_path)
+            _audit_preparation_failure_record(
+                preparation_failure,
+                paths,
+                errors,
+                stem,
+            )
+            payload = try
+                TOML.parsefile(result_path)
+            catch exception
+                push!(errors, "$stem result cannot be parsed: $(sprint(showerror, exception))")
+                continue
+            end
+            result_hashes[relpath(result_path, paths.root)] = _sha256_file(result_path)
+            payload["schema_version"] ==
+            "financial-strategy-library-panel-preparation-failure-result-v1" ||
+                push!(errors, "$stem preparation failure has an unrecognized structural schema")
+            preparation_failure_count += 1
+            _audit_preparation_failure_payload(payload, preparation_failure, errors, stem)
+            checked_algorithm_rows += 7
+            continue
+        end
+        isfile(instance_path) || continue
         instance = try
             _read_instance(instance_path)
         catch exception
@@ -221,6 +334,7 @@ function audit_structural_results(; write_report::Bool = true)
         "registered_instance_count" => 180,
         "registered_algorithm_terminal_rows" => 1260,
         "successful_instance_count" => success_count,
+        "preparation_failure_instance_count" => preparation_failure_count,
         "execution_failure_instance_count" => execution_failure_count,
         "algorithm_error_count" => algorithm_error_count,
         "inapplicable_algorithm_row_count" => inapplicable_count,
@@ -266,17 +380,22 @@ function audit_all_results(; write_report::Bool = true)
             push!(errors, "$stem postdecision record contains licensed rows")
         get(payload, "structural_result_terminal_and_audited_before_open", false) === true ||
             push!(errors, "$stem postdecision record lacks the structural firewall certificate")
+        if source["schema_version"] in (
+            "financial-strategy-library-panel-instance-failure-v1",
+            "financial-strategy-library-panel-preparation-failure-result-v1",
+        )
+            structural_failure_count += 1
+            payload["schema_version"] == "financial-strategy-library-panel-postdecision-failure-v1" ||
+                push!(errors, "$stem should have a postdecision failure record")
+            get(payload, "postdecision_opened", true) === false ||
+                push!(errors, "$stem failed slot says postdecision was opened")
+            continue
+        end
         quality = get(payload, "return_quality", Dict{String,Any}())
         get(quality, "interior_missing_return_rows", -1) == 0 ||
             push!(errors, "$stem postdecision extraction has an interior missing return")
         get(quality, "unexpected_return_flag_rows", -1) == 0 ||
             push!(errors, "$stem postdecision extraction has an unexpected return flag")
-        if source["schema_version"] == "financial-strategy-library-panel-instance-failure-v1"
-            structural_failure_count += 1
-            payload["schema_version"] == "financial-strategy-library-panel-postdecision-failure-v1" ||
-                push!(errors, "$stem should have a postdecision failure record")
-            continue
-        end
         payload["schema_version"] == "financial-strategy-library-panel-postdecision-v1" || begin
             push!(errors, "$stem has an unrecognized postdecision schema")
             continue

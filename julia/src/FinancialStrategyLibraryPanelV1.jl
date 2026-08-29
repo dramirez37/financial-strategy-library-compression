@@ -48,6 +48,13 @@ const AMENDMENT_002_PATH = joinpath(
     "amendments",
     "EXECUTION_AMENDMENT_002.toml",
 )
+const AMENDMENT_003_PATH = joinpath(
+    REPOSITORY_ROOT,
+    "experiments",
+    "financial_strategy_library_panel_v1",
+    "amendments",
+    "EXECUTION_AMENDMENT_003.toml",
+)
 const ALGORITHM_IDS = (
     "jump_highs_tagged_cover",
     "requirement_mask_dp",
@@ -168,6 +175,20 @@ function load_panel_config(path::AbstractString = CONFIG_PATH)
     amendment["successor_amendment"] = successor
     amendment["return_rule"] = successor["return_rule"]
     amendment["environment_recovery"] = successor["environment_recovery"]
+    failure_amendment = TOML.parsefile(AMENDMENT_003_PATH)
+    failure_amendment["schema_version"] ==
+    "financial-strategy-library-panel-execution-amendment-v3" ||
+        error("unsupported failure-persistence execution amendment")
+    failure_amendment["amendment_id"] == "AMENDMENT_003" ||
+        error("unexpected failure-persistence amendment identifier")
+    failure_amendment["registered_seed_consumed_before_amendment"] === false ||
+        error("the failure-persistence amendment followed seed consumption")
+    failure_amendment["algorithm_or_solver_outcome_observed_before_amendment"] === false ||
+        error("the failure-persistence amendment followed an algorithm outcome")
+    amendment["predecessor_amendment_id"] = amendment["amendment_id"]
+    amendment["amendment_id"] = failure_amendment["amendment_id"]
+    amendment["failure_amendment"] = failure_amendment
+    amendment["failure_persistence"] = failure_amendment["failure_persistence"]
     return config, amendment
 end
 

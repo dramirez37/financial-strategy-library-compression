@@ -1,0 +1,39 @@
+schema_version = "financial-strategy-library-panel-execution-amendment-v3"
+experiment_id = "financial-strategy-library-panel-v1"
+amendment_id = "AMENDMENT_003"
+amendment_date = "2026-08-29"
+licensed_rows_read_before_amendment = true
+registered_seed_consumed_before_amendment = false
+successful_origin_instance_sets_constructed_before_amendment = 12
+serialized_source_instances_before_amendment = 108
+failed_origin_tasks_observed_before_amendment = 8
+first_failure_message_class = "registered belief profile has too few observations"
+algorithm_or_solver_outcome_observed_before_amendment = false
+selected_library_or_burden_saving_observed_before_amendment = false
+postdecision_outcome_observed_before_amendment = false
+raw_licensed_rows_printed_or_committed = false
+scientific_estimands_changed = false
+minimum_profile_observations_changed = false
+origin_registry_changed = false
+library_registry_changed = false
+burden_schedule_registry_changed = false
+seed_registry_changed = false
+algorithm_registry_changed = false
+
+[failure_persistence]
+origin_failure_is_terminal = true
+instance_failure_slots_per_origin = 9
+algorithm_failure_rows_per_instance_slot = 7
+fabricate_source_instance = false
+impute_profile = false
+successful_instances_plus_failure_slots = 180
+registered_algorithm_terminal_rows = 1260
+postdecision_failure_remains_unavailable = true
+
+[resume]
+preexisting_instance_count = 108
+preexisting_origin_metadata_count = 12
+preparation_manifest_present = false
+structural_result_count = 0
+postdecision_result_count = 0
+reuse_requires_byte_identity = true

@@ -9,8 +9,8 @@ using TOML
 include(joinpath(@__DIR__, "..", "src", "FinancialStrategyLibraryPanelV1.jl"))
 using .FinancialStrategyLibraryPanelV1
 
-include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_002.jl"))
-using .LockFinancialStrategyLibraryPanelV1Execution002: verify_execution_lock_002
+include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_003.jl"))
+using .LockFinancialStrategyLibraryPanelV1Execution003: verify_execution_lock_003
 
 export main,
        prepare_instances,
@@ -55,6 +55,8 @@ function _paths(config)
         local_results,
         instances = joinpath(local_results, "instances"),
         origin_metadata = joinpath(local_data, "origin_builds"),
+        origin_failures = joinpath(local_data, "origin_failures"),
+        preparation_failures = joinpath(local_results, "preparation_failures"),
         preparation_manifest = joinpath(local_results, "PREPARATION_MANIFEST.toml"),
         structural = joinpath(local_results, "structural"),
         solver_logs = joinpath(local_results, "solver_logs"),
@@ -72,7 +74,12 @@ function _source_root(config)
     return normpath(joinpath(REPOSITORY_ROOT, configured))
 end
 
-function _environment(execution_lock_aggregate; replaced_failed_environment_only_record = false)
+function _environment(
+    execution_lock_aggregate;
+    replaced_predecessor_environment = false,
+    predecessor_instance_count = 0,
+    predecessor_origin_metadata_count = 0,
+)
     LinearAlgebra.BLAS.set_num_threads(1)
     commit = try
         strip(read(`git -C $REPOSITORY_ROOT rev-parse HEAD`, String))
@@ -85,7 +92,7 @@ function _environment(execution_lock_aggregate; replaced_failed_environment_only
         "UNAVAILABLE"
     end
     return Dict{String,Any}(
-        "schema_version" => "financial-strategy-library-panel-environment-v2",
+        "schema_version" => "financial-strategy-library-panel-environment-v3",
         "recorded_at_utc" => _utc_now(),
         "git_commit" => commit,
         "dirty_worktree" => !isempty(strip(status)),
@@ -96,9 +103,10 @@ function _environment(execution_lock_aggregate; replaced_failed_environment_only
         "highs_threads_per_model" => 1,
         "threaded_lane_count" => THREAD_COUNT,
         "execution_lock_aggregate_sha256" => execution_lock_aggregate,
-        "active_amendment_id" => "AMENDMENT_002",
-        "replaced_failed_environment_only_record" =>
-            replaced_failed_environment_only_record,
+        "active_amendment_id" => "AMENDMENT_003",
+        "replaced_predecessor_environment" => replaced_predecessor_environment,
+        "predecessor_instance_count" => predecessor_instance_count,
+        "predecessor_origin_metadata_count" => predecessor_origin_metadata_count,
         "dependency_manifest_sha256" =>
             _sha256_file(joinpath(REPOSITORY_ROOT, "julia", "Manifest.toml")),
         "operating_system" => string(Sys.KERNEL),
@@ -115,7 +123,13 @@ function _progress_line(label, completed, total; width = 36)
     return "$(rpad(label, 14)) [$bar] $(lpad(completed, ndigits(total)))/$total"
 end
 
-function _run_threaded_lanes!(jobs, label, run_one; lanes = THREAD_COUNT)
+function _run_threaded_lanes!(
+    jobs,
+    label,
+    run_one;
+    lanes = THREAD_COUNT,
+    allow_failures = false,
+)
     lanes <= Threads.nthreads() || error(
         "$label requires at least $lanes Julia threads; found $(Threads.nthreads())",
     )
@@ -130,9 +144,9 @@ function _run_threaded_lanes!(jobs, label, run_one; lanes = THREAD_COUNT)
             for job in assignments[lane]
                 try
                     run_one(job, lane)
-                    put!(events, (passed = true, lane = lane, exception = nothing))
+                    put!(events, (passed = true, lane = lane, job = job, exception = nothing))
                 catch exception
-                    put!(events, (passed = false, lane = lane, exception = exception))
+                    put!(events, (passed = false, lane = lane, job = job, exception = exception))
                 end
             end
         end)
@@ -148,11 +162,11 @@ function _run_threaded_lanes!(jobs, label, run_one; lanes = THREAD_COUNT)
     end
     println(stderr)
     foreach(fetch, tasks)
-    isempty(failures) || error(
+    (allow_failures || isempty(failures)) || error(
         "$label failed in $(length(failures)) job(s); first lane=$(first(failures).lane): " *
         sprint(showerror, first(failures).exception),
     )
-    return completed
+    return (completed = completed, failures = failures)
 end
 
 function _instance_stem(origin_id, library_id, schedule_id)
@@ -174,7 +188,7 @@ function _registry_seed(origin_id, library_id)
 end
 
 function validate_readiness(; require_sources::Bool = true)
-    verify_execution_lock_002()
+    verify_execution_lock_003()
     VERSION == v"1.12.6" || error("financial panel v1 requires Julia 1.12.6")
     Threads.nthreads() == THREAD_COUNT || error(
         "financial panel v1 requires --threads=$THREAD_COUNT; found $(Threads.nthreads())",
@@ -195,7 +209,7 @@ function validate_readiness(; require_sources::Bool = true)
 end
 
 function _write_environment(paths)
-    execution_lock_aggregate = verify_execution_lock_002()
+    execution_lock_aggregate = verify_execution_lock_003()
     if isfile(paths.environment)
         environment = TOML.parsefile(paths.environment)
         if get(environment, "execution_lock_aggregate_sha256", "") == execution_lock_aggregate
@@ -203,16 +217,25 @@ function _write_environment(paths)
             environment["julia_threads"] == THREAD_COUNT || error("saved environment thread count differs")
             return environment
         end
-        prior_scientific_state = isfile(paths.preparation_manifest) || any(
-            directory -> isdir(directory) && !isempty(readdir(directory)),
-            (paths.instances, paths.structural, paths.postdecision),
+        instance_count = isdir(paths.instances) ?
+                         count(name -> endswith(name, ".toml"), readdir(paths.instances)) : 0
+        origin_metadata_count = isdir(paths.origin_metadata) ?
+                                count(name -> endswith(name, ".toml"), readdir(paths.origin_metadata)) : 0
+        successor_recovery = !isfile(paths.preparation_manifest) &&
+                             instance_count == 108 &&
+                             origin_metadata_count == 12 &&
+                             all(
+            directory -> !isdir(directory) || isempty(readdir(directory)),
+            (paths.structural, paths.postdecision, paths.preparation_failures, paths.origin_failures),
         )
-        prior_scientific_state && error(
-            "saved environment belongs to an earlier execution lock with scientific artifacts",
+        successor_recovery || error(
+            "saved environment belongs to an earlier execution lock outside Amendment 003 recovery",
         )
         environment = _environment(
             execution_lock_aggregate;
-            replaced_failed_environment_only_record = true,
+            replaced_predecessor_environment = true,
+            predecessor_instance_count = instance_count,
+            predecessor_origin_metadata_count = origin_metadata_count,
         )
         _atomic_toml(paths.environment, environment; replace = true)
         return environment
@@ -220,6 +243,47 @@ function _write_environment(paths)
     environment = _environment(execution_lock_aggregate)
     _atomic_toml(paths.environment, environment)
     return environment
+end
+
+function _write_once_or_match(path, text, drift_message)
+    if isfile(path)
+        read(path, String) == text || error(drift_message)
+    else
+        _atomic_write(path, text)
+    end
+    return _sha256_file(path)
+end
+
+function _sanitized_origin_failure(exception)
+    message = sprint(showerror, exception)
+    if occursin("a registered belief profile has too few observations", message)
+        return "registered belief profile has too few observations"
+    end
+    return "origin construction failed without a distributable row-level diagnostic"
+end
+
+_is_registered_origin_rejection(exception) =
+    sprint(showerror, exception) == "a registered belief profile has too few observations"
+
+function _preparation_failure_payload(job, origin_failure_relative, origin_failure_sha256, exception)
+    return Dict{String,Any}(
+        "schema_version" => "financial-strategy-library-panel-preparation-failure-v1",
+        "experiment_id" => "financial-strategy-library-panel-v1",
+        "origin_id" => job.origin_id,
+        "library_id" => job.library_id,
+        "schedule_id" => job.schedule_id,
+        "terminal" => true,
+        "source_instance_available" => false,
+        "source_instance_fabricated" => false,
+        "algorithm_terminal_row_count" => 7,
+        "registered_algorithm_ids" => collect(FinancialStrategyLibraryPanelV1.ALGORITHM_IDS),
+        "failure_type" => string(typeof(exception)),
+        "failure_message" => _sanitized_origin_failure(exception),
+        "origin_failure_path" => origin_failure_relative,
+        "origin_failure_sha256" => origin_failure_sha256,
+        "postdecision_opened" => false,
+        "licensed_rows_included" => false,
+    )
 end
 
 function _origin_payload(origin)
@@ -279,37 +343,116 @@ function prepare_instances()
         metadata["return_quality"] = return_quality[origin.origin_id]
         metadata_path = joinpath(output.origin_metadata, "$(origin.origin_id).toml")
         metadata_text = toml_text(metadata)
-        if isfile(metadata_path)
-            read(metadata_path, String) == metadata_text || error("origin metadata drift on resume")
-        else
-            _atomic_write(metadata_path, metadata_text)
-        end
-        local_entries = Dict{String,String}(relpath(metadata_path, output.local_results) => _sha256_file(metadata_path))
+        metadata_hash = _write_once_or_match(
+            metadata_path,
+            metadata_text,
+            "origin metadata drift on resume",
+        )
+        local_entries = Dict{String,String}(relpath(metadata_path, output.local_results) => metadata_hash)
         for ((library_id, schedule_id), instance) in instances
             stem = _instance_stem(origin.origin_id, library_id, schedule_id)
             path = joinpath(output.instances, stem * ".toml")
             text = serialize_journal_compression_instance(instance)
-            if isfile(path)
-                read(path, String) == text || error("instance drift on resume: $stem")
-            else
-                _atomic_write(path, text)
-            end
-            local_entries[relpath(path, output.local_results)] = _sha256_file(path)
+            local_entries[relpath(path, output.local_results)] = _write_once_or_match(
+                path,
+                text,
+                "instance drift on resume: $stem",
+            )
         end
         lock(entries_lock) do
             merge!(entries, local_entries)
         end
         return nothing
     end
-    _run_threaded_lanes!(universes, "prepare", run_one)
+    threaded = _run_threaded_lanes!(
+        universes,
+        "prepare",
+        run_one;
+        allow_failures = true,
+    )
+    for failure in threaded.failures
+        origin = failure.job
+        _is_registered_origin_rejection(failure.exception) || error(
+            "prepare encountered an unregistered origin-construction exception of type " *
+            string(typeof(failure.exception)),
+        )
+        origin_instance_paths = filter(
+            name -> startswith(name, origin.origin_id * "__") && endswith(name, ".toml"),
+            isdir(output.instances) ? readdir(output.instances) : String[],
+        )
+        isempty(origin_instance_paths) || error(
+            "failed origin has serialized source instances: $(origin.origin_id)",
+        )
+        origin_failure = Dict{String,Any}(
+            "schema_version" => "financial-strategy-library-panel-origin-construction-failure-v1",
+            "experiment_id" => "financial-strategy-library-panel-v1",
+            "origin_id" => origin.origin_id,
+            "terminal" => true,
+            "phase" => "structural source-instance construction",
+            "failure_type" => string(typeof(failure.exception)),
+            "failure_message" => _sanitized_origin_failure(failure.exception),
+            "registered_instance_failure_slots" => 9,
+            "registered_algorithm_terminal_rows" => 63,
+            "source_instance_fabricated" => false,
+            "profile_imputed" => false,
+            "origin_universe" => _origin_payload(origin),
+            "return_quality" => return_quality[origin.origin_id],
+            "postdecision_opened" => false,
+            "licensed_rows_included" => false,
+        )
+        origin_failure_path = joinpath(output.origin_failures, "$(origin.origin_id).toml")
+        origin_failure_hash = _write_once_or_match(
+            origin_failure_path,
+            toml_text(origin_failure),
+            "origin failure drift on resume: $(origin.origin_id)",
+        )
+        origin_failure_relative = relpath(origin_failure_path, output.local_results)
+        entries[origin_failure_relative] = origin_failure_hash
+        origin_jobs = [(
+            origin_id,
+            library_id,
+            schedule_id,
+            stem = _instance_stem(origin_id, library_id, schedule_id),
+        ) for (origin_id, library_id, schedule_id) in registered_job_keys() if
+             origin_id == origin.origin_id]
+        length(origin_jobs) == 9 || error("registered origin does not map to nine instance slots")
+        for job in origin_jobs
+            path = joinpath(output.preparation_failures, job.stem * ".toml")
+            payload = _preparation_failure_payload(
+                job,
+                origin_failure_relative,
+                origin_failure_hash,
+                failure.exception,
+            )
+            entries[relpath(path, output.local_results)] = _write_once_or_match(
+                path,
+                toml_text(payload),
+                "preparation failure drift on resume: $(job.stem)",
+            )
+        end
+    end
     instance_count = count(name -> endswith(name, ".toml"), readdir(output.instances))
-    instance_count == 180 || error("preparation produced $instance_count instances instead of 180")
+    failure_slot_count = count(
+        name -> endswith(name, ".toml"),
+        readdir(output.preparation_failures),
+    )
+    successful_origin_count = count(name -> endswith(name, ".toml"), readdir(output.origin_metadata))
+    failed_origin_count = count(name -> endswith(name, ".toml"), readdir(output.origin_failures))
+    instance_count == 108 || error("preparation produced $instance_count instances instead of 108")
+    failure_slot_count == 72 || error("preparation produced $failure_slot_count failure slots instead of 72")
+    successful_origin_count == 12 || error("preparation retained $successful_origin_count successful origins instead of 12")
+    failed_origin_count == 8 || error("preparation retained $failed_origin_count failed origins instead of 8")
+    instance_count + failure_slot_count == 180 || error("preparation does not account for 180 slots")
     manifest = Dict{String,Any}(
         "schema_version" => "financial-strategy-library-panel-preparation-manifest-v1",
         "created_at_utc" => _utc_now(),
         "origin_count" => length(universes),
-        "instance_count" => instance_count,
-        "registered_algorithm_terminal_rows" => instance_count * 7,
+        "registered_slot_count" => 180,
+        "serialized_instance_count" => instance_count,
+        "preparation_failure_slot_count" => failure_slot_count,
+        "successful_origin_count" => successful_origin_count,
+        "failed_origin_count" => failed_origin_count,
+        "registered_algorithm_terminal_rows" => 1260,
         "source_root_recorded" => false,
         "return_values_used_for_universe_selection" => false,
         "structural_return_maps_origin_scoped" => true,
@@ -339,7 +482,11 @@ end
 function _validate_preparation(output)
     isfile(output.preparation_manifest) || error("preparation manifest is absent")
     manifest = TOML.parsefile(output.preparation_manifest)
-    manifest["instance_count"] == 180 || error("prepared instance count changed")
+    manifest["registered_slot_count"] == 180 || error("prepared slot count changed")
+    manifest["serialized_instance_count"] == 108 || error("prepared instance count changed")
+    manifest["preparation_failure_slot_count"] == 72 || error("preparation failure count changed")
+    manifest["successful_origin_count"] == 12 || error("successful origin count changed")
+    manifest["failed_origin_count"] == 8 || error("failed origin count changed")
     manifest["postdecision_returns_opened"] === false || error("preparation opened postdecision returns")
     manifest["new_security_initialization_rows_excluded"] == 340 ||
         error("registered structural CRSP NS initialization count changed")
@@ -373,6 +520,27 @@ function _failure_payload(job, instance, exception)
     )
 end
 
+function _preparation_failure_result(job, preparation_failure, lane)
+    return Dict{String,Any}(
+        "schema_version" => "financial-strategy-library-panel-preparation-failure-result-v1",
+        "experiment_id" => "financial-strategy-library-panel-v1",
+        "origin_id" => job.origin_id,
+        "library_id" => job.library_id,
+        "schedule_id" => job.schedule_id,
+        "terminal" => true,
+        "source_instance_available" => false,
+        "source_instance_fabricated" => false,
+        "algorithm_terminal_row_count" => 7,
+        "registered_algorithm_ids" => collect(FinancialStrategyLibraryPanelV1.ALGORITHM_IDS),
+        "failure_type" => preparation_failure["failure_type"],
+        "failure_message" => preparation_failure["failure_message"],
+        "preparation_failure_sha256" => preparation_failure["record_sha256"],
+        "thread_lane" => lane,
+        "postdecision_opened" => false,
+        "licensed_rows_included" => false,
+    )
+end
+
 function run_structural_phase()
     config, _ = validate_readiness(; require_sources = false)
     output = _paths(config)
@@ -386,17 +554,31 @@ function run_structural_phase()
     ) for (origin_id, library_id, schedule_id) in registered_job_keys()]
     run_one = function(job, lane)
         instance_path = joinpath(output.instances, job.stem * ".toml")
+        preparation_failure_path = joinpath(output.preparation_failures, job.stem * ".toml")
         result_path = joinpath(output.structural, job.stem * ".toml")
-        instance = _read_instance(instance_path)
         if isfile(result_path)
             saved = TOML.parsefile(result_path)
             saved["terminal"] === true || error("nonterminal saved result: $(job.stem)")
             if saved["schema_version"] == "financial-strategy-library-panel-instance-result-v1"
+                instance = _read_instance(instance_path)
                 audit_instance_result(instance, saved)["passed"] === true ||
                     error("saved result fails resume audit: $(job.stem)")
+            elseif saved["schema_version"] !=
+                   "financial-strategy-library-panel-preparation-failure-result-v1"
+                error("unrecognized saved result schema: $(job.stem)")
             end
             return nothing
         end
+        if isfile(preparation_failure_path)
+            isfile(instance_path) && error("failed preparation slot also has a source instance")
+            preparation_failure = TOML.parsefile(preparation_failure_path)
+            preparation_failure["record_sha256"] = _sha256_file(preparation_failure_path)
+            payload = _preparation_failure_result(job, preparation_failure, lane)
+            _atomic_toml(result_path, payload)
+            return nothing
+        end
+        isfile(instance_path) || error("registered slot has neither an instance nor a failure record")
+        instance = _read_instance(instance_path)
         payload = nothing
         logs = Dict{String,String}()
         try
@@ -470,23 +652,25 @@ function run_postdecision_phase()
     isfile(structural_audit_path) || error("structural audit is absent; run the audit before postdecision")
     structural_audit = TOML.parsefile(structural_audit_path)
     structural_audit["passed"] === true || error("structural audit did not pass")
-    origin_payloads = Dict{String,Any}()
     origins = Dict{String,OriginUniverse}()
     thresholds = Dict{String,Vector{Float64}}()
     for origin_row in FinancialStrategyLibraryPanelV1.FinancialStrategyLibraryPanelV1Registries.origin_rows()
         path = joinpath(output.origin_metadata, "$(origin_row.origin_id).toml")
-        payload = TOML.parsefile(path)
+        failure_path = joinpath(output.origin_failures, "$(origin_row.origin_id).toml")
+        isfile(path) == isfile(failure_path) && error(
+            "origin must have exactly one success or construction-failure record",
+        )
+        payload = TOML.parsefile(isfile(path) ? path : failure_path)
         origin_payload = payload["origin_universe"]
-        origin_payloads[origin_row.origin_id] = payload
         origins[origin_row.origin_id] = _origin_from_saved(origin_payload)
-        thresholds[origin_row.origin_id] = Float64.(payload["belief_thresholds"])
+        isfile(path) && (thresholds[origin_row.origin_id] = Float64.(payload["belief_thresholds"]))
     end
     raw_paths = source_paths(config, _source_root(config))
     postdecision_return_quality = Dict{String,Any}()
     series_by_origin = extract_origin_series(
         config,
         raw_paths.daily_files,
-        collect(values(origins));
+        [origins[origin_id] for origin_id in sort!(collect(keys(thresholds)))];
         phase = :postdecision,
         diagnostics = postdecision_return_quality,
     )
@@ -499,17 +683,20 @@ function run_postdecision_phase()
     run_one = function(job, lane)
         destination = joinpath(output.postdecision, job.stem * ".toml")
         isfile(destination) && return nothing
-        instance = _read_instance(joinpath(output.instances, job.stem * ".toml"))
         result_payload = TOML.parsefile(joinpath(output.structural, job.stem * ".toml"))
         payload = if result_payload["schema_version"] ==
                      "financial-strategy-library-panel-instance-result-v1"
+            instance = _read_instance(joinpath(output.instances, job.stem * ".toml"))
             next_year = origins[job.origin_id].decision_year + 1
             next_origin_id = next_year <= 2024 ? "FSLP1-O$next_year" : nothing
-            next_identities = if isnothing(next_origin_id)
+            next_instance_path = isnothing(next_origin_id) ? nothing : joinpath(
+                output.instances,
+                _instance_stem(next_origin_id, job.library_id, job.schedule_id) * ".toml",
+            )
+            next_identities = if isnothing(next_instance_path) || !isfile(next_instance_path)
                 nothing
             else
-                next_stem = _instance_stem(next_origin_id, job.library_id, job.schedule_id)
-                _source_identity_tokens(_read_instance(joinpath(output.instances, next_stem * ".toml")))
+                _source_identity_tokens(_read_instance(next_instance_path))
             end
             evaluate_postdecision(
                 instance,
@@ -528,13 +715,19 @@ function run_postdecision_phase()
                 "library_id" => job.library_id,
                 "schedule_id" => job.schedule_id,
                 "available" => false,
-                "reason" => "structural instance failure",
+                "reason" => result_payload["schema_version"] ==
+                            "financial-strategy-library-panel-preparation-failure-result-v1" ?
+                            "registered source-instance construction failure" :
+                            "structural algorithm-suite failure",
                 "structural_result_terminal_and_audited_before_open" => true,
+                "postdecision_opened" => false,
                 "licensed_rows_included" => false,
             )
         end
         payload["thread_lane"] = lane
-        payload["return_quality"] = postdecision_return_quality[job.origin_id]
+        if haskey(postdecision_return_quality, job.origin_id)
+            payload["return_quality"] = postdecision_return_quality[job.origin_id]
+        end
         _atomic_toml(destination, payload)
         return nothing
     end

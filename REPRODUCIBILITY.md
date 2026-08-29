@@ -64,7 +64,7 @@ numerical rule.
 | `make aor-financial-panel-v1-design-check` | Regenerate the expected point-in-time panel registries in memory, verify their committed bytes, verify the prospective design lock, and run registration-only synthetic tests. | Short. | Public design files only; it does not open licensed rows or result files. | Pass/fail diagnostics only; no outcome computation. |
 | `make aor-financial-panel-v1-tests` | Test the origin-scoped information firewall, exact carrier-count deletion, serialization, eight stable lanes, and all seven registered algorithms. | Short to medium. | Public synthetic fixtures only. | Test diagnostics and temporary solver records only. |
 | `make aor-financial-panel-v1-smoke` | Execute the exact local command topology on eight synthetic lanes with a progress bar and independent solution checks. | Short to medium. | Public synthetic fixtures only; no licensed row is opened. | Pass/fail diagnostics; all smoke files are temporary. |
-| `make aor-financial-panel-v1-run` | Run or resume the locked point-in-time CRSP strategy-library panel using one Julia 1.12.6 process, eight stable threaded lanes, single-threaded BLAS, and single-threaded HiGHS models. | Long; empirical construction and 1,260 registered algorithm rows are host dependent. | Local licensed CRSP/WRDS delivery at `ALGOLIB_CRSP_ROOT` or the registered default. | Ignored origin-scoped inputs, 180 exact instances, 1,260 terminal algorithm rows, solver logs, structural audit, postdecision diagnostics, and final result audit. |
+| `make aor-financial-panel-v1-run` | Run or resume the locked point-in-time CRSP strategy-library panel using one Julia 1.12.6 process, eight stable threaded lanes, single-threaded BLAS, and single-threaded HiGHS models. | Long; empirical construction and 1,260 registered algorithm rows are host dependent. | Local licensed CRSP/WRDS delivery at `ALGOLIB_CRSP_ROOT` or the registered default. | Ignored origin-scoped source instances or terminal construction-failure slots, 1,260 terminal algorithm rows, solver logs, structural audit, postdecision diagnostics, and final result audit. |
 | `make aor-financial-panel-v1-audit` | Independently reread and exactly audit a completed local panel without rerunning algorithms. | Medium. | Completed ignored panel artifacts; raw licensed rows are not opened. | Recomputed local structural and full audit certificates. |
 | `make aor-benchmark-audit` | Read and independently audit the committed final Algorithmic Compression Benchmark v2 artifacts with exact feasibility/burden checks and byte-drift comparison. | Medium to long; reads the complete saved result tree. | Public committed synthetic results only. | Pass/fail report; no solver, heuristic, generator, or result writer is invoked. |
 | `make aor-manuscript` | Compile the Springer article and independently compiled Online Resource 1, then audit their recorder dependency graphs. | Short to medium. | Public editable LaTeX, bibliography, table, figure, and canonical CSV inputs. | `journal/aor/manuscript/build/aor-journal-manuscript.pdf` and `journal/aor/online_resource/build/aor-online-resource-1.pdf`. |
@@ -89,8 +89,11 @@ not opened until the 180 structural records pass the independent exact audit.
 Execution Amendment 002 excludes, without imputation, only a first scoped CRSP
 return row carrying the official new-security flag `NS`; every interior or
 otherwise flagged missing return still fails closed. Execution Lock 001 is
-retained as the immutable record of the initial ingestion failure, while
-`EXECUTION_LOCK_002.json` is the active successor lock.
+retained as the immutable record of the initial ingestion failure. Execution
+Amendment 003 implements the registered failure denominator: a source origin
+that fails the unchanged 25-observation profile rule receives nine terminal
+unavailable slots, without imputation or a fabricated instance. Locks 001 and
+002 remain immutable; `EXECUTION_LOCK_003.json` is the active successor lock.
 
 ### AoOR journal release gate
 

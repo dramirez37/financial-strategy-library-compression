@@ -8,8 +8,8 @@ const FSLP1 = FinancialStrategyLibraryPanelV1
 include(joinpath(@__DIR__, "..", "scripts", "run_financial_strategy_library_panel_v1.jl"))
 const FSLP1Runner = RunFinancialStrategyLibraryPanelV1
 
-include(joinpath(@__DIR__, "..", "scripts", "lock_financial_strategy_library_panel_v1_execution_002.jl"))
-const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution002
+include(joinpath(@__DIR__, "..", "scripts", "lock_financial_strategy_library_panel_v1_execution_003.jl"))
+const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution003
 
 @testset "financial panel v1 execution configuration" begin
     @test VERSION == v"1.12.6"
@@ -18,14 +18,16 @@ const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution002
     @test config["experiment_id"] == "financial-strategy-library-panel-v1"
     @test amendment["threading"]["julia_threads"] == 8
     @test amendment["threading"]["concurrent_lanes"] == 8
-    @test amendment["amendment_id"] == "AMENDMENT_002"
+    @test amendment["amendment_id"] == "AMENDMENT_003"
     @test amendment["return_rule"]["allowed_missing_flag"] == "NS"
+    @test amendment["failure_persistence"]["successful_instances_plus_failure_slots"] == 180
+    @test amendment["failure_persistence"]["impute_profile"] === false
     @test amendment["information_firewall"]["shared_cross_origin_return_map_permitted"] === false
     @test length(FSLP1.registered_job_keys()) == 180
     @test length(unique(FSLP1.registered_job_keys())) == 180
 
     if isfile(FSLP1ExecutionLock.LOCK_PATH)
-        aggregate = FSLP1ExecutionLock.verify_execution_lock_002()
+        aggregate = FSLP1ExecutionLock.verify_execution_lock_003()
         @test occursin(r"^[0-9a-f]{64}$", aggregate)
         lock_text = read(FSLP1ExecutionLock.LOCK_PATH, String)
         one_hash = first(values(FSLP1ExecutionLock._hashes()))
@@ -268,7 +270,9 @@ end
         end
         @test job == lane
     end
-    FSLP1Runner._run_threaded_lanes!(collect(1:8), "lane-test", run_lane; lanes = 8)
+    completed = FSLP1Runner._run_threaded_lanes!(collect(1:8), "lane-test", run_lane; lanes = 8)
+    @test completed.completed == 8
+    @test isempty(completed.failures)
     @test lanes_seen == ones(Int, 8)
     fail_lane = function(job, lane)
         job == 3 && error("intentional threaded fixture failure")
@@ -280,4 +284,46 @@ end
         fail_lane;
         lanes = 8,
     )
+    retained = FSLP1Runner._run_threaded_lanes!(
+        collect(1:8),
+        "retained-failure-test",
+        fail_lane;
+        lanes = 8,
+        allow_failures = true,
+    )
+    @test retained.completed == 8
+    @test length(retained.failures) == 1
+    @test only(retained.failures).job == 3
+end
+
+@testset "registered preparation failure records" begin
+    job = (
+        origin_id = "FSLP1-O2005",
+        library_id = "centralized_research_pool",
+        schedule_id = "equal_active_strategy",
+        stem = "fixture",
+    )
+    exception = ErrorException("a registered belief profile has too few observations")
+    @test FSLP1Runner._is_registered_origin_rejection(exception)
+    @test !FSLP1Runner._is_registered_origin_rejection(ErrorException("unexpected fixture"))
+    payload = FSLP1Runner._preparation_failure_payload(
+        job,
+        "../local_data/origin_failures/FSLP1-O2005.toml",
+        repeat("a", 64),
+        exception,
+    )
+    @test payload["terminal"] === true
+    @test payload["source_instance_available"] === false
+    @test payload["source_instance_fabricated"] === false
+    @test payload["algorithm_terminal_row_count"] == 7
+    @test payload["failure_message"] == "registered belief profile has too few observations"
+    @test payload["postdecision_opened"] === false
+    structural = FSLP1Runner._preparation_failure_result(
+        job,
+        merge(payload, Dict("record_sha256" => repeat("b", 64))),
+        4,
+    )
+    @test structural["terminal"] === true
+    @test structural["source_instance_available"] === false
+    @test structural["preparation_failure_sha256"] == repeat("b", 64)
 end

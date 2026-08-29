@@ -41,6 +41,13 @@ const AMENDMENT_PATH = joinpath(
     "amendments",
     "EXECUTION_AMENDMENT_001.toml",
 )
+const AMENDMENT_002_PATH = joinpath(
+    REPOSITORY_ROOT,
+    "experiments",
+    "financial_strategy_library_panel_v1",
+    "amendments",
+    "EXECUTION_AMENDMENT_002.toml",
+)
 const ALGORITHM_IDS = (
     "jump_highs_tagged_cover",
     "requirement_mask_dp",
@@ -146,6 +153,21 @@ function load_panel_config(path::AbstractString = CONFIG_PATH)
         error("unsupported financial panel execution amendment")
     amendment["study_outcome_observed_before_amendment"] === false ||
         error("the execution amendment is not prospective")
+    successor = TOML.parsefile(AMENDMENT_002_PATH)
+    successor["schema_version"] ==
+    "financial-strategy-library-panel-execution-amendment-v2" ||
+        error("unsupported successor execution amendment")
+    successor["amendment_id"] == "AMENDMENT_002" ||
+        error("unexpected successor execution amendment identifier")
+    successor["study_instance_constructed_before_amendment"] === false ||
+        error("the return-quality amendment followed instance construction")
+    successor["algorithm_or_solver_outcome_observed_before_amendment"] === false ||
+        error("the return-quality amendment followed an algorithm outcome")
+    amendment["predecessor_amendment_id"] = amendment["amendment_id"]
+    amendment["amendment_id"] = successor["amendment_id"]
+    amendment["successor_amendment"] = successor
+    amendment["return_rule"] = successor["return_rule"]
+    amendment["environment_recovery"] = successor["environment_recovery"]
     return config, amendment
 end
 
@@ -505,11 +527,18 @@ registered postdecision year. A strategy builder therefore never receives a
 different origin's future observations merely because all origins share one
 physical CRSP delivery.
 """
-function extract_origin_series(config, daily_files, origins; phase::Symbol)
+function extract_origin_series(
+    config,
+    daily_files,
+    origins;
+    phase::Symbol,
+    diagnostics::Union{Nothing,AbstractDict} = nothing,
+)
     phase in (:structural, :postdecision) ||
         throw(ArgumentError("origin-series phase must be structural or postdecision"))
     contexts = Dict{Int,Vector{NamedTuple}}()
     observations = Dict{String,Dict{Int,Vector{DailyObservation}}}()
+    quality = Dict{String,Dict{String,Int}}()
     for origin in origins
         selected = Set([origin.reference_permno; Int[row.permno for row in origin.selected]])
         start_year = phase == :structural ?
@@ -520,6 +549,14 @@ function extract_origin_series(config, daily_files, origins; phase::Symbol)
         observations[origin.origin_id] = Dict(
             permno => DailyObservation[] for permno in selected
         )
+        quality[origin.origin_id] = Dict(
+            "origin_security_series" => length(selected),
+            "source_rows_seen" => 0,
+            "valid_return_rows_retained" => 0,
+            "new_security_initialization_rows_excluded" => 0,
+            "interior_missing_return_rows" => 0,
+            "unexpected_return_flag_rows" => 0,
+        )
         for permno in selected
             push!(get!(contexts, permno, NamedTuple[]), (
                 origin_id = origin.origin_id,
@@ -529,7 +566,7 @@ function extract_origin_series(config, daily_files, origins; phase::Symbol)
         end
     end
     required = String.(config["source"]["required_daily_columns"]["columns"])
-    last_date = Dict{Tuple{String,Int},String}()
+    last_source_date = Dict{Tuple{String,Int},String}()
     for path in daily_files
         _with_daily_file(path) do io
             header = strip.(_split_csv(chomp(readline(io))))
@@ -548,8 +585,40 @@ function extract_origin_series(config, daily_files, origins; phase::Symbol)
                 ]
                 isempty(matching) && continue
                 total_return = _parse_float(fields[positions["dlyret"]])
-                isnothing(total_return) && error("selected daily return is missing or nonnumeric")
+                return_flag = strip(fields[positions["dlyretmissflg"]])
+                first_source_row = Dict{String,Bool}()
+                for context in matching
+                    key = (context.origin_id, permno)
+                    first_source_row[context.origin_id] = !haskey(last_source_date, key)
+                    date > get(last_source_date, key, "") ||
+                        error("duplicate or unstable daily ordering for an origin-scoped PERMNO")
+                    last_source_date[key] = date
+                    quality[context.origin_id]["source_rows_seen"] += 1
+                end
+                if isnothing(total_return)
+                    for context in matching
+                        if first_source_row[context.origin_id] && return_flag == "NS"
+                            quality[context.origin_id]["new_security_initialization_rows_excluded"] += 1
+                        else
+                            first_source_row[context.origin_id] ||
+                                (quality[context.origin_id]["interior_missing_return_rows"] += 1)
+                            return_flag == "NS" ||
+                                (quality[context.origin_id]["unexpected_return_flag_rows"] += 1)
+                            error(
+                                "selected daily return violates the locked missing-return rule; " *
+                                "only a first-row CRSP NS initialization may be excluded",
+                            )
+                        end
+                    end
+                    continue
+                end
                 total_return > -1 || error("selected daily return is not compoundable")
+                return_flag == "NA" || begin
+                    for context in matching
+                        quality[context.origin_id]["unexpected_return_flag_rows"] += 1
+                    end
+                    error("a finite selected daily return does not carry CRSP flag NA")
+                end
                 close = _positive_close(fields, positions)
                 isnothing(close) && error("selected close and price fallback are invalid")
                 volume = _parse_float(fields[positions["dlyvol"]])
@@ -560,14 +629,11 @@ function extract_origin_series(config, daily_files, origins; phase::Symbol)
                     close,
                     volume,
                     strip(fields[positions["dlydelflg"]]),
-                    strip(fields[positions["dlyretmissflg"]]),
+                    return_flag,
                 )
                 for context in matching
-                    key = (context.origin_id, permno)
-                    date > get(last_date, key, "") ||
-                        error("duplicate or unstable daily ordering for an origin-scoped PERMNO")
                     push!(observations[context.origin_id][permno], observation)
-                    last_date[key] = date
+                    quality[context.origin_id]["valid_return_rows_retained"] += 1
                 end
             end
         end
@@ -575,6 +641,19 @@ function extract_origin_series(config, daily_files, origins; phase::Symbol)
     for (origin_id, series) in observations
         all(!isempty, values(series)) ||
             error("an origin-scoped selected PERMNO has no $phase daily series: $origin_id")
+        row = quality[origin_id]
+        row["source_rows_seen"] ==
+        row["valid_return_rows_retained"] +
+        row["new_security_initialization_rows_excluded"] ||
+            error("origin-scoped return-quality counts do not reconcile")
+        row["interior_missing_return_rows"] == 0 ||
+            error("origin-scoped extraction contains an interior missing return")
+        row["unexpected_return_flag_rows"] == 0 ||
+            error("origin-scoped extraction contains an unexpected return flag")
+    end
+    if !isnothing(diagnostics)
+        empty!(diagnostics)
+        merge!(diagnostics, quality)
     end
     return observations
 end

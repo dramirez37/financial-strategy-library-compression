@@ -1,0 +1,49 @@
+schema_version = "financial-strategy-library-panel-execution-amendment-v2"
+experiment_id = "financial-strategy-library-panel-v1"
+amendment_id = "AMENDMENT_002"
+amendment_date = "2026-08-29"
+licensed_rows_read_before_amendment = true
+ingestion_failure_observed_before_amendment = true
+environment_record_created_before_amendment = true
+registered_seed_consumed_before_amendment = false
+study_instance_constructed_before_amendment = false
+algorithm_or_solver_outcome_observed_before_amendment = false
+burden_or_identity_outcome_observed_before_amendment = false
+postdecision_outcome_observed_before_amendment = false
+raw_licensed_rows_printed_or_committed = false
+scientific_estimands_changed = false
+origin_registry_changed = false
+library_registry_changed = false
+burden_schedule_registry_changed = false
+seed_registry_changed = false
+algorithm_registry_changed = false
+
+[diagnostic]
+registered_origins = 20
+origin_security_series = 2670
+selected_origin_membership_rows = 3950875
+missing_return_membership_rows = 340
+missing_first_rows = 340
+missing_interior_rows = 0
+affected_origin_security_series = 340
+affected_origins = 20
+invalid_compound_rows = 0
+missing_flag = "NS"
+finite_return_flag = "NA"
+raw_rows_printed = false
+
+[return_rule]
+allowed_missing_position = "first source row of each origin-security scoped extraction window only"
+allowed_missing_flag = "NS"
+action = "exclude initialization row without imputation"
+allowed_finite_flag = "NA"
+minimum_finite_return_exclusive = -1.0
+other_missing_action = "fail closed"
+unexpected_flag_action = "fail closed"
+minimum_observation_rules_apply_after_exclusion = true
+
+[environment_recovery]
+replace_environment_only_failed_attempt = true
+replace_terminal_record = false
+require_absent_preparation_manifest = true
+require_absent_instance_and_result_records = true

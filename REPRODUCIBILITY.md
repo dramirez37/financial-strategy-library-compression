@@ -86,6 +86,11 @@ ALGOLIB_CRSP_ROOT=/absolute/path/to/licensed/source make aor-financial-panel-v1-
 Progress bars read terminal counts only. Structural return maps are scoped to
 each origin and stop at its compression endpoint. The postdecision phase is
 not opened until the 180 structural records pass the independent exact audit.
+Execution Amendment 002 excludes, without imputation, only a first scoped CRSP
+return row carrying the official new-security flag `NS`; every interior or
+otherwise flagged missing return still fails closed. Execution Lock 001 is
+retained as the immutable record of the initial ingestion failure, while
+`EXECUTION_LOCK_002.json` is the active successor lock.
 
 ### AoOR journal release gate
 

@@ -8,8 +8,8 @@ const FSLP1 = FinancialStrategyLibraryPanelV1
 include(joinpath(@__DIR__, "..", "scripts", "run_financial_strategy_library_panel_v1.jl"))
 const FSLP1Runner = RunFinancialStrategyLibraryPanelV1
 
-include(joinpath(@__DIR__, "..", "scripts", "lock_financial_strategy_library_panel_v1_execution.jl"))
-const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution
+include(joinpath(@__DIR__, "..", "scripts", "lock_financial_strategy_library_panel_v1_execution_002.jl"))
+const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution002
 
 @testset "financial panel v1 execution configuration" begin
     @test VERSION == v"1.12.6"
@@ -18,12 +18,14 @@ const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution
     @test config["experiment_id"] == "financial-strategy-library-panel-v1"
     @test amendment["threading"]["julia_threads"] == 8
     @test amendment["threading"]["concurrent_lanes"] == 8
+    @test amendment["amendment_id"] == "AMENDMENT_002"
+    @test amendment["return_rule"]["allowed_missing_flag"] == "NS"
     @test amendment["information_firewall"]["shared_cross_origin_return_map_permitted"] === false
     @test length(FSLP1.registered_job_keys()) == 180
     @test length(unique(FSLP1.registered_job_keys())) == 180
 
     if isfile(FSLP1ExecutionLock.LOCK_PATH)
-        aggregate = FSLP1ExecutionLock.verify_execution_lock()
+        aggregate = FSLP1ExecutionLock.verify_execution_lock_002()
         @test occursin(r"^[0-9a-f]{64}$", aggregate)
         lock_text = read(FSLP1ExecutionLock.LOCK_PATH, String)
         one_hash = first(values(FSLP1ExecutionLock._hashes()))
@@ -152,22 +154,27 @@ end
         gzip_path = csv_path * ".gz"
         open(csv_path, "w") do io
             println(io, "permno,dlycaldt,dlyret,dlyclose,dlyprc,dlyvol,dlydelflg,dlyretmissflg")
-            println(io, "1,2005-12-30,0.01,10,10,1000,N,")
-            println(io, "1,2006-12-29,0.02,11,11,1000,N,")
-            println(io, "1,2007-12-31,0.03,12,12,1000,N,")
+            println(io, "1,2004-01-02,,9,9,1000,N,NS")
+            println(io, "1,2005-12-30,0.01,10,10,1000,N,NA")
+            println(io, "1,2006-12-29,0.02,11,11,1000,N,NA")
+            println(io, "1,2007-12-31,0.03,12,12,1000,N,NA")
         end
         open(gzip_path, "w") do output
             run(pipeline(`gzip -c -- $csv_path`; stdout = output))
         end
+        structural_quality = Dict{String,Any}()
         structural = FSLP1.extract_origin_series(
             config,
             [gzip_path],
             origins;
             phase = :structural,
+            diagnostics = structural_quality,
         )
         @test getfield.(structural["TEST-O2005"][1], :date) == ["2005-12-30"]
         @test getfield.(structural["TEST-O2006"][1], :date) ==
               ["2005-12-30", "2006-12-29"]
+        @test structural_quality["TEST-O2005"]["new_security_initialization_rows_excluded"] == 1
+        @test structural_quality["TEST-O2006"]["new_security_initialization_rows_excluded"] == 1
         postdecision = FSLP1.extract_origin_series(
             config,
             [gzip_path],
@@ -178,6 +185,23 @@ end
               ["2005-12-30", "2006-12-29"]
         @test getfield.(postdecision["TEST-O2006"][1], :date) ==
               ["2006-12-29", "2007-12-31"]
+
+        invalid_csv_path = joinpath(root, "invalid_daily.csv")
+        invalid_gzip_path = invalid_csv_path * ".gz"
+        open(invalid_csv_path, "w") do io
+            println(io, "permno,dlycaldt,dlyret,dlyclose,dlyprc,dlyvol,dlydelflg,dlyretmissflg")
+            println(io, "1,2005-12-30,0.01,10,10,1000,N,NA")
+            println(io, "1,2006-12-29,,11,11,1000,N,NS")
+        end
+        open(invalid_gzip_path, "w") do output
+            run(pipeline(`gzip -c -- $invalid_csv_path`; stdout = output))
+        end
+        @test_throws ErrorException FSLP1.extract_origin_series(
+            config,
+            [invalid_gzip_path],
+            origins;
+            phase = :structural,
+        )
     end
 end
 

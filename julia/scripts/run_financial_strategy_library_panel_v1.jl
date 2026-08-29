@@ -9,8 +9,8 @@ using TOML
 include(joinpath(@__DIR__, "..", "src", "FinancialStrategyLibraryPanelV1.jl"))
 using .FinancialStrategyLibraryPanelV1
 
-include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution.jl"))
-using .LockFinancialStrategyLibraryPanelV1Execution: verify_execution_lock
+include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_002.jl"))
+using .LockFinancialStrategyLibraryPanelV1Execution002: verify_execution_lock_002
 
 export main,
        prepare_instances,
@@ -72,7 +72,7 @@ function _source_root(config)
     return normpath(joinpath(REPOSITORY_ROOT, configured))
 end
 
-function _environment()
+function _environment(execution_lock_aggregate; replaced_failed_environment_only_record = false)
     LinearAlgebra.BLAS.set_num_threads(1)
     commit = try
         strip(read(`git -C $REPOSITORY_ROOT rev-parse HEAD`, String))
@@ -85,7 +85,7 @@ function _environment()
         "UNAVAILABLE"
     end
     return Dict{String,Any}(
-        "schema_version" => "financial-strategy-library-panel-environment-v1",
+        "schema_version" => "financial-strategy-library-panel-environment-v2",
         "recorded_at_utc" => _utc_now(),
         "git_commit" => commit,
         "dirty_worktree" => !isempty(strip(status)),
@@ -95,6 +95,10 @@ function _environment()
         "blas_threads" => LinearAlgebra.BLAS.get_num_threads(),
         "highs_threads_per_model" => 1,
         "threaded_lane_count" => THREAD_COUNT,
+        "execution_lock_aggregate_sha256" => execution_lock_aggregate,
+        "active_amendment_id" => "AMENDMENT_002",
+        "replaced_failed_environment_only_record" =>
+            replaced_failed_environment_only_record,
         "dependency_manifest_sha256" =>
             _sha256_file(joinpath(REPOSITORY_ROOT, "julia", "Manifest.toml")),
         "operating_system" => string(Sys.KERNEL),
@@ -170,7 +174,7 @@ function _registry_seed(origin_id, library_id)
 end
 
 function validate_readiness(; require_sources::Bool = true)
-    verify_execution_lock()
+    verify_execution_lock_002()
     VERSION == v"1.12.6" || error("financial panel v1 requires Julia 1.12.6")
     Threads.nthreads() == THREAD_COUNT || error(
         "financial panel v1 requires --threads=$THREAD_COUNT; found $(Threads.nthreads())",
@@ -191,13 +195,29 @@ function validate_readiness(; require_sources::Bool = true)
 end
 
 function _write_environment(paths)
+    execution_lock_aggregate = verify_execution_lock_002()
     if isfile(paths.environment)
         environment = TOML.parsefile(paths.environment)
-        environment["julia_version"] == string(VERSION) || error("saved environment Julia version differs")
-        environment["julia_threads"] == THREAD_COUNT || error("saved environment thread count differs")
+        if get(environment, "execution_lock_aggregate_sha256", "") == execution_lock_aggregate
+            environment["julia_version"] == string(VERSION) || error("saved environment Julia version differs")
+            environment["julia_threads"] == THREAD_COUNT || error("saved environment thread count differs")
+            return environment
+        end
+        prior_scientific_state = isfile(paths.preparation_manifest) || any(
+            directory -> isdir(directory) && !isempty(readdir(directory)),
+            (paths.instances, paths.structural, paths.postdecision),
+        )
+        prior_scientific_state && error(
+            "saved environment belongs to an earlier execution lock with scientific artifacts",
+        )
+        environment = _environment(
+            execution_lock_aggregate;
+            replaced_failed_environment_only_record = true,
+        )
+        _atomic_toml(paths.environment, environment; replace = true)
         return environment
     end
-    environment = _environment()
+    environment = _environment(execution_lock_aggregate)
     _atomic_toml(paths.environment, environment)
     return environment
 end
@@ -237,11 +257,13 @@ function prepare_instances()
     _write_environment(output)
     raw_paths = source_paths(config, _source_root(config))
     universes = construct_origin_universes(config, raw_paths)
+    return_quality = Dict{String,Any}()
     series_by_origin = extract_origin_series(
         config,
         raw_paths.daily_files,
         universes;
         phase = :structural,
+        diagnostics = return_quality,
     )
     entries_lock = ReentrantLock()
     entries = Dict{String,String}()
@@ -254,6 +276,7 @@ function prepare_instances()
         )
         metadata["thread_lane"] = lane
         metadata["origin_universe"] = _origin_payload(origin)
+        metadata["return_quality"] = return_quality[origin.origin_id]
         metadata_path = joinpath(output.origin_metadata, "$(origin.origin_id).toml")
         metadata_text = toml_text(metadata)
         if isfile(metadata_path)
@@ -291,6 +314,20 @@ function prepare_instances()
         "return_values_used_for_universe_selection" => false,
         "structural_return_maps_origin_scoped" => true,
         "shared_cross_origin_return_map_created" => false,
+        "missing_return_rule" =>
+            "exclude first scoped CRSP NS initialization row without imputation; otherwise fail",
+        "new_security_initialization_rows_excluded" => sum(
+            quality_row["new_security_initialization_rows_excluded"] for
+            quality_row in values(return_quality)
+        ),
+        "interior_missing_return_rows" => sum(
+            quality_row["interior_missing_return_rows"] for
+            quality_row in values(return_quality)
+        ),
+        "unexpected_return_flag_rows" => sum(
+            quality_row["unexpected_return_flag_rows"] for
+            quality_row in values(return_quality)
+        ),
         "postdecision_returns_opened" => false,
         "licensed_rows_included" => false,
         "files" => entries,
@@ -304,6 +341,12 @@ function _validate_preparation(output)
     manifest = TOML.parsefile(output.preparation_manifest)
     manifest["instance_count"] == 180 || error("prepared instance count changed")
     manifest["postdecision_returns_opened"] === false || error("preparation opened postdecision returns")
+    manifest["new_security_initialization_rows_excluded"] == 340 ||
+        error("registered structural CRSP NS initialization count changed")
+    manifest["interior_missing_return_rows"] == 0 ||
+        error("structural extraction contains an interior missing return")
+    manifest["unexpected_return_flag_rows"] == 0 ||
+        error("structural extraction contains an unexpected return flag")
     for (relative, expected) in manifest["files"]
         path = joinpath(output.local_results, relative)
         isfile(path) || error("prepared artifact is missing: $relative")
@@ -439,11 +482,13 @@ function run_postdecision_phase()
         thresholds[origin_row.origin_id] = Float64.(payload["belief_thresholds"])
     end
     raw_paths = source_paths(config, _source_root(config))
+    postdecision_return_quality = Dict{String,Any}()
     series_by_origin = extract_origin_series(
         config,
         raw_paths.daily_files,
         collect(values(origins));
         phase = :postdecision,
+        diagnostics = postdecision_return_quality,
     )
     jobs = [(
         origin_id,
@@ -489,6 +534,7 @@ function run_postdecision_phase()
             )
         end
         payload["thread_lane"] = lane
+        payload["return_quality"] = postdecision_return_quality[job.origin_id]
         _atomic_toml(destination, payload)
         return nothing
     end

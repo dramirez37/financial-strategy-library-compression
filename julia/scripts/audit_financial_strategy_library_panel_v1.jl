@@ -8,8 +8,8 @@ using TOML
 include(joinpath(@__DIR__, "..", "src", "FinancialStrategyLibraryPanelV1.jl"))
 using .FinancialStrategyLibraryPanelV1
 
-include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution.jl"))
-using .LockFinancialStrategyLibraryPanelV1Execution: verify_execution_lock
+include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_002.jl"))
+using .LockFinancialStrategyLibraryPanelV1Execution002: verify_execution_lock_002
 
 export audit_all_results, audit_structural_results, main
 
@@ -94,6 +94,12 @@ function _audit_preparation(paths, errors)
         push!(errors, "structural return maps are not declared origin scoped")
     get(manifest, "shared_cross_origin_return_map_created", true) === false ||
         push!(errors, "a shared cross-origin return map was declared")
+    get(manifest, "new_security_initialization_rows_excluded", -1) == 340 ||
+        push!(errors, "structural CRSP NS initialization count differs from Amendment 002")
+    get(manifest, "interior_missing_return_rows", -1) == 0 ||
+        push!(errors, "structural extraction has an interior missing return")
+    get(manifest, "unexpected_return_flag_rows", -1) == 0 ||
+        push!(errors, "structural extraction has an unexpected return flag")
     get(manifest, "postdecision_returns_opened", true) === false ||
         push!(errors, "preparation manifest says postdecision returns were opened")
     get(manifest, "licensed_rows_included", true) === false ||
@@ -128,7 +134,7 @@ function _audit_failure_payload(payload, instance, errors, stem)
 end
 
 function audit_structural_results(; write_report::Bool = true)
-    execution_lock = verify_execution_lock()
+    execution_lock = verify_execution_lock_002()
     config, _ = load_panel_config()
     paths = _paths(config)
     errors = String[]
@@ -260,6 +266,11 @@ function audit_all_results(; write_report::Bool = true)
             push!(errors, "$stem postdecision record contains licensed rows")
         get(payload, "structural_result_terminal_and_audited_before_open", false) === true ||
             push!(errors, "$stem postdecision record lacks the structural firewall certificate")
+        quality = get(payload, "return_quality", Dict{String,Any}())
+        get(quality, "interior_missing_return_rows", -1) == 0 ||
+            push!(errors, "$stem postdecision extraction has an interior missing return")
+        get(quality, "unexpected_return_flag_rows", -1) == 0 ||
+            push!(errors, "$stem postdecision extraction has an unexpected return flag")
         if source["schema_version"] == "financial-strategy-library-panel-instance-failure-v1"
             structural_failure_count += 1
             payload["schema_version"] == "financial-strategy-library-panel-postdecision-failure-v1" ||

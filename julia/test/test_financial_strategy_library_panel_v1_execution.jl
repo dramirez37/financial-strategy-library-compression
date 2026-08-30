@@ -8,8 +8,8 @@ const FSLP1 = FinancialStrategyLibraryPanelV1
 include(joinpath(@__DIR__, "..", "scripts", "run_financial_strategy_library_panel_v1.jl"))
 const FSLP1Runner = RunFinancialStrategyLibraryPanelV1
 
-include(joinpath(@__DIR__, "..", "scripts", "lock_financial_strategy_library_panel_v1_execution_003.jl"))
-const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution003
+include(joinpath(@__DIR__, "..", "scripts", "lock_financial_strategy_library_panel_v1_execution_004.jl"))
+const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution004
 
 @testset "financial panel v1 execution configuration" begin
     @test VERSION == v"1.12.6"
@@ -17,8 +17,9 @@ const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution003
     config, amendment = FSLP1.load_panel_config()
     @test config["experiment_id"] == "financial-strategy-library-panel-v1"
     @test amendment["threading"]["julia_threads"] == 8
-    @test amendment["threading"]["concurrent_lanes"] == 8
-    @test amendment["amendment_id"] == "AMENDMENT_003"
+    @test amendment["threading"]["concurrent_job_lanes"] == 8
+    @test amendment["threading"]["maximum_simultaneous_heavy_stages"] == 2
+    @test amendment["amendment_id"] == "AMENDMENT_004"
     @test amendment["return_rule"]["allowed_missing_flag"] == "NS"
     @test amendment["failure_persistence"]["successful_instances_plus_failure_slots"] == 180
     @test amendment["failure_persistence"]["impute_profile"] === false
@@ -27,7 +28,7 @@ const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution003
     @test length(unique(FSLP1.registered_job_keys())) == 180
 
     if isfile(FSLP1ExecutionLock.LOCK_PATH)
-        aggregate = FSLP1ExecutionLock.verify_execution_lock_003()
+        aggregate = FSLP1ExecutionLock.verify_execution_lock_004()
         @test occursin(r"^[0-9a-f]{64}$", aggregate)
         lock_text = read(FSLP1ExecutionLock.LOCK_PATH, String)
         one_hash = first(values(FSLP1ExecutionLock._hashes()))
@@ -261,6 +262,135 @@ end
     @test !FSLP1.audit_instance_result(job.instance, tampered)["passed"]
 end
 
+@testset "full-preprocessing DP guard and algorithm-level resume" begin
+    modules = [Symbol("m$index") for index in 1:31]
+    provenance = JournalCompressionProvenance(
+        :synthetic,
+        "panel-dp-guard-32",
+        "synthetic execution guard fixture";
+        generator = "test_financial_strategy_library_panel_v1_execution",
+    )
+    instance = journal_compression_instance_from_components(
+        [:inactive, :bundle],
+        Bool[true, false],
+        [0, 1],
+        [:zero],
+        zeros(Int, 2, 1),
+        [Symbol[], modules];
+        provenance,
+    )
+    @test length(instance.requirements) == 32
+    config, _ = FSLP1.load_panel_config()
+    checkpoints = Dict{String,Any}()
+    progress = Any[]
+    payload, _ = FSLP1.run_algorithm_suite(
+        instance;
+        origin_id = "SMOKE-O99",
+        library_id = "full_factorial_catalog",
+        schedule_id = "validation_work_units",
+        config,
+        progress_callback = update -> push!(progress, update),
+        checkpoint_callback = function(algorithm_id, record, selection, logs)
+            checkpoints[algorithm_id] = (
+                record = deepcopy(record),
+                selection = isnothing(selection) ? nothing : copy(selection),
+            )
+        end,
+    )
+    dp = only(filter(
+        record -> record["algorithm_id"] == "requirement_mask_dp",
+        payload["algorithms"],
+    ))
+    @test dp["applicable"]
+    @test dp["candidate_returned"]
+    @test dp["selection"]["exact_burden"] == "1//1"
+    completed_preprocessing = only(filter(
+        update -> update.stage == "preprocessing" && update.state == "completed",
+        progress,
+    ))
+    @test completed_preprocessing.residual_requirements == 0
+    @test completed_preprocessing.residual_strategies == 0
+    @test length(checkpoints) == 7
+
+    resumed_progress = Any[]
+    resumed_payload, resumed_logs = FSLP1.run_algorithm_suite(
+        instance;
+        origin_id = "SMOKE-O99",
+        library_id = "full_factorial_catalog",
+        schedule_id = "validation_work_units",
+        config,
+        progress_callback = update -> push!(resumed_progress, update),
+        checkpoint_callback = (args...) -> error("a resumed algorithm was rerun"),
+        resume_algorithms = checkpoints,
+    )
+    @test isempty(resumed_logs)
+    @test count(update -> update.state == "resumed", resumed_progress) == 7
+    @test resumed_payload["benchmark_burden"] == payload["benchmark_burden"]
+    @test resumed_payload["algorithms"] == payload["algorithms"]
+    @test FSLP1.audit_instance_result(instance, resumed_payload)["passed"]
+end
+
+@testset "atomic algorithm checkpoint round trip" begin
+    config, _ = FSLP1.load_panel_config()
+    job = first(FSLP1.build_synthetic_smoke_instances())
+    payload, logs = FSLP1.run_algorithm_suite(
+        job.instance;
+        origin_id = job.origin_id,
+        library_id = job.library_id,
+        schedule_id = job.schedule_id,
+        config,
+    )
+    record = first(payload["algorithms"])
+    selected = FSLP1Runner._checkpoint_selection(job.instance, record)
+    mktempdir() do root
+        output = (
+            local_results = root,
+            checkpoints = joinpath(root, "checkpoints"),
+            solver_logs = joinpath(root, "solver_logs"),
+        )
+        lock_hash = repeat("a", 64)
+        algorithm_logs = haskey(logs, record["algorithm_id"]) ?
+                         Dict(record["algorithm_id"] => logs[record["algorithm_id"]]) :
+                         Dict{String,String}()
+        path = FSLP1Runner._write_algorithm_checkpoint(
+            output,
+            "fixture",
+            job.instance,
+            lock_hash,
+            record["algorithm_id"],
+            record,
+            selected,
+            algorithm_logs,
+        )
+        @test isfile(path)
+        restored = FSLP1Runner._load_algorithm_checkpoints(
+            output,
+            "fixture",
+            job.instance,
+            lock_hash,
+        )
+        @test haskey(restored, record["algorithm_id"])
+        @test restored[record["algorithm_id"]].record == record
+        @test restored[record["algorithm_id"]].selection == selected
+        @test_throws ErrorException FSLP1Runner._write_algorithm_checkpoint(
+            output,
+            "fixture",
+            job.instance,
+            lock_hash,
+            record["algorithm_id"],
+            record,
+            selected,
+            algorithm_logs,
+        )
+        @test_throws ErrorException FSLP1Runner._load_algorithm_checkpoints(
+            output,
+            "fixture",
+            job.instance,
+            repeat("b", 64),
+        )
+    end
+end
+
 @testset "thread lanes terminate and expose failures" begin
     lanes_seen = zeros(Int, 8)
     lane_lock = ReentrantLock()
@@ -294,6 +424,33 @@ end
     @test retained.completed == 8
     @test length(retained.failures) == 1
     @test only(retained.failures).job == 3
+    progress_seen = Threads.Atomic{Int}(0)
+    progress_lane = function(job, lane, report)
+        report((
+            stage = "preprocessing",
+            state = "started",
+            algorithm_id = nothing,
+        ))
+        Threads.atomic_add!(progress_seen, 1)
+        sleep(0.05)
+        return nothing
+    end
+    progress_result = FSLP1Runner._run_threaded_lanes!(
+        [1],
+        "heartbeat-test",
+        progress_lane;
+        lanes = 1,
+        heartbeat_seconds = 0.01,
+    )
+    @test progress_result.completed == 1
+    @test progress_seen[] == 1
+    @test_throws ErrorException FSLP1Runner._run_threaded_lanes!(
+        [1],
+        "invalid-heartbeat",
+        (job, lane) -> nothing;
+        lanes = 1,
+        heartbeat_seconds = 0,
+    )
 end
 
 @testset "registered preparation failure records" begin

@@ -229,6 +229,11 @@ end
         [Symbol[], [:m1], [:m1], [:m2]],
     )
     result = solve_journal_compression_mip(instance)
+    preprocessing = preprocess_tagged_cover(exact_tagged_cover_model(instance))
+    reused = solve_journal_compression_mip(
+        instance;
+        preprocessing_result = preprocessing,
+    )
     @test result.candidate_accepted
     @test result.exact_burden == 4 // 1
     @test _mip_selected_ids(result) == Set([:inactive, :a, :c])
@@ -250,6 +255,19 @@ end
     @test result.crosscheck.algorithm == :complete_enumeration
     @test result.crosscheck.candidate_matches_exact_optimum === true
     @test isempty(result.raw_reduced_variable_values)
+    @test reused.exact_burden == result.exact_burden
+    @test reused.reconstructed_candidate == result.reconstructed_candidate
+    other = _mip_instance(
+        "mismatched-preprocessing",
+        [:inactive, :only],
+        Bool[true, false],
+        [0, 1],
+        [Symbol[], [:other]],
+    )
+    @test_throws ArgumentError solve_journal_compression_mip(
+        instance;
+        preprocessing_result = preprocess_tagged_cover(exact_tagged_cover_model(other)),
+    )
 end
 
 

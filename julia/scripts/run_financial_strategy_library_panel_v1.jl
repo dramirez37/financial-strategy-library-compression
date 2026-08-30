@@ -9,8 +9,8 @@ using TOML
 include(joinpath(@__DIR__, "..", "src", "FinancialStrategyLibraryPanelV1.jl"))
 using .FinancialStrategyLibraryPanelV1
 
-include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_003.jl"))
-using .LockFinancialStrategyLibraryPanelV1Execution003: verify_execution_lock_003
+include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_004.jl"))
+using .LockFinancialStrategyLibraryPanelV1Execution004: verify_execution_lock_004
 
 export main,
        prepare_instances,
@@ -27,6 +27,9 @@ const CONFIG_PATH = joinpath(
     "financial_strategy_library_panel_v1.toml",
 )
 const THREAD_COUNT = 8
+const HEAVY_CONCURRENCY = 2
+const ALGORITHM_CHECKPOINT_SCHEMA =
+    "financial-strategy-library-panel-algorithm-checkpoint-v1"
 
 _utc_now() = Dates.format(Dates.now(Dates.UTC), dateformat"yyyy-mm-ddTHH:MM:SS.sssZ")
 _sha256_file(path) = open(path, "r") do io
@@ -59,6 +62,7 @@ function _paths(config)
         preparation_failures = joinpath(local_results, "preparation_failures"),
         preparation_manifest = joinpath(local_results, "PREPARATION_MANIFEST.toml"),
         structural = joinpath(local_results, "structural"),
+        checkpoints = joinpath(local_results, "checkpoints"),
         solver_logs = joinpath(local_results, "solver_logs"),
         postdecision = joinpath(local_results, "postdecision"),
         environment = joinpath(local_results, "ENVIRONMENT.toml"),
@@ -92,7 +96,7 @@ function _environment(
         "UNAVAILABLE"
     end
     return Dict{String,Any}(
-        "schema_version" => "financial-strategy-library-panel-environment-v3",
+        "schema_version" => "financial-strategy-library-panel-environment-v4",
         "recorded_at_utc" => _utc_now(),
         "git_commit" => commit,
         "dirty_worktree" => !isempty(strip(status)),
@@ -102,8 +106,9 @@ function _environment(
         "blas_threads" => LinearAlgebra.BLAS.get_num_threads(),
         "highs_threads_per_model" => 1,
         "threaded_lane_count" => THREAD_COUNT,
+        "maximum_simultaneous_heavy_stages" => HEAVY_CONCURRENCY,
         "execution_lock_aggregate_sha256" => execution_lock_aggregate,
-        "active_amendment_id" => "AMENDMENT_003",
+        "active_amendment_id" => "AMENDMENT_004",
         "replaced_predecessor_environment" => replaced_predecessor_environment,
         "predecessor_instance_count" => predecessor_instance_count,
         "predecessor_origin_metadata_count" => predecessor_origin_metadata_count,
@@ -123,44 +128,142 @@ function _progress_line(label, completed, total; width = 36)
     return "$(rpad(label, 14)) [$bar] $(lpad(completed, ndigits(total)))/$total"
 end
 
+
+function _progress_job_label(job)
+    hasproperty(job, :stem) && return String(job.stem)
+    return string(job)
+end
+
+
+function _active_progress_summary(states; maximum_lanes = 4)
+    isempty(states) && return ""
+    now = time()
+    rows = String[]
+    for lane in sort!(collect(keys(states)))[1:min(length(states), maximum_lanes)]
+        state = states[lane]
+        elapsed = max(0, floor(Int, now - state.started_at))
+        stage = state.stage
+        algorithm = isnothing(state.algorithm_id) ? "" : "/$(state.algorithm_id)"
+        push!(rows, "L$lane:$(state.job)/$stage$algorithm $(elapsed)s")
+    end
+    length(states) > maximum_lanes && push!(rows, "+$(length(states) - maximum_lanes) lanes")
+    return isempty(rows) ? "" : "  " * join(rows, " | ")
+end
+
+
+function _draw_progress(label, completed, total, states)
+    print(
+        stderr,
+        '\r',
+        "\e[2K",
+        _progress_line(label, completed, total),
+        _active_progress_summary(states),
+    )
+    flush(stderr)
+    return nothing
+end
+
 function _run_threaded_lanes!(
     jobs,
     label,
     run_one;
     lanes = THREAD_COUNT,
     allow_failures = false,
+    heartbeat_seconds::Real = 30,
 )
     lanes <= Threads.nthreads() || error(
         "$label requires at least $lanes Julia threads; found $(Threads.nthreads())",
+    )
+    isfinite(heartbeat_seconds) && heartbeat_seconds > 0 || error(
+        "$label heartbeat_seconds must be finite and positive",
     )
     assignments = [Any[] for _ in 1:lanes]
     for (index, job) in enumerate(jobs)
         push!(assignments[mod1(index, lanes)], job)
     end
-    events = Channel{NamedTuple}(max(length(jobs), 1))
+    events = Channel{NamedTuple}(max(32 * length(jobs), 64))
     tasks = Task[]
     for lane in 1:lanes
         push!(tasks, Threads.@spawn begin
             for job in assignments[lane]
+                report = function(update)
+                    put!(events, (
+                        kind = :progress,
+                        lane,
+                        job,
+                        update,
+                    ))
+                    return nothing
+                end
                 try
-                    run_one(job, lane)
-                    put!(events, (passed = true, lane = lane, job = job, exception = nothing))
+                    if applicable(run_one, job, lane, report)
+                        run_one(job, lane, report)
+                    else
+                        run_one(job, lane)
+                    end
+                    put!(events, (
+                        kind = :terminal,
+                        passed = true,
+                        lane,
+                        job,
+                        exception = nothing,
+                    ))
                 catch exception
-                    put!(events, (passed = false, lane = lane, job = job, exception = exception))
+                    put!(events, (
+                        kind = :terminal,
+                        passed = false,
+                        lane,
+                        job,
+                        exception,
+                    ))
                 end
             end
         end)
     end
+    stop_heartbeat = Threads.Atomic{Bool}(false)
+    heartbeat = @async begin
+        while !stop_heartbeat[]
+            sleep(heartbeat_seconds)
+            stop_heartbeat[] || put!(events, (kind = :heartbeat,))
+        end
+    end
     completed = 0
     failures = NamedTuple[]
-    print(stderr, '\r', _progress_line(label, completed, length(jobs)))
+    states = Dict{Int,NamedTuple}()
+    _draw_progress(label, completed, length(jobs), states)
     while completed < length(jobs)
         event = take!(events)
+        if event.kind == :heartbeat
+            _draw_progress(label, completed, length(jobs), states)
+            continue
+        elseif event.kind == :progress
+            update = event.update
+            if update.state in ("completed", "resumed") && update.stage == "algorithm"
+                states[event.lane] = (
+                    job = _progress_job_label(event.job),
+                    stage = update.state,
+                    algorithm_id = update.algorithm_id,
+                    started_at = time(),
+                )
+            else
+                states[event.lane] = (
+                    job = _progress_job_label(event.job),
+                    stage = update.stage,
+                    algorithm_id = update.algorithm_id,
+                    started_at = time(),
+                )
+            end
+            _draw_progress(label, completed, length(jobs), states)
+            continue
+        end
         event.passed || push!(failures, event)
         completed += 1
-        print(stderr, '\r', _progress_line(label, completed, length(jobs)))
+        delete!(states, event.lane)
+        _draw_progress(label, completed, length(jobs), states)
     end
+    stop_heartbeat[] = true
     println(stderr)
+    flush(stderr)
     foreach(fetch, tasks)
     (allow_failures || isempty(failures)) || error(
         "$label failed in $(length(failures)) job(s); first lane=$(first(failures).lane): " *
@@ -179,6 +282,119 @@ function _read_instance(path)
     end
 end
 
+
+function _algorithm_checkpoint_path(output, stem, algorithm_id)
+    return joinpath(output.checkpoints, stem, "$(algorithm_id).toml")
+end
+
+
+function _checkpoint_selection(instance, record)
+    record["candidate_returned"] === true || return nothing
+    selection = record["selection"]
+    indices = Int.(selection["selected_strategy_indices"])
+    length(indices) == length(unique(indices)) || error(
+        "checkpoint selection repeats a strategy index",
+    )
+    all(index -> index in eachindex(instance.strategy_ids), indices) || error(
+        "checkpoint selection contains an out-of-range strategy index",
+    )
+    selected = falses(length(instance.strategy_ids))
+    selected[indices] .= true
+    check = check_journal_compression_solution(instance, selected)
+    check.exact_feasible === true || error("checkpoint selection is not exactly feasible")
+    string(numerator(check.exact_burden), "//", denominator(check.exact_burden)) ==
+    selection["exact_burden"] || error("checkpoint exact burden differs")
+    return selected
+end
+
+
+function _load_algorithm_checkpoints(
+    output,
+    stem,
+    instance,
+    execution_lock_aggregate,
+)
+    instance_sha256 = journal_compression_instance_sha256(instance)
+    saved = Dict{String,Any}()
+    for algorithm_id in FinancialStrategyLibraryPanelV1.ALGORITHM_IDS
+        path = _algorithm_checkpoint_path(output, stem, algorithm_id)
+        isfile(path) || continue
+        payload = TOML.parsefile(path)
+        payload["schema_version"] == ALGORITHM_CHECKPOINT_SCHEMA || error(
+            "unrecognized algorithm checkpoint schema: $path",
+        )
+        payload["execution_lock_aggregate_sha256"] == execution_lock_aggregate || error(
+            "algorithm checkpoint belongs to another execution lock: $path",
+        )
+        payload["instance_sha256"] == instance_sha256 || error(
+            "algorithm checkpoint instance hash differs: $path",
+        )
+        payload["algorithm_id"] == algorithm_id || error(
+            "algorithm checkpoint identifier differs: $path",
+        )
+        payload["terminal"] === true || error("nonterminal algorithm checkpoint: $path")
+        record = payload["record"]
+        record["algorithm_id"] == algorithm_id || error(
+            "checkpoint record algorithm differs: $path",
+        )
+        record["terminal"] === true || error("checkpoint record is nonterminal: $path")
+        for log_entry in get(payload, "solver_logs", Any[])
+            log_path = joinpath(output.local_results, String(log_entry["path"]))
+            isfile(log_path) || error("checkpoint solver log is absent: $log_path")
+            _sha256_file(log_path) == log_entry["sha256"] || error(
+                "checkpoint solver log hash differs: $log_path",
+            )
+        end
+        saved[algorithm_id] = (
+            record = record,
+            selection = _checkpoint_selection(instance, record),
+        )
+    end
+    return saved
+end
+
+
+function _write_algorithm_checkpoint(
+    output,
+    stem,
+    instance,
+    execution_lock_aggregate,
+    algorithm_id,
+    record,
+    selection,
+    logs,
+)
+    isnothing(selection) || _checkpoint_selection(instance, record) == selection || error(
+        "algorithm checkpoint callback selection differs from its record",
+    )
+    log_rows = Dict{String,Any}[]
+    for (log_id, log) in sort!(collect(logs); by = first)
+        log_path = joinpath(output.solver_logs, stem * "__$(log_id).log")
+        _atomic_write(log_path, log; replace = isfile(log_path))
+        push!(log_rows, Dict(
+            "algorithm_id" => log_id,
+            "path" => relpath(log_path, output.local_results),
+            "sha256" => _sha256_file(log_path),
+        ))
+    end
+    payload = Dict{String,Any}(
+        "schema_version" => ALGORITHM_CHECKPOINT_SCHEMA,
+        "experiment_id" => "financial-strategy-library-panel-v1",
+        "execution_lock_aggregate_sha256" => execution_lock_aggregate,
+        "instance_sha256" => journal_compression_instance_sha256(instance),
+        "algorithm_id" => algorithm_id,
+        "terminal" => true,
+        "created_at_utc" => _utc_now(),
+        "record" => record,
+        "solver_logs" => log_rows,
+        "licensed_rows_included" => false,
+    )
+    path = _algorithm_checkpoint_path(output, stem, algorithm_id)
+    isfile(path) && error("refusing to overwrite terminal algorithm checkpoint: $path")
+    _atomic_toml(path, payload)
+    return path
+end
+
 function _registry_seed(origin_id, library_id)
     row = only(filter(
         item -> item.origin_id == origin_id && item.library_id == library_id,
@@ -188,7 +404,7 @@ function _registry_seed(origin_id, library_id)
 end
 
 function validate_readiness(; require_sources::Bool = true)
-    verify_execution_lock_003()
+    verify_execution_lock_004()
     VERSION == v"1.12.6" || error("financial panel v1 requires Julia 1.12.6")
     Threads.nthreads() == THREAD_COUNT || error(
         "financial panel v1 requires --threads=$THREAD_COUNT; found $(Threads.nthreads())",
@@ -198,6 +414,8 @@ function validate_readiness(; require_sources::Bool = true)
     config, amendment = load_panel_config()
     amendment["threading"]["julia_threads"] == THREAD_COUNT ||
         error("execution amendment thread count changed")
+    amendment["threading"]["maximum_simultaneous_heavy_stages"] == HEAVY_CONCURRENCY ||
+        error("execution amendment heavy-stage concurrency changed")
     if require_sources
         paths = source_paths(config, _source_root(config))
         missing = filter(!isfile, [paths.security_history; paths.daily_files])
@@ -209,7 +427,7 @@ function validate_readiness(; require_sources::Bool = true)
 end
 
 function _write_environment(paths)
-    execution_lock_aggregate = verify_execution_lock_003()
+    execution_lock_aggregate = verify_execution_lock_004()
     if isfile(paths.environment)
         environment = TOML.parsefile(paths.environment)
         if get(environment, "execution_lock_aggregate_sha256", "") == execution_lock_aggregate
@@ -221,15 +439,22 @@ function _write_environment(paths)
                          count(name -> endswith(name, ".toml"), readdir(paths.instances)) : 0
         origin_metadata_count = isdir(paths.origin_metadata) ?
                                 count(name -> endswith(name, ".toml"), readdir(paths.origin_metadata)) : 0
-        successor_recovery = !isfile(paths.preparation_manifest) &&
+        structural_files = isdir(paths.structural) ?
+                           filter(name -> endswith(name, ".toml"), readdir(paths.structural)) : String[]
+        successor_recovery = isfile(paths.preparation_manifest) &&
                              instance_count == 108 &&
                              origin_metadata_count == 12 &&
+                             length(structural_files) == 6 &&
                              all(
-            directory -> !isdir(directory) || isempty(readdir(directory)),
-            (paths.structural, paths.postdecision, paths.preparation_failures, paths.origin_failures),
-        )
+            name -> TOML.parsefile(joinpath(paths.structural, name))["schema_version"] ==
+                    "financial-strategy-library-panel-preparation-failure-result-v1",
+            structural_files,
+        ) &&
+                             (!isdir(paths.postdecision) || isempty(readdir(paths.postdecision))) &&
+                             (!isdir(paths.checkpoints) || isempty(readdir(paths.checkpoints))) &&
+                             (!isdir(paths.solver_logs) || isempty(readdir(paths.solver_logs)))
         successor_recovery || error(
-            "saved environment belongs to an earlier execution lock outside Amendment 003 recovery",
+            "saved environment belongs to an earlier execution lock outside Amendment 004 recovery",
         )
         environment = _environment(
             execution_lock_aggregate;
@@ -545,14 +770,24 @@ function run_structural_phase()
     config, _ = validate_readiness(; require_sources = false)
     output = _paths(config)
     _validate_preparation(output)
-    _write_environment(output)
+    environment = _write_environment(output)
+    execution_lock_aggregate = String(environment["execution_lock_aggregate_sha256"])
+    heavy_gate = Base.Semaphore(HEAVY_CONCURRENCY)
+    heavy_executor = function(task)
+        Base.acquire(heavy_gate)
+        try
+            return task()
+        finally
+            Base.release(heavy_gate)
+        end
+    end
     jobs = [(
         origin_id,
         library_id,
         schedule_id,
         stem = _instance_stem(origin_id, library_id, schedule_id),
     ) for (origin_id, library_id, schedule_id) in registered_job_keys()]
-    run_one = function(job, lane)
+    run_one = function(job, lane, report)
         instance_path = joinpath(output.instances, job.stem * ".toml")
         preparation_failure_path = joinpath(output.preparation_failures, job.stem * ".toml")
         result_path = joinpath(output.structural, job.stem * ".toml")
@@ -579,6 +814,30 @@ function run_structural_phase()
         end
         isfile(instance_path) || error("registered slot has neither an instance nor a failure record")
         instance = _read_instance(instance_path)
+        resume_algorithms = _load_algorithm_checkpoints(
+            output,
+            job.stem,
+            instance,
+            execution_lock_aggregate,
+        )
+        checkpoint_callback = function(
+            algorithm_id,
+            record,
+            selection,
+            algorithm_logs,
+        )
+            _write_algorithm_checkpoint(
+                output,
+                job.stem,
+                instance,
+                execution_lock_aggregate,
+                algorithm_id,
+                record,
+                selection,
+                algorithm_logs,
+            )
+            return nothing
+        end
         payload = nothing
         logs = Dict{String,String}()
         try
@@ -588,6 +847,10 @@ function run_structural_phase()
                 library_id = job.library_id,
                 schedule_id = job.schedule_id,
                 config,
+                progress_callback = report,
+                checkpoint_callback,
+                resume_algorithms,
+                heavy_executor,
             )
             payload["thread_lane"] = lane
             payload["multistart_seed"] = _registry_seed(job.origin_id, job.library_id)
@@ -597,7 +860,13 @@ function run_structural_phase()
         end
         for (algorithm_id, log) in logs
             log_path = joinpath(output.solver_logs, job.stem * "__$(algorithm_id).log")
-            _atomic_write(log_path, log)
+            isfile(log_path) || _atomic_write(log_path, log)
+            payload["solver_log_sha256"] = _sha256_file(log_path)
+            payload["solver_log_path"] = relpath(log_path, output.local_results)
+        end
+        for algorithm_id in FinancialStrategyLibraryPanelV1.ALGORITHM_IDS
+            log_path = joinpath(output.solver_logs, job.stem * "__$(algorithm_id).log")
+            isfile(log_path) || continue
             payload["solver_log_sha256"] = _sha256_file(log_path)
             payload["solver_log_path"] = relpath(log_path, output.local_results)
         end
@@ -737,15 +1006,50 @@ end
 
 function run_smoke()
     config, _ = validate_readiness(; require_sources = false)
+    execution_lock_aggregate = verify_execution_lock_004()
     jobs = build_synthetic_smoke_instances(THREAD_COUNT)
     mktempdir() do root
-        run_one = function(job, lane)
+        output = (
+            local_results = root,
+            checkpoints = joinpath(root, "checkpoints"),
+            solver_logs = joinpath(root, "solver_logs"),
+        )
+        heavy_gate = Base.Semaphore(HEAVY_CONCURRENCY)
+        heavy_executor = function(task)
+            Base.acquire(heavy_gate)
+            try
+                return task()
+            finally
+                Base.release(heavy_gate)
+            end
+        end
+        run_one = function(job, lane, report)
+            checkpoint_callback = function(
+                algorithm_id,
+                record,
+                selection,
+                algorithm_logs,
+            )
+                _write_algorithm_checkpoint(
+                    output,
+                    job.origin_id,
+                    job.instance,
+                    execution_lock_aggregate,
+                    algorithm_id,
+                    record,
+                    selection,
+                    algorithm_logs,
+                )
+            end
             payload, logs = run_algorithm_suite(
                 job.instance;
                 origin_id = job.origin_id,
                 library_id = job.library_id,
                 schedule_id = job.schedule_id,
                 config,
+                progress_callback = report,
+                checkpoint_callback,
+                heavy_executor,
             )
             audit = audit_instance_result(job.instance, payload)
             audit["passed"] === true || error("synthetic smoke exact audit failed")
@@ -759,8 +1063,17 @@ function run_smoke()
         _run_threaded_lanes!(jobs, "smoke", run_one)
         count(name -> endswith(name, ".toml"), readdir(root)) == THREAD_COUNT ||
             error("threaded smoke did not produce one record per lane")
+        checkpoint_count = sum(
+            count(name -> endswith(name, ".toml"), files) for
+            (_, _, files) in walkdir(output.checkpoints)
+        )
+        checkpoint_count == THREAD_COUNT * length(FinancialStrategyLibraryPanelV1.ALGORITHM_IDS) ||
+            error("threaded smoke did not persist every algorithm checkpoint")
     end
-    println("financial panel v1 threaded smoke passed: lanes=8, algorithms_per_lane=7")
+    println(
+        "financial panel v1 threaded smoke passed: lanes=8, heavy_concurrency=2, " *
+        "algorithms_per_lane=7",
+    )
     return true
 end
 

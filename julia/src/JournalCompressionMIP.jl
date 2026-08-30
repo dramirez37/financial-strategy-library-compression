@@ -160,8 +160,22 @@ function _journal_mip_controls(
 end
 
 
-function _journal_mip_preprocess(instance::JournalCompressionInstance)
-    result = preprocess_tagged_cover(exact_tagged_cover_model(instance))
+function _journal_mip_preprocess(
+    instance::JournalCompressionInstance,
+    supplied::Union{Nothing,TaggedCoverPreprocessingResult} = nothing,
+)
+    result = isnothing(supplied) ?
+             preprocess_tagged_cover(exact_tagged_cover_model(instance)) : supplied
+    if !isnothing(supplied)
+        original = exact_tagged_cover_model(instance)
+        original.requirements == result.original.requirements &&
+        original.strategy_ids == result.original.strategy_ids &&
+        original.coverage == result.original.coverage &&
+        original.weights == result.original.weights &&
+        original.mandatory == result.original.mandatory || throw(
+            ArgumentError("supplied MIP preprocessing does not belong to the instance"),
+        )
+    end
     result.feasible || throw(
         ArgumentError("exact tagged-cover preprocessing declared the source infeasible"),
     )
@@ -692,6 +706,7 @@ function solve_journal_compression_mip(
     exact_crosscheck::Symbol = :auto,
     enumeration_crosscheck_limit::Integer = 20,
     dp_crosscheck_requirement_limit::Integer = 18,
+    preprocessing_result::Union{Nothing,TaggedCoverPreprocessingResult} = nothing,
 )
     validate_journal_compression_instance(instance)
     instance.tie_handling.mode == :complete && throw(
@@ -713,7 +728,8 @@ function solve_journal_compression_mip(
     )
 
     preprocessing_start = time_ns()
-    preprocessing, preprocessing_summary = _journal_mip_preprocess(instance)
+    preprocessing, preprocessing_summary =
+        _journal_mip_preprocess(instance, preprocessing_result)
     preprocessing_ns = time_ns() - preprocessing_start
 
     model_build_start = time_ns()

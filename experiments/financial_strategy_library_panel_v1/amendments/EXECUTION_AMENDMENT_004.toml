@@ -1,0 +1,57 @@
+schema_version = "financial-strategy-library-panel-execution-amendment-v4"
+experiment_id = "financial-strategy-library-panel-v1"
+amendment_id = "AMENDMENT_004"
+amendment_date = "2026-08-30"
+licensed_rows_read_before_amendment = true
+registered_seed_may_have_been_consumed_in_memory_before_amendment = true
+registered_seed_value_changed = false
+valid_terminal_instance_results_before_amendment = 0
+preparation_failure_terminal_results_before_amendment = 6
+solver_logs_before_amendment = 0
+algorithm_checkpoints_before_amendment = 0
+postdecision_results_before_amendment = 0
+algorithm_or_solver_outcome_persisted_before_amendment = false
+algorithm_or_solver_outcome_inspected_before_amendment = false
+selected_library_or_burden_saving_inspected_before_amendment = false
+postdecision_outcome_observed_before_amendment = false
+raw_licensed_rows_printed_or_committed = false
+structural_dimensions_inspected_for_operational_diagnosis = true
+scientific_estimands_changed = false
+origin_registry_changed = false
+library_registry_changed = false
+burden_schedule_registry_changed = false
+seed_registry_changed = false
+algorithm_registry_changed = false
+source_instance_changed = false
+
+[exact_kernel]
+coverage_encoding = "deterministic packed UInt64 chunks"
+exact_weight_authority = "Rational{BigInt}"
+preprocessing_batching = "deterministic fixed-point batches with original-index audit witnesses"
+preprocessing_reused_across_applicable_algorithms = true
+dp_guard_applies_to_actual_solved_residual = true
+dp_state_iteration = "reachable masks only"
+dp_worst_case_bound_changed = false
+
+[threading]
+julia_threads = 8
+concurrent_job_lanes = 8
+maximum_simultaneous_heavy_stages = 2
+blas_threads = 1
+highs_threads_per_model = 1
+scheduling = "stable round-robin jobs with deterministic two-token heavy-stage semaphore"
+
+[resume]
+checkpoint_scope = "one terminal algorithm row"
+checkpoint_binding = "execution-lock aggregate, instance SHA-256, algorithm identifier"
+checkpoint_write = "atomic"
+checkpoint_selection_exactly_rechecked = true
+final_instance_record_requires_all_algorithm_rows = true
+reuse_lock_003_preparation_failure_results = 6
+reuse_valid_lock_003_instance_results = 0
+
+[progress]
+heartbeat_seconds = 30
+flush_after_redraw = true
+reports_stage_not_financial_outcome = true
+reports_lane_and_instance = true

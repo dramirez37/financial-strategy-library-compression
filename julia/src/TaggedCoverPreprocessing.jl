@@ -203,10 +203,26 @@ function _record_preprocessing_event!(
 end
 
 
-_column_signature(model, rows, column) =
-    Tuple(model.coverage[row, column] for row in rows)
-_row_signature(model, row, columns) =
-    Tuple(model.coverage[row, column] for column in columns)
+function _packed_boolean_signature(count::Int, predicate)
+    chunks = zeros(UInt64, cld(count, 64))
+    for position in 1:count
+        predicate(position) || continue
+        chunk = ((position - 1) >>> 6) + 1
+        offset = (position - 1) & 63
+        chunks[chunk] |= UInt64(1) << offset
+    end
+    return Tuple(chunks)
+end
+
+
+_column_signature(model, rows, column) = _packed_boolean_signature(
+    length(rows),
+    position -> model.coverage[rows[position], column],
+)
+_row_signature(model, row, columns) = _packed_boolean_signature(
+    length(columns),
+    position -> model.coverage[row, columns[position]],
+)
 
 
 function _first_duplicate_group(values, signature)
@@ -227,14 +243,38 @@ function _first_duplicate_group(values, signature)
 end
 
 
+function _duplicate_groups(values, signature)
+    groups = Dict{Any,Vector{Int}}()
+    order = Any[]
+    for value in values
+        key = signature(value)
+        if !haskey(groups, key)
+            groups[key] = Int[]
+            push!(order, key)
+        end
+        push!(groups[key], value)
+    end
+    return Vector{Int}[groups[key] for key in order if length(groups[key]) > 1]
+end
+
+
+function _strict_packed_subset(left::Tuple, right::Tuple)
+    length(left) == length(right) || throw(
+        DimensionMismatch("packed coverage masks have different lengths"),
+    )
+    left == right && return false
+    return all(iszero(left[index] & ~right[index]) for index in eachindex(left))
+end
+
+
+_packed_count(mask::Tuple) = sum(count_ones, mask; init = 0)
+
+
 function _strict_coverage_subset(model, rows, left::Int, right::Int)
-    subset = all(
-        !model.coverage[row, left] || model.coverage[row, right] for row in rows
+    return _strict_packed_subset(
+        _column_signature(model, rows, left),
+        _column_signature(model, rows, right),
     )
-    strict = any(
-        model.coverage[row, right] && !model.coverage[row, left] for row in rows
-    )
-    return subset && strict
 end
 
 
@@ -244,8 +284,10 @@ end
 Apply exact preprocessing to a fixed point. The stable rule order is:
 mandatory initialization, redundant rows, unique residual carriers and
 propagation, empty columns, duplicate columns, then strict coverage dominance.
-After every change the scan restarts, so forced selections and dominance are
-recomputed on the current residual model.
+Rules are recomputed whenever the residual row or column set changes. Duplicate
+and dominated columns are removed in deterministic batches. Coverage is packed
+into machine-word tuples for hashing and subset checks; exact weights and every
+reconstruction certificate remain unchanged.
 """
 function preprocess_tagged_cover(model::ExactTaggedCoverModel)
     row_count = length(model.requirements)
@@ -316,31 +358,35 @@ function preprocess_tagged_cover(model::ExactTaggedCoverModel)
     while feasible && !fixed_point
         iteration += 1
 
-        duplicate_rows = _first_duplicate_group(
+        duplicate_row_groups = _duplicate_groups(
             rows,
             row -> _row_signature(model, row, columns),
         )
-        if !isempty(duplicate_rows)
-            representative = first(duplicate_rows)
-            removed = duplicate_rows[2:end]
-            for row in removed
-                requirement_status[row] = :duplicate_requirement
-                requirement_representative[row] = representative
+        if !isempty(duplicate_row_groups)
+            removed_rows = BitSet()
+            for duplicate_rows in duplicate_row_groups
+                representative = first(duplicate_rows)
+                removed = duplicate_rows[2:end]
+                union!(removed_rows, removed)
+                for row in removed
+                    requirement_status[row] = :duplicate_requirement
+                    requirement_representative[row] = representative
+                end
+                _record_preprocessing_event!(
+                    trace,
+                    counts,
+                    model,
+                    iteration,
+                    :redundant_requirement;
+                    removed_rows = removed,
+                    details = Dict(
+                        "representative_requirement_index" => representative,
+                        "representative_requirement" =>
+                            _tagged_label(model.requirements[representative]),
+                    ),
+                )
             end
-            rows = Int[row for row in rows if row ∉ removed]
-            _record_preprocessing_event!(
-                trace,
-                counts,
-                model,
-                iteration,
-                :redundant_requirement;
-                removed_rows = removed,
-                details = Dict(
-                    "representative_requirement_index" => representative,
-                    "representative_requirement" =>
-                        _tagged_label(model.requirements[representative]),
-                ),
-            )
+            rows = Int[row for row in rows if row ∉ removed_rows]
             continue
         end
 
@@ -418,125 +464,139 @@ function preprocess_tagged_cover(model::ExactTaggedCoverModel)
             continue
         end
 
-        empty_position = findfirst(
-            column -> !any(model.coverage[row, column] for row in rows),
-            columns,
+        column_masks = Dict(
+            column => _column_signature(model, rows, column) for column in columns
         )
-        if !isnothing(empty_position)
-            column = columns[empty_position]
-            strategy_status[column] = :empty_contribution
-            columns = Int[candidate for candidate in columns if candidate != column]
-            delete!(tie_choices, column)
+        empty_columns = Int[
+            column for column in columns if all(iszero, column_masks[column])
+        ]
+        if !isempty(empty_columns)
+            empty_set = BitSet(empty_columns)
+            for column in empty_columns
+                strategy_status[column] = :empty_contribution
+                delete!(tie_choices, column)
+            end
+            columns = Int[column for column in columns if column ∉ empty_set]
             _record_preprocessing_event!(
                 trace,
                 counts,
                 model,
                 iteration,
                 :empty_contribution;
-                removed_columns = [column],
+                removed_columns = empty_columns,
             )
             continue
         end
 
-        duplicate_columns = _first_duplicate_group(
+        duplicate_column_groups = _duplicate_groups(
             columns,
-            column -> _column_signature(model, rows, column),
+            column -> column_masks[column],
         )
-        if !isempty(duplicate_columns)
-            minimum_weight = minimum(model.weights[column] for column in duplicate_columns)
-            minimum_columns = Int[
-                column for column in duplicate_columns if
-                model.weights[column] == minimum_weight
-            ]
-            representative = minimum(minimum_columns)
-            removed = Int[
-                column for column in duplicate_columns if column != representative
-            ]
-            equal_ties = Int[]
-            heavier = Int[]
-            for column in removed
-                strategy_target[column] = representative
-                if model.weights[column] == minimum_weight
-                    append!(equal_ties, tie_choices[column])
-                    append!(tie_choices[representative], tie_choices[column])
-                    sort!(unique!(tie_choices[representative]))
-                    strategy_status[column] = :duplicate_equal_weight
-                else
-                    append!(heavier, tie_choices[column])
-                    strategy_status[column] = :duplicate_heavier
+        if !isempty(duplicate_column_groups)
+            removed_columns = BitSet()
+            for duplicate_columns in duplicate_column_groups
+                minimum_weight = minimum(model.weights[column] for column in duplicate_columns)
+                minimum_columns = Int[
+                    column for column in duplicate_columns if
+                    model.weights[column] == minimum_weight
+                ]
+                representative = minimum(minimum_columns)
+                removed = Int[
+                    column for column in duplicate_columns if column != representative
+                ]
+                union!(removed_columns, removed)
+                equal_ties = Int[]
+                heavier = Int[]
+                for column in removed
+                    strategy_target[column] = representative
+                    if model.weights[column] == minimum_weight
+                        append!(equal_ties, tie_choices[column])
+                        append!(tie_choices[representative], tie_choices[column])
+                        sort!(unique!(tie_choices[representative]))
+                        strategy_status[column] = :duplicate_equal_weight
+                    else
+                        append!(heavier, tie_choices[column])
+                        strategy_status[column] = :duplicate_heavier
+                    end
+                    delete!(tie_choices, column)
                 end
-                delete!(tie_choices, column)
+                _record_preprocessing_event!(
+                    trace,
+                    counts,
+                    model,
+                    iteration,
+                    :duplicate_coverage;
+                    removed_columns = removed,
+                    details = Dict(
+                        "representative_strategy_index" => representative,
+                        "representative_strategy" =>
+                            _tagged_label(model.strategy_ids[representative]),
+                        "equal_weight_tie_indices" => sort!(unique!(equal_ties)),
+                        "strictly_heavier_indices" => sort!(unique!(heavier)),
+                    ),
+                )
             end
-            columns = Int[column for column in columns if column ∉ removed]
-            _record_preprocessing_event!(
-                trace,
-                counts,
-                model,
-                iteration,
-                :duplicate_coverage;
-                removed_columns = removed,
-                details = Dict(
-                    "representative_strategy_index" => representative,
-                    "representative_strategy" =>
-                        _tagged_label(model.strategy_ids[representative]),
-                    "equal_weight_tie_indices" => sort!(unique!(equal_ties)),
-                    "strictly_heavier_indices" => sort!(unique!(heavier)),
-                ),
-            )
+            columns = Int[column for column in columns if column ∉ removed_columns]
             continue
         end
 
-        dominated_column = 0
-        dominating_column = 0
+        coverage_counts = Dict(
+            column => _packed_count(column_masks[column]) for column in columns
+        )
+        dominance_pairs = Pair{Int,Int}[]
         for candidate in columns
-            dominators = Int[
-                comparison for comparison in columns if
-                comparison != candidate &&
-                model.weights[comparison] <= model.weights[candidate] &&
-                _strict_coverage_subset(model, rows, candidate, comparison)
-            ]
-            isempty(dominators) && continue
-            sort!(
-                dominators;
-                by = comparison -> (
+            dominating_column = 0
+            dominating_key = nothing
+            candidate_mask = column_masks[candidate]
+            candidate_weight = model.weights[candidate]
+            candidate_count = coverage_counts[candidate]
+            for comparison in columns
+                comparison == candidate && continue
+                coverage_counts[comparison] > candidate_count || continue
+                model.weights[comparison] <= candidate_weight || continue
+                _strict_packed_subset(candidate_mask, column_masks[comparison]) || continue
+                key = (
                     model.weights[comparison],
-                    -count(model.coverage[row, comparison] for row in rows),
+                    -coverage_counts[comparison],
                     comparison,
-                ),
-            )
-            dominated_column = candidate
-            dominating_column = first(dominators)
-            break
+                )
+                if isnothing(dominating_key) || key < dominating_key
+                    dominating_column = comparison
+                    dominating_key = key
+                end
+            end
+            iszero(dominating_column) || push!(dominance_pairs, candidate => dominating_column)
         end
-        if !iszero(dominated_column)
-            equal_weight = model.weights[dominating_column] ==
-                           model.weights[dominated_column]
-            strategy_status[dominated_column] = equal_weight ?
-                :dominated_equal_weight : :dominated_strict_weight
-            strategy_target[dominated_column] = dominating_column
-            lost_identity_indices = copy(tie_choices[dominated_column])
-            delete!(tie_choices, dominated_column)
-            columns = Int[
-                column for column in columns if column != dominated_column
-            ]
-            all_identities_reconstructable &= !equal_weight
-            _record_preprocessing_event!(
-                trace,
-                counts,
-                model,
-                iteration,
-                :coverage_dominance;
-                removed_columns = [dominated_column],
-                details = Dict(
-                    "dominating_strategy_index" => dominating_column,
-                    "dominating_strategy" =>
-                        _tagged_label(model.strategy_ids[dominating_column]),
-                    "weight_relation" => equal_weight ? "equal" : "strictly_lower",
-                    "all_optimizer_identities_preserved" => !equal_weight,
-                    "unreconstructable_equal_weight_identity_indices" =>
-                        equal_weight ? lost_identity_indices : Int[],
-                ),
-            )
+        if !isempty(dominance_pairs)
+            dominated_columns = BitSet(first.(dominance_pairs))
+            for (dominated_column, dominating_column) in dominance_pairs
+                equal_weight = model.weights[dominating_column] ==
+                               model.weights[dominated_column]
+                strategy_status[dominated_column] = equal_weight ?
+                    :dominated_equal_weight : :dominated_strict_weight
+                strategy_target[dominated_column] = dominating_column
+                lost_identity_indices = copy(tie_choices[dominated_column])
+                delete!(tie_choices, dominated_column)
+                all_identities_reconstructable &= !equal_weight
+                _record_preprocessing_event!(
+                    trace,
+                    counts,
+                    model,
+                    iteration,
+                    :coverage_dominance;
+                    removed_columns = [dominated_column],
+                    details = Dict(
+                        "dominating_strategy_index" => dominating_column,
+                        "dominating_strategy" =>
+                            _tagged_label(model.strategy_ids[dominating_column]),
+                        "weight_relation" => equal_weight ? "equal" : "strictly_lower",
+                        "all_optimizer_identities_preserved" => !equal_weight,
+                        "unreconstructable_equal_weight_identity_indices" =>
+                            equal_weight ? lost_identity_indices : Int[],
+                    ),
+                )
+            end
+            columns = Int[column for column in columns if column ∉ dominated_columns]
             continue
         end
 

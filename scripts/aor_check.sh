@@ -29,11 +29,9 @@ cached_before="$(git diff --cached --binary HEAD | shasum -a 256 | awk '{print $
 "$JULIA_CMD" --startup-file=no --project=julia \
     julia/scripts/create_financial_strategy_library_panel_v1_registries.jl --check
 "$JULIA_CMD" --startup-file=no --project=julia \
-    julia/scripts/lock_financial_strategy_library_panel_v1.jl --check
-"$JULIA_CMD" --startup-file=no --project=julia \
     julia/test/run_financial_strategy_library_panel_v1_registration_tests.jl
 "$JULIA_CMD" --threads=8 --startup-file=no --project=julia \
-    julia/scripts/lock_financial_strategy_library_panel_v1_execution_003.jl --check
+    julia/scripts/lock_financial_strategy_library_panel_v1_execution_004.jl --check
 "$JULIA_CMD" --threads=8 --startup-file=no --project=julia \
     julia/test/run_financial_strategy_library_panel_v1_execution_tests.jl
 "$ROOT/scripts/aor_manuscript.sh"

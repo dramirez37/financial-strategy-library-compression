@@ -8,8 +8,8 @@ using TOML
 include(joinpath(@__DIR__, "..", "src", "FinancialStrategyLibraryPanelV1.jl"))
 using .FinancialStrategyLibraryPanelV1
 
-include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_003.jl"))
-using .LockFinancialStrategyLibraryPanelV1Execution003: verify_execution_lock_003
+include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_004.jl"))
+using .LockFinancialStrategyLibraryPanelV1Execution004: verify_execution_lock_004
 
 export audit_all_results, audit_structural_results, main
 
@@ -201,7 +201,7 @@ function _audit_failure_payload(payload, instance, errors, stem)
 end
 
 function audit_structural_results(; write_report::Bool = true)
-    execution_lock = verify_execution_lock_003()
+    execution_lock = verify_execution_lock_004()
     config, _ = load_panel_config()
     paths = _paths(config)
     errors = String[]

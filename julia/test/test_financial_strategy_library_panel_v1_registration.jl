@@ -1,6 +1,8 @@
 include(joinpath(@__DIR__, "..", "scripts", "lock_financial_strategy_library_panel_v1.jl"))
+include(joinpath(@__DIR__, "..", "scripts", "lock_financial_strategy_library_panel_v1_execution_004.jl"))
 
 const FSLP1Lock = LockFinancialStrategyLibraryPanelV1
+const FSLP1SuccessorLock = LockFinancialStrategyLibraryPanelV1Execution004
 const FSLP1Registries =
     LockFinancialStrategyLibraryPanelV1.FinancialStrategyLibraryPanelV1Registries
 
@@ -59,21 +61,24 @@ const FSLP1Registries =
     @test FSLP1Registries.governance_review_units(6) == 17
     @test_throws ArgumentError FSLP1Registries.governance_review_units(7)
 
-    dry = FSLP1Lock.dry_run()
-    @test dry.registered_source_libraries == 60
-    @test dry.registered_compression_instances == 180
-    @test dry.registered_algorithm_terminal_rows == 1260
-    @test occursin(r"^[0-9a-f]{64}$", dry.aggregate_sha256)
-
-    if isfile(FSLP1Lock.LOCK_PATH)
-        aggregate = FSLP1Lock.verify_design_lock()
-        @test aggregate == dry.aggregate_sha256
-        lock_text = read(FSLP1Lock.LOCK_PATH, String)
-        one_hash = first(values(FSLP1Lock._hashes()))
-        tampered = replace(lock_text, one_hash => repeat("0", 64); count = 1)
-        @test_throws ErrorException FSLP1Lock.verify_lock_text(
-            tampered,
-            FSLP1Lock._hashes(),
-        )
-    end
+    validated = FSLP1Lock.validate_design()
+    @test validated.registry_counts == counts
+    historical_text = read(FSLP1Lock.LOCK_PATH, String)
+    @test occursin(
+        "\"aggregate_sha256\": \"$(FSLP1SuccessorLock.DESIGN_AGGREGATE)\"",
+        historical_text,
+    )
+    aggregate = isfile(FSLP1SuccessorLock.LOCK_PATH) ?
+                FSLP1SuccessorLock.verify_execution_lock_004() :
+                FSLP1SuccessorLock.dry_run()
+    @test occursin(r"^[0-9a-f]{64}$", aggregate)
+    lock_text = isfile(FSLP1SuccessorLock.LOCK_PATH) ?
+                read(FSLP1SuccessorLock.LOCK_PATH, String) :
+                FSLP1SuccessorLock._render_lock(FSLP1SuccessorLock._hashes())
+    one_hash = first(values(FSLP1SuccessorLock._hashes()))
+    tampered = replace(lock_text, one_hash => repeat("0", 64); count = 1)
+    @test_throws ErrorException FSLP1SuccessorLock.verify_lock_text(
+        tampered,
+        FSLP1SuccessorLock._hashes(),
+    )
 end

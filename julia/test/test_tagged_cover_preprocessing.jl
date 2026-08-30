@@ -8,6 +8,40 @@ function _preprocessing_selection(mask::Integer, column_count::Int)
 end
 
 
+@testset "packed preprocessing scales across duplicate-heavy catalog" begin
+    requirement_count = 32
+    strategy_count = 14_401
+    coverage = falses(requirement_count, strategy_count)
+    for column in 2:strategy_count
+        mask = UInt64(mod(column - 2, 256) + 1)
+        for row in 1:8
+            coverage[row, column] = !iszero(mask & (UInt64(1) << (row - 1)))
+        end
+        for row in 9:requirement_count
+            coverage[row, column] = mod(column + row, 17) == 0
+        end
+    end
+    model = ExactTaggedCoverModel(
+        [Symbol("r$row") for row in 1:requirement_count],
+        [Symbol("s$column") for column in 1:strategy_count],
+        coverage,
+        [0; [mod(column, 19) + 1 for column in 2:strategy_count]],
+        BitVector([true; falses(strategy_count - 1)]),
+    )
+    result = preprocess_tagged_cover(model)
+    @test result.feasible
+    @test result.audit["original_variable_count"] == strategy_count
+    @test result.audit["original_requirement_count"] == requirement_count
+    @test result.audit["rule_counts"]["duplicate_coverage"]["variables_removed"] > 10_000
+    @test isempty(result.reduced.requirements)
+    @test isempty(result.reduced.strategy_ids)
+    selected = falses(strategy_count)
+    selected[result.forced_strategy_indices] .= true
+    @test exact_tagged_cover_feasible(model, selected)
+    @test exact_tagged_cover_burden(model, selected) == result.objective_offset
+end
+
+
 function _preprocessing_mask(selected::AbstractVector{Bool})
     mask = 0
     for column in eachindex(selected)

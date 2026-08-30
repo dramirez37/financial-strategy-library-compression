@@ -128,6 +128,48 @@ function preprocess_mandatory_journal_instance(
 end
 
 
+"""
+    apply_tagged_preprocessing(instance, result)
+
+Attach a validated exact tagged-cover preprocessing result to the common
+journal instance. The returned instance keeps every original strategy,
+requirement, profile, module membership, and exact weight; only its residual
+optimization map changes. This lets independent algorithms solve precisely the
+same reduced model without recomputing preprocessing.
+"""
+function apply_tagged_preprocessing(
+    instance::JournalCompressionInstance,
+    result::TaggedCoverPreprocessingResult,
+)
+    validate_journal_compression_instance(instance)
+    instance.preprocessing.applied && throw(
+        ArgumentError("tagged preprocessing requires an unpreprocessed instance"),
+    )
+    original = exact_tagged_cover_model(instance)
+    original.requirements == result.original.requirements &&
+    original.strategy_ids == result.original.strategy_ids &&
+    original.coverage == result.original.coverage &&
+    original.weights == result.original.weights &&
+    original.mandatory == result.original.mandatory || throw(
+        ArgumentError("tagged preprocessing result does not belong to the instance"),
+    )
+    result.feasible || throw(
+        ArgumentError("cannot attach an infeasible tagged preprocessing result"),
+    )
+    preprocessing = JournalPreprocessingMap(
+        true,
+        sort(copy(result.remaining_requirement_indices)),
+        sort(copy(result.remaining_strategy_indices)),
+        sort(copy(result.forced_strategy_indices)),
+        result.objective_offset,
+        result.equal_coverage_choices;
+        all_optimizer_identities_reconstructable =
+            result.all_optimizer_identities_reconstructable,
+    )
+    return _journal_rebuild_with_preprocessing(instance, preprocessing)
+end
+
+
 _journal_selection_key(selected::AbstractVector{Bool}) = Tuple(findall(selected))
 
 
@@ -584,8 +626,7 @@ function solve_journal_compression_dp(
     for strategy_index in 1:strategy_count
         next = Dict{BigInt,ExactRational}()
         next_parents = Dict{BigInt,Vector{_JournalDPParent}}()
-        for reached_mask in BigInt(0):full_mask
-            haskey(current, reached_mask) || continue
+        for reached_mask in sort!(collect(keys(current)))
             state_visits += 1
             burden = current[reached_mask]
             transitions += 1

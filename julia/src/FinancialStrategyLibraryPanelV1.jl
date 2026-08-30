@@ -55,6 +55,13 @@ const AMENDMENT_003_PATH = joinpath(
     "amendments",
     "EXECUTION_AMENDMENT_003.toml",
 )
+const AMENDMENT_004_PATH = joinpath(
+    REPOSITORY_ROOT,
+    "experiments",
+    "financial_strategy_library_panel_v1",
+    "amendments",
+    "EXECUTION_AMENDMENT_004.toml",
+)
 const ALGORITHM_IDS = (
     "jump_highs_tagged_cover",
     "requirement_mask_dp",
@@ -189,6 +196,22 @@ function load_panel_config(path::AbstractString = CONFIG_PATH)
     amendment["amendment_id"] = failure_amendment["amendment_id"]
     amendment["failure_amendment"] = failure_amendment
     amendment["failure_persistence"] = failure_amendment["failure_persistence"]
+    scalability_amendment = TOML.parsefile(AMENDMENT_004_PATH)
+    scalability_amendment["schema_version"] ==
+    "financial-strategy-library-panel-execution-amendment-v4" ||
+        error("unsupported scalability execution amendment")
+    scalability_amendment["amendment_id"] == "AMENDMENT_004" ||
+        error("unexpected scalability amendment identifier")
+    scalability_amendment["algorithm_or_solver_outcome_persisted_before_amendment"] === false ||
+        error("scalability amendment followed a persisted algorithm outcome")
+    scalability_amendment["algorithm_or_solver_outcome_inspected_before_amendment"] === false ||
+        error("scalability amendment followed an inspected algorithm outcome")
+    amendment["predecessor_amendment_id"] = amendment["amendment_id"]
+    amendment["amendment_id"] = scalability_amendment["amendment_id"]
+    amendment["scalability_amendment"] = scalability_amendment
+    amendment["threading"] = scalability_amendment["threading"]
+    amendment["resume"] = scalability_amendment["resume"]
+    amendment["progress"] = scalability_amendment["progress"]
     return config, amendment
 end
 
@@ -1336,7 +1359,14 @@ function _panel_deletion(instance, algorithm_id, seed, starts)
     error("unsupported panel deletion algorithm: $algorithm_id")
 end
 
-function _run_one_algorithm(instance, algorithm_id, controls, greedy_cache)
+function _run_one_algorithm(
+    instance,
+    algorithm_id,
+    controls,
+    greedy_cache,
+    preprocessing,
+    preprocessed_instance,
+)
     start = time_ns()
     logs = Dict{String,String}()
     try
@@ -1416,8 +1446,6 @@ function _run_one_algorithm(instance, algorithm_id, controls, greedy_cache)
             return record, logs, result.selected
         end
 
-        preprocessing = preprocess_tagged_cover(exact_tagged_cover_model(instance))
-        preprocessing.feasible || error("preprocessing declared the source infeasible")
         residual_requirements = length(preprocessing.reduced.requirements)
         residual_strategies = length(preprocessing.reduced.strategy_ids)
         if algorithm_id == "requirement_mask_dp"
@@ -1431,7 +1459,10 @@ function _run_one_algorithm(instance, algorithm_id, controls, greedy_cache)
                 record["residual_requirement_count"] = residual_requirements
                 return record, logs, nothing
             end
-            result = solve_journal_compression_dp(instance; retain_all_ties = false)
+            result = solve_journal_compression_dp(
+                preprocessed_instance;
+                retain_all_ties = false,
+            )
             record = _base_algorithm_record(algorithm_id, true, string(result.status), time_ns() - start)
             record["candidate_returned"] = true
             record["selection"] = _selection_payload(instance, result.selected)
@@ -1450,7 +1481,7 @@ function _run_one_algorithm(instance, algorithm_id, controls, greedy_cache)
                 return record, logs, nothing
             end
             result = solve_journal_compression_enumeration(
-                instance;
+                preprocessed_instance;
                 retain_all_ties = false,
                 maximum_optional_strategies = controls.enumeration_strategy_limit,
             )
@@ -1471,6 +1502,7 @@ function _run_one_algorithm(instance, algorithm_id, controls, greedy_cache)
                 warm_start,
                 warm_start_source = "registered weighted greedy plus reverse deletion",
                 exact_crosscheck = :none,
+                preprocessing_result = preprocessing,
             )
             record = _base_algorithm_record(algorithm_id, true, string(result.status), time_ns() - start)
             diagnostics = result.diagnostics
@@ -1515,8 +1547,7 @@ function _run_one_algorithm(instance, algorithm_id, controls, greedy_cache)
     end
 end
 
-function _structure(instance)
-    preprocessing = preprocess_tagged_cover(exact_tagged_cover_model(instance))
+function _structure(instance, preprocessing)
     preprocessing.feasible || error("source instance is infeasible")
     active = findall(.!instance.mandatory)
     frontier = count(requirement -> requirement isa FrontierRequirement, instance.requirements)
@@ -1559,7 +1590,19 @@ function _seed_for(origin_id, library_id)
     return UInt64(only(matches).multistart_seed)
 end
 
-function run_algorithm_suite(instance; origin_id, library_id, schedule_id, config)
+function run_algorithm_suite(
+    instance;
+    origin_id,
+    library_id,
+    schedule_id,
+    config,
+    progress_callback = _ -> nothing,
+    checkpoint_callback = (args...) -> nothing,
+    resume_algorithms = Dict{String,Any}(),
+    heavy_executor = function(task)
+        task()
+    end,
+)
     controls = (
         dp_requirement_limit = Int(config["algorithms"]["dp_requirement_limit"]),
         enumeration_strategy_limit = Int(config["algorithms"]["enumeration_optional_strategy_limit"]),
@@ -1573,10 +1616,72 @@ function run_algorithm_suite(instance; origin_id, library_id, schedule_id, confi
     records = Dict{String,Any}[]
     logs = Dict{String,String}()
     selections = Dict{String,BitVector}()
-    greedy_record, greedy_logs, greedy_selection = _run_one_algorithm(
-        instance,
+    progress_callback((
+        stage = "preprocessing",
+        state = "started",
+        algorithm_id = nothing,
+    ))
+    preprocessing = heavy_executor() do
+        preprocess_tagged_cover(exact_tagged_cover_model(instance))
+    end
+    preprocessing.feasible || error("preprocessing declared the source infeasible")
+    preprocessed_instance = apply_tagged_preprocessing(instance, preprocessing)
+    progress_callback((
+        stage = "preprocessing",
+        state = "completed",
+        algorithm_id = nothing,
+        residual_requirements = length(preprocessing.reduced.requirements),
+        residual_strategies = length(preprocessing.reduced.strategy_ids),
+    ))
+    heavy_algorithms = Set((
+        "requirement_mask_dp",
+        "complete_enumeration",
+        "jump_highs_tagged_cover",
+    ))
+    run_or_resume = function(algorithm_id, warm_start)
+        if haskey(resume_algorithms, algorithm_id)
+            saved = resume_algorithms[algorithm_id]
+            record = deepcopy(saved.record)
+            selection = isnothing(saved.selection) ? nothing : copy(saved.selection)
+            progress_callback((
+                stage = "algorithm",
+                state = "resumed",
+                algorithm_id,
+                status = record["status"],
+            ))
+            return record, Dict{String,String}(), selection
+        end
+        progress_callback((
+            stage = "algorithm",
+            state = "started",
+            algorithm_id,
+        ))
+        task = () -> _run_one_algorithm(
+            instance,
+            algorithm_id,
+            controls,
+            warm_start,
+            preprocessing,
+            preprocessed_instance,
+        )
+        record, algorithm_logs, selection = algorithm_id in heavy_algorithms ?
+                                            heavy_executor(task) : task()
+        checkpoint_callback(
+            algorithm_id,
+            record,
+            selection,
+            algorithm_logs,
+        )
+        progress_callback((
+            stage = "algorithm",
+            state = "completed",
+            algorithm_id,
+            status = record["status"],
+        ))
+        return record, algorithm_logs, selection
+    end
+    greedy_record, greedy_logs, greedy_selection = run_or_resume(
         "weighted_greedy_reverse_delete",
-        controls,
         nothing,
     )
     push!(records, greedy_record)
@@ -1584,10 +1689,8 @@ function run_algorithm_suite(instance; origin_id, library_id, schedule_id, confi
     isnothing(greedy_selection) || (selections["weighted_greedy_reverse_delete"] = greedy_selection)
     for algorithm_id in ALGORITHM_IDS
         algorithm_id == "weighted_greedy_reverse_delete" && continue
-        record, algorithm_logs, selection = _run_one_algorithm(
-            instance,
+        record, algorithm_logs, selection = run_or_resume(
             algorithm_id,
-            controls,
             greedy_selection,
         )
         push!(records, record)
@@ -1639,7 +1742,7 @@ function run_algorithm_suite(instance; origin_id, library_id, schedule_id, confi
         "benchmark_evidence_class" => benchmark_class,
         "benchmark_burden" => _exact_text(benchmark_burden),
         "global_optimum_exactly_verified" => !isempty(exact_records),
-        "structure" => _structure(instance),
+        "structure" => _structure(instance, preprocessing),
         "algorithms" => records,
         "postdecision_opened" => false,
         "licensed_rows_included" => false,

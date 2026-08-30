@@ -176,14 +176,14 @@ aor-financial-weight-robustness-promote: aor-financial-weight-robustness-lock
 
 aor-financial-panel-v1-design-check:
 	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/create_financial_strategy_library_panel_v1_registries.jl --check
-	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/lock_financial_strategy_library_panel_v1.jl --check
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/lock_financial_strategy_library_panel_v1_execution_004.jl --check
 	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/test/run_financial_strategy_library_panel_v1_registration_tests.jl
 
 aor-financial-panel-v1-tests:
 	@"$(JULIA_EXE)" --threads=8 --startup-file=no --project=julia julia/test/run_financial_strategy_library_panel_v1_execution_tests.jl
 
 aor-financial-panel-v1-execution-lock:
-	@"$(JULIA_EXE)" --threads=8 --startup-file=no --project=julia julia/scripts/lock_financial_strategy_library_panel_v1_execution_003.jl --check
+	@"$(JULIA_EXE)" --threads=8 --startup-file=no --project=julia julia/scripts/lock_financial_strategy_library_panel_v1_execution_004.jl --check
 
 aor-financial-panel-v1-smoke: aor-financial-panel-v1-execution-lock
 	@"$(JULIA_EXE)" --threads=8 --startup-file=no --project=julia julia/scripts/run_financial_strategy_library_panel_v1.jl --smoke

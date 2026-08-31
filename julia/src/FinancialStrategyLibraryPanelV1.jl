@@ -90,6 +90,13 @@ const AMENDMENT_008_PATH = joinpath(
     "amendments",
     "EXECUTION_AMENDMENT_008.toml",
 )
+const AMENDMENT_009_PATH = joinpath(
+    REPOSITORY_ROOT,
+    "experiments",
+    "financial_strategy_library_panel_v1",
+    "amendments",
+    "EXECUTION_AMENDMENT_009.toml",
+)
 const ALGORITHM_IDS = (
     "jump_highs_tagged_cover",
     "requirement_mask_dp",
@@ -306,6 +313,25 @@ function load_panel_config(path::AbstractString = CONFIG_PATH)
     amendment["amendment_id"] = audit_collection_amendment["amendment_id"]
     amendment["audit_collection_amendment"] = audit_collection_amendment
     amendment["audit_collection"] = audit_collection_amendment["audit_collection"]
+    audit_parallel_amendment = TOML.parsefile(AMENDMENT_009_PATH)
+    audit_parallel_amendment["schema_version"] ==
+    "financial-strategy-library-panel-execution-amendment-v9" ||
+        error("unsupported parallel-audit execution amendment")
+    audit_parallel_amendment["amendment_id"] == "AMENDMENT_009" ||
+        error("unexpected parallel-audit amendment identifier")
+    audit_parallel_amendment["predecessor_amendment_id"] == "AMENDMENT_008" ||
+        error("unexpected parallel-audit amendment predecessor")
+    audit_parallel_amendment["postdecision_outcome_observed_before_amendment"] === false ||
+        error("parallel-audit amendment followed a postdecision outcome")
+    audit_parallel_amendment["selected_library_or_burden_saving_inspected_before_amendment"] === false ||
+        error("parallel-audit amendment followed scientific result inspection")
+    audit_parallel_amendment["audit_predicates_changed"] === false ||
+        error("parallel-audit amendment changes an audit predicate")
+    amendment["predecessor_amendment_id"] = amendment["amendment_id"]
+    amendment["amendment_id"] = audit_parallel_amendment["amendment_id"]
+    amendment["audit_parallel_amendment"] = audit_parallel_amendment
+    amendment["audit_parallelism"] = audit_parallel_amendment["audit_parallelism"]
+    amendment["audit_instance_hash"] = audit_parallel_amendment["audit_instance_hash"]
     return config, amendment
 end
 
@@ -1960,11 +1986,18 @@ function run_algorithm_suite(
     return payload, logs
 end
 
-function audit_instance_result(instance, payload)
+function audit_instance_result(
+    instance,
+    payload;
+    precomputed_instance_sha256::Union{Nothing,AbstractString} = nothing,
+)
     errors = String[]
     payload["schema_version"] == "financial-strategy-library-panel-instance-result-v1" ||
         push!(errors, "unexpected result schema")
-    payload["instance_sha256"] == journal_compression_instance_sha256(instance) ||
+    instance_sha256 = isnothing(precomputed_instance_sha256) ?
+                      journal_compression_instance_sha256(instance) :
+                      String(precomputed_instance_sha256)
+    payload["instance_sha256"] == instance_sha256 ||
         push!(errors, "instance hash mismatch")
     algorithms = payload["algorithms"]
     ids = String[record["algorithm_id"] for record in algorithms]

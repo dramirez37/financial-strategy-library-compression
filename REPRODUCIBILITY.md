@@ -63,9 +63,9 @@ numerical rule.
 | `make aor-algorithm-tests` | Exercise tagged-cover preprocessing, enumeration, requirement-mask DP, weighted/cardinality greedy, certified deletion, HiGHS MIP, reconstruction, and exact three-method agreement on small fixtures. | Medium; solver startup and package cache dependent. | Public synthetic exact fixtures only. | Test results and temporary certificates; no committed result rewrite. |
 | `make aor-financial-panel-v1-design-check` | Regenerate the expected point-in-time panel registries in memory, verify their committed bytes, verify the prospective design lock, and run registration-only synthetic tests. | Short. | Public design files only; it does not open licensed rows or result files. | Pass/fail diagnostics only; no outcome computation. |
 | `make aor-financial-panel-v1-tests` | Test the origin-scoped information firewall, packed exact preprocessing, reachable-state DP, exact carrier-count deletion, per-algorithm checkpoint recovery, serialization, eight stable lanes, and all seven registered algorithms. | Short to medium. | Public synthetic fixtures only. | Test diagnostics and temporary solver/checkpoint records only. |
-| `make aor-financial-panel-v1-smoke` | Execute the successor Lock 008 command topology on eight synthetic lanes with bounded heavy-stage concurrency, durable newline progress, and independent solution checks. | Short to medium. | Public synthetic fixtures only; no licensed row is opened. | Pass/fail diagnostics; all smoke files are temporary. |
+| `make aor-financial-panel-v1-smoke` | Execute the successor Lock 009 command topology on eight synthetic lanes with bounded heavy-stage concurrency, durable newline progress, and independent solution checks. | Short to medium. | Public synthetic fixtures only; no licensed row is opened. | Pass/fail diagnostics; all smoke files are temporary. |
 | `make aor-financial-panel-v1-run` | Run or resume the locked point-in-time CRSP strategy-library panel using Julia 1.12.6, eight stable job lanes, at most two simultaneous memory-heavy stages, single-threaded BLAS and HiGHS models, and atomic per-algorithm checkpoints. | Long; empirical construction and 1,260 registered algorithm rows are host dependent. | Local licensed CRSP/WRDS delivery at `ALGOLIB_CRSP_ROOT` or the registered default. | Ignored origin-scoped source instances or terminal construction-failure slots, resumable algorithm checkpoints, 1,260 terminal algorithm rows, solver logs, structural audit, postdecision diagnostics, and final result audit. |
-| `make aor-financial-panel-v1-audit` | Independently reread and exactly audit a completed local panel without rerunning algorithms. | Medium. | Completed ignored panel artifacts; raw licensed rows are not opened. | Recomputed local structural and full audit certificates. |
+| `make aor-financial-panel-v1-audit` | Independently reread and exactly audit a completed local panel on eight threads, with durable structural and postdecision progress bars, without rerunning algorithms or financial analysis. | Medium. | Completed ignored panel artifacts; raw licensed rows are not opened. | Recomputed local structural and full audit certificates. |
 | `make aor-benchmark-audit` | Read and independently audit the committed final Algorithmic Compression Benchmark v2 artifacts with exact feasibility/burden checks and byte-drift comparison. | Medium to long; reads the complete saved result tree. | Public committed synthetic results only. | Pass/fail report; no solver, heuristic, generator, or result writer is invoked. |
 | `make aor-manuscript` | Compile the Springer article and independently compiled Online Resource 1, then audit their recorder dependency graphs. | Short to medium. | Public editable LaTeX, bibliography, table, figure, and canonical CSV inputs. | `journal/aor/manuscript/build/aor-journal-manuscript.pdf` and `journal/aor/online_resource/build/aor-online-resource-1.pdf`. |
 | `make aor-check` | Run every nonmutating journal theory, algorithm, committed-result, manuscript, source-completeness, release-input, and public/licensed-boundary check. | Long but bounded; no final-study execution. | Public clone only; no licensed rows. | Pass/fail diagnostics; it fingerprints the worktree and index before and after. |
@@ -94,10 +94,10 @@ retained as the immutable record of the initial ingestion failure. Execution
 Amendment 003 implements the registered failure denominator: a source origin
 that fails the unchanged 25-observation profile rule receives nine terminal
 unavailable slots, without imputation or a fabricated instance. Locks 001 and
-002 remain immutable. Execution Amendments 004--008 bind packed exact preprocessing,
+002 remain immutable. Execution Amendments 004--009 bind packed exact preprocessing,
 reachable-state DP, atomic per-algorithm checkpoints, and deterministic
 two-token heavy-stage scheduling. Locks 001--003 remain immutable;
-`EXECUTION_LOCK_008.json` is the active successor lock. Lock 005 adds validated reuse
+`EXECUTION_LOCK_009.json` is the active successor lock. Lock 005 adds validated reuse
 of an already-complete preparation manifest and newline-delimited progress for
 licensed scans and threaded algorithm stages; it changes no scientific input,
 algorithm, seed, or outcome definition. Lock 006 adds Julia 1.12 world-age-safe
@@ -107,7 +107,10 @@ Lock 007 makes the audit key product explicitly one-dimensional and performs
 the audit-function binding lookup in Julia's latest world; audit predicates and
 scientific artifacts remain unchanged. Lock 008 materializes the filtered TOML
 filename iterator as a sorted string vector for Julia 1.12; it does not change
-the registered job set, audit predicates, or scientific artifacts.
+the registered job set, audit predicates, or scientific artifacts. Lock 009
+uses a deterministic eight-lane audit, canonical serialized-file hashes, and
+durable progress for both audit stages; financial analysis remains a separate
+registered execution phase.
 
 ### AoOR journal release gate
 

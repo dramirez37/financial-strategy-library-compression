@@ -1,0 +1,55 @@
+schema_version = "financial-strategy-library-panel-execution-amendment-v9"
+experiment_id = "financial-strategy-library-panel-v1"
+amendment_id = "AMENDMENT_009"
+amendment_date = "2026-08-31"
+predecessor_amendment_id = "AMENDMENT_008"
+licensed_rows_read_before_amendment = true
+structural_terminal_results_before_amendment = 180
+valid_terminal_instance_results_before_amendment = 108
+preparation_failure_terminal_results_before_amendment = 72
+solver_logs_before_amendment = 14
+algorithm_checkpoints_before_amendment = 756
+structural_audit_files_before_amendment = 0
+postdecision_results_before_amendment = 0
+selected_library_or_burden_saving_inspected_before_amendment = false
+solver_status_inspected_before_amendment = false
+postdecision_outcome_observed_before_amendment = false
+raw_licensed_rows_printed_or_committed = false
+scientific_estimands_changed = false
+origin_registry_changed = false
+library_registry_changed = false
+burden_schedule_registry_changed = false
+seed_registry_changed = false
+algorithm_registry_changed = false
+source_instance_changed = false
+audit_predicates_changed = false
+
+[audit_parallelism]
+julia_threads = 8
+worker_count = 8
+postdecision_worker_count = 8
+unit = "registered source instance or preparation-failure slot"
+scheduling = "static eight-lane partition"
+result_storage = "preassigned registered-key index"
+aggregation_order = "lexicographic registered-key order"
+thread_scheduling_affects_certificate = false
+
+[audit_instance_hash]
+on_disk_source = "SHA-256 of canonical serialized instance file"
+deserialization_validation_retained = true
+canonical_reserialization_default_retained = true
+precomputed_hash_permitted_only_when_explicitly_supplied = true
+
+[progress]
+format = "durable newline-delimited stderr records"
+fields = ["timestamp_utc", "completed_slot_count", "total_slot_count"]
+stages = ["structural-audit", "postdecision-audit"]
+financial_outcomes_included = false
+algorithm_outcomes_included = false
+
+[resume]
+reuse_lock_008_structural_results = 180
+reuse_lock_008_algorithm_checkpoints = 756
+reuse_lock_008_solver_logs = 14
+rerun_terminal_structural_algorithms = false
+postdecision_requires_passing_structural_audit = true

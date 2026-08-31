@@ -8,8 +8,8 @@ using TOML
 include(joinpath(@__DIR__, "..", "src", "FinancialStrategyLibraryPanelV1.jl"))
 using .FinancialStrategyLibraryPanelV1
 
-include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_008.jl"))
-using .LockFinancialStrategyLibraryPanelV1Execution008: verify_execution_lock_008
+include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_009.jl"))
+using .LockFinancialStrategyLibraryPanelV1Execution009: verify_execution_lock_009
 
 export audit_all_results, audit_structural_results, main
 
@@ -23,12 +23,49 @@ const ALGORITHM_IDS = (
     "declared_source_order",
     "multistart_random_rechecked_deletion_32",
 )
+const AUDIT_THREAD_COUNT = 8
 
 _utc_now() = Dates.format(Dates.now(Dates.UTC), dateformat"yyyy-mm-ddTHH:MM:SS.sssZ")
 _sha256_file(path) = open(path, "r") do io
     bytes2hex(sha256(io))
 end
 _sha256_text(value) = bytes2hex(sha256(codeunits(value)))
+
+function _audit_progress(
+    io::IO,
+    label::AbstractString,
+    completed::Integer,
+    total::Integer,
+)
+    width = 36
+    filled = total == 0 ? width : fld(Int(completed) * width, Int(total))
+    bar = repeat("█", filled) * repeat("░", width - filled)
+    println(io, "[$(_utc_now())] $label [$bar] $completed/$total")
+    flush(io)
+    return nothing
+end
+
+function _parallel_indexed_audits(
+    worker,
+    items;
+    progress_io::IO = stderr,
+    progress_label::AbstractString = "structural-audit",
+)
+    results = Vector{Any}(undef, length(items))
+    worker_thread_ids = Vector{Int}(undef, length(items))
+    completed = Threads.Atomic{Int}(0)
+    progress_lock = ReentrantLock()
+    _audit_progress(progress_io, progress_label, 0, length(items))
+    Threads.@threads :static for index in eachindex(items)
+        results[index] = worker(items[index])
+        worker_thread_ids[index] = Threads.threadid()
+        completed_count = Threads.atomic_add!(completed, 1) + 1
+        lock(progress_lock) do
+            _audit_progress(progress_io, progress_label, completed_count, length(items))
+        end
+    end
+    return results, worker_thread_ids
+end
 
 function _paths(config)
     root = joinpath(REPOSITORY_ROOT, String(config["paths"]["local_results_root"]))
@@ -202,8 +239,149 @@ function _audit_failure_payload(payload, instance, errors, stem)
     return nothing
 end
 
+function _stem_audit_record(
+    errors;
+    result_relative = nothing,
+    result_sha256 = nothing,
+    success_count = 0,
+    preparation_failure_count = 0,
+    execution_failure_count = 0,
+    algorithm_error_count = 0,
+    inapplicable_count = 0,
+    candidate_count = 0,
+    exact_reference_count = 0,
+    missing_solver_log_count = 0,
+    checked_algorithm_rows = 0,
+)
+    return (;
+        errors,
+        result_relative,
+        result_sha256,
+        success_count,
+        preparation_failure_count,
+        execution_failure_count,
+        algorithm_error_count,
+        inapplicable_count,
+        candidate_count,
+        exact_reference_count,
+        missing_solver_log_count,
+        checked_algorithm_rows,
+    )
+end
+
+function _audit_structural_stem(stem, paths)
+    errors = String[]
+    instance_path = joinpath(paths.instances, stem * ".toml")
+    preparation_failure_path = joinpath(paths.preparation_failures, stem * ".toml")
+    result_path = joinpath(paths.structural, stem * ".toml")
+    isfile(result_path) || return _stem_audit_record(errors)
+    if isfile(preparation_failure_path)
+        isfile(instance_path) && begin
+            push!(errors, "$stem has both an instance and a preparation failure")
+            return _stem_audit_record(errors)
+        end
+        preparation_failure = try
+            TOML.parsefile(preparation_failure_path)
+        catch exception
+            push!(errors, "$stem preparation failure cannot be parsed: $(sprint(showerror, exception))")
+            return _stem_audit_record(errors)
+        end
+        preparation_failure["record_sha256"] = _sha256_file(preparation_failure_path)
+        _audit_preparation_failure_record(preparation_failure, paths, errors, stem)
+        payload = try
+            TOML.parsefile(result_path)
+        catch exception
+            push!(errors, "$stem result cannot be parsed: $(sprint(showerror, exception))")
+            return _stem_audit_record(errors)
+        end
+        payload["schema_version"] ==
+        "financial-strategy-library-panel-preparation-failure-result-v1" ||
+            push!(errors, "$stem preparation failure has an unrecognized structural schema")
+        _audit_preparation_failure_payload(payload, preparation_failure, errors, stem)
+        return _stem_audit_record(
+            errors;
+            result_relative = relpath(result_path, paths.root),
+            result_sha256 = _sha256_file(result_path),
+            preparation_failure_count = 1,
+            checked_algorithm_rows = 7,
+        )
+    end
+    isfile(instance_path) || return _stem_audit_record(errors)
+    instance_file_sha256 = _sha256_file(instance_path)
+    instance = try
+        _read_instance(instance_path)
+    catch exception
+        push!(errors, "$stem instance cannot be deserialized: $(sprint(showerror, exception))")
+        return _stem_audit_record(errors)
+    end
+    payload = try
+        TOML.parsefile(result_path)
+    catch exception
+        push!(errors, "$stem result cannot be parsed: $(sprint(showerror, exception))")
+        return _stem_audit_record(errors)
+    end
+    result_relative = relpath(result_path, paths.root)
+    result_sha256 = _sha256_file(result_path)
+    schema = get(payload, "schema_version", "")
+    if schema == "financial-strategy-library-panel-instance-failure-v1"
+        _audit_failure_payload(payload, instance, errors, stem)
+        return _stem_audit_record(
+            errors;
+            result_relative,
+            result_sha256,
+            execution_failure_count = 1,
+            checked_algorithm_rows = 7,
+        )
+    end
+    if schema != "financial-strategy-library-panel-instance-result-v1"
+        push!(errors, "$stem has an unrecognized terminal schema")
+        return _stem_audit_record(errors; result_relative, result_sha256)
+    end
+    audit = audit_instance_result(
+        instance,
+        payload;
+        precomputed_instance_sha256 = instance_file_sha256,
+    )
+    if audit["passed"] !== true
+        append!(errors, ("$stem: $message" for message in audit["errors"]))
+    end
+    get(payload, "postdecision_opened", true) === false ||
+        push!(errors, "$stem structural result says postdecision was opened")
+    get(payload, "licensed_rows_included", true) === false ||
+        push!(errors, "$stem structural result contains licensed rows")
+    algorithms = payload["algorithms"]
+    log_relative = get(payload, "solver_log_path", nothing)
+    missing_solver_log_count = 0
+    if isnothing(log_relative)
+        missing_solver_log_count = 1
+    else
+        log_path = normpath(joinpath(paths.root, String(log_relative)))
+        if !isfile(log_path)
+            push!(errors, "$stem solver log is absent")
+        elseif _sha256_file(log_path) != get(payload, "solver_log_sha256", "")
+            push!(errors, "$stem solver log hash differs")
+        end
+    end
+    return _stem_audit_record(
+        errors;
+        result_relative,
+        result_sha256,
+        success_count = 1,
+        algorithm_error_count = count(row -> row["status"] == "ERROR", algorithms),
+        inapplicable_count = count(row -> row["applicable"] === false, algorithms),
+        candidate_count = count(row -> row["candidate_returned"] === true, algorithms),
+        exact_reference_count = get(payload, "global_optimum_exactly_verified", false) === true,
+        missing_solver_log_count,
+        checked_algorithm_rows = length(algorithms),
+    )
+end
+
 function audit_structural_results(; write_report::Bool = true)
-    execution_lock = verify_execution_lock_008()
+    Threads.nthreads() == AUDIT_THREAD_COUNT || error(
+        "financial panel structural audit requires --threads=$AUDIT_THREAD_COUNT; " *
+        "found $(Threads.nthreads())",
+    )
+    execution_lock = verify_execution_lock_009()
     config, _ = load_panel_config()
     paths = _paths(config)
     errors = String[]
@@ -224,6 +402,16 @@ function audit_structural_results(; write_report::Bool = true)
     _toml_stems(paths.structural) == expected ||
         push!(errors, "structural result set differs from the 180 registered keys")
 
+    audits, worker_thread_ids = _parallel_indexed_audits(expected) do stem
+        return try
+            _audit_structural_stem(stem, paths)
+        catch exception
+            _stem_audit_record([
+                "$stem audit raised an exception: $(sprint(showerror, exception))",
+            ])
+        end
+    end
+
     result_hashes = Dict{String,String}()
     success_count = 0
     preparation_failure_count = 0
@@ -234,95 +422,20 @@ function audit_structural_results(; write_report::Bool = true)
     exact_reference_count = 0
     missing_solver_log_count = 0
     checked_algorithm_rows = 0
-    for stem in expected
-        instance_path = joinpath(paths.instances, stem * ".toml")
-        preparation_failure_path = joinpath(paths.preparation_failures, stem * ".toml")
-        result_path = joinpath(paths.structural, stem * ".toml")
-        isfile(result_path) || continue
-        if isfile(preparation_failure_path)
-            isfile(instance_path) && begin
-                push!(errors, "$stem has both an instance and a preparation failure")
-                continue
-            end
-            preparation_failure = try
-                TOML.parsefile(preparation_failure_path)
-            catch exception
-                push!(errors, "$stem preparation failure cannot be parsed: $(sprint(showerror, exception))")
-                continue
-            end
-            preparation_failure["record_sha256"] = _sha256_file(preparation_failure_path)
-            _audit_preparation_failure_record(
-                preparation_failure,
-                paths,
-                errors,
-                stem,
-            )
-            payload = try
-                TOML.parsefile(result_path)
-            catch exception
-                push!(errors, "$stem result cannot be parsed: $(sprint(showerror, exception))")
-                continue
-            end
-            result_hashes[relpath(result_path, paths.root)] = _sha256_file(result_path)
-            payload["schema_version"] ==
-            "financial-strategy-library-panel-preparation-failure-result-v1" ||
-                push!(errors, "$stem preparation failure has an unrecognized structural schema")
-            preparation_failure_count += 1
-            _audit_preparation_failure_payload(payload, preparation_failure, errors, stem)
-            checked_algorithm_rows += 7
-            continue
+    for audit in audits
+        append!(errors, audit.errors)
+        if !isnothing(audit.result_relative)
+            result_hashes[audit.result_relative] = audit.result_sha256
         end
-        isfile(instance_path) || continue
-        instance = try
-            _read_instance(instance_path)
-        catch exception
-            push!(errors, "$stem instance cannot be deserialized: $(sprint(showerror, exception))")
-            continue
-        end
-        payload = try
-            TOML.parsefile(result_path)
-        catch exception
-            push!(errors, "$stem result cannot be parsed: $(sprint(showerror, exception))")
-            continue
-        end
-        result_hashes[relpath(result_path, paths.root)] = _sha256_file(result_path)
-        schema = get(payload, "schema_version", "")
-        if schema == "financial-strategy-library-panel-instance-failure-v1"
-            execution_failure_count += 1
-            _audit_failure_payload(payload, instance, errors, stem)
-            checked_algorithm_rows += 7
-            continue
-        end
-        if schema != "financial-strategy-library-panel-instance-result-v1"
-            push!(errors, "$stem has an unrecognized terminal schema")
-            continue
-        end
-        success_count += 1
-        audit = audit_instance_result(instance, payload)
-        if audit["passed"] !== true
-            append!(errors, ("$stem: $message" for message in audit["errors"]))
-        end
-        get(payload, "postdecision_opened", true) === false ||
-            push!(errors, "$stem structural result says postdecision was opened")
-        get(payload, "licensed_rows_included", true) === false ||
-            push!(errors, "$stem structural result contains licensed rows")
-        exact_reference_count += get(payload, "global_optimum_exactly_verified", false) === true
-        algorithms = payload["algorithms"]
-        checked_algorithm_rows += length(algorithms)
-        algorithm_error_count += count(row -> row["status"] == "ERROR", algorithms)
-        inapplicable_count += count(row -> row["applicable"] === false, algorithms)
-        candidate_count += count(row -> row["candidate_returned"] === true, algorithms)
-        log_relative = get(payload, "solver_log_path", nothing)
-        if isnothing(log_relative)
-            missing_solver_log_count += 1
-        else
-            log_path = normpath(joinpath(paths.root, String(log_relative)))
-            if !isfile(log_path)
-                push!(errors, "$stem solver log is absent")
-            elseif _sha256_file(log_path) != get(payload, "solver_log_sha256", "")
-                push!(errors, "$stem solver log hash differs")
-            end
-        end
+        success_count += audit.success_count
+        preparation_failure_count += audit.preparation_failure_count
+        execution_failure_count += audit.execution_failure_count
+        algorithm_error_count += audit.algorithm_error_count
+        inapplicable_count += audit.inapplicable_count
+        candidate_count += audit.candidate_count
+        exact_reference_count += audit.exact_reference_count
+        missing_solver_log_count += audit.missing_solver_log_count
+        checked_algorithm_rows += audit.checked_algorithm_rows
     end
     checked_algorithm_rows == 1260 ||
         push!(errors, "audit saw $checked_algorithm_rows algorithm terminal rows instead of 1260")
@@ -347,6 +460,9 @@ function audit_structural_results(; write_report::Bool = true)
         "solver_status_used_as_formal_or_exhaustive_proof" => false,
         "postdecision_opened_during_structural_audit" => false,
         "licensed_rows_included" => false,
+        "audit_thread_count" => Threads.nthreads(),
+        "audit_worker_thread_ids" => sort!(unique(worker_thread_ids)),
+        "audit_aggregation_order" => "lexicographic registered-key order",
         "preparation_file_count" => length(prepared_hashes),
         "structural_result_sha256" => result_hashes,
         "structural_result_aggregate_sha256" => _aggregate_hash(result_hashes),
@@ -359,6 +475,96 @@ function audit_structural_results(; write_report::Bool = true)
     return report
 end
 
+function _postdecision_audit_record(
+    errors;
+    result_relative = nothing,
+    result_sha256 = nothing,
+    available_count = 0,
+    structural_failure_count = 0,
+    checked_rows = 0,
+)
+    return (;
+        errors,
+        result_relative,
+        result_sha256,
+        available_count,
+        structural_failure_count,
+        checked_rows,
+    )
+end
+
+function _audit_postdecision_stem(stem, paths)
+    errors = String[]
+    structural_path = joinpath(paths.structural, stem * ".toml")
+    post_path = joinpath(paths.postdecision, stem * ".toml")
+    isfile(structural_path) && isfile(post_path) || return _postdecision_audit_record(errors)
+    source = try
+        TOML.parsefile(structural_path)
+    catch exception
+        push!(errors, "$stem structural record cannot be parsed: $(sprint(showerror, exception))")
+        return _postdecision_audit_record(errors)
+    end
+    payload = try
+        TOML.parsefile(post_path)
+    catch exception
+        push!(errors, "$stem postdecision record cannot be parsed: $(sprint(showerror, exception))")
+        return _postdecision_audit_record(errors)
+    end
+    result_relative = relpath(post_path, paths.root)
+    result_sha256 = _sha256_file(post_path)
+    get(payload, "licensed_rows_included", true) === false ||
+        push!(errors, "$stem postdecision record contains licensed rows")
+    get(payload, "structural_result_terminal_and_audited_before_open", false) === true ||
+        push!(errors, "$stem postdecision record lacks the structural firewall certificate")
+    if source["schema_version"] in (
+        "financial-strategy-library-panel-instance-failure-v1",
+        "financial-strategy-library-panel-preparation-failure-result-v1",
+    )
+        payload["schema_version"] == "financial-strategy-library-panel-postdecision-failure-v1" ||
+            push!(errors, "$stem should have a postdecision failure record")
+        get(payload, "postdecision_opened", true) === false ||
+            push!(errors, "$stem failed slot says postdecision was opened")
+        return _postdecision_audit_record(
+            errors;
+            result_relative,
+            result_sha256,
+            structural_failure_count = 1,
+        )
+    end
+    quality = get(payload, "return_quality", Dict{String,Any}())
+    get(quality, "interior_missing_return_rows", -1) == 0 ||
+        push!(errors, "$stem postdecision extraction has an interior missing return")
+    get(quality, "unexpected_return_flag_rows", -1) == 0 ||
+        push!(errors, "$stem postdecision extraction has an unexpected return flag")
+    payload["schema_version"] == "financial-strategy-library-panel-postdecision-v1" || begin
+        push!(errors, "$stem has an unrecognized postdecision schema")
+        return _postdecision_audit_record(errors; result_relative, result_sha256)
+    end
+    get(payload, "structural_instance_sha256", "") == source["instance_sha256"] ||
+        push!(errors, "$stem postdecision link hash differs")
+    length(get(payload, "source_frontier", Any[])) == 5 ||
+        push!(errors, "$stem postdecision source frontier does not have five beliefs")
+    algorithms = payload["algorithms"]
+    String[row["algorithm_id"] for row in algorithms] == collect(ALGORITHM_IDS) ||
+        push!(errors, "$stem postdecision algorithms differ from the registry")
+    available_count = 0
+    for row in algorithms
+        get(row, "available", false) === true || continue
+        available_count += 1
+        losses = exact_rational.(String.(row["belief_losses"]))
+        length(losses) == 5 || push!(errors, "$stem postdecision loss vector length differs")
+        all(value -> value >= 0, losses) ||
+            push!(errors, "$stem contains a negative source-minus-retained loss")
+    end
+    return _postdecision_audit_record(
+        errors;
+        result_relative,
+        result_sha256,
+        available_count,
+        checked_rows = length(algorithms),
+    )
+end
+
 function audit_all_results(; write_report::Bool = true)
     structural = audit_structural_results(; write_report)
     config, _ = load_panel_config()
@@ -367,57 +573,30 @@ function audit_all_results(; write_report::Bool = true)
     errors = String[]
     _toml_stems(paths.postdecision) == expected ||
         push!(errors, "postdecision result set differs from the 180 registered keys")
+    audits, worker_thread_ids = _parallel_indexed_audits(
+        expected;
+        progress_label = "postdecision-audit",
+    ) do stem
+        return try
+            _audit_postdecision_stem(stem, paths)
+        catch exception
+            _postdecision_audit_record([
+                "$stem postdecision audit raised an exception: $(sprint(showerror, exception))",
+            ])
+        end
+    end
     hashes = Dict{String,String}()
     available_count = 0
     structural_failure_count = 0
     checked_rows = 0
-    for stem in expected
-        structural_path = joinpath(paths.structural, stem * ".toml")
-        post_path = joinpath(paths.postdecision, stem * ".toml")
-        isfile(structural_path) && isfile(post_path) || continue
-        source = TOML.parsefile(structural_path)
-        payload = TOML.parsefile(post_path)
-        hashes[relpath(post_path, paths.root)] = _sha256_file(post_path)
-        get(payload, "licensed_rows_included", true) === false ||
-            push!(errors, "$stem postdecision record contains licensed rows")
-        get(payload, "structural_result_terminal_and_audited_before_open", false) === true ||
-            push!(errors, "$stem postdecision record lacks the structural firewall certificate")
-        if source["schema_version"] in (
-            "financial-strategy-library-panel-instance-failure-v1",
-            "financial-strategy-library-panel-preparation-failure-result-v1",
-        )
-            structural_failure_count += 1
-            payload["schema_version"] == "financial-strategy-library-panel-postdecision-failure-v1" ||
-                push!(errors, "$stem should have a postdecision failure record")
-            get(payload, "postdecision_opened", true) === false ||
-                push!(errors, "$stem failed slot says postdecision was opened")
-            continue
+    for audit in audits
+        append!(errors, audit.errors)
+        if !isnothing(audit.result_relative)
+            hashes[audit.result_relative] = audit.result_sha256
         end
-        quality = get(payload, "return_quality", Dict{String,Any}())
-        get(quality, "interior_missing_return_rows", -1) == 0 ||
-            push!(errors, "$stem postdecision extraction has an interior missing return")
-        get(quality, "unexpected_return_flag_rows", -1) == 0 ||
-            push!(errors, "$stem postdecision extraction has an unexpected return flag")
-        payload["schema_version"] == "financial-strategy-library-panel-postdecision-v1" || begin
-            push!(errors, "$stem has an unrecognized postdecision schema")
-            continue
-        end
-        get(payload, "structural_instance_sha256", "") == source["instance_sha256"] ||
-            push!(errors, "$stem postdecision link hash differs")
-        length(get(payload, "source_frontier", Any[])) == 5 ||
-            push!(errors, "$stem postdecision source frontier does not have five beliefs")
-        algorithms = payload["algorithms"]
-        String[row["algorithm_id"] for row in algorithms] == collect(ALGORITHM_IDS) ||
-            push!(errors, "$stem postdecision algorithms differ from the registry")
-        checked_rows += length(algorithms)
-        for row in algorithms
-            get(row, "available", false) === true || continue
-            available_count += 1
-            losses = exact_rational.(String.(row["belief_losses"]))
-            length(losses) == 5 || push!(errors, "$stem postdecision loss vector length differs")
-            all(value -> value >= 0, losses) ||
-                push!(errors, "$stem contains a negative source-minus-retained loss")
-        end
+        available_count += audit.available_count
+        structural_failure_count += audit.structural_failure_count
+        checked_rows += audit.checked_rows
     end
     checked_rows + 7 * structural_failure_count == 1260 ||
         push!(errors, "postdecision audit does not account for all 1260 algorithm rows")
@@ -436,6 +615,9 @@ function audit_all_results(; write_report::Bool = true)
         "unsuccessful_rows_retained_in_denominators" => true,
         "postdecision_cannot_change_structural_results" => true,
         "licensed_rows_included" => false,
+        "audit_thread_count" => Threads.nthreads(),
+        "audit_worker_thread_ids" => sort!(unique(worker_thread_ids)),
+        "audit_aggregation_order" => "lexicographic registered-key order",
         "postdecision_result_sha256" => hashes,
         "postdecision_result_aggregate_sha256" => _aggregate_hash(hashes),
     )

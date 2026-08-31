@@ -9,11 +9,12 @@ using TOML
 include(joinpath(@__DIR__, "..", "src", "FinancialStrategyLibraryPanelV1.jl"))
 using .FinancialStrategyLibraryPanelV1
 
-include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_010.jl"))
-using .LockFinancialStrategyLibraryPanelV1Execution010: verify_execution_lock_010
+include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_011.jl"))
+using .LockFinancialStrategyLibraryPanelV1Execution011: verify_execution_lock_011
 
 export main,
        prepare_instances,
+       run_post_audit_analysis,
        run_postdecision_phase,
        run_smoke,
        run_structural_phase,
@@ -30,8 +31,8 @@ const THREAD_COUNT = 8
 const HEAVY_CONCURRENCY = 2
 const ALGORITHM_CHECKPOINT_SCHEMA =
     "financial-strategy-library-panel-algorithm-checkpoint-v1"
-const LOCK_009_AGGREGATE =
-    "1df3b73878a7856d530aa6e7744591ba591c9fae1e1424ef324acb9ff4fee309"
+const LOCK_010_AGGREGATE =
+    "a5a1b53a16f5a238c92b1db04b6d073ee8057f12403c4e5a1b00f19fa59586ae"
 
 _utc_now() = Dates.format(Dates.now(Dates.UTC), dateformat"yyyy-mm-ddTHH:MM:SS.sssZ")
 _sha256_file(path) = open(path, "r") do io
@@ -67,6 +68,8 @@ function _paths(config)
         checkpoints = joinpath(local_results, "checkpoints"),
         solver_logs = joinpath(local_results, "solver_logs"),
         postdecision = joinpath(local_results, "postdecision"),
+        postdecision_scan_cache = joinpath(local_data, "prepared_return_panels"),
+        analysis = joinpath(local_results, "analysis"),
         environment = joinpath(local_results, "ENVIRONMENT.toml"),
     )
 end
@@ -98,7 +101,7 @@ function _environment(
         "UNAVAILABLE"
     end
     return Dict{String,Any}(
-        "schema_version" => "financial-strategy-library-panel-environment-v4",
+        "schema_version" => "financial-strategy-library-panel-environment-v5",
         "recorded_at_utc" => _utc_now(),
         "git_commit" => commit,
         "dirty_worktree" => !isempty(strip(status)),
@@ -110,7 +113,7 @@ function _environment(
         "threaded_lane_count" => THREAD_COUNT,
         "maximum_simultaneous_heavy_stages" => HEAVY_CONCURRENCY,
         "execution_lock_aggregate_sha256" => execution_lock_aggregate,
-        "active_amendment_id" => "AMENDMENT_010",
+        "active_amendment_id" => "AMENDMENT_011",
         "replaced_predecessor_environment" => replaced_predecessor_environment,
         "predecessor_instance_count" => predecessor_instance_count,
         "predecessor_origin_metadata_count" => predecessor_origin_metadata_count,
@@ -180,6 +183,26 @@ function _scan_progress_reporter(label::AbstractString)
             "file=$(update.file_index)/$(update.file_count) " *
             "rows=$(update.source_rows_scanned) elapsed=$(elapsed)s",
         )
+        return nothing
+    end
+end
+
+
+function _parallel_scan_progress_reporter(label::AbstractString, file_count::Integer)
+    started_at = time()
+    progress_lock = ReentrantLock()
+    completed_files = Set{Int}()
+    return function(update)
+        lock(progress_lock) do
+            update.state in ("file-completed", "file-reused") &&
+                push!(completed_files, update.file_index)
+            elapsed = round(Int, max(0, time() - started_at))
+            _emit_progress(
+                _progress_line(label, length(completed_files), file_count) *
+                "  state=$(update.state) file=$(update.file_index)/$(update.file_count) " *
+                "file_rows=$(update.source_rows_scanned) elapsed=$(elapsed)s",
+            )
+        end
         return nothing
     end
 end
@@ -423,7 +446,7 @@ function _registry_seed(origin_id, library_id)
 end
 
 function validate_readiness(; require_sources::Bool = true)
-    verify_execution_lock_010()
+    verify_execution_lock_011()
     VERSION == v"1.12.6" || error("financial panel v1 requires Julia 1.12.6")
     Threads.nthreads() == THREAD_COUNT || error(
         "financial panel v1 requires --threads=$THREAD_COUNT; found $(Threads.nthreads())",
@@ -435,7 +458,7 @@ function validate_readiness(; require_sources::Bool = true)
         error("execution amendment thread count changed")
     amendment["threading"]["maximum_simultaneous_heavy_stages"] == HEAVY_CONCURRENCY ||
         error("execution amendment heavy-stage concurrency changed")
-    amendment["amendment_id"] == "AMENDMENT_010" ||
+    amendment["amendment_id"] == "AMENDMENT_011" ||
         error("active execution amendment changed")
     amendment["audit_key_shape"]["expected_key_count"] == 180 ||
         error("audit key count changed")
@@ -444,6 +467,10 @@ function validate_readiness(; require_sources::Bool = true)
     amendment["progress"]["output_records"] ==
     "durable newline-delimited stderr records" ||
         error("progress output contract changed")
+    amendment["parquet"]["compression"] == "SNAPPY" ||
+        error("Parquet compression contract changed")
+    amendment["analysis_materialization"]["worker_count"] == THREAD_COUNT ||
+        error("analysis worker count changed")
     if require_sources
         paths = source_paths(config, _source_root(config))
         missing = filter(!isfile, [paths.security_history; paths.daily_files])
@@ -455,7 +482,7 @@ function validate_readiness(; require_sources::Bool = true)
 end
 
 function _write_environment(paths)
-    execution_lock_aggregate = verify_execution_lock_010()
+    execution_lock_aggregate = verify_execution_lock_011()
     if isfile(paths.environment)
         environment = TOML.parsefile(paths.environment)
         if get(environment, "execution_lock_aggregate_sha256", "") == execution_lock_aggregate
@@ -464,7 +491,7 @@ function _write_environment(paths)
             return environment
         end
         predecessor_lock_matches =
-            get(environment, "execution_lock_aggregate_sha256", "") == LOCK_009_AGGREGATE
+            get(environment, "execution_lock_aggregate_sha256", "") == LOCK_010_AGGREGATE
         instance_count = isdir(paths.instances) ?
                          count(name -> endswith(name, ".toml"), readdir(paths.instances)) : 0
         origin_metadata_count = isdir(paths.origin_metadata) ?
@@ -495,7 +522,7 @@ function _write_environment(paths)
                              checkpoint_count == 756 &&
                              solver_log_count == 14
         successor_recovery || error(
-            "saved environment belongs to an earlier execution lock outside Amendment 010 recovery",
+            "saved environment belongs to an earlier execution lock outside Amendment 011 recovery",
         )
         environment = _environment(
             execution_lock_aggregate;
@@ -984,6 +1011,7 @@ end
 function run_postdecision_phase()
     config, amendment = validate_readiness()
     output = _paths(config)
+    execution_lock_aggregate = verify_execution_lock_011()
     structural_audit_path = joinpath(output.local_results, "STRUCTURAL_AUDIT.toml")
     isfile(structural_audit_path) || error("structural audit is absent; run the audit before postdecision")
     structural_audit = TOML.parsefile(structural_audit_path)
@@ -1001,23 +1029,37 @@ function run_postdecision_phase()
         origins[origin_row.origin_id] = _origin_from_saved(origin_payload)
         isfile(path) && (thresholds[origin_row.origin_id] = Float64.(payload["belief_thresholds"]))
     end
-    raw_paths = source_paths(config, _source_root(config))
-    postdecision_return_quality = Dict{String,Any}()
-    _emit_progress("postdecision: extracting origin-scoped postdecision return series")
-    series_by_origin = extract_origin_series(
-        config,
-        raw_paths.daily_files,
-        [origins[origin_id] for origin_id in sort!(collect(keys(thresholds)))];
-        phase = :postdecision,
-        diagnostics = postdecision_return_quality,
-        progress_callback = _scan_progress_reporter("post-scan"),
-    )
     jobs = [(
         origin_id,
         library_id,
         schedule_id,
         stem = _instance_stem(origin_id, library_id, schedule_id),
     ) for (origin_id, library_id, schedule_id) in registered_job_keys()]
+    pending_jobs = [
+        job for job in jobs if !isfile(joinpath(output.postdecision, job.stem * ".toml"))
+    ]
+    if isempty(pending_jobs)
+        _emit_progress("postdecision: all 180 terminal records validated for resume; scan skipped")
+        return output.postdecision
+    end
+    raw_paths = source_paths(config, _source_root(config))
+    postdecision_return_quality = Dict{String,Any}()
+    _emit_progress(
+        "postdecision: extracting origin-scoped series to three resumable Snappy Parquet partitions",
+    )
+    series_by_origin = extract_origin_series_parquet(
+        config,
+        raw_paths.daily_files,
+        [origins[origin_id] for origin_id in sort!(collect(keys(thresholds)))];
+        phase = :postdecision,
+        cache_root = output.postdecision_scan_cache,
+        execution_lock_aggregate,
+        diagnostics = postdecision_return_quality,
+        progress_callback = _parallel_scan_progress_reporter(
+            "post-scan",
+            length(raw_paths.daily_files),
+        ),
+    )
     run_one = function(job, lane)
         destination = joinpath(output.postdecision, job.stem * ".toml")
         isfile(destination) && return nothing
@@ -1075,7 +1117,7 @@ end
 
 function run_smoke()
     config, _ = validate_readiness(; require_sources = false)
-    execution_lock_aggregate = verify_execution_lock_010()
+    execution_lock_aggregate = verify_execution_lock_011()
     jobs = build_synthetic_smoke_instances(THREAD_COUNT)
     mktempdir() do root
         output = (
@@ -1147,15 +1189,20 @@ function run_smoke()
 end
 
 
-function _load_audit_module()
-    name = :AuditFinancialStrategyLibraryPanelV1
+function _load_script_module(name::Symbol, filename::AbstractString)
     if !Base.invokelatest(isdefined, Main, name)
-        Base.include(Main, joinpath(@__DIR__, "audit_financial_strategy_library_panel_v1.jl"))
+        Base.include(Main, joinpath(@__DIR__, filename))
     end
-    audit_module = Base.invokelatest(getfield, Main, name)
-    audit_module isa Module || error("financial panel audit binding is not a module")
-    return audit_module
+    module_ = Base.invokelatest(getfield, Main, name)
+    module_ isa Module || error("financial panel script binding is not a module: $name")
+    return module_
 end
+
+
+_load_audit_module() = _load_script_module(
+    :AuditFinancialStrategyLibraryPanelV1,
+    "audit_financial_strategy_library_panel_v1.jl",
+)
 
 
 function _invoke_latest_binding(module_::Module, name::Symbol, args...; kwargs...)
@@ -1168,9 +1215,23 @@ end
 _invoke_audit(name::Symbol; kwargs...) =
     _invoke_latest_binding(_load_audit_module(), name; kwargs...)
 
+function run_post_audit_analysis()
+    analysis_module = _load_script_module(
+        :AnalyzeFinancialStrategyLibraryPanelV1,
+        "analyze_financial_strategy_library_panel_v1.jl",
+    )
+    manifest = _invoke_latest_binding(analysis_module, :run_analysis)
+    audit_module = _load_script_module(
+        :AuditFinancialStrategyLibraryPanelV1Analysis,
+        "audit_financial_strategy_library_panel_v1_analysis.jl",
+    )
+    audit = _invoke_latest_binding(audit_module, :audit_analysis)
+    return (manifest, audit)
+end
+
 function main(args = ARGS)
     length(args) == 1 || error(
-        "usage: run_financial_strategy_library_panel_v1.jl --check|--smoke|--prepare-only|--solve-only|--postdecision-only|--run",
+        "usage: run_financial_strategy_library_panel_v1.jl --check|--smoke|--prepare-only|--solve-only|--postdecision-only|--analysis-only|--continue-after-structural-audit|--run",
     )
     mode = only(args)
     if mode == "--check"
@@ -1187,13 +1248,24 @@ function main(args = ARGS)
     mode == "--prepare-only" && return prepare_instances()
     mode == "--solve-only" && return run_structural_phase()
     mode == "--postdecision-only" && return run_postdecision_phase()
+    if mode == "--analysis-only"
+        _invoke_audit(:audit_all_results)
+        return run_post_audit_analysis()
+    end
+    if mode == "--continue-after-structural-audit"
+        _invoke_audit(:audit_structural_results)
+        run_postdecision_phase()
+        _invoke_audit(:audit_all_results)
+        return run_post_audit_analysis()
+    end
     if mode == "--run"
         config, _ = validate_readiness()
         _ensure_preparation_for_run(_paths(config))
         run_structural_phase()
         _invoke_audit(:audit_structural_results)
         run_postdecision_phase()
-        return _invoke_audit(:audit_all_results)
+        _invoke_audit(:audit_all_results)
+        return run_post_audit_analysis()
     end
     error("unknown mode: $mode")
 end

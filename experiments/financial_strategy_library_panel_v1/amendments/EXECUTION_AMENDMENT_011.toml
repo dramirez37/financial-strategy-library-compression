@@ -1,0 +1,76 @@
+schema_version = "financial-strategy-library-panel-execution-amendment-v11"
+experiment_id = "financial-strategy-library-panel-v1"
+amendment_id = "AMENDMENT_011"
+amendment_date = "2026-08-31"
+predecessor_amendment_id = "AMENDMENT_010"
+licensed_rows_read_before_amendment = true
+structural_terminal_results_before_amendment = 180
+valid_terminal_instance_results_before_amendment = 108
+preparation_failure_terminal_results_before_amendment = 72
+solver_logs_before_amendment = 14
+algorithm_checkpoints_before_amendment = 756
+structural_audit_files_before_amendment = 1
+structural_audit_passed_before_amendment = true
+structural_result_aggregate_sha256 = "9564a4c9b0ea28f4cf4a9705e8e489398555032e466ba3fac8c16a98094a012a"
+postdecision_results_before_amendment = 0
+final_result_audit_files_before_amendment = 0
+analysis_artifacts_before_amendment = 0
+selected_library_or_burden_saving_inspected_before_amendment = false
+solver_status_inspected_before_amendment = false
+postdecision_outcome_observed_before_amendment = false
+raw_licensed_rows_printed_or_committed = false
+scientific_estimands_changed = false
+origin_registry_changed = false
+library_registry_changed = false
+burden_schedule_registry_changed = false
+seed_registry_changed = false
+algorithm_registry_changed = false
+source_instance_changed = false
+audit_predicates_changed = false
+
+[parquet]
+package = "Parquet.jl"
+package_version = "0.8.6"
+table_interface = "Tables.jl 1.14.0"
+compression = "SNAPPY"
+registered_source_file_partitions = 3
+source_scan_maximum_threads = 3
+source_merge_order = "registered daily_files order"
+local_cache_contains_licensed_rows = true
+local_cache_public_promotion_permitted = false
+analysis_contains_raw_licensed_rows = false
+
+[resume]
+source_partition_terminal_marker = "matching TOML sidecar"
+source_partition_bindings = ["execution lock", "phase", "origin context", "source stat fingerprint", "Parquet SHA-256", "schema", "row count"]
+postdecision_terminal_marker = "registered per-instance TOML"
+analysis_partition_terminal_marker = "matching TOML sidecar"
+terminal_mismatch_policy = "fail closed"
+orphan_parquet_without_sidecar = "interrupted nonterminal write; replace"
+
+[analysis]
+worker_count = 8
+registered_instance_partitions = 180
+algorithm_rows_per_partition = 7
+combined_algorithm_rows = 1260
+summary_group_count = 63
+identity_overlap_row_count = 5040
+instance_row_count = 180
+exact_method_agreement_row_count = 180
+carrier_multiplicity_unit = "one row per tagged requirement in each valid serialized instance"
+quantile_rule = "nearest-rank empirical quantile"
+median_rule = "middle observation or midpoint of two middle observations"
+exact_values = "rational strings retained beside floating-point analysis columns"
+unsuccessful_rows_retained = true
+normalized_output_tables = ["algorithm_rows", "instance_rows", "structural_summary", "identity_overlap", "exact_method_agreement", "carrier_multiplicity"]
+registered_table_count = 7
+registered_figure_count = 5
+figure_format = "editable SVG"
+duplicate_raster_figures = false
+
+[workflow]
+ordered_stages = ["structural-audit", "postdecision-evaluation", "full-result-audit", "parquet-analysis", "analysis-audit"]
+postdecision_worker_count = 8
+full_result_audit_worker_count = 8
+analysis_worker_count = 8
+analysis_audit_worker_count = 8

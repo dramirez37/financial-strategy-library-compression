@@ -1,8 +1,8 @@
 include(joinpath(@__DIR__, "..", "scripts", "lock_financial_strategy_library_panel_v1.jl"))
-include(joinpath(@__DIR__, "..", "scripts", "lock_financial_strategy_library_panel_v1_execution_010.jl"))
+include(joinpath(@__DIR__, "..", "scripts", "lock_financial_strategy_library_panel_v1_execution_011.jl"))
 
 const FSLP1Lock = LockFinancialStrategyLibraryPanelV1
-const FSLP1SuccessorLock = LockFinancialStrategyLibraryPanelV1Execution010
+const FSLP1SuccessorLock = LockFinancialStrategyLibraryPanelV1Execution011
 const FSLP1Registries =
     LockFinancialStrategyLibraryPanelV1.FinancialStrategyLibraryPanelV1Registries
 
@@ -69,7 +69,7 @@ const FSLP1Registries =
         historical_text,
     )
     aggregate = isfile(FSLP1SuccessorLock.LOCK_PATH) ?
-                FSLP1SuccessorLock.verify_execution_lock_010() :
+                FSLP1SuccessorLock.verify_execution_lock_011() :
                 FSLP1SuccessorLock.dry_run()
     @test occursin(r"^[0-9a-f]{64}$", aggregate)
     lock_text = isfile(FSLP1SuccessorLock.LOCK_PATH) ?

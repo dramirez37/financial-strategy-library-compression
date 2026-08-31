@@ -8,6 +8,9 @@ using StableRNGs: StableRNG
 using StrategyInnovation
 using TOML
 
+include(joinpath(@__DIR__, "FinancialPanelParquet.jl"))
+using .FinancialPanelParquet
+
 include(joinpath(@__DIR__, "..", "scripts", "create_financial_strategy_library_panel_v1_registries.jl"))
 using .FinancialStrategyLibraryPanelV1Registries
 
@@ -21,6 +24,7 @@ export DailyObservation,
        evaluate_postdecision,
        extract_daily_series,
        extract_origin_series,
+       extract_origin_series_parquet,
        load_panel_config,
        registered_job_keys,
        run_algorithm_suite,
@@ -103,6 +107,13 @@ const AMENDMENT_010_PATH = joinpath(
     "financial_strategy_library_panel_v1",
     "amendments",
     "EXECUTION_AMENDMENT_010.toml",
+)
+const AMENDMENT_011_PATH = joinpath(
+    REPOSITORY_ROOT,
+    "experiments",
+    "financial_strategy_library_panel_v1",
+    "amendments",
+    "EXECUTION_AMENDMENT_011.toml",
 )
 const ALGORITHM_IDS = (
     "jump_highs_tagged_cover",
@@ -355,6 +366,26 @@ function load_panel_config(path::AbstractString = CONFIG_PATH)
     amendment["amendment_id"] = progress_order_amendment["amendment_id"]
     amendment["progress_order_amendment"] = progress_order_amendment
     amendment["audit_progress"] = progress_order_amendment["progress"]
+    parquet_amendment = TOML.parsefile(AMENDMENT_011_PATH)
+    parquet_amendment["schema_version"] ==
+    "financial-strategy-library-panel-execution-amendment-v11" ||
+        error("unsupported Parquet-analysis execution amendment")
+    parquet_amendment["amendment_id"] == "AMENDMENT_011" ||
+        error("unexpected Parquet-analysis amendment identifier")
+    parquet_amendment["predecessor_amendment_id"] == "AMENDMENT_010" ||
+        error("unexpected Parquet-analysis amendment predecessor")
+    parquet_amendment["postdecision_outcome_observed_before_amendment"] === false ||
+        error("Parquet-analysis amendment followed a postdecision outcome")
+    parquet_amendment["selected_library_or_burden_saving_inspected_before_amendment"] === false ||
+        error("Parquet-analysis amendment followed scientific result inspection")
+    parquet_amendment["scientific_estimands_changed"] === false ||
+        error("Parquet-analysis amendment changes registered estimands")
+    amendment["predecessor_amendment_id"] = amendment["amendment_id"]
+    amendment["amendment_id"] = parquet_amendment["amendment_id"]
+    amendment["parquet_analysis_amendment"] = parquet_amendment
+    amendment["parquet"] = parquet_amendment["parquet"]
+    amendment["analysis_materialization"] = parquet_amendment["analysis"]
+    amendment["workflow"] = parquet_amendment["workflow"]
     return config, amendment
 end
 
@@ -957,6 +988,454 @@ function extract_origin_series(
         merge!(diagnostics, quality)
     end
     return observations
+end
+
+const ORIGIN_SERIES_PARQUET_COLUMNS = (
+    :origin_id,
+    :permno,
+    :date,
+    :total_return,
+    :close,
+    :volume,
+    :delisting_flag,
+    :return_flag,
+    :source_row_index,
+)
+
+function _origin_series_contexts(origins, phase)
+    contexts = Dict{Int,Vector{NamedTuple}}()
+    selected_by_origin = Dict{String,Vector{Int}}()
+    windows = Dict{String,Tuple{String,String}}()
+    for origin in origins
+        selected = sort!(unique([origin.reference_permno; Int[row.permno for row in origin.selected]]))
+        start_year = phase == :structural ?
+            parse(Int, first(split(origin.construction_start, '-'))) - 1 :
+            parse(Int, first(split(origin.postdecision_start, '-'))) - 1
+        window_start = "$(start_year)-01-01"
+        window_end = phase == :structural ? origin.compression_end : origin.postdecision_end
+        selected_by_origin[origin.origin_id] = selected
+        windows[origin.origin_id] = (window_start, window_end)
+        for permno in selected
+            push!(get!(contexts, permno, NamedTuple[]), (
+                origin_id = origin.origin_id,
+                window_start,
+                window_end,
+            ))
+        end
+    end
+    for candidates in values(contexts)
+        sort!(candidates; by = context -> context.origin_id)
+    end
+    return contexts, selected_by_origin, windows
+end
+
+function _origin_context_sha256(selected_by_origin, windows, phase)
+    rows = String["phase=$(String(phase))"]
+    for origin_id in sort!(collect(keys(selected_by_origin)))
+        window = windows[origin_id]
+        push!(
+            rows,
+            join((origin_id, window[1], window[2], join(selected_by_origin[origin_id], ',')), '\0'),
+        )
+    end
+    return _sha256_text(join(rows, '\n'))
+end
+
+function _source_stat_fingerprint(path)
+    metadata = stat(path)
+    return _sha256_text(join((
+        basename(path),
+        string(metadata.size),
+        repr(metadata.mtime),
+    ), '\0'))
+end
+
+function _scan_origin_series_file(
+    config,
+    path,
+    origins;
+    phase::Symbol,
+    progress_callback = nothing,
+    file_index::Int = 1,
+    file_count::Int = 1,
+)
+    contexts, _, _ = _origin_series_contexts(origins, phase)
+    required = String.(config["source"]["required_daily_columns"]["columns"])
+    origin_id = String[]
+    permno_column = Int64[]
+    date_column = String[]
+    return_column = Union{Missing,Float64}[]
+    close_column = Union{Missing,Float64}[]
+    volume_column = Union{Missing,Float64}[]
+    delisting_flag_column = String[]
+    return_flag_column = String[]
+    source_row_index_column = Int64[]
+    source_rows_scanned = 0
+    _report_scan(
+        progress_callback,
+        "$(String(phase))-return parquet scan",
+        "file-started",
+        file_index,
+        file_count,
+        source_rows_scanned,
+    )
+    _with_daily_file(path) do io
+        header = strip.(_split_csv(chomp(readline(io))))
+        positions = _positions(header, required)
+        for line in eachline(io)
+            source_rows_scanned += 1
+            source_rows_scanned % 1_000_000 == 0 && _report_scan(
+                progress_callback,
+                "$(String(phase))-return parquet scan",
+                "running",
+                file_index,
+                file_count,
+                source_rows_scanned,
+            )
+            fields = _split_csv(chomp(line))
+            length(fields) == length(header) || error("daily-security CSV width mismatch")
+            permno = tryparse(Int, strip(fields[positions["permno"]]))
+            isnothing(permno) && continue
+            candidate_contexts = get(contexts, permno, NamedTuple[])
+            isempty(candidate_contexts) && continue
+            date = strip(fields[positions["dlycaldt"]])
+            matching = [
+                context for context in candidate_contexts if
+                context.window_start <= date <= context.window_end
+            ]
+            isempty(matching) && continue
+            total_return = _parse_float(fields[positions["dlyret"]])
+            return_flag = strip(fields[positions["dlyretmissflg"]])
+            close = missing
+            volume = missing
+            if !isnothing(total_return)
+                total_return > -1 || error("selected daily return is not compoundable")
+                return_flag == "NA" || error(
+                    "a finite selected daily return does not carry CRSP flag NA",
+                )
+                parsed_close = _positive_close(fields, positions)
+                isnothing(parsed_close) && error("selected close and price fallback are invalid")
+                parsed_volume = _parse_float(fields[positions["dlyvol"]])
+                (isnothing(parsed_volume) || parsed_volume < 0) &&
+                    error("selected daily volume is invalid")
+                close = parsed_close
+                volume = parsed_volume
+            end
+            delisting_flag = strip(fields[positions["dlydelflg"]])
+            for context in matching
+                push!(origin_id, context.origin_id)
+                push!(permno_column, Int64(permno))
+                push!(date_column, date)
+                push!(return_column, isnothing(total_return) ? missing : total_return)
+                push!(close_column, close)
+                push!(volume_column, volume)
+                push!(delisting_flag_column, delisting_flag)
+                push!(return_flag_column, return_flag)
+                push!(source_row_index_column, Int64(source_rows_scanned))
+            end
+        end
+    end
+    _report_scan(
+        progress_callback,
+        "$(String(phase))-return parquet scan",
+        "file-completed",
+        file_index,
+        file_count,
+        source_rows_scanned,
+    )
+    return (
+        columns = (
+            origin_id,
+            permno = permno_column,
+            date = date_column,
+            total_return = return_column,
+            close = close_column,
+            volume = volume_column,
+            delisting_flag = delisting_flag_column,
+            return_flag = return_flag_column,
+            source_row_index = source_row_index_column,
+        ),
+        source_rows_scanned,
+    )
+end
+
+function _atomic_cache_metadata(path, payload; replace = false)
+    mkpath(dirname(path))
+    temporary = path * ".tmp.$(getpid()).$(Threads.threadid())"
+    open(temporary, "w") do io
+        write(io, toml_text(payload))
+    end
+    try
+        mv(temporary, path; force = replace)
+    finally
+        isfile(temporary) && rm(temporary; force = true)
+    end
+    return path
+end
+
+function _origin_series_partition_paths(cache_root, phase, file_index)
+    stem = "$(String(phase))-source-$(lpad(file_index, 3, '0'))"
+    return (
+        parquet = joinpath(cache_root, stem * ".parquet"),
+        metadata = joinpath(cache_root, stem * ".toml"),
+    )
+end
+
+function _validate_origin_series_partition(
+    paths,
+    path,
+    phase,
+    file_index,
+    file_count,
+    execution_lock_aggregate,
+    context_sha256,
+)
+    isfile(paths.metadata) || error("Parquet cache metadata is absent")
+    isfile(paths.parquet) || error("Parquet cache data are absent")
+    metadata = TOML.parsefile(paths.metadata)
+    metadata["schema_version"] == "financial-panel-origin-series-parquet-v1" ||
+        error("unexpected origin-series Parquet cache schema")
+    metadata["phase"] == String(phase) || error("Parquet cache phase differs")
+    metadata["source_file_index"] == file_index || error("Parquet source index differs")
+    metadata["source_file_count"] == file_count || error("Parquet source count differs")
+    metadata["execution_lock_aggregate_sha256"] == execution_lock_aggregate ||
+        error("Parquet execution-lock binding differs")
+    metadata["origin_context_sha256"] == context_sha256 ||
+        error("Parquet origin-context binding differs")
+    metadata["source_stat_fingerprint_sha256"] == _source_stat_fingerprint(path) ||
+        error("registered source file changed after Parquet caching")
+    sha256_file(paths.parquet) == metadata["parquet_sha256"] ||
+        error("origin-series Parquet content hash differs")
+    columns = validate_parquet(
+        paths.parquet;
+        expected_columns = ORIGIN_SERIES_PARQUET_COLUMNS,
+        expected_rows = Int(metadata["retained_origin_rows"]),
+    )
+    return (metadata, columns)
+end
+
+function _ensure_origin_series_partition(
+    config,
+    path,
+    origins,
+    cache_root,
+    execution_lock_aggregate,
+    context_sha256;
+    phase::Symbol,
+    file_index::Int,
+    file_count::Int,
+    progress_callback = nothing,
+)
+    paths = _origin_series_partition_paths(cache_root, phase, file_index)
+    if isfile(paths.metadata) || isfile(paths.parquet)
+        isfile(paths.metadata) && isfile(paths.parquet) || begin
+            isfile(paths.metadata) && error("terminal Parquet metadata has no data file")
+            # A Parquet file without its terminal metadata is an interrupted nonterminal write.
+            rm(paths.parquet; force = true)
+        end
+    end
+    if isfile(paths.metadata)
+        metadata, _ = _validate_origin_series_partition(
+            paths,
+            path,
+            phase,
+            file_index,
+            file_count,
+            execution_lock_aggregate,
+            context_sha256,
+        )
+        _report_scan(
+            progress_callback,
+            "$(String(phase))-return parquet scan",
+            "file-reused",
+            file_index,
+            file_count,
+            Int(metadata["source_rows_scanned"]),
+        )
+        return paths
+    end
+    result = _scan_origin_series_file(
+        config,
+        path,
+        origins;
+        phase,
+        progress_callback,
+        file_index,
+        file_count,
+    )
+    atomic_write_parquet(paths.parquet, result.columns; replace = true)
+    metadata = Dict{String,Any}(
+        "schema_version" => "financial-panel-origin-series-parquet-v1",
+        "phase" => String(phase),
+        "source_file_index" => file_index,
+        "source_file_count" => file_count,
+        "source_file_basename" => basename(path),
+        "source_stat_fingerprint_sha256" => _source_stat_fingerprint(path),
+        "origin_context_sha256" => context_sha256,
+        "execution_lock_aggregate_sha256" => execution_lock_aggregate,
+        "source_rows_scanned" => result.source_rows_scanned,
+        "retained_origin_rows" => length(result.columns.origin_id),
+        "parquet_sha256" => sha256_file(paths.parquet),
+        "local_licensed_rows_included" => true,
+        "public_promotion_permitted" => false,
+    )
+    _atomic_cache_metadata(paths.metadata, metadata)
+    _validate_origin_series_partition(
+        paths,
+        path,
+        phase,
+        file_index,
+        file_count,
+        execution_lock_aggregate,
+        context_sha256,
+    )
+    return paths
+end
+
+function _merge_origin_series_partitions(partition_paths, origins, phase, diagnostics)
+    _, selected_by_origin, _ = _origin_series_contexts(origins, phase)
+    observations = Dict(
+        origin_id => Dict(permno => DailyObservation[] for permno in selected) for
+        (origin_id, selected) in selected_by_origin
+    )
+    quality = Dict(
+        origin_id => Dict(
+            "origin_security_series" => length(selected),
+            "source_rows_seen" => 0,
+            "valid_return_rows_retained" => 0,
+            "new_security_initialization_rows_excluded" => 0,
+            "interior_missing_return_rows" => 0,
+            "unexpected_return_flag_rows" => 0,
+        ) for (origin_id, selected) in selected_by_origin
+    )
+    last_source_date = Dict{Tuple{String,Int},String}()
+    for paths in partition_paths
+        columns = parquet_columns(paths.parquet; use_threads = false)
+        propertynames(columns) == ORIGIN_SERIES_PARQUET_COLUMNS ||
+            error("origin-series Parquet schema changed during merge")
+        for index in eachindex(columns.origin_id)
+            origin_id = String(columns.origin_id[index])
+            permno = Int(columns.permno[index])
+            date = String(columns.date[index])
+            key = (origin_id, permno)
+            first_source_row = !haskey(last_source_date, key)
+            date > get(last_source_date, key, "") ||
+                error("duplicate or unstable daily ordering for an origin-scoped PERMNO")
+            last_source_date[key] = date
+            row = quality[origin_id]
+            row["source_rows_seen"] += 1
+            total_return = columns.total_return[index]
+            return_flag = String(columns.return_flag[index])
+            if ismissing(total_return)
+                if first_source_row && return_flag == "NS"
+                    row["new_security_initialization_rows_excluded"] += 1
+                else
+                    first_source_row || (row["interior_missing_return_rows"] += 1)
+                    return_flag == "NS" || (row["unexpected_return_flag_rows"] += 1)
+                    error(
+                        "selected daily return violates the locked missing-return rule; " *
+                        "only a first-row CRSP NS initialization may be excluded",
+                    )
+                end
+                continue
+            end
+            total_return > -1 || error("selected daily return is not compoundable")
+            return_flag == "NA" || begin
+                row["unexpected_return_flag_rows"] += 1
+                error("a finite selected daily return does not carry CRSP flag NA")
+            end
+            close = columns.close[index]
+            volume = columns.volume[index]
+            (!ismissing(close) && close > 0) || error("cached selected close is invalid")
+            (!ismissing(volume) && volume >= 0) || error("cached selected volume is invalid")
+            push!(
+                observations[origin_id][permno],
+                DailyObservation(
+                    date,
+                    Float64(total_return),
+                    Float64(close),
+                    Float64(volume),
+                    String(columns.delisting_flag[index]),
+                    return_flag,
+                ),
+            )
+            row["valid_return_rows_retained"] += 1
+        end
+    end
+    for (origin_id, series) in observations
+        all(!isempty, values(series)) ||
+            error("an origin-scoped selected PERMNO has no $phase daily series: $origin_id")
+        row = quality[origin_id]
+        row["source_rows_seen"] ==
+        row["valid_return_rows_retained"] +
+        row["new_security_initialization_rows_excluded"] ||
+            error("origin-scoped return-quality counts do not reconcile")
+        row["interior_missing_return_rows"] == 0 ||
+            error("origin-scoped extraction contains an interior missing return")
+        row["unexpected_return_flag_rows"] == 0 ||
+            error("origin-scoped extraction contains an unexpected return flag")
+    end
+    if !isnothing(diagnostics)
+        empty!(diagnostics)
+        merge!(diagnostics, quality)
+    end
+    return observations
+end
+
+"""
+    extract_origin_series_parquet(config, daily_files, origins; phase, cache_root,
+                                  execution_lock_aggregate)
+
+Scan registered daily source files independently on Julia threads, persist one
+local-only Parquet partition per source file, and merge the partitions in the
+registered file order. A partition is reusable only when its terminal metadata,
+Parquet hash, source stat fingerprint, origin-window fingerprint, phase, and
+execution-lock binding all match.
+"""
+function extract_origin_series_parquet(
+    config,
+    daily_files,
+    origins;
+    phase::Symbol,
+    cache_root::AbstractString,
+    execution_lock_aggregate::AbstractString,
+    diagnostics::Union{Nothing,AbstractDict} = nothing,
+    progress_callback = nothing,
+)
+    phase in (:structural, :postdecision) ||
+        throw(ArgumentError("origin-series phase must be structural or postdecision"))
+    isempty(origins) && return Dict{String,Dict{Int,Vector{DailyObservation}}}()
+    Threads.nthreads() > 1 || error("threaded Parquet extraction requires multiple Julia threads")
+    _, selected_by_origin, windows = _origin_series_contexts(origins, phase)
+    context_sha256 = _origin_context_sha256(selected_by_origin, windows, phase)
+    file_count = length(daily_files)
+    partition_paths = Vector{Any}(undef, file_count)
+    partition_errors = Vector{Union{Nothing,String}}(undef, file_count)
+    fill!(partition_errors, nothing)
+    Threads.@threads :static for file_index in eachindex(daily_files)
+        try
+            partition_paths[file_index] = _ensure_origin_series_partition(
+                config,
+                daily_files[file_index],
+                origins,
+                cache_root,
+                execution_lock_aggregate,
+                context_sha256;
+                phase,
+                file_index,
+                file_count,
+                progress_callback,
+            )
+        catch exception
+            partition_errors[file_index] = sprint(showerror, exception)
+        end
+    end
+    failed = findall(!isnothing, partition_errors)
+    isempty(failed) || error(join(
+        ("source partition $index: $(partition_errors[index])" for index in failed),
+        "; ",
+    ))
+    return _merge_origin_series_partitions(partition_paths, origins, phase, diagnostics)
 end
 
 function _empirical_quantile(values::Vector{Float64}, probability::Float64)

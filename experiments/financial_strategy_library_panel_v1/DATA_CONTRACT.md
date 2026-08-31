@@ -28,3 +28,13 @@ Ignored local artifacts may include origin eligibility audits, prepared return
 panels, strategy specifications, capability-carrier maps, instances, solver
 logs, and run records. Public promotion may copy only aggregates that pass a
 schema whitelist and row-level licensed-data audit.
+
+Under prospective Amendment 011, prepared return panels are stored as three
+Snappy-compressed Parquet partitions under the ignored local-data root. Their
+terminal sidecars bind them to the execution lock, origin windows, source-file
+stat fingerprints, schemas, row counts, and Parquet hashes. These local
+partitions remain licensed and nonredistributable. The downstream analysis
+Parquet files are separate: they contain only registered identifiers,
+aggregate measures, algorithm diagnostics, exact certificates, and
+postdecision summaries, and an independent audit rejects prohibited raw-row
+fields.

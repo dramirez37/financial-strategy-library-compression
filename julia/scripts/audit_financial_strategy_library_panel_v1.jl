@@ -8,8 +8,8 @@ using TOML
 include(joinpath(@__DIR__, "..", "src", "FinancialStrategyLibraryPanelV1.jl"))
 using .FinancialStrategyLibraryPanelV1
 
-include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_010.jl"))
-using .LockFinancialStrategyLibraryPanelV1Execution010: verify_execution_lock_010
+include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_011.jl"))
+using .LockFinancialStrategyLibraryPanelV1Execution011: verify_execution_lock_011
 
 export audit_all_results, audit_structural_results, main
 
@@ -381,7 +381,7 @@ function audit_structural_results(; write_report::Bool = true)
         "financial panel structural audit requires --threads=$AUDIT_THREAD_COUNT; " *
         "found $(Threads.nthreads())",
     )
-    execution_lock = verify_execution_lock_010()
+    execution_lock = verify_execution_lock_011()
     config, _ = load_panel_config()
     paths = _paths(config)
     errors = String[]
@@ -608,6 +608,8 @@ function audit_all_results(; write_report::Bool = true)
         "integrity_errors" => errors,
         "structural_audit_aggregate_sha256" =>
             structural["structural_result_aggregate_sha256"],
+        "execution_lock_aggregate_sha256" =>
+            structural["execution_lock_aggregate_sha256"],
         "registered_instance_count" => 180,
         "registered_algorithm_terminal_rows" => 1260,
         "postdecision_available_algorithm_rows" => available_count,

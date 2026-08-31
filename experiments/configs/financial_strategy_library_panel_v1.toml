@@ -160,6 +160,25 @@ postdecision_financial_diagnostics_secondary = true
 hypothesis_tests_primary = false
 unsuccessful_runs_retained = true
 
+[analysis_storage]
+format = "Parquet"
+parquet_package = "Parquet.jl"
+compression = "SNAPPY"
+local_source_partition_count = 3
+analysis_partition_count = 180
+algorithm_rows_per_partition = 7
+normalized_analysis_tables = ["algorithm_rows", "instance_rows", "structural_summary", "identity_overlap", "exact_method_agreement", "carrier_multiplicity"]
+carrier_multiplicity_contains_identifiers = false
+registered_table_count = 7
+registered_figure_count = 5
+figure_format = "SVG"
+duplicate_raster_figures = false
+source_partitions_contain_licensed_rows = true
+source_partitions_public_promotion_permitted = false
+analysis_partitions_contain_raw_licensed_rows = false
+terminal_partition_metadata = "TOML sidecar"
+resume_mismatch_policy = "fail closed"
+
 [information_boundary]
 postdecision_returns_may_define_universe = false
 postdecision_returns_may_define_library = false

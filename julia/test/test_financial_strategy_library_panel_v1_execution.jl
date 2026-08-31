@@ -1,6 +1,7 @@
 using Test
 using StrategyInnovation
 using Dates
+using TOML
 
 include(joinpath(@__DIR__, "..", "src", "FinancialStrategyLibraryPanelV1.jl"))
 const FSLP1 = FinancialStrategyLibraryPanelV1
@@ -8,8 +9,11 @@ const FSLP1 = FinancialStrategyLibraryPanelV1
 include(joinpath(@__DIR__, "..", "scripts", "run_financial_strategy_library_panel_v1.jl"))
 const FSLP1Runner = RunFinancialStrategyLibraryPanelV1
 
-include(joinpath(@__DIR__, "..", "scripts", "lock_financial_strategy_library_panel_v1_execution_010.jl"))
-const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution010
+include(joinpath(@__DIR__, "..", "scripts", "lock_financial_strategy_library_panel_v1_execution_011.jl"))
+const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution011
+
+include(joinpath(@__DIR__, "..", "scripts", "analyze_financial_strategy_library_panel_v1.jl"))
+const FSLP1Analysis = AnalyzeFinancialStrategyLibraryPanelV1
 
 @testset "financial panel v1 execution configuration" begin
     @test VERSION == v"1.12.6"
@@ -19,7 +23,7 @@ const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution010
     @test amendment["threading"]["julia_threads"] == 8
     @test amendment["threading"]["concurrent_job_lanes"] == 8
     @test amendment["threading"]["maximum_simultaneous_heavy_stages"] == 2
-    @test amendment["amendment_id"] == "AMENDMENT_010"
+    @test amendment["amendment_id"] == "AMENDMENT_011"
     @test amendment["audit_parallelism"]["worker_count"] == 8
     @test amendment["audit_parallelism"]["postdecision_worker_count"] == 8
     @test amendment["audit_dispatch"]["new_method_invocation"] == "Base.invokelatest"
@@ -29,11 +33,15 @@ const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution010
     @test amendment["failure_persistence"]["successful_instances_plus_failure_slots"] == 180
     @test amendment["failure_persistence"]["impute_profile"] === false
     @test amendment["information_firewall"]["shared_cross_origin_return_map_permitted"] === false
+    @test amendment["parquet"]["compression"] == "SNAPPY"
+    @test amendment["parquet"]["registered_source_file_partitions"] == 3
+    @test amendment["analysis_materialization"]["worker_count"] == 8
+    @test amendment["analysis_materialization"]["combined_algorithm_rows"] == 1260
     @test length(FSLP1.registered_job_keys()) == 180
     @test length(unique(FSLP1.registered_job_keys())) == 180
 
     if isfile(FSLP1ExecutionLock.LOCK_PATH)
-        aggregate = FSLP1ExecutionLock.verify_execution_lock_010()
+        aggregate = FSLP1ExecutionLock.verify_execution_lock_011()
         @test occursin(r"^[0-9a-f]{64}$", aggregate)
         lock_text = read(FSLP1ExecutionLock.LOCK_PATH, String)
         one_hash = first(values(FSLP1ExecutionLock._hashes()))
@@ -44,6 +52,222 @@ const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution010
         )
     else
         @test occursin(r"^[0-9a-f]{64}$", FSLP1ExecutionLock.dry_run())
+    end
+end
+
+@testset "registered Parquet analysis shapes and denominators" begin
+    rows = NamedTuple[]
+    for (origin_id, library_id, schedule_id) in FSLP1.registered_job_keys()
+        for algorithm_id in FSLP1Analysis.ALGORITHM_IDS
+            push!(rows, FSLP1Analysis._failure_row(
+                origin_id,
+                library_id,
+                schedule_id,
+                algorithm_id,
+                "PREPARATION_FAILURE",
+                repeat("a", 64),
+                repeat("b", 64),
+            ))
+        end
+    end
+    @test length(rows) == 1260
+    instances = FSLP1Analysis._instance_rows(rows)
+    @test length(instances) == 180
+    @test all(row -> row.instance_status == "PREPARATION_FAILURE", instances)
+    summaries = FSLP1Analysis._summary_rows(rows)
+    @test length(summaries) == 63
+    @test all(row -> row.registered_instance_count == 20, summaries)
+    @test all(row -> row.failure_instance_count == 20, summaries)
+    overlaps = FSLP1Analysis._overlap_rows(rows)
+    @test length(overlaps) == 5040
+    @test all(row -> !row.available, overlaps)
+    agreements = FSLP1Analysis._agreement_rows(rows)
+    @test length(agreements) == 180
+    @test all(row -> !row.mip_solver_status_used_as_exact_proof, agreements)
+    mktempdir() do root
+        path = joinpath(root, "analysis.parquet")
+        columns = FSLP1Analysis._column_table(rows, FSLP1Analysis.ALGORITHM_SCHEMA)
+        FSLP1.FinancialPanelParquet.atomic_write_parquet(path, columns)
+        restored = FSLP1.FinancialPanelParquet.validate_parquet(
+            path;
+            expected_columns = propertynames(FSLP1Analysis.ALGORITHM_SCHEMA),
+            expected_rows = 1260,
+        )
+        @test restored.origin_id == columns.origin_id
+        @test filesize(path) < 500_000
+
+        figure_paths = FSLP1Analysis._analysis_figures(
+            rows,
+            instances,
+            overlaps,
+            NamedTuple[],
+            (figures = joinpath(root, "figures"),),
+        )
+        @test length(figure_paths) == 5
+        @test all(path -> filesize(path) < 100_000, figure_paths)
+        @test all(path -> occursin("<title", read(path, String)) &&
+                         occursin("<desc", read(path, String)), figure_paths)
+    end
+
+    config, _ = FSLP1.load_panel_config()
+    job = first(FSLP1.build_synthetic_smoke_instances())
+    structural, _ = FSLP1.run_algorithm_suite(
+        job.instance;
+        origin_id = "FSLP1-O2005",
+        library_id = "centralized_research_pool",
+        schedule_id = "equal_active_strategy",
+        config,
+    )
+    post_algorithms = Dict{String,Any}[]
+    for record in structural["algorithms"]
+        if record["candidate_returned"] === true
+            push!(post_algorithms, Dict{String,Any}(
+                "algorithm_id" => record["algorithm_id"],
+                "available" => true,
+                "belief_losses" => fill("0//1", 5),
+                "mean_belief_loss" => "0//1",
+                "no_loss_share" => "1//1",
+                "identity_persistence_to_next_origin" => "1//1",
+            ))
+        else
+            push!(post_algorithms, Dict{String,Any}(
+                "algorithm_id" => record["algorithm_id"],
+                "available" => false,
+            ))
+        end
+    end
+    postdecision = Dict{String,Any}(
+        "schema_version" => "financial-strategy-library-panel-postdecision-v1",
+        "source_security_count_with_delisting_flag" => 0,
+        "algorithms" => post_algorithms,
+    )
+    mktempdir() do root
+        paths = (
+            structural = joinpath(root, "structural"),
+            postdecision = joinpath(root, "postdecision"),
+            instances = joinpath(root, "instances"),
+        )
+        foreach(mkpath, paths)
+        stem = "FSLP1-O2005__centralized_research_pool__equal_active_strategy"
+        write(joinpath(paths.structural, stem * ".toml"), FSLP1.toml_text(structural))
+        write(joinpath(paths.postdecision, stem * ".toml"), FSLP1.toml_text(postdecision))
+        open(joinpath(paths.instances, stem * ".toml"), "w") do io
+            write(io, serialize_journal_compression_instance(job.instance))
+        end
+        flattened = FSLP1Analysis._algorithm_rows(stem, paths)
+        @test length(flattened) == 7
+        @test all(row -> row.instance_status == "SUCCESS", flattened)
+        @test all(row -> !row.candidate_returned || row.exact_feasible === true, flattened)
+        @test count(row -> row.postdecision_available, flattened) ==
+              count(row -> row.candidate_returned, flattened)
+        carriers = FSLP1Analysis._carrier_rows([stem], paths)
+        @test length(carriers) == length(job.instance.requirements)
+        @test all(row -> row.carrier_count > 0, carriers)
+        @test count(row -> row.unique_carrier, carriers) ==
+              count(row -> count(job.instance.coverage[row, :]) == 1,
+                    axes(job.instance.coverage, 1))
+    end
+end
+
+@testset "resumable threaded Parquet origin-series cache" begin
+    selected = [(
+        permno = 1,
+        ticker = "SYN",
+        security_name_sha256 = repeat("0", 64),
+        median_close = 10.0,
+        median_dollar_volume = 10_000_000.0,
+        preorigin_daily_rows = 1000,
+        compression_liquidity_rows = 400,
+        invalid_liquidity_rows = 0,
+    )]
+    origin = FSLP1.OriginUniverse(
+        "TEST-O2005",
+        2005,
+        "2005-12-30",
+        "2001-01-01",
+        "2003-12-31",
+        "2004-01-01",
+        "2005-12-30",
+        "2006-01-01",
+        "2006-12-31",
+        selected,
+        1,
+        1,
+        1,
+    )
+    config, _ = FSLP1.load_panel_config()
+    mktempdir() do root
+        files = String[]
+        rows_by_file = [
+            [
+                "1,2005-01-03,,9,9,1000,N,NS",
+                "1,2005-12-30,0.01,10,10,1000,N,NA",
+            ],
+            ["1,2006-12-29,0.02,11,11,1000,N,NA"],
+        ]
+        for (index, rows) in enumerate(rows_by_file)
+            csv_path = joinpath(root, "daily-$index.csv")
+            gzip_path = csv_path * ".gz"
+            open(csv_path, "w") do io
+                println(io, "permno,dlycaldt,dlyret,dlyclose,dlyprc,dlyvol,dlydelflg,dlyretmissflg")
+                foreach(row -> println(io, row), rows)
+            end
+            open(gzip_path, "w") do output
+                run(pipeline(`gzip -c -- $csv_path`; stdout = output))
+            end
+            push!(files, gzip_path)
+        end
+        cache_root = joinpath(root, "cache")
+        updates = NamedTuple[]
+        update_lock = ReentrantLock()
+        quality = Dict{String,Any}()
+        result = FSLP1.extract_origin_series_parquet(
+            config,
+            files,
+            [origin];
+            phase = :postdecision,
+            cache_root,
+            execution_lock_aggregate = repeat("a", 64),
+            diagnostics = quality,
+            progress_callback = update -> lock(update_lock) do
+                push!(updates, update)
+            end,
+        )
+        @test getfield.(result[origin.origin_id][1], :date) ==
+              ["2005-12-30", "2006-12-29"]
+        @test quality[origin.origin_id]["new_security_initialization_rows_excluded"] == 1
+        @test count(name -> endswith(name, ".parquet"), readdir(cache_root)) == 2
+        @test count(name -> endswith(name, ".toml"), readdir(cache_root)) == 2
+        @test all(path -> filesize(path) > 4, filter(path -> endswith(path, ".parquet"),
+            readdir(cache_root; join = true)))
+        empty!(updates)
+        resumed = FSLP1.extract_origin_series_parquet(
+            config,
+            files,
+            [origin];
+            phase = :postdecision,
+            cache_root,
+            execution_lock_aggregate = repeat("a", 64),
+            progress_callback = update -> lock(update_lock) do
+                push!(updates, update)
+            end,
+        )
+        @test resumed == result
+        @test count(update -> update.state == "file-reused", updates) == 2
+        sidecar = first(filter(path -> endswith(path, ".toml"), readdir(cache_root; join = true)))
+        metadata = TOML.parsefile(sidecar)
+        metadata["execution_lock_aggregate_sha256"] = repeat("b", 64)
+        open(sidecar, "w") do io
+            write(io, FSLP1.toml_text(metadata))
+        end
+        @test_throws ErrorException FSLP1.extract_origin_series_parquet(
+            config,
+            files,
+            [origin];
+            phase = :postdecision,
+            cache_root,
+            execution_lock_aggregate = repeat("a", 64),
+        )
     end
 end
 

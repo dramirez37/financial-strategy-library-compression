@@ -827,6 +827,17 @@ information boundary before any study-specific licensed row or outcome is
 read. They are not empirical results. `make aor-financial-panel-v1-design-check`
 verifies this artifact without accessing licensed data.
 
+Prospective Amendment 011 adds only execution infrastructure: three
+Snappy-compressed, local-only prepared-return Parquet partitions; 180
+resumable seven-row analysis partitions; deterministic compacted algorithm,
+instance, grouped-summary, identity-overlap, exact-method-agreement, and
+carrier-multiplicity Parquet tables; five compact editable SVGs without raster
+duplicates; and independent hash/schema
+audits. Source partitions remain ignored licensed artifacts. Analysis
+partitions are not public results until the licensed run, full result audit,
+analysis audit, and separate promotion boundary all pass. The continuation
+command is `make aor-financial-panel-v1-continue`.
+
 | Class | Expected future location or form | Current status |
 |---|---|---|
 | remaining primary research theorem declarations | future extensions under `formal/StrategyInnovation/` | none in the adopted T1--T7 package; F0, F1--F8, S4--S7, C2, and CS1 are supporting results |

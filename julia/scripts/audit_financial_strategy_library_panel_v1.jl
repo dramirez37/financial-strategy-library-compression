@@ -8,8 +8,8 @@ using TOML
 include(joinpath(@__DIR__, "..", "src", "FinancialStrategyLibraryPanelV1.jl"))
 using .FinancialStrategyLibraryPanelV1
 
-include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_011.jl"))
-using .LockFinancialStrategyLibraryPanelV1Execution011: verify_execution_lock_011
+include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_012.jl"))
+using .LockFinancialStrategyLibraryPanelV1Execution012: verify_execution_lock_012
 
 export audit_all_results, audit_structural_results, main
 
@@ -381,7 +381,7 @@ function audit_structural_results(; write_report::Bool = true)
         "financial panel structural audit requires --threads=$AUDIT_THREAD_COUNT; " *
         "found $(Threads.nthreads())",
     )
-    execution_lock = verify_execution_lock_011()
+    execution_lock = verify_execution_lock_012()
     config, _ = load_panel_config()
     paths = _paths(config)
     errors = String[]
@@ -536,10 +536,20 @@ function _audit_postdecision_stem(stem, paths)
         push!(errors, "$stem postdecision extraction has an interior missing return")
     get(quality, "unexpected_return_flag_rows", -1) == 0 ||
         push!(errors, "$stem postdecision extraction has an unexpected return flag")
+    get(quality, "unused_close_missing_rows", -1) isa Integer &&
+    get(quality, "unused_close_missing_rows", -1) >= 0 ||
+        push!(errors, "$stem lacks a valid unused-close missing count")
+    get(quality, "unused_volume_missing_rows", -1) isa Integer &&
+    get(quality, "unused_volume_missing_rows", -1) >= 0 ||
+        push!(errors, "$stem lacks a valid unused-volume missing count")
     payload["schema_version"] == "financial-strategy-library-panel-postdecision-v1" || begin
         push!(errors, "$stem has an unrecognized postdecision schema")
         return _postdecision_audit_record(errors; result_relative, result_sha256)
     end
+    get(payload, "postdecision_close_volume_used", true) === false ||
+        push!(errors, "$stem claims to use postdecision close or volume")
+    get(payload, "unused_market_fields_imputed", true) === false ||
+        push!(errors, "$stem claims unused market-field imputation")
     get(payload, "structural_instance_sha256", "") == source["instance_sha256"] ||
         push!(errors, "$stem postdecision link hash differs")
     length(get(payload, "source_frontier", Any[])) == 5 ||

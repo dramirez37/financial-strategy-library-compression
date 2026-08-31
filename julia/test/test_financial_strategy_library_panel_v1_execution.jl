@@ -9,8 +9,8 @@ const FSLP1 = FinancialStrategyLibraryPanelV1
 include(joinpath(@__DIR__, "..", "scripts", "run_financial_strategy_library_panel_v1.jl"))
 const FSLP1Runner = RunFinancialStrategyLibraryPanelV1
 
-include(joinpath(@__DIR__, "..", "scripts", "lock_financial_strategy_library_panel_v1_execution_011.jl"))
-const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution011
+include(joinpath(@__DIR__, "..", "scripts", "lock_financial_strategy_library_panel_v1_execution_012.jl"))
+const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution012
 
 include(joinpath(@__DIR__, "..", "scripts", "analyze_financial_strategy_library_panel_v1.jl"))
 const FSLP1Analysis = AnalyzeFinancialStrategyLibraryPanelV1
@@ -23,7 +23,7 @@ const FSLP1Analysis = AnalyzeFinancialStrategyLibraryPanelV1
     @test amendment["threading"]["julia_threads"] == 8
     @test amendment["threading"]["concurrent_job_lanes"] == 8
     @test amendment["threading"]["maximum_simultaneous_heavy_stages"] == 2
-    @test amendment["amendment_id"] == "AMENDMENT_011"
+    @test amendment["amendment_id"] == "AMENDMENT_012"
     @test amendment["audit_parallelism"]["worker_count"] == 8
     @test amendment["audit_parallelism"]["postdecision_worker_count"] == 8
     @test amendment["audit_dispatch"]["new_method_invocation"] == "Base.invokelatest"
@@ -37,11 +37,14 @@ const FSLP1Analysis = AnalyzeFinancialStrategyLibraryPanelV1
     @test amendment["parquet"]["registered_source_file_partitions"] == 3
     @test amendment["analysis_materialization"]["worker_count"] == 8
     @test amendment["analysis_materialization"]["combined_algorithm_rows"] == 1260
+    @test amendment["postdecision_field_policy"]["postdecision_close_used"] === false
+    @test amendment["postdecision_field_policy"]["postdecision_volume_used"] === false
+    @test amendment["postdecision_field_policy"]["postdecision_unused_field_imputation_permitted"] === false
     @test length(FSLP1.registered_job_keys()) == 180
     @test length(unique(FSLP1.registered_job_keys())) == 180
 
     if isfile(FSLP1ExecutionLock.LOCK_PATH)
-        aggregate = FSLP1ExecutionLock.verify_execution_lock_011()
+        aggregate = FSLP1ExecutionLock.verify_execution_lock_012()
         @test occursin(r"^[0-9a-f]{64}$", aggregate)
         lock_text = read(FSLP1ExecutionLock.LOCK_PATH, String)
         one_hash = first(values(FSLP1ExecutionLock._hashes()))
@@ -203,7 +206,7 @@ end
                 "1,2005-01-03,,9,9,1000,N,NS",
                 "1,2005-12-30,0.01,10,10,1000,N,NA",
             ],
-            ["1,2006-12-29,0.02,11,11,1000,N,NA"],
+            ["1,2006-12-29,0.02,,,,N,NA"],
         ]
         for (index, rows) in enumerate(rows_by_file)
             csv_path = joinpath(root, "daily-$index.csv")
@@ -236,6 +239,10 @@ end
         @test getfield.(result[origin.origin_id][1], :date) ==
               ["2005-12-30", "2006-12-29"]
         @test quality[origin.origin_id]["new_security_initialization_rows_excluded"] == 1
+        @test quality[origin.origin_id]["unused_close_missing_rows"] == 1
+        @test quality[origin.origin_id]["unused_volume_missing_rows"] == 1
+        @test ismissing(last(result[origin.origin_id][1]).close)
+        @test ismissing(last(result[origin.origin_id][1]).volume)
         @test count(name -> endswith(name, ".parquet"), readdir(cache_root)) == 2
         @test count(name -> endswith(name, ".toml"), readdir(cache_root)) == 2
         @test all(path -> filesize(path) > 4, filter(path -> endswith(path, ".parquet"),
@@ -254,9 +261,19 @@ end
         )
         @test resumed == result
         @test count(update -> update.state == "file-reused", updates) == 2
+        predecessor_reused = FSLP1.extract_origin_series_parquet(
+            config,
+            files,
+            [origin];
+            phase = :postdecision,
+            cache_root,
+            execution_lock_aggregate = repeat("b", 64),
+            compatible_execution_lock_aggregates = (repeat("a", 64), repeat("b", 64)),
+        )
+        @test predecessor_reused == result
         sidecar = first(filter(path -> endswith(path, ".toml"), readdir(cache_root; join = true)))
         metadata = TOML.parsefile(sidecar)
-        metadata["execution_lock_aggregate_sha256"] = repeat("b", 64)
+        metadata["execution_lock_aggregate_sha256"] = repeat("c", 64)
         open(sidecar, "w") do io
             write(io, FSLP1.toml_text(metadata))
         end
@@ -486,6 +503,35 @@ end
               ["2005-12-30", "2006-12-29"]
         @test getfield.(postdecision["TEST-O2006"][1], :date) ==
               ["2006-12-29", "2007-12-31"]
+
+        unused_csv_path = joinpath(root, "unused_market_fields.csv")
+        unused_gzip_path = unused_csv_path * ".gz"
+        open(unused_csv_path, "w") do io
+            println(io, "permno,dlycaldt,dlyret,dlyclose,dlyprc,dlyvol,dlydelflg,dlyretmissflg")
+            println(io, "1,2005-12-30,0.01,10,10,1000,N,NA")
+            println(io, "1,2006-12-29,0.02,,,,N,NA")
+        end
+        open(unused_gzip_path, "w") do output
+            run(pipeline(`gzip -c -- $unused_csv_path`; stdout = output))
+        end
+        unused_quality = Dict{String,Any}()
+        unused_postdecision = FSLP1.extract_origin_series(
+            config,
+            [unused_gzip_path],
+            [origins[1]];
+            phase = :postdecision,
+            diagnostics = unused_quality,
+        )
+        @test ismissing(last(unused_postdecision["TEST-O2005"][1]).close)
+        @test ismissing(last(unused_postdecision["TEST-O2005"][1]).volume)
+        @test unused_quality["TEST-O2005"]["unused_close_missing_rows"] == 1
+        @test unused_quality["TEST-O2005"]["unused_volume_missing_rows"] == 1
+        @test_throws ErrorException FSLP1.extract_origin_series(
+            config,
+            [unused_gzip_path],
+            [origins[2]];
+            phase = :structural,
+        )
 
         invalid_csv_path = joinpath(root, "invalid_daily.csv")
         invalid_gzip_path = invalid_csv_path * ".gz"

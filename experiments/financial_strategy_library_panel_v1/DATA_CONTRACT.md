@@ -24,6 +24,14 @@ not removed from that origin. After its last valid observation, a modeled
 position goes to cash; the absence of separately supplied delisting returns is
 reported as a data limitation rather than imputed.
 
+Prospective Amendment 012 distinguishes fields used in structural construction
+from fields unused by the returns-only postdecision calculation. Structural
+rows still require usable close and nonnegative volume. A finite,
+compoundable, `NA`-flagged postdecision total return is not dropped merely
+because close or volume is unavailable: the unused field remains `missing`, is
+never imputed, and is counted by origin. Dates, total returns, return flags,
+ordering, and the first-row-only `NS` rule remain fail-closed.
+
 Ignored local artifacts may include origin eligibility audits, prepared return
 panels, strategy specifications, capability-carrier maps, instances, solver
 logs, and run records. Public promotion may copy only aggregates that pass a

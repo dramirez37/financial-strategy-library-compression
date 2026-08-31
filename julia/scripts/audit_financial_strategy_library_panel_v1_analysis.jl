@@ -239,7 +239,7 @@ function audit_analysis(; write_report::Bool = true, progress_io = stderr)
         "found $(Threads.nthreads())",
     )
     config, amendment = load_panel_config()
-    amendment["amendment_id"] == "AMENDMENT_011" || error("active analysis amendment changed")
+    amendment["amendment_id"] == "AMENDMENT_012" || error("active analysis amendment changed")
     paths = _paths(config)
     errors = String[]
     isfile(paths.result_audit) || error("final result audit is absent")

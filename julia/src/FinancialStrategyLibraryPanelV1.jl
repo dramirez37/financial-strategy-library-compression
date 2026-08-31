@@ -115,6 +115,13 @@ const AMENDMENT_011_PATH = joinpath(
     "amendments",
     "EXECUTION_AMENDMENT_011.toml",
 )
+const AMENDMENT_012_PATH = joinpath(
+    REPOSITORY_ROOT,
+    "experiments",
+    "financial_strategy_library_panel_v1",
+    "amendments",
+    "EXECUTION_AMENDMENT_012.toml",
+)
 const ALGORITHM_IDS = (
     "jump_highs_tagged_cover",
     "requirement_mask_dp",
@@ -155,8 +162,8 @@ end
 struct DailyObservation
     date::String
     total_return::Float64
-    close::Float64
-    volume::Float64
+    close::Union{Missing,Float64}
+    volume::Union{Missing,Float64}
     delisting_flag::String
     return_missing_flag::String
 end
@@ -386,6 +393,23 @@ function load_panel_config(path::AbstractString = CONFIG_PATH)
     amendment["parquet"] = parquet_amendment["parquet"]
     amendment["analysis_materialization"] = parquet_amendment["analysis"]
     amendment["workflow"] = parquet_amendment["workflow"]
+    postdecision_field_amendment = TOML.parsefile(AMENDMENT_012_PATH)
+    postdecision_field_amendment["schema_version"] ==
+    "financial-strategy-library-panel-execution-amendment-v12" ||
+        error("unsupported postdecision-field execution amendment")
+    postdecision_field_amendment["amendment_id"] == "AMENDMENT_012" ||
+        error("unexpected postdecision-field amendment identifier")
+    postdecision_field_amendment["predecessor_amendment_id"] == "AMENDMENT_011" ||
+        error("unexpected postdecision-field amendment predecessor")
+    postdecision_field_amendment["postdecision_outcome_observed_before_amendment"] === false ||
+        error("postdecision-field amendment followed a postdecision outcome")
+    postdecision_field_amendment["scientific_estimands_changed"] === false ||
+        error("postdecision-field amendment changes registered estimands")
+    amendment["predecessor_amendment_id"] = amendment["amendment_id"]
+    amendment["amendment_id"] = postdecision_field_amendment["amendment_id"]
+    amendment["postdecision_field_amendment"] = postdecision_field_amendment
+    amendment["postdecision_field_policy"] = postdecision_field_amendment["field_policy"]
+    amendment["source_cache_compatibility"] = postdecision_field_amendment["cache_compatibility"]
     return config, amendment
 end
 
@@ -860,6 +884,8 @@ function extract_origin_series(
             "new_security_initialization_rows_excluded" => 0,
             "interior_missing_return_rows" => 0,
             "unexpected_return_flag_rows" => 0,
+            "unused_close_missing_rows" => 0,
+            "unused_volume_missing_rows" => 0,
         )
         for permno in selected
             push!(get!(contexts, permno, NamedTuple[]), (
@@ -944,14 +970,24 @@ function extract_origin_series(
                     error("a finite selected daily return does not carry CRSP flag NA")
                 end
                 close = _positive_close(fields, positions)
-                isnothing(close) && error("selected close and price fallback are invalid")
                 volume = _parse_float(fields[positions["dlyvol"]])
-                (isnothing(volume) || volume < 0) && error("selected daily volume is invalid")
+                invalid_volume = isnothing(volume) || volume < 0
+                if phase == :structural
+                    isnothing(close) && error("selected close and price fallback are invalid")
+                    invalid_volume && error("selected daily volume is invalid")
+                else
+                    for context in matching
+                        isnothing(close) &&
+                            (quality[context.origin_id]["unused_close_missing_rows"] += 1)
+                        invalid_volume &&
+                            (quality[context.origin_id]["unused_volume_missing_rows"] += 1)
+                    end
+                end
                 observation = DailyObservation(
                     date,
                     total_return,
-                    close,
-                    volume,
+                    isnothing(close) ? missing : close,
+                    invalid_volume ? missing : volume,
                     strip(fields[positions["dlydelflg"]]),
                     return_flag,
                 )
@@ -1114,12 +1150,15 @@ function _scan_origin_series_file(
                     "a finite selected daily return does not carry CRSP flag NA",
                 )
                 parsed_close = _positive_close(fields, positions)
-                isnothing(parsed_close) && error("selected close and price fallback are invalid")
                 parsed_volume = _parse_float(fields[positions["dlyvol"]])
-                (isnothing(parsed_volume) || parsed_volume < 0) &&
-                    error("selected daily volume is invalid")
-                close = parsed_close
-                volume = parsed_volume
+                invalid_volume = isnothing(parsed_volume) || parsed_volume < 0
+                if phase == :structural
+                    isnothing(parsed_close) &&
+                        error("selected close and price fallback are invalid")
+                    invalid_volume && error("selected daily volume is invalid")
+                end
+                close = isnothing(parsed_close) ? missing : parsed_close
+                volume = invalid_volume ? missing : parsed_volume
             end
             delisting_flag = strip(fields[positions["dlydelflg"]])
             for context in matching
@@ -1189,6 +1228,7 @@ function _validate_origin_series_partition(
     file_count,
     execution_lock_aggregate,
     context_sha256,
+    compatible_execution_lock_aggregates,
 )
     isfile(paths.metadata) || error("Parquet cache metadata is absent")
     isfile(paths.parquet) || error("Parquet cache data are absent")
@@ -1198,8 +1238,11 @@ function _validate_origin_series_partition(
     metadata["phase"] == String(phase) || error("Parquet cache phase differs")
     metadata["source_file_index"] == file_index || error("Parquet source index differs")
     metadata["source_file_count"] == file_count || error("Parquet source count differs")
-    metadata["execution_lock_aggregate_sha256"] == execution_lock_aggregate ||
-        error("Parquet execution-lock binding differs")
+    accepted_locks = Set(String.(compatible_execution_lock_aggregates))
+    execution_lock_aggregate in accepted_locks ||
+        error("current Parquet execution lock is absent from its compatibility set")
+    metadata["execution_lock_aggregate_sha256"] in accepted_locks ||
+        error("Parquet execution-lock binding is not declared compatible")
     metadata["origin_context_sha256"] == context_sha256 ||
         error("Parquet origin-context binding differs")
     metadata["source_stat_fingerprint_sha256"] == _source_stat_fingerprint(path) ||
@@ -1225,6 +1268,7 @@ function _ensure_origin_series_partition(
     file_index::Int,
     file_count::Int,
     progress_callback = nothing,
+    compatible_execution_lock_aggregates = (execution_lock_aggregate,),
 )
     paths = _origin_series_partition_paths(cache_root, phase, file_index)
     if isfile(paths.metadata) || isfile(paths.parquet)
@@ -1243,6 +1287,7 @@ function _ensure_origin_series_partition(
             file_count,
             execution_lock_aggregate,
             context_sha256,
+            compatible_execution_lock_aggregates,
         )
         _report_scan(
             progress_callback,
@@ -1288,6 +1333,7 @@ function _ensure_origin_series_partition(
         file_count,
         execution_lock_aggregate,
         context_sha256,
+        compatible_execution_lock_aggregates,
     )
     return paths
 end
@@ -1306,6 +1352,8 @@ function _merge_origin_series_partitions(partition_paths, origins, phase, diagno
             "new_security_initialization_rows_excluded" => 0,
             "interior_missing_return_rows" => 0,
             "unexpected_return_flag_rows" => 0,
+            "unused_close_missing_rows" => 0,
+            "unused_volume_missing_rows" => 0,
         ) for (origin_id, selected) in selected_by_origin
     )
     last_source_date = Dict{Tuple{String,Int},String}()
@@ -1346,15 +1394,21 @@ function _merge_origin_series_partitions(partition_paths, origins, phase, diagno
             end
             close = columns.close[index]
             volume = columns.volume[index]
-            (!ismissing(close) && close > 0) || error("cached selected close is invalid")
-            (!ismissing(volume) && volume >= 0) || error("cached selected volume is invalid")
+            if phase == :structural
+                (!ismissing(close) && close > 0) || error("cached selected close is invalid")
+                (!ismissing(volume) && volume >= 0) ||
+                    error("cached selected volume is invalid")
+            else
+                ismissing(close) && (row["unused_close_missing_rows"] += 1)
+                ismissing(volume) && (row["unused_volume_missing_rows"] += 1)
+            end
             push!(
                 observations[origin_id][permno],
                 DailyObservation(
                     date,
                     Float64(total_return),
-                    Float64(close),
-                    Float64(volume),
+                    ismissing(close) ? missing : Float64(close),
+                    ismissing(volume) ? missing : Float64(volume),
                     String(columns.delisting_flag[index]),
                     return_flag,
                 ),
@@ -1401,6 +1455,7 @@ function extract_origin_series_parquet(
     execution_lock_aggregate::AbstractString,
     diagnostics::Union{Nothing,AbstractDict} = nothing,
     progress_callback = nothing,
+    compatible_execution_lock_aggregates = (execution_lock_aggregate,),
 )
     phase in (:structural, :postdecision) ||
         throw(ArgumentError("origin-series phase must be structural or postdecision"))
@@ -1425,6 +1480,7 @@ function extract_origin_series_parquet(
                 file_index,
                 file_count,
                 progress_callback,
+                compatible_execution_lock_aggregates,
             )
         catch exception
             partition_errors[file_index] = sprint(showerror, exception)
@@ -2749,6 +2805,8 @@ function evaluate_postdecision(
         "postdecision_window_end" => origin.postdecision_end,
         "source_frontier" => _exact_text.(source_frontier),
         "source_security_count_with_delisting_flag" => delisted_count,
+        "postdecision_close_volume_used" => false,
+        "unused_market_fields_imputed" => false,
         "algorithms" => algorithm_rows,
         "licensed_rows_included" => false,
         "nonclaims" => ["causal", "forecasting", "alpha", "deployable performance"],

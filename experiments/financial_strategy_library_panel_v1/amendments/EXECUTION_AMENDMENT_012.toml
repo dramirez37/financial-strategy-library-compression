@@ -1,0 +1,53 @@
+schema_version = "financial-strategy-library-panel-execution-amendment-v12"
+experiment_id = "financial-strategy-library-panel-v1"
+amendment_id = "AMENDMENT_012"
+amendment_date = "2026-08-31"
+predecessor_amendment_id = "AMENDMENT_011"
+postdecision_results_before_amendment = 0
+final_result_audit_files_before_amendment = 0
+analysis_artifacts_before_amendment = 0
+completed_source_partitions_before_amendment = 2
+failed_source_partition_index = 2
+failure_class_observed = "finite compoundable NA-flagged postdecision return with no usable close or absolute price fallback"
+raw_row_values_inspected = false
+selected_library_or_burden_saving_inspected_before_amendment = false
+solver_status_inspected_before_amendment = false
+postdecision_outcome_observed_before_amendment = false
+raw_licensed_rows_printed_or_committed = false
+scientific_estimands_changed = false
+origin_registry_changed = false
+library_registry_changed = false
+burden_schedule_registry_changed = false
+seed_registry_changed = false
+algorithm_registry_changed = false
+structural_results_changed = false
+analysis_rules_changed = false
+audit_predicates_changed = true
+
+[field_policy]
+structural_close_required = true
+structural_nonnegative_volume_required = true
+postdecision_close_used = false
+postdecision_volume_used = false
+postdecision_invalid_close_representation = "missing"
+postdecision_invalid_volume_representation = "missing"
+postdecision_unused_field_imputation_permitted = false
+postdecision_return_drop_for_unused_market_field_permitted = false
+postdecision_missing_close_counter = "unused_close_missing_rows"
+postdecision_missing_volume_counter = "unused_volume_missing_rows"
+required_return_conditions = ["finite", "greater than -1", "return-missing flag NA"]
+missing_return_rule = "only the first origin-security row with CRSP flag NS may be excluded"
+
+[cache_compatibility]
+current_execution_lock_required = true
+compatible_predecessor_amendment = "AMENDMENT_011"
+compatible_predecessor_execution_lock_aggregate_sha256 = "59cb6795ad35986bdc5c102da900147efad952dd557b94eaba107ead85393e9f"
+permitted_predecessor_partition_indices = [1, 3]
+required_matching_bindings = ["phase", "source index/count", "origin context", "source stat fingerprint", "Parquet SHA-256", "schema", "row count"]
+arbitrary_cross_lock_reuse_permitted = false
+
+[storage]
+duplicate_predecessor_partitions = false
+rewrite_valid_predecessor_partitions = false
+new_partition_compression = "SNAPPY"
+raw_licensed_rows_public_promotion_permitted = false

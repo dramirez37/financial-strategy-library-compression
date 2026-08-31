@@ -838,6 +838,14 @@ partitions are not public results until the licensed run, full result audit,
 analysis audit, and separate promotion boundary all pass. The continuation
 command is `make aor-financial-panel-v1-continue`.
 
+Prospective Amendment 012 follows a Lock 011 source-scan failure before any
+postdecision result. It keeps structural price/volume validation strict while
+representing unavailable close or volume as `missing` only in the returns-only
+postdecision phase, records origin-level missing-unused-field counts, and
+permits hash- and context-validated reuse of the completed Lock 011 source
+partitions 1 and 3. No unused market field is imputed and no return is dropped
+for that reason.
+
 | Class | Expected future location or form | Current status |
 |---|---|---|
 | remaining primary research theorem declarations | future extensions under `formal/StrategyInnovation/` | none in the adopted T1--T7 package; F0, F1--F8, S4--S7, C2, and CS1 are supporting results |

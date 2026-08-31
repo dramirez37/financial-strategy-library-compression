@@ -76,6 +76,13 @@ const AMENDMENT_006_PATH = joinpath(
     "amendments",
     "EXECUTION_AMENDMENT_006.toml",
 )
+const AMENDMENT_007_PATH = joinpath(
+    REPOSITORY_ROOT,
+    "experiments",
+    "financial_strategy_library_panel_v1",
+    "amendments",
+    "EXECUTION_AMENDMENT_007.toml",
+)
 const ALGORITHM_IDS = (
     "jump_highs_tagged_cover",
     "requirement_mask_dp",
@@ -259,6 +266,23 @@ function load_panel_config(path::AbstractString = CONFIG_PATH)
     amendment["amendment_id"] = dispatch_amendment["amendment_id"]
     amendment["dispatch_amendment"] = dispatch_amendment
     amendment["audit_dispatch"] = dispatch_amendment["dispatch"]
+    audit_shape_amendment = TOML.parsefile(AMENDMENT_007_PATH)
+    audit_shape_amendment["schema_version"] ==
+    "financial-strategy-library-panel-execution-amendment-v7" ||
+        error("unsupported audit-shape execution amendment")
+    audit_shape_amendment["amendment_id"] == "AMENDMENT_007" ||
+        error("unexpected audit-shape amendment identifier")
+    audit_shape_amendment["predecessor_amendment_id"] == "AMENDMENT_006" ||
+        error("unexpected audit-shape amendment predecessor")
+    audit_shape_amendment["postdecision_outcome_observed_before_amendment"] === false ||
+        error("audit-shape amendment followed a postdecision outcome")
+    audit_shape_amendment["selected_library_or_burden_saving_inspected_before_amendment"] === false ||
+        error("audit-shape amendment followed scientific result inspection")
+    amendment["predecessor_amendment_id"] = amendment["amendment_id"]
+    amendment["amendment_id"] = audit_shape_amendment["amendment_id"]
+    amendment["audit_shape_amendment"] = audit_shape_amendment
+    amendment["audit_key_shape"] = audit_shape_amendment["audit_key_shape"]
+    amendment["audit_dispatch"] = audit_shape_amendment["dispatch"]
     return config, amendment
 end
 

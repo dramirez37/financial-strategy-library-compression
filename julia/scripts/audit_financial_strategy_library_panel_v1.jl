@@ -8,8 +8,8 @@ using TOML
 include(joinpath(@__DIR__, "..", "src", "FinancialStrategyLibraryPanelV1.jl"))
 using .FinancialStrategyLibraryPanelV1
 
-include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_006.jl"))
-using .LockFinancialStrategyLibraryPanelV1Execution006: verify_execution_lock_006
+include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_007.jl"))
+using .LockFinancialStrategyLibraryPanelV1Execution007: verify_execution_lock_007
 
 export audit_all_results, audit_structural_results, main
 
@@ -60,10 +60,10 @@ end
 _stem(origin_id, library_id, schedule_id) = "$(origin_id)__$(library_id)__$(schedule_id)"
 
 function _expected_stems()
-    return sort(String[
+    return sort!(vec(String[
         _stem(origin_id, library_id, schedule_id) for
         (origin_id, library_id, schedule_id) in registered_job_keys()
-    ])
+    ]))
 end
 
 function _toml_stems(directory)
@@ -201,7 +201,7 @@ function _audit_failure_payload(payload, instance, errors, stem)
 end
 
 function audit_structural_results(; write_report::Bool = true)
-    execution_lock = verify_execution_lock_006()
+    execution_lock = verify_execution_lock_007()
     config, _ = load_panel_config()
     paths = _paths(config)
     errors = String[]

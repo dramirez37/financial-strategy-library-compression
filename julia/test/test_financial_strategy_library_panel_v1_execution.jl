@@ -8,8 +8,8 @@ const FSLP1 = FinancialStrategyLibraryPanelV1
 include(joinpath(@__DIR__, "..", "scripts", "run_financial_strategy_library_panel_v1.jl"))
 const FSLP1Runner = RunFinancialStrategyLibraryPanelV1
 
-include(joinpath(@__DIR__, "..", "scripts", "lock_financial_strategy_library_panel_v1_execution_006.jl"))
-const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution006
+include(joinpath(@__DIR__, "..", "scripts", "lock_financial_strategy_library_panel_v1_execution_007.jl"))
+const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution007
 
 @testset "financial panel v1 execution configuration" begin
     @test VERSION == v"1.12.6"
@@ -19,7 +19,7 @@ const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution006
     @test amendment["threading"]["julia_threads"] == 8
     @test amendment["threading"]["concurrent_job_lanes"] == 8
     @test amendment["threading"]["maximum_simultaneous_heavy_stages"] == 2
-    @test amendment["amendment_id"] == "AMENDMENT_006"
+    @test amendment["amendment_id"] == "AMENDMENT_007"
     @test amendment["audit_dispatch"]["new_method_invocation"] == "Base.invokelatest"
     @test amendment["preparation_resume"]["all_manifest_file_hashes_rechecked"] === true
     @test amendment["progress"]["ansi_cursor_control"] === false
@@ -31,7 +31,7 @@ const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution006
     @test length(unique(FSLP1.registered_job_keys())) == 180
 
     if isfile(FSLP1ExecutionLock.LOCK_PATH)
-        aggregate = FSLP1ExecutionLock.verify_execution_lock_006()
+        aggregate = FSLP1ExecutionLock.verify_execution_lock_007()
         @test occursin(r"^[0-9a-f]{64}$", aggregate)
         lock_text = read(FSLP1ExecutionLock.LOCK_PATH, String)
         one_hash = first(values(FSLP1ExecutionLock._hashes()))
@@ -54,6 +54,15 @@ end
     @test nameof(audit_module) == :AuditFinancialStrategyLibraryPanelV1
     @test isdefined(audit_module, :audit_structural_results)
     @test isdefined(audit_module, :audit_all_results)
+    expected_stems = FSLP1Runner._invoke_latest_binding(audit_module, :_expected_stems)
+    @test expected_stems isa Vector{String}
+    @test length(expected_stems) == 180
+    @test length(unique(expected_stems)) == 180
+    @test issorted(expected_stems)
+    @test expected_stems == sort!(vec(String[
+        "$(origin_id)__$(library_id)__$(schedule_id)" for
+        (origin_id, library_id, schedule_id) in FSLP1.registered_job_keys()
+    ]))
 end
 
 @testset "synthetic point-in-time library construction" begin

@@ -9,8 +9,8 @@ using TOML
 include(joinpath(@__DIR__, "..", "src", "FinancialStrategyLibraryPanelV1.jl"))
 using .FinancialStrategyLibraryPanelV1
 
-include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_004.jl"))
-using .LockFinancialStrategyLibraryPanelV1Execution004: verify_execution_lock_004
+include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_005.jl"))
+using .LockFinancialStrategyLibraryPanelV1Execution005: verify_execution_lock_005
 
 export main,
        prepare_instances,
@@ -30,6 +30,8 @@ const THREAD_COUNT = 8
 const HEAVY_CONCURRENCY = 2
 const ALGORITHM_CHECKPOINT_SCHEMA =
     "financial-strategy-library-panel-algorithm-checkpoint-v1"
+const LOCK_004_AGGREGATE =
+    "823a725a778ab3476faad2a81cf78ae96b4be1bc2549376eb25a82f9632431a9"
 
 _utc_now() = Dates.format(Dates.now(Dates.UTC), dateformat"yyyy-mm-ddTHH:MM:SS.sssZ")
 _sha256_file(path) = open(path, "r") do io
@@ -108,7 +110,7 @@ function _environment(
         "threaded_lane_count" => THREAD_COUNT,
         "maximum_simultaneous_heavy_stages" => HEAVY_CONCURRENCY,
         "execution_lock_aggregate_sha256" => execution_lock_aggregate,
-        "active_amendment_id" => "AMENDMENT_004",
+        "active_amendment_id" => "AMENDMENT_005",
         "replaced_predecessor_environment" => replaced_predecessor_environment,
         "predecessor_instance_count" => predecessor_instance_count,
         "predecessor_origin_metadata_count" => predecessor_origin_metadata_count,
@@ -131,7 +133,8 @@ end
 
 function _progress_job_label(job)
     hasproperty(job, :stem) && return String(job.stem)
-    return string(job)
+    hasproperty(job, :origin_id) && return String(job.origin_id)
+    return string(nameof(typeof(job)))
 end
 
 
@@ -151,16 +154,34 @@ function _active_progress_summary(states; maximum_lanes = 4)
 end
 
 
-function _draw_progress(label, completed, total, states)
-    print(
-        stderr,
-        '\r',
-        "\e[2K",
-        _progress_line(label, completed, total),
-        _active_progress_summary(states),
-    )
+function _emit_progress(message::AbstractString)
+    println(stderr, "[", _utc_now(), "] ", message)
     flush(stderr)
     return nothing
+end
+
+
+function _draw_progress(label, completed, total, states)
+    _emit_progress(
+        _progress_line(label, completed, total) * _active_progress_summary(states),
+    )
+    return nothing
+end
+
+
+function _scan_progress_reporter(label::AbstractString)
+    started_at = time()
+    return function(update)
+        completed = update.state == "file-completed" ? update.file_index : update.file_index - 1
+        elapsed = round(Int, max(0, time() - started_at))
+        _emit_progress(
+            _progress_line(label, completed, update.file_count) *
+            "  stage=$(update.stage) state=$(update.state) " *
+            "file=$(update.file_index)/$(update.file_count) " *
+            "rows=$(update.source_rows_scanned) elapsed=$(elapsed)s",
+        )
+        return nothing
+    end
 end
 
 function _run_threaded_lanes!(
@@ -262,8 +283,6 @@ function _run_threaded_lanes!(
         _draw_progress(label, completed, length(jobs), states)
     end
     stop_heartbeat[] = true
-    println(stderr)
-    flush(stderr)
     foreach(fetch, tasks)
     (allow_failures || isempty(failures)) || error(
         "$label failed in $(length(failures)) job(s); first lane=$(first(failures).lane): " *
@@ -404,7 +423,7 @@ function _registry_seed(origin_id, library_id)
 end
 
 function validate_readiness(; require_sources::Bool = true)
-    verify_execution_lock_004()
+    verify_execution_lock_005()
     VERSION == v"1.12.6" || error("financial panel v1 requires Julia 1.12.6")
     Threads.nthreads() == THREAD_COUNT || error(
         "financial panel v1 requires --threads=$THREAD_COUNT; found $(Threads.nthreads())",
@@ -416,6 +435,11 @@ function validate_readiness(; require_sources::Bool = true)
         error("execution amendment thread count changed")
     amendment["threading"]["maximum_simultaneous_heavy_stages"] == HEAVY_CONCURRENCY ||
         error("execution amendment heavy-stage concurrency changed")
+    amendment["amendment_id"] == "AMENDMENT_005" ||
+        error("active execution amendment changed")
+    amendment["progress"]["output_records"] ==
+    "durable newline-delimited stderr records" ||
+        error("progress output contract changed")
     if require_sources
         paths = source_paths(config, _source_root(config))
         missing = filter(!isfile, [paths.security_history; paths.daily_files])
@@ -427,7 +451,7 @@ function validate_readiness(; require_sources::Bool = true)
 end
 
 function _write_environment(paths)
-    execution_lock_aggregate = verify_execution_lock_004()
+    execution_lock_aggregate = verify_execution_lock_005()
     if isfile(paths.environment)
         environment = TOML.parsefile(paths.environment)
         if get(environment, "execution_lock_aggregate_sha256", "") == execution_lock_aggregate
@@ -435,13 +459,16 @@ function _write_environment(paths)
             environment["julia_threads"] == THREAD_COUNT || error("saved environment thread count differs")
             return environment
         end
+        predecessor_lock_matches =
+            get(environment, "execution_lock_aggregate_sha256", "") == LOCK_004_AGGREGATE
         instance_count = isdir(paths.instances) ?
                          count(name -> endswith(name, ".toml"), readdir(paths.instances)) : 0
         origin_metadata_count = isdir(paths.origin_metadata) ?
                                 count(name -> endswith(name, ".toml"), readdir(paths.origin_metadata)) : 0
         structural_files = isdir(paths.structural) ?
                            filter(name -> endswith(name, ".toml"), readdir(paths.structural)) : String[]
-        successor_recovery = isfile(paths.preparation_manifest) &&
+        successor_recovery = predecessor_lock_matches &&
+                             isfile(paths.preparation_manifest) &&
                              instance_count == 108 &&
                              origin_metadata_count == 12 &&
                              length(structural_files) == 6 &&
@@ -454,7 +481,7 @@ function _write_environment(paths)
                              (!isdir(paths.checkpoints) || isempty(readdir(paths.checkpoints))) &&
                              (!isdir(paths.solver_logs) || isempty(readdir(paths.solver_logs)))
         successor_recovery || error(
-            "saved environment belongs to an earlier execution lock outside Amendment 004 recovery",
+            "saved environment belongs to an earlier execution lock outside Amendment 005 recovery",
         )
         environment = _environment(
             execution_lock_aggregate;
@@ -545,7 +572,14 @@ function prepare_instances()
     output = _paths(config)
     _write_environment(output)
     raw_paths = source_paths(config, _source_root(config))
-    universes = construct_origin_universes(config, raw_paths)
+    _emit_progress("prepare: constructing point-in-time universes")
+    scan_progress = _scan_progress_reporter("prepare-scan")
+    universes = construct_origin_universes(
+        config,
+        raw_paths;
+        progress_callback = scan_progress,
+    )
+    _emit_progress("prepare: extracting origin-scoped structural return series")
     return_quality = Dict{String,Any}()
     series_by_origin = extract_origin_series(
         config,
@@ -553,6 +587,7 @@ function prepare_instances()
         universes;
         phase = :structural,
         diagnostics = return_quality,
+        progress_callback = scan_progress,
     )
     entries_lock = ReentrantLock()
     entries = Dict{String,String}()
@@ -702,6 +737,24 @@ function prepare_instances()
     )
     _atomic_toml(output.preparation_manifest, manifest; replace = isfile(output.preparation_manifest))
     return output.preparation_manifest
+end
+
+
+function _ensure_preparation_for_run(
+    output;
+    prepare_callback = prepare_instances,
+    validate_callback = _validate_preparation,
+)
+    if isfile(output.preparation_manifest)
+        _emit_progress("prepare: validating and reusing completed preparation manifest")
+        validate_callback(output)
+        _emit_progress("prepare: manifest and all registered artifact hashes valid; reconstruction skipped")
+        return :reused
+    end
+    _emit_progress("prepare: no manifest found; running registered preparation")
+    prepare_callback()
+    validate_callback(output)
+    return :created
 end
 
 function _validate_preparation(output)
@@ -936,12 +989,14 @@ function run_postdecision_phase()
     end
     raw_paths = source_paths(config, _source_root(config))
     postdecision_return_quality = Dict{String,Any}()
+    _emit_progress("postdecision: extracting origin-scoped postdecision return series")
     series_by_origin = extract_origin_series(
         config,
         raw_paths.daily_files,
         [origins[origin_id] for origin_id in sort!(collect(keys(thresholds)))];
         phase = :postdecision,
         diagnostics = postdecision_return_quality,
+        progress_callback = _scan_progress_reporter("post-scan"),
     )
     jobs = [(
         origin_id,
@@ -1006,7 +1061,7 @@ end
 
 function run_smoke()
     config, _ = validate_readiness(; require_sources = false)
-    execution_lock_aggregate = verify_execution_lock_004()
+    execution_lock_aggregate = verify_execution_lock_005()
     jobs = build_synthetic_smoke_instances(THREAD_COUNT)
     mktempdir() do root
         output = (
@@ -1097,7 +1152,8 @@ function main(args = ARGS)
     mode == "--solve-only" && return run_structural_phase()
     mode == "--postdecision-only" && return run_postdecision_phase()
     if mode == "--run"
-        prepare_instances()
+        config, _ = validate_readiness()
+        _ensure_preparation_for_run(_paths(config))
         run_structural_phase()
         Base.include(Main, joinpath(@__DIR__, "audit_financial_strategy_library_panel_v1.jl"))
         Main.AuditFinancialStrategyLibraryPanelV1.audit_structural_results()

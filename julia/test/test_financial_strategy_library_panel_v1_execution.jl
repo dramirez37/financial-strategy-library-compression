@@ -8,8 +8,8 @@ const FSLP1 = FinancialStrategyLibraryPanelV1
 include(joinpath(@__DIR__, "..", "scripts", "run_financial_strategy_library_panel_v1.jl"))
 const FSLP1Runner = RunFinancialStrategyLibraryPanelV1
 
-include(joinpath(@__DIR__, "..", "scripts", "lock_financial_strategy_library_panel_v1_execution_004.jl"))
-const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution004
+include(joinpath(@__DIR__, "..", "scripts", "lock_financial_strategy_library_panel_v1_execution_005.jl"))
+const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution005
 
 @testset "financial panel v1 execution configuration" begin
     @test VERSION == v"1.12.6"
@@ -19,7 +19,9 @@ const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution004
     @test amendment["threading"]["julia_threads"] == 8
     @test amendment["threading"]["concurrent_job_lanes"] == 8
     @test amendment["threading"]["maximum_simultaneous_heavy_stages"] == 2
-    @test amendment["amendment_id"] == "AMENDMENT_004"
+    @test amendment["amendment_id"] == "AMENDMENT_005"
+    @test amendment["preparation_resume"]["all_manifest_file_hashes_rechecked"] === true
+    @test amendment["progress"]["ansi_cursor_control"] === false
     @test amendment["return_rule"]["allowed_missing_flag"] == "NS"
     @test amendment["failure_persistence"]["successful_instances_plus_failure_slots"] == 180
     @test amendment["failure_persistence"]["impute_profile"] === false
@@ -28,7 +30,7 @@ const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution004
     @test length(unique(FSLP1.registered_job_keys())) == 180
 
     if isfile(FSLP1ExecutionLock.LOCK_PATH)
-        aggregate = FSLP1ExecutionLock.verify_execution_lock_004()
+        aggregate = FSLP1ExecutionLock.verify_execution_lock_005()
         @test occursin(r"^[0-9a-f]{64}$", aggregate)
         lock_text = read(FSLP1ExecutionLock.LOCK_PATH, String)
         one_hash = first(values(FSLP1ExecutionLock._hashes()))
@@ -166,18 +168,25 @@ end
             run(pipeline(`gzip -c -- $csv_path`; stdout = output))
         end
         structural_quality = Dict{String,Any}()
+        scan_updates = NamedTuple[]
         structural = FSLP1.extract_origin_series(
             config,
             [gzip_path],
             origins;
             phase = :structural,
             diagnostics = structural_quality,
+            progress_callback = update -> push!(scan_updates, update),
         )
         @test getfield.(structural["TEST-O2005"][1], :date) == ["2005-12-30"]
         @test getfield.(structural["TEST-O2006"][1], :date) ==
               ["2005-12-30", "2006-12-29"]
         @test structural_quality["TEST-O2005"]["new_security_initialization_rows_excluded"] == 1
         @test structural_quality["TEST-O2006"]["new_security_initialization_rows_excluded"] == 1
+        @test first(scan_updates).state == "file-started"
+        @test last(scan_updates).state == "file-completed"
+        @test last(scan_updates).file_index == 1
+        @test last(scan_updates).file_count == 1
+        @test last(scan_updates).source_rows_scanned == 4
         postdecision = FSLP1.extract_origin_series(
             config,
             [gzip_path],
@@ -435,15 +444,27 @@ end
         sleep(0.05)
         return nothing
     end
-    progress_result = FSLP1Runner._run_threaded_lanes!(
-        [1],
-        "heartbeat-test",
-        progress_lane;
-        lanes = 1,
-        heartbeat_seconds = 0.01,
-    )
-    @test progress_result.completed == 1
+    progress_text = mktemp() do _, io
+        progress_result = redirect_stderr(io) do
+            FSLP1Runner._run_threaded_lanes!(
+                [1],
+                "heartbeat-test",
+                progress_lane;
+                lanes = 1,
+                heartbeat_seconds = 0.01,
+            )
+        end
+        @test progress_result.completed == 1
+        flush(io)
+        seekstart(io)
+        read(io, String)
+    end
     @test progress_seen[] == 1
+    @test occursin("heartbeat-test", progress_text)
+    @test occursin("preprocessing", progress_text)
+    @test count(==('\n'), progress_text) >= 3
+    @test !occursin('\r', progress_text)
+    @test !occursin('\e', progress_text)
     @test_throws ErrorException FSLP1Runner._run_threaded_lanes!(
         [1],
         "invalid-heartbeat",
@@ -451,6 +472,46 @@ end
         lanes = 1,
         heartbeat_seconds = 0,
     )
+end
+
+@testset "validated preparation reuse dispatch" begin
+    mktempdir() do root
+        output = (preparation_manifest = joinpath(root, "PREPARATION_MANIFEST.toml"),)
+        prepared = Ref(0)
+        validated = Ref(0)
+        prepare_callback = function()
+            prepared[] += 1
+            write(output.preparation_manifest, "fixture = true\n")
+            return nothing
+        end
+        validate_callback = function(candidate)
+            validated[] += 1
+            read(candidate.preparation_manifest, String) == "fixture = true\n" ||
+                error("tampered preparation fixture")
+            return true
+        end
+        @test FSLP1Runner._ensure_preparation_for_run(
+            output;
+            prepare_callback,
+            validate_callback,
+        ) == :created
+        @test prepared[] == 1
+        @test validated[] == 1
+        @test FSLP1Runner._ensure_preparation_for_run(
+            output;
+            prepare_callback,
+            validate_callback,
+        ) == :reused
+        @test prepared[] == 1
+        @test validated[] == 2
+        write(output.preparation_manifest, "fixture = false\n")
+        @test_throws ErrorException FSLP1Runner._ensure_preparation_for_run(
+            output;
+            prepare_callback,
+            validate_callback,
+        )
+        @test prepared[] == 1
+    end
 end
 
 @testset "registered preparation failure records" begin

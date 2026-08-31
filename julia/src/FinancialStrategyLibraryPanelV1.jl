@@ -62,6 +62,13 @@ const AMENDMENT_004_PATH = joinpath(
     "amendments",
     "EXECUTION_AMENDMENT_004.toml",
 )
+const AMENDMENT_005_PATH = joinpath(
+    REPOSITORY_ROOT,
+    "experiments",
+    "financial_strategy_library_panel_v1",
+    "amendments",
+    "EXECUTION_AMENDMENT_005.toml",
+)
 const ALGORITHM_IDS = (
     "jump_highs_tagged_cover",
     "requirement_mask_dp",
@@ -212,6 +219,23 @@ function load_panel_config(path::AbstractString = CONFIG_PATH)
     amendment["threading"] = scalability_amendment["threading"]
     amendment["resume"] = scalability_amendment["resume"]
     amendment["progress"] = scalability_amendment["progress"]
+    progress_amendment = TOML.parsefile(AMENDMENT_005_PATH)
+    progress_amendment["schema_version"] ==
+    "financial-strategy-library-panel-execution-amendment-v5" ||
+        error("unsupported progress execution amendment")
+    progress_amendment["amendment_id"] == "AMENDMENT_005" ||
+        error("unexpected progress execution amendment identifier")
+    progress_amendment["predecessor_amendment_id"] == "AMENDMENT_004" ||
+        error("unexpected progress amendment predecessor")
+    progress_amendment["algorithm_or_solver_outcome_persisted_before_amendment"] === false ||
+        error("progress amendment followed a persisted algorithm outcome")
+    progress_amendment["algorithm_or_solver_outcome_inspected_before_amendment"] === false ||
+        error("progress amendment followed an inspected algorithm outcome")
+    amendment["predecessor_amendment_id"] = amendment["amendment_id"]
+    amendment["amendment_id"] = progress_amendment["amendment_id"]
+    amendment["progress_amendment"] = progress_amendment
+    amendment["preparation_resume"] = progress_amendment["preparation_resume"]
+    amendment["progress"] = progress_amendment["progress"]
     return config, amendment
 end
 
@@ -272,6 +296,25 @@ function _with_daily_file(f::Function, path::AbstractString)
     open(`gzip -cd -- $path`, "r") do io
         return f(io)
     end
+end
+
+function _report_scan(
+    progress_callback,
+    stage::AbstractString,
+    state::AbstractString,
+    file_index::Int,
+    file_count::Int,
+    source_rows_scanned::Int,
+)
+    isnothing(progress_callback) && return nothing
+    progress_callback((;
+        stage = String(stage),
+        state = String(state),
+        file_index,
+        file_count,
+        source_rows_scanned,
+    ))
+    return nothing
 end
 
 function _parse_float(value::AbstractString)
@@ -351,7 +394,13 @@ function _reference_permnos(intervals, origin_rows, config)
     return result
 end
 
-function _decision_dates(daily_files, origins, reference_permnos, config)
+function _decision_dates(
+    daily_files,
+    origins,
+    reference_permnos,
+    config;
+    progress_callback = nothing,
+)
     targets = Dict(origin.origin_id => "$(origin.decision_year)-12-31" for origin in origins)
     dates = Dict(origin.origin_id => "" for origin in origins)
     origin_by_permno = Dict{Int,Vector{NamedTuple}}()
@@ -362,11 +411,30 @@ function _decision_dates(daily_files, origins, reference_permnos, config)
         )
     end
     required = String.(config["source"]["required_daily_columns"]["columns"])
-    for path in daily_files
+    source_rows_scanned = 0
+    file_count = length(daily_files)
+    for (file_index, path) in enumerate(daily_files)
+        _report_scan(
+            progress_callback,
+            "decision-session scan",
+            "file-started",
+            file_index,
+            file_count,
+            source_rows_scanned,
+        )
         _with_daily_file(path) do io
             header = strip.(_split_csv(chomp(readline(io))))
             positions = _positions(header, required)
             for line in eachline(io)
+                source_rows_scanned += 1
+                source_rows_scanned % 1_000_000 == 0 && _report_scan(
+                    progress_callback,
+                    "decision-session scan",
+                    "running",
+                    file_index,
+                    file_count,
+                    source_rows_scanned,
+                )
                 fields = _split_csv(chomp(line))
                 length(fields) == length(header) || error("daily-security CSV width mismatch")
                 permno = tryparse(Int, strip(fields[positions["permno"]]))
@@ -381,6 +449,14 @@ function _decision_dates(daily_files, origins, reference_permnos, config)
                 end
             end
         end
+        _report_scan(
+            progress_callback,
+            "decision-session scan",
+            "file-completed",
+            file_index,
+            file_count,
+            source_rows_scanned,
+        )
     end
     all(!isempty, values(dates)) || error("a registered origin has no SPY decision session")
     return dates
@@ -394,11 +470,17 @@ function _median(values::Vector{Float64})
            (ordered[midpoint] + ordered[midpoint + 1]) / 2
 end
 
-function construct_origin_universes(config, paths)
+function construct_origin_universes(config, paths; progress_callback = nothing)
     intervals = _load_security_intervals(paths.security_history, config)
     origins = origin_rows()
     reference_permnos = _reference_permnos(intervals, origins, config)
-    decisions = _decision_dates(paths.daily_files, origins, reference_permnos, config)
+    decisions = _decision_dates(
+        paths.daily_files,
+        origins,
+        reference_permnos,
+        config;
+        progress_callback,
+    )
     interval_maps = Dict(
         origin.origin_id => _origin_interval_rows(intervals, decisions[origin.origin_id], config)
         for origin in origins
@@ -419,11 +501,30 @@ function construct_origin_universes(config, paths)
     end
     required = String.(config["source"]["required_daily_columns"]["columns"])
     last_date = Dict{Int,String}()
-    for path in paths.daily_files
+    source_rows_scanned = 0
+    file_count = length(paths.daily_files)
+    for (file_index, path) in enumerate(paths.daily_files)
+        _report_scan(
+            progress_callback,
+            "universe-liquidity scan",
+            "file-started",
+            file_index,
+            file_count,
+            source_rows_scanned,
+        )
         _with_daily_file(path) do io
             header = strip.(_split_csv(chomp(readline(io))))
             positions = _positions(header, required)
             for line in eachline(io)
+                source_rows_scanned += 1
+                source_rows_scanned % 1_000_000 == 0 && _report_scan(
+                    progress_callback,
+                    "universe-liquidity scan",
+                    "running",
+                    file_index,
+                    file_count,
+                    source_rows_scanned,
+                )
                 fields = _split_csv(chomp(line))
                 length(fields) == length(header) || error("daily-security CSV width mismatch")
                 permno = tryparse(Int, strip(fields[positions["permno"]]))
@@ -451,6 +552,14 @@ function construct_origin_universes(config, paths)
                 end
             end
         end
+        _report_scan(
+            progress_callback,
+            "universe-liquidity scan",
+            "file-completed",
+            file_index,
+            file_count,
+            source_rows_scanned,
+        )
     end
 
     universe = config["universe"]
@@ -577,6 +686,7 @@ function extract_origin_series(
     origins;
     phase::Symbol,
     diagnostics::Union{Nothing,AbstractDict} = nothing,
+    progress_callback = nothing,
 )
     phase in (:structural, :postdecision) ||
         throw(ArgumentError("origin-series phase must be structural or postdecision"))
@@ -611,11 +721,31 @@ function extract_origin_series(
     end
     required = String.(config["source"]["required_daily_columns"]["columns"])
     last_source_date = Dict{Tuple{String,Int},String}()
-    for path in daily_files
+    source_rows_scanned = 0
+    file_count = length(daily_files)
+    scan_stage = phase == :structural ? "structural-return scan" : "postdecision-return scan"
+    for (file_index, path) in enumerate(daily_files)
+        _report_scan(
+            progress_callback,
+            scan_stage,
+            "file-started",
+            file_index,
+            file_count,
+            source_rows_scanned,
+        )
         _with_daily_file(path) do io
             header = strip.(_split_csv(chomp(readline(io))))
             positions = _positions(header, required)
             for line in eachline(io)
+                source_rows_scanned += 1
+                source_rows_scanned % 1_000_000 == 0 && _report_scan(
+                    progress_callback,
+                    scan_stage,
+                    "running",
+                    file_index,
+                    file_count,
+                    source_rows_scanned,
+                )
                 fields = _split_csv(chomp(line))
                 length(fields) == length(header) || error("daily-security CSV width mismatch")
                 permno = tryparse(Int, strip(fields[positions["permno"]]))
@@ -681,6 +811,14 @@ function extract_origin_series(
                 end
             end
         end
+        _report_scan(
+            progress_callback,
+            scan_stage,
+            "file-completed",
+            file_index,
+            file_count,
+            source_rows_scanned,
+        )
     end
     for (origin_id, series) in observations
         all(!isempty, values(series)) ||

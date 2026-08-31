@@ -69,6 +69,13 @@ const AMENDMENT_005_PATH = joinpath(
     "amendments",
     "EXECUTION_AMENDMENT_005.toml",
 )
+const AMENDMENT_006_PATH = joinpath(
+    REPOSITORY_ROOT,
+    "experiments",
+    "financial_strategy_library_panel_v1",
+    "amendments",
+    "EXECUTION_AMENDMENT_006.toml",
+)
 const ALGORITHM_IDS = (
     "jump_highs_tagged_cover",
     "requirement_mask_dp",
@@ -236,6 +243,22 @@ function load_panel_config(path::AbstractString = CONFIG_PATH)
     amendment["progress_amendment"] = progress_amendment
     amendment["preparation_resume"] = progress_amendment["preparation_resume"]
     amendment["progress"] = progress_amendment["progress"]
+    dispatch_amendment = TOML.parsefile(AMENDMENT_006_PATH)
+    dispatch_amendment["schema_version"] ==
+    "financial-strategy-library-panel-execution-amendment-v6" ||
+        error("unsupported audit-dispatch execution amendment")
+    dispatch_amendment["amendment_id"] == "AMENDMENT_006" ||
+        error("unexpected audit-dispatch amendment identifier")
+    dispatch_amendment["predecessor_amendment_id"] == "AMENDMENT_005" ||
+        error("unexpected audit-dispatch amendment predecessor")
+    dispatch_amendment["postdecision_outcome_observed_before_amendment"] === false ||
+        error("audit-dispatch amendment followed a postdecision outcome")
+    dispatch_amendment["selected_library_or_burden_saving_inspected_before_amendment"] === false ||
+        error("audit-dispatch amendment followed scientific result inspection")
+    amendment["predecessor_amendment_id"] = amendment["amendment_id"]
+    amendment["amendment_id"] = dispatch_amendment["amendment_id"]
+    amendment["dispatch_amendment"] = dispatch_amendment
+    amendment["audit_dispatch"] = dispatch_amendment["dispatch"]
     return config, amendment
 end
 

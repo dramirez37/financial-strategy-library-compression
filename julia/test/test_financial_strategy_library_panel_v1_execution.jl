@@ -8,8 +8,8 @@ const FSLP1 = FinancialStrategyLibraryPanelV1
 include(joinpath(@__DIR__, "..", "scripts", "run_financial_strategy_library_panel_v1.jl"))
 const FSLP1Runner = RunFinancialStrategyLibraryPanelV1
 
-include(joinpath(@__DIR__, "..", "scripts", "lock_financial_strategy_library_panel_v1_execution_005.jl"))
-const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution005
+include(joinpath(@__DIR__, "..", "scripts", "lock_financial_strategy_library_panel_v1_execution_006.jl"))
+const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution006
 
 @testset "financial panel v1 execution configuration" begin
     @test VERSION == v"1.12.6"
@@ -19,7 +19,8 @@ const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution005
     @test amendment["threading"]["julia_threads"] == 8
     @test amendment["threading"]["concurrent_job_lanes"] == 8
     @test amendment["threading"]["maximum_simultaneous_heavy_stages"] == 2
-    @test amendment["amendment_id"] == "AMENDMENT_005"
+    @test amendment["amendment_id"] == "AMENDMENT_006"
+    @test amendment["audit_dispatch"]["new_method_invocation"] == "Base.invokelatest"
     @test amendment["preparation_resume"]["all_manifest_file_hashes_rechecked"] === true
     @test amendment["progress"]["ansi_cursor_control"] === false
     @test amendment["return_rule"]["allowed_missing_flag"] == "NS"
@@ -30,7 +31,7 @@ const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution005
     @test length(unique(FSLP1.registered_job_keys())) == 180
 
     if isfile(FSLP1ExecutionLock.LOCK_PATH)
-        aggregate = FSLP1ExecutionLock.verify_execution_lock_005()
+        aggregate = FSLP1ExecutionLock.verify_execution_lock_006()
         @test occursin(r"^[0-9a-f]{64}$", aggregate)
         lock_text = read(FSLP1ExecutionLock.LOCK_PATH, String)
         one_hash = first(values(FSLP1ExecutionLock._hashes()))
@@ -42,6 +43,17 @@ const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution005
     else
         @test occursin(r"^[0-9a-f]{64}$", FSLP1ExecutionLock.dry_run())
     end
+end
+
+@testset "Julia 1.12 world-age-safe audit dispatch" begin
+    fixture = Module(:FinancialPanelAuditDispatchFixture)
+    Core.eval(fixture, :(audit_fixture() = :world_age_safe))
+    @test FSLP1Runner._invoke_latest_binding(fixture, :audit_fixture) == :world_age_safe
+    @test_throws ErrorException FSLP1Runner._invoke_latest_binding(fixture, :missing_fixture)
+    audit_module = FSLP1Runner._load_audit_module()
+    @test nameof(audit_module) == :AuditFinancialStrategyLibraryPanelV1
+    @test isdefined(audit_module, :audit_structural_results)
+    @test isdefined(audit_module, :audit_all_results)
 end
 
 @testset "synthetic point-in-time library construction" begin

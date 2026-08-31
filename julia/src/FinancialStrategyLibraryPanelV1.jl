@@ -83,6 +83,13 @@ const AMENDMENT_007_PATH = joinpath(
     "amendments",
     "EXECUTION_AMENDMENT_007.toml",
 )
+const AMENDMENT_008_PATH = joinpath(
+    REPOSITORY_ROOT,
+    "experiments",
+    "financial_strategy_library_panel_v1",
+    "amendments",
+    "EXECUTION_AMENDMENT_008.toml",
+)
 const ALGORITHM_IDS = (
     "jump_highs_tagged_cover",
     "requirement_mask_dp",
@@ -283,6 +290,22 @@ function load_panel_config(path::AbstractString = CONFIG_PATH)
     amendment["audit_shape_amendment"] = audit_shape_amendment
     amendment["audit_key_shape"] = audit_shape_amendment["audit_key_shape"]
     amendment["audit_dispatch"] = audit_shape_amendment["dispatch"]
+    audit_collection_amendment = TOML.parsefile(AMENDMENT_008_PATH)
+    audit_collection_amendment["schema_version"] ==
+    "financial-strategy-library-panel-execution-amendment-v8" ||
+        error("unsupported audit-collection execution amendment")
+    audit_collection_amendment["amendment_id"] == "AMENDMENT_008" ||
+        error("unexpected audit-collection amendment identifier")
+    audit_collection_amendment["predecessor_amendment_id"] == "AMENDMENT_007" ||
+        error("unexpected audit-collection amendment predecessor")
+    audit_collection_amendment["postdecision_outcome_observed_before_amendment"] === false ||
+        error("audit-collection amendment followed a postdecision outcome")
+    audit_collection_amendment["selected_library_or_burden_saving_inspected_before_amendment"] === false ||
+        error("audit-collection amendment followed scientific result inspection")
+    amendment["predecessor_amendment_id"] = amendment["amendment_id"]
+    amendment["amendment_id"] = audit_collection_amendment["amendment_id"]
+    amendment["audit_collection_amendment"] = audit_collection_amendment
+    amendment["audit_collection"] = audit_collection_amendment["audit_collection"]
     return config, amendment
 end
 

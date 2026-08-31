@@ -1,0 +1,39 @@
+schema_version = "financial-strategy-library-panel-execution-amendment-v8"
+experiment_id = "financial-strategy-library-panel-v1"
+amendment_id = "AMENDMENT_008"
+amendment_date = "2026-08-31"
+predecessor_amendment_id = "AMENDMENT_007"
+licensed_rows_read_before_amendment = true
+structural_terminal_results_before_amendment = 180
+valid_terminal_instance_results_before_amendment = 108
+preparation_failure_terminal_results_before_amendment = 72
+solver_logs_before_amendment = 14
+algorithm_checkpoints_before_amendment = 756
+structural_audit_files_before_amendment = 0
+postdecision_results_before_amendment = 0
+selected_library_or_burden_saving_inspected_before_amendment = false
+solver_status_inspected_before_amendment = false
+postdecision_outcome_observed_before_amendment = false
+raw_licensed_rows_printed_or_committed = false
+scientific_estimands_changed = false
+origin_registry_changed = false
+library_registry_changed = false
+burden_schedule_registry_changed = false
+seed_registry_changed = false
+algorithm_registry_changed = false
+source_instance_changed = false
+
+[audit_collection]
+source = "filtered TOML filenames in structural result directories"
+representation = "sorted Vector{String}"
+filter = ".toml suffix"
+ordering = "lexicographic"
+registered_key_count = 180
+audit_predicates_changed = false
+
+[resume]
+reuse_lock_007_structural_results = 180
+reuse_lock_007_algorithm_checkpoints = 756
+reuse_lock_007_solver_logs = 14
+rerun_terminal_structural_algorithms = false
+postdecision_requires_passing_structural_audit = true

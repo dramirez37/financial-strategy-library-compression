@@ -332,7 +332,7 @@ function audit_ready()
         error("final audit algorithm-row count differs")
     get(audit, "unsuccessful_rows_retained_in_denominators", false) === true ||
         error("final audit dropped unsuccessful rows")
-    amendment["amendment_id"] == "AMENDMENT_012" || error("active analysis amendment changed")
+    amendment["amendment_id"] == "AMENDMENT_013" || error("active analysis amendment changed")
     return config, amendment, paths, audit
 end
 

@@ -189,6 +189,17 @@ return_drop_permitted = false
 missing_close_counter = "unused_close_missing_rows"
 missing_volume_counter = "unused_volume_missing_rows"
 
+[postdecision_missing_returns]
+first_row_ns_initialization_rule = "exclude without imputation"
+terminal_delisting_pending_rule = "mark every registered postdecision diagnostic for the affected origin unavailable"
+terminal_delisting_pending_flag = "DP"
+terminal_delisting_flag_required = true
+terminal_delisting_pending_expected_memberships = 1
+terminal_delisting_pending_expected_origins = 1
+terminal_delisting_pending_return_imputation_permitted = false
+terminal_delisting_pending_zero_substitution_permitted = false
+unavailable_rows_retained_in_denominators = true
+
 [information_boundary]
 postdecision_returns_may_define_universe = false
 postdecision_returns_may_define_library = false

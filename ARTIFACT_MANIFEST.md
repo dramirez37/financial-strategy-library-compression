@@ -846,6 +846,15 @@ permits hash- and context-validated reuse of the completed Lock 011 source
 partitions 1 and 3. No unused market field is imputed and no return is dropped
 for that reason.
 
+Prospective Amendment 013 follows the completed Lock 012 source scan but still
+precedes every postdecision result. A row-suppressing aggregate audit found one
+terminal, postdecision-year CRSP `DP` (“Delisting Pending”) membership with no
+observed return. The amendment prohibits imputation and zero substitution,
+marks all nine secondary postdecision records for that origin unavailable,
+retains the corresponding 63 algorithm rows in denominators, and leaves every
+structural compression result unchanged. Execution Lock 013 binds the policy,
+implementation, cache compatibility, and audit predicates.
+
 | Class | Expected future location or form | Current status |
 |---|---|---|
 | remaining primary research theorem declarations | future extensions under `formal/StrategyInnovation/` | none in the adopted T1--T7 package; F0, F1--F8, S4--S7, C2, and CS1 are supporting results |

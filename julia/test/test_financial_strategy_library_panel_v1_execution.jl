@@ -9,8 +9,8 @@ const FSLP1 = FinancialStrategyLibraryPanelV1
 include(joinpath(@__DIR__, "..", "scripts", "run_financial_strategy_library_panel_v1.jl"))
 const FSLP1Runner = RunFinancialStrategyLibraryPanelV1
 
-include(joinpath(@__DIR__, "..", "scripts", "lock_financial_strategy_library_panel_v1_execution_012.jl"))
-const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution012
+include(joinpath(@__DIR__, "..", "scripts", "lock_financial_strategy_library_panel_v1_execution_013.jl"))
+const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution013
 
 include(joinpath(@__DIR__, "..", "scripts", "analyze_financial_strategy_library_panel_v1.jl"))
 const FSLP1Analysis = AnalyzeFinancialStrategyLibraryPanelV1
@@ -23,7 +23,7 @@ const FSLP1Analysis = AnalyzeFinancialStrategyLibraryPanelV1
     @test amendment["threading"]["julia_threads"] == 8
     @test amendment["threading"]["concurrent_job_lanes"] == 8
     @test amendment["threading"]["maximum_simultaneous_heavy_stages"] == 2
-    @test amendment["amendment_id"] == "AMENDMENT_012"
+    @test amendment["amendment_id"] == "AMENDMENT_013"
     @test amendment["audit_parallelism"]["worker_count"] == 8
     @test amendment["audit_parallelism"]["postdecision_worker_count"] == 8
     @test amendment["audit_dispatch"]["new_method_invocation"] == "Base.invokelatest"
@@ -40,11 +40,14 @@ const FSLP1Analysis = AnalyzeFinancialStrategyLibraryPanelV1
     @test amendment["postdecision_field_policy"]["postdecision_close_used"] === false
     @test amendment["postdecision_field_policy"]["postdecision_volume_used"] === false
     @test amendment["postdecision_field_policy"]["postdecision_unused_field_imputation_permitted"] === false
+    @test amendment["postdecision_missing_return_policy"]["required_flag"] == "DP"
+    @test amendment["postdecision_missing_return_policy"]["return_imputation_permitted"] === false
+    @test config["postdecision_missing_returns"]["terminal_delisting_pending_expected_memberships"] == 1
     @test length(FSLP1.registered_job_keys()) == 180
     @test length(unique(FSLP1.registered_job_keys())) == 180
 
     if isfile(FSLP1ExecutionLock.LOCK_PATH)
-        aggregate = FSLP1ExecutionLock.verify_execution_lock_012()
+        aggregate = FSLP1ExecutionLock.verify_execution_lock_013()
         @test occursin(r"^[0-9a-f]{64}$", aggregate)
         lock_text = read(FSLP1ExecutionLock.LOCK_PATH, String)
         one_hash = first(values(FSLP1ExecutionLock._hashes()))
@@ -288,6 +291,146 @@ end
     end
 end
 
+@testset "terminal CRSP DP makes an origin postdecision diagnostic unavailable" begin
+    selected = [(
+        permno = 1,
+        ticker = "TEST",
+        security_name = "Test Fund",
+        median_dollar_volume = 10_000_000.0,
+        median_close = 10.0,
+        preorigin_daily_rows = 1000,
+        compression_liquidity_rows = 400,
+        invalid_liquidity_rows = 0,
+    )]
+    origin = FSLP1.OriginUniverse(
+        "TEST-O2005",
+        2005,
+        "2005-12-30",
+        "2001-01-01",
+        "2003-12-31",
+        "2004-01-01",
+        "2005-12-30",
+        "2006-01-01",
+        "2006-12-31",
+        selected,
+        1,
+        1,
+        1,
+    )
+    config, _ = FSLP1.load_panel_config()
+    mktempdir() do root
+        function gzip_fixture(name, rows)
+            csv_path = joinpath(root, name * ".csv")
+            gzip_path = csv_path * ".gz"
+            open(csv_path, "w") do io
+                println(io, "permno,dlycaldt,dlyret,dlyclose,dlyprc,dlyvol,dlydelflg,dlyretmissflg")
+                foreach(row -> println(io, row), rows)
+            end
+            open(gzip_path, "w") do output
+                run(pipeline(`gzip -c -- $csv_path`; stdout = output))
+            end
+            return gzip_path
+        end
+
+        terminal_dp = gzip_fixture("terminal-dp", [
+            "1,2005-12-30,0.01,10,10,1000,N,NA",
+            "1,2006-12-29,,,,,Y,DP",
+        ])
+        direct_quality = Dict{String,Any}()
+        direct = FSLP1.extract_origin_series(
+            config,
+            [terminal_dp],
+            [origin];
+            phase = :postdecision,
+            diagnostics = direct_quality,
+        )
+        @test getfield.(direct[origin.origin_id][1], :date) == ["2005-12-30"]
+        @test direct_quality[origin.origin_id]["terminal_delisting_pending_rows"] == 1
+        @test direct_quality[origin.origin_id]["postdecision_return_complete"] == 0
+        @test FSLP1.validate_postdecision_return_quality(direct_quality, config) ==
+              Set([origin.origin_id])
+
+        parquet_quality = Dict{String,Any}()
+        parquet = FSLP1.extract_origin_series_parquet(
+            config,
+            [terminal_dp],
+            [origin];
+            phase = :postdecision,
+            cache_root = joinpath(root, "terminal-cache"),
+            execution_lock_aggregate = repeat("d", 64),
+            diagnostics = parquet_quality,
+        )
+        @test parquet == direct
+        @test parquet_quality == direct_quality
+        @test FSLP1.validate_postdecision_return_quality(parquet_quality, config) ==
+              Set([origin.origin_id])
+
+        nonterminal_dp = gzip_fixture("nonterminal-dp", [
+            "1,2005-12-30,0.01,10,10,1000,N,NA",
+            "1,2006-06-30,,,,,Y,DP",
+            "1,2006-12-29,0.02,11,11,1000,N,NA",
+        ])
+        @test_throws ErrorException FSLP1.extract_origin_series(
+            config,
+            [nonterminal_dp],
+            [origin];
+            phase = :postdecision,
+        )
+        @test_throws ErrorException FSLP1.extract_origin_series_parquet(
+            config,
+            [nonterminal_dp],
+            [origin];
+            phase = :postdecision,
+            cache_root = joinpath(root, "nonterminal-cache"),
+            execution_lock_aggregate = repeat("e", 64),
+        )
+
+        nondelisting_dp = gzip_fixture("nondelisting-dp", [
+            "1,2005-12-30,0.01,10,10,1000,N,NA",
+            "1,2006-12-29,,,,,N,DP",
+        ])
+        @test_throws ErrorException FSLP1.extract_origin_series(
+            config,
+            [nondelisting_dp],
+            [origin];
+            phase = :postdecision,
+        )
+
+        warmup_dp = gzip_fixture("warmup-dp", [
+            "1,2005-06-30,0.01,10,10,1000,N,NA",
+            "1,2005-12-30,,,,,Y,DP",
+        ])
+        @test_throws ErrorException FSLP1.extract_origin_series(
+            config,
+            [warmup_dp],
+            [origin];
+            phase = :postdecision,
+        )
+
+        structural_origin = FSLP1.OriginUniverse(
+            "TEST-O2006",
+            2006,
+            "2006-12-29",
+            "2002-01-01",
+            "2004-12-31",
+            "2005-01-01",
+            "2006-12-29",
+            "2007-01-01",
+            "2007-12-31",
+            selected,
+            1,
+            1,
+            1,
+        )
+        @test_throws ErrorException FSLP1.extract_origin_series(
+            config,
+            [terminal_dp],
+            [structural_origin];
+            phase = :structural,
+        )
+    end
+end
+
 @testset "Julia 1.12 world-age-safe audit dispatch" begin
     fixture = Module(:FinancialPanelAuditDispatchFixture)
     Core.eval(fixture, :(audit_fixture() = :world_age_safe))
@@ -317,6 +460,54 @@ end
         )
         @test toml_stems isa Vector{String}
         @test toml_stems == ["first", "second"]
+    end
+    mktempdir() do directory
+        structural_directory = joinpath(directory, "structural")
+        postdecision_directory = joinpath(directory, "postdecision")
+        mkpath(structural_directory)
+        mkpath(postdecision_directory)
+        stem = "TEST-O2005__full_factorial_catalog__equal_active"
+        structural = Dict{String,Any}(
+            "schema_version" => "financial-strategy-library-panel-instance-result-v1",
+            "instance_sha256" => repeat("1", 64),
+        )
+        postdecision = Dict{String,Any}(
+            "schema_version" =>
+                "financial-strategy-library-panel-postdecision-data-unavailable-v1",
+            "structural_instance_sha256" => repeat("1", 64),
+            "structural_result_terminal_and_audited_before_open" => true,
+            "available" => false,
+            "postdecision_opened" => true,
+            "origin_wide_unavailability" => true,
+            "return_imputed" => false,
+            "zero_return_substituted" => false,
+            "unavailable_algorithm_row_count" => 7,
+            "licensed_rows_included" => false,
+            "return_quality" => Dict(
+                "interior_missing_return_rows" => 0,
+                "unexpected_return_flag_rows" => 0,
+                "unused_close_missing_rows" => 0,
+                "unused_volume_missing_rows" => 0,
+                "terminal_delisting_pending_rows" => 1,
+                "postdecision_return_complete" => 0,
+            ),
+        )
+        write(joinpath(structural_directory, stem * ".toml"), FSLP1.toml_text(structural))
+        write(joinpath(postdecision_directory, stem * ".toml"), FSLP1.toml_text(postdecision))
+        paths = (
+            root = directory,
+            structural = structural_directory,
+            postdecision = postdecision_directory,
+        )
+        audit = FSLP1Runner._invoke_latest_binding(
+            audit_module,
+            :_audit_postdecision_stem,
+            stem,
+            paths,
+        )
+        @test isempty(audit.errors)
+        @test audit.checked_rows == 7
+        @test audit.postdecision_data_unavailable_count == 1
     end
     progress = IOBuffer()
     parallel_results, worker_thread_ids = FSLP1Runner._invoke_latest_binding(

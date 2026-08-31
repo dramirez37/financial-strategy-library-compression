@@ -8,8 +8,8 @@ using TOML
 include(joinpath(@__DIR__, "..", "src", "FinancialStrategyLibraryPanelV1.jl"))
 using .FinancialStrategyLibraryPanelV1
 
-include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_012.jl"))
-using .LockFinancialStrategyLibraryPanelV1Execution012: verify_execution_lock_012
+include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_013.jl"))
+using .LockFinancialStrategyLibraryPanelV1Execution013: verify_execution_lock_013
 
 export audit_all_results, audit_structural_results, main
 
@@ -381,7 +381,7 @@ function audit_structural_results(; write_report::Bool = true)
         "financial panel structural audit requires --threads=$AUDIT_THREAD_COUNT; " *
         "found $(Threads.nthreads())",
     )
-    execution_lock = verify_execution_lock_012()
+    execution_lock = verify_execution_lock_013()
     config, _ = load_panel_config()
     paths = _paths(config)
     errors = String[]
@@ -481,6 +481,7 @@ function _postdecision_audit_record(
     result_sha256 = nothing,
     available_count = 0,
     structural_failure_count = 0,
+    postdecision_data_unavailable_count = 0,
     checked_rows = 0,
 )
     return (;
@@ -489,6 +490,7 @@ function _postdecision_audit_record(
         result_sha256,
         available_count,
         structural_failure_count,
+        postdecision_data_unavailable_count,
         checked_rows,
     )
 end
@@ -542,6 +544,38 @@ function _audit_postdecision_stem(stem, paths)
     get(quality, "unused_volume_missing_rows", -1) isa Integer &&
     get(quality, "unused_volume_missing_rows", -1) >= 0 ||
         push!(errors, "$stem lacks a valid unused-volume missing count")
+    if payload["schema_version"] ==
+       "financial-strategy-library-panel-postdecision-data-unavailable-v1"
+        get(quality, "terminal_delisting_pending_rows", -1) == 1 ||
+            push!(errors, "$stem unavailable record lacks its terminal DP count")
+        get(quality, "postdecision_return_complete", -1) == 0 ||
+            push!(errors, "$stem unavailable record claims complete returns")
+        get(payload, "available", true) === false ||
+            push!(errors, "$stem unavailable record claims availability")
+        get(payload, "postdecision_opened", false) === true ||
+            push!(errors, "$stem unavailable record says postdecision was not opened")
+        get(payload, "origin_wide_unavailability", false) === true ||
+            push!(errors, "$stem does not apply origin-wide unavailability")
+        get(payload, "return_imputed", true) === false ||
+            push!(errors, "$stem claims terminal-DP return imputation")
+        get(payload, "zero_return_substituted", true) === false ||
+            push!(errors, "$stem claims terminal-DP zero substitution")
+        get(payload, "unavailable_algorithm_row_count", -1) == length(ALGORITHM_IDS) ||
+            push!(errors, "$stem unavailable algorithm-row count differs")
+        get(payload, "structural_instance_sha256", "") == source["instance_sha256"] ||
+            push!(errors, "$stem unavailable record link hash differs")
+        return _postdecision_audit_record(
+            errors;
+            result_relative,
+            result_sha256,
+            postdecision_data_unavailable_count = 1,
+            checked_rows = length(ALGORITHM_IDS),
+        )
+    end
+    get(quality, "terminal_delisting_pending_rows", -1) == 0 ||
+        push!(errors, "$stem complete postdecision record contains a terminal DP row")
+    get(quality, "postdecision_return_complete", -1) == 1 ||
+        push!(errors, "$stem complete postdecision record lacks complete returns")
     payload["schema_version"] == "financial-strategy-library-panel-postdecision-v1" || begin
         push!(errors, "$stem has an unrecognized postdecision schema")
         return _postdecision_audit_record(errors; result_relative, result_sha256)
@@ -598,6 +632,7 @@ function audit_all_results(; write_report::Bool = true)
     hashes = Dict{String,String}()
     available_count = 0
     structural_failure_count = 0
+    postdecision_data_unavailable_count = 0
     checked_rows = 0
     for audit in audits
         append!(errors, audit.errors)
@@ -606,10 +641,13 @@ function audit_all_results(; write_report::Bool = true)
         end
         available_count += audit.available_count
         structural_failure_count += audit.structural_failure_count
+        postdecision_data_unavailable_count += audit.postdecision_data_unavailable_count
         checked_rows += audit.checked_rows
     end
     checked_rows + 7 * structural_failure_count == 1260 ||
         push!(errors, "postdecision audit does not account for all 1260 algorithm rows")
+    postdecision_data_unavailable_count == 9 ||
+        push!(errors, "Amendment 013 requires nine origin-wide unavailable records")
     report = Dict{String,Any}(
         "schema_version" => "financial-strategy-library-panel-result-audit-v1",
         "experiment_id" => "financial-strategy-library-panel-v1",
@@ -624,6 +662,10 @@ function audit_all_results(; write_report::Bool = true)
         "registered_algorithm_terminal_rows" => 1260,
         "postdecision_available_algorithm_rows" => available_count,
         "structural_failure_instance_count" => structural_failure_count,
+        "postdecision_data_unavailable_instance_count" =>
+            postdecision_data_unavailable_count,
+        "postdecision_data_unavailable_algorithm_rows" =>
+            postdecision_data_unavailable_count * length(ALGORITHM_IDS),
         "unsuccessful_rows_retained_in_denominators" => true,
         "postdecision_cannot_change_structural_results" => true,
         "licensed_rows_included" => false,

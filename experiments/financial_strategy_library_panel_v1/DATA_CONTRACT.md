@@ -32,6 +32,15 @@ because close or volume is unavailable: the unused field remains `missing`, is
 never imputed, and is counted by origin. Dates, total returns, return flags,
 ordering, and the first-row-only `NS` rule remain fail-closed.
 
+Amendment 013 handles one separately classified terminal postdecision
+missing-return row carrying CRSP flag `DP` and a positive delisting flag. The
+row has no observed return and is never set to zero, reconstructed, or treated
+as a complete outcome. The affected origin's nine secondary postdecision
+records are instead marked unavailable, with all 63 algorithm rows retained in
+denominators. Structural extraction remains fail-closed for this pattern, and
+any nonterminal, non-postdecision-year, non-delisting, or differently flagged
+missing return still stops execution.
+
 Ignored local artifacts may include origin eligibility audits, prepared return
 panels, strategy specifications, capability-carrier maps, instances, solver
 logs, and run records. Public promotion may copy only aggregates that pass a

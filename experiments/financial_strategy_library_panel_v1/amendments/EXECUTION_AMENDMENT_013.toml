@@ -1,0 +1,65 @@
+schema_version = "financial-strategy-library-panel-execution-amendment-v13"
+experiment_id = "financial-strategy-library-panel-v1"
+amendment_id = "AMENDMENT_013"
+amendment_date = "2026-08-31"
+predecessor_amendment_id = "AMENDMENT_012"
+postdecision_results_before_amendment = 0
+final_result_audit_files_before_amendment = 0
+analysis_artifacts_before_amendment = 0
+completed_source_partitions_before_amendment = 3
+cached_origin_window_memberships_audited = 865661
+missing_return_memberships_observed = 1
+affected_origin_security_series_observed = 1
+affected_origins_observed = 1
+postdecision_year_missing_rows_observed = 1
+terminal_missing_rows_observed = 1
+missing_rows_with_later_finite_return_observed = 0
+observed_return_missing_flag = "DP"
+observed_delisting_flag_class = "positive"
+raw_row_values_printed_or_committed = false
+raw_identifiers_or_dates_printed_or_committed = false
+selected_library_or_burden_saving_inspected_before_amendment = false
+solver_status_inspected_before_amendment = false
+postdecision_outcome_observed_before_amendment = false
+scientific_estimands_changed = false
+primary_structural_analysis_changed = false
+secondary_postdecision_availability_rule_changed = true
+analysis_formulas_changed = false
+origin_registry_changed = false
+library_registry_changed = false
+burden_schedule_registry_changed = false
+seed_registry_changed = false
+algorithm_registry_changed = false
+structural_results_changed = false
+audit_predicates_changed = true
+
+[missing_return_policy]
+first_row_ns_initialization_rule_unchanged = true
+structural_noninitial_missing_return_fails = true
+postdecision_terminal_dp_recognized = true
+required_flag = "DP"
+required_delisting_flag = "positive"
+required_window = "registered postdecision year"
+required_position = "terminal origin-security scoped source row"
+later_source_observation_permitted = false
+return_imputation_permitted = false
+price_reconstruction_permitted = false
+zero_substitution_permitted = false
+origin_wide_postdecision_unavailability = true
+affected_registered_instance_count = 9
+affected_algorithm_row_count = 63
+unsuccessful_rows_retained_in_denominators = true
+
+[cache_compatibility]
+current_execution_lock_required = true
+compatible_execution_lock_aggregate_sha256 = [
+  "59cb6795ad35986bdc5c102da900147efad952dd557b94eaba107ead85393e9f",
+  "cf364daa5f00991819c4ac514cfe6b7416690f154ce83bfd7734c01143d8244e",
+]
+required_matching_bindings = ["phase", "source index/count", "origin context", "source stat fingerprint", "Parquet SHA-256", "schema", "row count"]
+arbitrary_cross_lock_reuse_permitted = false
+
+[storage]
+rewrite_valid_predecessor_partitions = false
+duplicate_predecessor_partitions = false
+raw_licensed_rows_public_promotion_permitted = false

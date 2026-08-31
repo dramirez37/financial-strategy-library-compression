@@ -29,7 +29,8 @@ export DailyObservation,
        registered_job_keys,
        run_algorithm_suite,
        source_paths,
-       toml_text
+       toml_text,
+       validate_postdecision_return_quality
 
 const REPOSITORY_ROOT = normpath(joinpath(@__DIR__, "..", ".."))
 const CONFIG_PATH = joinpath(
@@ -121,6 +122,13 @@ const AMENDMENT_012_PATH = joinpath(
     "financial_strategy_library_panel_v1",
     "amendments",
     "EXECUTION_AMENDMENT_012.toml",
+)
+const AMENDMENT_013_PATH = joinpath(
+    REPOSITORY_ROOT,
+    "experiments",
+    "financial_strategy_library_panel_v1",
+    "amendments",
+    "EXECUTION_AMENDMENT_013.toml",
 )
 const ALGORITHM_IDS = (
     "jump_highs_tagged_cover",
@@ -410,6 +418,27 @@ function load_panel_config(path::AbstractString = CONFIG_PATH)
     amendment["postdecision_field_amendment"] = postdecision_field_amendment
     amendment["postdecision_field_policy"] = postdecision_field_amendment["field_policy"]
     amendment["source_cache_compatibility"] = postdecision_field_amendment["cache_compatibility"]
+    missing_return_amendment = TOML.parsefile(AMENDMENT_013_PATH)
+    missing_return_amendment["schema_version"] ==
+    "financial-strategy-library-panel-execution-amendment-v13" ||
+        error("unsupported terminal-missing-return execution amendment")
+    missing_return_amendment["amendment_id"] == "AMENDMENT_013" ||
+        error("unexpected terminal-missing-return amendment identifier")
+    missing_return_amendment["predecessor_amendment_id"] == "AMENDMENT_012" ||
+        error("unexpected terminal-missing-return amendment predecessor")
+    missing_return_amendment["postdecision_outcome_observed_before_amendment"] === false ||
+        error("terminal-missing-return amendment followed a postdecision outcome")
+    missing_return_amendment["scientific_estimands_changed"] === false ||
+        error("terminal-missing-return amendment changes registered estimands")
+    missing_return_amendment["secondary_postdecision_availability_rule_changed"] === true ||
+        error("terminal-missing-return amendment must disclose its availability change")
+    amendment["predecessor_amendment_id"] = amendment["amendment_id"]
+    amendment["amendment_id"] = missing_return_amendment["amendment_id"]
+    amendment["missing_return_amendment"] = missing_return_amendment
+    amendment["postdecision_missing_return_policy"] =
+        missing_return_amendment["missing_return_policy"]
+    amendment["source_cache_compatibility"] =
+        missing_return_amendment["cache_compatibility"]
     return config, amendment
 end
 
@@ -884,6 +913,8 @@ function extract_origin_series(
             "new_security_initialization_rows_excluded" => 0,
             "interior_missing_return_rows" => 0,
             "unexpected_return_flag_rows" => 0,
+            "terminal_delisting_pending_rows" => 0,
+            "postdecision_return_complete" => 1,
             "unused_close_missing_rows" => 0,
             "unused_volume_missing_rows" => 0,
         )
@@ -892,11 +923,13 @@ function extract_origin_series(
                 origin_id = origin.origin_id,
                 window_start,
                 window_end,
+                postdecision_start = origin.postdecision_start,
             ))
         end
     end
     required = String.(config["source"]["required_daily_columns"]["columns"])
     last_source_date = Dict{Tuple{String,Int},String}()
+    pending_terminal_dp = Dict{Tuple{String,Int},String}()
     source_rows_scanned = 0
     file_count = length(daily_files)
     scan_stage = phase == :structural ? "structural-return scan" : "postdecision-return scan"
@@ -936,9 +969,13 @@ function extract_origin_series(
                 isempty(matching) && continue
                 total_return = _parse_float(fields[positions["dlyret"]])
                 return_flag = strip(fields[positions["dlyretmissflg"]])
+                delisting_flag = strip(fields[positions["dlydelflg"]])
                 first_source_row = Dict{String,Bool}()
                 for context in matching
                     key = (context.origin_id, permno)
+                    haskey(pending_terminal_dp, key) && error(
+                        "a CRSP DP missing return is followed by another scoped source row",
+                    )
                     first_source_row[context.origin_id] = !haskey(last_source_date, key)
                     date > get(last_source_date, key, "") ||
                         error("duplicate or unstable daily ordering for an origin-scoped PERMNO")
@@ -949,6 +986,12 @@ function extract_origin_series(
                     for context in matching
                         if first_source_row[context.origin_id] && return_flag == "NS"
                             quality[context.origin_id]["new_security_initialization_rows_excluded"] += 1
+                        elseif phase == :postdecision &&
+                               !first_source_row[context.origin_id] &&
+                               return_flag == "DP" &&
+                               !(delisting_flag in ("", "N")) &&
+                               date >= context.postdecision_start
+                            pending_terminal_dp[(context.origin_id, permno)] = date
                         else
                             first_source_row[context.origin_id] ||
                                 (quality[context.origin_id]["interior_missing_return_rows"] += 1)
@@ -956,7 +999,7 @@ function extract_origin_series(
                                 (quality[context.origin_id]["unexpected_return_flag_rows"] += 1)
                             error(
                                 "selected daily return violates the locked missing-return rule; " *
-                                "only a first-row CRSP NS initialization may be excluded",
+                                "only first-row NS or qualifying terminal postdecision DP may be excluded",
                             )
                         end
                     end
@@ -988,7 +1031,7 @@ function extract_origin_series(
                     total_return,
                     isnothing(close) ? missing : close,
                     invalid_volume ? missing : volume,
-                    strip(fields[positions["dlydelflg"]]),
+                    delisting_flag,
                     return_flag,
                 )
                 for context in matching
@@ -1006,13 +1049,18 @@ function extract_origin_series(
             source_rows_scanned,
         )
     end
+    for ((origin_id, _), _) in pending_terminal_dp
+        quality[origin_id]["terminal_delisting_pending_rows"] += 1
+        quality[origin_id]["postdecision_return_complete"] = 0
+    end
     for (origin_id, series) in observations
         all(!isempty, values(series)) ||
             error("an origin-scoped selected PERMNO has no $phase daily series: $origin_id")
         row = quality[origin_id]
         row["source_rows_seen"] ==
         row["valid_return_rows_retained"] +
-        row["new_security_initialization_rows_excluded"] ||
+        row["new_security_initialization_rows_excluded"] +
+        row["terminal_delisting_pending_rows"] ||
             error("origin-scoped return-quality counts do not reconcile")
         row["interior_missing_return_rows"] == 0 ||
             error("origin-scoped extraction contains an interior missing return")
@@ -1056,6 +1104,7 @@ function _origin_series_contexts(origins, phase)
                 origin_id = origin.origin_id,
                 window_start,
                 window_end,
+                postdecision_start = origin.postdecision_start,
             ))
         end
     end
@@ -1340,6 +1389,9 @@ end
 
 function _merge_origin_series_partitions(partition_paths, origins, phase, diagnostics)
     _, selected_by_origin, _ = _origin_series_contexts(origins, phase)
+    postdecision_start_by_origin = Dict(
+        origin.origin_id => origin.postdecision_start for origin in origins
+    )
     observations = Dict(
         origin_id => Dict(permno => DailyObservation[] for permno in selected) for
         (origin_id, selected) in selected_by_origin
@@ -1352,11 +1404,14 @@ function _merge_origin_series_partitions(partition_paths, origins, phase, diagno
             "new_security_initialization_rows_excluded" => 0,
             "interior_missing_return_rows" => 0,
             "unexpected_return_flag_rows" => 0,
+            "terminal_delisting_pending_rows" => 0,
+            "postdecision_return_complete" => 1,
             "unused_close_missing_rows" => 0,
             "unused_volume_missing_rows" => 0,
         ) for (origin_id, selected) in selected_by_origin
     )
     last_source_date = Dict{Tuple{String,Int},String}()
+    pending_terminal_dp = Dict{Tuple{String,Int},String}()
     for paths in partition_paths
         columns = parquet_columns(paths.parquet; use_threads = false)
         propertynames(columns) == ORIGIN_SERIES_PARQUET_COLUMNS ||
@@ -1366,6 +1421,9 @@ function _merge_origin_series_partitions(partition_paths, origins, phase, diagno
             permno = Int(columns.permno[index])
             date = String(columns.date[index])
             key = (origin_id, permno)
+            haskey(pending_terminal_dp, key) && error(
+                "a CRSP DP missing return is followed by another scoped source row",
+            )
             first_source_row = !haskey(last_source_date, key)
             date > get(last_source_date, key, "") ||
                 error("duplicate or unstable daily ordering for an origin-scoped PERMNO")
@@ -1374,15 +1432,20 @@ function _merge_origin_series_partitions(partition_paths, origins, phase, diagno
             row["source_rows_seen"] += 1
             total_return = columns.total_return[index]
             return_flag = String(columns.return_flag[index])
+            delisting_flag = String(columns.delisting_flag[index])
             if ismissing(total_return)
                 if first_source_row && return_flag == "NS"
                     row["new_security_initialization_rows_excluded"] += 1
+                elseif phase == :postdecision && !first_source_row && return_flag == "DP" &&
+                       !(delisting_flag in ("", "N")) &&
+                       date >= postdecision_start_by_origin[origin_id]
+                    pending_terminal_dp[key] = date
                 else
                     first_source_row || (row["interior_missing_return_rows"] += 1)
                     return_flag == "NS" || (row["unexpected_return_flag_rows"] += 1)
                     error(
                         "selected daily return violates the locked missing-return rule; " *
-                        "only a first-row CRSP NS initialization may be excluded",
+                        "only first-row NS or qualifying terminal postdecision DP may be excluded",
                     )
                 end
                 continue
@@ -1409,12 +1472,16 @@ function _merge_origin_series_partitions(partition_paths, origins, phase, diagno
                     Float64(total_return),
                     ismissing(close) ? missing : Float64(close),
                     ismissing(volume) ? missing : Float64(volume),
-                    String(columns.delisting_flag[index]),
+                    delisting_flag,
                     return_flag,
                 ),
             )
             row["valid_return_rows_retained"] += 1
         end
+    end
+    for ((origin_id, _), _) in pending_terminal_dp
+        quality[origin_id]["terminal_delisting_pending_rows"] += 1
+        quality[origin_id]["postdecision_return_complete"] = 0
     end
     for (origin_id, series) in observations
         all(!isempty, values(series)) ||
@@ -1422,7 +1489,8 @@ function _merge_origin_series_partitions(partition_paths, origins, phase, diagno
         row = quality[origin_id]
         row["source_rows_seen"] ==
         row["valid_return_rows_retained"] +
-        row["new_security_initialization_rows_excluded"] ||
+        row["new_security_initialization_rows_excluded"] +
+        row["terminal_delisting_pending_rows"] ||
             error("origin-scoped return-quality counts do not reconcile")
         row["interior_missing_return_rows"] == 0 ||
             error("origin-scoped extraction contains an interior missing return")
@@ -1434,6 +1502,32 @@ function _merge_origin_series_partitions(partition_paths, origins, phase, diagno
         merge!(diagnostics, quality)
     end
     return observations
+end
+
+function validate_postdecision_return_quality(diagnostics, config)
+    policy = config["postdecision_missing_returns"]
+    affected_origins = Set{String}()
+    terminal_dp_memberships = 0
+    for (origin_id, row) in diagnostics
+        terminal_count = Int(get(row, "terminal_delisting_pending_rows", -1))
+        terminal_count >= 0 || error("postdecision terminal-DP count is invalid")
+        complete = Int(get(row, "postdecision_return_complete", -1))
+        complete in (0, 1) || error("postdecision return-completeness flag is invalid")
+        complete == (terminal_count == 0 ? 1 : 0) ||
+            error("postdecision terminal-DP count and completeness flag disagree")
+        terminal_dp_memberships += terminal_count
+        terminal_count > 0 && push!(affected_origins, String(origin_id))
+    end
+    terminal_dp_memberships ==
+    Int(policy["terminal_delisting_pending_expected_memberships"]) ||
+        error("postdecision terminal-DP membership count differs from Amendment 013")
+    length(affected_origins) == Int(policy["terminal_delisting_pending_expected_origins"]) ||
+        error("postdecision terminal-DP affected-origin count differs from Amendment 013")
+    policy["terminal_delisting_pending_return_imputation_permitted"] === false ||
+        error("postdecision terminal-DP return imputation was enabled")
+    policy["terminal_delisting_pending_zero_substitution_permitted"] === false ||
+        error("postdecision terminal-DP zero substitution was enabled")
+    return affected_origins
 end
 
 """

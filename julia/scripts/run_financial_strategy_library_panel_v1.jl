@@ -9,8 +9,8 @@ using TOML
 include(joinpath(@__DIR__, "..", "src", "FinancialStrategyLibraryPanelV1.jl"))
 using .FinancialStrategyLibraryPanelV1
 
-include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_012.jl"))
-using .LockFinancialStrategyLibraryPanelV1Execution012: verify_execution_lock_012
+include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_013.jl"))
+using .LockFinancialStrategyLibraryPanelV1Execution013: verify_execution_lock_013
 
 export main,
        prepare_instances,
@@ -35,6 +35,8 @@ const LOCK_010_AGGREGATE =
     "a5a1b53a16f5a238c92b1db04b6d073ee8057f12403c4e5a1b00f19fa59586ae"
 const LOCK_011_AGGREGATE =
     "59cb6795ad35986bdc5c102da900147efad952dd557b94eaba107ead85393e9f"
+const LOCK_012_AGGREGATE =
+    "cf364daa5f00991819c4ac514cfe6b7416690f154ce83bfd7734c01143d8244e"
 
 _utc_now() = Dates.format(Dates.now(Dates.UTC), dateformat"yyyy-mm-ddTHH:MM:SS.sssZ")
 _sha256_file(path) = open(path, "r") do io
@@ -115,7 +117,7 @@ function _environment(
         "threaded_lane_count" => THREAD_COUNT,
         "maximum_simultaneous_heavy_stages" => HEAVY_CONCURRENCY,
         "execution_lock_aggregate_sha256" => execution_lock_aggregate,
-        "active_amendment_id" => "AMENDMENT_012",
+        "active_amendment_id" => "AMENDMENT_013",
         "replaced_predecessor_environment" => replaced_predecessor_environment,
         "predecessor_instance_count" => predecessor_instance_count,
         "predecessor_origin_metadata_count" => predecessor_origin_metadata_count,
@@ -448,7 +450,7 @@ function _registry_seed(origin_id, library_id)
 end
 
 function validate_readiness(; require_sources::Bool = true)
-    verify_execution_lock_012()
+    verify_execution_lock_013()
     VERSION == v"1.12.6" || error("financial panel v1 requires Julia 1.12.6")
     Threads.nthreads() == THREAD_COUNT || error(
         "financial panel v1 requires --threads=$THREAD_COUNT; found $(Threads.nthreads())",
@@ -460,7 +462,7 @@ function validate_readiness(; require_sources::Bool = true)
         error("execution amendment thread count changed")
     amendment["threading"]["maximum_simultaneous_heavy_stages"] == HEAVY_CONCURRENCY ||
         error("execution amendment heavy-stage concurrency changed")
-    amendment["amendment_id"] == "AMENDMENT_012" ||
+    amendment["amendment_id"] == "AMENDMENT_013" ||
         error("active execution amendment changed")
     amendment["audit_key_shape"]["expected_key_count"] == 180 ||
         error("audit key count changed")
@@ -484,7 +486,7 @@ function validate_readiness(; require_sources::Bool = true)
 end
 
 function _write_environment(paths)
-    execution_lock_aggregate = verify_execution_lock_012()
+    execution_lock_aggregate = verify_execution_lock_013()
     if isfile(paths.environment)
         environment = TOML.parsefile(paths.environment)
         if get(environment, "execution_lock_aggregate_sha256", "") == execution_lock_aggregate
@@ -496,7 +498,7 @@ function _write_environment(paths)
             environment,
             "execution_lock_aggregate_sha256",
             "",
-        ) in (LOCK_010_AGGREGATE, LOCK_011_AGGREGATE)
+        ) in (LOCK_010_AGGREGATE, LOCK_011_AGGREGATE, LOCK_012_AGGREGATE)
         instance_count = isdir(paths.instances) ?
                          count(name -> endswith(name, ".toml"), readdir(paths.instances)) : 0
         origin_metadata_count = isdir(paths.origin_metadata) ?
@@ -1016,7 +1018,7 @@ end
 function run_postdecision_phase()
     config, amendment = validate_readiness()
     output = _paths(config)
-    execution_lock_aggregate = verify_execution_lock_012()
+    execution_lock_aggregate = verify_execution_lock_013()
     structural_audit_path = joinpath(output.local_results, "STRUCTURAL_AUDIT.toml")
     isfile(structural_audit_path) || error("structural audit is absent; run the audit before postdecision")
     structural_audit = TOML.parsefile(structural_audit_path)
@@ -1060,18 +1062,46 @@ function run_postdecision_phase()
         cache_root = output.postdecision_scan_cache,
         execution_lock_aggregate,
         compatible_execution_lock_aggregates =
-            (LOCK_011_AGGREGATE, execution_lock_aggregate),
+            (LOCK_011_AGGREGATE, LOCK_012_AGGREGATE, execution_lock_aggregate),
         diagnostics = postdecision_return_quality,
         progress_callback = _parallel_scan_progress_reporter(
             "post-scan",
             length(raw_paths.daily_files),
         ),
     )
+    unavailable_postdecision_origins =
+        validate_postdecision_return_quality(postdecision_return_quality, config)
+    _emit_progress(
+        "postdecision: return-quality merge complete; " *
+        "$(length(unavailable_postdecision_origins)) origin retained as unavailable",
+    )
     run_one = function(job, lane)
         destination = joinpath(output.postdecision, job.stem * ".toml")
         isfile(destination) && return nothing
         result_payload = TOML.parsefile(joinpath(output.structural, job.stem * ".toml"))
-        payload = if result_payload["schema_version"] ==
+        payload = if job.origin_id in unavailable_postdecision_origins
+            result_payload["schema_version"] ==
+            "financial-strategy-library-panel-instance-result-v1" || error(
+                "Amendment 013 affected origin lacks a successful structural result",
+            )
+            Dict{String,Any}(
+                "schema_version" =>
+                    "financial-strategy-library-panel-postdecision-data-unavailable-v1",
+                "origin_id" => job.origin_id,
+                "library_id" => job.library_id,
+                "schedule_id" => job.schedule_id,
+                "structural_instance_sha256" => result_payload["instance_sha256"],
+                "structural_result_terminal_and_audited_before_open" => true,
+                "available" => false,
+                "reason" => "terminal CRSP DP row leaves the origin postdecision return incomplete",
+                "postdecision_opened" => true,
+                "origin_wide_unavailability" => true,
+                "return_imputed" => false,
+                "zero_return_substituted" => false,
+                "unavailable_algorithm_row_count" => length(FinancialStrategyLibraryPanelV1.ALGORITHM_IDS),
+                "licensed_rows_included" => false,
+            )
+        elseif result_payload["schema_version"] ==
                      "financial-strategy-library-panel-instance-result-v1"
             instance = _read_instance(joinpath(output.instances, job.stem * ".toml"))
             next_year = origins[job.origin_id].decision_year + 1
@@ -1124,7 +1154,7 @@ end
 
 function run_smoke()
     config, _ = validate_readiness(; require_sources = false)
-    execution_lock_aggregate = verify_execution_lock_012()
+    execution_lock_aggregate = verify_execution_lock_013()
     jobs = build_synthetic_smoke_instances(THREAD_COUNT)
     mktempdir() do root
         output = (

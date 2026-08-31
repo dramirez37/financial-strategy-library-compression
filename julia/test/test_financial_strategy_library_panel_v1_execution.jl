@@ -8,8 +8,8 @@ const FSLP1 = FinancialStrategyLibraryPanelV1
 include(joinpath(@__DIR__, "..", "scripts", "run_financial_strategy_library_panel_v1.jl"))
 const FSLP1Runner = RunFinancialStrategyLibraryPanelV1
 
-include(joinpath(@__DIR__, "..", "scripts", "lock_financial_strategy_library_panel_v1_execution_009.jl"))
-const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution009
+include(joinpath(@__DIR__, "..", "scripts", "lock_financial_strategy_library_panel_v1_execution_010.jl"))
+const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution010
 
 @testset "financial panel v1 execution configuration" begin
     @test VERSION == v"1.12.6"
@@ -19,7 +19,7 @@ const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution009
     @test amendment["threading"]["julia_threads"] == 8
     @test amendment["threading"]["concurrent_job_lanes"] == 8
     @test amendment["threading"]["maximum_simultaneous_heavy_stages"] == 2
-    @test amendment["amendment_id"] == "AMENDMENT_009"
+    @test amendment["amendment_id"] == "AMENDMENT_010"
     @test amendment["audit_parallelism"]["worker_count"] == 8
     @test amendment["audit_parallelism"]["postdecision_worker_count"] == 8
     @test amendment["audit_dispatch"]["new_method_invocation"] == "Base.invokelatest"
@@ -33,7 +33,7 @@ const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution009
     @test length(unique(FSLP1.registered_job_keys())) == 180
 
     if isfile(FSLP1ExecutionLock.LOCK_PATH)
-        aggregate = FSLP1ExecutionLock.verify_execution_lock_009()
+        aggregate = FSLP1ExecutionLock.verify_execution_lock_010()
         @test occursin(r"^[0-9a-f]{64}$", aggregate)
         lock_text = read(FSLP1ExecutionLock.LOCK_PATH, String)
         one_hash = first(values(FSLP1ExecutionLock._hashes()))
@@ -91,6 +91,11 @@ end
     @test occursin("0/64", progress_text)
     @test occursin("64/64", progress_text)
     @test occursin("structural-audit", progress_text)
+    progress_counts = Int[
+        parse(Int, first(split(last(split(line)), '/'))) for
+        line in split(chomp(progress_text), '\n')
+    ]
+    @test progress_counts == collect(0:64)
     postdecision_progress = IOBuffer()
     _, postdecision_thread_ids = FSLP1Runner._invoke_latest_binding(
         audit_module,

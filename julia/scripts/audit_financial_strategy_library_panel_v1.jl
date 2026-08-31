@@ -8,8 +8,8 @@ using TOML
 include(joinpath(@__DIR__, "..", "src", "FinancialStrategyLibraryPanelV1.jl"))
 using .FinancialStrategyLibraryPanelV1
 
-include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_009.jl"))
-using .LockFinancialStrategyLibraryPanelV1Execution009: verify_execution_lock_009
+include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_010.jl"))
+using .LockFinancialStrategyLibraryPanelV1Execution010: verify_execution_lock_010
 
 export audit_all_results, audit_structural_results, main
 
@@ -59,8 +59,8 @@ function _parallel_indexed_audits(
     Threads.@threads :static for index in eachindex(items)
         results[index] = worker(items[index])
         worker_thread_ids[index] = Threads.threadid()
-        completed_count = Threads.atomic_add!(completed, 1) + 1
         lock(progress_lock) do
+            completed_count = Threads.atomic_add!(completed, 1) + 1
             _audit_progress(progress_io, progress_label, completed_count, length(items))
         end
     end
@@ -381,7 +381,7 @@ function audit_structural_results(; write_report::Bool = true)
         "financial panel structural audit requires --threads=$AUDIT_THREAD_COUNT; " *
         "found $(Threads.nthreads())",
     )
-    execution_lock = verify_execution_lock_009()
+    execution_lock = verify_execution_lock_010()
     config, _ = load_panel_config()
     paths = _paths(config)
     errors = String[]

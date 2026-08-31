@@ -97,6 +97,13 @@ const AMENDMENT_009_PATH = joinpath(
     "amendments",
     "EXECUTION_AMENDMENT_009.toml",
 )
+const AMENDMENT_010_PATH = joinpath(
+    REPOSITORY_ROOT,
+    "experiments",
+    "financial_strategy_library_panel_v1",
+    "amendments",
+    "EXECUTION_AMENDMENT_010.toml",
+)
 const ALGORITHM_IDS = (
     "jump_highs_tagged_cover",
     "requirement_mask_dp",
@@ -332,6 +339,22 @@ function load_panel_config(path::AbstractString = CONFIG_PATH)
     amendment["audit_parallel_amendment"] = audit_parallel_amendment
     amendment["audit_parallelism"] = audit_parallel_amendment["audit_parallelism"]
     amendment["audit_instance_hash"] = audit_parallel_amendment["audit_instance_hash"]
+    progress_order_amendment = TOML.parsefile(AMENDMENT_010_PATH)
+    progress_order_amendment["schema_version"] ==
+    "financial-strategy-library-panel-execution-amendment-v10" ||
+        error("unsupported audit-progress execution amendment")
+    progress_order_amendment["amendment_id"] == "AMENDMENT_010" ||
+        error("unexpected audit-progress amendment identifier")
+    progress_order_amendment["predecessor_amendment_id"] == "AMENDMENT_009" ||
+        error("unexpected audit-progress amendment predecessor")
+    progress_order_amendment["postdecision_outcome_observed_before_amendment"] === false ||
+        error("audit-progress amendment followed a postdecision outcome")
+    progress_order_amendment["audit_predicates_changed"] === false ||
+        error("audit-progress amendment changes an audit predicate")
+    amendment["predecessor_amendment_id"] = amendment["amendment_id"]
+    amendment["amendment_id"] = progress_order_amendment["amendment_id"]
+    amendment["progress_order_amendment"] = progress_order_amendment
+    amendment["audit_progress"] = progress_order_amendment["progress"]
     return config, amendment
 end
 

@@ -1,0 +1,30 @@
+analysis_correction_id = "ANALYSIS_CORRECTION_001"
+artifact_aggregate_sha256 = "1a99ed1af189c58b633001f69d6ece63cf9ca00a42a5f10f50e31e38eed0d7bb"
+experiment_id = "financial-strategy-library-panel-v1"
+parquet_compression = "SNAPPY"
+raw_licensed_rows_included = false
+registered_algorithm_row_count = 1260
+registered_instance_count = 180
+registered_origin_count = 20
+runtime_summary_excludes_inapplicable_rows = true
+schema_version = "financial-strategy-library-panel-public-results-v1"
+selected_strategy_identifiers_included = false
+source_analysis_artifact_aggregate_sha256 = "8980f31c351570ca8a4b5e502acb32e1ae6b887d270552cc1271865af5bc8061"
+source_analysis_manifest_sha256 = "5cd88adf5288fc684d15e4087b72d4bcffb538469285aead3440b8376a08cdca"
+source_execution_lock_aggregate_sha256 = "0fcfb4fb0a9fb1af0a2ebe7eb79389e90fc6713cf7cd11e99e1077c1e9f91fc3"
+source_result_audit_sha256 = "dfc2b9f0051e84d909f623aedf557ca25e2d4f171686326ed1751b63a0434e1a"
+unsuccessful_rows_retained_in_denominators = true
+
+[files]
+"RESULTS_REPORT.md" = "189eb3d9b575598878b6a2c5fe4a1913ad272e8a4a0b24f4e9f1a0b59d8d36ad"
+"algorithm_rows_public.parquet" = "e87e5ad5820079874abcef1a2fad9012b06ad6d88f86b6483463669c84db2216"
+"carrier_multiplicity.parquet" = "c4ed199d4716316f3c97d3442461c101730a0c7dacaccc1bd099542c8021edea"
+"exact_method_agreement.parquet" = "150b2d774760a095792630cb067fa0177e09c65c7cd901dd5855f5b0a42b6c74"
+"figures/carrier_multiplicity_compression.svg" = "c4c624cf1044af3d1f314806b595f53da07edf5e9ee9256815bcf7d42a35bd55"
+"figures/completion_cactus.svg" = "824205d73253875a7007663a82f17791083025513ebeaae0a4ecf692ce43f3af"
+"figures/origin_compression.svg" = "7efba8221a4df9d58de9de7d9a71e09ff6c50fd94d4e165ac3a0feaca866eed2"
+"figures/postdecision_diagnostics.svg" = "d392d847f254155b0225358024d7f79fd39b4e670887fa4e6b7610c0e3d07061"
+"figures/schedule_identity_overlap.svg" = "5d0fd6ba2c4dbb953db031eed0e46ed62ec431d960d438535ccfaf888c469102"
+"identity_overlap.parquet" = "da0c8fb298c768c6b47bdfa0cbff7a1230190166ae311c54627aadb2c6cc97cb"
+"instance_rows.parquet" = "9006ebd164fe48e4edb5c8dcd4c0bbb20fcfc4126d9b0d37bb7ced6572fc8d86"
+"structural_summary.parquet" = "ce2914f7f6a710e8a29cde56df5be92e78278033ad55aa886c1b6809815bcceb"

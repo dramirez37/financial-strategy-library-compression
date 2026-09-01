@@ -1,0 +1,30 @@
+schema_version = "financial-strategy-library-panel-analysis-correction-v1"
+experiment_id = "financial-strategy-library-panel-v1"
+correction_id = "ANALYSIS_CORRECTION_001"
+correction_date = "2026-09-01"
+classification = "postresult_reporting_implementation_correction"
+source_execution_lock = "EXECUTION_LOCK_023.json"
+source_execution_lock_aggregate_sha256 = "0fcfb4fb0a9fb1af0a2ebe7eb79389e90fc6713cf7cd11e99e1077c1e9f91fc3"
+scientific_estimands_changed = false
+registered_analysis_plan_changed = false
+algorithm_rows_changed = false
+candidate_identities_changed = false
+candidate_burdens_changed = false
+certificates_changed = false
+solver_results_changed = false
+postdecision_results_changed = false
+registered_denominators_changed = false
+raw_licensed_rows_included = false
+
+[runtime_summary]
+old_inclusion_rule = "wall_clock_seconds is present"
+corrected_inclusion_rule = "applicable is true and wall_clock_seconds is present"
+skipped_rows_retained_in_registered_denominator = true
+skipped_rows_retained_in_applicability_census = true
+skipped_rows_excluded_from_executed_runtime_distribution = true
+
+[outputs]
+format = "Snappy Parquet plus editable SVG and generated Markdown"
+public_column_whitelist_required = true
+independent_audit_required = true
+deterministic_hash_manifest_required = true

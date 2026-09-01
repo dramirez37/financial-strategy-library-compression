@@ -8,8 +8,8 @@ using TOML
 include(joinpath(@__DIR__, "..", "src", "FinancialStrategyLibraryPanelV1.jl"))
 using .FinancialStrategyLibraryPanelV1
 
-include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_022.jl"))
-using .LockFinancialStrategyLibraryPanelV1Execution022: verify_execution_lock_022
+include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_023.jl"))
+using .LockFinancialStrategyLibraryPanelV1Execution023: verify_execution_lock_023
 
 export audit_all_results, audit_structural_results, main
 
@@ -253,6 +253,7 @@ function _stem_audit_record(
     missing_solver_log_count = 0,
     checked_algorithm_rows = 0,
     corrected_mip_count = 0,
+    projection_provenance_count = 0,
 )
     return (;
         errors,
@@ -268,6 +269,7 @@ function _stem_audit_record(
         missing_solver_log_count,
         checked_algorithm_rows,
         corrected_mip_count,
+        projection_provenance_count,
     )
 end
 
@@ -380,6 +382,26 @@ function _audit_structural_stem(stem, paths)
         mip["selection"]["exact_burden"] == dp["selection"]["exact_burden"] ||
             push!(errors, "$stem exact MIP and DP burdens disagree")
     end
+    projection_provenance =
+        get(payload, "projection_provenance_refresh_amendment_id", "") == "AMENDMENT_023"
+    projection_provenance ||
+        push!(errors, "$stem MIP projection provenance was not refreshed under Amendment 023")
+    String.(get(payload, "projection_provenance_refreshed_algorithm_ids", String[])) ==
+    ["jump_highs_tagged_cover"] ||
+        push!(errors, "$stem projection-provenance algorithm declaration differs")
+    get(payload, "solver_checkpoint_reused_without_rerun", false) === true ||
+        push!(errors, "$stem projection-provenance refresh reran or lost its checkpoint declaration")
+    warm_start_source = get(mip, "warm_start_source", "")
+    warm_start_source in (
+        "registered weighted greedy plus reverse deletion",
+        "registered weighted greedy plus reverse deletion; exact preprocessing substitution projection",
+    ) || push!(errors, "$stem MIP warm-start provenance is absent or unrecognized")
+    get(mip, "warm_start_projection_provenance_reconstructed", false) === true ||
+        push!(errors, "$stem MIP warm-start provenance was not reconstructed")
+    get(mip, "warm_start_projection_exactly_rechecked", false) === true ||
+        push!(errors, "$stem MIP warm-start projection was not exactly rechecked")
+    get(mip, "warm_start_projection_substitution_count", -1) >= 0 ||
+        push!(errors, "$stem MIP warm-start substitution count is absent")
     corrected_mip = get(payload, "corrective_execution_amendment_id", "") ==
                     "AMENDMENT_021"
     if corrected_mip
@@ -418,6 +440,7 @@ function _audit_structural_stem(stem, paths)
         missing_solver_log_count,
         checked_algorithm_rows = length(algorithms),
         corrected_mip_count = corrected_mip ? 1 : 0,
+        projection_provenance_count = projection_provenance ? 1 : 0,
     )
 end
 
@@ -426,7 +449,7 @@ function audit_structural_results(; write_report::Bool = true)
         "financial panel structural audit requires --threads=$AUDIT_THREAD_COUNT; " *
         "found $(Threads.nthreads())",
     )
-    execution_lock = verify_execution_lock_022()
+    execution_lock = verify_execution_lock_023()
     config, _ = load_panel_config()
     paths = _paths(config)
     errors = String[]
@@ -468,6 +491,7 @@ function audit_structural_results(; write_report::Bool = true)
     missing_solver_log_count = 0
     checked_algorithm_rows = 0
     corrected_mip_count = 0
+    projection_provenance_count = 0
     for audit in audits
         append!(errors, audit.errors)
         if !isnothing(audit.result_relative)
@@ -483,6 +507,7 @@ function audit_structural_results(; write_report::Bool = true)
         missing_solver_log_count += audit.missing_solver_log_count
         checked_algorithm_rows += audit.checked_algorithm_rows
         corrected_mip_count += audit.corrected_mip_count
+        projection_provenance_count += audit.projection_provenance_count
     end
     checked_algorithm_rows == 1260 ||
         push!(errors, "audit saw $checked_algorithm_rows algorithm terminal rows instead of 1260")
@@ -490,6 +515,8 @@ function audit_structural_results(; write_report::Bool = true)
         push!(errors, "Amendment 021 requires zero algorithm errors")
     corrected_mip_count == 94 ||
         push!(errors, "Amendment 021 corrected MIP row count differs from 94")
+    projection_provenance_count == 108 ||
+        push!(errors, "Amendment 023 MIP projection-provenance count differs from 108")
     candidate_count == 736 ||
         push!(errors, "Amendment 021 candidate count differs from 736")
     report = Dict{String,Any}(
@@ -510,6 +537,7 @@ function audit_structural_results(; write_report::Bool = true)
         "exact_reference_instance_count" => exact_reference_count,
         "missing_solver_log_count" => missing_solver_log_count,
         "corrected_mip_row_count" => corrected_mip_count,
+        "mip_projection_provenance_row_count" => projection_provenance_count,
         "mip_candidate_row_count" => success_count,
         "mip_dp_exact_burden_agreement_count" => success_count,
         "unsuccessful_rows_retained_in_denominators" => true,

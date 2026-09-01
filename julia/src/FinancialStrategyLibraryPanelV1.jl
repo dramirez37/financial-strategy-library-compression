@@ -2620,6 +2620,8 @@ function _run_one_algorithm(
             record["mip_node_count"] = ismissing(diagnostics.node_count) ?
                 Dict("available" => false) : _available(diagnostics.node_count)
             record["solver_claimed_optimal"] = result.solver_claimed_optimal
+            record["warm_start_source"] = result.warm_start_source
+            record["warm_start_projection_provenance_reconstructed"] = false
             record["preprocessing_solved_empty_residual"] =
                 result.preprocessing.reduced_strategy_count == 0 &&
                 result.preprocessing.reduced_requirement_count == 0
@@ -2753,6 +2755,24 @@ function run_algorithm_suite(
             saved = resume_algorithms[algorithm_id]
             record = deepcopy(saved.record)
             selection = isnothing(saved.selection) ? nothing : copy(saved.selection)
+            if algorithm_id == "jump_highs_tagged_cover" &&
+               get(record, "candidate_returned", false) === true &&
+               !haskey(record, "warm_start_source")
+                isnothing(warm_start) && error(
+                    "a resumed MIP candidate lacks its registered greedy warm start",
+                )
+                projection = journal_mip_warm_start_projection(
+                    instance,
+                    preprocessing,
+                    warm_start,
+                    "registered weighted greedy plus reverse deletion",
+                )
+                record["warm_start_source"] = projection.warm_start_source
+                record["warm_start_projection_substitution_count"] =
+                    projection.substitution_count
+                record["warm_start_projection_provenance_reconstructed"] = true
+                record["warm_start_projection_exactly_rechecked"] = true
+            end
             progress_callback((
                 stage = "algorithm",
                 state = "resumed",

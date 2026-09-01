@@ -1,0 +1,53 @@
+schema_version = "financial-strategy-library-panel-execution-amendment-v23"
+experiment_id = "financial-strategy-library-panel-v1"
+amendment_id = "AMENDMENT_023"
+amendment_date = "2026-09-01"
+predecessor_amendment_id = "AMENDMENT_022"
+classification = "preserve_exact_mip_projection_provenance"
+lock_022_completed_new_mip_solver_runs = 90
+lock_022_final_mip_candidate_count = 108
+lock_022_structural_audit_passed = false
+lock_022_postdecision_refresh_started = false
+lock_022_analysis_started = false
+scientific_estimands_changed = false
+algorithm_definition_changed = false
+registered_instances_changed = false
+weights_changed = false
+seeds_changed = false
+time_limits_changed = false
+solver_settings_changed = false
+analysis_formulas_changed = false
+registered_denominators_changed = false
+candidate_identities_changed = false
+candidate_burdens_changed = false
+raw_row_values_printed_or_committed = false
+
+[projection_provenance]
+affected_successful_mip_records = 108
+audit_reported_corrected_records = 94
+source = "serialized exact instance plus saved registered weighted-greedy selection plus exact preprocessing"
+require_exact_warm_start_feasibility = true
+require_exact_substitution_projection = true
+require_exact_projected_burden_nonincrease = true
+require_substitution_count = true
+require_reconstruction_marker = true
+
+[checkpoint_recovery]
+lock_005_checkpoint_count = 662
+lock_020_checkpoint_count = 4
+lock_022_checkpoint_count = 90
+terminal_mip_candidate_count = 108
+terminal_mip_error_count = 0
+new_solver_runs = 0
+validate_instance_hashes = true
+validate_solver_log_hashes = true
+preserve_terminal_checkpoints = true
+
+[final_audit]
+expected_successful_instance_count = 108
+expected_preparation_failure_count = 72
+expected_corrected_mip_row_count = 94
+expected_mip_projection_provenance_count = 108
+expected_mip_candidate_row_count = 108
+require_zero_algorithm_errors = true
+require_mip_dp_exact_burden_agreement = true

@@ -933,6 +933,16 @@ requires the sealed 18-log state to pass and the stale 14-log state to fail.
 Scientific inputs, algorithms, controls, outcomes, estimands, denominators, and
 the licensed-data boundary are unchanged.
 
+Amendment 023 follows completion of the Lock 022 solver stage and a failed
+structural audit. The panel-level MIP adapter had omitted the solver result's
+warm-start source from all 108 successful MIP records. The correction factors
+the existing exact projection into a pure checker and reconstructs provenance
+from each exact serialized instance, its saved registered greedy selection, and
+fixed-point preprocessing. All exact feasibility and burden-nonincrease checks
+are repeated, all 108 terminal solver checkpoints are reused, and no solver is
+rerun. Candidate identities, burdens, scientific inputs, algorithms, controls,
+estimands, denominators, and the licensed-data boundary are unchanged.
+
 | Class | Expected future location or form | Current status |
 |---|---|---|
 | remaining primary research theorem declarations | future extensions under `formal/StrategyInnovation/` | none in the adopted T1--T7 package; F0, F1--F8, S4--S7, C2, and CS1 are supporting results |

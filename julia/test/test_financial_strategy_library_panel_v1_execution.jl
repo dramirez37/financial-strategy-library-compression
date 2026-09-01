@@ -9,8 +9,8 @@ const FSLP1 = FinancialStrategyLibraryPanelV1
 include(joinpath(@__DIR__, "..", "scripts", "run_financial_strategy_library_panel_v1.jl"))
 const FSLP1Runner = RunFinancialStrategyLibraryPanelV1
 
-include(joinpath(@__DIR__, "..", "scripts", "lock_financial_strategy_library_panel_v1_execution_022.jl"))
-const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution022
+include(joinpath(@__DIR__, "..", "scripts", "lock_financial_strategy_library_panel_v1_execution_023.jl"))
+const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution023
 
 include(joinpath(@__DIR__, "..", "scripts", "analyze_financial_strategy_library_panel_v1.jl"))
 const FSLP1Analysis = AnalyzeFinancialStrategyLibraryPanelV1
@@ -88,9 +88,21 @@ const FSLP1Analysis = AnalyzeFinancialStrategyLibraryPanelV1
     @test amendment_022["environment_recovery"]["sealed_solver_log_count"] == 18
     @test amendment_022["environment_recovery"]["stale_solver_log_count"] == 14
     @test amendment_022["environment_recovery"]["require_exact_solver_log_directory_aggregate"] === true
+    amendment_023 = TOML.parsefile(joinpath(
+        @__DIR__,
+        "..",
+        "..",
+        "experiments",
+        "financial_strategy_library_panel_v1",
+        "amendments",
+        "EXECUTION_AMENDMENT_023.toml",
+    ))
+    @test amendment_023["amendment_id"] == "AMENDMENT_023"
+    @test amendment_023["projection_provenance"]["affected_successful_mip_records"] == 108
+    @test amendment_023["checkpoint_recovery"]["new_solver_runs"] == 0
 
     if isfile(FSLP1ExecutionLock.LOCK_PATH)
-        aggregate = FSLP1ExecutionLock.verify_execution_lock_022()
+        aggregate = FSLP1ExecutionLock.verify_execution_lock_023()
         @test occursin(r"^[0-9a-f]{64}$", aggregate)
         lock_text = read(FSLP1ExecutionLock.LOCK_PATH, String)
         one_hash = first(values(FSLP1ExecutionLock._hashes()))
@@ -104,10 +116,10 @@ const FSLP1Analysis = AnalyzeFinancialStrategyLibraryPanelV1
     end
 end
 
-@testset "Lock 022 exact environment successor fingerprint" begin
+@testset "Lock 023 exact environment successor fingerprint" begin
     sealed = (
-        environment_lock = FSLP1Runner.LOCK_020_AGGREGATE,
-        environment_sha256 = FSLP1Runner.LOCK_020_ENVIRONMENT_SHA256,
+        environment_lock = FSLP1Runner.LOCK_022_AGGREGATE,
+        environment_sha256 = FSLP1Runner.LOCK_022_ENVIRONMENT_SHA256,
         preparation_manifest_exists = true,
         instance_count = 108,
         origin_metadata_count = 12,
@@ -116,21 +128,21 @@ end
         postdecision_recoverable = true,
         checkpoint_count = 756,
         checkpoint_directory_aggregate =
-            FSLP1Runner.LOCK_021_PRELOCK_CHECKPOINT_DIRECTORY_AGGREGATE,
-        solver_log_count = 18,
+            FSLP1Runner.LOCK_023_PRELOCK_CHECKPOINT_DIRECTORY_AGGREGATE,
+        solver_log_count = 108,
         solver_log_directory_aggregate =
-            FSLP1Runner.LOCK_021_PRELOCK_SOLVER_LOG_DIRECTORY_AGGREGATE,
-        result_audit_sha256 = FSLP1Runner.LOCK_021_PRELOCK_RESULT_AUDIT_SHA256,
+            FSLP1Runner.LOCK_023_PRELOCK_SOLVER_LOG_DIRECTORY_AGGREGATE,
+        result_audit_sha256 = FSLP1Runner.LOCK_023_PRELOCK_RESULT_AUDIT_SHA256,
         structural_audit_sha256 =
-            FSLP1Runner.LOCK_021_PRELOCK_STRUCTURAL_AUDIT_SHA256,
+            FSLP1Runner.LOCK_023_PRELOCK_STRUCTURAL_AUDIT_SHA256,
         analysis_manifest_sha256 =
-            FSLP1Runner.LOCK_021_PRELOCK_ANALYSIS_MANIFEST_SHA256,
-        analysis_audit_sha256 = FSLP1Runner.LOCK_021_PRELOCK_ANALYSIS_AUDIT_SHA256,
+            FSLP1Runner.LOCK_023_PRELOCK_ANALYSIS_MANIFEST_SHA256,
+        analysis_audit_sha256 = FSLP1Runner.LOCK_023_PRELOCK_ANALYSIS_AUDIT_SHA256,
     )
     @test FSLP1Runner._declared_environment_successor_recovery(sealed)
     @test !FSLP1Runner._declared_environment_successor_recovery(merge(
         sealed,
-        (solver_log_count = 14,),
+        (solver_log_count = 18,),
     ))
     @test !FSLP1Runner._declared_environment_successor_recovery(merge(
         sealed,
@@ -971,6 +983,15 @@ end
     @test first_payload["algorithm_terminal_row_count"] == 7
     @test FSLP1.audit_instance_result(job.instance, first_payload)["passed"]
     @test haskey(first_logs, "jump_highs_tagged_cover")
+    mip_record = only(filter(
+        row -> row["algorithm_id"] == "jump_highs_tagged_cover",
+        first_payload["algorithms"],
+    ))
+    @test mip_record["warm_start_source"] in (
+        "registered weighted greedy plus reverse deletion",
+        "registered weighted greedy plus reverse deletion; exact preprocessing substitution projection",
+    )
+    @test mip_record["warm_start_projection_provenance_reconstructed"] === false
     @test all(
         row -> !row["candidate_returned"] || row["selection"]["exact_feasible"],
         first_payload["algorithms"],
@@ -1198,6 +1219,8 @@ end
         @test corrected["execution_lock_aggregate_sha256"] == corrected_lock
         @test corrected["record"]["candidate_returned"] === true
         corrected["corrective_execution_amendment_id"] = "AMENDMENT_020"
+        pop!(corrected["record"], "warm_start_source")
+        pop!(corrected["record"], "warm_start_projection_provenance_reconstructed")
         FSLP1Runner._atomic_toml(corrected_path, corrected; replace = true)
         mixed = FSLP1Runner._corrective_resume_algorithms_from_checkpoints(
             output,
@@ -1207,6 +1230,33 @@ end
         )
         @test length(mixed) == 7
         @test haskey(mixed, "jump_highs_tagged_cover")
+        reconstructed_payload, reconstructed_logs = FSLP1.run_algorithm_suite(
+            job.instance;
+            origin_id = job.origin_id,
+            library_id = job.library_id,
+            schedule_id = job.schedule_id,
+            config,
+            checkpoint_callback = (args...) -> error("a provenance-only resume reran an algorithm"),
+            resume_algorithms = mixed,
+        )
+        @test isempty(reconstructed_logs)
+        reconstructed_mip = only(filter(
+            row -> row["algorithm_id"] == "jump_highs_tagged_cover",
+            reconstructed_payload["algorithms"],
+        ))
+        @test reconstructed_mip["warm_start_projection_provenance_reconstructed"] === true
+        @test reconstructed_mip["warm_start_projection_exactly_rechecked"] === true
+        @test reconstructed_mip["warm_start_projection_substitution_count"] >= 0
+        corrected["execution_lock_aggregate_sha256"] = FSLP1Runner.LOCK_022_AGGREGATE
+        corrected["corrective_execution_amendment_id"] = "AMENDMENT_021"
+        FSLP1Runner._atomic_toml(corrected_path, corrected; replace = true)
+        lock_022_mixed = FSLP1Runner._corrective_resume_algorithms_from_checkpoints(
+            output,
+            "corrective-fixture",
+            job.instance;
+            precomputed_instance_sha256 = journal_compression_instance_sha256(job.instance),
+        )
+        @test length(lock_022_mixed) == 7
         @test_throws ErrorException FSLP1Runner._write_algorithm_checkpoint(
             output,
             "corrective-fixture",

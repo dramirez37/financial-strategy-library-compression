@@ -278,15 +278,20 @@ function _journal_mip_build_model(
 end
 
 
-function _journal_mip_apply_warm_start!(
-    variables::Vector{JuMP.VariableRef},
+function journal_mip_warm_start_projection(
     instance::JournalCompressionInstance,
     preprocessing::TaggedCoverPreprocessingResult,
     warm_start,
     declared_source::AbstractString,
 )
     if warm_start == :none
-        return "none"
+        return (
+            residual = falses(length(preprocessing.remaining_strategy_indices)),
+            warm_start_source = "none",
+            substitution_count = 0,
+            original_burden = missing,
+            projected_burden = missing,
+        )
     end
     original = if warm_start == :full_source
         trues(length(instance.strategy_ids))
@@ -361,18 +366,44 @@ function _journal_mip_apply_warm_start!(
     projected_burden <= original_burden || throw(
         ArgumentError("exact preprocessing increased the projected warm-start burden"),
     )
-    for (variable, selected) in zip(variables, residual)
+    resolved_source = if warm_start == :full_source
+        "complete source library projected through exact preprocessing"
+    else
+        source = strip(String(declared_source))
+        isempty(source) && throw(
+            ArgumentError("a supplied warm-start vector requires a nonempty source label"),
+        )
+        iszero(substitutions) ? source :
+        source * "; exact preprocessing substitution projection"
+    end
+    return (
+        residual,
+        warm_start_source = resolved_source,
+        substitution_count = substitutions,
+        original_burden,
+        projected_burden,
+    )
+end
+
+
+function _journal_mip_apply_warm_start!(
+    variables::Vector{JuMP.VariableRef},
+    instance::JournalCompressionInstance,
+    preprocessing::TaggedCoverPreprocessingResult,
+    warm_start,
+    declared_source::AbstractString,
+)
+    warm_start == :none && return "none"
+    projection = journal_mip_warm_start_projection(
+        instance,
+        preprocessing,
+        warm_start,
+        declared_source,
+    )
+    for (variable, selected) in zip(variables, projection.residual)
         JuMP.set_start_value(variable, selected ? 1.0 : 0.0)
     end
-    if warm_start == :full_source
-        return "complete source library projected through exact preprocessing"
-    end
-    source = strip(String(declared_source))
-    isempty(source) && throw(
-        ArgumentError("a supplied warm-start vector requires a nonempty source label"),
-    )
-    return iszero(substitutions) ? source :
-           source * "; exact preprocessing substitution projection"
+    return projection.warm_start_source
 end
 
 

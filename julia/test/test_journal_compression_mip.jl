@@ -244,6 +244,17 @@ end
     preprocessing = preprocess_tagged_cover(exact_tagged_cover_model(instance))
     @test preprocessing.strategy_status[dominated_index] == :dominated_strict_weight
     @test preprocessing.strategy_elimination_target[dominated_index] == dominator_index
+    projection = journal_mip_warm_start_projection(
+        instance,
+        preprocessing,
+        warm_start,
+        "dominated feasible test candidate",
+    )
+    @test projection.warm_start_source ==
+          "dominated feasible test candidate; exact preprocessing substitution projection"
+    @test projection.substitution_count >= 1
+    @test exact_tagged_cover_feasible(preprocessing.reduced, projection.residual)
+    @test projection.projected_burden <= projection.original_burden
 
     result = solve_journal_compression_mip(
         instance;

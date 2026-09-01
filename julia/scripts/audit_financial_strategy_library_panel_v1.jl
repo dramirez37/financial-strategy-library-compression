@@ -8,8 +8,8 @@ using TOML
 include(joinpath(@__DIR__, "..", "src", "FinancialStrategyLibraryPanelV1.jl"))
 using .FinancialStrategyLibraryPanelV1
 
-include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_013.jl"))
-using .LockFinancialStrategyLibraryPanelV1Execution013: verify_execution_lock_013
+include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_017.jl"))
+using .LockFinancialStrategyLibraryPanelV1Execution017: verify_execution_lock_017
 
 export audit_all_results, audit_structural_results, main
 
@@ -381,7 +381,7 @@ function audit_structural_results(; write_report::Bool = true)
         "financial panel structural audit requires --threads=$AUDIT_THREAD_COUNT; " *
         "found $(Threads.nthreads())",
     )
-    execution_lock = verify_execution_lock_013()
+    execution_lock = verify_execution_lock_017()
     config, _ = load_panel_config()
     paths = _paths(config)
     errors = String[]
@@ -482,6 +482,7 @@ function _postdecision_audit_record(
     available_count = 0,
     structural_failure_count = 0,
     postdecision_data_unavailable_count = 0,
+    postdecision_profile_unavailable_count = 0,
     checked_rows = 0,
 )
     return (;
@@ -491,6 +492,7 @@ function _postdecision_audit_record(
         available_count,
         structural_failure_count,
         postdecision_data_unavailable_count,
+        postdecision_profile_unavailable_count,
         checked_rows,
     )
 end
@@ -572,6 +574,46 @@ function _audit_postdecision_stem(stem, paths)
             checked_rows = length(ALGORITHM_IDS),
         )
     end
+    if payload["schema_version"] ==
+       "financial-strategy-library-panel-postdecision-profile-unavailable-v1"
+        get(quality, "terminal_delisting_pending_rows", -1) == 0 ||
+            push!(errors, "$stem profile-unavailable record contains a terminal DP row")
+        get(quality, "postdecision_return_complete", -1) == 1 ||
+            push!(errors, "$stem profile-unavailable record lacks complete source returns")
+        get(payload, "available", true) === false ||
+            push!(errors, "$stem profile-unavailable record claims availability")
+        get(payload, "postdecision_opened", false) === true ||
+            push!(errors, "$stem profile-unavailable record says postdecision was not opened")
+        get(payload, "origin_wide_unavailability", false) === true ||
+            push!(errors, "$stem profile-unavailable record is not origin wide")
+        get(payload, "minimum_observations_per_belief", -1) == 25 ||
+            push!(errors, "$stem profile-unavailable record changes the registered minimum")
+        get(payload, "checked_distinct_security_count", 0) > 0 ||
+            push!(errors, "$stem profile-unavailable record lacks a positive check count")
+        get(payload, "reason", "") ==
+        "registered belief profile has too few observations" ||
+            push!(errors, "$stem profile-unavailable record has a different failure class")
+        for field in (
+            "profile_imputed",
+            "belief_states_pooled",
+            "minimum_relaxed",
+            "postdecision_score_fabricated",
+        )
+            get(payload, field, true) === false ||
+                push!(errors, "$stem profile-unavailable record violates $field")
+        end
+        get(payload, "unavailable_algorithm_row_count", -1) == length(ALGORITHM_IDS) ||
+            push!(errors, "$stem profile-unavailable algorithm-row count differs")
+        get(payload, "structural_instance_sha256", "") == source["instance_sha256"] ||
+            push!(errors, "$stem profile-unavailable record link hash differs")
+        return _postdecision_audit_record(
+            errors;
+            result_relative,
+            result_sha256,
+            postdecision_profile_unavailable_count = 1,
+            checked_rows = length(ALGORITHM_IDS),
+        )
+    end
     get(quality, "terminal_delisting_pending_rows", -1) == 0 ||
         push!(errors, "$stem complete postdecision record contains a terminal DP row")
     get(quality, "postdecision_return_complete", -1) == 1 ||
@@ -611,7 +653,7 @@ end
 
 function audit_all_results(; write_report::Bool = true)
     structural = audit_structural_results(; write_report)
-    config, _ = load_panel_config()
+    config, amendment = load_panel_config()
     paths = _paths(config)
     expected = _expected_stems()
     errors = String[]
@@ -633,6 +675,7 @@ function audit_all_results(; write_report::Bool = true)
     available_count = 0
     structural_failure_count = 0
     postdecision_data_unavailable_count = 0
+    postdecision_profile_unavailable_count = 0
     checked_rows = 0
     for audit in audits
         append!(errors, audit.errors)
@@ -642,12 +685,35 @@ function audit_all_results(; write_report::Bool = true)
         available_count += audit.available_count
         structural_failure_count += audit.structural_failure_count
         postdecision_data_unavailable_count += audit.postdecision_data_unavailable_count
+        postdecision_profile_unavailable_count +=
+            audit.postdecision_profile_unavailable_count
         checked_rows += audit.checked_rows
     end
     checked_rows + 7 * structural_failure_count == 1260 ||
         push!(errors, "postdecision audit does not account for all 1260 algorithm rows")
     postdecision_data_unavailable_count == 9 ||
         push!(errors, "Amendment 013 requires nine origin-wide unavailable records")
+    postdecision_profile_unavailable_count == 72 ||
+        push!(errors, "Amendment 014 requires 72 origin-wide profile-unavailable records")
+    profile_stems = String[
+        stem for stem in expected if get(
+            TOML.parsefile(joinpath(paths.postdecision, stem * ".toml")),
+            "schema_version",
+            "",
+        ) == "financial-strategy-library-panel-postdecision-profile-unavailable-v1"
+    ]
+    profile_counts_by_origin = Dict{String,Int}()
+    for stem in profile_stems
+        origin_id = first(split(stem, "__"))
+        profile_counts_by_origin[origin_id] = get(profile_counts_by_origin, origin_id, 0) + 1
+    end
+    length(profile_counts_by_origin) == 8 ||
+        push!(errors, "Amendment 014 profile-unavailable records do not span eight origins")
+    all(==(9), values(profile_counts_by_origin)) ||
+        push!(errors, "Amendment 014 profile-unavailable records are not complete origin blocks")
+    profile_origin_hash = _sha256_text(join(sort!(collect(keys(profile_counts_by_origin))), '\n'))
+    profile_origin_hash == amendment["postdecision_profile_failure_policy"]["affected_origin_id_set_sha256"] ||
+        push!(errors, "Amendment 014 profile-unavailable origin-set hash differs")
     report = Dict{String,Any}(
         "schema_version" => "financial-strategy-library-panel-result-audit-v1",
         "experiment_id" => "financial-strategy-library-panel-v1",
@@ -666,6 +732,10 @@ function audit_all_results(; write_report::Bool = true)
             postdecision_data_unavailable_count,
         "postdecision_data_unavailable_algorithm_rows" =>
             postdecision_data_unavailable_count * length(ALGORITHM_IDS),
+        "postdecision_profile_unavailable_instance_count" =>
+            postdecision_profile_unavailable_count,
+        "postdecision_profile_unavailable_algorithm_rows" =>
+            postdecision_profile_unavailable_count * length(ALGORITHM_IDS),
         "unsuccessful_rows_retained_in_denominators" => true,
         "postdecision_cannot_change_structural_results" => true,
         "licensed_rows_included" => false,

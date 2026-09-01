@@ -332,7 +332,7 @@ function audit_ready()
         error("final audit algorithm-row count differs")
     get(audit, "unsuccessful_rows_retained_in_denominators", false) === true ||
         error("final audit dropped unsuccessful rows")
-    amendment["amendment_id"] == "AMENDMENT_013" || error("active analysis amendment changed")
+    amendment["amendment_id"] == "AMENDMENT_017" || error("active analysis amendment changed")
     return config, amendment, paths, audit
 end
 
@@ -1353,14 +1353,18 @@ causal, forecasting, alpha, or deployable-performance claim.
 """
 end
 
+function _registered_analysis_stems()
+    return sort!(vec(String[
+        "$(origin_id)__$(library_id)__$(schedule_id)" for
+        (origin_id, library_id, schedule_id) in registered_job_keys()
+    ]))
+end
+
 function run_analysis(; progress_io = stderr)
     config, _, paths, audit = audit_ready()
     result_audit_sha256 = sha256_file(paths.result_audit)
     execution_lock = String(audit["execution_lock_aggregate_sha256"])
-    stems = sort!(String[
-        "$(origin_id)__$(library_id)__$(schedule_id)" for
-        (origin_id, library_id, schedule_id) in registered_job_keys()
-    ])
+    stems = _registered_analysis_stems()
     reused = _write_partitions(
         stems,
         paths,

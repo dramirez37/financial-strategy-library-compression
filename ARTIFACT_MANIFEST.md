@@ -855,6 +855,36 @@ retains the corresponding 63 algorithm rows in denominators, and leaves every
 structural compression result unchanged. Execution Lock 013 binds the policy,
 implementation, cache compatibility, and audit predicates.
 
+Amendment 014 follows a partial Lock 013 postdecision execution. It records
+that 72 unresolved jobs formed eight complete origin blocks and raised the
+unchanged registered profile-adequacy rule. No profile is imputed, no beliefs
+are pooled, and the 25-observation minimum is not relaxed. All nine secondary
+records per affected origin are explicitly unavailable, while their 504
+algorithm rows remain in denominators. Execution Lock 014 binds the 108
+preexisting terminal records by key and aggregate hash and adds independent
+schema and origin-block audits.
+
+Amendment 015 records an interrupted Lock 014 preflight at 0/8 completed
+origins and replaces its redundant large-instance hashing and full strategy
+backtests with the exact equivalent security-date-by-fixed-belief counts. The
+eight-lane progress stream now identifies the active adequacy stage. The
+minimum, affected-origin policy, unavailable counts, estimands, and audit
+predicates remain unchanged. Execution Lock 015 binds this execution-only
+optimization and the unchanged 108-record resume state.
+
+Amendment 016 follows the passing Lock 015 full result audit and a downstream
+analysis stop before any analysis artifact was written. It flattens the
+three-dimensional registered-key comprehension before lexicographic sorting,
+as required by Julia 1.12. Execution Lock 016 binds the immutable 180 audited
+postdecision records and this shape-only correction; it changes no result,
+formula, key membership, ordering rule, denominator, or estimand.
+
+Amendment 017 binds the same 180 postdecision files under two intentional hash
+key namespaces: basenames for directory-local resume recovery and
+`postdecision/`-prefixed paths for the root-relative independent result audit.
+Execution Lock 017 corrects only that comparison; the file bytes, results,
+audit predicates, formulas, denominators, and estimands are unchanged.
+
 | Class | Expected future location or form | Current status |
 |---|---|---|
 | remaining primary research theorem declarations | future extensions under `formal/StrategyInnovation/` | none in the adopted T1--T7 package; F0, F1--F8, S4--S7, C2, and CS1 are supporting results |

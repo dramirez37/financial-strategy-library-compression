@@ -26,6 +26,7 @@ export DailyObservation,
        extract_origin_series,
        extract_origin_series_parquet,
        load_panel_config,
+       postdecision_profile_adequacy,
        registered_job_keys,
        run_algorithm_suite,
        source_paths,
@@ -129,6 +130,34 @@ const AMENDMENT_013_PATH = joinpath(
     "financial_strategy_library_panel_v1",
     "amendments",
     "EXECUTION_AMENDMENT_013.toml",
+)
+const AMENDMENT_014_PATH = joinpath(
+    REPOSITORY_ROOT,
+    "experiments",
+    "financial_strategy_library_panel_v1",
+    "amendments",
+    "EXECUTION_AMENDMENT_014.toml",
+)
+const AMENDMENT_015_PATH = joinpath(
+    REPOSITORY_ROOT,
+    "experiments",
+    "financial_strategy_library_panel_v1",
+    "amendments",
+    "EXECUTION_AMENDMENT_015.toml",
+)
+const AMENDMENT_016_PATH = joinpath(
+    REPOSITORY_ROOT,
+    "experiments",
+    "financial_strategy_library_panel_v1",
+    "amendments",
+    "EXECUTION_AMENDMENT_016.toml",
+)
+const AMENDMENT_017_PATH = joinpath(
+    REPOSITORY_ROOT,
+    "experiments",
+    "financial_strategy_library_panel_v1",
+    "amendments",
+    "EXECUTION_AMENDMENT_017.toml",
 )
 const ALGORITHM_IDS = (
     "jump_highs_tagged_cover",
@@ -439,6 +468,84 @@ function load_panel_config(path::AbstractString = CONFIG_PATH)
         missing_return_amendment["missing_return_policy"]
     amendment["source_cache_compatibility"] =
         missing_return_amendment["cache_compatibility"]
+    profile_failure_amendment = TOML.parsefile(AMENDMENT_014_PATH)
+    profile_failure_amendment["schema_version"] ==
+    "financial-strategy-library-panel-execution-amendment-v14" ||
+        error("unsupported postdecision-profile execution amendment")
+    profile_failure_amendment["amendment_id"] == "AMENDMENT_014" ||
+        error("unexpected postdecision-profile amendment identifier")
+    profile_failure_amendment["predecessor_amendment_id"] == "AMENDMENT_013" ||
+        error("unexpected postdecision-profile amendment predecessor")
+    profile_failure_amendment["scientific_estimands_changed"] === false ||
+        error("postdecision-profile amendment changes registered estimands")
+    profile_failure_amendment["minimum_profile_observations_changed"] === false ||
+        error("postdecision-profile amendment changes the registered minimum")
+    profile_failure_amendment["outcome_blind_prospective_amendment"] === false ||
+        error("postdecision-profile amendment conceals existing outcomes")
+    amendment["predecessor_amendment_id"] = amendment["amendment_id"]
+    amendment["amendment_id"] = profile_failure_amendment["amendment_id"]
+    amendment["profile_failure_amendment"] = profile_failure_amendment
+    amendment["postdecision_profile_failure_policy"] =
+        profile_failure_amendment["profile_failure_policy"]
+    amendment["source_cache_compatibility"] =
+        profile_failure_amendment["cache_compatibility"]
+    count_preflight_amendment = TOML.parsefile(AMENDMENT_015_PATH)
+    count_preflight_amendment["schema_version"] ==
+    "financial-strategy-library-panel-execution-amendment-v15" ||
+        error("unsupported count-preflight execution amendment")
+    count_preflight_amendment["amendment_id"] == "AMENDMENT_015" ||
+        error("unexpected count-preflight amendment identifier")
+    count_preflight_amendment["predecessor_amendment_id"] == "AMENDMENT_014" ||
+        error("unexpected count-preflight amendment predecessor")
+    count_preflight_amendment["scientific_estimands_changed"] === false ||
+        error("count-preflight amendment changes registered estimands")
+    count_preflight_amendment["minimum_profile_observations_changed"] === false ||
+        error("count-preflight amendment changes the registered minimum")
+    count_preflight_amendment["affected_origin_rule_changed"] === false ||
+        error("count-preflight amendment changes the affected-origin rule")
+    amendment["predecessor_amendment_id"] = amendment["amendment_id"]
+    amendment["amendment_id"] = count_preflight_amendment["amendment_id"]
+    amendment["count_preflight_amendment"] = count_preflight_amendment
+    amendment["postdecision_profile_count_equivalence"] =
+        count_preflight_amendment["count_equivalence"]
+    amendment["source_cache_compatibility"] =
+        count_preflight_amendment["cache_compatibility"]
+    analysis_shape_amendment = TOML.parsefile(AMENDMENT_016_PATH)
+    analysis_shape_amendment["schema_version"] ==
+    "financial-strategy-library-panel-execution-amendment-v16" ||
+        error("unsupported analysis-shape execution amendment")
+    analysis_shape_amendment["amendment_id"] == "AMENDMENT_016" ||
+        error("unexpected analysis-shape amendment identifier")
+    analysis_shape_amendment["predecessor_amendment_id"] == "AMENDMENT_015" ||
+        error("unexpected analysis-shape amendment predecessor")
+    analysis_shape_amendment["scientific_estimands_changed"] === false ||
+        error("analysis-shape amendment changes registered estimands")
+    analysis_shape_amendment["analysis_formulas_changed"] === false ||
+        error("analysis-shape amendment changes registered formulas")
+    analysis_shape_amendment["result_records_changed"] === false ||
+        error("analysis-shape amendment changes audited results")
+    amendment["predecessor_amendment_id"] = amendment["amendment_id"]
+    amendment["amendment_id"] = analysis_shape_amendment["amendment_id"]
+    amendment["analysis_shape_amendment"] = analysis_shape_amendment
+    amendment["analysis_shape_correction"] =
+        analysis_shape_amendment["shape_correction"]
+    aggregate_namespace_amendment = TOML.parsefile(AMENDMENT_017_PATH)
+    aggregate_namespace_amendment["schema_version"] ==
+    "financial-strategy-library-panel-execution-amendment-v17" ||
+        error("unsupported resume-aggregate execution amendment")
+    aggregate_namespace_amendment["amendment_id"] == "AMENDMENT_017" ||
+        error("unexpected resume-aggregate amendment identifier")
+    aggregate_namespace_amendment["predecessor_amendment_id"] == "AMENDMENT_016" ||
+        error("unexpected resume-aggregate amendment predecessor")
+    aggregate_namespace_amendment["scientific_estimands_changed"] === false ||
+        error("resume-aggregate amendment changes registered estimands")
+    aggregate_namespace_amendment["result_records_changed"] === false ||
+        error("resume-aggregate amendment changes audited results")
+    amendment["predecessor_amendment_id"] = amendment["amendment_id"]
+    amendment["amendment_id"] = aggregate_namespace_amendment["amendment_id"]
+    amendment["aggregate_namespace_amendment"] = aggregate_namespace_amendment
+    amendment["resume_aggregate_namespace"] =
+        aggregate_namespace_amendment["resume"]
     return config, amendment
 end
 
@@ -2904,6 +3011,65 @@ function evaluate_postdecision(
         "algorithms" => algorithm_rows,
         "licensed_rows_included" => false,
         "nonclaims" => ["causal", "forecasting", "alpha", "deployable performance"],
+    )
+end
+
+"""
+Check the registered postdecision operating-profile data requirement without
+returning any postdecision score. The observation count used by `_profile`
+depends on security dates and the fixed belief map, not on the strategy rule.
+The check therefore visits each distinct active security once and applies the
+same date and belief predicates as `_profile`. Missing series and all other
+exceptions remain infrastructure or data-contract errors.
+"""
+function postdecision_profile_adequacy(
+    instances,
+    origin::OriginUniverse,
+    series,
+    thresholds,
+    config,
+    amendment,
+)
+    minimum = Int(config["operating_profiles"]["minimum_profile_observations"])
+    policy = amendment["postdecision_profile_failure_policy"]
+    minimum == Int(policy["minimum_observations_per_belief"]) ||
+        error("registered postdecision profile minimum differs from Amendment 014")
+    haskey(series, origin.reference_permno) || error("postdecision reference series is absent")
+    state_by_date = _fixed_state_by_date(
+        series[origin.reference_permno],
+        thresholds,
+        origin.postdecision_end,
+        amendment,
+    )
+    permnos = sort!(unique(Int[
+        _strategy_from_id(string(instance.strategy_ids[index].id)).permno for
+        instance in instances for index in eachindex(instance.strategy_ids) if
+        !instance.mandatory[index]
+    ]))
+    isempty(permnos) && error("postdecision adequacy check has no active securities")
+    state_count = Int(config["operating_profiles"]["belief_state_count"])
+    for (checked_security_count, permno) in enumerate(permnos)
+        haskey(series, permno) || error("postdecision strategy series is absent")
+        counts = zeros(Int, state_count)
+        for row in series[permno]
+            origin.postdecision_start <= row.date <= origin.postdecision_end || continue
+            state = get(state_by_date, row.date, 0)
+            iszero(state) || (counts[state] += 1)
+        end
+        if any(count -> count < minimum, counts)
+            return (
+                available = false,
+                checked_security_count,
+                minimum_observations_per_belief = minimum,
+                reason = "registered belief profile has too few observations",
+            )
+        end
+    end
+    return (
+        available = true,
+        checked_security_count = length(permnos),
+        minimum_observations_per_belief = minimum,
+        reason = "",
     )
 end
 

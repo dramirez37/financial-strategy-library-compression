@@ -1,0 +1,41 @@
+schema_version = "financial-strategy-library-panel-execution-amendment-v16"
+experiment_id = "financial-strategy-library-panel-v1"
+amendment_id = "AMENDMENT_016"
+amendment_date = "2026-09-01"
+predecessor_amendment_id = "AMENDMENT_015"
+classification = "julia_1_12_analysis_shape_correction"
+postdecision_result_records_before_amendment = 180
+result_audit_passed_before_amendment = true
+postdecision_result_aggregate_sha256 = "79c6eef4f77ea173e7a119ef49454ccb20ccb1cb047581e0cb6dfd509fd19b34"
+structural_result_aggregate_sha256 = "9564a4c9b0ea28f4cf4a9705e8e489398555032e466ba3fac8c16a98094a012a"
+structural_failure_records = 72
+terminal_dp_unavailable_records = 9
+profile_unavailable_records = 72
+ordinary_postdecision_records = 27
+registered_algorithm_rows_retained = 1260
+analysis_artifacts_before_amendment = 0
+analysis_failure_class = "UndefKeywordError: keyword argument dims not assigned"
+analysis_failure_location = "registered analysis key sorting"
+postdecision_numeric_values_inspected_before_amendment = false
+selected_identity_or_burden_result_inspected_before_amendment = false
+solver_status_inspected_before_amendment = false
+raw_row_values_printed_or_committed = false
+scientific_estimands_changed = false
+analysis_formulas_changed = false
+registered_keys_changed = false
+registered_key_order_changed = false
+result_records_changed = false
+audit_predicates_changed = false
+
+[shape_correction]
+registered_key_count = 180
+original_comprehension_dimensions = 3
+flatten_with_vec_before_sort = true
+stable_lexicographic_order = true
+key_membership_unchanged = true
+
+[resume]
+reuse_audited_lock_015_results = true
+overwrite_postdecision_records = false
+result_audit_required = true
+preexisting_analysis_artifacts = false

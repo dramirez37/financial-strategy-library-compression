@@ -36,3 +36,6 @@
 18. Every amendment preserves this lock, is numbered and dated, enumerates
     outcomes already accessible, and states whether it changes science,
     implementation only, or reporting only.
+19. Report Amendment 014 profile-adequacy unavailability as missing secondary
+    evidence, not a zero loss or a failed structural compression result; retain
+    all affected rows in the failure and availability census.

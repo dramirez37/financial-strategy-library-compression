@@ -1,0 +1,71 @@
+schema_version = "financial-strategy-library-panel-execution-amendment-v14"
+experiment_id = "financial-strategy-library-panel-v1"
+amendment_id = "AMENDMENT_014"
+amendment_date = "2026-09-01"
+predecessor_amendment_id = "AMENDMENT_013"
+classification = "registered_failure_persistence_implementation_correction"
+outcome_blind_prospective_amendment = false
+postdecision_result_records_before_amendment = 108
+ordinary_postdecision_records_before_amendment = 27
+terminal_dp_unavailable_records_before_amendment = 9
+structural_failure_postdecision_records_before_amendment = 72
+unresolved_postdecision_records_before_amendment = 72
+observed_insufficient_profile_job_failures = 72
+observed_affected_origin_count = 8
+observed_registered_slots_per_affected_origin = 9
+postdecision_numeric_values_inspected_before_amendment = false
+selected_identity_or_burden_result_inspected_before_amendment = false
+solver_status_inspected_before_amendment = false
+availability_and_failure_counts_inspected_before_amendment = true
+final_result_audit_files_before_amendment = 0
+analysis_artifacts_before_amendment = 0
+temporary_postdecision_records_before_amendment = 0
+raw_row_values_printed_or_committed = false
+raw_identifiers_or_dates_printed_or_committed = false
+scientific_estimands_changed = false
+minimum_profile_observations_changed = false
+origin_registry_changed = false
+library_registry_changed = false
+burden_schedule_registry_changed = false
+seed_registry_changed = false
+algorithm_registry_changed = false
+structural_results_changed = false
+postdecision_failure_serialization_changed = true
+audit_predicates_changed = true
+
+[profile_failure_policy]
+exact_failure_message = "a registered belief profile has too few observations"
+minimum_observations_per_belief = 25
+origin_wide_postdecision_unavailability = true
+belief_pooling_permitted = false
+profile_imputation_permitted = false
+minimum_relaxation_permitted = false
+fabricate_postdecision_score = false
+affected_origin_count = 8
+affected_registered_instance_count = 72
+affected_algorithm_row_count = 504
+registered_slots_per_origin = 9
+registered_algorithm_rows_per_slot = 7
+affected_origin_id_set_sha256 = "6676e4f55e2ace5f1b7ed58e65fa3b882f3640b7577caedb046b9def82eb7ca2"
+unsuccessful_rows_retained_in_denominators = true
+
+[resume]
+preexisting_postdecision_record_count = 108
+preexisting_postdecision_record_aggregate_sha256 = "3214c2ee9fa7bee99089b5017b5ec8d5b1bc26b2b0cee174921ae2fd958ff9a1"
+reuse_requires_exact_registered_key_and_hash_match = true
+overwrite_preexisting_terminal_record = false
+preexisting_ordinary_records = 27
+preexisting_terminal_dp_unavailable_records = 9
+preexisting_structural_failure_records = 72
+preexisting_result_audit = false
+preexisting_analysis_artifacts = false
+
+[cache_compatibility]
+current_execution_lock_required = true
+compatible_execution_lock_aggregate_sha256 = [
+  "59cb6795ad35986bdc5c102da900147efad952dd557b94eaba107ead85393e9f",
+  "cf364daa5f00991819c4ac514cfe6b7416690f154ce83bfd7734c01143d8244e",
+  "a1c6393ea636c87c8f7106b97b2ac37b8670d7d2957bddd1b3ff7bce8ae3fe40",
+]
+required_matching_bindings = ["phase", "source index/count", "origin context", "source stat fingerprint", "Parquet SHA-256", "schema", "row count"]
+arbitrary_cross_lock_reuse_permitted = false

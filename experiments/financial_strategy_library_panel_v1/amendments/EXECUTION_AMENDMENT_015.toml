@@ -1,0 +1,57 @@
+schema_version = "financial-strategy-library-panel-execution-amendment-v15"
+experiment_id = "financial-strategy-library-panel-v1"
+amendment_id = "AMENDMENT_015"
+amendment_date = "2026-09-01"
+predecessor_amendment_id = "AMENDMENT_014"
+classification = "semantics_preserving_execution_optimization"
+lock_014_profile_preflight_started = true
+lock_014_profile_preflight_completed_lanes = 0
+new_postdecision_records_written_under_lock_014 = 0
+postdecision_result_records_before_amendment = 108
+postdecision_numeric_values_inspected_before_amendment = false
+selected_identity_or_burden_result_inspected_before_amendment = false
+solver_status_inspected_before_amendment = false
+final_result_audit_files_before_amendment = 0
+analysis_artifacts_before_amendment = 0
+raw_row_values_printed_or_committed = false
+scientific_estimands_changed = false
+minimum_profile_observations_changed = false
+affected_origin_rule_changed = false
+expected_unavailable_counts_changed = false
+audit_predicates_changed = false
+
+[count_equivalence]
+profile_count_depends_on_strategy_rule = false
+profile_count_depends_on_strategy_return_values = false
+profile_count_depends_on_security_observation_dates = true
+profile_count_depends_on_fixed_belief_map = true
+date_predicate = "postdecision_start <= date <= postdecision_end"
+belief_predicate = "state_by_date[date] == belief"
+minimum_observations_per_belief = 25
+one_instance_per_library_construction = true
+schedule_specific_instance_hashing = false
+full_strategy_backtest_in_preflight = false
+complete_evaluation_after_passing_preflight = true
+
+[threading]
+julia_threads = 8
+concurrent_origin_lanes = 8
+progress_stage = "profile-adequacy"
+durable_heartbeat_seconds = 30
+
+[resume]
+preexisting_postdecision_record_count = 108
+preexisting_postdecision_record_aggregate_sha256 = "3214c2ee9fa7bee99089b5017b5ec8d5b1bc26b2b0cee174921ae2fd958ff9a1"
+reuse_requires_exact_registered_key_and_hash_match = true
+overwrite_preexisting_terminal_record = false
+
+[cache_compatibility]
+current_execution_lock_required = true
+compatible_execution_lock_aggregate_sha256 = [
+  "59cb6795ad35986bdc5c102da900147efad952dd557b94eaba107ead85393e9f",
+  "cf364daa5f00991819c4ac514cfe6b7416690f154ce83bfd7734c01143d8244e",
+  "a1c6393ea636c87c8f7106b97b2ac37b8670d7d2957bddd1b3ff7bce8ae3fe40",
+  "993b6af47f6e027a273bb8b3fb5d102b7e9708f696719b6b7a3b575e46edba90",
+]
+required_matching_bindings = ["phase", "source index/count", "origin context", "source stat fingerprint", "Parquet SHA-256", "schema", "row count"]
+arbitrary_cross_lock_reuse_permitted = false

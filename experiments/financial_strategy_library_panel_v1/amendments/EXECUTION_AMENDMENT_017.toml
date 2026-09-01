@@ -1,0 +1,27 @@
+schema_version = "financial-strategy-library-panel-execution-amendment-v17"
+experiment_id = "financial-strategy-library-panel-v1"
+amendment_id = "AMENDMENT_017"
+amendment_date = "2026-09-01"
+predecessor_amendment_id = "AMENDMENT_016"
+classification = "resume_aggregate_namespace_correction"
+postdecision_record_count = 180
+directory_relative_postdecision_aggregate_sha256 = "f63bb273afc4d6ed69fb12a2f7f35a84f8eb45822f1cce59dd06db90af0fcacc"
+result_root_relative_postdecision_aggregate_sha256 = "79c6eef4f77ea173e7a119ef49454ccb20ccb1cb047581e0cb6dfd509fd19b34"
+aggregate_file_bytes_identical = true
+aggregate_order_identical = true
+aggregate_key_namespace_only_difference = true
+new_postdecision_records_written_under_lock_016 = 0
+analysis_artifacts_before_amendment = 0
+postdecision_numeric_values_inspected_before_amendment = false
+raw_row_values_printed_or_committed = false
+scientific_estimands_changed = false
+analysis_formulas_changed = false
+result_records_changed = false
+audit_predicates_changed = false
+
+[resume]
+directory_relative_keys = "basename.toml"
+result_root_relative_keys = "postdecision/basename.toml"
+require_directory_relative_aggregate_for_environment_recovery = true
+require_root_relative_aggregate_in_result_audit = true
+overwrite_postdecision_records = false

@@ -41,6 +41,13 @@ denominators. Structural extraction remains fail-closed for this pattern, and
 any nonterminal, non-postdecision-year, non-delisting, or differently flagged
 missing return still stops execution.
 
+Amendment 014 preserves the unchanged minimum of 25 observations in every
+postdecision belief profile. If any active strategy at a successful structural
+origin cannot meet that minimum, all nine secondary postdecision records for
+the origin are unavailable. Beliefs are not pooled, profiles are not imputed,
+and the minimum is not relaxed. The registered algorithm rows remain in the
+analysis denominator, while unrelated exceptions continue to fail closed.
+
 Ignored local artifacts may include origin eligibility audits, prepared return
 panels, strategy specifications, capability-carrier maps, instances, solver
 logs, and run records. Public promotion may copy only aggregates that pass a

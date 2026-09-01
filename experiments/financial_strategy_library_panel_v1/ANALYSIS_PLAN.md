@@ -78,6 +78,10 @@ registered before results are accessed.
   field, or an unresolved capability owner produces a visible origin failure.
 - An invalid strategy score, incomplete operating profile, or nonpositive
   active weight rejects that source instance; no imputation is permitted.
+- Under Amendment 014, an insufficient postdecision belief profile makes all
+  nine secondary records for that origin unavailable without changing its
+  structural records; all 63 corresponding algorithm rows remain in the
+  denominator.
 - Exact cutoff ties are retained. No random tie breaking is allowed.
 - Solver timeouts, missing incumbents, certificate failures, memory limits,
   method inapplicability, and infrastructure interruptions retain distinct

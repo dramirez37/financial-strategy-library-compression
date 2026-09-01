@@ -9,8 +9,8 @@ const FSLP1 = FinancialStrategyLibraryPanelV1
 include(joinpath(@__DIR__, "..", "scripts", "run_financial_strategy_library_panel_v1.jl"))
 const FSLP1Runner = RunFinancialStrategyLibraryPanelV1
 
-include(joinpath(@__DIR__, "..", "scripts", "lock_financial_strategy_library_panel_v1_execution_013.jl"))
-const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution013
+include(joinpath(@__DIR__, "..", "scripts", "lock_financial_strategy_library_panel_v1_execution_017.jl"))
+const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution017
 
 include(joinpath(@__DIR__, "..", "scripts", "analyze_financial_strategy_library_panel_v1.jl"))
 const FSLP1Analysis = AnalyzeFinancialStrategyLibraryPanelV1
@@ -23,7 +23,7 @@ const FSLP1Analysis = AnalyzeFinancialStrategyLibraryPanelV1
     @test amendment["threading"]["julia_threads"] == 8
     @test amendment["threading"]["concurrent_job_lanes"] == 8
     @test amendment["threading"]["maximum_simultaneous_heavy_stages"] == 2
-    @test amendment["amendment_id"] == "AMENDMENT_013"
+    @test amendment["amendment_id"] == "AMENDMENT_017"
     @test amendment["audit_parallelism"]["worker_count"] == 8
     @test amendment["audit_parallelism"]["postdecision_worker_count"] == 8
     @test amendment["audit_dispatch"]["new_method_invocation"] == "Base.invokelatest"
@@ -42,12 +42,25 @@ const FSLP1Analysis = AnalyzeFinancialStrategyLibraryPanelV1
     @test amendment["postdecision_field_policy"]["postdecision_unused_field_imputation_permitted"] === false
     @test amendment["postdecision_missing_return_policy"]["required_flag"] == "DP"
     @test amendment["postdecision_missing_return_policy"]["return_imputation_permitted"] === false
+    @test amendment["postdecision_profile_failure_policy"]["minimum_observations_per_belief"] == 25
+    @test amendment["postdecision_profile_failure_policy"]["profile_imputation_permitted"] === false
+    @test amendment["postdecision_profile_failure_policy"]["affected_registered_instance_count"] == 72
+    @test amendment["postdecision_profile_count_equivalence"]["full_strategy_backtest_in_preflight"] === false
+    @test amendment["postdecision_profile_count_equivalence"]["minimum_observations_per_belief"] == 25
+    @test amendment["analysis_shape_correction"]["flatten_with_vec_before_sort"] === true
+    @test amendment["analysis_shape_correction"]["registered_key_count"] == 180
+    @test amendment["resume_aggregate_namespace"]["require_directory_relative_aggregate_for_environment_recovery"] === true
+    @test amendment["resume_aggregate_namespace"]["require_root_relative_aggregate_in_result_audit"] === true
+    analysis_stems = FSLP1Analysis._registered_analysis_stems()
+    @test length(analysis_stems) == 180
+    @test length(unique(analysis_stems)) == 180
+    @test issorted(analysis_stems)
     @test config["postdecision_missing_returns"]["terminal_delisting_pending_expected_memberships"] == 1
     @test length(FSLP1.registered_job_keys()) == 180
     @test length(unique(FSLP1.registered_job_keys())) == 180
 
     if isfile(FSLP1ExecutionLock.LOCK_PATH)
-        aggregate = FSLP1ExecutionLock.verify_execution_lock_013()
+        aggregate = FSLP1ExecutionLock.verify_execution_lock_017()
         @test occursin(r"^[0-9a-f]{64}$", aggregate)
         lock_text = read(FSLP1ExecutionLock.LOCK_PATH, String)
         one_hash = first(values(FSLP1ExecutionLock._hashes()))
@@ -508,6 +521,45 @@ end
         @test isempty(audit.errors)
         @test audit.checked_rows == 7
         @test audit.postdecision_data_unavailable_count == 1
+        profile_unavailable = Dict{String,Any}(
+            "schema_version" =>
+                "financial-strategy-library-panel-postdecision-profile-unavailable-v1",
+            "structural_instance_sha256" => repeat("1", 64),
+            "structural_result_terminal_and_audited_before_open" => true,
+            "available" => false,
+            "reason" => "registered belief profile has too few observations",
+            "postdecision_opened" => true,
+            "origin_wide_unavailability" => true,
+            "minimum_observations_per_belief" => 25,
+            "checked_distinct_security_count" => 3,
+            "profile_imputed" => false,
+            "belief_states_pooled" => false,
+            "minimum_relaxed" => false,
+            "postdecision_score_fabricated" => false,
+            "unavailable_algorithm_row_count" => 7,
+            "licensed_rows_included" => false,
+            "return_quality" => Dict(
+                "interior_missing_return_rows" => 0,
+                "unexpected_return_flag_rows" => 0,
+                "unused_close_missing_rows" => 0,
+                "unused_volume_missing_rows" => 0,
+                "terminal_delisting_pending_rows" => 0,
+                "postdecision_return_complete" => 1,
+            ),
+        )
+        write(
+            joinpath(postdecision_directory, stem * ".toml"),
+            FSLP1.toml_text(profile_unavailable),
+        )
+        profile_audit = FSLP1Runner._invoke_latest_binding(
+            audit_module,
+            :_audit_postdecision_stem,
+            stem,
+            paths,
+        )
+        @test isempty(profile_audit.errors)
+        @test profile_audit.checked_rows == 7
+        @test profile_audit.postdecision_profile_unavailable_count == 1
     end
     progress = IOBuffer()
     parallel_results, worker_thread_ids = FSLP1Runner._invoke_latest_binding(
@@ -605,6 +657,18 @@ end
                         !instance.mandatory[index]),
         values(instances),
     )
+    adequacy = FSLP1.postdecision_profile_adequacy(
+        collect(values(instances)),
+        origin,
+        series,
+        Float64.(metadata["belief_thresholds"]),
+        config,
+        amendment,
+    )
+    @test adequacy.available === false
+    @test adequacy.minimum_observations_per_belief == 25
+    @test adequacy.reason == "registered belief profile has too few observations"
+    @test adequacy.checked_security_count > 0
 end
 
 @testset "origin-scoped return information firewall" begin

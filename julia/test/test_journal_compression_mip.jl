@@ -220,6 +220,49 @@ end
 end
 
 
+@testset "warm start follows exact preprocessing elimination targets" begin
+    instance = _mip_instance(
+        "dominated-warm-start-projection",
+        [:inactive, :dominated, :dominator, :right, :alternate],
+        Bool[true, false, false, false, false],
+        [0, 2, 1, 2, 3],
+        [
+            Symbol[],
+            [:m1],
+            [:m1, :m2],
+            [:m2, :m3],
+            [:m1, :m3],
+        ],
+    )
+    inactive_index = findfirst(strategy -> strategy.id == :inactive, instance.strategy_ids)
+    dominated_index = findfirst(strategy -> strategy.id == :dominated, instance.strategy_ids)
+    dominator_index = findfirst(strategy -> strategy.id == :dominator, instance.strategy_ids)
+    right_index = findfirst(strategy -> strategy.id == :right, instance.strategy_ids)
+    warm_start = falses(length(instance.strategy_ids))
+    warm_start[[inactive_index, dominated_index, right_index]] .= true
+    @test journal_compression_feasible(instance, warm_start)
+    preprocessing = preprocess_tagged_cover(exact_tagged_cover_model(instance))
+    @test preprocessing.strategy_status[dominated_index] == :dominated_strict_weight
+    @test preprocessing.strategy_elimination_target[dominated_index] == dominator_index
+
+    result = solve_journal_compression_mip(
+        instance;
+        warm_start,
+        warm_start_source = "dominated feasible test candidate",
+        preprocessing_result = preprocessing,
+        exact_crosscheck = :enumeration,
+        enumeration_crosscheck_limit = 4,
+    )
+    @test result.candidate_accepted
+    @test result.solver_claimed_optimal
+    @test result.exact_global_optimum_verified
+    @test result.exact_burden == 3 // 1
+    @test journal_compression_feasible(instance, result.reconstructed_candidate)
+    @test result.warm_start_source ==
+          "dominated feasible test candidate; exact preprocessing substitution projection"
+end
+
+
 @testset "exact preprocessing can solve the residual before HiGHS" begin
     instance = _mip_instance(
         "preprocessing-solved",
@@ -321,6 +364,12 @@ end
                 instance;
                 enumeration_crosscheck_limit = 3,
             )
+            warm_started = solve_journal_compression_mip(
+                instance;
+                warm_start = oracle.selected,
+                warm_start_source = "exhaustive exact feasible candidate",
+                enumeration_crosscheck_limit = 3,
+            )
             @test result.candidate_accepted
             @test result.exact_burden == oracle.exact_burden
             @test result.exact_global_optimum_verified
@@ -333,6 +382,9 @@ end
                   result.diagnostics.termination_status == "OPTIMAL" :
                   result.diagnostics.termination_status ==
                   "NOT_CALLED_PREPROCESSING_SOLVED"
+            @test warm_started.candidate_accepted
+            @test warm_started.exact_burden == oracle.exact_burden
+            @test warm_started.exact_global_optimum_verified
             checked_instances += 1
         end
     end

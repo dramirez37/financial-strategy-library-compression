@@ -9,8 +9,8 @@ using TOML
 include(joinpath(@__DIR__, "..", "src", "FinancialStrategyLibraryPanelV1.jl"))
 using .FinancialStrategyLibraryPanelV1
 
-include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_018.jl"))
-using .LockFinancialStrategyLibraryPanelV1Execution018: verify_execution_lock_018
+include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_019.jl"))
+using .LockFinancialStrategyLibraryPanelV1Execution019: verify_execution_lock_019
 
 export main,
        prepare_instances,
@@ -47,6 +47,8 @@ const LOCK_016_AGGREGATE =
     "afe87492ee4fd8b368f9052bddec85c43743a005575f26fb65146fffce33532c"
 const LOCK_017_AGGREGATE =
     "9eda494c80aaf31e1fdfc0adaa4bbdb7384e0e96288da224b041175c59fc4401"
+const LOCK_018_AGGREGATE =
+    "e1489a49bd9b9a9a49c94f5ad145919133b88fe26622a8a293becd0fd2f9820b"
 const LOCK_013_POSTDECISION_AGGREGATE =
     "3214c2ee9fa7bee99089b5017b5ec8d5b1bc26b2b0cee174921ae2fd958ff9a1"
 const LOCK_015_POSTDECISION_DIRECTORY_AGGREGATE =
@@ -145,7 +147,7 @@ function _environment(
         "threaded_lane_count" => THREAD_COUNT,
         "maximum_simultaneous_heavy_stages" => HEAVY_CONCURRENCY,
         "execution_lock_aggregate_sha256" => execution_lock_aggregate,
-        "active_amendment_id" => "AMENDMENT_018",
+        "active_amendment_id" => "AMENDMENT_019",
         "replaced_predecessor_environment" => replaced_predecessor_environment,
         "predecessor_instance_count" => predecessor_instance_count,
         "predecessor_origin_metadata_count" => predecessor_origin_metadata_count,
@@ -382,6 +384,40 @@ function _checkpoint_selection(instance, record)
 end
 
 
+function _known_mip_projection_failure(record)
+    return get(record, "algorithm_id", "") == "jump_highs_tagged_cover" &&
+           get(record, "status", "") == "ERROR" &&
+           get(record, "candidate_returned", true) === false &&
+           get(record, "failure_type", "") == "ArgumentError" &&
+           get(record, "failure_message", "") ==
+           "ArgumentError: the supplied warm start is not feasible after exact preprocessing projection"
+end
+
+
+function _corrective_resume_algorithms(instance, saved)
+    algorithms = Dict{String,Any}(
+        String(record["algorithm_id"]) => record for record in saved["algorithms"]
+    )
+    mip = get(algorithms, "jump_highs_tagged_cover", nothing)
+    isnothing(mip) && return nothing
+    _known_mip_projection_failure(mip) || return nothing
+    audit_instance_result(instance, saved)["passed"] === true || error(
+        "predecessor result fails the exact resume audit",
+    )
+    resumed = Dict{String,Any}()
+    for algorithm_id in FinancialStrategyLibraryPanelV1.ALGORITHM_IDS
+        algorithm_id == "jump_highs_tagged_cover" && continue
+        record = algorithms[algorithm_id]
+        resumed[algorithm_id] = (
+            record = record,
+            selection = _checkpoint_selection(instance, record),
+        )
+    end
+    length(resumed) == 6 || error("corrective MIP resume did not preserve six algorithms")
+    return resumed
+end
+
+
 function _load_algorithm_checkpoints(
     output,
     stem,
@@ -437,10 +473,34 @@ function _write_algorithm_checkpoint(
     record,
     selection,
     logs,
+    ; replace_known_mip_projection_failure::Bool = false,
 )
     isnothing(selection) || _checkpoint_selection(instance, record) == selection || error(
         "algorithm checkpoint callback selection differs from its record",
     )
+    path = _algorithm_checkpoint_path(output, stem, algorithm_id)
+    replace = false
+    if isfile(path)
+        replace_known_mip_projection_failure || error(
+            "refusing to overwrite terminal algorithm checkpoint: $path",
+        )
+        predecessor = TOML.parsefile(path)
+        predecessor["schema_version"] == ALGORITHM_CHECKPOINT_SCHEMA || error(
+            "corrective checkpoint has an unrecognized predecessor schema: $path",
+        )
+        predecessor["execution_lock_aggregate_sha256"] == LOCK_018_AGGREGATE || error(
+            "corrective checkpoint is not bound to Lock 018: $path",
+        )
+        predecessor["instance_sha256"] == journal_compression_instance_sha256(instance) ||
+            error("corrective checkpoint instance hash differs: $path")
+        _known_mip_projection_failure(predecessor["record"]) || error(
+            "corrective checkpoint does not contain the registered MIP projection failure",
+        )
+        algorithm_id == "jump_highs_tagged_cover" || error(
+            "corrective checkpoint replacement is restricted to HiGHS",
+        )
+        replace = true
+    end
     log_rows = Dict{String,Any}[]
     for (log_id, log) in sort!(collect(logs); by = first)
         log_path = joinpath(output.solver_logs, stem * "__$(log_id).log")
@@ -463,9 +523,12 @@ function _write_algorithm_checkpoint(
         "solver_logs" => log_rows,
         "licensed_rows_included" => false,
     )
-    path = _algorithm_checkpoint_path(output, stem, algorithm_id)
-    isfile(path) && error("refusing to overwrite terminal algorithm checkpoint: $path")
-    _atomic_toml(path, payload)
+    if replace
+        payload["corrected_predecessor_execution_lock_aggregate_sha256"] =
+            LOCK_018_AGGREGATE
+        payload["corrective_execution_amendment_id"] = "AMENDMENT_019"
+    end
+    _atomic_toml(path, payload; replace)
     return path
 end
 
@@ -478,7 +541,7 @@ function _registry_seed(origin_id, library_id)
 end
 
 function validate_readiness(; require_sources::Bool = true)
-    verify_execution_lock_018()
+    verify_execution_lock_019()
     VERSION == v"1.12.6" || error("financial panel v1 requires Julia 1.12.6")
     Threads.nthreads() == THREAD_COUNT || error(
         "financial panel v1 requires --threads=$THREAD_COUNT; found $(Threads.nthreads())",
@@ -490,7 +553,7 @@ function validate_readiness(; require_sources::Bool = true)
         error("execution amendment thread count changed")
     amendment["threading"]["maximum_simultaneous_heavy_stages"] == HEAVY_CONCURRENCY ||
         error("execution amendment heavy-stage concurrency changed")
-    amendment["amendment_id"] == "AMENDMENT_018" ||
+    amendment["amendment_id"] == "AMENDMENT_019" ||
         error("active execution amendment changed")
     amendment["audit_key_shape"]["expected_key_count"] == 180 ||
         error("audit key count changed")
@@ -514,7 +577,7 @@ function validate_readiness(; require_sources::Bool = true)
 end
 
 function _write_environment(paths)
-    execution_lock_aggregate = verify_execution_lock_018()
+    execution_lock_aggregate = verify_execution_lock_019()
     if isfile(paths.environment)
         environment = TOML.parsefile(paths.environment)
         if get(environment, "execution_lock_aggregate_sha256", "") == execution_lock_aggregate
@@ -535,6 +598,7 @@ function _write_environment(paths)
             LOCK_015_AGGREGATE,
             LOCK_016_AGGREGATE,
             LOCK_017_AGGREGATE,
+            LOCK_018_AGGREGATE,
         )
         instance_count = isdir(paths.instances) ?
                          count(name -> endswith(name, ".toml"), readdir(paths.instances)) : 0
@@ -579,7 +643,7 @@ function _write_environment(paths)
                              checkpoint_count == 756 &&
                              solver_log_count == 14
         successor_recovery || error(
-            "saved environment belongs to an earlier execution lock outside Amendment 017 recovery",
+            "saved environment belongs to an execution lock outside the declared successor recovery",
         )
         environment = _environment(
             execution_lock_aggregate;
@@ -942,6 +1006,7 @@ function run_structural_phase()
         instance_path = joinpath(output.instances, job.stem * ".toml")
         preparation_failure_path = joinpath(output.preparation_failures, job.stem * ".toml")
         result_path = joinpath(output.structural, job.stem * ".toml")
+        corrective_resume = nothing
         if isfile(result_path)
             saved = TOML.parsefile(result_path)
             saved["terminal"] === true || error("nonterminal saved result: $(job.stem)")
@@ -949,11 +1014,17 @@ function run_structural_phase()
                 instance = _read_instance(instance_path)
                 audit_instance_result(instance, saved)["passed"] === true ||
                     error("saved result fails resume audit: $(job.stem)")
+                corrective_resume = _corrective_resume_algorithms(instance, saved)
+                isnothing(corrective_resume) || report((
+                    state = "running",
+                    stage = "corrective-mip-resume",
+                    algorithm_id = "jump_highs_tagged_cover",
+                ))
             elseif saved["schema_version"] !=
                    "financial-strategy-library-panel-preparation-failure-result-v1"
                 error("unrecognized saved result schema: $(job.stem)")
             end
-            return nothing
+            isnothing(corrective_resume) && return nothing
         end
         if isfile(preparation_failure_path)
             isfile(instance_path) && error("failed preparation slot also has a source instance")
@@ -965,12 +1036,13 @@ function run_structural_phase()
         end
         isfile(instance_path) || error("registered slot has neither an instance nor a failure record")
         instance = _read_instance(instance_path)
-        resume_algorithms = _load_algorithm_checkpoints(
-            output,
-            job.stem,
-            instance,
-            execution_lock_aggregate,
-        )
+        resume_algorithms = isnothing(corrective_resume) ?
+            _load_algorithm_checkpoints(
+                output,
+                job.stem,
+                instance,
+                execution_lock_aggregate,
+            ) : corrective_resume
         checkpoint_callback = function(
             algorithm_id,
             record,
@@ -986,6 +1058,7 @@ function run_structural_phase()
                 record,
                 selection,
                 algorithm_logs,
+                ; replace_known_mip_projection_failure = !isnothing(corrective_resume),
             )
             return nothing
         end
@@ -1005,6 +1078,15 @@ function run_structural_phase()
             )
             payload["thread_lane"] = lane
             payload["multistart_seed"] = _registry_seed(job.origin_id, job.library_id)
+            if !isnothing(corrective_resume)
+                payload["corrective_execution_amendment_id"] = "AMENDMENT_019"
+                payload["corrected_algorithm_ids"] = ["jump_highs_tagged_cover"]
+                payload["preserved_algorithm_ids"] = [
+                    algorithm_id for algorithm_id in
+                    FinancialStrategyLibraryPanelV1.ALGORITHM_IDS if
+                    algorithm_id != "jump_highs_tagged_cover"
+                ]
+            end
         catch exception
             payload = _failure_payload(job, instance, exception)
             payload["thread_lane"] = lane
@@ -1021,7 +1103,7 @@ function run_structural_phase()
             payload["solver_log_sha256"] = _sha256_file(log_path)
             payload["solver_log_path"] = relpath(log_path, output.local_results)
         end
-        _atomic_toml(result_path, payload)
+        _atomic_toml(result_path, payload; replace = !isnothing(corrective_resume))
         return nothing
     end
     _run_threaded_lanes!(jobs, "structural", run_one)
@@ -1068,7 +1150,7 @@ end
 function run_postdecision_phase()
     config, amendment = validate_readiness()
     output = _paths(config)
-    execution_lock_aggregate = verify_execution_lock_018()
+    execution_lock_aggregate = verify_execution_lock_019()
     _write_environment(output)
     structural_audit_path = joinpath(output.local_results, "STRUCTURAL_AUDIT.toml")
     isfile(structural_audit_path) || error("structural audit is absent; run the audit before postdecision")
@@ -1093,8 +1175,15 @@ function run_postdecision_phase()
         schedule_id,
         stem = _instance_stem(origin_id, library_id, schedule_id),
     ) for (origin_id, library_id, schedule_id) in registered_job_keys()]
+    postdecision_current = function(path)
+        isfile(path) || return false
+        payload = TOML.parsefile(path)
+        return get(payload, "corrective_execution_amendment_id", "") == "AMENDMENT_019"
+    end
     pending_jobs = [
-        job for job in jobs if !isfile(joinpath(output.postdecision, job.stem * ".toml"))
+        job for job in jobs if !postdecision_current(
+            joinpath(output.postdecision, job.stem * ".toml"),
+        )
     ]
     if isempty(pending_jobs)
         _emit_progress("postdecision: all 180 terminal records validated for resume; scan skipped")
@@ -1121,6 +1210,7 @@ function run_postdecision_phase()
                 LOCK_015_AGGREGATE,
                 LOCK_016_AGGREGATE,
                 LOCK_017_AGGREGATE,
+                LOCK_018_AGGREGATE,
                 execution_lock_aggregate,
             ),
         diagnostics = postdecision_return_quality,
@@ -1193,7 +1283,6 @@ function run_postdecision_phase()
     )
     run_one = function(job, lane)
         destination = joinpath(output.postdecision, job.stem * ".toml")
-        isfile(destination) && return nothing
         result_payload = TOML.parsefile(joinpath(output.structural, job.stem * ".toml"))
         payload = if job.origin_id in unavailable_postdecision_origins
             result_payload["schema_version"] ==
@@ -1285,19 +1374,20 @@ function run_postdecision_phase()
             )
         end
         payload["thread_lane"] = lane
+        payload["corrective_execution_amendment_id"] = "AMENDMENT_019"
         if haskey(postdecision_return_quality, job.origin_id)
             payload["return_quality"] = postdecision_return_quality[job.origin_id]
         end
-        _atomic_toml(destination, payload)
+        _atomic_toml(destination, payload; replace = isfile(destination))
         return nothing
     end
-    _run_threaded_lanes!(jobs, "postdecision", run_one)
+    _run_threaded_lanes!(pending_jobs, "postdecision", run_one)
     return output.postdecision
 end
 
 function run_smoke()
     config, _ = validate_readiness(; require_sources = false)
-    execution_lock_aggregate = verify_execution_lock_018()
+    execution_lock_aggregate = verify_execution_lock_019()
     jobs = build_synthetic_smoke_instances(THREAD_COUNT)
     mktempdir() do root
         output = (

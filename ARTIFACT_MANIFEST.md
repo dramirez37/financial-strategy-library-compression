@@ -892,6 +892,19 @@ only after its Parquet hash/schema/cardinality and both current source-result
 hashes validate. Source drift, Parquet drift, and unrelated locks remain fatal.
 Execution Lock 018 changes no source result, formula, denominator, or estimand.
 
+Amendment 019 follows the passing Lock 018 result and analysis audits but
+discloses that 94 registered HiGHS rows terminated in a common implementation
+error. The exact preprocessor recorded valid duplicate/dominance replacement
+targets, while the MIP warm-start adapter had dropped those eliminated selected
+strategies instead of following their replacement chains. The correction is
+restricted to exact warm-start projection, fails closed on residual infeasibility
+or burden increase, preserves the six unaffected algorithm rows for each
+corrected instance, and reruns only the 94 matching MIP failures. All 180
+postdecision records and analysis partitions are refreshed under Execution Lock
+019. No instance, source row, weight, seed, solver setting, time limit, formula,
+denominator, estimand, or licensed-data boundary changes; Lock 018 remains the
+immutable adverse implementation record.
+
 | Class | Expected future location or form | Current status |
 |---|---|---|
 | remaining primary research theorem declarations | future extensions under `formal/StrategyInnovation/` | none in the adopted T1--T7 package; F0, F1--F8, S4--S7, C2, and CS1 are supporting results |

@@ -305,13 +305,61 @@ function _journal_mip_apply_warm_start!(
     check_journal_compression_solution(instance, original).exact_feasible || throw(
         ArgumentError("the supplied original-coordinate warm start is not exactly safe"),
     )
-    residual = BitVector(
-        original[index] for index in preprocessing.remaining_strategy_indices
+    remaining_position = Dict(
+        original_index => position for (position, original_index) in
+        enumerate(preprocessing.remaining_strategy_indices)
     )
+    forced = BitSet(preprocessing.forced_strategy_indices)
+    residual = falses(length(preprocessing.remaining_strategy_indices))
+    substitutions = 0
+    for original_index in findall(original)
+        original_index in forced && continue
+        position = get(remaining_position, original_index, 0)
+        if !iszero(position)
+            residual[position] = true
+            continue
+        end
+
+        current = original_index
+        visited = BitSet()
+        while true
+            current in visited && throw(
+                ArgumentError("exact preprocessing contains a cyclic strategy-elimination map"),
+            )
+            push!(visited, current)
+            target = preprocessing.strategy_elimination_target[current]
+            if iszero(target)
+                status = preprocessing.strategy_status[current]
+                status in (
+                    :mandatory_selected,
+                    :forced_selected,
+                    :empty_contribution,
+                ) || throw(
+                    ArgumentError(
+                        "an eliminated warm-start strategy has no exact preprocessing target",
+                    ),
+                )
+                break
+            end
+            substitutions += 1
+            target in forced && break
+            position = get(remaining_position, target, 0)
+            if !iszero(position)
+                residual[position] = true
+                break
+            end
+            current = target
+        end
+    end
     exact_tagged_cover_feasible(preprocessing.reduced, residual) || throw(
         ArgumentError(
-            "the supplied warm start is not feasible after exact preprocessing projection",
+            "the exact preprocessing warm-start substitution invariant failed",
         ),
+    )
+    projected_burden = preprocessed_tagged_cover_burden(preprocessing, residual)
+    original_burden = exact_tagged_cover_burden(preprocessing.original, original)
+    projected_burden <= original_burden || throw(
+        ArgumentError("exact preprocessing increased the projected warm-start burden"),
     )
     for (variable, selected) in zip(variables, residual)
         JuMP.set_start_value(variable, selected ? 1.0 : 0.0)
@@ -323,7 +371,8 @@ function _journal_mip_apply_warm_start!(
     isempty(source) && throw(
         ArgumentError("a supplied warm-start vector requires a nonempty source label"),
     )
-    return source
+    return iszero(substitutions) ? source :
+           source * "; exact preprocessing substitution projection"
 end
 
 

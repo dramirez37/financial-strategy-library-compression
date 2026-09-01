@@ -8,8 +8,8 @@ using TOML
 include(joinpath(@__DIR__, "..", "src", "FinancialStrategyLibraryPanelV1.jl"))
 using .FinancialStrategyLibraryPanelV1
 
-include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_018.jl"))
-using .LockFinancialStrategyLibraryPanelV1Execution018: verify_execution_lock_018
+include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_019.jl"))
+using .LockFinancialStrategyLibraryPanelV1Execution019: verify_execution_lock_019
 
 export audit_all_results, audit_structural_results, main
 
@@ -252,6 +252,7 @@ function _stem_audit_record(
     exact_reference_count = 0,
     missing_solver_log_count = 0,
     checked_algorithm_rows = 0,
+    corrected_mip_count = 0,
 )
     return (;
         errors,
@@ -266,6 +267,7 @@ function _stem_audit_record(
         exact_reference_count,
         missing_solver_log_count,
         checked_algorithm_rows,
+        corrected_mip_count,
     )
 end
 
@@ -350,6 +352,48 @@ function _audit_structural_stem(stem, paths)
     get(payload, "licensed_rows_included", true) === false ||
         push!(errors, "$stem structural result contains licensed rows")
     algorithms = payload["algorithms"]
+    algorithm_by_id = Dict(String(row["algorithm_id"]) => row for row in algorithms)
+    mip = get(algorithm_by_id, "jump_highs_tagged_cover", nothing)
+    dp = get(algorithm_by_id, "requirement_mask_dp", nothing)
+    if isnothing(mip) || isnothing(dp)
+        push!(errors, "$stem lacks the MIP or exact-DP audit row")
+        return _stem_audit_record(
+            errors;
+            result_relative,
+            result_sha256,
+            success_count = 1,
+            algorithm_error_count = count(row -> get(row, "status", "") == "ERROR", algorithms),
+            inapplicable_count = count(row -> get(row, "applicable", true) === false, algorithms),
+            candidate_count = count(row -> get(row, "candidate_returned", false) === true, algorithms),
+            exact_reference_count = get(payload, "global_optimum_exactly_verified", false) === true,
+            checked_algorithm_rows = length(algorithms),
+        )
+    end
+    get(mip, "status", "") != "ERROR" ||
+        push!(errors, "$stem retains the corrected MIP projection error")
+    get(mip, "candidate_returned", false) === true ||
+        push!(errors, "$stem MIP did not return a candidate after Amendment 019")
+    if get(mip, "candidate_returned", false) === true &&
+       get(dp, "candidate_returned", false) === true
+        get(mip["selection"], "exact_feasible", false) === true ||
+            push!(errors, "$stem MIP candidate is not exactly feasible")
+        mip["selection"]["exact_burden"] == dp["selection"]["exact_burden"] ||
+            push!(errors, "$stem exact MIP and DP burdens disagree")
+    end
+    corrected_mip = get(payload, "corrective_execution_amendment_id", "") ==
+                    "AMENDMENT_019"
+    if corrected_mip
+        String.(get(payload, "corrected_algorithm_ids", String[])) ==
+        ["jump_highs_tagged_cover"] ||
+            push!(errors, "$stem corrective algorithm declaration differs")
+        preserved = String.(get(payload, "preserved_algorithm_ids", String[]))
+        (length(preserved) == 6 &&
+         Set(preserved) == setdiff(Set(ALGORITHM_IDS), Set(["jump_highs_tagged_cover"]))) ||
+            push!(errors, "$stem did not preserve the six unaffected algorithm rows")
+        get(mip, "warm_start_source", "") ==
+        "registered weighted greedy plus reverse deletion; exact preprocessing substitution projection" ||
+            push!(errors, "$stem corrected MIP lacks its projection provenance")
+    end
     log_relative = get(payload, "solver_log_path", nothing)
     missing_solver_log_count = 0
     if isnothing(log_relative)
@@ -373,6 +417,7 @@ function _audit_structural_stem(stem, paths)
         exact_reference_count = get(payload, "global_optimum_exactly_verified", false) === true,
         missing_solver_log_count,
         checked_algorithm_rows = length(algorithms),
+        corrected_mip_count = corrected_mip ? 1 : 0,
     )
 end
 
@@ -381,7 +426,7 @@ function audit_structural_results(; write_report::Bool = true)
         "financial panel structural audit requires --threads=$AUDIT_THREAD_COUNT; " *
         "found $(Threads.nthreads())",
     )
-    execution_lock = verify_execution_lock_018()
+    execution_lock = verify_execution_lock_019()
     config, _ = load_panel_config()
     paths = _paths(config)
     errors = String[]
@@ -422,6 +467,7 @@ function audit_structural_results(; write_report::Bool = true)
     exact_reference_count = 0
     missing_solver_log_count = 0
     checked_algorithm_rows = 0
+    corrected_mip_count = 0
     for audit in audits
         append!(errors, audit.errors)
         if !isnothing(audit.result_relative)
@@ -436,9 +482,16 @@ function audit_structural_results(; write_report::Bool = true)
         exact_reference_count += audit.exact_reference_count
         missing_solver_log_count += audit.missing_solver_log_count
         checked_algorithm_rows += audit.checked_algorithm_rows
+        corrected_mip_count += audit.corrected_mip_count
     end
     checked_algorithm_rows == 1260 ||
         push!(errors, "audit saw $checked_algorithm_rows algorithm terminal rows instead of 1260")
+    algorithm_error_count == 0 ||
+        push!(errors, "Amendment 019 requires zero algorithm errors")
+    corrected_mip_count == 94 ||
+        push!(errors, "Amendment 019 corrected MIP row count differs from 94")
+    candidate_count == 736 ||
+        push!(errors, "Amendment 019 candidate count differs from 736")
     report = Dict{String,Any}(
         "schema_version" => "financial-strategy-library-panel-structural-audit-v1",
         "experiment_id" => "financial-strategy-library-panel-v1",
@@ -456,6 +509,9 @@ function audit_structural_results(; write_report::Bool = true)
         "candidate_returned_row_count" => candidate_count,
         "exact_reference_instance_count" => exact_reference_count,
         "missing_solver_log_count" => missing_solver_log_count,
+        "corrected_mip_row_count" => corrected_mip_count,
+        "mip_candidate_row_count" => success_count,
+        "mip_dp_exact_burden_agreement_count" => success_count,
         "unsuccessful_rows_retained_in_denominators" => true,
         "solver_status_used_as_formal_or_exhaustive_proof" => false,
         "postdecision_opened_during_structural_audit" => false,
@@ -518,6 +574,8 @@ function _audit_postdecision_stem(stem, paths)
     result_sha256 = _sha256_file(post_path)
     get(payload, "licensed_rows_included", true) === false ||
         push!(errors, "$stem postdecision record contains licensed rows")
+    get(payload, "corrective_execution_amendment_id", "") == "AMENDMENT_019" ||
+        push!(errors, "$stem postdecision record was not refreshed under Amendment 019")
     get(payload, "structural_result_terminal_and_audited_before_open", false) === true ||
         push!(errors, "$stem postdecision record lacks the structural firewall certificate")
     if source["schema_version"] in (

@@ -22,6 +22,8 @@ const SELECTED_ID_SEPARATOR = '\u001f'
 const ANALYSIS_THREAD_COUNT = 8
 const LOCK_017_AGGREGATE =
     "9eda494c80aaf31e1fdfc0adaa4bbdb7384e0e96288da224b041175c59fc4401"
+const LOCK_018_AGGREGATE =
+    "e1489a49bd9b9a9a49c94f5ad145919133b88fe26622a8a293becd0fd2f9820b"
 
 const ALGORITHM_SCHEMA = (
     origin_id = String,
@@ -334,7 +336,7 @@ function audit_ready()
         error("final audit algorithm-row count differs")
     get(audit, "unsuccessful_rows_retained_in_denominators", false) === true ||
         error("final audit dropped unsuccessful rows")
-    amendment["amendment_id"] == "AMENDMENT_018" || error("active analysis amendment changed")
+    amendment["amendment_id"] == "AMENDMENT_019" || error("active analysis amendment changed")
     return config, amendment, paths, audit
 end
 
@@ -609,11 +611,38 @@ function _write_partition(stem, paths, result_audit_sha256, execution_lock)
         metadata = _checked_partition_metadata(partition)
         structural_sha = sha256_file(joinpath(paths.structural, stem * ".toml"))
         postdecision_sha = sha256_file(joinpath(paths.postdecision, stem * ".toml"))
+        saved_lock = String(metadata["execution_lock_aggregate_sha256"])
+        if saved_lock == LOCK_018_AGGREGATE && saved_lock != execution_lock
+            rows = _algorithm_rows(stem, paths)
+            length(rows) == 7 || error(
+                "corrective analysis partition does not contain seven algorithm rows",
+            )
+            columns = _column_table(rows, ALGORITHM_SCHEMA)
+            atomic_write_parquet(partition.parquet, columns; replace = true)
+            replacement = Dict{String,Any}(
+                "schema_version" => "financial-panel-analysis-partition-v1",
+                "stem" => stem,
+                "execution_lock_aggregate_sha256" => execution_lock,
+                "result_audit_sha256" => result_audit_sha256,
+                "structural_result_sha256" => only(unique(columns.structural_result_sha256)),
+                "postdecision_result_sha256" => only(unique(columns.postdecision_result_sha256)),
+                "algorithm_row_count" => 7,
+                "parquet_compression" => "SNAPPY",
+                "parquet_sha256" => sha256_file(partition.parquet),
+                "raw_licensed_rows_included" => false,
+                "corrective_execution_amendment_id" => "AMENDMENT_019",
+                "rematerialized_from_execution_lock_aggregate_sha256" => saved_lock,
+            )
+            _atomic_toml(partition.metadata, replacement; replace = true)
+            _partition_valid(partition, result_audit_sha256, execution_lock) || error(
+                "correctively rematerialized analysis partition did not validate",
+            )
+            return :rematerialized
+        end
         metadata["structural_result_sha256"] == structural_sha ||
             error("analysis partition structural source hash differs")
         metadata["postdecision_result_sha256"] == postdecision_sha ||
             error("analysis partition postdecision source hash differs")
-        saved_lock = String(metadata["execution_lock_aggregate_sha256"])
         saved_lock in (LOCK_017_AGGREGATE, execution_lock) ||
             error("analysis partition belongs to an unrelated execution lock")
         if saved_lock != execution_lock ||

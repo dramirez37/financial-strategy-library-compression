@@ -166,6 +166,13 @@ const AMENDMENT_018_PATH = joinpath(
     "amendments",
     "EXECUTION_AMENDMENT_018.toml",
 )
+const AMENDMENT_019_PATH = joinpath(
+    REPOSITORY_ROOT,
+    "experiments",
+    "financial_strategy_library_panel_v1",
+    "amendments",
+    "EXECUTION_AMENDMENT_019.toml",
+)
 const ALGORITHM_IDS = (
     "jump_highs_tagged_cover",
     "requirement_mask_dp",
@@ -572,6 +579,26 @@ function load_panel_config(path::AbstractString = CONFIG_PATH)
     amendment["partition_rebinding_amendment"] = partition_rebinding_amendment
     amendment["analysis_partition_rebinding"] =
         partition_rebinding_amendment["partition_rebinding"]
+    mip_projection_amendment = TOML.parsefile(AMENDMENT_019_PATH)
+    mip_projection_amendment["schema_version"] ==
+    "financial-strategy-library-panel-execution-amendment-v19" ||
+        error("unsupported MIP-projection execution amendment")
+    mip_projection_amendment["amendment_id"] == "AMENDMENT_019" ||
+        error("unexpected MIP-projection amendment identifier")
+    mip_projection_amendment["predecessor_amendment_id"] == "AMENDMENT_018" ||
+        error("unexpected MIP-projection amendment predecessor")
+    mip_projection_amendment["scientific_estimands_changed"] === false ||
+        error("MIP-projection amendment changes registered estimands")
+    mip_projection_amendment["algorithm_definition_changed"] === false ||
+        error("MIP-projection amendment changes the registered algorithm")
+    mip_projection_amendment["registered_instances_changed"] === false ||
+        error("MIP-projection amendment changes registered instances")
+    amendment["predecessor_amendment_id"] = amendment["amendment_id"]
+    amendment["amendment_id"] = mip_projection_amendment["amendment_id"]
+    amendment["mip_projection_amendment"] = mip_projection_amendment
+    amendment["mip_warm_start_projection"] =
+        mip_projection_amendment["mip_warm_start_projection"]
+    amendment["corrective_resume"] = mip_projection_amendment["corrective_resume"]
     return config, amendment
 end
 

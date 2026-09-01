@@ -1,0 +1,50 @@
+schema_version = "financial-strategy-library-panel-execution-amendment-v19"
+experiment_id = "financial-strategy-library-panel-v1"
+amendment_id = "AMENDMENT_019"
+amendment_date = "2026-09-01"
+predecessor_amendment_id = "AMENDMENT_018"
+classification = "correct_invalid_mip_warm_start_projection"
+algorithm_or_solver_outcomes_observed_before_amendment = true
+complete_structural_results_available_before_amendment = true
+complete_postdecision_results_available_before_amendment = true
+complete_analysis_available_before_amendment = true
+successful_instance_count = 108
+observed_mip_error_count = 94
+observed_mip_candidate_count = 14
+observed_dp_exact_candidate_count = 108
+scientific_estimands_changed = false
+algorithm_definition_changed = false
+registered_instances_changed = false
+weights_changed = false
+seeds_changed = false
+time_limits_changed = false
+solver_settings_changed = false
+analysis_formulas_changed = false
+registered_denominators_changed = false
+raw_row_values_printed_or_committed = false
+
+[mip_warm_start_projection]
+input_must_be_exactly_feasible = true
+follow_duplicate_and_dominance_elimination_targets = true
+forced_targets_are_selected_by_objective_offset = true
+empty_residual_contributions_may_be_dropped = true
+cyclic_elimination_target_is_fatal = true
+missing_elimination_target_is_fatal = true
+residual_exact_coverage_required = true
+projected_exact_burden_may_not_increase = true
+fractional_rounding_permitted = false
+
+[corrective_resume]
+rerun_algorithm_id = "jump_highs_tagged_cover"
+rerun_only_matching_predecessor_error = true
+matching_predecessor_failure_type = "ArgumentError"
+matching_predecessor_failure_message = "ArgumentError: the supplied warm start is not feasible after exact preprocessing projection"
+expected_corrected_row_count = 94
+preserve_other_algorithm_rows_per_corrected_instance = 6
+preserve_previously_valid_mip_rows = 14
+refresh_postdecision_records = true
+rematerialize_all_analysis_partitions = true
+require_zero_final_algorithm_errors = true
+require_exact_mip_candidate_count = 108
+require_mip_dp_burden_agreement = true
+retain_unsuccessful_rows_in_denominators = true

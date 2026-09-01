@@ -1,0 +1,46 @@
+schema_version = "financial-strategy-library-panel-execution-amendment-v20"
+experiment_id = "financial-strategy-library-panel-v1"
+amendment_id = "AMENDMENT_020"
+amendment_date = "2026-09-01"
+predecessor_amendment_id = "AMENDMENT_019"
+classification = "correct_checkpoint_provenance_namespace"
+corrective_run_started_before_amendment = true
+corrected_mip_checkpoint_persisted_before_amendment = false
+corrected_mip_result_persisted_before_amendment = false
+lock_019_execution_failure_count = 1
+lock_019_successful_instance_result_count = 107
+preparation_failure_count = 72
+algorithm_checkpoint_count = 756
+checkpoint_predecessor_execution_lock = "EXECUTION_LOCK_005"
+checkpoint_predecessor_aggregate_sha256 = "74f8e021f47b53ab4b23718224a8d9879bf95fb30b50f3f547b9841b8ce42d83"
+scientific_estimands_changed = false
+algorithm_definition_changed = false
+registered_instances_changed = false
+weights_changed = false
+seeds_changed = false
+time_limits_changed = false
+solver_settings_changed = false
+analysis_formulas_changed = false
+registered_denominators_changed = false
+raw_row_values_printed_or_committed = false
+
+[checkpoint_recovery]
+prevalidate_before_solver = true
+require_all_seven_checkpoint_rows = true
+require_exact_instance_hash = true
+require_exact_lock_005_aggregate = true
+require_matching_mip_projection_failure = true
+preserve_unaffected_algorithm_rows = 6
+replace_only_algorithm_id = "jump_highs_tagged_cover"
+recover_single_lock_019_execution_failure = true
+failure_type = "ErrorException"
+failure_message_prefix = "corrective checkpoint is not bound to Lock 018:"
+
+[final_audit]
+expected_corrected_mip_row_count = 94
+expected_mip_candidate_row_count = 108
+require_zero_algorithm_errors = true
+require_zero_execution_failures = true
+require_mip_dp_exact_burden_agreement = true
+refresh_all_postdecision_records = true
+rematerialize_all_analysis_partitions = true

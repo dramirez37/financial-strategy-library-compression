@@ -239,7 +239,7 @@ function audit_analysis(; write_report::Bool = true, progress_io = stderr)
         "found $(Threads.nthreads())",
     )
     config, amendment = load_panel_config()
-    amendment["amendment_id"] == "AMENDMENT_019" || error("active analysis amendment changed")
+    amendment["amendment_id"] == "AMENDMENT_020" || error("active analysis amendment changed")
     paths = _paths(config)
     errors = String[]
     isfile(paths.result_audit) || error("final result audit is absent")
@@ -257,7 +257,7 @@ function audit_analysis(; write_report::Bool = true, progress_io = stderr)
     manifest["raw_licensed_rows_included"] === false ||
         push!(errors, "analysis manifest declares licensed rows")
     get(manifest, "resumed_partition_count", -1) == 0 ||
-        push!(errors, "Amendment 019 requires all analysis partitions to be rematerialized")
+        push!(errors, "Amendment 020 requires all analysis partitions to be rematerialized")
     files = Dict(String(relative) => String(hash) for (relative, hash) in manifest["files"])
     relatives = sort!(collect(keys(files)))
     absolute = [joinpath(paths.analysis, relative) for relative in relatives]

@@ -336,7 +336,7 @@ function audit_ready()
         error("final audit algorithm-row count differs")
     get(audit, "unsuccessful_rows_retained_in_denominators", false) === true ||
         error("final audit dropped unsuccessful rows")
-    amendment["amendment_id"] == "AMENDMENT_019" || error("active analysis amendment changed")
+    amendment["amendment_id"] == "AMENDMENT_020" || error("active analysis amendment changed")
     return config, amendment, paths, audit
 end
 
@@ -630,7 +630,7 @@ function _write_partition(stem, paths, result_audit_sha256, execution_lock)
                 "parquet_compression" => "SNAPPY",
                 "parquet_sha256" => sha256_file(partition.parquet),
                 "raw_licensed_rows_included" => false,
-                "corrective_execution_amendment_id" => "AMENDMENT_019",
+                "corrective_execution_amendment_id" => "AMENDMENT_020",
                 "rematerialized_from_execution_lock_aggregate_sha256" => saved_lock,
             )
             _atomic_toml(partition.metadata, replacement; replace = true)

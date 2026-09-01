@@ -905,6 +905,16 @@ postdecision records and analysis partitions are refreshed under Execution Lock
 denominator, estimand, or licensed-data boundary changes; Lock 018 remains the
 immutable adverse implementation record.
 
+Amendment 020 follows a stopped Lock 019 corrective run that persisted one
+execution-failure record but no corrected MIP checkpoint or MIP result. All 756
+resumable algorithm checkpoints retained their declared Lock 005 namespace
+through the later execution-only amendments; Lock 019 had incorrectly required
+the structural-result lock namespace at replacement time. Lock 020 binds the
+actual checkpoint aggregate, prevalidates all seven checkpoint records before
+solver work, permits replacement only for the matching MIP failure, and recovers
+the single interrupted result from its intact checkpoints. Scientific inputs,
+algorithms, controls, outcomes, estimands, and licensed-data policy are unchanged.
+
 | Class | Expected future location or form | Current status |
 |---|---|---|
 | remaining primary research theorem declarations | future extensions under `formal/StrategyInnovation/` | none in the adopted T1--T7 package; F0, F1--F8, S4--S7, C2, and CS1 are supporting results |

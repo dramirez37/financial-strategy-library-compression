@@ -9,8 +9,8 @@ const FSLP1 = FinancialStrategyLibraryPanelV1
 include(joinpath(@__DIR__, "..", "scripts", "run_financial_strategy_library_panel_v1.jl"))
 const FSLP1Runner = RunFinancialStrategyLibraryPanelV1
 
-include(joinpath(@__DIR__, "..", "scripts", "lock_financial_strategy_library_panel_v1_execution_019.jl"))
-const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution019
+include(joinpath(@__DIR__, "..", "scripts", "lock_financial_strategy_library_panel_v1_execution_020.jl"))
+const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution020
 
 include(joinpath(@__DIR__, "..", "scripts", "analyze_financial_strategy_library_panel_v1.jl"))
 const FSLP1Analysis = AnalyzeFinancialStrategyLibraryPanelV1
@@ -23,13 +23,16 @@ const FSLP1Analysis = AnalyzeFinancialStrategyLibraryPanelV1
     @test amendment["threading"]["julia_threads"] == 8
     @test amendment["threading"]["concurrent_job_lanes"] == 8
     @test amendment["threading"]["maximum_simultaneous_heavy_stages"] == 2
-    @test amendment["amendment_id"] == "AMENDMENT_019"
+    @test amendment["amendment_id"] == "AMENDMENT_020"
     @test amendment["mip_warm_start_projection"]["follow_duplicate_and_dominance_elimination_targets"] === true
     @test amendment["mip_warm_start_projection"]["residual_exact_coverage_required"] === true
     @test amendment["mip_warm_start_projection"]["projected_exact_burden_may_not_increase"] === true
     @test amendment["corrective_resume"]["expected_corrected_row_count"] == 94
     @test amendment["corrective_resume"]["preserve_other_algorithm_rows_per_corrected_instance"] == 6
     @test amendment["corrective_resume"]["rematerialize_all_analysis_partitions"] === true
+    @test amendment["checkpoint_recovery"]["prevalidate_before_solver"] === true
+    @test amendment["checkpoint_recovery"]["require_all_seven_checkpoint_rows"] === true
+    @test amendment["checkpoint_recovery"]["require_exact_lock_005_aggregate"] === true
     @test amendment["audit_parallelism"]["worker_count"] == 8
     @test amendment["audit_parallelism"]["postdecision_worker_count"] == 8
     @test amendment["audit_dispatch"]["new_method_invocation"] == "Base.invokelatest"
@@ -70,7 +73,7 @@ const FSLP1Analysis = AnalyzeFinancialStrategyLibraryPanelV1
     @test length(unique(FSLP1.registered_job_keys())) == 180
 
     if isfile(FSLP1ExecutionLock.LOCK_PATH)
-        aggregate = FSLP1ExecutionLock.verify_execution_lock_019()
+        aggregate = FSLP1ExecutionLock.verify_execution_lock_020()
         @test occursin(r"^[0-9a-f]{64}$", aggregate)
         lock_text = read(FSLP1ExecutionLock.LOCK_PATH, String)
         one_hash = first(values(FSLP1ExecutionLock._hashes()))
@@ -236,7 +239,7 @@ end
             successor_lock,
         ) == :rematerialized
         rematerialized = TOML.parsefile(partition.metadata)
-        @test rematerialized["corrective_execution_amendment_id"] == "AMENDMENT_019"
+        @test rematerialized["corrective_execution_amendment_id"] == "AMENDMENT_020"
         @test rematerialized["rematerialized_from_execution_lock_aggregate_sha256"] ==
               FSLP1Analysis.LOCK_018_AGGREGATE
         @test rematerialized["execution_lock_aggregate_sha256"] == successor_lock
@@ -562,7 +565,7 @@ end
             "zero_return_substituted" => false,
             "unavailable_algorithm_row_count" => 7,
             "licensed_rows_included" => false,
-            "corrective_execution_amendment_id" => "AMENDMENT_019",
+            "corrective_execution_amendment_id" => "AMENDMENT_020",
             "return_quality" => Dict(
                 "interior_missing_return_rows" => 0,
                 "unexpected_return_flag_rows" => 0,
@@ -605,7 +608,7 @@ end
             "postdecision_score_fabricated" => false,
             "unavailable_algorithm_row_count" => 7,
             "licensed_rows_included" => false,
-            "corrective_execution_amendment_id" => "AMENDMENT_019",
+            "corrective_execution_amendment_id" => "AMENDMENT_020",
             "return_quality" => Dict(
                 "interior_missing_return_rows" => 0,
                 "unexpected_return_flag_rows" => 0,
@@ -1096,7 +1099,7 @@ end
             output,
             "corrective-fixture",
             job.instance,
-            FSLP1Runner.LOCK_018_AGGREGATE,
+            FSLP1Runner.LOCK_005_AGGREGATE,
             "jump_highs_tagged_cover",
             failed_mip_record,
             nothing,
@@ -1120,9 +1123,9 @@ end
         )
         @test corrected_path == predecessor_path
         corrected = TOML.parsefile(corrected_path)
-        @test corrected["corrective_execution_amendment_id"] == "AMENDMENT_019"
+        @test corrected["corrective_execution_amendment_id"] == "AMENDMENT_020"
         @test corrected["corrected_predecessor_execution_lock_aggregate_sha256"] ==
-              FSLP1Runner.LOCK_018_AGGREGATE
+              FSLP1Runner.LOCK_005_AGGREGATE
         @test corrected["execution_lock_aggregate_sha256"] == corrected_lock
         @test corrected["record"]["candidate_returned"] === true
         @test_throws ErrorException FSLP1Runner._write_algorithm_checkpoint(
@@ -1137,6 +1140,11 @@ end
             replace_known_mip_projection_failure = true,
         )
     end
+    @test FSLP1Runner._known_lock019_checkpoint_namespace_failure(Dict(
+        "schema_version" => "financial-strategy-library-panel-instance-failure-v1",
+        "failure_type" => "ErrorException",
+        "failure_message" => "corrective checkpoint is not bound to Lock 018: fixture",
+    ))
 end
 
 @testset "thread lanes terminate and expose failures" begin

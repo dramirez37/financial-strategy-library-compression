@@ -173,6 +173,13 @@ const AMENDMENT_019_PATH = joinpath(
     "amendments",
     "EXECUTION_AMENDMENT_019.toml",
 )
+const AMENDMENT_020_PATH = joinpath(
+    REPOSITORY_ROOT,
+    "experiments",
+    "financial_strategy_library_panel_v1",
+    "amendments",
+    "EXECUTION_AMENDMENT_020.toml",
+)
 const ALGORITHM_IDS = (
     "jump_highs_tagged_cover",
     "requirement_mask_dp",
@@ -599,6 +606,24 @@ function load_panel_config(path::AbstractString = CONFIG_PATH)
     amendment["mip_warm_start_projection"] =
         mip_projection_amendment["mip_warm_start_projection"]
     amendment["corrective_resume"] = mip_projection_amendment["corrective_resume"]
+    checkpoint_amendment = TOML.parsefile(AMENDMENT_020_PATH)
+    checkpoint_amendment["schema_version"] ==
+    "financial-strategy-library-panel-execution-amendment-v20" ||
+        error("unsupported corrective checkpoint execution amendment")
+    checkpoint_amendment["amendment_id"] == "AMENDMENT_020" ||
+        error("unexpected corrective checkpoint amendment identifier")
+    checkpoint_amendment["predecessor_amendment_id"] == "AMENDMENT_019" ||
+        error("unexpected corrective checkpoint amendment predecessor")
+    checkpoint_amendment["scientific_estimands_changed"] === false ||
+        error("corrective checkpoint amendment changes registered estimands")
+    checkpoint_amendment["algorithm_definition_changed"] === false ||
+        error("corrective checkpoint amendment changes the registered algorithm")
+    checkpoint_amendment["registered_instances_changed"] === false ||
+        error("corrective checkpoint amendment changes registered instances")
+    amendment["predecessor_amendment_id"] = amendment["amendment_id"]
+    amendment["amendment_id"] = checkpoint_amendment["amendment_id"]
+    amendment["checkpoint_namespace_amendment"] = checkpoint_amendment
+    amendment["checkpoint_recovery"] = checkpoint_amendment["checkpoint_recovery"]
     return config, amendment
 end
 

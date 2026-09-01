@@ -885,6 +885,13 @@ key namespaces: basenames for directory-local resume recovery and
 Execution Lock 017 corrects only that comparison; the file bytes, results,
 audit predicates, formulas, denominators, and estimands are unchanged.
 
+Amendment 018 follows a passing Lock 017 analysis audit and a subsequent
+resume failure caused solely by a newly timestamped result-audit file hash.
+It permits atomic metadata-only certificate rebinding for a Parquet partition
+only after its Parquet hash/schema/cardinality and both current source-result
+hashes validate. Source drift, Parquet drift, and unrelated locks remain fatal.
+Execution Lock 018 changes no source result, formula, denominator, or estimand.
+
 | Class | Expected future location or form | Current status |
 |---|---|---|
 | remaining primary research theorem declarations | future extensions under `formal/StrategyInnovation/` | none in the adopted T1--T7 package; F0, F1--F8, S4--S7, C2, and CS1 are supporting results |

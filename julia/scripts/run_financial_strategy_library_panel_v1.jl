@@ -9,8 +9,8 @@ using TOML
 include(joinpath(@__DIR__, "..", "src", "FinancialStrategyLibraryPanelV1.jl"))
 using .FinancialStrategyLibraryPanelV1
 
-include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_017.jl"))
-using .LockFinancialStrategyLibraryPanelV1Execution017: verify_execution_lock_017
+include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_018.jl"))
+using .LockFinancialStrategyLibraryPanelV1Execution018: verify_execution_lock_018
 
 export main,
        prepare_instances,
@@ -45,6 +45,8 @@ const LOCK_015_AGGREGATE =
     "49c256ff1e61ef513ab656586c8b4e89c1e891959da21a7407135fe5810690de"
 const LOCK_016_AGGREGATE =
     "afe87492ee4fd8b368f9052bddec85c43743a005575f26fb65146fffce33532c"
+const LOCK_017_AGGREGATE =
+    "9eda494c80aaf31e1fdfc0adaa4bbdb7384e0e96288da224b041175c59fc4401"
 const LOCK_013_POSTDECISION_AGGREGATE =
     "3214c2ee9fa7bee99089b5017b5ec8d5b1bc26b2b0cee174921ae2fd958ff9a1"
 const LOCK_015_POSTDECISION_DIRECTORY_AGGREGATE =
@@ -143,7 +145,7 @@ function _environment(
         "threaded_lane_count" => THREAD_COUNT,
         "maximum_simultaneous_heavy_stages" => HEAVY_CONCURRENCY,
         "execution_lock_aggregate_sha256" => execution_lock_aggregate,
-        "active_amendment_id" => "AMENDMENT_017",
+        "active_amendment_id" => "AMENDMENT_018",
         "replaced_predecessor_environment" => replaced_predecessor_environment,
         "predecessor_instance_count" => predecessor_instance_count,
         "predecessor_origin_metadata_count" => predecessor_origin_metadata_count,
@@ -476,7 +478,7 @@ function _registry_seed(origin_id, library_id)
 end
 
 function validate_readiness(; require_sources::Bool = true)
-    verify_execution_lock_017()
+    verify_execution_lock_018()
     VERSION == v"1.12.6" || error("financial panel v1 requires Julia 1.12.6")
     Threads.nthreads() == THREAD_COUNT || error(
         "financial panel v1 requires --threads=$THREAD_COUNT; found $(Threads.nthreads())",
@@ -488,7 +490,7 @@ function validate_readiness(; require_sources::Bool = true)
         error("execution amendment thread count changed")
     amendment["threading"]["maximum_simultaneous_heavy_stages"] == HEAVY_CONCURRENCY ||
         error("execution amendment heavy-stage concurrency changed")
-    amendment["amendment_id"] == "AMENDMENT_017" ||
+    amendment["amendment_id"] == "AMENDMENT_018" ||
         error("active execution amendment changed")
     amendment["audit_key_shape"]["expected_key_count"] == 180 ||
         error("audit key count changed")
@@ -512,7 +514,7 @@ function validate_readiness(; require_sources::Bool = true)
 end
 
 function _write_environment(paths)
-    execution_lock_aggregate = verify_execution_lock_017()
+    execution_lock_aggregate = verify_execution_lock_018()
     if isfile(paths.environment)
         environment = TOML.parsefile(paths.environment)
         if get(environment, "execution_lock_aggregate_sha256", "") == execution_lock_aggregate
@@ -532,6 +534,7 @@ function _write_environment(paths)
             LOCK_014_AGGREGATE,
             LOCK_015_AGGREGATE,
             LOCK_016_AGGREGATE,
+            LOCK_017_AGGREGATE,
         )
         instance_count = isdir(paths.instances) ?
                          count(name -> endswith(name, ".toml"), readdir(paths.instances)) : 0
@@ -1065,7 +1068,7 @@ end
 function run_postdecision_phase()
     config, amendment = validate_readiness()
     output = _paths(config)
-    execution_lock_aggregate = verify_execution_lock_017()
+    execution_lock_aggregate = verify_execution_lock_018()
     _write_environment(output)
     structural_audit_path = joinpath(output.local_results, "STRUCTURAL_AUDIT.toml")
     isfile(structural_audit_path) || error("structural audit is absent; run the audit before postdecision")
@@ -1117,6 +1120,7 @@ function run_postdecision_phase()
                 LOCK_014_AGGREGATE,
                 LOCK_015_AGGREGATE,
                 LOCK_016_AGGREGATE,
+                LOCK_017_AGGREGATE,
                 execution_lock_aggregate,
             ),
         diagnostics = postdecision_return_quality,
@@ -1293,7 +1297,7 @@ end
 
 function run_smoke()
     config, _ = validate_readiness(; require_sources = false)
-    execution_lock_aggregate = verify_execution_lock_017()
+    execution_lock_aggregate = verify_execution_lock_018()
     jobs = build_synthetic_smoke_instances(THREAD_COUNT)
     mktempdir() do root
         output = (

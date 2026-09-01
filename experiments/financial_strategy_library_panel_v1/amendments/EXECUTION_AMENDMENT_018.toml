@@ -1,0 +1,30 @@
+schema_version = "financial-strategy-library-panel-execution-amendment-v18"
+experiment_id = "financial-strategy-library-panel-v1"
+amendment_id = "AMENDMENT_018"
+amendment_date = "2026-09-01"
+predecessor_amendment_id = "AMENDMENT_017"
+classification = "analysis_partition_certificate_rebinding"
+registered_partition_count = 180
+registered_rows_per_partition = 7
+failed_rerun_partition_binding_mismatch_count = 180
+passing_analysis_audit_existed_before_failed_rerun = true
+new_structural_results_written_by_failed_rerun = 0
+new_postdecision_results_written_by_failed_rerun = 0
+analysis_formulas_changed = false
+scientific_estimands_changed = false
+registered_denominators_changed = false
+source_result_records_changed = false
+raw_row_values_printed_or_committed = false
+
+[partition_rebinding]
+allowed_predecessor_execution_lock_aggregate_sha256 = "9eda494c80aaf31e1fdfc0adaa4bbdb7384e0e96288da224b041175c59fc4401"
+require_parquet_hash_validation = true
+require_parquet_schema_validation = true
+require_registered_row_count = true
+require_current_structural_source_hash = true
+require_current_postdecision_source_hash = true
+rewrite_parquet_when_only_certificate_binding_changed = false
+update_metadata_atomically = true
+source_hash_mismatch_is_fatal = true
+parquet_hash_mismatch_is_fatal = true
+unrelated_execution_lock_is_fatal = true

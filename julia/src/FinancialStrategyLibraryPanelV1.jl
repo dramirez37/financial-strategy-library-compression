@@ -159,6 +159,13 @@ const AMENDMENT_017_PATH = joinpath(
     "amendments",
     "EXECUTION_AMENDMENT_017.toml",
 )
+const AMENDMENT_018_PATH = joinpath(
+    REPOSITORY_ROOT,
+    "experiments",
+    "financial_strategy_library_panel_v1",
+    "amendments",
+    "EXECUTION_AMENDMENT_018.toml",
+)
 const ALGORITHM_IDS = (
     "jump_highs_tagged_cover",
     "requirement_mask_dp",
@@ -546,6 +553,25 @@ function load_panel_config(path::AbstractString = CONFIG_PATH)
     amendment["aggregate_namespace_amendment"] = aggregate_namespace_amendment
     amendment["resume_aggregate_namespace"] =
         aggregate_namespace_amendment["resume"]
+    partition_rebinding_amendment = TOML.parsefile(AMENDMENT_018_PATH)
+    partition_rebinding_amendment["schema_version"] ==
+    "financial-strategy-library-panel-execution-amendment-v18" ||
+        error("unsupported partition-rebinding execution amendment")
+    partition_rebinding_amendment["amendment_id"] == "AMENDMENT_018" ||
+        error("unexpected partition-rebinding amendment identifier")
+    partition_rebinding_amendment["predecessor_amendment_id"] == "AMENDMENT_017" ||
+        error("unexpected partition-rebinding amendment predecessor")
+    partition_rebinding_amendment["scientific_estimands_changed"] === false ||
+        error("partition-rebinding amendment changes registered estimands")
+    partition_rebinding_amendment["analysis_formulas_changed"] === false ||
+        error("partition-rebinding amendment changes analysis formulas")
+    partition_rebinding_amendment["source_result_records_changed"] === false ||
+        error("partition-rebinding amendment changes source results")
+    amendment["predecessor_amendment_id"] = amendment["amendment_id"]
+    amendment["amendment_id"] = partition_rebinding_amendment["amendment_id"]
+    amendment["partition_rebinding_amendment"] = partition_rebinding_amendment
+    amendment["analysis_partition_rebinding"] =
+        partition_rebinding_amendment["partition_rebinding"]
     return config, amendment
 end
 

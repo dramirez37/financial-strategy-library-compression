@@ -9,8 +9,8 @@ const FSLP1 = FinancialStrategyLibraryPanelV1
 include(joinpath(@__DIR__, "..", "scripts", "run_financial_strategy_library_panel_v1.jl"))
 const FSLP1Runner = RunFinancialStrategyLibraryPanelV1
 
-include(joinpath(@__DIR__, "..", "scripts", "lock_financial_strategy_library_panel_v1_execution_017.jl"))
-const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution017
+include(joinpath(@__DIR__, "..", "scripts", "lock_financial_strategy_library_panel_v1_execution_018.jl"))
+const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution018
 
 include(joinpath(@__DIR__, "..", "scripts", "analyze_financial_strategy_library_panel_v1.jl"))
 const FSLP1Analysis = AnalyzeFinancialStrategyLibraryPanelV1
@@ -23,7 +23,7 @@ const FSLP1Analysis = AnalyzeFinancialStrategyLibraryPanelV1
     @test amendment["threading"]["julia_threads"] == 8
     @test amendment["threading"]["concurrent_job_lanes"] == 8
     @test amendment["threading"]["maximum_simultaneous_heavy_stages"] == 2
-    @test amendment["amendment_id"] == "AMENDMENT_017"
+    @test amendment["amendment_id"] == "AMENDMENT_018"
     @test amendment["audit_parallelism"]["worker_count"] == 8
     @test amendment["audit_parallelism"]["postdecision_worker_count"] == 8
     @test amendment["audit_dispatch"]["new_method_invocation"] == "Base.invokelatest"
@@ -51,6 +51,10 @@ const FSLP1Analysis = AnalyzeFinancialStrategyLibraryPanelV1
     @test amendment["analysis_shape_correction"]["registered_key_count"] == 180
     @test amendment["resume_aggregate_namespace"]["require_directory_relative_aggregate_for_environment_recovery"] === true
     @test amendment["resume_aggregate_namespace"]["require_root_relative_aggregate_in_result_audit"] === true
+    @test amendment["analysis_partition_rebinding"]["require_parquet_hash_validation"] === true
+    @test amendment["analysis_partition_rebinding"]["require_current_structural_source_hash"] === true
+    @test amendment["analysis_partition_rebinding"]["require_current_postdecision_source_hash"] === true
+    @test amendment["analysis_partition_rebinding"]["rewrite_parquet_when_only_certificate_binding_changed"] === false
     analysis_stems = FSLP1Analysis._registered_analysis_stems()
     @test length(analysis_stems) == 180
     @test length(unique(analysis_stems)) == 180
@@ -60,7 +64,7 @@ const FSLP1Analysis = AnalyzeFinancialStrategyLibraryPanelV1
     @test length(unique(FSLP1.registered_job_keys())) == 180
 
     if isfile(FSLP1ExecutionLock.LOCK_PATH)
-        aggregate = FSLP1ExecutionLock.verify_execution_lock_017()
+        aggregate = FSLP1ExecutionLock.verify_execution_lock_018()
         @test occursin(r"^[0-9a-f]{64}$", aggregate)
         lock_text = read(FSLP1ExecutionLock.LOCK_PATH, String)
         one_hash = first(values(FSLP1ExecutionLock._hashes()))
@@ -165,6 +169,7 @@ end
             structural = joinpath(root, "structural"),
             postdecision = joinpath(root, "postdecision"),
             instances = joinpath(root, "instances"),
+            partitions = joinpath(root, "partitions"),
         )
         foreach(mkpath, paths)
         stem = "FSLP1-O2005__centralized_research_pool__equal_active_strategy"
@@ -185,6 +190,37 @@ end
         @test count(row -> row.unique_carrier, carriers) ==
               count(row -> count(job.instance.coverage[row, :]) == 1,
                     axes(job.instance.coverage, 1))
+
+        first_audit = repeat("c", 64)
+        successor_audit = repeat("d", 64)
+        successor_lock = repeat("e", 64)
+        @test FSLP1Analysis._write_partition(
+            stem,
+            paths,
+            first_audit,
+            FSLP1Analysis.LOCK_017_AGGREGATE,
+        ) == :created
+        partition = FSLP1Analysis._partition_paths(paths, stem)
+        parquet_sha = FSLP1.FinancialPanelParquet.sha256_file(partition.parquet)
+        @test FSLP1Analysis._write_partition(
+            stem,
+            paths,
+            successor_audit,
+            successor_lock,
+        ) == :reused
+        rebound = TOML.parsefile(partition.metadata)
+        @test rebound["result_audit_sha256"] == successor_audit
+        @test rebound["execution_lock_aggregate_sha256"] == successor_lock
+        @test FSLP1.FinancialPanelParquet.sha256_file(partition.parquet) == parquet_sha
+        write(joinpath(paths.postdecision, stem * ".toml"), FSLP1.toml_text(Dict(
+            "schema_version" => "changed-source-fixture",
+        )))
+        @test_throws ErrorException FSLP1Analysis._write_partition(
+            stem,
+            paths,
+            repeat("f", 64),
+            successor_lock,
+        )
     end
 end
 

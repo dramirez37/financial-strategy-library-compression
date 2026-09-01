@@ -20,6 +20,8 @@ const REPOSITORY_ROOT = normpath(joinpath(@__DIR__, "..", ".."))
 const ALGORITHM_IDS = collect(FinancialStrategyLibraryPanelV1.ALGORITHM_IDS)
 const SELECTED_ID_SEPARATOR = '\u001f'
 const ANALYSIS_THREAD_COUNT = 8
+const LOCK_017_AGGREGATE =
+    "9eda494c80aaf31e1fdfc0adaa4bbdb7384e0e96288da224b041175c59fc4401"
 
 const ALGORITHM_SCHEMA = (
     origin_id = String,
@@ -332,7 +334,7 @@ function audit_ready()
         error("final audit algorithm-row count differs")
     get(audit, "unsuccessful_rows_retained_in_denominators", false) === true ||
         error("final audit dropped unsuccessful rows")
-    amendment["amendment_id"] == "AMENDMENT_017" || error("active analysis amendment changed")
+    amendment["amendment_id"] == "AMENDMENT_018" || error("active analysis amendment changed")
     return config, amendment, paths, audit
 end
 
@@ -572,16 +574,12 @@ function _algorithm_rows(stem, paths)
     return rows
 end
 
-function _partition_valid(partition, expected_result_audit_sha256, expected_lock)
+function _checked_partition_metadata(partition)
     isfile(partition.metadata) || return false
     isfile(partition.parquet) || error("terminal analysis partition metadata has no Parquet file")
     metadata = TOML.parsefile(partition.metadata)
     metadata["schema_version"] == "financial-panel-analysis-partition-v1" ||
         error("unexpected analysis partition schema")
-    metadata["result_audit_sha256"] == expected_result_audit_sha256 ||
-        error("analysis partition is bound to a different result audit")
-    metadata["execution_lock_aggregate_sha256"] == expected_lock ||
-        error("analysis partition is bound to a different execution lock")
     sha256_file(partition.parquet) == metadata["parquet_sha256"] ||
         error("analysis partition hash differs")
     validate_parquet(
@@ -589,6 +587,16 @@ function _partition_valid(partition, expected_result_audit_sha256, expected_lock
         expected_columns = propertynames(ALGORITHM_SCHEMA),
         expected_rows = 7,
     )
+    return metadata
+end
+
+function _partition_valid(partition, expected_result_audit_sha256, expected_lock)
+    metadata = _checked_partition_metadata(partition)
+    metadata === false && return false
+    metadata["result_audit_sha256"] == expected_result_audit_sha256 ||
+        error("analysis partition is bound to a different result audit")
+    metadata["execution_lock_aggregate_sha256"] == expected_lock ||
+        error("analysis partition is bound to a different execution lock")
     return true
 end
 
@@ -597,7 +605,27 @@ function _write_partition(stem, paths, result_audit_sha256, execution_lock)
     if isfile(partition.parquet) && !isfile(partition.metadata)
         rm(partition.parquet; force = true)
     end
-    _partition_valid(partition, result_audit_sha256, execution_lock) && return :reused
+    if isfile(partition.metadata)
+        metadata = _checked_partition_metadata(partition)
+        structural_sha = sha256_file(joinpath(paths.structural, stem * ".toml"))
+        postdecision_sha = sha256_file(joinpath(paths.postdecision, stem * ".toml"))
+        metadata["structural_result_sha256"] == structural_sha ||
+            error("analysis partition structural source hash differs")
+        metadata["postdecision_result_sha256"] == postdecision_sha ||
+            error("analysis partition postdecision source hash differs")
+        saved_lock = String(metadata["execution_lock_aggregate_sha256"])
+        saved_lock in (LOCK_017_AGGREGATE, execution_lock) ||
+            error("analysis partition belongs to an unrelated execution lock")
+        if saved_lock != execution_lock ||
+           metadata["result_audit_sha256"] != result_audit_sha256
+            metadata["execution_lock_aggregate_sha256"] = execution_lock
+            metadata["result_audit_sha256"] = result_audit_sha256
+            _atomic_toml(partition.metadata, metadata; replace = true)
+        end
+        _partition_valid(partition, result_audit_sha256, execution_lock) ||
+            error("rebound analysis partition did not validate")
+        return :reused
+    end
     rows = _algorithm_rows(stem, paths)
     length(rows) == 7 || error("analysis partition does not contain seven algorithm rows")
     columns = _column_table(rows, ALGORITHM_SCHEMA)

@@ -1,0 +1,49 @@
+schema_version = "financial-strategy-library-panel-execution-amendment-v21"
+experiment_id = "financial-strategy-library-panel-v1"
+amendment_id = "AMENDMENT_021"
+amendment_date = "2026-09-01"
+predecessor_amendment_id = "AMENDMENT_020"
+classification = "eliminate_redundant_exact_instance_serialization"
+corrective_run_started_before_amendment = true
+lock_020_corrected_mip_checkpoint_count = 4
+lock_020_corrected_structural_result_count = 0
+remaining_lock_005_mip_error_checkpoint_count = 90
+scientific_estimands_changed = false
+algorithm_definition_changed = false
+registered_instances_changed = false
+weights_changed = false
+seeds_changed = false
+time_limits_changed = false
+solver_settings_changed = false
+analysis_formulas_changed = false
+registered_denominators_changed = false
+raw_row_values_printed_or_committed = false
+
+[instance_hash_reuse]
+source = "SHA-256 of the exact serialized instance file read by the runner"
+file_hash_computed_before_deserialization = false
+file_hash_computed_independently_from_payload = true
+predecessor_checkpoint_instance_hash_equality_required = true
+canonical_serialization_hash_used_when_precomputed_hash_absent = true
+mip_result_uses_precomputed_file_hash = true
+panel_payload_uses_precomputed_file_hash = true
+in_memory_audit_uses_precomputed_file_hash = true
+hash_value_or_schema_changed = false
+
+[mixed_checkpoint_recovery]
+lock_005_unaffected_checkpoint_count = 752
+lock_020_corrected_mip_checkpoint_count = 4
+validate_all_checkpoint_instance_hashes = true
+validate_all_checkpoint_solver_logs = true
+resume_lock_020_mip_candidates_without_rerun = true
+rerun_only_remaining_lock_005_mip_projection_failures = true
+expected_new_mip_solver_runs = 90
+
+[final_audit]
+expected_corrected_mip_row_count = 94
+expected_mip_candidate_row_count = 108
+require_zero_algorithm_errors = true
+require_zero_execution_failures = true
+require_mip_dp_exact_burden_agreement = true
+refresh_all_postdecision_records = true
+rematerialize_all_analysis_partitions = true

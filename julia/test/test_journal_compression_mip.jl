@@ -488,6 +488,16 @@ end
         exact_crosscheck = :enumeration,
         enumeration_crosscheck_limit = 0,
     )
+    instance_sha256 = journal_compression_instance_sha256(instance)
+    prehashed = solve_journal_compression_mip(
+        instance;
+        precomputed_instance_sha256 = instance_sha256,
+    )
+    @test prehashed.instance_sha256 == instance_sha256
+    @test_throws ArgumentError solve_journal_compression_mip(
+        instance;
+        precomputed_instance_sha256 = "not-a-sha256",
+    )
 
     complete_ties = JournalTieHandling(
         :complete;

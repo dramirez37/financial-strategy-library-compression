@@ -915,6 +915,15 @@ solver work, permits replacement only for the matching MIP failure, and recovers
 the single interrupted result from its intact checkpoints. Scientific inputs,
 algorithms, controls, outcomes, estimands, and licensed-data policy are unchanged.
 
+Amendment 021 follows a stopped Lock 020 run with four corrected MIP checkpoints
+and no completed corrected structural result. It eliminates repeated canonical
+serialization of the same large exact instance by plumbing the independently
+computed serialized-file SHA-256 through the MIP record, panel payload, and
+in-memory audit. The four Lock 020 MIP checkpoints are validated and resumed;
+the remaining 90 Lock 005 MIP failures are the only new solver runs. Hash values,
+schemas, scientific inputs, algorithms, controls, outcomes, estimands, and the
+licensed-data boundary are unchanged.
+
 | Class | Expected future location or form | Current status |
 |---|---|---|
 | remaining primary research theorem declarations | future extensions under `formal/StrategyInnovation/` | none in the adopted T1--T7 package; F0, F1--F8, S4--S7, C2, and CS1 are supporting results |

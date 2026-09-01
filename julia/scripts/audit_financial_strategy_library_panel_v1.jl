@@ -8,8 +8,8 @@ using TOML
 include(joinpath(@__DIR__, "..", "src", "FinancialStrategyLibraryPanelV1.jl"))
 using .FinancialStrategyLibraryPanelV1
 
-include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_020.jl"))
-using .LockFinancialStrategyLibraryPanelV1Execution020: verify_execution_lock_020
+include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_021.jl"))
+using .LockFinancialStrategyLibraryPanelV1Execution021: verify_execution_lock_021
 
 export audit_all_results, audit_structural_results, main
 
@@ -381,7 +381,7 @@ function _audit_structural_stem(stem, paths)
             push!(errors, "$stem exact MIP and DP burdens disagree")
     end
     corrected_mip = get(payload, "corrective_execution_amendment_id", "") ==
-                    "AMENDMENT_020"
+                    "AMENDMENT_021"
     if corrected_mip
         String.(get(payload, "corrected_algorithm_ids", String[])) ==
         ["jump_highs_tagged_cover"] ||
@@ -426,7 +426,7 @@ function audit_structural_results(; write_report::Bool = true)
         "financial panel structural audit requires --threads=$AUDIT_THREAD_COUNT; " *
         "found $(Threads.nthreads())",
     )
-    execution_lock = verify_execution_lock_020()
+    execution_lock = verify_execution_lock_021()
     config, _ = load_panel_config()
     paths = _paths(config)
     errors = String[]
@@ -487,11 +487,11 @@ function audit_structural_results(; write_report::Bool = true)
     checked_algorithm_rows == 1260 ||
         push!(errors, "audit saw $checked_algorithm_rows algorithm terminal rows instead of 1260")
     algorithm_error_count == 0 ||
-        push!(errors, "Amendment 020 requires zero algorithm errors")
+        push!(errors, "Amendment 021 requires zero algorithm errors")
     corrected_mip_count == 94 ||
-        push!(errors, "Amendment 020 corrected MIP row count differs from 94")
+        push!(errors, "Amendment 021 corrected MIP row count differs from 94")
     candidate_count == 736 ||
-        push!(errors, "Amendment 020 candidate count differs from 736")
+        push!(errors, "Amendment 021 candidate count differs from 736")
     report = Dict{String,Any}(
         "schema_version" => "financial-strategy-library-panel-structural-audit-v1",
         "experiment_id" => "financial-strategy-library-panel-v1",
@@ -574,8 +574,8 @@ function _audit_postdecision_stem(stem, paths)
     result_sha256 = _sha256_file(post_path)
     get(payload, "licensed_rows_included", true) === false ||
         push!(errors, "$stem postdecision record contains licensed rows")
-    get(payload, "corrective_execution_amendment_id", "") == "AMENDMENT_020" ||
-        push!(errors, "$stem postdecision record was not refreshed under Amendment 020")
+    get(payload, "corrective_execution_amendment_id", "") == "AMENDMENT_021" ||
+        push!(errors, "$stem postdecision record was not refreshed under Amendment 021")
     get(payload, "structural_result_terminal_and_audited_before_open", false) === true ||
         push!(errors, "$stem postdecision record lacks the structural firewall certificate")
     if source["schema_version"] in (

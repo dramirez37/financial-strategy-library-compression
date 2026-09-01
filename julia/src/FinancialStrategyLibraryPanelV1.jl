@@ -180,6 +180,13 @@ const AMENDMENT_020_PATH = joinpath(
     "amendments",
     "EXECUTION_AMENDMENT_020.toml",
 )
+const AMENDMENT_021_PATH = joinpath(
+    REPOSITORY_ROOT,
+    "experiments",
+    "financial_strategy_library_panel_v1",
+    "amendments",
+    "EXECUTION_AMENDMENT_021.toml",
+)
 const ALGORITHM_IDS = (
     "jump_highs_tagged_cover",
     "requirement_mask_dp",
@@ -624,6 +631,26 @@ function load_panel_config(path::AbstractString = CONFIG_PATH)
     amendment["amendment_id"] = checkpoint_amendment["amendment_id"]
     amendment["checkpoint_namespace_amendment"] = checkpoint_amendment
     amendment["checkpoint_recovery"] = checkpoint_amendment["checkpoint_recovery"]
+    serialization_amendment = TOML.parsefile(AMENDMENT_021_PATH)
+    serialization_amendment["schema_version"] ==
+    "financial-strategy-library-panel-execution-amendment-v21" ||
+        error("unsupported exact-instance serialization amendment")
+    serialization_amendment["amendment_id"] == "AMENDMENT_021" ||
+        error("unexpected exact-instance serialization amendment identifier")
+    serialization_amendment["predecessor_amendment_id"] == "AMENDMENT_020" ||
+        error("unexpected exact-instance serialization amendment predecessor")
+    serialization_amendment["scientific_estimands_changed"] === false ||
+        error("exact-instance serialization amendment changes registered estimands")
+    serialization_amendment["algorithm_definition_changed"] === false ||
+        error("exact-instance serialization amendment changes the registered algorithm")
+    serialization_amendment["registered_instances_changed"] === false ||
+        error("exact-instance serialization amendment changes registered instances")
+    amendment["predecessor_amendment_id"] = amendment["amendment_id"]
+    amendment["amendment_id"] = serialization_amendment["amendment_id"]
+    amendment["serialization_amendment"] = serialization_amendment
+    amendment["instance_hash_reuse"] = serialization_amendment["instance_hash_reuse"]
+    amendment["mixed_checkpoint_recovery"] =
+        serialization_amendment["mixed_checkpoint_recovery"]
     return config, amendment
 end
 
@@ -2437,6 +2464,7 @@ function _run_one_algorithm(
     greedy_cache,
     preprocessing,
     preprocessed_instance,
+    precomputed_instance_sha256,
 )
     start = time_ns()
     logs = Dict{String,String}()
@@ -2574,6 +2602,7 @@ function _run_one_algorithm(
                 warm_start_source = "registered weighted greedy plus reverse deletion",
                 exact_crosscheck = :none,
                 preprocessing_result = preprocessing,
+                precomputed_instance_sha256,
             )
             record = _base_algorithm_record(algorithm_id, true, string(result.status), time_ns() - start)
             diagnostics = result.diagnostics
@@ -2673,7 +2702,17 @@ function run_algorithm_suite(
     heavy_executor = function(task)
         task()
     end,
+    precomputed_instance_sha256::Union{Nothing,AbstractString} = nothing,
 )
+    instance_sha256 = if isnothing(precomputed_instance_sha256)
+        journal_compression_instance_sha256(instance)
+    else
+        value = String(precomputed_instance_sha256)
+        occursin(r"^[0-9a-f]{64}$", value) || error(
+            "precomputed panel instance hash is not a lowercase SHA-256 digest",
+        )
+        value
+    end
     controls = (
         dp_requirement_limit = Int(config["algorithms"]["dp_requirement_limit"]),
         enumeration_strategy_limit = Int(config["algorithms"]["enumeration_optional_strategy_limit"]),
@@ -2734,6 +2773,7 @@ function run_algorithm_suite(
             warm_start,
             preprocessing,
             preprocessed_instance,
+            instance_sha256,
         )
         record, algorithm_logs, selection = algorithm_id in heavy_algorithms ?
                                             heavy_executor(task) : task()
@@ -2806,7 +2846,7 @@ function run_algorithm_suite(
         "origin_id" => String(origin_id),
         "library_id" => String(library_id),
         "schedule_id" => String(schedule_id),
-        "instance_sha256" => journal_compression_instance_sha256(instance),
+        "instance_sha256" => instance_sha256,
         "terminal" => true,
         "algorithm_terminal_row_count" => length(records),
         "registered_algorithm_ids" => collect(ALGORITHM_IDS),
@@ -2818,7 +2858,11 @@ function run_algorithm_suite(
         "postdecision_opened" => false,
         "licensed_rows_included" => false,
     )
-    audit = audit_instance_result(instance, payload)
+    audit = audit_instance_result(
+        instance,
+        payload;
+        precomputed_instance_sha256 = instance_sha256,
+    )
     audit["passed"] === true || error("in-memory algorithm result audit failed")
     return payload, logs
 end

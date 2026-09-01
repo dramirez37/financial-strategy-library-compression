@@ -9,8 +9,8 @@ using TOML
 include(joinpath(@__DIR__, "..", "src", "FinancialStrategyLibraryPanelV1.jl"))
 using .FinancialStrategyLibraryPanelV1
 
-include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_020.jl"))
-using .LockFinancialStrategyLibraryPanelV1Execution020: verify_execution_lock_020
+include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_021.jl"))
+using .LockFinancialStrategyLibraryPanelV1Execution021: verify_execution_lock_021
 
 export main,
        prepare_instances,
@@ -53,6 +53,8 @@ const LOCK_018_AGGREGATE =
     "e1489a49bd9b9a9a49c94f5ad145919133b88fe26622a8a293becd0fd2f9820b"
 const LOCK_019_AGGREGATE =
     "bd5b20ff313fc2d8ae1b60387c11c1a00fdcdc432d0ea1fd9f9174505c09298e"
+const LOCK_020_AGGREGATE =
+    "2f1322c99baeca02f78daf56d210efb64110b54ad4f517a40cb2efb5e581f74c"
 const LOCK_013_POSTDECISION_AGGREGATE =
     "3214c2ee9fa7bee99089b5017b5ec8d5b1bc26b2b0cee174921ae2fd958ff9a1"
 const LOCK_015_POSTDECISION_DIRECTORY_AGGREGATE =
@@ -151,7 +153,7 @@ function _environment(
         "threaded_lane_count" => THREAD_COUNT,
         "maximum_simultaneous_heavy_stages" => HEAVY_CONCURRENCY,
         "execution_lock_aggregate_sha256" => execution_lock_aggregate,
-        "active_amendment_id" => "AMENDMENT_020",
+        "active_amendment_id" => "AMENDMENT_021",
         "replaced_predecessor_environment" => replaced_predecessor_environment,
         "predecessor_instance_count" => predecessor_instance_count,
         "predecessor_origin_metadata_count" => predecessor_origin_metadata_count,
@@ -447,27 +449,66 @@ function _corrective_resume_algorithms_from_checkpoints(
     instance;
     precomputed_instance_sha256 = nothing,
 )
-    saved = _load_algorithm_checkpoints(
-        output,
-        stem,
-        instance,
-        LOCK_005_AGGREGATE;
-        precomputed_instance_sha256,
-    )
-    length(saved) == 7 || error(
-        "corrective checkpoint preflight did not recover all seven registered algorithms",
-    )
-    mip = saved["jump_highs_tagged_cover"].record
-    _known_mip_projection_failure(mip) || error(
-        "corrective checkpoint preflight lacks the registered MIP projection failure",
-    )
-    resumed = Dict{String,Any}()
+    instance_sha256 = isnothing(precomputed_instance_sha256) ?
+                      journal_compression_instance_sha256(instance) :
+                      String(precomputed_instance_sha256)
+    saved = Dict{String,Any}()
+    mip_requires_rerun = false
     for algorithm_id in FinancialStrategyLibraryPanelV1.ALGORITHM_IDS
-        algorithm_id == "jump_highs_tagged_cover" && continue
-        resumed[algorithm_id] = saved[algorithm_id]
+        path = _algorithm_checkpoint_path(output, stem, algorithm_id)
+        isfile(path) || error("corrective checkpoint is absent: $path")
+        payload = TOML.parsefile(path)
+        payload["schema_version"] == ALGORITHM_CHECKPOINT_SCHEMA || error(
+            "corrective checkpoint has an unrecognized schema: $path",
+        )
+        payload["instance_sha256"] == instance_sha256 ||
+            error("corrective checkpoint instance hash differs: $path")
+        payload["algorithm_id"] == algorithm_id ||
+            error("corrective checkpoint algorithm differs: $path")
+        payload["terminal"] === true || error("corrective checkpoint is nonterminal: $path")
+        record = payload["record"]
+        record["algorithm_id"] == algorithm_id ||
+            error("corrective checkpoint record algorithm differs: $path")
+        record["terminal"] === true || error("corrective checkpoint record is nonterminal: $path")
+        for log_entry in get(payload, "solver_logs", Any[])
+            log_path = joinpath(output.local_results, String(log_entry["path"]))
+            isfile(log_path) || error("corrective checkpoint solver log is absent: $log_path")
+            _sha256_file(log_path) == log_entry["sha256"] ||
+                error("corrective checkpoint solver log hash differs: $log_path")
+        end
+        if algorithm_id == "jump_highs_tagged_cover"
+            checkpoint_lock = String(payload["execution_lock_aggregate_sha256"])
+            if checkpoint_lock == LOCK_005_AGGREGATE
+                _known_mip_projection_failure(record) || error(
+                    "Lock 005 corrective checkpoint lacks the registered MIP failure",
+                )
+                mip_requires_rerun = true
+                continue
+            end
+            checkpoint_lock == LOCK_020_AGGREGATE || error(
+                "corrected MIP checkpoint belongs to an undeclared execution lock: $path",
+            )
+            get(payload, "corrective_execution_amendment_id", "") == "AMENDMENT_020" ||
+                error("Lock 020 corrected MIP checkpoint lacks amendment provenance")
+            get(record, "candidate_returned", false) === true ||
+                error("Lock 020 corrected MIP checkpoint lacks a candidate")
+        else
+            payload["execution_lock_aggregate_sha256"] == LOCK_005_AGGREGATE || error(
+                "unaffected corrective checkpoint is not bound to Lock 005: $path",
+            )
+        end
+        saved[algorithm_id] = (
+            record = record,
+            selection = _checkpoint_selection(instance, record),
+        )
     end
-    length(resumed) == 6 || error("corrective checkpoint preflight did not preserve six algorithms")
-    return resumed
+    expected_saved = mip_requires_rerun ? 6 : 7
+    length(saved) == expected_saved || error(
+        mip_requires_rerun ?
+        "corrective checkpoint preflight did not preserve the six unaffected algorithms" :
+        "corrective checkpoint preflight did not recover all seven algorithms",
+    )
+    return saved
 end
 
 
@@ -586,7 +627,7 @@ function _write_algorithm_checkpoint(
     if replace
         payload["corrected_predecessor_execution_lock_aggregate_sha256"] =
             LOCK_005_AGGREGATE
-        payload["corrective_execution_amendment_id"] = "AMENDMENT_020"
+        payload["corrective_execution_amendment_id"] = "AMENDMENT_021"
     end
     _atomic_toml(path, payload; replace)
     return path
@@ -601,7 +642,7 @@ function _registry_seed(origin_id, library_id)
 end
 
 function validate_readiness(; require_sources::Bool = true)
-    verify_execution_lock_020()
+    verify_execution_lock_021()
     VERSION == v"1.12.6" || error("financial panel v1 requires Julia 1.12.6")
     Threads.nthreads() == THREAD_COUNT || error(
         "financial panel v1 requires --threads=$THREAD_COUNT; found $(Threads.nthreads())",
@@ -613,7 +654,7 @@ function validate_readiness(; require_sources::Bool = true)
         error("execution amendment thread count changed")
     amendment["threading"]["maximum_simultaneous_heavy_stages"] == HEAVY_CONCURRENCY ||
         error("execution amendment heavy-stage concurrency changed")
-    amendment["amendment_id"] == "AMENDMENT_020" ||
+    amendment["amendment_id"] == "AMENDMENT_021" ||
         error("active execution amendment changed")
     amendment["audit_key_shape"]["expected_key_count"] == 180 ||
         error("audit key count changed")
@@ -637,7 +678,7 @@ function validate_readiness(; require_sources::Bool = true)
 end
 
 function _write_environment(paths)
-    execution_lock_aggregate = verify_execution_lock_020()
+    execution_lock_aggregate = verify_execution_lock_021()
     if isfile(paths.environment)
         environment = TOML.parsefile(paths.environment)
         if get(environment, "execution_lock_aggregate_sha256", "") == execution_lock_aggregate
@@ -660,6 +701,7 @@ function _write_environment(paths)
             LOCK_017_AGGREGATE,
             LOCK_018_AGGREGATE,
             LOCK_019_AGGREGATE,
+            LOCK_020_AGGREGATE,
         )
         instance_count = isdir(paths.instances) ?
                          count(name -> endswith(name, ".toml"), readdir(paths.instances)) : 0
@@ -1086,13 +1128,14 @@ function run_structural_phase()
                     saved;
                     precomputed_instance_sha256 = instance_file_sha256,
                 )
-                isnothing(corrective_resume) ||
-                    _corrective_resume_algorithms_from_checkpoints(
+                if !isnothing(corrective_resume)
+                    corrective_resume = _corrective_resume_algorithms_from_checkpoints(
                         output,
                         job.stem,
                         instance;
                         precomputed_instance_sha256 = instance_file_sha256,
                     )
+                end
             elseif _known_lock019_checkpoint_namespace_failure(saved)
                 instance = _read_instance(instance_path)
                 instance_file_sha256 = _sha256_file(instance_path)
@@ -1165,11 +1208,12 @@ function run_structural_phase()
                 checkpoint_callback,
                 resume_algorithms,
                 heavy_executor,
+                precomputed_instance_sha256 = instance_file_sha256,
             )
             payload["thread_lane"] = lane
             payload["multistart_seed"] = _registry_seed(job.origin_id, job.library_id)
             if !isnothing(corrective_resume)
-                payload["corrective_execution_amendment_id"] = "AMENDMENT_020"
+                payload["corrective_execution_amendment_id"] = "AMENDMENT_021"
                 payload["corrected_algorithm_ids"] = ["jump_highs_tagged_cover"]
                 payload["preserved_algorithm_ids"] = [
                     algorithm_id for algorithm_id in
@@ -1240,7 +1284,7 @@ end
 function run_postdecision_phase()
     config, amendment = validate_readiness()
     output = _paths(config)
-    execution_lock_aggregate = verify_execution_lock_020()
+    execution_lock_aggregate = verify_execution_lock_021()
     _write_environment(output)
     structural_audit_path = joinpath(output.local_results, "STRUCTURAL_AUDIT.toml")
     isfile(structural_audit_path) || error("structural audit is absent; run the audit before postdecision")
@@ -1268,7 +1312,7 @@ function run_postdecision_phase()
     postdecision_current = function(path)
         isfile(path) || return false
         payload = TOML.parsefile(path)
-        return get(payload, "corrective_execution_amendment_id", "") == "AMENDMENT_020"
+        return get(payload, "corrective_execution_amendment_id", "") == "AMENDMENT_021"
     end
     pending_jobs = [
         job for job in jobs if !postdecision_current(
@@ -1464,7 +1508,7 @@ function run_postdecision_phase()
             )
         end
         payload["thread_lane"] = lane
-        payload["corrective_execution_amendment_id"] = "AMENDMENT_020"
+        payload["corrective_execution_amendment_id"] = "AMENDMENT_021"
         if haskey(postdecision_return_quality, job.origin_id)
             payload["return_quality"] = postdecision_return_quality[job.origin_id]
         end
@@ -1477,7 +1521,7 @@ end
 
 function run_smoke()
     config, _ = validate_readiness(; require_sources = false)
-    execution_lock_aggregate = verify_execution_lock_020()
+    execution_lock_aggregate = verify_execution_lock_021()
     jobs = build_synthetic_smoke_instances(THREAD_COUNT)
     mktempdir() do root
         output = (

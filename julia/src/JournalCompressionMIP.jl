@@ -756,6 +756,7 @@ function solve_journal_compression_mip(
     enumeration_crosscheck_limit::Integer = 20,
     dp_crosscheck_requirement_limit::Integer = 18,
     preprocessing_result::Union{Nothing,TaggedCoverPreprocessingResult} = nothing,
+    precomputed_instance_sha256::Union{Nothing,AbstractString} = nothing,
 )
     validate_journal_compression_instance(instance)
     instance.tie_handling.mode == :complete && throw(
@@ -768,6 +769,15 @@ function solve_journal_compression_mip(
         enumeration_crosscheck_limit,
         dp_crosscheck_requirement_limit,
     )
+    instance_sha256 = if isnothing(precomputed_instance_sha256)
+        journal_compression_instance_sha256(instance)
+    else
+        value = String(precomputed_instance_sha256)
+        occursin(r"^[0-9a-f]{64}$", value) || throw(
+            ArgumentError("precomputed_instance_sha256 must be a lowercase SHA-256 digest"),
+        )
+        value
+    end
     total_start = time_ns()
     controls = _journal_mip_controls(
         random_seed,
@@ -894,7 +904,7 @@ function solve_journal_compression_mip(
         JOURNAL_MIP_SOLUTION_SCHEMA_VERSION,
         :jump_highs_tagged_cover,
         status,
-        journal_compression_instance_sha256(instance),
+        instance_sha256,
         instance.strategy_ids,
         controls,
         preprocessing_summary,

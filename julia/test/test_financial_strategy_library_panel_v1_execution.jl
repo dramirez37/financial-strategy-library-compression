@@ -9,8 +9,8 @@ const FSLP1 = FinancialStrategyLibraryPanelV1
 include(joinpath(@__DIR__, "..", "scripts", "run_financial_strategy_library_panel_v1.jl"))
 const FSLP1Runner = RunFinancialStrategyLibraryPanelV1
 
-include(joinpath(@__DIR__, "..", "scripts", "lock_financial_strategy_library_panel_v1_execution_020.jl"))
-const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution020
+include(joinpath(@__DIR__, "..", "scripts", "lock_financial_strategy_library_panel_v1_execution_021.jl"))
+const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution021
 
 include(joinpath(@__DIR__, "..", "scripts", "analyze_financial_strategy_library_panel_v1.jl"))
 const FSLP1Analysis = AnalyzeFinancialStrategyLibraryPanelV1
@@ -23,7 +23,7 @@ const FSLP1Analysis = AnalyzeFinancialStrategyLibraryPanelV1
     @test amendment["threading"]["julia_threads"] == 8
     @test amendment["threading"]["concurrent_job_lanes"] == 8
     @test amendment["threading"]["maximum_simultaneous_heavy_stages"] == 2
-    @test amendment["amendment_id"] == "AMENDMENT_020"
+    @test amendment["amendment_id"] == "AMENDMENT_021"
     @test amendment["mip_warm_start_projection"]["follow_duplicate_and_dominance_elimination_targets"] === true
     @test amendment["mip_warm_start_projection"]["residual_exact_coverage_required"] === true
     @test amendment["mip_warm_start_projection"]["projected_exact_burden_may_not_increase"] === true
@@ -33,6 +33,9 @@ const FSLP1Analysis = AnalyzeFinancialStrategyLibraryPanelV1
     @test amendment["checkpoint_recovery"]["prevalidate_before_solver"] === true
     @test amendment["checkpoint_recovery"]["require_all_seven_checkpoint_rows"] === true
     @test amendment["checkpoint_recovery"]["require_exact_lock_005_aggregate"] === true
+    @test amendment["instance_hash_reuse"]["mip_result_uses_precomputed_file_hash"] === true
+    @test amendment["instance_hash_reuse"]["in_memory_audit_uses_precomputed_file_hash"] === true
+    @test amendment["mixed_checkpoint_recovery"]["lock_020_corrected_mip_checkpoint_count"] == 4
     @test amendment["audit_parallelism"]["worker_count"] == 8
     @test amendment["audit_parallelism"]["postdecision_worker_count"] == 8
     @test amendment["audit_dispatch"]["new_method_invocation"] == "Base.invokelatest"
@@ -73,7 +76,7 @@ const FSLP1Analysis = AnalyzeFinancialStrategyLibraryPanelV1
     @test length(unique(FSLP1.registered_job_keys())) == 180
 
     if isfile(FSLP1ExecutionLock.LOCK_PATH)
-        aggregate = FSLP1ExecutionLock.verify_execution_lock_020()
+        aggregate = FSLP1ExecutionLock.verify_execution_lock_021()
         @test occursin(r"^[0-9a-f]{64}$", aggregate)
         lock_text = read(FSLP1ExecutionLock.LOCK_PATH, String)
         one_hash = first(values(FSLP1ExecutionLock._hashes()))
@@ -239,7 +242,7 @@ end
             successor_lock,
         ) == :rematerialized
         rematerialized = TOML.parsefile(partition.metadata)
-        @test rematerialized["corrective_execution_amendment_id"] == "AMENDMENT_020"
+        @test rematerialized["corrective_execution_amendment_id"] == "AMENDMENT_021"
         @test rematerialized["rematerialized_from_execution_lock_aggregate_sha256"] ==
               FSLP1Analysis.LOCK_018_AGGREGATE
         @test rematerialized["execution_lock_aggregate_sha256"] == successor_lock
@@ -565,7 +568,7 @@ end
             "zero_return_substituted" => false,
             "unavailable_algorithm_row_count" => 7,
             "licensed_rows_included" => false,
-            "corrective_execution_amendment_id" => "AMENDMENT_020",
+            "corrective_execution_amendment_id" => "AMENDMENT_021",
             "return_quality" => Dict(
                 "interior_missing_return_rows" => 0,
                 "unexpected_return_flag_rows" => 0,
@@ -608,7 +611,7 @@ end
             "postdecision_score_fabricated" => false,
             "unavailable_algorithm_row_count" => 7,
             "licensed_rows_included" => false,
-            "corrective_execution_amendment_id" => "AMENDMENT_020",
+            "corrective_execution_amendment_id" => "AMENDMENT_021",
             "return_quality" => Dict(
                 "interior_missing_return_rows" => 0,
                 "unexpected_return_flag_rows" => 0,
@@ -1095,6 +1098,20 @@ end
             checkpoints = joinpath(root, "checkpoints"),
             solver_logs = joinpath(root, "solver_logs"),
         )
+        for other_record in payload["algorithms"]
+            other_record["algorithm_id"] == "jump_highs_tagged_cover" && continue
+            other_selection = FSLP1Runner._checkpoint_selection(job.instance, other_record)
+            FSLP1Runner._write_algorithm_checkpoint(
+                output,
+                "corrective-fixture",
+                job.instance,
+                FSLP1Runner.LOCK_005_AGGREGATE,
+                other_record["algorithm_id"],
+                other_record,
+                other_selection,
+                Dict{String,String}(),
+            )
+        end
         predecessor_path = FSLP1Runner._write_algorithm_checkpoint(
             output,
             "corrective-fixture",
@@ -1109,7 +1126,7 @@ end
         mip_logs = haskey(logs, "jump_highs_tagged_cover") ?
                    Dict("jump_highs_tagged_cover" => logs["jump_highs_tagged_cover"]) :
                    Dict{String,String}()
-        corrected_lock = repeat("c", 64)
+        corrected_lock = FSLP1Runner.LOCK_020_AGGREGATE
         corrected_path = FSLP1Runner._write_algorithm_checkpoint(
             output,
             "corrective-fixture",
@@ -1123,11 +1140,21 @@ end
         )
         @test corrected_path == predecessor_path
         corrected = TOML.parsefile(corrected_path)
-        @test corrected["corrective_execution_amendment_id"] == "AMENDMENT_020"
+        @test corrected["corrective_execution_amendment_id"] == "AMENDMENT_021"
         @test corrected["corrected_predecessor_execution_lock_aggregate_sha256"] ==
               FSLP1Runner.LOCK_005_AGGREGATE
         @test corrected["execution_lock_aggregate_sha256"] == corrected_lock
         @test corrected["record"]["candidate_returned"] === true
+        corrected["corrective_execution_amendment_id"] = "AMENDMENT_020"
+        FSLP1Runner._atomic_toml(corrected_path, corrected; replace = true)
+        mixed = FSLP1Runner._corrective_resume_algorithms_from_checkpoints(
+            output,
+            "corrective-fixture",
+            job.instance;
+            precomputed_instance_sha256 = journal_compression_instance_sha256(job.instance),
+        )
+        @test length(mixed) == 7
+        @test haskey(mixed, "jump_highs_tagged_cover")
         @test_throws ErrorException FSLP1Runner._write_algorithm_checkpoint(
             output,
             "corrective-fixture",

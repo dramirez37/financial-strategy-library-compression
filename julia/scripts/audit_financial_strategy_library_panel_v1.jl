@@ -8,8 +8,8 @@ using TOML
 include(joinpath(@__DIR__, "..", "src", "FinancialStrategyLibraryPanelV1.jl"))
 using .FinancialStrategyLibraryPanelV1
 
-include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_021.jl"))
-using .LockFinancialStrategyLibraryPanelV1Execution021: verify_execution_lock_021
+include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_022.jl"))
+using .LockFinancialStrategyLibraryPanelV1Execution022: verify_execution_lock_022
 
 export audit_all_results, audit_structural_results, main
 
@@ -426,7 +426,7 @@ function audit_structural_results(; write_report::Bool = true)
         "financial panel structural audit requires --threads=$AUDIT_THREAD_COUNT; " *
         "found $(Threads.nthreads())",
     )
-    execution_lock = verify_execution_lock_021()
+    execution_lock = verify_execution_lock_022()
     config, _ = load_panel_config()
     paths = _paths(config)
     errors = String[]

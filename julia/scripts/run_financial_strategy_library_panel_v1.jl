@@ -9,8 +9,8 @@ using TOML
 include(joinpath(@__DIR__, "..", "src", "FinancialStrategyLibraryPanelV1.jl"))
 using .FinancialStrategyLibraryPanelV1
 
-include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_021.jl"))
-using .LockFinancialStrategyLibraryPanelV1Execution021: verify_execution_lock_021
+include(joinpath(@__DIR__, "lock_financial_strategy_library_panel_v1_execution_022.jl"))
+using .LockFinancialStrategyLibraryPanelV1Execution022: verify_execution_lock_022
 
 export main,
        prepare_instances,
@@ -55,6 +55,20 @@ const LOCK_019_AGGREGATE =
     "bd5b20ff313fc2d8ae1b60387c11c1a00fdcdc432d0ea1fd9f9174505c09298e"
 const LOCK_020_AGGREGATE =
     "2f1322c99baeca02f78daf56d210efb64110b54ad4f517a40cb2efb5e581f74c"
+const LOCK_020_ENVIRONMENT_SHA256 =
+    "ab0450a6ed876a13a5baf7513118e179e5bdbd6101bf91458a9fcc441649d0d0"
+const LOCK_021_PRELOCK_RESULT_AUDIT_SHA256 =
+    "9cae6c3f93680c7ae8b0c1eacdb1a9b862323a27d6ce8f08a8f2a38f1bc93112"
+const LOCK_021_PRELOCK_STRUCTURAL_AUDIT_SHA256 =
+    "95f49fef87dd407901e685d84e9e95c8dec37aabd6f1b377df99ee8c6e284dcf"
+const LOCK_021_PRELOCK_ANALYSIS_MANIFEST_SHA256 =
+    "fbc85c2658fc21e0bd73aca4c6e0f9c277e41566b2bae7cf6046fea16b51d850"
+const LOCK_021_PRELOCK_ANALYSIS_AUDIT_SHA256 =
+    "df8a47097f3f74f252c0f244c0eea4d28d29b3fa99e41fb9db3abddda5462d11"
+const LOCK_021_PRELOCK_CHECKPOINT_DIRECTORY_AGGREGATE =
+    "8d467bf976dbbb32bac76bf5c7519ed25c7f5f803440df00349b871207f89141"
+const LOCK_021_PRELOCK_SOLVER_LOG_DIRECTORY_AGGREGATE =
+    "66cbfcf201cb7a9c4e530b5debfcecb82faade931ba3e8c476f1ea26d46bde50"
 const LOCK_013_POSTDECISION_AGGREGATE =
     "3214c2ee9fa7bee99089b5017b5ec8d5b1bc26b2b0cee174921ae2fd958ff9a1"
 const LOCK_015_POSTDECISION_DIRECTORY_AGGREGATE =
@@ -70,6 +84,19 @@ function _toml_directory_aggregate(directory)
     entries = Dict{String,String}()
     for (root, _, files) in walkdir(directory), file in files
         endswith(file, ".toml") || continue
+        path = joinpath(root, file)
+        entries[relpath(path, directory)] = _sha256_file(path)
+    end
+    text = join(
+        ("$path\0$(entries[path])\n" for path in sort!(collect(keys(entries)))),
+    )
+    return bytes2hex(sha256(codeunits(text)))
+end
+
+function _directory_aggregate(directory)
+    isdir(directory) || return bytes2hex(sha256(codeunits("")))
+    entries = Dict{String,String}()
+    for (root, _, files) in walkdir(directory), file in files
         path = joinpath(root, file)
         entries[relpath(path, directory)] = _sha256_file(path)
     end
@@ -153,7 +180,7 @@ function _environment(
         "threaded_lane_count" => THREAD_COUNT,
         "maximum_simultaneous_heavy_stages" => HEAVY_CONCURRENCY,
         "execution_lock_aggregate_sha256" => execution_lock_aggregate,
-        "active_amendment_id" => "AMENDMENT_021",
+        "active_amendment_id" => "AMENDMENT_022",
         "replaced_predecessor_environment" => replaced_predecessor_environment,
         "predecessor_instance_count" => predecessor_instance_count,
         "predecessor_origin_metadata_count" => predecessor_origin_metadata_count,
@@ -642,7 +669,7 @@ function _registry_seed(origin_id, library_id)
 end
 
 function validate_readiness(; require_sources::Bool = true)
-    verify_execution_lock_021()
+    verify_execution_lock_022()
     VERSION == v"1.12.6" || error("financial panel v1 requires Julia 1.12.6")
     Threads.nthreads() == THREAD_COUNT || error(
         "financial panel v1 requires --threads=$THREAD_COUNT; found $(Threads.nthreads())",
@@ -677,8 +704,89 @@ function validate_readiness(; require_sources::Bool = true)
     return config, amendment
 end
 
+function _declared_environment_successor_recovery(fingerprint)
+    return fingerprint.environment_lock == LOCK_020_AGGREGATE &&
+           fingerprint.environment_sha256 == LOCK_020_ENVIRONMENT_SHA256 &&
+           fingerprint.preparation_manifest_exists &&
+           fingerprint.instance_count == 108 &&
+           fingerprint.origin_metadata_count == 12 &&
+           fingerprint.structural_count == 180 &&
+           fingerprint.all_structural_terminal &&
+           fingerprint.postdecision_recoverable &&
+           fingerprint.checkpoint_count == 756 &&
+           fingerprint.checkpoint_directory_aggregate ==
+           LOCK_021_PRELOCK_CHECKPOINT_DIRECTORY_AGGREGATE &&
+           fingerprint.solver_log_count == 18 &&
+           fingerprint.solver_log_directory_aggregate ==
+           LOCK_021_PRELOCK_SOLVER_LOG_DIRECTORY_AGGREGATE &&
+           fingerprint.result_audit_sha256 == LOCK_021_PRELOCK_RESULT_AUDIT_SHA256 &&
+           fingerprint.structural_audit_sha256 ==
+           LOCK_021_PRELOCK_STRUCTURAL_AUDIT_SHA256 &&
+           fingerprint.analysis_manifest_sha256 ==
+           LOCK_021_PRELOCK_ANALYSIS_MANIFEST_SHA256 &&
+           fingerprint.analysis_audit_sha256 == LOCK_021_PRELOCK_ANALYSIS_AUDIT_SHA256
+end
+
+function _environment_successor_fingerprint(paths, environment)
+    instance_count = isdir(paths.instances) ?
+                     count(name -> endswith(name, ".toml"), readdir(paths.instances)) : 0
+    origin_metadata_count = isdir(paths.origin_metadata) ?
+                            count(name -> endswith(name, ".toml"), readdir(paths.origin_metadata)) : 0
+    structural_files = isdir(paths.structural) ?
+                       filter(name -> endswith(name, ".toml"), readdir(paths.structural)) :
+                       String[]
+    checkpoint_count = isdir(paths.checkpoints) ? sum(
+        count(name -> endswith(name, ".toml"), files) for
+        (_, _, files) in walkdir(paths.checkpoints)
+    ) : 0
+    solver_log_count = isdir(paths.solver_logs) ?
+                       sum(length(files) for (_, _, files) in walkdir(paths.solver_logs)) : 0
+    postdecision_files = isdir(paths.postdecision) ?
+                         filter(name -> endswith(name, ".toml"), readdir(paths.postdecision)) :
+                         String[]
+    postdecision_aggregate = _toml_directory_aggregate(paths.postdecision)
+    postdecision_recoverable = isempty(postdecision_files) ||
+                               (
+        length(postdecision_files) == 108 &&
+        postdecision_aggregate == LOCK_013_POSTDECISION_AGGREGATE
+    ) ||
+                               (
+        length(postdecision_files) == 180 &&
+        postdecision_aggregate == LOCK_015_POSTDECISION_DIRECTORY_AGGREGATE
+    )
+    hash_or_empty(path) = isfile(path) ? _sha256_file(path) : ""
+    return (
+        environment_lock = get(environment, "execution_lock_aggregate_sha256", ""),
+        environment_sha256 = hash_or_empty(paths.environment),
+        preparation_manifest_exists = isfile(paths.preparation_manifest),
+        instance_count,
+        origin_metadata_count,
+        structural_count = length(structural_files),
+        all_structural_terminal = all(
+            name -> get(
+                TOML.parsefile(joinpath(paths.structural, name)),
+                "terminal",
+                false,
+            ) === true,
+            structural_files,
+        ),
+        postdecision_recoverable,
+        checkpoint_count,
+        checkpoint_directory_aggregate = _directory_aggregate(paths.checkpoints),
+        solver_log_count,
+        solver_log_directory_aggregate = _directory_aggregate(paths.solver_logs),
+        result_audit_sha256 = hash_or_empty(joinpath(paths.local_results, "RESULT_AUDIT.toml")),
+        structural_audit_sha256 =
+            hash_or_empty(joinpath(paths.local_results, "STRUCTURAL_AUDIT.toml")),
+        analysis_manifest_sha256 =
+            hash_or_empty(joinpath(paths.analysis, "ANALYSIS_MANIFEST.toml")),
+        analysis_audit_sha256 =
+            hash_or_empty(joinpath(paths.analysis, "ANALYSIS_AUDIT.toml")),
+    )
+end
+
 function _write_environment(paths)
-    execution_lock_aggregate = verify_execution_lock_021()
+    execution_lock_aggregate = verify_execution_lock_022()
     if isfile(paths.environment)
         environment = TOML.parsefile(paths.environment)
         if get(environment, "execution_lock_aggregate_sha256", "") == execution_lock_aggregate
@@ -686,73 +794,16 @@ function _write_environment(paths)
             environment["julia_threads"] == THREAD_COUNT || error("saved environment thread count differs")
             return environment
         end
-        predecessor_lock_matches = get(
-            environment,
-            "execution_lock_aggregate_sha256",
-            "",
-        ) in (
-            LOCK_010_AGGREGATE,
-            LOCK_011_AGGREGATE,
-            LOCK_012_AGGREGATE,
-            LOCK_013_AGGREGATE,
-            LOCK_014_AGGREGATE,
-            LOCK_015_AGGREGATE,
-            LOCK_016_AGGREGATE,
-            LOCK_017_AGGREGATE,
-            LOCK_018_AGGREGATE,
-            LOCK_019_AGGREGATE,
-            LOCK_020_AGGREGATE,
-        )
-        instance_count = isdir(paths.instances) ?
-                         count(name -> endswith(name, ".toml"), readdir(paths.instances)) : 0
-        origin_metadata_count = isdir(paths.origin_metadata) ?
-                                count(name -> endswith(name, ".toml"), readdir(paths.origin_metadata)) : 0
-        structural_files = isdir(paths.structural) ?
-                           filter(name -> endswith(name, ".toml"), readdir(paths.structural)) : String[]
-        checkpoint_count = isdir(paths.checkpoints) ? sum(
-            count(name -> endswith(name, ".toml"), files) for
-            (_, _, files) in walkdir(paths.checkpoints)
-        ) : 0
-        solver_log_count = isdir(paths.solver_logs) ? sum(
-            length(files) for (_, _, files) in walkdir(paths.solver_logs)
-        ) : 0
-        postdecision_files = isdir(paths.postdecision) ?
-                             filter(name -> endswith(name, ".toml"), readdir(paths.postdecision)) :
-                             String[]
-        postdecision_aggregate = _toml_directory_aggregate(paths.postdecision)
-        postdecision_recoverable = isempty(postdecision_files) ||
-                                   (
-            length(postdecision_files) == 108 &&
-            postdecision_aggregate == LOCK_013_POSTDECISION_AGGREGATE
-        ) ||
-                                   (
-            length(postdecision_files) == 180 &&
-            postdecision_aggregate == LOCK_015_POSTDECISION_DIRECTORY_AGGREGATE
-        )
-        successor_recovery = predecessor_lock_matches &&
-                             isfile(paths.preparation_manifest) &&
-                             instance_count == 108 &&
-                             origin_metadata_count == 12 &&
-                             length(structural_files) == 180 &&
-                             all(
-            name -> get(
-                TOML.parsefile(joinpath(paths.structural, name)),
-                "terminal",
-                false,
-            ) === true,
-            structural_files,
-        ) &&
-                             postdecision_recoverable &&
-                             checkpoint_count == 756 &&
-                             solver_log_count == 14
+        fingerprint = _environment_successor_fingerprint(paths, environment)
+        successor_recovery = _declared_environment_successor_recovery(fingerprint)
         successor_recovery || error(
             "saved environment belongs to an execution lock outside the declared successor recovery",
         )
         environment = _environment(
             execution_lock_aggregate;
             replaced_predecessor_environment = true,
-            predecessor_instance_count = instance_count,
-            predecessor_origin_metadata_count = origin_metadata_count,
+            predecessor_instance_count = fingerprint.instance_count,
+            predecessor_origin_metadata_count = fingerprint.origin_metadata_count,
         )
         _atomic_toml(paths.environment, environment; replace = true)
         return environment
@@ -1284,7 +1335,7 @@ end
 function run_postdecision_phase()
     config, amendment = validate_readiness()
     output = _paths(config)
-    execution_lock_aggregate = verify_execution_lock_021()
+    execution_lock_aggregate = verify_execution_lock_022()
     _write_environment(output)
     structural_audit_path = joinpath(output.local_results, "STRUCTURAL_AUDIT.toml")
     isfile(structural_audit_path) || error("structural audit is absent; run the audit before postdecision")
@@ -1521,7 +1572,7 @@ end
 
 function run_smoke()
     config, _ = validate_readiness(; require_sources = false)
-    execution_lock_aggregate = verify_execution_lock_021()
+    execution_lock_aggregate = verify_execution_lock_022()
     jobs = build_synthetic_smoke_instances(THREAD_COUNT)
     mktempdir() do root
         output = (

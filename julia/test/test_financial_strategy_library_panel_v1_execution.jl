@@ -9,8 +9,8 @@ const FSLP1 = FinancialStrategyLibraryPanelV1
 include(joinpath(@__DIR__, "..", "scripts", "run_financial_strategy_library_panel_v1.jl"))
 const FSLP1Runner = RunFinancialStrategyLibraryPanelV1
 
-include(joinpath(@__DIR__, "..", "scripts", "lock_financial_strategy_library_panel_v1_execution_021.jl"))
-const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution021
+include(joinpath(@__DIR__, "..", "scripts", "lock_financial_strategy_library_panel_v1_execution_022.jl"))
+const FSLP1ExecutionLock = LockFinancialStrategyLibraryPanelV1Execution022
 
 include(joinpath(@__DIR__, "..", "scripts", "analyze_financial_strategy_library_panel_v1.jl"))
 const FSLP1Analysis = AnalyzeFinancialStrategyLibraryPanelV1
@@ -75,8 +75,22 @@ const FSLP1Analysis = AnalyzeFinancialStrategyLibraryPanelV1
     @test length(FSLP1.registered_job_keys()) == 180
     @test length(unique(FSLP1.registered_job_keys())) == 180
 
+    amendment_022 = TOML.parsefile(joinpath(
+        @__DIR__,
+        "..",
+        "..",
+        "experiments",
+        "financial_strategy_library_panel_v1",
+        "amendments",
+        "EXECUTION_AMENDMENT_022.toml",
+    ))
+    @test amendment_022["amendment_id"] == "AMENDMENT_022"
+    @test amendment_022["environment_recovery"]["sealed_solver_log_count"] == 18
+    @test amendment_022["environment_recovery"]["stale_solver_log_count"] == 14
+    @test amendment_022["environment_recovery"]["require_exact_solver_log_directory_aggregate"] === true
+
     if isfile(FSLP1ExecutionLock.LOCK_PATH)
-        aggregate = FSLP1ExecutionLock.verify_execution_lock_021()
+        aggregate = FSLP1ExecutionLock.verify_execution_lock_022()
         @test occursin(r"^[0-9a-f]{64}$", aggregate)
         lock_text = read(FSLP1ExecutionLock.LOCK_PATH, String)
         one_hash = first(values(FSLP1ExecutionLock._hashes()))
@@ -88,6 +102,44 @@ const FSLP1Analysis = AnalyzeFinancialStrategyLibraryPanelV1
     else
         @test occursin(r"^[0-9a-f]{64}$", FSLP1ExecutionLock.dry_run())
     end
+end
+
+@testset "Lock 022 exact environment successor fingerprint" begin
+    sealed = (
+        environment_lock = FSLP1Runner.LOCK_020_AGGREGATE,
+        environment_sha256 = FSLP1Runner.LOCK_020_ENVIRONMENT_SHA256,
+        preparation_manifest_exists = true,
+        instance_count = 108,
+        origin_metadata_count = 12,
+        structural_count = 180,
+        all_structural_terminal = true,
+        postdecision_recoverable = true,
+        checkpoint_count = 756,
+        checkpoint_directory_aggregate =
+            FSLP1Runner.LOCK_021_PRELOCK_CHECKPOINT_DIRECTORY_AGGREGATE,
+        solver_log_count = 18,
+        solver_log_directory_aggregate =
+            FSLP1Runner.LOCK_021_PRELOCK_SOLVER_LOG_DIRECTORY_AGGREGATE,
+        result_audit_sha256 = FSLP1Runner.LOCK_021_PRELOCK_RESULT_AUDIT_SHA256,
+        structural_audit_sha256 =
+            FSLP1Runner.LOCK_021_PRELOCK_STRUCTURAL_AUDIT_SHA256,
+        analysis_manifest_sha256 =
+            FSLP1Runner.LOCK_021_PRELOCK_ANALYSIS_MANIFEST_SHA256,
+        analysis_audit_sha256 = FSLP1Runner.LOCK_021_PRELOCK_ANALYSIS_AUDIT_SHA256,
+    )
+    @test FSLP1Runner._declared_environment_successor_recovery(sealed)
+    @test !FSLP1Runner._declared_environment_successor_recovery(merge(
+        sealed,
+        (solver_log_count = 14,),
+    ))
+    @test !FSLP1Runner._declared_environment_successor_recovery(merge(
+        sealed,
+        (solver_log_directory_aggregate = repeat("0", 64),),
+    ))
+    @test !FSLP1Runner._declared_environment_successor_recovery(merge(
+        sealed,
+        (all_structural_terminal = false,),
+    ))
 end
 
 @testset "registered Parquet analysis shapes and denominators" begin

@@ -924,6 +924,15 @@ the remaining 90 Lock 005 MIP failures are the only new solver runs. Hash values
 schemas, scientific inputs, algorithms, controls, outcomes, estimands, and the
 licensed-data boundary are unchanged.
 
+Amendment 022 follows a Lock 021 attempt that stopped before solver work because
+the environment successor guard retained the obsolete expectation of 14 solver
+logs although Lock 021 had sealed 18. It replaces that count-only condition with
+the exact Lock 021 prelock environment, audit, checkpoint-directory, solver-log-
+directory, structural, and postdecision fingerprint. A regression fixture
+requires the sealed 18-log state to pass and the stale 14-log state to fail.
+Scientific inputs, algorithms, controls, outcomes, estimands, denominators, and
+the licensed-data boundary are unchanged.
+
 | Class | Expected future location or form | Current status |
 |---|---|---|
 | remaining primary research theorem declarations | future extensions under `formal/StrategyInnovation/` | none in the adopted T1--T7 package; F0, F1--F8, S4--S7, C2, and CS1 are supporting results |

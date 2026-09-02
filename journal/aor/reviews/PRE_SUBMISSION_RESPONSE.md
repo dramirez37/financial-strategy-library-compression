@@ -241,18 +241,20 @@ post hoc result as registered evidence.
 3. Benchmark v2 cannot support steady-state runtime rankings, complete-factorial
    structural inference, or broad claims about difficult residual search. The
    registered model outputs remain archived but are not used inferentially.
-4. The two financial cases remain survivor-defined, current-snapshot,
-   tuple-grammar audits with empty residual covers and proxy burden indices.
-   More licensed rows from the same construction would not cure those design
-   limits.
+4. The previous terminal and annual cases have been replaced in the active
+   manuscript by the point-in-time portfolio-library study. That study repairs
+   future-survivor conditioning and unequal option-set comparisons, but it
+   remains retrospective, uses a declared capability grammar and proxy burden
+   index, and produces a common-equity policy null plus one adverse ETF
+   exercise. The calibrated closure-option experiment is synthetic and cannot
+   cure external-validity limits.
 5. The article does not solve arbitrary nonidentity closure, calibrate actual
    institutional maintenance costs, or establish alpha, forecasting, causal,
    population, or deployable-performance claims.
 
-**Exact next recommended task:** before inspecting new outcomes, create and
-lock a new `experiments/financial_strategy_library_panel_v1/` point-in-time
-licensed-data protocol implementing the eight design requirements above,
-including origin-eligible universes, distinct library constructions, auditable
-capability ownership, calibrated predecision burdens, and a public aggregate
-schema. The separate warm-steady-state algorithm benchmark should follow under
-its own registry; neither study should amend v2.
+**Exact next recommended task:** obtain or define a newly locked market vintage
+or independent panel before outcome access, with documented institutional
+capability ownership and monetary maintenance costs calibrated independently
+of postdecision returns. The completed point-in-time and calibrated mechanism
+studies must remain sealed and must not be amended to manufacture a stronger
+financial result.

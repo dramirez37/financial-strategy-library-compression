@@ -1,0 +1,7 @@
+arm_id,reader_label,preserves_frontier,preserves_closure,burden_match_target,selection_rule,role
+source,Uncompressed source docket,true,true,none,retain every frozen source strategy,reference
+innovation_safe_exact,Innovation-safe exact,true,true,global minimum under the registered schedule,exact tagged-cover optimum; stable representative,primary treatment
+frontier_only_exact,Frontier-only exact,true,false,global minimum under the registered schedule,exact frontier-cover optimum; stable representative,closure-price reference
+frontier_only_budget_matched,Frontier-only budget matched,true,false,innovation_safe_exact burden upper bound,scan all strategies in descending frozen predecision pooled score and add each whole strategy that fits the safe exact burden cap,primary comparator
+innovation_safe_greedy,Innovation-safe weighted greedy,true,true,none,weighted greedy plus reverse deletion with exact recheck,algorithm diagnostic
+innovation_safe_multistart_64,Innovation-safe 64-start deletion,true,true,none,best exact-feasible endpoint from 64 registered seeded deletion orders,algorithm diagnostic

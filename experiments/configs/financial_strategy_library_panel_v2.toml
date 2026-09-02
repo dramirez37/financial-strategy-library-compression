@@ -1,0 +1,219 @@
+schema_version = "financial-strategy-library-panel-design-v2"
+experiment_id = "financial-strategy-library-panel-v2"
+study_title = "Registered Financial Innovation-Challenge Panel v2"
+protocol_date = "2026-09-01"
+status = "prospective_v2_design_locked_after_v1_results_before_v2_outcomes"
+julia_version = "1.12.6"
+v1_outcomes_known = true
+v1_results_may_calibrate_design = true
+v1_rows_may_enter_v2_estimands = false
+v1_and_v2_may_be_pooled = false
+licensed_rows_read_for_v2_design = false
+v2_outcomes_observed = false
+
+[decision]
+primary_question = "Does innovation-safe compression improve the next-year utility of prespecified masked innovation choices relative to a budget-matched frontier-only library?"
+primary_audience = "Annals of Operations Research readers evaluating the distinctive frontier-closure mechanism"
+primary_contrast = "innovation_safe_exact minus frontier_only_budget_matched within the same origin, source docket, burden schedule, and masked challenge menu"
+primary_action = "retain the financial experiment as flagship evidence only if its availability and interpretation gates pass"
+
+[source]
+provider = "CRSP/WRDS"
+dataset_name = "CRSP US Stock Database daily security and date-varying security history"
+repository_root_default = "../curv-risk/curvrisk/research/bachelier_revision"
+repository_root_environment = "ALGOLIB_CRSP_ROOT"
+security_history = "data/raw/crsp_a_stock/security_history/stksecurityinfohist.csv"
+daily_files = [
+  "data/raw/crsp_a_stock/daily_security/stkdlysecuritydata_00_10.csv.gz",
+  "data/raw/crsp_a_stock/daily_security/stkdlysecuritydata_10_20.csv.gz",
+  "data/raw/crsp_a_stock/daily_security/stkdlysecuritydata_20_25.csv.gz",
+]
+source_snapshot_end = "2025-12-31"
+revision_vintage_available = false
+raw_redistribution_permitted = false
+public_aggregate_promotion_requires_independent_audit = true
+
+[source.required_security_history_columns]
+columns = ["permno", "secinfostartdt", "secinfoenddt", "ticker", "securitynm", "securitytype", "securitysubtype", "securityactiveflg"]
+
+[source.required_daily_columns]
+columns = ["permno", "dlycaldt", "dlyret", "dlyclose", "dlyprc", "dlyvol", "dlydelflg", "dlyretmissflg"]
+
+[origins]
+registry = "experiments/financial_strategy_library_panel_v2/registry/ORIGIN_REGISTRY.csv"
+first_decision_year = 2005
+last_decision_year = 2024
+origin_count = 20
+decision_date_rule = "last CRSP trading session on or before December 31 of decision_year"
+construction_window_rule = "calendar years decision_year-4 through decision_year-2 inclusive"
+compression_window_rule = "calendar years decision_year-1 through decision_year inclusive"
+postdecision_window_rule = "calendar year decision_year+1"
+postdecision_years_overlap = false
+formation_windows_overlap = true
+
+[universe]
+identifier = "PERMNO"
+security_type = "FUND"
+security_subtype = "ETF"
+require_active_at_origin = true
+require_active_at_future_endpoint = false
+maximum_eligible_by_liquidity = 100
+minimum_eligible_for_origin = 20
+minimum_preorigin_daily_observations = 1000
+minimum_compression_window_liquidity_observations = 400
+minimum_median_close = 5.0
+minimum_median_dollar_volume = 5000000.0
+required_reference_ticker = "SPY"
+exclude_name_keywords = ["2X", "3X", "BEAR", "DIREXION", "DOUBLE", "INVERSE", "LEVERAGED", "PROSHARES", "TRIPLE", "ULTRA"]
+liquidity_tie_rule = "descending median compression-window dollar volume, then ascending PERMNO; retain exactly the first maximum_eligible_by_liquidity"
+profile_support_is_security_eligibility_rule = true
+minimum_construction_observations_per_belief = 25
+minimum_compression_observations_per_belief = 25
+insufficient_profile_security_policy = "exclude that security before candidate generation and record the reason"
+insufficient_profile_origin_policy = "fail the origin only if fewer than minimum_eligible_for_origin securities remain or SPY fails"
+postdecision_information_may_define_universe = false
+
+[grammar]
+directional_signal = ["momentum_20", "momentum_60", "mean_reversion_5"]
+entry_filter = ["always", "trend_100"]
+holding_horizon = [5, 20]
+sizing_rule = ["unit", "half"]
+exit_rule = ["horizon", "signal_flip"]
+risk_constraint = ["notional_cap_1", "vol_target_10"]
+strategies_per_instrument = 96
+strategy_identifier_rule = "origin_id|PERMNO|signal|filter|horizon|sizing|exit|risk"
+ordering_rule = "ascending origin_id, PERMNO, and grammar tuple"
+
+[operating_profiles]
+belief_reference = "SPY"
+belief_signal = "trailing_60_session_return"
+belief_state_count = 5
+belief_cutpoints = [0.2, 0.4, 0.6, 0.8]
+cutpoint_estimation_window = "construction window only"
+profile_support_windows = "construction and compression windows checked separately"
+frontier_profile_estimation_window = "compression window only"
+transaction_cost_bps = [0, 5, 15]
+risk_aversion = [1, 3]
+scenario_count = 30
+scenario_registry = "experiments/financial_strategy_library_panel_v2/registry/SCENARIO_REGISTRY.csv"
+annualization_sessions = 252
+decision_to_first_return_lag_sessions = 2
+predecision_profile_arithmetic = "deterministic Float64, then lossless exact rational freeze"
+frontier_tie_rule = "exact equality after frozen-coordinate conversion"
+
+[source_dockets]
+registry = "experiments/financial_strategy_library_panel_v2/registry/SOURCE_DOCKET_REGISTRY.csv"
+docket_count = 2
+base_construction_scenario = "belief_pooled|cost_5|risk_3"
+membership_uses_postdecision_information = false
+exact_cutoff_ties_retained = true
+capability_completion_minimum_carriers = 3
+
+[capabilities]
+registry = "experiments/financial_strategy_library_panel_v2/registry/CAPABILITY_REGISTRY.csv"
+capability_count = 27
+closure = "identity union of registered atomic and interface capability identifiers"
+evidence = "canonical executable specification hash; not institutional ownership, sole storage, or tacit knowledge"
+challenge_candidate_requirements_must_be_subset_of_source_closure = true
+
+[burdens]
+registry = "experiments/financial_strategy_library_panel_v2/registry/BURDEN_SCHEDULE_REGISTRY.csv"
+primary_schedule = "validation_work_units"
+schedule_count = 3
+postdecision_inputs_permitted = false
+money_or_labor_hour_interpretation_permitted = false
+
+[arms]
+registry = "experiments/financial_strategy_library_panel_v2/registry/ARM_REGISTRY.csv"
+arm_count = 6
+source = "uncompressed source docket"
+innovation_safe_exact = "minimum burden preserving all 30 frontier rows and all 27 capabilities"
+frontier_only_exact = "minimum burden preserving all 30 frontier rows with no closure constraint"
+frontier_only_budget_matched = "frontier-only exact endpoint augmented by scanning all remaining strategies in fixed predecision-score order and adding each whole strategy that fits without exceeding the innovation-safe exact burden budget"
+innovation_safe_greedy = "weighted greedy plus reverse deletion preserving frontier and closure"
+innovation_safe_multistart = "64 seeded rechecked deletion starts preserving frontier and closure"
+arm_construction_may_read_postdecision = false
+
+[innovation_challenges]
+seed_registry = "experiments/financial_strategy_library_panel_v2/registry/SEED_REGISTRY.csv"
+menus_per_origin_docket = 32
+candidates_per_menu = 8
+candidate_pool = "grammar candidates excluded from the frozen source docket"
+stratification = "directional signal, signal-filter interface, and risk constraint"
+generation_order = "freeze universe and source docket; generate and hash menus; solve compression arms; open postdecision rows"
+selection_rule = "highest compression-window pooled score among candidates whose required capabilities are carried by the arm; stable identifier breaks exact ties"
+fallback = "mandatory inactive cash strategy with zero score when no candidate is generatable"
+postdecision_score = "full-calendar next-year annualized mean-variance utility under 5 bps and risk aversion 3"
+reference_calendar = "SPY trading sessions in the registered postdecision year"
+minimum_full_calendar_sessions = 200
+postdecision_belief_minimum_required = false
+explicit_delisting_to_cash = true
+unobserved_terminal_delisting_return_imputed = false
+missing_selected_candidate_policy = "mark that menu unavailable; never substitute the next candidate after reading postdecision data"
+
+[primary_estimand]
+estimand_id = "heldout_innovation_utility_delta"
+unit = "origin-level mean of complete masked challenge-menu pairs"
+contrast = "innovation_safe_exact postdecision chosen-candidate score minus frontier_only_budget_matched score"
+aggregation = "compute menu contrasts, average within origin and source docket, then summarize the 20 origin estimates"
+direction = "positive favors innovation-safe compression"
+causal_claim = false
+population_claim = false
+
+[secondary_estimands]
+ids = [
+  "innovation_capability_availability_rate",
+  "safe_burden_premium_over_frontier_only",
+  "source_to_safe_burden_reduction",
+  "postdecision_operating_frontier_loss",
+  "heuristic_burden_gap_to_safe_exact",
+  "retained_identity_stability",
+  "steady_state_algorithm_time",
+]
+
+[availability_gates]
+minimum_structurally_evaluable_origins = 15
+minimum_complete_menus_per_origin_docket = 24
+minimum_origin_fraction_passing_menu_gate = 0.75
+failure_interpretation = "primary heldout conclusion is inconclusive; structural and data-quality results remain reportable"
+thresholds_may_be_changed_after_v2_outcomes = false
+
+[computational_stress_block]
+separate_from_population_block = true
+population_prevalence_claim_permitted = false
+minimum_carriers_per_requirement_before_preprocessing = 3
+minimum_residual_variables_after_preprocessing = 12
+minimum_residual_requirements_after_preprocessing = 8
+warmup_outside_timed_region = true
+steady_state_repetitions = 5
+timed_quantity = "search only; preprocessing, compilation, reconstruction, and certification recorded separately"
+mip_time_limit_seconds = 900
+mip_relative_gap = 0.0
+mip_absolute_gap = 0.0
+highs_threads = 1
+highs_random_seed = 0
+
+[analysis]
+plan = "experiments/financial_strategy_library_panel_v2/ANALYSIS_PLAN.md"
+reporting_rules = "experiments/financial_strategy_library_panel_v2/REPORTING_RULES.md"
+primary_dependence_cluster = "decision origin"
+paired_within_origin = true
+hypothesis_test_primary = false
+origin_cluster_bootstrap_secondary = true
+bootstrap_repetitions = 10000
+multiple_secondary_metrics_adjustment = "Holm familywise adjustment for any displayed secondary p-values; estimates and intervals remain primary"
+unsuccessful_and_unavailable_rows_retained = true
+
+[paths]
+design_root = "experiments/financial_strategy_library_panel_v2"
+local_data_root = "experiments/financial_strategy_library_panel_v2/local_data"
+local_results_root = "experiments/financial_strategy_library_panel_v2/local_results"
+public_results_root = "experiments/financial_strategy_library_panel_v2/results"
+design_lock = "experiments/financial_strategy_library_panel_v2/DESIGN_LOCK.json"
+
+[publication]
+article_role = "flagship financial mechanism experiment if and only if the registered availability and interpretation gates pass"
+public_promotion_automatic = false
+raw_or_row_level_licensed_derivatives_public = false
+required_public_artifacts = ["design lock", "aggregate audit", "origin-level paired contrasts", "failure census", "synthetic structural replay"]
+nonclaims = ["causal", "forecasting", "alpha", "deployable performance", "population resource savings", "observed institutional cost"]

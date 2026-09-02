@@ -1,0 +1,15 @@
+schema_version = "financial-strategy-library-panel-v3-proposal-computation-amendment-v1"
+experiment_id = "financial-strategy-library-panel-v3"
+amendment_id = "PROPOSAL_COMPUTATION_AMENDMENT_001"
+amendment_type = "terminal validation correction only"
+scientific_design_changed = false
+policy_rules_changed = false
+proposal_values_accessed_before_amendment = true
+proposal_path_availability_known_before_amendment = true
+evaluation_values_accessed_before_amendment = false
+partial_path_artifacts_written = 7
+completed_choice_artifacts_written = 0
+completed_ledger_artifacts_written = 0
+public_or_local_result_manifests_written = 0
+old_validation = "at least five selected ledger rows"
+new_validation = "all four cash-capable policies selected; forced control may be unavailable only with NO_COMPLETE_ACTIVE_PROPOSAL_PATH"

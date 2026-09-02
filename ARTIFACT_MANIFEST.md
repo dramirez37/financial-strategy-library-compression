@@ -730,15 +730,18 @@ and independently checked against the committed inputs with the corresponding
 
 | Artifact ID | Path | SHA-256 | Producer and validation |
 |---|---|---|---|
-| `AOR-MANUSCRIPT-EVIDENCE-CODE-v1` | `julia/scripts/build_aor_manuscript_evidence_inputs.jl` | `5ddbb59355d3cbcdade84b1c6411813ee034376f1b569096faef803a517c46d3` | deterministic Julia 1.12.6 renderer with source-schema and evidence-status assertions |
-| `AOR-EVIDENCE-MACROS-v1` | `journal/aor/manuscript/tables/evidence_macros.tex` | `4c3aba5181b9f0a2097b980423a76697b39b22823c191606c682580a5e6eb39d` | registered-v2 audit, registry, environment, heuristic, and multi-start counts |
+| `AOR-MANUSCRIPT-EVIDENCE-CODE-v1` | `julia/scripts/build_aor_manuscript_evidence_inputs.jl` | `d51f06061269dce06f67e37d0425348708396e05c281f529c542af3376ca3eb6` | deterministic Julia 1.12.6 renderer with source-schema, seal, licensed-boundary, and evidence-status assertions |
+| `AOR-EVIDENCE-MACROS-v1` | `journal/aor/manuscript/tables/evidence_macros.tex` | `faa4216e127bbac98352bda3246ea7528fcbbea8648bd708b7f8800d25d04f58` | registered algorithmic audit plus sealed point-in-time and calibrated-mechanism result counts |
 | `AOR-SCALING-TABLE-v1` | `journal/aor/manuscript/tables/computational_scaling_compact.tex` | `cf294d2951b6b83fe50c652bfd834d681ce5d7f2866ddf9a488442a2b7f163c2` | compact registered synthetic scaling table |
 | `AOR-HEURISTIC-TABLE-v1` | `journal/aor/manuscript/tables/heuristic_quality_compact.tex` | `79d5331d1d71edff3a9538439df76410b71c5beb9583cb78b5a70df91427a523` | exact-reference and rechecked-HiGHS-reference heuristic summaries kept separate |
 | `AOR-PREPROCESS-TABLE-v1` | `journal/aor/manuscript/tables/preprocessing_multistart_compact.tex` | `aeda1697165b65db51d53b1f19261c94dac46fbcabe7fd015cdb2e3b587bb6e8` | preprocessing and multi-start summaries with unsuccessful rows retained |
 | `AOR-ADVERSARIAL-TABLE-v1` | `journal/aor/manuscript/tables/adversarial_gap_compact.tex` | `bdfc5e2b9002634480b476caed17ab931b1eec1575d5ce828d58b03bd8a1a287` | exact-rational adversarial ratios with evidence classes stated |
-| `AOR-FINANCIAL-INSTANCE-TABLE-v1` | `journal/aor/manuscript/tables/financial_instance_summary.tex` | `200c98ff354d9eb1820384aed5e36d9cd054ba57cccdbd3b38eabf91991d195c` | public-safe structural and empty-residual-certificate summary |
+| `AOR-FINANCIAL-INSTANCE-TABLE-v1` | `journal/aor/manuscript/tables/financial_instance_summary.tex` | `60210a2ba5238e534bce33db4c6b7e7e486ba8bf33b011049b9d560599ab4f1d` | superseded public-safe structural and empty-residual-certificate summary retained for provenance |
 | `AOR-FINANCIAL-ALGORITHM-TABLE-v1` | `journal/aor/manuscript/tables/financial_algorithm_burdens.tex` | `fb98540b1992cc81898955234048b312953e50b045c19e36182582ee32be3ff7` | exact rechecked algorithm burdens under nonuniform locked schedules |
 | `AOR-FINANCIAL-ROBUSTNESS-TABLE-v1` | `journal/aor/manuscript/tables/financial_robustness_summary.tex` | `0f24f29a7dc70752863678d14fd5154ebd6eb2d09f1023b7047e9a6792b714e0` | exact-rational schedule robustness and global-versus-stepwise gaps |
+| `AOR-POINT-IN-TIME-FINANCIAL-TABLE-v1` | `journal/aor/manuscript/tables/point_in_time_portfolio_library_study.tex` | `5b9cfccc53df6bf5a98a01bb40a347ff239de8db0bb6fd5923f238005b651eab` | sealed public-safe structural and held-out summaries; exact feasibility and solver evidence distinguished |
+| `AOR-CLOSURE-OPTION-TABLE-v1` | `journal/aor/manuscript/tables/closure_option_mechanism_experiment.tex` | `a5d4d68a1f558310525c98adc1038c3805838e6167e35a94c046cb2b90d25db7` | independently recomputed synthetic regime summary with registered uncertainty and claim boundary |
+| `AOR-POINT-IN-TIME-ORIGIN-TABLE-v1` | `journal/aor/online_resource/tables/point_in_time_origin_results.tex` | `1ece43e5ddde07068cb2d133bc74de68a8141ba2ecc892a7b95b0d94a309a5bd` | complete registered origin ledger, including the failed ETF universe gate and adverse replacement |
 
 ## Foundational Lean artifacts
 
@@ -814,18 +817,46 @@ and independently checked against the committed inputs with the corresponding
 These are source artifacts rather than generated experiment outputs, so no
 artifact checksum is assigned. The focused Git commit is their provenance.
 
-## Absent substantive artifact classes
+## Financial experiment provenance and nonpublic artifact classes
+
+### Point-in-time portfolio-library retention provenance
+
+`experiments/financial_strategy_library_panel_v2/` is the completed second
+generation study created after all financial-panel v1 outcomes were known. Its
+sealed execution, public aggregate results, independent audit, and immutable
+report package remain preserved. The subsequent economic-design falsification
+audit is separate under
+`experiments/financial_strategy_library_panel_v2_economic_design_audit/`; it
+does not amend v2. That audit found unequal search, weak rank calibration,
+security-identity confounding, and a missing always-feasible cash option, and
+therefore supports the separately locked point-in-time study direction.
+
+`experiments/financial_strategy_library_panel_v3/` is the immutable internal
+provenance directory for the **Point-in-Time Portfolio-Library Retention
+Study**. It binds point-in-time liquid common-equity universes, a
+separate ETF replication, diversified portfolio-strategy candidates, exact
+budget-matched compression arms, nested no-harm adoption, simultaneous
+selection uncertainty, full trial accounting, and staged information-access
+locks. The retrospective evaluation is complete: all 19 common-equity safe
+choices equal their comparator, so the primary contrast is zero; the only
+primary ETF replacement is negative. The public evaluation result SHA-256 is
+`fc905909509eaec14ea377efa987c0946c32fc8b9cd3db81c9eb21df395bab7e` and
+the final result-seal SHA-256 is
+`156e4691a9c4962ba325e6931c6682f90390ef70ad16bb90d0fae7fa11f136d6`.
+The 2000--2025 block remains retrospective design validation because earlier
+history was known; fresh confirmation still requires a later vintage or an
+independent market panel fixed before outcome access.
 
 ### Prospective point-in-time financial panel
 
-The files under `experiments/financial_strategy_library_panel_v1/`, its
-configuration, deterministic registry generator, registration tests, and
-`DESIGN_LOCK.json` form a prospective design artifact. They register 20 annual
-origins, three distinct source-library constructions, 27 auditable
-specification-owned capabilities, three predecision burden schedules, and the
-information boundary before any study-specific licensed row or outcome is
-read. They are not empirical results. `make aor-financial-panel-v1-design-check`
-verifies this artifact without accessing licensed data.
+The files under `experiments/financial_strategy_library_panel_v1/` preserve the
+original prospective design, its execution history, audits, and public
+aggregates. They register 20 annual origins, three distinct source-library
+constructions, 27 auditable specification-owned capabilities, three
+predecision burden schedules, and the original information boundary. V1 is now
+completed but remains a design-failure case rather than flagship evidence;
+licensed row-level artifacts stay ignored. The amendment descriptions below
+are immutable execution provenance, not the current v3 protocol.
 
 Prospective Amendment 011 adds only execution infrastructure: three
 Snappy-compressed, local-only prepared-return Parquet partitions; 180
@@ -954,6 +985,29 @@ estimands, denominators, and the licensed-data boundary are unchanged.
 | general raw-model theorem fixture adapters | future mappings from the shared exact records into every accepted raw Lean structure | the version-1 transparent exact bridge exists, but no universal raw-model adapter theorem exists |
 | generated theorem exports and machine-readable axiom reports | generated audited metadata in `shared/` | absent; source-level F0 audit exists |
 | release bundle | `release/v0.1.1-arxiv/` | main and supplement PDFs, minimal two-document arXiv source package, hashes, and archive-expanded source-commit metadata are present; executable research projects, deprecated internal records, and licensed rows are excluded from the arXiv source archive |
+
+## Calibrated Closure-Option Mechanism Experiment
+
+`experiments/financial_strategy_library_panel_v4/` is the immutable internal
+provenance directory for the locked and sealed Julia-first calibrated
+closure-option mechanism experiment. Its source-backed nuisance calibration
+uses 37 gate-passed point-in-time proposal cells, 2,479 complete
+strategy paths, and 623,647 residual observations while exporting no security
+identifiers or return observations.
+
+| Artifact | Producer | Inputs | Validation status |
+|---|---|---|---|
+| `calibration/CALIBRATION.toml` | `julia/scripts/calibrate_financial_strategy_library_panel_v4.jl` | licensed local v3 proposal-path Parquet files and v3 proposal result seal | exact 37-file recomputation passed |
+| `DESIGN_LOCK.toml` | `julia/scripts/lock_financial_strategy_library_panel_v4_design.jl` | config, design documents, registries, aggregate calibration, Julia implementation, runner, audit, and tests | locked before v4 test-world generation; aggregate `159664b3...c6070d8c` |
+| `results/V4_WORLD_LEDGER.csv` | `julia/scripts/run_financial_strategy_library_panel_v4.jl` | design lock and public aggregate calibration | 16,384 rows; every record hash verified; SHA-256 `875cf261...2073e29` |
+| `results/V4_SUMMARY.csv` | same runner | complete world ledger | byte-reproduced; SHA-256 `489b8dd6...c6cbfdf` |
+| `results/RESULT_MANIFEST.toml` | same runner | ledger, summary, registered gates | all registered gates pass; SHA-256 `aa6dfd66...594b1` |
+| `RESULT_SEAL.toml` | `julia/scripts/audit_financial_strategy_library_panel_v4.jl` | independent deterministic recomputation | `INDEPENDENT_RECOMPUTATION_PASS` |
+
+The manuscript-facing interpretation is
+`journal/aor/reports/CALIBRATED_CLOSURE_OPTION_MECHANISM_EXPERIMENT.md`. The permitted claim is
+positive mechanism validation under the registered closure-active DGP. The
+artifacts do not support a market-alpha or deployability claim.
 
 ## Manifest policy
 

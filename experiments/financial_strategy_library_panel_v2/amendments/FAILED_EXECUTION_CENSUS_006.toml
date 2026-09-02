@@ -1,0 +1,52 @@
+schema_version = "financial-strategy-library-panel-v2-failed-execution-census-v1"
+created_date = "2026-09-01"
+experiment_id = "financial-strategy-library-panel-v2"
+attempt = 10
+terminal_stage = "compact focused-docket compression before first terminal origin"
+master_panel_complete = true
+all_origin_universes_completed = true
+structurally_evaluable_origins = 20
+scientific_score_observed = true
+registered_seed_consumed = true
+solver_or_heuristic_runtime_observed = true
+postdecision_outcome_observed = false
+predecision_files_serialized = 0
+predecision_seal_created = false
+local_artifacts_removed_after_census = true
+
+[failure_diagnosis]
+per_security_source_quota_active = false
+inline_stress_timing_active = false
+elapsed_compression_minutes_without_terminal_origin = 8
+mechanism = "population exact and multistart arms remained too slow to serve as a gate on the held-out experiment"
+replacement = "deterministic weighted greedy plus reverse deletion as operational population arm; exact and multistart algorithms moved to separate benchmark"
+
+[partial_origin_status]
+removed_after_census = true
+file_count = 20
+byte_size = 12974725
+directory_aggregate_sha256 = "cf18a3b1f45937b8ab365ad29d3bd67ab22a6e1f8468cdad0bcdff337640d8e2"
+
+[local_results]
+removed_after_census = true
+file_count = 4
+byte_size = 9781
+directory_aggregate_sha256 = "f3d2f9dbd3069e0879c7d9ddc10a49682870e6c8c8c89fb9cfeb62a68567d23d"
+
+[[local_results.files]]
+path = "ENVIRONMENT.toml"
+sha256 = "24f11d9a7dc88dffdb2e9d3a0a1c5f172170ce8476a344c30ea07c486a89deeb"
+[[local_results.files]]
+path = "MASTER_ACCESS_STRUCTURAL.toml"
+sha256 = "3350b488fc6fe9d8f475c79fc976808424606e0781a5e69b58bc20a19e112e1b"
+[[local_results.files]]
+path = "MASTER_PANEL_SUMMARY.toml"
+sha256 = "e68c7f792ee729eb0a49b26ff1270e64943b6be8daf9f859c9a51527f0c23c97"
+[[local_results.files]]
+path = "SOURCE_AUDIT.toml"
+sha256 = "443dc54de81ed90c1e93a05a2d2f6d96e871d0754b708134be642db09227fc2d"
+
+[retained_master_panel]
+file_count = 158
+retained_master_rows = 38327975
+directory_aggregate_sha256 = "585fe9f1312dd00c5633e750021cafef83e830b2e0da9029d20576c6c0bd5a61"

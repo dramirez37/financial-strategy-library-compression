@@ -1,0 +1,21 @@
+field_id,stage,required,description
+trial_id,prelock,true,stable hash of origin universe strategy arm and policy
+origin_id,prelock,true,registered compression-decision origin
+universe_id,prelock,true,registered point-in-time universe
+strategy_id,prelock,true,complete frozen portfolio grammar identifier
+compression_arm_id,prelock,true,registered library arm
+policy_id,prelock,true,registered decision policy
+requirements_hash,prelock,true,hash of complete capability requirement set
+generatable,predecision,true,whether every requirement is retained
+failure_code,all,true,registered empty or failure reason
+proposal_observation_count,proposal,true,available proposal sessions
+proposal_ce,proposal,true,family-shrunk annual certainty equivalent or missing
+proposal_incremental_lower_bound,proposal,true,simultaneous lower bound or missing
+policy_eligible,proposal,true,whether the registered hurdle is cleared
+policy_selected,proposal,true,whether the frozen policy selects the trial
+evaluation_observation_count,evaluation,true,available evaluation sessions
+evaluation_ce,evaluation,true,held-out certainty equivalent or missing
+evaluation_mean_component,evaluation,true,held-out annual mean component or missing
+evaluation_variance_penalty,evaluation,true,held-out annual variance penalty or missing
+evaluation_turnover_cost,evaluation,true,held-out annual turnover cost or missing
+record_hash,all,true,hash of the canonical ledger record

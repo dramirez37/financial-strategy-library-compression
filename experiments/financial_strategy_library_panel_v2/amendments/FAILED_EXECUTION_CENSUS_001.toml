@@ -1,0 +1,116 @@
+schema_version = "financial-strategy-library-panel-v2-failed-execution-census-v1"
+created_date = "2026-09-01"
+experiment_id = "financial-strategy-library-panel-v2"
+failed_attempt_count = 5
+scientific_score_observed = false
+registered_seed_consumed = false
+arm_or_solver_outcome_observed = false
+postdecision_outcome_observed = false
+local_artifacts_removed_after_census = true
+tracked_locks_and_amendments_retained = true
+
+[[attempts]]
+attempt = 1
+terminal_stage = "gzip header read"
+
+[[attempts]]
+attempt = 2
+terminal_stage = "partial serial decision scan"
+
+[[attempts]]
+attempt = 3
+terminal_stage = "provisional-universe tuple handoff"
+
+[[attempts]]
+attempt = 4
+terminal_stage = "profile-support missing-return handling"
+
+[[attempts]]
+attempt = 5
+terminal_stage = "master-panel finite-return flag validation"
+
+[[artifacts]]
+path = "local_data/FAILED_ATTEMPT_004_reference_series_partitions/structural-source-001.parquet"
+byte_size = 129376
+sha256 = "2a41844179e4552060997c93fe4ab922321fdeaca083743f5a0331b0fa6b63f5"
+
+[[artifacts]]
+path = "local_data/FAILED_ATTEMPT_004_reference_series_partitions/structural-source-001.toml"
+byte_size = 689
+sha256 = "c1eca65d08f38030cea51715db7b2938d98f7cc23f3dbb18439f30e7255e43dd"
+
+[[artifacts]]
+path = "local_data/FAILED_ATTEMPT_004_reference_series_partitions/structural-source-002.parquet"
+byte_size = 143130
+sha256 = "23eb2c16a0f82331efb3067cf03ff6b7615c24056392681a6d57fc05c5e28540"
+
+[[artifacts]]
+path = "local_data/FAILED_ATTEMPT_004_reference_series_partitions/structural-source-002.toml"
+byte_size = 689
+sha256 = "95487f03250b53bdc9a65191218285e98a53a9366f115d53c32195e150e1a136"
+
+[[artifacts]]
+path = "local_data/FAILED_ATTEMPT_004_reference_series_partitions/structural-source-003.parquet"
+byte_size = 58087
+sha256 = "bab6213cbd9741a8ad0eba27fc38176c95e0a08558bf9e7d87b319c906e057fa"
+
+[[artifacts]]
+path = "local_data/FAILED_ATTEMPT_004_reference_series_partitions/structural-source-003.toml"
+byte_size = 688
+sha256 = "d82fc01711ecd9ed9ef2355ad664e009ed1b17ff2a52966c09404e6326c55c83"
+
+[[artifacts]]
+path = "local_data/master_market_panel/security_intervals.parquet"
+byte_size = 2322903
+sha256 = "15adc33eb5ae6482772a1c00b9157020c271d5200a175783a2397c161edb5782"
+
+[[artifacts]]
+path = "local_data/master_market_panel/security_intervals.toml"
+byte_size = 437
+sha256 = "428eac3b5ca2a4d36d43224d53e9c00c008338e63c7c2800ec438b8866460aa4"
+
+[[artifacts]]
+path = "local_results/ENVIRONMENT.toml"
+byte_size = 431
+sha256 = "63e4f9e613131973913c1196b757e74965ec2a46701dd1ffccb342604c5764d2"
+
+[[artifacts]]
+path = "local_results/FAILED_ATTEMPT_001_ENVIRONMENT.toml"
+byte_size = 431
+sha256 = "3e8033b8339025d1d009efc0cafd8089ff297eb26ae61db49fbf433a5a988ff0"
+
+[[artifacts]]
+path = "local_results/FAILED_ATTEMPT_002_ENVIRONMENT.toml"
+byte_size = 431
+sha256 = "abf6ba88ca4ff5bb29e2b3f9ac50b7e0421082532d41f94a96aa81a90918a85b"
+
+[[artifacts]]
+path = "local_results/FAILED_ATTEMPT_002_SOURCE_AUDIT.toml"
+byte_size = 2685
+sha256 = "7f4cdab0bdc6ecbaeb63153561e2c1166644639d5722c95bd92f9d6a98da5d58"
+
+[[artifacts]]
+path = "local_results/FAILED_ATTEMPT_003_ENVIRONMENT.toml"
+byte_size = 431
+sha256 = "03bd0336b5877067504658278e52deaee2d136d8075d6658899c52326b6bfcb0"
+
+[[artifacts]]
+path = "local_results/FAILED_ATTEMPT_003_SOURCE_AUDIT.toml"
+byte_size = 2685
+sha256 = "40c018049b4cf51fd1b3defe0a3b1fa1af87d5b0932bcac144f7528b5e936371"
+
+[[artifacts]]
+path = "local_results/FAILED_ATTEMPT_004_ENVIRONMENT.toml"
+byte_size = 431
+sha256 = "fbdf7e3fea7fa4566e3c727984b23c7a855151dff450b08aa51699dee8e1ba0c"
+
+[[artifacts]]
+path = "local_results/FAILED_ATTEMPT_004_SOURCE_AUDIT.toml"
+byte_size = 2685
+sha256 = "e4c51ad57b58c41e6b519f1b59e562d448ac569344783ad6abfb3c51e19e343e"
+
+[[artifacts]]
+path = "local_results/SOURCE_AUDIT.toml"
+byte_size = 2915
+sha256 = "40bef0c80c1a5c5879822f0028f91e32dd6da72b9d6fcc97d52e90a4d927d055"
+

@@ -1,0 +1,31 @@
+schema_version = "financial-strategy-library-panel-v2-execution-amendment-v6"
+amendment_id = "EXECUTION_AMENDMENT_006"
+predecessor_execution_lock = "EXECUTION_LOCK_006.json"
+failure_stage = "parallel master-market-panel staging"
+failure_type = "valid exact total-loss return rejected by strict greater-than bound"
+universe_census_computed_before_amendment = false
+profile_support_computed_before_amendment = false
+registered_seed_consumed_before_amendment = false
+candidate_score_observed_before_amendment = false
+arm_or_solver_outcome_observed_before_amendment = false
+postdecision_outcome_observed_before_amendment = false
+scientific_estimand_changed = false
+
+[return_bound_audit]
+at_or_below_minus_one_count = 8
+equal_minus_one_count = 8
+below_minus_one_count = 0
+counts_registered_file_order = [4, 1, 3]
+all_have_observed_delisting_flag = true
+mv_flag_count = 7
+na_flag_count = 1
+new_lower_bound_inclusive = -1.0
+values_below_lower_bound_fail_closed = true
+
+[cleanup]
+user_requested = true
+census = "FAILED_EXECUTION_CENSUS_002.toml"
+local_data_file_count = 90
+local_result_file_count = 2
+tracked_provenance_retained = true
+unrelated_experiments_removed = false

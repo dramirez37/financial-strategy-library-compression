@@ -1,0 +1,40 @@
+{
+  "schema_version": "financial-strategy-library-panel-v2-execution-lock-v1",
+  "experiment_id": "financial-strategy-library-panel-v2",
+  "execution_protocol_id": "EXECUTION_PROTOCOL_001",
+  "locked_at_utc": "2026-09-01T20:10:50.595Z",
+  "predecessor_design_lock_aggregate_sha256": "0f2305d0187247cd048035fb03f6912e9ea7028ac05212adf76396af05b61964",
+  "licensed_rows_parsed_before_execution_lock": false,
+  "v2_candidate_scores_observed_before_execution_lock": false,
+  "v2_arm_outcomes_observed_before_execution_lock": false,
+  "v2_postdecision_outcomes_observed_before_execution_lock": false,
+  "registered_origins": 20,
+  "registered_dockets": 2,
+  "registered_schedules": 3,
+  "registered_arms": 6,
+  "registered_menus_per_origin_docket": 32,
+  "julia_version": "1.12.6",
+  "blas_threads": 1,
+  "highs_threads_per_model": 1,
+  "predecision_information_firewall": true,
+  "aggregate_sha256": "9490af81fd3578d610af6b3618a035be5842f2a3b9fe5aeaa0de45e1b8dae99d",
+  "source_stat_fingerprints": [
+    {"role": "security_history", "byte_size": 42986400, "modified_unix_seconds": 1777593212},
+    {"role": "daily_1", "byte_size": 966971582, "modified_unix_seconds": 1777592303},
+    {"role": "daily_2", "byte_size": 1010422667, "modified_unix_seconds": 1777592196},
+    {"role": "daily_3", "byte_size": 806431932, "modified_unix_seconds": 1777592043}
+  ],
+  "files": {
+    ".gitignore": "161316e66a98d084a6633aaaf98d71892ed36e6554ed2d6dce8a8b6db21b518d",
+    "experiments/financial_strategy_library_panel_v2/DESIGN_LOCK.json": "9c747a7d131e08e25c0441edd411bb89260aab2e5cfb1cdfb5e42ddb321aa0e0",
+    "experiments/financial_strategy_library_panel_v2/EXECUTION_PROTOCOL.md": "215a0fa6c1296ff89b5a1ae46b0c2fe7d87069b665dc252de02b28c61d5aeb68",
+    "julia/Manifest.toml": "bb86bf92babc6c148dcf5e73d2e230d5b2e68002b1a542ab16c983a6206aebe3",
+    "julia/Project.toml": "dd6ab9b382b179a3ee75f8ffb2df65093c6faaa5ee5b801bf8d6e5b439494a90",
+    "julia/scripts/audit_financial_strategy_library_panel_v2.jl": "12a61d30d90c330d38ac59661ad143e3c49c8fd45fa20b289b7d33ed9802cacb",
+    "julia/scripts/lock_financial_strategy_library_panel_v2_execution.jl": "7c5284b98a54fe32b5b3b74f749b66f2be89eb59edafce1bea1b6c47ff554aec",
+    "julia/scripts/run_financial_strategy_library_panel_v2.jl": "cbdcc67f74f5a269546af54867620932ae29743756d20d85bafd141bf3430acd",
+    "julia/src/FinancialStrategyLibraryPanelV2Execution.jl": "a79c3e796f333c7d0123f6542bed7ca97d6c302043655db473f98e9b2b73f04f",
+    "julia/test/run_financial_strategy_library_panel_v2_execution_tests.jl": "bf935050392129a63bf41a8016d3df14e526c2aa44d7844ba05036b21437be4a",
+    "julia/test/test_financial_strategy_library_panel_v2_execution.jl": "1cad0ccf023606147313efb0f9e300273b89048e5348af40e865a2e9e80a53f4"
+  }
+}

@@ -1,0 +1,40 @@
+base_design_lock_alone_authorizes_return_access = false
+current_amendment_lock_required_for_return_access = true
+date_aware_extractor_lock_required_for_return_access = true
+design_lock_sha256 = "28aad014abce4b6c24a2b8b84535727ff58335676d8cc8bf47c6fa0544644a56"
+effective_historical_predecision_return_access_permitted = true
+experiment_id = "financial-strategy-library-panel-v3"
+extractor_aggregate_sha256 = "6a4142c02630e427f3a863b1eb651ef465bb8f8902c748e90179528d5595f7dc"
+historical_predecision_return_access_permitted = true
+historical_proposal_or_evaluation_return_access_permitted = false
+identifier_date_filter_must_precede_return_decode = true
+language = "Julia"
+local_universe_selection_sha256 = "3f28073006d84ac8b7237ada07e416ff6d99186d729a1745fcf54de602ae6f4f"
+next_required_seal = "frozen predecision libraries exact arms action sets and trial ledger"
+predecision_access_authority_model = "base_eligibility_plus_current_amendment_plus_extractor_lock"
+predecision_amendment_lock_sha256 = "6aaa1cce4c01066ab66c5f371993e326a0e9ec0a469d636731eb506c6e3e5c77"
+schema_version = "financial-strategy-library-panel-v3-predecision-extractor-lock-v1"
+sealed_file_count = 4
+source_master_manifest_sha256 = "0aaec2b748a9e2043b8ce6583b4318874b4efd8abbfa9a10b197df6d5e124e2d"
+status = "LOCKED_PREDECISION_EXTRACTOR"
+terminal_delisting_fields_required = true
+v3_evaluation_return_values_accessed_before_lock = false
+v3_predecision_return_values_accessed_before_lock = false
+v3_proposal_return_values_accessed_before_lock = false
+
+[sealed_file_sha256]
+"julia/scripts/lock_financial_strategy_library_panel_v3_predecision_extractor.jl" = "4e2f27721c41492ab16005e6fff597663b80d21e9d328a5c596cc0381d9186ef"
+"julia/scripts/stage_financial_strategy_library_panel_v3_predecision_returns.jl" = "411034e30c7272fc2692ad10e7466be36bd1ebe52fd9375006d6152107046935"
+"julia/test/run_financial_strategy_library_panel_v3_predecision_staging_tests.jl" = "2ed378fd5e7bf3af11ec47b94b0eb80c4d1f2837f9b245cdbb82df8b35c373b0"
+"julia/test/test_financial_strategy_library_panel_v3_predecision_staging.jl" = "39781d221f4ddeb638050fbbed1abc68f7eefa3b589180b336a856e45fddd8da"
+
+[synthetic_sentinel]
+exact_negative_one_return_preserved = true
+exact_target_range_count = 2
+identifier_date_rows_scanned = 8
+postdecision_rows_decoded = 0
+postdecision_rows_present_in_source = 4
+real_historical_return_values_accessed = false
+return_rows_decoded_after_filter = 4
+status = "SYNTHETIC_SENTINEL_PASSED"
+terminal_delisting_rows_preserved = 1

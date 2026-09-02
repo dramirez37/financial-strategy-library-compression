@@ -1,0 +1,88 @@
+audit_id = "financial-strategy-library-panel-v2-economic-design-audit"
+audit_is_post_hoc = true
+licensed_rows_included = false
+registered_v2_result_unchanged = true
+schema_version = "financial-strategy-library-panel-v2-economic-design-audit-v1"
+source_experiment_id = "financial-strategy-library-panel-v2"
+status = "V3_ECONOMIC_DIRECTION_SUPPORTED"
+
+[calibration]
+active_changed_pair_count = 689
+changed_pair_count = 858
+pre_gap_vs_delta_active_correlation = 0.024958461556193638
+pre_gap_vs_delta_correlation = 0.010723127005066103
+within_cell_mean_correlation = 0.022765633344164225
+within_cell_median_correlation = -0.001219996711233815
+within_cell_negative_count = 20
+within_cell_positive_count = 20
+
+[cash_floor_policy]
+contribution_2007 = 0.1940846842362316
+maximum = 0.04818619303860233
+mean = 0.005959353518453454
+median = 0.0022848213837507385
+minimum = -0.02457194605324673
+negative = 8
+positive = 12
+zero = 0
+
+[data]
+complete_pairs = 1277
+docket_count = 40
+incomplete_pairs = 3
+origin_count = 20
+predecision_postdecision_hash_binding_verified = true
+registered_pairs = 1280
+
+[direction_gate]
+condition_count = 4
+required_count = 3
+trigger_count = 4
+v3_direction_supported = true
+
+    [direction_gate.conditions]
+    outside_option_materiality = true
+    security_identity_confounding = true
+    unequal_opportunity_set = true
+    weak_active_rank_calibration = true
+
+[nested_no_harm_zero_policy]
+contribution_2007 = 0.1940846842362316
+maximum = 0.04818619303860233
+mean = 0.005959353518453454
+median = 0.0022848213837507385
+minimum = -0.02457194605324673
+negative = 8
+positive = 12
+zero = 0
+
+[outside_option_sensitivity]
+absolute_change_in_2007_signed_contribution = 0.5829080846796844
+absolute_relative_change_in_mean = 0.5662752422870413
+
+[registered_policy]
+contribution_2007 = 0.776992768915916
+maximum = 0.21351672962678148
+mean = 0.013739943160905252
+median = 9.18037759449152e-5
+minimum = -0.022637365283505267
+negative = 9
+positive = 11
+zero = 0
+
+[security]
+active_changed_pair_count = 689
+different_security_count = 681
+different_security_share = 0.988388969521045
+same_security_count = 8
+
+[selection]
+changed_candidate_complete_count = 858
+comparator_cash_count = 169
+comparator_lower_rank_count = 692
+comparator_lower_rank_or_cash_count = 861
+comparator_negative_active_count = 327
+comparator_rank_one_count = 419
+safe_negative_active_count = 15
+safe_rank_one_count = 1280
+same_candidate_complete_count = 419

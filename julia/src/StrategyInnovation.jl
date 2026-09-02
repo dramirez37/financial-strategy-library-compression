@@ -256,6 +256,7 @@ export ArithmeticMode,
        JOURNAL_EXACTNESS_MANIFEST_SCHEMA_VERSION,
        JOURNAL_MIP_SOLUTION_SCHEMA_VERSION,
        FINANCIAL_ALGORITHM_COMPARISON_SCHEMA_VERSION,
+       FINANCIAL_INNOVATION_CHALLENGE_SCHEMA_VERSION,
        EMPTY_RESIDUAL_OPTIMALITY_CERTIFICATE_SCHEMA_VERSION,
        ALGORITHMIC_COMPRESSION_GENERATOR_SCHEMA_VERSION,
        DEFAULT_ALGORITHMIC_INSTANCE_REGISTRY,
@@ -295,6 +296,8 @@ export ArithmeticMode,
        JournalMIPSolverDiagnostics,
        FinancialAlgorithmComparisonControls,
        FinancialAlgorithmComparisonResult,
+       FinancialInnovationCandidate,
+       FinancialInnovationMenu,
        EmptyResidualOptimalityCertificate,
        JournalPreprocessingMap,
        JournalReverseDeletionStep,
@@ -344,6 +347,13 @@ export ArithmeticMode,
        compare_financial_algorithm_suite,
        financial_algorithm_comparison_payload,
        serialize_financial_algorithm_comparison,
+       financial_profile_support,
+       frontier_only_journal_instance,
+       retained_capability_ids,
+       frontier_only_budget_matched_selection,
+       select_financial_innovation_candidate,
+       paired_financial_innovation_contrast,
+       full_calendar_postdecision_utility,
        certify_empty_residual_optimum,
        empty_residual_certificate_payload,
        serialize_empty_residual_certificate,
@@ -388,6 +398,7 @@ include("CertifiedDeletionJournalCompression.jl")
 include("JournalCompressionMIP.jl")
 include("JournalExactnessAudit.jl")
 include("FinancialAlgorithmComparison.jl")
+include("FinancialInnovationChallengeV2.jl")
 include("EmptyResidualOptimalityCertificate.jl")
 
 end

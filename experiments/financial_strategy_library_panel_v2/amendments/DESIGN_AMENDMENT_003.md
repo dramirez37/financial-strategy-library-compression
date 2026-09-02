@@ -1,0 +1,9 @@
+# Financial panel v2 design amendment 003 — scalable flagship dockets
+
+The first shrinkage-based restart confirmed 20-of-20 full-calendar origin eligibility, then revealed a separate predecision scalability failure. The source dockets mechanically retained top strategies within every one of 100 securities. That quota made source size scale with the data-universe cap even though identity preservation is not a registered frontier or capability requirement. Five additional 900-second stress repetitions were also embedded inside every admitted origin–docket–burden cell. The scientific run could therefore take hundreds of hours before its predecision seal.
+
+The successor keeps all 100 most-liquid securities and their full 9,600-strategy grammar. It removes only the per-security source quota. Focused and broad source dockets remain the union of their registered ranks within all 30 operating scenarios and all 27 capabilities, with exact cutoff ties and capability completion. Every security remains eligible for the masked innovation pool. This makes the active research library a compact performance-and-capability docket rather than a disguised universe-size denominator.
+
+The main MIP limit is 180 seconds with zero registered gaps and unchanged exact rational incumbent checks. Solver optimality is claimed only when the solver returns the corresponding status. Steady-state stress repetitions are moved to a separate benchmark artifact after the sealed scientific run; stress membership remains recorded, and timing cannot affect any library or menu choice.
+
+This amendment used no postdecision information. Candidate scores, restart-001 seeds, and solver runtime were exposed, so restart 001 is excluded from the estimands and restart 002 uses another disjoint registered seed namespace.

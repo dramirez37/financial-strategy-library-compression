@@ -1,0 +1,46 @@
+schema_version = "financial-strategy-library-panel-v2-design-amendment-v1"
+amendment_id = "DESIGN_AMENDMENT_001"
+predecessor_design_lock = "DESIGN_LOCK.json"
+adopted_date = "2026-09-01"
+data_quality_informed = true
+security_level_profile_support_computed_before_amendment = false
+candidate_score_observed_before_amendment = false
+registered_seed_consumed_before_amendment = false
+arm_or_solver_outcome_observed_before_amendment = false
+postdecision_outcome_observed_before_amendment = false
+scientific_estimand_changed = true
+postdecision_information_may_define_universe = false
+postdecision_rule_changed = false
+primary_mechanism_contrast_changed = false
+
+[complete_case_rule]
+calendar = "valid SPY sessions from January 1 of construction_start_year-1 through the decision date"
+required_fields = ["finite compoundable dlyret with flag NA", "positive dlyclose or absolute dlyprc fallback", "finite nonnegative dlyvol"]
+known_missing_return_flags = ["DG", "DM", "DP", "GP", "MP", "MV", "NS", "NT", "RA"]
+known_missing_returns_imputed = false
+unknown_or_contradictory_flags_fail_closed = true
+nonreference_sessions_added_to_structural_panel = false
+minimum_construction_observations_per_belief = 25
+minimum_compression_observations_per_belief = 25
+maximum_eligible_by_liquidity = 100
+minimum_eligible_for_origin = 20
+
+[instrument_universe]
+study_start = "2000-01-01"
+study_end = "2025-12-31"
+security_types = ["common_equity", "plain_etf"]
+common_equity_classification = "EQTY|COM|NS; USIncFlg=Y; IssuerType in ACOR,CORP"
+etf_classification = "FUND|ETF|NS; USIncFlg=Y"
+conditional_type = "RW"
+trading_status = "A"
+primary_exchanges = ["N", "Q", "A", "R", "B"]
+complex_product_name_keywords_excluded = true
+instrument_type_quota = false
+ranking = "descending median compression-window dollar volume, then ascending PERMNO"
+
+[staging]
+master_panel_built_once_before_scoring = true
+origin_scoped_predecision_views_enforce_decision_cutoff = true
+postdecision_view_authorized_only_after_predecision_seal = true
+raw_source_files_scanned_concurrently = true
+registered_file_order_merge = true

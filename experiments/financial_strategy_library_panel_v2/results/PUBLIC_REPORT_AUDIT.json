@@ -1,0 +1,104 @@
+{
+  "schema_version": "financial-strategy-library-panel-v2-public-report-audit-v1",
+  "experiment_id": "financial-strategy-library-panel-v2",
+  "passed": true,
+  "public_report_release_authorized": true,
+  "licensed_rows_included": false,
+  "certificate_count": 17,
+  "certificates": [
+    {
+      "audit_id": "locked_lineage",
+      "passed": true,
+      "error_ids": []
+    },
+    {
+      "audit_id": "upstream_promotion",
+      "passed": true,
+      "error_ids": []
+    },
+    {
+      "audit_id": "public_csv_schemas",
+      "passed": true,
+      "error_ids": []
+    },
+    {
+      "audit_id": "metric_replay",
+      "passed": true,
+      "error_ids": []
+    },
+    {
+      "audit_id": "docket_replay",
+      "passed": true,
+      "error_ids": []
+    },
+    {
+      "audit_id": "predecision_replay",
+      "passed": true,
+      "error_ids": []
+    },
+    {
+      "audit_id": "burden_replay",
+      "passed": true,
+      "error_ids": []
+    },
+    {
+      "audit_id": "scenario_replay",
+      "passed": true,
+      "error_ids": []
+    },
+    {
+      "audit_id": "availability_replay",
+      "passed": true,
+      "error_ids": []
+    },
+    {
+      "audit_id": "universe_replay",
+      "passed": true,
+      "error_ids": []
+    },
+    {
+      "audit_id": "artifact_integrity",
+      "passed": true,
+      "error_ids": []
+    },
+    {
+      "audit_id": "source_alignment",
+      "passed": true,
+      "error_ids": []
+    },
+    {
+      "audit_id": "reporting_order",
+      "passed": true,
+      "error_ids": []
+    },
+    {
+      "audit_id": "reporting_rules",
+      "passed": true,
+      "error_ids": []
+    },
+    {
+      "audit_id": "package_inventory",
+      "passed": true,
+      "error_ids": []
+    },
+    {
+      "audit_id": "public_boundary",
+      "passed": true,
+      "error_ids": []
+    },
+    {
+      "audit_id": "portable_html",
+      "passed": true,
+      "error_ids": []
+    }
+  ],
+  "package_file_count": 18,
+  "package_aggregate_sha256": "16c1c113816fa4ee76fb4209aba6ac527bb55df19bac779d1b277e99f3b40993",
+  "package_manifest_sha256": "2df241b7ed07ed673212c3a69dfe59396bfb645c19da5c4ae2bca5ce3bdc9ab1",
+  "source_aggregates": {
+    "sealed_predecision_directory": "aa91f45ab532f88dd1a9c93adcc054976e4f5a7041c3cd0518769fe098089ab4",
+    "postdecision_directory": "8362dd958355d21a6279111c84971f08d894fa59a0ae55bc3c4d310fb4ee92f1",
+    "origin_status_directory": "cf18a3b1f45937b8ab365ad29d3bd67ab22a6e1f8468cdad0bcdff337640d8e2"
+  },
+  "audit_script_sha256": "b1d196792dcd37fae5535991c684190809a512ed93dab14fe34204f3ebb82031"
+}

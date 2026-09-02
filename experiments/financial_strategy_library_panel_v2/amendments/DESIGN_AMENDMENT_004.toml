@@ -1,0 +1,37 @@
+schema_version = "financial-strategy-library-panel-v2-design-amendment-v4"
+amendment_id = "DESIGN_AMENDMENT_004"
+predecessor_design_lock = "DESIGN_LOCK_004.json"
+amendment_date = "2026-09-01"
+classification = "predecision-computational-pilot-informed operational flagship"
+scientific_design_changed = true
+primary_estimand_changed = true
+universe_changed = false
+profile_estimator_changed = false
+source_docket_changed = false
+postdecision_outcome_observed_before_amendment = false
+predecessor_runs_may_enter_flagship_estimands = false
+
+[population_arms]
+primary_safe_arm = "innovation_safe_greedy"
+algorithm = "weighted greedy plus reverse deletion preserving frontier and closure"
+primary_comparator_arm = "frontier_only_budget_matched"
+comparator_parent = "frontier-only weighted greedy plus reverse deletion"
+budget_cap = "exact realized burden of innovation_safe_greedy"
+exact_feasibility_recheck_required = true
+causal_claim = false
+
+[computational_benchmark]
+arms = ["innovation_safe_exact", "frontier_only_exact", "innovation_safe_multistart_64"]
+population_run_status = "deferred terminal rows"
+separate_artifact_required = true
+may_affect_population_choice = false
+may_affect_heldout_estimand = false
+
+[rationale]
+statement = "the flagship population experiment tests whether operational closure-preserving compression changes held-out menu decisions under a matched burden; exact optimality is a separate computational question"
+
+[fresh_randomization]
+seed_namespace = "financial-strategy-library-panel-v2-flagship-restart-003"
+registry = "registry/SEED_REGISTRY_FLAGSHIP_003.csv"
+registry_sha256 = "c00aab46a4407ffacccfaef9e4bfc0a346b77227f00b09f80f04d449495ef222"
+disjoint_from_all_predecessor_registries = true

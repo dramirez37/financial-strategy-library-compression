@@ -1,0 +1,31 @@
+change_scope = "cap-disposition initializer control flow only"
+evaluation_values_inspected_before_amendment = 0
+evaluation_values_materialized_before_amendment = 0
+evaluation_values_used_before_amendment = 0
+experiment_id = "financial-strategy-library-panel-v3"
+historical_evaluation_return_access_permitted = false
+historical_proposal_return_reuse_permitted = true
+language = "Julia"
+local_result_manifests_before_amendment = 0
+next_required_seal = "PROPOSAL_ROBUSTNESS_RESULT_SEAL"
+partial_artifact_aggregate_sha256 = "114df36d234b1768130f72ff3e6353df71ae2b0bac1c9baf03335eb293d51382"
+partial_artifact_count = 3
+previous_proposal_robustness_freeze_lock_sha256 = "08fde971f32180578a29d6f934e19aa415a743a34fa944d1394b6ea367ce383d"
+proposal_values_accessed_before_amendment = true
+public_result_manifests_before_amendment = 0
+result_seals_before_amendment = 0
+schema_version = "financial-strategy-library-panel-v3-proposal-robustness-computation-amendment-lock-v1"
+scientific_grid_policies_choices_or_dispositions_changed = false
+sealed_file_count = 4
+status = "LOCKED_PROPOSAL_ROBUSTNESS_COMPUTATION_AMENDMENT_005"
+
+[partial_artifact_sha256]
+"local_data/proposal_robustness/cell-006.toml" = "0cd53de53f40ff29e7baf71b137bd1971ac0af957dd7f1bd44a2ce4fabe50579"
+"local_data/proposal_robustness/cell-016.toml" = "4c183ca8818ec8341de3638d437a4aed6ca1dd698139b331721b3c2ad92ded05"
+"local_data/proposal_robustness/cell-026.toml" = "335630a56d265a0e9962cfcfb7e24417adfc1ccbdbab527eed21272acd0433ee"
+
+[sealed_file_sha256]
+"experiments/financial_strategy_library_panel_v3/amendments/PROPOSAL_ROBUSTNESS_COMPUTATION_AMENDMENT_005.md" = "afbbb8c1c57d719112a02ca3cacad5d3f5bc136898dd8f076f79a06efbefbcc4"
+"julia/scripts/lock_financial_strategy_library_panel_v3_proposal_robustness_computation_amendment_005.jl" = "e4b0c2303fa88151f6a202495319c2d11ad791cf10a4e93987632f06f011d097"
+"julia/scripts/run_financial_strategy_library_panel_v3_proposal_robustness.jl" = "8a05dcdc6b1de4c19c850096d33c09a1fd258ff424d6543d6ba70a15d2d25c72"
+"julia/scripts/seal_financial_strategy_library_panel_v3_proposal_robustness_result.jl" = "e9783a8f662abb6197a5ddf087d728cbeddf128b15db2e8a8f53e43779606f97"

@@ -1,0 +1,22 @@
+schema_version = "financial-strategy-library-panel-v2-execution-amendment-v10"
+amendment_id = "EXECUTION_AMENDMENT_010"
+predecessor_execution_lock = "EXECUTION_LOCK_010.json"
+design_amendment = "DESIGN_AMENDMENT_004"
+failed_attempt_census = "FAILED_EXECUTION_CENSUS_006.toml"
+predecision_file_serialized_before_amendment = false
+predecision_seal_created_before_amendment = false
+postdecision_outcome_observed_before_amendment = false
+
+[cleanup]
+retain_master_market_panel = true
+remove_partial_origin_status = true
+remove_active_local_results = true
+retain_tracked_provenance = true
+
+[execution]
+julia_threads = 8
+primary_safe_arm = "innovation_safe_greedy"
+primary_comparator_arm = "frontier_only_budget_matched"
+population_mip_invoked = false
+population_multistart_invoked = false
+fresh_seed_namespace = "financial-strategy-library-panel-v2-flagship-restart-003"

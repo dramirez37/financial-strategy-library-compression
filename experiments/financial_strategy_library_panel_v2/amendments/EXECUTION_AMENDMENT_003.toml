@@ -1,0 +1,24 @@
+schema_version = "financial-strategy-library-panel-v2-execution-amendment-v3"
+amendment_id = "EXECUTION_AMENDMENT_003"
+predecessor_execution_lock = "EXECUTION_LOCK_003.json"
+failure_stage = "handoff from provisional liquidity construction to reference-state extraction"
+failure_type = "unlabeled tuple accessed by field name"
+source_audit_completed_before_amendment = true
+decision_dates_computed_before_amendment = true
+provisional_liquidity_candidates_computed_in_memory_before_amendment = true
+local_origin_data_written_before_amendment = false
+profile_support_computed_before_amendment = false
+registered_seed_consumed_before_amendment = false
+candidate_score_observed_before_amendment = false
+arm_or_solver_outcome_observed_before_amendment = false
+postdecision_outcome_observed_before_amendment = false
+scientific_estimand_changed = false
+eligibility_rule_changed = false
+registry_changed = false
+information_firewall_changed = false
+
+[correction]
+old_return_shape = "Tuple"
+new_return_shape = "NamedTuple"
+field_names = ["origins", "decisions", "reference_permnos", "candidates", "exclusions"]
+value_or_order_change = false

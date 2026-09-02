@@ -113,6 +113,13 @@ experiments/financial_algorithm_comparison_v1/local_results/
 experiments/financial_resource_optimization/weight_robustness_local_results/
 experiments/financial_strategy_library_panel_v1/local_data/
 experiments/financial_strategy_library_panel_v1/local_results/
+experiments/financial_strategy_library_panel_v2/local_data/
+experiments/financial_strategy_library_panel_v2/local_results/
+experiments/financial_strategy_library_panel_v3/local_data/
+experiments/financial_strategy_library_panel_v3/local_results/
+# Machine-specific audit receipt contains local Julia/HiGHS paths. Its digest
+# remains in the public result seal, while the receipt itself stays local.
+experiments/financial_strategy_library_panel_v3/PREDECISION_AUDIT_AMENDMENT_004_LOCK.toml
 
 # Public local-data template. Everything below data/licensed is deny-by-default
 # except the empty placeholder; researchers supply their own licensed files.
@@ -129,6 +136,14 @@ data/licensed/*
 *.tsv.gz
 *.json.gz
 *.parquet
+# Six committed panel outputs are audited, row-suppressing public aggregates,
+# not local licensed-source Parquet files. Keep the allowlist exact.
+!experiments/financial_strategy_library_panel_v1/results/algorithm_rows_public.parquet
+!experiments/financial_strategy_library_panel_v1/results/carrier_multiplicity.parquet
+!experiments/financial_strategy_library_panel_v1/results/exact_method_agreement.parquet
+!experiments/financial_strategy_library_panel_v1/results/identity_overlap.parquet
+!experiments/financial_strategy_library_panel_v1/results/instance_rows.parquet
+!experiments/financial_strategy_library_panel_v1/results/structural_summary.parquet
 *.feather
 *.arrow
 *.avro

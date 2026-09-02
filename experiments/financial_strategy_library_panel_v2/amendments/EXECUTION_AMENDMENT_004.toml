@@ -1,0 +1,31 @@
+schema_version = "financial-strategy-library-panel-v2-execution-amendment-v4"
+amendment_id = "EXECUTION_AMENDMENT_004"
+predecessor_execution_lock = "EXECUTION_LOCK_004.json"
+design_amendment = "DESIGN_AMENDMENT_001"
+failure_stage = "profile-support scan"
+failure_type = "known CRSP missing-return reason treated as run-fatal"
+source_audit_completed_before_amendment = true
+decision_dates_computed_before_amendment = true
+provisional_liquidity_candidates_computed_in_memory_before_amendment = true
+spy_reference_cache_written_before_amendment = true
+profile_support_computed_before_amendment = false
+registered_seed_consumed_before_amendment = false
+candidate_score_observed_before_amendment = false
+arm_or_solver_outcome_observed_before_amendment = false
+postdecision_outcome_observed_before_amendment = false
+scientific_estimand_changed = true
+estimand_change_governed_by_design_amendment = true
+
+[recovery]
+failed_result_file_count = 7
+failed_cache_file_count = 6
+failed_cache_reused = false
+
+[staging]
+master_market_panel_single_pass = true
+bounded_parquet_chunks = true
+origin_scoped_predecision_access = true
+postdecision_access_after_seal = true
+raw_files_scanned_concurrently = true
+registered_file_order_merge = true
+missing_returns_imputed = false

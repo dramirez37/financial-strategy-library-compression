@@ -40,7 +40,8 @@ retrospective financial evidence are complementary but noninterchangeable.
 | MILP solution. | Implemented with solver statuses and exact returned-library postchecks. | Report encoded model, status, candidate burden, and exact postcheck separately. | Treating `OPTIMAL` as exhaustive/formal proof or exact postcheck as independent optimality proof. |
 | Registered algorithmic scaling study. | Absent. | State the planned design gate. | Runtime, scaling, phase-transition, or method-ranking findings. |
 | Frozen randomized (N=1024) study. | Existing, registered, and immutable. | Prior synthetic structural evidence exactly as committed. | Relabeling it as the new algorithmic benchmark or changing its files, seeds, registries, locks, amendments, or results. |
-| Two retrospective financial audits. | Existing. | Descriptive resource and closure-preservation findings from committed summaries. | New algorithm comparisons, forecasts, causal claims, alpha, or deployability before a separately locked protocol and artifacts exist. |
+| Point-in-Time Portfolio-Library Retention Study. | Sealed and replay-audited. | Finite-panel burden-index compression, exact structural rechecks, additional option coverage, protected proposal choices, and held-out contrasts. | Population resource savings, causal effects, forecasts, alpha, deployability, or institutional capability completeness. |
+| Calibrated Closure-Option Mechanism Experiment. | Design locked and independently recomputed. | Bridge-mechanism recovery under prespecified synthetic adverse, null, low-dose, and powered regimes. | Historical or future market effects, estimated return premia, causal effects, alpha, or deployability. |
 
 ## Exact algorithm-output certificate
 
@@ -108,8 +109,11 @@ documented issue. Experiments cannot be used to force the planned conclusion.
 - Held-out financial information may be used only for ex-post evaluation. It
   may not enter pruning, weights, algorithm choice, hyperparameter choice, or
   optimization.
-- The terminal and annual walk-forward audits are retrospective case studies of
-  library retention. They are not prospective trading tests.
+- The point-in-time portfolio-library study is retrospective and
+  development-facing. It is not a prospective or independent confirmatory
+  trading test.
+- The calibrated closure-option experiment is synthetic mechanism evidence,
+  not financial-panel evidence.
 - The paper makes no causal claim, forecasting claim, alpha claim, or
   deployable-performance claim.
 - Any new financial algorithm comparison requires a dated design lock that

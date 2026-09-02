@@ -30,8 +30,10 @@ TRACKED_IGNORED="$(git ls-files -ci --exclude-standard)"
 [[ -z "$TRACKED_IGNORED" ]] ||
     print_paths_and_fail "tracked files are accidentally matched by .gitignore" "$TRACKED_IGNORED"
 
+PUBLIC_AGGREGATE_PARQUET='^experiments/financial_strategy_library_panel_v1/results/(algorithm_rows_public|carrier_multiplicity|exact_method_agreement|identity_overlap|instance_rows|structural_summary)\.parquet$'
 FORBIDDEN_PATHS="$(printf '%s\n' "$TRACKED_FILES" | rg -i \
-    '(^|/)(\.env($|\.)|\.netrc$|\.pgpass$|\.odbc\.ini$|\.npmrc$|\.wrds[^/]*$|wrds_credentials?[^/]*$|credentials?($|[._-])|secrets?($|[._-])|\.ssh/|id_(rsa|ed25519)[^/]*$|data/(raw|cache)/|query_cache/|cached_queries/|\.ipynb_checkpoints/|[^/]+\.ipynb$|[^/]+\.(csv\.gz|tsv\.gz|json\.gz|pem|key|p12|pfx|ppk|sas7bdat|xpt|dta|rds|rdata|parquet|feather|arrow|avro|orc|fst|h5|hdf5|hdf|jld|jld2|jlso|jls|bson|ser|pkl|pickle|joblib|npy|npz|mat|sav|sqlite|sqlite3|duckdb|db)$)' || true)"
+    '(^|/)(\.env($|\.)|\.netrc$|\.pgpass$|\.odbc\.ini$|\.npmrc$|\.wrds[^/]*$|wrds_credentials?[^/]*$|credentials?($|[._-])|secrets?($|[._-])|\.ssh/|id_(rsa|ed25519)[^/]*$|data/(raw|cache)/|query_cache/|cached_queries/|\.ipynb_checkpoints/|[^/]+\.ipynb$|[^/]+\.(csv\.gz|tsv\.gz|json\.gz|pem|key|p12|pfx|ppk|sas7bdat|xpt|dta|rds|rdata|parquet|feather|arrow|avro|orc|fst|h5|hdf5|hdf|jld|jld2|jlso|jls|bson|ser|pkl|pickle|joblib|npy|npz|mat|sav|sqlite|sqlite3|duckdb|db)$)' | \
+    rg -v "$PUBLIC_AGGREGATE_PARQUET" || true)"
 [[ -z "$FORBIDDEN_PATHS" ]] ||
     print_paths_and_fail "credential, notebook, or proprietary-data filenames are tracked" "$FORBIDDEN_PATHS"
 

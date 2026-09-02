@@ -1,0 +1,166 @@
+schema_version = "financial-strategy-library-panel-v3-design-v1"
+experiment_id = "financial-strategy-library-panel-v3"
+study_title = "Robust Portfolio Innovation-Option Panel v3"
+status = "locked_predecision_no_v3_outcomes_opened"
+language = "Julia"
+v1_and_v2_outcomes_known = true
+v1_or_v2_rows_may_enter_v3_confirmatory_estimands = false
+historical_v3_block_is_confirmatory = false
+v3_outcomes_opened = false
+
+[decision]
+primary_question = "Does innovation-safe compression preserve economically valuable portfolio-strategy options under a nested, uncertainty-aware adoption policy and the same realized burden cap?"
+primary_audience = "Annals of Operations Research readers evaluating compression, option preservation, and robust sequential decision design"
+candidate_unit = "diversified portfolio strategy; never security-by-strategy identity"
+structural_comparison = "innovation_safe_exact minus frontier_only_exact_budget_matched"
+economic_comparison = "innovation_safe_robust_policy minus frontier_only_robust_policy"
+
+[source]
+historical_development_provider = "CRSP/WRDS"
+historical_development_panel = "immutable v2 master panel, 2000-01-01 through 2025-12-31"
+historical_development_manifest_sha256 = "0aaec2b748a9e2043b8ce6583b4318874b4efd8abbfa9a10b197df6d5e124e2d"
+historical_development_directory_aggregate_sha256 = "585fe9f1312dd00c5633e750021cafef83e830b2e0da9029d20576c6c0bd5a61"
+historical_development_role = "retrospective design and robustness block only"
+confirmatory_source_required = true
+confirmatory_source_rule = "untouched later vintage or independent market panel fixed before outcome access"
+raw_redistribution_permitted = false
+data_contract = "experiments/financial_strategy_library_panel_v3/DATA_CONTRACT.md"
+
+[timeline]
+origin_registry = "experiments/financial_strategy_library_panel_v3/registry/ORIGIN_REGISTRY.csv"
+origin_count = 19
+first_compression_decision_year = 2005
+last_compression_decision_year = 2023
+formation_window = "decision_year-5 through decision_year-3"
+compression_window = "decision_year-2 through decision_year"
+innovation_proposal_window = "decision_year+1"
+heldout_evaluation_window = "decision_year+2"
+proposal_information_may_enter_compression = false
+evaluation_information_may_enter_proposal_or_compression = false
+adjacent_origins_are_independent = false
+
+[universes]
+registry = "experiments/financial_strategy_library_panel_v3/registry/UNIVERSE_REGISTRY.csv"
+selection_information = "point-in-time classification, price, and trailing median dollar volume through the compression decision"
+future_survival_required = false
+delisting_rule = "retain observed delisting return, then cash; unresolved terminal delisting return stays unavailable"
+common_equity_role = "primary"
+plain_etf_role = "registered external replication when its origin gate passes"
+mixed_equity_etf_primary_permitted = false
+predecision_calendar_completeness = 1.0
+minimum_price_at_decision = 5.0
+minimum_median_compression_dollar_volume = 5000000.0
+minimum_compression_liquidity_sessions = 400
+liquidity_rank_rule = "descending median compression-window dollar volume then ascending permanent identifier"
+plain_etf_exclude_name_keywords = ["2X", "3X", "BEAR", "DIREXION", "DOUBLE", "INVERSE", "LEVERAGED", "PROSHARES", "TRIPLE", "ULTRA"]
+future_survival_may_define_membership = false
+
+[portfolio_grammar]
+directional_signal = ["momentum_20", "momentum_60", "mean_reversion_5"]
+entry_filter = ["always", "trend_100"]
+holding_horizon = [5, 20]
+allocation_rule = ["equal_weight", "inverse_volatility"]
+gross_target = [0.5, 1.0]
+exit_rule = ["horizon", "signal_flip"]
+portfolio_strategies_per_universe = 96
+strategy_identifier_rule = "origin_id|universe_id|signal|filter|horizon|allocation|gross|exit"
+security_identifier_is_strategy_identity = false
+security_weight_cap_common_equity = 0.05
+security_weight_cap_plain_etf = 0.10
+portfolio_volatility_target = 0.10
+decision_to_first_return_lag_sessions = 2
+
+[capabilities]
+registry = "experiments/financial_strategy_library_panel_v3/registry/CAPABILITY_REGISTRY.csv"
+rule_closure = "atomic and declared executable interfaces"
+platform_components_are_explicit = true
+security_data_access_is_a_capability = true
+candidate_generatability_requires_rule_and_platform_capabilities = true
+
+[source_library]
+docket_id = "registered_core_portfolio_docket"
+construction = "union of all exact operating-frontier carriers and three predecision carriers per capability"
+alternative_dockets_in_primary_summary = false
+postproposal_or_evaluation_information_permitted = false
+
+[compression]
+arm_registry = "experiments/financial_strategy_library_panel_v3/registry/ARM_REGISTRY.csv"
+primary_safe_arm = "innovation_safe_exact"
+primary_comparator_arm = "frontier_only_exact_budget_matched"
+exact_mip_is_primary = true
+heuristic_is_primary = false
+same_realized_burden_cap = true
+unsuccessful_or_timeout_cells_remain_in_denominator = true
+
+[innovation_options]
+candidate_pool = "exact enumeration of portfolio grammar candidates excluded from the frozen source docket"
+random_challenge_menus = false
+menus_per_origin = 0
+cash_is_always_feasible = true
+comparator_choice_is_always_feasible_to_safe_policy = true
+safe_action_set_must_contain_comparator_action_set = true
+forced_active_choice_permitted = false
+
+[proposal_policy]
+policy_registry = "experiments/financial_strategy_library_panel_v3/registry/POLICY_REGISTRY.csv"
+primary_safe_policy = "innovation_safe_robust_policy"
+primary_comparator_policy = "frontier_only_robust_policy"
+ranking_window = "innovation proposal year only"
+ranking_estimator = "family-shrunk annualized certainty equivalent"
+simultaneous_uncertainty_method = "paired moving-block bootstrap max-t over every considered incremental candidate"
+bootstrap_repetitions = 5000
+moving_block_sessions = 20
+familywise_alpha = 0.10
+certainty_equivalent_hurdle = 0.0025
+hurdle_unit = "annual certainty-equivalent return"
+safe_default = "exact frozen comparator choice"
+adoption_rule = "adopt a closure-enabled candidate only when its simultaneous lower confidence bound over the comparator exceeds the hurdle"
+seed_registry = "experiments/financial_strategy_library_panel_v3/registry/SEED_REGISTRY.csv"
+trial_ledger_schema = "experiments/financial_strategy_library_panel_v3/registry/TRIAL_LEDGER_SCHEMA.csv"
+seed_derivation = "SHA-256 of base_seed|purpose_id|registered scope values reduced to a nonnegative 31-bit integer"
+
+[economic_outcome]
+outcome_registry = "experiments/financial_strategy_library_panel_v3/registry/OUTCOME_REGISTRY.csv"
+primary_outcome = "incremental_portfolio_certainty_equivalent"
+annualization_sessions = 252
+risk_aversion = 3.0
+baseline_one_way_cost_bps = 5.0
+cost_sensitivity_bps = [0.0, 5.0, 15.0, 30.0]
+portfolio_return_is_net_of_turnover_cost = true
+report_mean_component = true
+report_variance_penalty_component = true
+report_turnover_cost_component = true
+population_or_causal_claim_permitted = false
+
+[cost_capacity]
+primary_cost_model = "fixed one-way cost"
+primary_one_way_cost_bps = 5.0
+capacity_sensitivity_model = "lagged half-spread plus square-root market impact"
+capacity_sensitivity_role = "registered descriptive robustness; not the primary specification"
+aum_usd = [1000000.0, 10000000.0, 100000000.0, 1000000000.0]
+half_spread_bps = [2.5, 7.5, 15.0]
+square_root_impact_coefficient = [0.5, 1.0]
+maximum_daily_adv_participation = 0.10
+volume_and_volatility_inputs_are_lagged = true
+orders_above_participation_cap = "unavailable at that AUM; never silently truncated"
+
+[analysis]
+primary_unit = "compression-decision origin"
+securities_are_independent_replicates = false
+portfolio_strategies_are_independent_replicates = false
+origins_are_independent_replicates = false
+report_origin_level_values = true
+report_primary_center = "arithmetic mean across origin-level policy contrasts"
+report_registered_robust_centers = ["nearest-rank median", "Huber M-estimate"]
+report_leave_one_origin_out = true
+origin_bootstrap_role = "descriptive sensitivity only"
+multiple_testing_trial_ledger_required = true
+white_reality_check_role = "registered full-search diagnostic"
+hansen_spa_role = "registered full-search diagnostic"
+deflated_sharpe_role = "secondary search diagnostic"
+pbo_cscv_role = "secondary search diagnostic"
+
+[evidence_blocks]
+structural_and_algorithmic = "primary AOR evidence block"
+historical_financial = "retrospective design-validation block"
+confirmatory_financial = "locked until an untouched source is registered"

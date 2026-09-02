@@ -1,0 +1,30 @@
+{
+  "schema_version": "financial-strategy-library-panel-design-lock-v3",
+  "experiment_id": "financial-strategy-library-panel-v2",
+  "amendment_id": "DESIGN_AMENDMENT_001",
+  "locked_at_utc": "2026-09-01T21:00:13.779Z",
+  "predecessor_design_lock_aggregate_sha256": "0f2305d0187247cd048035fb03f6912e9ea7028ac05212adf76396af05b61964",
+  "predecessor_design_lock_file_sha256": "9c747a7d131e08e25c0441edd411bb89260aab2e5cfb1cdfb5e42ddb321aa0e0",
+  "data_quality_informed": true,
+  "scientific_estimand_changed": true,
+  "security_level_profile_support_computed_before_amendment": false,
+  "candidate_score_observed_before_amendment": false,
+  "registered_seed_consumed_before_amendment": false,
+  "arm_or_solver_outcome_observed_before_amendment": false,
+  "postdecision_outcome_observed_before_amendment": false,
+  "postdecision_information_may_define_universe": false,
+  "aggregate_sha256": "f0aa8fe0ba6ef46dd702656a6d00f5f067a38d17b424b2443699d19e213f5f54",
+  "source_stat_fingerprints": [
+    {"role": "security_history", "byte_size": 42986400, "modified_unix_seconds": 1777593212},
+    {"role": "daily_1", "byte_size": 966971582, "modified_unix_seconds": 1777592303},
+    {"role": "daily_2", "byte_size": 1010422667, "modified_unix_seconds": 1777592196},
+    {"role": "daily_3", "byte_size": 806431932, "modified_unix_seconds": 1777592043}
+  ],
+  "files": {
+    "experiments/financial_strategy_library_panel_v2/DESIGN_LOCK.json": "9c747a7d131e08e25c0441edd411bb89260aab2e5cfb1cdfb5e42ddb321aa0e0",
+    "experiments/financial_strategy_library_panel_v2/EXECUTION_PROTOCOL.md": "a11873368008000db9956c81d2f12b4aafdc4c6b2106eb3f19626367cc27aca8",
+    "experiments/financial_strategy_library_panel_v2/amendments/DESIGN_AMENDMENT_001.md": "30df932e5828c61b7b98472217f999a2f7bbbcd1339887778194595785d4244b",
+    "experiments/financial_strategy_library_panel_v2/amendments/DESIGN_AMENDMENT_001.toml": "1776b354d29ff441e502344e49ab9f8c87454599ffd585bd87c5a2512c8de5ad",
+    "julia/scripts/lock_financial_strategy_library_panel_v2_design_002.jl": "d7c03f383c0ef560b6da44314392e56908f3124d235f22ea6894a17958eedfee"
+  }
+}

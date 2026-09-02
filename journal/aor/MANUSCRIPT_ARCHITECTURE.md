@@ -120,12 +120,13 @@ must not promise algorithmic scaling evidence.
 
 ### 8. Financial case studies — 4--5 pages
 
-Present the terminal and annual walk-forward audits as two retrospective
-library case studies. Use the composite resource-compression table and the
-innovation-safe compression comparison figure. Report how ignoring closure
-changes retained burden and retained capabilities, with exact source-relative
-rechecks. Any comparison with new methods must use only information available at
-the retention date and a protocol locked before rerunning.
+Present the Point-in-Time Portfolio-Library Retention Study as the retrospective
+financial case study, with its common-equity origins and ETF replication kept
+separate. Report exact source-relative frontier, closure, inactive-retention,
+and burden rechecks; burden-index reduction; additional option coverage;
+protected proposal choices; and the complete held-out null/adverse result. The
+Calibrated Closure-Option Mechanism Experiment belongs in Section 6 as
+synthetic mechanism evidence, not in Section 8 as financial evidence.
 
 Held-out financial information is evaluation-only. Raw CRSP/WRDS rows remain
 outside the repository and submission bundle. The section must retain the

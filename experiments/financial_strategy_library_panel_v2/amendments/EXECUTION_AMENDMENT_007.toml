@@ -1,0 +1,36 @@
+schema_version = "financial-strategy-library-panel-v2-execution-amendment-v7"
+amendment_id = "EXECUTION_AMENDMENT_007"
+predecessor_execution_lock = "EXECUTION_LOCK_007.json"
+failure_stage = "parallel master-market-panel staging"
+failure_type = "threaded iterations mutated captured shared buffers"
+master_manifest_written_before_amendment = false
+universe_census_computed_before_amendment = false
+profile_support_computed_before_amendment = false
+registered_seed_consumed_before_amendment = false
+candidate_score_observed_before_amendment = false
+arm_or_solver_outcome_observed_before_amendment = false
+postdecision_outcome_observed_before_amendment = false
+scientific_estimand_changed = false
+
+[correction]
+per_source_worker_function = "_stage_master_market_file"
+thread_loop_mutates_only_distinct_preallocated_slots = true
+per_origin_predecision_worker_function = "_freeze_origin_predecision"
+postdecision_loop_body_shared_assignments_removed = true
+value_or_order_change = false
+
+[parallel_replay]
+julia_threads = 4
+source_count = 3
+rows_per_source = 4
+chunks_per_source = [1, 1, 1]
+flagged_finite_rows_per_source = [1, 1, 1]
+passed = true
+
+[cleanup]
+user_requested = true
+census = "FAILED_EXECUTION_CENSUS_003.toml"
+local_data_file_count = 102
+local_result_file_count = 2
+tracked_provenance_retained = true
+unrelated_experiments_removed = false

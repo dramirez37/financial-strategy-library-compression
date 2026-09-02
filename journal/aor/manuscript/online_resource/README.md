@@ -22,11 +22,11 @@ Resource build.
   failed-run census, and exploratory reference-attainment regression remain in
   `journal/aor/tables/`, `journal/aor/figures/`, and the audited v2 report. The
   main article uses only compact Julia-generated inputs.
-- Complete terminal and annual information sets, aggregate identity-overlap
-  rows, tied ranks, empty-residual certificates, postdecision diagnostic
-  formulas, and reproduction contracts remain in the financial reports and
-  public-safe aggregate tables. Terminal and annual diagnostic units are never
-  pooled, and licensed source rows are excluded.
+- The Point-in-Time Portfolio-Library Retention Study and Calibrated
+  Closure-Option Mechanism Experiment are integrated in the standalone Online
+  Resource. Their public-safe aggregate manifests, origin-level contrasts,
+  structural checks, uncertainty summaries, and reproduction contracts remain
+  separate by evidence class, and licensed source rows are excluded.
 
 The main article uses textual references such as “Online Resource 1,
 Section S1” rather than unresolved external LaTeX labels. No theorem is

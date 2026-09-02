@@ -1,0 +1,23 @@
+bound_local_artifact_aggregate_sha256 = "699667cbeaac40255f014eb24b9fe3f80ea5117ecc2e4a4f74a0353176f056d4"
+bound_local_artifact_count = 150
+change_scope = "evaluation-interface key aliases only"
+evaluation_values_accessed_before_lock = false
+experiment_id = "financial-strategy-library-panel-v3"
+historical_evaluation_return_access_permitted = false
+language = "Julia"
+local_proposal_computation_manifest_sha256 = "358d8238f8b07920570fe07d8e0a4cfbb0c767c324b1dca2a40368e260e75765"
+local_proposal_stage_manifest_sha256 = "9c7e77c73dc9ded339bdaaa2392982d6de22e3f6313fac1eeb26533f2bab7fcb"
+next_required_seal = "PROPOSAL_POLICY_RESULT_SEAL"
+previous_proposal_policy_interface_lock_sha256 = "736089a603b74b8d4dd91040b922319b2bcb58a922eb416448f5b0ca11c717ff"
+proposal_policy_choices_known_before_interface_lock = true
+proposal_values_accessed_before_lock = true
+public_proposal_computation_manifest_sha256 = "5f8f8e5863a01b4734b4eb59e0306432f04bd8b636e4f97d4ea92e99a6e261d3"
+public_proposal_stage_manifest_sha256 = "14df1a6096cf79e286f72bea5dae5a21abae6e6bddc04617fe32ad0632916551"
+schema_version = "financial-strategy-library-panel-v3-proposal-policy-interface-lock-v2"
+scientific_design_or_policy_choices_changed = false
+sealed_file_count = 2
+status = "LOCKED_PROPOSAL_POLICY_INTERFACE_002"
+
+[sealed_file_sha256]
+"julia/scripts/lock_financial_strategy_library_panel_v3_proposal_policy_interface_002.jl" = "7c3fe13f819029f58d0a4e055e86e62a558b93f26e641f7f948f3158a5668939"
+"julia/scripts/seal_financial_strategy_library_panel_v3_proposal_policy_result.jl" = "b5e72a7a1873494ec29dae181f6afa1e0807f65047a533b2a0887c299ba1eacd"

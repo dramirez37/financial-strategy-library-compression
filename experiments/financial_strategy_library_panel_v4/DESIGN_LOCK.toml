@@ -1,0 +1,59 @@
+design_aggregate_sha256 = "159664b38c2de5332f56bea7179ce6bed05fd881823350ab6c94e154c6070d8c"
+design_file_count = 17
+experiment_id = "financial-strategy-library-panel-v4"
+language = "Julia"
+result_values_accessed = false
+schema_version = "financial-strategy-library-panel-v4-design-lock-v1"
+status = "LOCKED_BEFORE_SIMULATED_TEST_WORLD_GENERATION"
+
+[[files]]
+path = "experiments/configs/financial_strategy_library_panel_v4.toml"
+sha256 = "febe7641201cf5b46df425e2a8aea390fb5c004494232531f2d8597d2e817065"
+[[files]]
+path = "experiments/financial_strategy_library_panel_v4/README.md"
+sha256 = "055e5ac823eb82185fd07bd2ea3e7ee1e1b8c960f0219b106a3db562c09b4326"
+[[files]]
+path = "experiments/financial_strategy_library_panel_v4/DESIGN.md"
+sha256 = "7cec53e78c341628a555bafd60cebf8f8d73c29802e0bd758205280d37d62f84"
+[[files]]
+path = "experiments/financial_strategy_library_panel_v4/ANALYSIS_PLAN.md"
+sha256 = "e264a5d70830bcb8f58ca196f72b3e983ab9162a9f54929d0e579176c3d82bf0"
+[[files]]
+path = "experiments/financial_strategy_library_panel_v4/CLAIM_BOUNDARY.md"
+sha256 = "d0be19afaed61706e20c1ebea4f350f1fe3bc4baa2aa1b08a3e8270f7cb90bc1"
+[[files]]
+path = "experiments/financial_strategy_library_panel_v4/LITERATURE_ALIGNMENT.md"
+sha256 = "c5f6a400cadb30245c07ca29e04187db9213403e65a2c407257619e950329e2c"
+[[files]]
+path = "experiments/financial_strategy_library_panel_v4/registry/REGIME_REGISTRY.csv"
+sha256 = "a27e7e471fb9dabe5a871fa2130ee8aa74c246e9905723d6de3dc74e8e6c6416"
+[[files]]
+path = "experiments/financial_strategy_library_panel_v4/registry/OUTCOME_REGISTRY.csv"
+sha256 = "690b79784223c9f0d0d8e1acd4c6be27c962602394f87c9b765afb7b0a2a6005"
+[[files]]
+path = "experiments/financial_strategy_library_panel_v4/registry/SEED_REGISTRY.csv"
+sha256 = "c50b7851b8b49b3a938634ad7593cd53d70695bc54db921cc28308c2332525b2"
+[[files]]
+path = "experiments/financial_strategy_library_panel_v4/calibration/CALIBRATION.toml"
+sha256 = "8397dd4da5cb6e2605c2b0099b315029610c6c643045c552dd4d4365db36a6ba"
+[[files]]
+path = "julia/src/FinancialStrategyLibraryPanelV4.jl"
+sha256 = "01c4c49318eaf421e50fb36bcb42501c25461c88eb86523b63158db17540f167"
+[[files]]
+path = "julia/scripts/calibrate_financial_strategy_library_panel_v4.jl"
+sha256 = "2a2ddc161980ecfec10e2ed218d422df3a1b0b81eca4ba7e18837927641db401"
+[[files]]
+path = "julia/scripts/lock_financial_strategy_library_panel_v4_design.jl"
+sha256 = "db8d0d5e8f596c98c1aeca14c3ba7e692144b226815f5bb6d62c32a45b76ff52"
+[[files]]
+path = "julia/scripts/run_financial_strategy_library_panel_v4.jl"
+sha256 = "29937dd8cf067f6b930338de296575a7e7b420321ef83b3f59e02124146b9b20"
+[[files]]
+path = "julia/scripts/audit_financial_strategy_library_panel_v4.jl"
+sha256 = "c7e175c764f43a0f9c3e821a7108e14388c1395cd6e7b5c7fd9a81d3c6c81b85"
+[[files]]
+path = "julia/test/test_financial_strategy_library_panel_v4.jl"
+sha256 = "8d1f96d1d50b5f03adaa384a0146783310d0a7ce14551725891ab3cfbd0d019e"
+[[files]]
+path = "julia/test/run_financial_strategy_library_panel_v4_tests.jl"
+sha256 = "3be027763c2a1eebe9e7d1b3c2b13b838e3500a2da8dd6e1f6b9c1bf6eac26c6"

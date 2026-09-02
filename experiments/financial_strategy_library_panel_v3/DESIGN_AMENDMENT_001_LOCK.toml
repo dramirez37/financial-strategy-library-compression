@@ -1,0 +1,27 @@
+amendment_aggregate_sha256 = "f7ef188b6207824784e5427bd797257d12b54e83c51cf57a4eb60ab4d5f5c01f"
+amendment_id = "FSLP3-DESIGN-AMENDMENT-001"
+base_design_lock_alone_authorizes_return_access = false
+base_design_lock_sha256 = "28aad014abce4b6c24a2b8b84535727ff58335676d8cc8bf47c6fa0544644a56"
+current_amendment_lock_required_for_return_access = true
+date_aware_extractor_lock_required_for_return_access = true
+effective_historical_predecision_return_access_permitted = false
+experiment_id = "financial-strategy-library-panel-v3"
+historical_predecision_return_access_permitted = false
+historical_proposal_or_evaluation_return_access_permitted = false
+language = "Julia"
+next_required_seal = "sealed date-aware extractor access manifest and sentinel leakage tests"
+predecision_access_authority_model = "base_eligibility_plus_current_amendment_plus_extractor_lock"
+schema_version = "financial-strategy-library-panel-v3-predecision-amendment-lock-v1"
+sealed_file_count = 8
+status = "LOCKED_PREDECISION_IMPLEMENTATION"
+v3_outcomes_opened = false
+
+[sealed_file_sha256]
+"experiments/financial_strategy_library_panel_v3/PREDECISION_IMPLEMENTATION_SPEC.md" = "97051ea8363fb019ee80ab62c14d6b953df0686ad9474956efbee4e4c354e97e"
+"experiments/financial_strategy_library_panel_v3/amendments/DESIGN_AMENDMENT_001.md" = "80a2feee1d8e4e98c8391838093d790a954f49f7baf32a8571258d71c1c39348"
+"experiments/financial_strategy_library_panel_v3/amendments/DESIGN_AMENDMENT_001.toml" = "9fdd7ca0efcc8c05a1f2b19baad21fcdba0d03ee29af2a7144bd74e3aa54b336"
+"experiments/financial_strategy_library_panel_v3/registry/BURDEN_REGISTRY.csv" = "af2e630f3bec35c239daae37e9fdae1624be4ba34490f1aabb927df94d053973"
+"julia/scripts/lock_financial_strategy_library_panel_v3_predecision_amendment_001.jl" = "6f218c27c1d5a39c00c114e0ff3ffb7d2eb915fc4e763a7f452801f98f0218ef"
+"julia/src/FinancialStrategyLibraryPanelV3Predecision.jl" = "cadf9f417a68802b3c6809faced242d0229e2f6fe7d196be322135b7b4de368b"
+"julia/test/run_financial_strategy_library_panel_v3_predecision_tests.jl" = "c29c2866e188f961b00d73be3d589fcc399c353e89c4c2c2fadae27f5580fb8a"
+"julia/test/test_financial_strategy_library_panel_v3_predecision.jl" = "71eb3ffbbb04763afe45cd193e6b4e300ee9367506e6ed4449330830f1f67e32"

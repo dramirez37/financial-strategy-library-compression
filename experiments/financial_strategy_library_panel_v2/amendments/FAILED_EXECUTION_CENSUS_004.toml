@@ -1,0 +1,128 @@
+schema_version = "financial-strategy-library-panel-v2-failed-execution-census-v1"
+created_date = "2026-09-01"
+experiment_id = "financial-strategy-library-panel-v2"
+attempt = 8
+terminal_stage = "predecision catalog scoring and arm-solver start"
+master_panel_complete = true
+scientific_score_observed = true
+registered_seed_consumed = true
+arm_or_solver_outcome_observed = true
+postdecision_outcome_observed = false
+predecision_files_serialized = 0
+predecision_seal_created = false
+successor_requires_fresh_seed_namespace = true
+predecessor_confirmatory_reuse_permitted = false
+local_artifacts_removed_after_census = true
+tracked_locks_and_amendments_retained = true
+
+[master_panel]
+path = "local_data/master_market_panel"
+retained_by_successor = true
+licensed_rows_included = true
+public_promotion_permitted = false
+file_count = 158
+byte_size = 946577638
+daily_chunk_count = 155
+retained_master_rows = 38327975
+source_001_daily_chunks = 56
+source_002_daily_chunks = 55
+source_003_daily_chunks = 44
+manifest_sha256 = "0aaec2b748a9e2043b8ce6583b4318874b4efd8abbfa9a10b197df6d5e124e2d"
+directory_aggregate_sha256 = "585fe9f1312dd00c5633e750021cafef83e830b2e0da9029d20576c6c0bd5a61"
+builder_execution_lock_aggregate_sha256 = "c3c00f22322b504f83e4fa2394c7d68e43437f81de369544e0d8c621280f46f2"
+
+[partial_origin_status]
+path = "local_data/origin_status"
+removed_after_census = true
+file_count = 20
+byte_size = 16881983
+directory_aggregate_sha256 = "d9df5d420c42ef59970a822ca594d77f14370cced5159f23a02a5bdaa2ac75a6"
+structurally_evaluable_under_failed_gate = 12
+structurally_eliminated_under_failed_gate = 8
+minimum_calendar_complete_securities = 1179
+maximum_calendar_complete_securities = 1903
+failure_diagnosis = "legacy per-SPY-state minimum acted as an origin-wide macro-regime gate"
+
+[local_results]
+path = "local_results"
+removed_after_census = true
+file_count = 4
+byte_size = 7853
+directory_aggregate_sha256 = "5cdff1a8f96baeb065db712fbc4f995a627f545c8e857a71ed9b109800e7efed"
+
+[[local_results.files]]
+path = "ENVIRONMENT.toml"
+sha256 = "c11ea87cdf0106dd4812695263586006b46ec65a794d77548d712664a53d5015"
+
+[[local_results.files]]
+path = "MASTER_ACCESS_STRUCTURAL.toml"
+sha256 = "b0f8d59b19433cf1bf03d90a893f7507e366d3fd57270957247cba45e3221699"
+
+[[local_results.files]]
+path = "MASTER_PANEL_SUMMARY.toml"
+sha256 = "623b97adfbc8caddd766b35b9f1e57fcff9d29accb64c420ed905e4cb6ade989"
+
+[[local_results.files]]
+path = "SOURCE_AUDIT.toml"
+sha256 = "7da750ba36a58201f5a9abe65a838824f4f19420065cf9a5b364b7310993b788"
+
+[[calendar_complete_counts]]
+decision_year = 2005
+count = 1179
+[[calendar_complete_counts]]
+decision_year = 2006
+count = 1325
+[[calendar_complete_counts]]
+decision_year = 2007
+count = 1413
+[[calendar_complete_counts]]
+decision_year = 2008
+count = 1418
+[[calendar_complete_counts]]
+decision_year = 2009
+count = 1261
+[[calendar_complete_counts]]
+decision_year = 2010
+count = 1222
+[[calendar_complete_counts]]
+decision_year = 2011
+count = 1274
+[[calendar_complete_counts]]
+decision_year = 2012
+count = 1305
+[[calendar_complete_counts]]
+decision_year = 2013
+count = 1356
+[[calendar_complete_counts]]
+decision_year = 2014
+count = 1469
+[[calendar_complete_counts]]
+decision_year = 2015
+count = 1508
+[[calendar_complete_counts]]
+decision_year = 2016
+count = 1483
+[[calendar_complete_counts]]
+decision_year = 2017
+count = 1506
+[[calendar_complete_counts]]
+decision_year = 2018
+count = 1543
+[[calendar_complete_counts]]
+decision_year = 2019
+count = 1635
+[[calendar_complete_counts]]
+decision_year = 2020
+count = 1713
+[[calendar_complete_counts]]
+decision_year = 2021
+count = 1841
+[[calendar_complete_counts]]
+decision_year = 2022
+count = 1903
+[[calendar_complete_counts]]
+decision_year = 2023
+count = 1880
+[[calendar_complete_counts]]
+decision_year = 2024
+count = 1899

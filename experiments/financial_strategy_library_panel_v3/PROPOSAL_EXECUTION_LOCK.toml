@@ -1,0 +1,54 @@
+adoption_hurdle = 0.0025
+bootstrap_repetitions = 5000
+evaluation_return_values_accessed_before_lock = false
+experiment_id = "financial-strategy-library-panel-v3"
+failed_universe_cell_count_retained_without_access = 1
+failed_universe_cell_proposal_access_permitted = false
+familywise_alpha = 0.1
+historical_evaluation_return_access_permitted = false
+historical_proposal_return_access_permitted = true
+julia_version = "1.12.6"
+language = "Julia"
+licensed_master_chunk_count = 155
+licensed_master_manifest_sha256 = "0aaec2b748a9e2043b8ce6583b4318874b4efd8abbfa9a10b197df6d5e124e2d"
+licensed_master_row_count = 38327975
+moving_block_sessions = 20
+next_required_seal = "frozen proposal choices and complete proposal trial ledger"
+predecision_access_amendment_002_lock_sha256 = "560aa75d86e016a838d5b6da3544326fdd606ade33b1934190d9ed7d6d9d6e49"
+predecision_computation_lock_sha256 = "e7e8595d7660f7ba1e0f8158bdcd3df3a5dc3632313624b657f5becd55a117ad"
+predecision_computation_result_seal_sha256 = "6d879cbf17c17337d0efb502605f71f75f5f174f29d1e0a5ef9945d9ff11902d"
+predecision_extractor_lock_003_sha256 = "599eeb90d707a8255e641c9990406962dd4c93cb08b8abcca87b39e94d42fdc9"
+predecision_result_manifest_sha256 = "d134746a7e56cd16e957572eec951a18a51d844586817885e4fd230851b08a09"
+proposal_accessed_cell_count = 37
+proposal_return_values_accessed_before_lock = false
+schema_version = "financial-strategy-library-panel-v3-proposal-execution-lock-v1"
+sealed_file_aggregate_sha256 = "bb0a8b5a559a6e46c4566c9ae956451b4c39d64efec53463a27bd9239c434918"
+sealed_file_count = 16
+stable_seed_base = 310002
+status = "LOCKED_PROPOSAL_EXECUTION"
+universe_selection_sha256 = "3f28073006d84ac8b7237ada07e416ff6d99186d729a1745fcf54de602ae6f4f"
+
+[proposal_masked_access_sentinel]
+evaluation_rows_inspected_materialized_or_used = 0
+failed_cell_rows_materialized = 0
+historical_values_accessed = false
+proposal_rows_materialized = 1
+status = "SYNTHETIC_PROPOSAL_MASK_PASSED"
+
+[sealed_file_sha256]
+"experiments/financial_strategy_library_panel_v3/PROPOSAL_EXECUTION_SPEC.md" = "bfb22bcc781a71cc40c043c6e83ee257c7617a4c7e136370195b954c6dd34828"
+"experiments/financial_strategy_library_panel_v3/registry/ORIGIN_REGISTRY.csv" = "9a60e66bb5e5f6d814a240588ed7c43ab29c703a1e1ed4a71aa5dc7801d157d0"
+"experiments/financial_strategy_library_panel_v3/registry/POLICY_REGISTRY.csv" = "4076489a37ac7da2de7659bab4e0d942dd05a7f3e3d4123c2c13ac80b5945a9e"
+"experiments/financial_strategy_library_panel_v3/registry/SEED_REGISTRY.csv" = "6e863c498bffb8f916ccd8fe129c5696c3f6dca2c11f985e993949c48735ef3b"
+"experiments/financial_strategy_library_panel_v3/registry/TRIAL_LEDGER_SCHEMA.csv" = "929d0988fa6935e9f835b8f7d427068bd13f37edb3a5e2b774f11e4050df4f77"
+"julia/Manifest.toml" = "bb86bf92babc6c148dcf5e73d2e230d5b2e68002b1a542ab16c983a6206aebe3"
+"julia/Project.toml" = "dd6ab9b382b179a3ee75f8ffb2df65093c6faaa5ee5b801bf8d6e5b439494a90"
+"julia/scripts/lock_financial_strategy_library_panel_v3_proposal_execution.jl" = "f26fb29d242776474c3ad1bc7dddc6ff5857ea39c5408d8fb06bd3f377ed1852"
+"julia/scripts/run_financial_strategy_library_panel_v3_proposal.jl" = "bedd428caa944a66eac0f1d1b7c159526b2d73a5ca95ecf740ccc9e3c3060c79"
+"julia/scripts/stage_financial_strategy_library_panel_v3_predecision_returns.jl" = "10e1e79aa5598341194d1449d74b15098f612eb4b9ec1acd3e9984c5347109a6"
+"julia/scripts/stage_financial_strategy_library_panel_v3_proposal_returns.jl" = "4313ebbd9b50becbb51b822b2853ded9299a4eb5cb911ecd733a8bf857d8fd62"
+"julia/src/FinancialStrategyLibraryPanelV3Proposal.jl" = "37ac21f889da81093158c017f628f52f3aad74e771f8132b9f12c3b875598e3d"
+"julia/test/run_financial_strategy_library_panel_v3_proposal_staging_tests.jl" = "f3efc480db2bf0fb5e47360065599745d94b0a432198fb17e46910ced98d5280"
+"julia/test/run_financial_strategy_library_panel_v3_proposal_tests.jl" = "e54ef90683067fdd2c7c167f2b24bc86f83ede78455b1df208db8ef318ef6980"
+"julia/test/test_financial_strategy_library_panel_v3_proposal.jl" = "43986c56262228c3a49e2d87aac406a193bfbbd81648a29553fd9d8611418310"
+"julia/test/test_financial_strategy_library_panel_v3_proposal_staging.jl" = "e837a2db6a16deb0262ef0fe2077c89d160449e5bbd82091bec55f3683a0706c"

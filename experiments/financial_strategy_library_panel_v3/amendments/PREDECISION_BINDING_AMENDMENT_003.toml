@@ -1,0 +1,13 @@
+schema_version = "financial-strategy-library-panel-v3-predecision-binding-amendment-v1"
+experiment_id = "financial-strategy-library-panel-v3"
+amendment_id = "PREDECISION_BINDING_AMENDMENT_003"
+amendment_type = "post-result provenance binding only"
+scientific_design_changed = false
+predecision_results_known_before_amendment = true
+proposal_return_values_accessed_before_amendment = false
+evaluation_return_values_accessed_before_amendment = false
+proposal_or_evaluation_access_permitted = false
+required_replay_cell_count = 38
+required_replay_mode = "byte-identical full computation replay"
+required_next_seal = "PREDECISION_COMPUTATION_RESULT_SEAL"
+rationale = "Freeze the complete local StrategyInnovation source closure used by exact MIP construction, solution, serialization, and postchecking, then bind every result artifact before proposal access."

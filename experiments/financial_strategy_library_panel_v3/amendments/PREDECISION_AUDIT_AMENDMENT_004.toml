@@ -1,0 +1,16 @@
+schema_version = "financial-strategy-library-panel-v3-predecision-audit-amendment-v1"
+experiment_id = "financial-strategy-library-panel-v3"
+amendment_id = "PREDECISION_AUDIT_AMENDMENT_004"
+amendment_type = "deterministic audit-predicate correction only"
+scientific_design_changed = false
+scientific_choices_changed = false
+existing_result_artifacts_changed = false
+first_full_replay_completed = false
+first_full_replay_stopped_at_cell = 1
+first_full_replay_failure = "complete solver diagnostics contain single-run nondeterministic timing"
+proposal_return_values_accessed_before_correction = false
+evaluation_return_values_accessed_before_correction = false
+observed_nondeterminism_changes_science = false
+excluded_mip_certificate_fields = ["runtime_ns", "solver_diagnostics.solve_time_seconds", "solver_diagnostics.complete_solver_log"]
+required_replay_cell_count = 38
+required_next_seal = "PREDECISION_COMPUTATION_RESULT_SEAL"

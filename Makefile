@@ -20,6 +20,35 @@ export ALGOLIB_CRSP_ROOT
 	aor-financial-panel-v1-run aor-financial-panel-v1-continue \
 	aor-financial-panel-v1-audit aor-financial-panel-v1-analysis \
 	aor-financial-panel-v1-analysis-audit \
+	aor-financial-panel-v2-design-check aor-financial-panel-v2-economic-design-audit \
+	aor-financial-panel-v3-design-check aor-financial-panel-v3-source-census-check \
+	aor-financial-panel-v3-predecision-check \
+	aor-financial-panel-v3-predecision-computation-tests \
+	aor-financial-panel-v3-predecision-computation-lock \
+	aor-financial-panel-v3-predecision-computation-run \
+	aor-financial-panel-v3-predecision-computation-audit \
+	aor-financial-panel-v3-predecision-result-seal \
+	aor-financial-panel-v3-proposal-tests \
+	aor-financial-panel-v3-proposal-stage-audit \
+	aor-financial-panel-v3-proposal-replay \
+	aor-financial-panel-v3-proposal-audit \
+	aor-financial-panel-v3-proposal-result-seal \
+	aor-financial-panel-v3-proposal-chain-audit \
+	aor-financial-panel-v3-proposal-robustness-tests \
+	aor-financial-panel-v3-proposal-robustness-run \
+	aor-financial-panel-v3-proposal-robustness-audit \
+	aor-financial-panel-v3-proposal-robustness-result-seal \
+	aor-financial-panel-v3-evaluation-amendment-check \
+	aor-financial-panel-v3-evaluation-stage-audit \
+	aor-financial-panel-v3-evaluation-run \
+	aor-financial-panel-v3-evaluation-audit \
+	aor-financial-panel-v3-evaluation-result-seal \
+	aor-financial-panel-v4-calibration-check \
+	aor-financial-panel-v4-tests \
+	aor-financial-panel-v4-design-check \
+	aor-financial-panel-v4-run \
+	aor-financial-panel-v4-result-audit \
+	aor-point-in-time-study-audit aor-closure-option-experiment-audit \
 	aor-evidence-status-tests
 
 help:
@@ -45,6 +74,8 @@ help:
 		'make aor-benchmark-v2-audit Independently audit saved v2 benchmark artifacts' \
 		'make aor-benchmark-v2-analysis Generate and test locked v2 tables and figures' \
 		'make aor-financial-algorithm-tests Test the public-safe financial comparison layer' \
+		'make aor-point-in-time-study-audit Verify the sealed public-safe point-in-time financial study inputs' \
+		'make aor-closure-option-experiment-audit Recompute and verify the sealed calibrated mechanism experiment' \
 		'make aor-financial-algorithm-lock  Verify the financial comparison design lock' \
 		'make aor-financial-algorithms Run the locked local licensed comparison' \
 		'make aor-financial-algorithm-audit Audit saved local comparison results without solving' \
@@ -59,6 +90,9 @@ help:
 		'make aor-financial-panel-v1-continue Resume after the passing structural audit through audited analysis' \
 		'make aor-financial-panel-v1-audit Audit completed local panel results without solving' \
 		'make aor-financial-panel-v1-analysis Build/resume audited Parquet analysis after the result audit' \
+		'make aor-financial-panel-v2-design-check Verify the archived intermediate redesign and public mechanics' \
+		'make aor-financial-panel-v2-economic-design-audit Reproduce the sealed-result economic-design diagnosis' \
+		'Versioned compatibility targets remain available for immutable lock provenance; use the named study audits above for publication work.' \
 		'make aor-evidence-status-tests Check exact Julia-Lean journal evidence fixtures' \
 		'make financial-licensed Run both licensed-data audits and the cross-audit optimization' \
 		'make verify             Run the complete release gate'
@@ -182,6 +216,135 @@ aor-financial-panel-v1-design-check:
 	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/create_financial_strategy_library_panel_v1_registries.jl --check
 	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/lock_financial_strategy_library_panel_v1_execution_023.jl --check
 	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/test/run_financial_strategy_library_panel_v1_registration_tests.jl
+
+aor-financial-panel-v2-design-check:
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/create_financial_strategy_library_panel_v2_registries.jl --check
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/lock_financial_strategy_library_panel_v2.jl --check
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/test/run_financial_strategy_library_panel_v2_tests.jl
+
+aor-financial-panel-v2-economic-design-audit:
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/run_financial_strategy_library_panel_v2_economic_design_audit.jl --check
+
+aor-financial-panel-v3-design-check:
+	@if test -d experiments/financial_strategy_library_panel_v3/evaluation_results; then \
+		echo 'V3_POSTCOMPLETION_DESIGN_CLOSURE_CHECK'; \
+		"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/lock_financial_strategy_library_panel_v3_evaluation_staging_validator_amendment_001.jl --check; \
+	else \
+		"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/check_financial_strategy_library_panel_v3_design.jl --check; \
+		"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/lock_financial_strategy_library_panel_v3_design.jl --check; \
+	fi
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/test/run_financial_strategy_library_panel_v3_tests.jl
+
+aor-financial-panel-v3-source-census-check:
+	@"$(JULIA_EXE)" --threads=8 --startup-file=no --project=julia julia/scripts/build_financial_strategy_library_panel_v3_universe_census.jl --check
+
+aor-financial-panel-v3-predecision-check: aor-financial-panel-v3-design-check
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/lock_financial_strategy_library_panel_v3_predecision_amendment_001.jl --check
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/test/run_financial_strategy_library_panel_v3_predecision_tests.jl
+
+aor-financial-panel-v3-predecision-computation-tests:
+	@"$(JULIA_EXE)" --threads=2 --startup-file=no --project=julia julia/test/run_financial_strategy_library_panel_v3_predecision_computation_tests.jl
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/test/run_financial_strategy_library_panel_v3_predecision_computation_io_tests.jl
+
+aor-financial-panel-v3-predecision-computation-lock: aor-financial-panel-v3-predecision-computation-tests
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/lock_financial_strategy_library_panel_v3_predecision_computation_002.jl --check
+
+aor-financial-panel-v3-predecision-computation-run: aor-financial-panel-v3-predecision-computation-lock
+	@"$(JULIA_EXE)" --threads=8 --startup-file=no --project=julia julia/scripts/run_financial_strategy_library_panel_v3_predecision_computation.jl --run
+
+aor-financial-panel-v3-predecision-computation-audit: aor-financial-panel-v3-predecision-computation-lock
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/run_financial_strategy_library_panel_v3_predecision_computation.jl --audit-only
+
+aor-financial-panel-v3-predecision-result-seal:
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/lock_financial_strategy_library_panel_v3_predecision_binding_amendment_003.jl --check
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/lock_financial_strategy_library_panel_v3_predecision_audit_amendment_004.jl --check
+	@"$(JULIA_EXE)" --threads=8 --startup-file=no --project=julia julia/scripts/seal_financial_strategy_library_panel_v3_predecision_computation_result.jl --check
+
+aor-financial-panel-v3-proposal-tests:
+	@"$(JULIA_EXE)" --threads=2 --startup-file=no --project=julia julia/test/run_financial_strategy_library_panel_v3_proposal_tests.jl
+	@"$(JULIA_EXE)" --threads=2 --startup-file=no --project=julia julia/test/run_financial_strategy_library_panel_v3_proposal_staging_tests.jl
+
+aor-financial-panel-v3-proposal-stage-audit:
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/lock_financial_strategy_library_panel_v3_proposal_stage_replay_amendment_002.jl --check
+	@"$(JULIA_EXE)" --threads=8 --startup-file=no --project=julia julia/scripts/check_financial_strategy_library_panel_v3_proposal_stage_replay.jl
+
+aor-financial-panel-v3-proposal-replay:
+	@"$(JULIA_EXE)" --threads=8 --startup-file=no --project=julia julia/scripts/run_financial_strategy_library_panel_v3_proposal.jl --run
+
+aor-financial-panel-v3-proposal-audit:
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/run_financial_strategy_library_panel_v3_proposal.jl --audit-only
+
+aor-financial-panel-v3-proposal-result-seal: aor-financial-panel-v3-proposal-stage-audit aor-financial-panel-v3-proposal-audit aor-financial-panel-v3-proposal-chain-audit
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/lock_financial_strategy_library_panel_v3_proposal_policy_interface_003.jl --check
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/export_financial_strategy_library_panel_v3_proposal_policy.jl --check
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/seal_financial_strategy_library_panel_v3_proposal_policy_result.jl --check
+
+aor-financial-panel-v3-proposal-chain-audit:
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/lock_financial_strategy_library_panel_v3_proposal_postcompletion_binding_amendment_003.jl --check
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/lock_financial_strategy_library_panel_v3_proposal_postcompletion_binding_amendment_003_002.jl --check
+
+aor-financial-panel-v3-proposal-robustness-tests:
+	@"$(JULIA_EXE)" --threads=2 --startup-file=no --project=julia julia/test/run_financial_strategy_library_panel_v3_proposal_robustness_tests.jl
+	@"$(JULIA_EXE)" --threads=2 --startup-file=no --project=julia julia/test/run_financial_strategy_library_panel_v3_proposal_robustness_runner_tests.jl
+
+aor-financial-panel-v3-proposal-robustness-run: aor-financial-panel-v3-proposal-chain-audit aor-financial-panel-v3-proposal-robustness-tests
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/lock_financial_strategy_library_panel_v3_proposal_robustness_computation_amendment_005.jl --check
+	@"$(JULIA_EXE)" --threads=8 --startup-file=no --project=julia julia/scripts/run_financial_strategy_library_panel_v3_proposal_robustness.jl --run
+
+aor-financial-panel-v3-proposal-robustness-audit: aor-financial-panel-v3-proposal-chain-audit
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/lock_financial_strategy_library_panel_v3_proposal_robustness_computation_amendment_005.jl --check
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/run_financial_strategy_library_panel_v3_proposal_robustness.jl --audit-only
+
+aor-financial-panel-v3-proposal-robustness-result-seal: aor-financial-panel-v3-proposal-robustness-audit
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/seal_financial_strategy_library_panel_v3_proposal_robustness_result.jl --check
+
+aor-financial-panel-v3-evaluation-amendment-check:
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/lock_financial_strategy_library_panel_v3_evaluation_staging_validator_amendment_001.jl --check
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/test/run_financial_strategy_library_panel_v3_evaluation_staging_amendment_001_tests.jl
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/test/run_financial_strategy_library_panel_v3_evaluation_result_seal_amendment_001_tests.jl
+	@"$(JULIA_EXE)" --threads=2 --startup-file=no --project=julia julia/test/run_financial_strategy_library_panel_v3_evaluation_staging_tests.jl
+	@"$(JULIA_EXE)" --threads=2 --startup-file=no --project=julia julia/test/run_financial_strategy_library_panel_v3_evaluation_tests.jl
+	@"$(JULIA_EXE)" --threads=2 --startup-file=no --project=julia julia/test/run_financial_strategy_library_panel_v3_evaluation_runner_tests.jl
+
+aor-financial-panel-v3-evaluation-stage-audit: aor-financial-panel-v3-evaluation-amendment-check
+	@"$(JULIA_EXE)" --threads=8 --startup-file=no --project=julia julia/scripts/stage_financial_strategy_library_panel_v3_evaluation_returns_amendment_001.jl --check
+
+aor-financial-panel-v3-evaluation-run: aor-financial-panel-v3-evaluation-amendment-check
+	@"$(JULIA_EXE)" --threads=8 --startup-file=no --project=julia julia/scripts/stage_financial_strategy_library_panel_v3_evaluation_returns_amendment_001.jl
+	@"$(JULIA_EXE)" --threads=8 --startup-file=no --project=julia julia/scripts/run_financial_strategy_library_panel_v3_evaluation_amendment_001.jl --run
+
+aor-financial-panel-v3-evaluation-audit: aor-financial-panel-v3-evaluation-stage-audit
+	@"$(JULIA_EXE)" --threads=8 --startup-file=no --project=julia julia/scripts/run_financial_strategy_library_panel_v3_evaluation_amendment_001.jl --audit-only
+
+aor-financial-panel-v3-evaluation-result-seal: aor-financial-panel-v3-evaluation-audit
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/seal_financial_strategy_library_panel_v3_evaluation_result_amendment_001.jl --check
+
+aor-financial-panel-v4-calibration-check:
+	@"$(JULIA_EXE)" --threads=4 --startup-file=no --project=julia julia/scripts/calibrate_financial_strategy_library_panel_v4.jl --check
+
+aor-financial-panel-v4-tests:
+	@"$(JULIA_EXE)" --threads=4 --startup-file=no --project=julia julia/test/run_financial_strategy_library_panel_v4_tests.jl
+
+aor-financial-panel-v4-design-check: aor-financial-panel-v4-tests
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/lock_financial_strategy_library_panel_v4_design.jl --check
+
+aor-financial-panel-v4-run: aor-financial-panel-v4-design-check
+	@if test -f experiments/financial_strategy_library_panel_v4/RESULT_SEAL.toml; then \
+		"$(JULIA_EXE)" --threads=8 --startup-file=no --project=julia julia/scripts/audit_financial_strategy_library_panel_v4.jl --check; \
+	else \
+		"$(JULIA_EXE)" --threads=8 --startup-file=no --project=julia julia/scripts/run_financial_strategy_library_panel_v4.jl --run; \
+		"$(JULIA_EXE)" --threads=8 --startup-file=no --project=julia julia/scripts/audit_financial_strategy_library_panel_v4.jl --seal; \
+	fi
+
+aor-financial-panel-v4-result-audit: aor-financial-panel-v4-design-check
+	@"$(JULIA_EXE)" --threads=8 --startup-file=no --project=julia julia/scripts/audit_financial_strategy_library_panel_v4.jl --check
+
+# Publication-facing aliases. Versioned targets and directories remain stable
+# because their names are part of immutable design and result provenance.
+aor-point-in-time-study-audit:
+	@"$(JULIA_EXE)" --startup-file=no --project=julia julia/scripts/build_aor_manuscript_evidence_inputs.jl --check
+
+aor-closure-option-experiment-audit: aor-financial-panel-v4-result-audit
 
 aor-financial-panel-v1-tests:
 	@"$(JULIA_EXE)" --threads=8 --startup-file=no --project=julia julia/test/run_financial_strategy_library_panel_v1_execution_tests.jl

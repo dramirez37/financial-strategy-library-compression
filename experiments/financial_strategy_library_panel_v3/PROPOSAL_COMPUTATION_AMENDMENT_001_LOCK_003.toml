@@ -1,0 +1,35 @@
+change_scope = "Julia module qualification compatibility only"
+completed_choice_artifacts_before_amendment = 0
+completed_ledger_artifacts_before_amendment = 0
+evaluation_values_accessed_before_amendment = false
+experiment_id = "financial-strategy-library-panel-v3"
+historical_evaluation_return_access_permitted = false
+historical_proposal_return_computation_permitted = true
+language = "Julia"
+next_required_seal = "frozen proposal choices and complete proposal trial ledger"
+partial_path_artifact_count = 8
+policy_rules_changed = false
+previous_proposal_computation_amendment_lock_sha256 = "313ed2983ed8f211c30f98a77ea76151389df5428189f3b4dec349a365a2f4fa"
+previous_proposal_execution_lock_sha256 = "86092535a1f8084ecea0b82b8fc41e59ff703536f7ba29fb649c67ac25683fd3"
+proposal_path_availability_known_before_amendment = true
+proposal_values_accessed_before_amendment = true
+result_manifests_before_amendment = 0
+schema_version = "financial-strategy-library-panel-v3-proposal-computation-amendment-lock-v3"
+scientific_design_changed = false
+sealed_file_count = 3
+status = "LOCKED_PROPOSAL_COMPUTATION_AMENDMENT_001_003"
+
+[partial_path_artifact_sha256]
+"local_data/proposal_computation/cell-001-paths.parquet" = "ede60cb67d71713d8e210f20c61a53b50f496063c090ba2af2cae28c6b5f3ae6"
+"local_data/proposal_computation/cell-006-paths.parquet" = "4681c8ddfef68188ce911e4ddeb6f7bba6342237b37ba9ebf21bf8a55ceec8d7"
+"local_data/proposal_computation/cell-011-paths.parquet" = "73d19bad153366ca38aa0b95dc0bb6ff66d2710bcd692e63e2c4372201ef1355"
+"local_data/proposal_computation/cell-016-paths.parquet" = "088ea9cd4f16eba78080b6261738fdede7e68a2837c552d25ed872ab054e74a1"
+"local_data/proposal_computation/cell-021-paths.parquet" = "68aa473f2ee9c21c96c2041b4ee3b38a1699ab6c7aa97de18e4c153b3b9eb35e"
+"local_data/proposal_computation/cell-026-paths.parquet" = "70d06c6a6251df48bb1ac5edfbc3a1b3f89b41d88e3e2dcc8cc6a80e845f97dc"
+"local_data/proposal_computation/cell-031-paths.parquet" = "df88b9c82c623dba80fc7f651ba8e38f283123d7782c6b513644ffb3a1fa0f2a"
+"local_data/proposal_computation/cell-035-paths.parquet" = "24c6d5f283345438e2c242d13ae74d91a40face6bf4c4fede5370cae7b34b887"
+
+[sealed_file_sha256]
+"julia/scripts/lock_financial_strategy_library_panel_v3_proposal_computation_amendment_001_003.jl" = "3211985c5baa40c9b9960eb7b309717a785c3cf66648e7ea097cb1b955596889"
+"julia/scripts/run_financial_strategy_library_panel_v3_proposal.jl" = "448b7d38cf696a312ffb4aa7cbc460a7cdadca8cb5b36c9249c30c6acfd51b86"
+"julia/test/test_financial_strategy_library_panel_v3_proposal.jl" = "a7e0014d5b49e42bf599a1659caf6b333259dd545cc8ea415f22c7616f4ed71c"

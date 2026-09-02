@@ -91,22 +91,19 @@ burden but does not independently certify global optimality.
 
 ### 4. Registered computational and retrospective financial evidence
 
-We intend to use a separately registered algorithmic study to characterize
-scaling and structural difficulty across the algorithmic portfolio, followed by
-two retrospective financial library audits that quantify resource savings and
-the cost of ignoring generative closure without using held-out information in
-retention decisions.
+The journal evidence combines the separately registered algorithmic study with
+the Point-in-Time Portfolio-Library Retention Study and the Calibrated
+Closure-Option Mechanism Experiment. The former reports retrospective
+burden-index compression, option coverage, protected choices, and held-out
+contrasts without using postdecision information in retention; the latter
+isolates the bridge mechanism under prespecified synthetic regimes.
 
-Current status: **partial and gated**. The two retrospective audits and their
-current comparison methods exist. The frozen randomized (N=1024) study is
-valid prior structural evidence but is not the proposed algorithmic scaling
-study and must remain unchanged. The new study requires
-`experiments/algorithmic_compression_v1/`, a new registry, new deterministic
-seeds, and a new design lock before execution. Financial comparison with the
-new algorithms cannot be claimed until those algorithms and a leakage-safe
-comparison protocol exist. Financial findings remain retrospective and
-descriptive: no causal, forecasting, alpha, or deployable-performance claim is
-authorized.
+Current status: **implemented and bounded**. The registered algorithmic
+benchmark, point-in-time financial study, and calibrated mechanism experiment
+have sealed public-safe outputs and independent audits. The frozen randomized
+(N=1024) study remains unchanged prior evidence. Financial findings remain
+retrospective and descriptive, and the mechanism experiment remains synthetic:
+no causal, forecasting, alpha, or deployable-performance claim is authorized.
 
 ## Contribution hierarchy and dependency locks
 
@@ -121,7 +118,7 @@ objects and results established at earlier levels.
 | 4. Algorithms | Enumeration, exact joint bitmask DP, MILP, preprocessing, weighted greedy, and certified deletion. | Enumeration, MILP, lower-bound DP, and certified deletion are reusable. | Prove preprocessing; implement and oracle-test the joint DP; prove any greedy guarantee under explicit assumptions; exact-postcheck every output. |
 | 5. Worst-case distinction | Safe local deletion need not imply global resource efficiency. | Existing fixed cardinality and weighted witnesses. | Keep the fixed theorem as proved. Add a parametric family only if a correct statement and proof survive counterexample search and exact fixtures. |
 | 6. Computational evidence | A separately registered benchmark identifies scaling and structural difficulty. | No `algorithmic_compression_v1` study exists. The frozen (N=1024) study addresses different questions. | Lock a new design, registry, seeds, schemas, stopping rules, and feasible compute budget before running; do not use the long final benchmark unless explicitly authorized. |
-| 7. Financial evidence | Two retrospective audits quantify resource savings and the cost of ignoring closure. | Terminal and annual walk-forward audits, with exact output rechecks and ex-post evaluation boundaries. | Freeze a leakage-safe algorithm-comparison protocol; do not expose licensed rows; source every number from committed artifacts. |
+| 7. Financial evidence | Point-in-time retention quantifies declared burden reduction and option coverage, while protected choices reveal whether those options are exercised. | Sealed common-equity panel and ETF replication with exact output rechecks, fixed proposal choices, and held-out evaluation boundary. | Keep the retrospective claim boundary, retain failures and adverse outcomes, exclude licensed rows, and source every number from committed manifests. |
 
 ## Formal problem contract
 

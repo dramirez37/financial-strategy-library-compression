@@ -1,0 +1,28 @@
+schema_version = "financial-strategy-library-panel-v2-failed-execution-census-v1"
+created_date = "2026-09-01"
+experiment_id = "financial-strategy-library-panel-v2"
+attempt = 6
+terminal_stage = "parallel master-market-panel staging"
+scientific_score_observed = false
+registered_seed_consumed = false
+arm_or_solver_outcome_observed = false
+postdecision_outcome_observed = false
+local_artifacts_removed_after_census = true
+tracked_locks_and_amendments_retained = true
+
+[local_data]
+path = "local_data/master_market_panel"
+file_count = 90
+byte_size = 548036954
+directory_aggregate_sha256 = "16817924b90f7c212720c59283f6619f0c43cbd2c139e2bdfa93a29ead5247fc"
+daily_chunk_count = 88
+completed_registered_source_files = [2]
+
+[[local_results]]
+path = "local_results/ENVIRONMENT.toml"
+sha256 = "7106dd333684547be4814171c257449065582c1281fa2164d668119de441ddf5"
+
+[[local_results]]
+path = "local_results/SOURCE_AUDIT.toml"
+sha256 = "32b7daafadcbee2b2415dedd9eda64aa625462c2c63347b438b46fd0d16332a6"
+

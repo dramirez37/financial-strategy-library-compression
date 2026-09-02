@@ -1,0 +1,6 @@
+policy_id,action_set,outside_option,uncertainty_rule,adoption_rule,role
+frontier_only_robust_policy,comparator-generatable portfolio candidates,cash,simultaneous max-t lower bound,choose the best candidate only when its lower bound exceeds cash by the registered hurdle,primary comparator
+innovation_safe_robust_policy,safe-generatable candidates plus the exact comparator choice,exact comparator choice,simultaneous max-t lower bound,replace the comparator only when the incremental lower bound exceeds the registered hurdle,primary safe policy
+innovation_safe_forced_max,safe-generatable portfolio candidates,cash omitted,none,choose the maximum proposal-year point estimate,legacy-rule negative control
+equal_weight_available_policy,all generatable candidates plus cash,cash,none,equal-weight every positive-estimate candidate,estimation-risk benchmark
+source_uncompressed_robust_policy,source-generatable candidates plus cash,cash,simultaneous max-t lower bound,same robust adoption rule,upper-library benchmark

@@ -1,6 +1,7 @@
 module AoRManuscriptEvidenceInputs
 
 using Printf
+using SHA: sha256
 using TOML
 
 const REPOSITORY_ROOT = normpath(joinpath(@__DIR__, "..", ".."))
@@ -8,6 +9,16 @@ const ALGORITHM_TABLE_ROOT = joinpath(REPOSITORY_ROOT, "journal", "aor", "tables
 const FINANCIAL_ROOT = joinpath(REPOSITORY_ROOT, "experiments", "results", "summaries")
 const OUTPUT_ROOT = joinpath(REPOSITORY_ROOT, "journal", "aor", "manuscript", "tables")
 const RESOURCE_OUTPUT_ROOT = joinpath(REPOSITORY_ROOT, "journal", "aor", "online_resource", "tables")
+const POINT_IN_TIME_ROOT = joinpath(
+    REPOSITORY_ROOT,
+    "experiments",
+    "financial_strategy_library_panel_v3",
+)
+const CLOSURE_OPTION_ROOT = joinpath(
+    REPOSITORY_ROOT,
+    "experiments",
+    "financial_strategy_library_panel_v4",
+)
 
 const OUTPUTS = Dict(
     "macros" => joinpath(OUTPUT_ROOT, "evidence_macros.tex"),
@@ -19,7 +30,14 @@ const OUTPUTS = Dict(
     "financial_instances" => joinpath(OUTPUT_ROOT, "financial_instance_summary.tex"),
     "financial_algorithms" => joinpath(OUTPUT_ROOT, "financial_algorithm_burdens.tex"),
     "financial_robustness" => joinpath(OUTPUT_ROOT, "financial_robustness_summary.tex"),
+    "point_in_time_study" => joinpath(OUTPUT_ROOT, "point_in_time_portfolio_library_study.tex"),
+    "closure_option_experiment" => joinpath(OUTPUT_ROOT, "closure_option_mechanism_experiment.tex"),
+    "resource_point_in_time_study" => joinpath(RESOURCE_OUTPUT_ROOT, "point_in_time_portfolio_library_study.tex"),
+    "resource_closure_option_experiment" => joinpath(RESOURCE_OUTPUT_ROOT, "closure_option_mechanism_experiment.tex"),
+    "resource_point_in_time_origins" => joinpath(RESOURCE_OUTPUT_ROOT, "point_in_time_origin_results.tex"),
 )
+
+sha256_file(path::AbstractString) = bytes2hex(sha256(read(path)))
 
 function split_csv_line(line::AbstractString)
     fields = String[]
@@ -564,12 +582,307 @@ function financial_robustness_source(inputs)
     return String(take!(io))
 end
 
+function point_in_time_and_mechanism_inputs()
+    predecision_path = joinpath(
+        POINT_IN_TIME_ROOT,
+        "predecision_computation",
+        "PREDECISION_COMPUTATION_MANIFEST.toml",
+    )
+    predecision_seal_path = joinpath(
+        POINT_IN_TIME_ROOT,
+        "PREDECISION_COMPUTATION_RESULT_SEAL.toml",
+    )
+    proposal_path = joinpath(
+        POINT_IN_TIME_ROOT,
+        "proposal_policy",
+        "PROPOSAL_POLICY_MANIFEST.toml",
+    )
+    proposal_seal_path = joinpath(POINT_IN_TIME_ROOT, "PROPOSAL_POLICY_RESULT_SEAL.toml")
+    evaluation_path = joinpath(
+        POINT_IN_TIME_ROOT,
+        "evaluation_results",
+        "EVALUATION_RESULT_MANIFEST.toml",
+    )
+    evaluation_seal_path = joinpath(POINT_IN_TIME_ROOT, "EVALUATION_RESULT_SEAL.toml")
+    mechanism_result_path = joinpath(CLOSURE_OPTION_ROOT, "results", "RESULT_MANIFEST.toml")
+    mechanism_seal_path = joinpath(CLOSURE_OPTION_ROOT, "RESULT_SEAL.toml")
+    mechanism_calibration_path = joinpath(CLOSURE_OPTION_ROOT, "calibration", "CALIBRATION.toml")
+    mechanism_config_path = joinpath(
+        REPOSITORY_ROOT,
+        "experiments",
+        "configs",
+        "financial_strategy_library_panel_v4.toml",
+    )
+
+    predecision = TOML.parsefile(predecision_path)
+    predecision_seal = TOML.parsefile(predecision_seal_path)
+    proposal = TOML.parsefile(proposal_path)
+    proposal_seal = TOML.parsefile(proposal_seal_path)
+    evaluation = TOML.parsefile(evaluation_path)
+    evaluation_seal = TOML.parsefile(evaluation_seal_path)
+    mechanism = TOML.parsefile(mechanism_result_path)
+    mechanism_seal = TOML.parsefile(mechanism_seal_path)
+    mechanism_calibration = TOML.parsefile(mechanism_calibration_path)
+    mechanism_config = TOML.parsefile(mechanism_config_path)
+
+    predecision_seal["status"] == "SEALED_PREDECISION_COMPUTATION_RESULT" ||
+        error("point-in-time predecision result is not sealed")
+    predecision_seal["public_result_manifest_sha256"] == sha256_file(predecision_path) ||
+        error("point-in-time predecision result seal mismatch")
+    predecision["return_values_included"] === false ||
+        error("point-in-time predecision public manifest contains return values")
+    predecision["licensed_security_identifiers_included"] === false ||
+        error("point-in-time predecision public manifest contains licensed identifiers")
+    predecision["all_exact_postchecks_passed"] === true ||
+        error("point-in-time exact postchecks did not pass")
+
+    proposal_seal["status"] == "SEALED_PROPOSAL_POLICY_RESULT" ||
+        error("point-in-time proposal policy is not sealed")
+    proposal_seal["public_proposal_policy_manifest_sha256"] == sha256_file(proposal_path) ||
+        error("point-in-time proposal-policy seal mismatch")
+    proposal["evaluation_values_used"] == 0 ||
+        error("evaluation values entered point-in-time policy selection")
+    proposal["return_values_included"] === false ||
+        error("point-in-time proposal public manifest contains return values")
+    proposal["selected_strategy_identities_included"] === false ||
+        error("point-in-time proposal public manifest contains selected identities")
+
+    evaluation_seal["status"] == "SEALED_HISTORICAL_EVALUATION_RESULT" ||
+        error("point-in-time evaluation result is not sealed")
+    evaluation_seal["evaluation_result_manifest_sha256"] == sha256_file(evaluation_path) ||
+        error("point-in-time evaluation seal mismatch")
+    evaluation_seal["result_replay_audit_passed"] === true ||
+        error("point-in-time evaluation replay audit did not pass")
+    evaluation["return_values_included"] === false ||
+        error("point-in-time evaluation public manifest contains raw returns")
+    evaluation["licensed_identifiers_included"] === false ||
+        error("point-in-time evaluation public manifest contains licensed identifiers")
+
+    mechanism_seal["status"] == "INDEPENDENT_RECOMPUTATION_PASS" ||
+        error("closure-option experiment was not independently recomputed")
+    mechanism_seal["result_manifest_sha256"] == sha256_file(mechanism_result_path) ||
+        error("closure-option result seal mismatch")
+    mechanism["status"] == "COMPLETE_REGISTERED_GATES_PASS" ||
+        error("closure-option registered gates did not pass")
+    mechanism["market_alpha_claim_permitted"] === false ||
+        error("closure-option result incorrectly permits a market-alpha claim")
+    mechanism["total_world_rows"] == length(mechanism["summaries"]) * mechanism["evaluation_world_count_per_regime"] ||
+        error("closure-option world count mismatch")
+    mechanism_calibration["return_values_included"] === false ||
+        error("closure-option calibration public artifact contains returns")
+    mechanism_calibration["security_identifiers_included"] === false ||
+        error("closure-option calibration public artifact contains identifiers")
+
+    return (;
+        predecision,
+        proposal,
+        evaluation,
+        mechanism,
+        mechanism_calibration,
+        mechanism_config,
+        source_paths = (
+            predecision_path,
+            predecision_seal_path,
+            proposal_path,
+            proposal_seal_path,
+            evaluation_path,
+            evaluation_seal_path,
+            mechanism_result_path,
+            mechanism_seal_path,
+            mechanism_calibration_path,
+            mechanism_config_path,
+        ),
+    )
+end
+
+function point_in_time_summary(inputs, universe_id)
+    cells = filter(
+        cell -> cell["universe_id"] == universe_id && cell["universe_gate_passed"] === true,
+        inputs.predecision["cells"],
+    )
+    isempty(cells) && error("no gate-passed point-in-time cells for $universe_id")
+    source_burdens = exact.(getindex.(cells, "source_exact_burden"))
+    safe_burdens = exact.(getindex.(cells, "safe_exact_burden"))
+    reductions = [1 - safe / source for (safe, source) in zip(safe_burdens, source_burdens)]
+    options = parse.(Int, string.(getindex.(cells, "innovation_option_count")))
+    summary_key = universe_id == "liquid_common_equity" ? "common_equity_summary" :
+        universe_id == "liquid_plain_etf" ? "etf_replication_summary" :
+        error("unsupported universe: $universe_id")
+    heldout = inputs.evaluation[summary_key]
+    return (;
+        cells,
+        n = length(cells),
+        source_mean = sum(source_burdens) / length(source_burdens),
+        safe_mean = sum(safe_burdens) / length(safe_burdens),
+        reduction_mean = sum(reductions) / length(reductions),
+        option_mean = sum(options) / length(options),
+        capabilities = unique(getindex.(cells, "complete_capability_count")),
+        exact_preprocessing = count(cell -> cell["safe_solved_by_exact_preprocessing"] === true, cells),
+        solver_optimal = count(cell -> cell["safe_solver_claimed_optimal"] === true, cells),
+        heldout,
+    )
+end
+
+percent(value; digits = 1) = @sprintf("%.*f", digits, 100 * Float64(value))
+decimal(value; digits = 4) = @sprintf("%.*f", digits, Float64(value))
+
+function point_in_time_source(inputs)
+    equity = point_in_time_summary(inputs, "liquid_common_equity")
+    etf = point_in_time_summary(inputs, "liquid_plain_etf")
+    length(equity.capabilities) == 1 && only(equity.capabilities) == 31 ||
+        error("unexpected common-equity capability count")
+    length(etf.capabilities) == 1 && only(etf.capabilities) == 31 ||
+        error("unexpected ETF capability count")
+    io = IOBuffer()
+    print(io, source_comment(
+        "experiments/financial_strategy_library_panel_v3/predecision_computation/PREDECISION_COMPUTATION_MANIFEST.toml",
+        "experiments/financial_strategy_library_panel_v3/evaluation_results/EVALUATION_RESULT_MANIFEST.toml",
+        "experiments/financial_strategy_library_panel_v3/PREDECISION_COMPUTATION_RESULT_SEAL.toml",
+        "experiments/financial_strategy_library_panel_v3/EVALUATION_RESULT_SEAL.toml",
+    ))
+    println(io, "\\begin{table}[tbp]")
+    println(io, "\\centering\\small")
+    println(io, "\\setlength{\\tabcolsep}{3.6pt}")
+    println(io, "\\resizebox{\\textwidth}{!}{%")
+    println(io, "\\begin{tabular}{@{}lrrrrrr@{}}")
+    println(io, "\\toprule")
+    println(io, "Universe & Origins & Mean source burden & Mean safe burden & Mean reduction & Added options & Held-out CE difference \\\\")
+    println(io, "\\midrule")
+    println(io, "Common equity & $(equity.n) & $(decimal(equity.source_mean; digits = 1)) & $(decimal(equity.safe_mean; digits = 1)) & $(percent(equity.reduction_mean))\\% & $(decimal(equity.option_mean; digits = 2)) & $(decimal(equity.heldout["arithmetic_mean"]; digits = 4)) \\\\")
+    println(io, "Plain ETF & $(etf.n) & $(decimal(etf.source_mean; digits = 1)) & $(decimal(etf.safe_mean; digits = 1)) & $(percent(etf.reduction_mean))\\% & $(decimal(etf.option_mean; digits = 2)) & $(decimal(etf.heldout["arithmetic_mean"]; digits = 4)) \\\\")
+    println(io, "\\bottomrule")
+    println(io, "\\end{tabular}")
+    println(io, "}")
+    println(io, "\\caption{Point-in-time portfolio-library retention results. Burden is the registered validation-computation index, not currency. Added options are safe-library proposal actions absent from the budget-matched frontier-only library. The held-out column is innovation-safe minus frontier-only certainty-equivalent difference: all $(equity.heldout["complete_origin_count"]) common-equity choices coincide, while one of $(etf.heldout["complete_origin_count"]) complete ETF choices differs. Safe solutions pass exact original-instance frontier, closure, inactive-retention, and burden rechecks; solver-reported optimality remains solver evidence.}")
+    println(io, "\\label{tab:point-in-time-financial-study}")
+    println(io, "\\end{table}")
+    return String(take!(io))
+end
+
+function closure_option_source(inputs)
+    labels = Dict(
+        "adversarial_margin" => "Adverse margin",
+        "null_margin" => "Null margin",
+        "low_dose_positive" => "Low positive dose",
+        "powered_positive" => "Powered positive dose",
+    )
+    order = Dict(
+        "adversarial_margin" => 1,
+        "null_margin" => 2,
+        "low_dose_positive" => 3,
+        "powered_positive" => 4,
+    )
+    rows = sort(inputs.mechanism["summaries"]; by = row -> order[row["regime_id"]])
+    io = IOBuffer()
+    print(io, source_comment(
+        "experiments/financial_strategy_library_panel_v4/results/RESULT_MANIFEST.toml",
+        "experiments/financial_strategy_library_panel_v4/RESULT_SEAL.toml",
+    ))
+    println(io, "\\begin{table}[tbp]")
+    println(io, "\\centering\\small")
+    println(io, "\\setlength{\\tabcolsep}{3.5pt}")
+    println(io, "\\resizebox{\\textwidth}{!}{%")
+    println(io, "\\begin{tabular}{@{}lrrrr@{}}")
+    println(io, "\\toprule")
+    println(io, "Regime & True margin & Oracle mean [95\\% CI] & Learned mean [95\\% CI] & Adoption \\\\")
+    println(io, "\\midrule")
+    for row in rows
+        println(io,
+            "$(labels[row["regime_id"]]) & $(decimal(row["true_margin"]; digits = 4)) & " *
+            "$(decimal(row["oracle_mean"]; digits = 4)) [$(decimal(row["oracle_ci_lower"]; digits = 4)), $(decimal(row["oracle_ci_upper"]; digits = 4))] & " *
+            "$(decimal(row["learned_mean"]; digits = 4)) [$(decimal(row["learned_ci_lower"]; digits = 4)), $(decimal(row["learned_ci_upper"]; digits = 4))] & " *
+            "$(percent(row["adoption_rate"]; digits = 2))\\% \\\\",
+        )
+    end
+    println(io, "\\bottomrule")
+    println(io, "\\end{tabular}")
+    println(io, "}")
+    println(io, "\\caption{Calibrated closure-option mechanism experiment, with $(inputs.mechanism["evaluation_world_count_per_regime"]) synthetic worlds per prespecified regime. Current frontier and burden are equal by construction; only the innovation-safe library can admit the designated bridge descendant. Intervals are registered finite-simulation uncertainty summaries. This is synthetic mechanism evidence, not a market-return, alpha, forecasting, or causal estimate.}")
+    println(io, "\\label{tab:closure-option-mechanism}")
+    println(io, "\\end{table}")
+    return String(take!(io))
+end
+
+function point_in_time_origin_source(inputs)
+    equity = Dict(row["origin_id"] => row for row in inputs.evaluation["common_equity_summary"]["origin_values"])
+    etf = Dict(row["origin_id"] => row for row in inputs.evaluation["etf_replication_summary"]["origin_values"])
+    origins = sort(collect(union(keys(equity), keys(etf))))
+    io = IOBuffer()
+    print(io, source_comment(
+        "experiments/financial_strategy_library_panel_v3/evaluation_results/EVALUATION_RESULT_MANIFEST.toml",
+    ))
+    println(io, "\\begin{longtable}{@{}lrrrr@{}}")
+    println(io, "\\caption{Origin-level point-in-time held-out contrasts. CE differences are innovation-safe minus frontier-only. A dash marks the prespecified failed ETF universe gate; it is retained, not imputed.}\\label{tab:point-in-time-origin-results}\\\\")
+    println(io, "\\toprule")
+    println(io, "Origin & Equity CE diff. & Same choice & ETF CE diff. & Same choice \\\\")
+    println(io, "\\midrule")
+    println(io, "\\endfirsthead")
+    println(io, "\\toprule")
+    println(io, "Origin & Equity CE diff. & Same choice & ETF CE diff. & Same choice \\\\")
+    println(io, "\\midrule")
+    println(io, "\\endhead")
+    for origin in origins
+        erow = equity[origin]
+        trow = etf[origin]
+        evalue = erow["complete"] === true ? decimal(erow["certainty_equivalent_difference"]; digits = 4) : "--"
+        tvalue = trow["complete"] === true ? decimal(trow["certainty_equivalent_difference"]; digits = 4) : "--"
+        esame = erow["complete"] === true ? (erow["same_choice"] === true ? "yes" : "no") : "--"
+        tsame = trow["complete"] === true ? (trow["same_choice"] === true ? "yes" : "no") : "--"
+        println(io, "$(replace(origin, "FSLP3-O" => "")) & $evalue & $esame & $tvalue & $tsame \\\\")
+    end
+    println(io, "\\bottomrule")
+    println(io, "\\end{longtable}")
+    return String(take!(io))
+end
+
+function point_in_time_and_mechanism_macros(inputs)
+    equity = point_in_time_summary(inputs, "liquid_common_equity")
+    etf = point_in_time_summary(inputs, "liquid_plain_etf")
+    null = only(filter(row -> row["regime_id"] == "null_margin", inputs.mechanism["summaries"]))
+    low = only(filter(row -> row["regime_id"] == "low_dose_positive", inputs.mechanism["summaries"]))
+    powered = only(filter(row -> row["regime_id"] == "powered_positive", inputs.mechanism["summaries"]))
+    return source_comment(
+        "experiments/financial_strategy_library_panel_v3/predecision_computation/PREDECISION_COMPUTATION_MANIFEST.toml",
+        "experiments/financial_strategy_library_panel_v3/evaluation_results/EVALUATION_RESULT_MANIFEST.toml",
+        "experiments/financial_strategy_library_panel_v4/results/RESULT_MANIFEST.toml",
+        "experiments/configs/financial_strategy_library_panel_v4.toml",
+    ) * """
+\\newcommand{\\AORPointInTimeEquityOrigins}{$(equity.n)}
+\\newcommand{\\AORPointInTimeETFOrigins}{$(etf.n)}
+\\newcommand{\\AORPointInTimeCapabilities}{$(only(equity.capabilities))}
+\\newcommand{\\AORPointInTimeEquityBurdenReduction}{$(percent(equity.reduction_mean))\\%}
+\\newcommand{\\AORPointInTimeETFBurdenReduction}{$(percent(etf.reduction_mean))\\%}
+\\newcommand{\\AORPointInTimeEquityAddedOptions}{$(decimal(equity.option_mean; digits = 2))}
+\\newcommand{\\AORPointInTimeETFAddedOptions}{$(decimal(etf.option_mean; digits = 2))}
+\\newcommand{\\AORPointInTimeEquityPolicyReplacements}{$(equity.heldout["complete_origin_count"] - equity.heldout["same_choice_count"])}
+\\newcommand{\\AORPointInTimeETFPolicyReplacements}{$(etf.heldout["complete_origin_count"] - etf.heldout["same_choice_count"])}
+\\newcommand{\\AORPointInTimeETFMeanCE}{$(decimal(etf.heldout["arithmetic_mean"]; digits = 4))}
+\\newcommand{\\AORPointInTimeETFMinimumCE}{$(decimal(etf.heldout["minimum"]; digits = 4))}
+\\newcommand{\\AORPointInTimePreprocessingSolutions}{$(equity.exact_preprocessing + etf.exact_preprocessing)}
+\\newcommand{\\AORPointInTimeSolverSolutions}{$(equity.solver_optimal + etf.solver_optimal)}
+\\newcommand{\\AORPointInTimeCompletePaths}{$(inputs.mechanism_calibration["complete_strategy_path_count"])}
+\\newcommand{\\AORPointInTimeResidualObservations}{$(inputs.mechanism_calibration["available_residual_observation_count"])}
+\\newcommand{\\AORClosureOptionWorlds}{$(inputs.mechanism["evaluation_world_count_per_regime"])}
+\\newcommand{\\AORClosureNullAdoption}{$(percent(null["adoption_rate"]; digits = 2))\\%}
+\\newcommand{\\AORClosureNullWilsonUpper}{$(percent(null["adoption_wilson_upper"]; digits = 2))\\%}
+\\newcommand{\\AORClosureNullAdoptionGate}{$(percent(inputs.mechanism_config["success_gates"]["null_false_adoption_rate_maximum"]; digits = 1))\\%}
+\\newcommand{\\AORClosureLowDoseAdoption}{$(percent(low["adoption_rate"]; digits = 2))\\%}
+\\newcommand{\\AORClosurePoweredAdoption}{$(percent(powered["adoption_rate"]; digits = 2))\\%}
+\\newcommand{\\AORClosurePoweredMargin}{$(decimal(powered["true_margin"]; digits = 4))}
+\\newcommand{\\AORClosurePoweredLearnedMean}{$(decimal(powered["learned_mean"]; digits = 4))}
+"""
+end
+
 function sources()
     algorithm_inputs = audit_inputs()
     financial = financial_inputs()
+    journal_financial = point_in_time_and_mechanism_inputs()
+    common_macros = macros_source(algorithm_inputs) * point_in_time_and_mechanism_macros(journal_financial)
+    point_in_time = point_in_time_source(journal_financial)
+    closure_option = closure_option_source(journal_financial)
     return Dict(
-        "macros" => macros_source(algorithm_inputs),
-        "resource_macros" => macros_source(algorithm_inputs),
+        "macros" => common_macros,
+        "resource_macros" => common_macros,
         "scaling" => scaling_source(),
         "heuristics" => heuristic_source(),
         "preprocessing" => preprocessing_source(),
@@ -577,6 +890,11 @@ function sources()
         "financial_instances" => financial_instance_source(financial),
         "financial_algorithms" => financial_algorithm_source(financial),
         "financial_robustness" => financial_robustness_source(financial),
+        "point_in_time_study" => point_in_time,
+        "closure_option_experiment" => closure_option,
+        "resource_point_in_time_study" => point_in_time,
+        "resource_closure_option_experiment" => closure_option,
+        "resource_point_in_time_origins" => point_in_time_origin_source(journal_financial),
     )
 end
 

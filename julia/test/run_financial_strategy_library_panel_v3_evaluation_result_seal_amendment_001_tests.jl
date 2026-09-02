@@ -1,0 +1,3 @@
+using Test
+
+include("test_financial_strategy_library_panel_v3_evaluation_result_seal_amendment_001.jl")

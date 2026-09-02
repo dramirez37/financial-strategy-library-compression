@@ -1,0 +1,61 @@
+certificate_count = 11
+licensed_rows_included = false
+passed = true
+public_promotion_authorized = true
+schema_version = "financial-strategy-library-panel-v2-independent-audit-v1"
+
+[[certificates]]
+audit_id = "source_schema_duplicate_and_point_in_time_access"
+check_count = 4
+errors = []
+passed = true
+[[certificates]]
+audit_id = "adopted_master_panel"
+check_count = 12
+errors = []
+passed = true
+[[certificates]]
+audit_id = "complete_calendar_liquid_universe"
+check_count = 160
+errors = []
+passed = true
+[[certificates]]
+audit_id = "registry_and_seed_replay"
+check_count = 160
+errors = []
+passed = true
+[[certificates]]
+audit_id = "frontier_closure_burden_order_and_arm_certificates"
+check_count = 1440
+errors = []
+passed = true
+[[certificates]]
+audit_id = "challenge_generation_frozen_choice_and_predecision_seal"
+check_count = 6400
+errors = []
+passed = true
+[[certificates]]
+audit_id = "information_firewall_and_hash_chain"
+check_count = 5
+errors = []
+passed = true
+[[certificates]]
+audit_id = "calendar_delisting_missingness_and_availability_gate"
+check_count = 200
+errors = []
+passed = true
+[[certificates]]
+audit_id = "estimand_and_bootstrap_replay"
+check_count = 120
+errors = []
+passed = true
+[[certificates]]
+audit_id = "computational_stress_membership_and_timing_scope"
+check_count = 360
+errors = []
+passed = true
+[[certificates]]
+audit_id = "public_whitelist_and_licensed_data_boundary"
+check_count = 21
+errors = []
+passed = true

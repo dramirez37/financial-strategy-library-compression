@@ -1,0 +1,30 @@
+schema_version = "financial-strategy-library-panel-v2-execution-amendment-v5"
+amendment_id = "EXECUTION_AMENDMENT_005"
+predecessor_execution_lock = "EXECUTION_LOCK_005.json"
+failure_stage = "initial master-market-panel source scan"
+failure_type = "finite CRSP return with observed MV quality flag treated as run-fatal"
+daily_master_chunk_written_before_amendment = false
+universe_census_computed_before_amendment = false
+profile_support_computed_before_amendment = false
+registered_seed_consumed_before_amendment = false
+candidate_score_observed_before_amendment = false
+arm_or_solver_outcome_observed_before_amendment = false
+postdecision_outcome_observed_before_amendment = false
+scientific_estimand_changed = false
+
+[finite_return_flag_audit]
+allowed_staged_flags = ["NA", "MV"]
+na_count = 49225176
+mv_count = 226
+mv_counts_registered_file_order = [38, 54, 134]
+mv_treated_as_complete_return = false
+mv_imputed = false
+unknown_finite_return_flag_fails_closed = true
+
+[cleanup]
+user_requested = true
+census = "FAILED_EXECUTION_CENSUS_001.toml"
+failed_attempt_count = 5
+local_artifact_count = 17
+tracked_provenance_retained = true
+unrelated_experiments_removed = false

@@ -1,0 +1,52 @@
+schema_version = "financial-strategy-library-panel-v2-design-amendment-v2"
+amendment_id = "DESIGN_AMENDMENT_002"
+predecessor_design_lock = "DESIGN_LOCK_002.json"
+amendment_date = "2026-09-01"
+classification = "predecision-pilot-informed flagship restart"
+scientific_design_changed = true
+scientific_estimand_changed = false
+universe_census_observed_before_amendment = true
+profile_support_observed_before_amendment = true
+candidate_score_observed_before_amendment = true
+registered_seed_consumed_before_amendment = true
+arm_or_solver_outcome_observed_before_amendment = true
+postdecision_outcome_observed_before_amendment = false
+heldout_rows_opened_before_amendment = false
+predecessor_run_may_enter_flagship_estimands = false
+predecessor_seeds_may_be_reused = false
+
+[failure_diagnosis]
+failed_rule = "at least 25 observations in every one of five SPY states in both construction and compression"
+mechanism = "a rare aggregate SPY state simultaneously eliminated every otherwise complete security in an origin"
+affected_origins = 8
+calendar_complete_security_range = [1179, 1903]
+conclusion = "origin failures were induced by the design gate, not by an inadequate equity dataset"
+
+[replacement_eligibility]
+security_rule = "complete usable return, close, and volume on every SPY reference session from the fixed warm-up start through the decision date"
+liquidity_rule = "rank common equities and plain ETFs together by predecision median dollar volume; retain top 100 with PERMNO tie break"
+state_cell_counts_are_diagnostic_only = true
+postdecision_information_permitted = false
+
+[replacement_profile_estimator]
+estimator_id = "linear_state_utility_shrinkage_to_pooled_v1"
+prior_strength_sessions = 25
+formula = "n/(n+25)*state_utility + 25/(n+25)*pooled_compression_utility"
+zero_support_fallback = "pooled_compression_utility"
+scenario_count = 30
+uses_postdecision_information = false
+
+[fresh_randomization]
+seed_namespace = "financial-strategy-library-panel-v2-flagship-restart-001"
+registry = "registry/SEED_REGISTRY_FLAGSHIP.csv"
+registry_sha256 = "1cbcdcf29391913871aae1db07daa49a2ab80de9e59b3171c1fa2077d92b189f"
+all_seed_values_disjoint_from_predecessor = true
+bootstrap_seed_derived_from_namespace = true
+
+[master_panel_adoption]
+builder_execution_lock = "EXECUTION_LOCK_008.json"
+builder_execution_lock_aggregate_sha256 = "c3c00f22322b504f83e4fa2394c7d68e43437f81de369544e0d8c621280f46f2"
+manifest_sha256 = "0aaec2b748a9e2043b8ce6583b4318874b4efd8abbfa9a10b197df6d5e124e2d"
+directory_aggregate_sha256 = "585fe9f1312dd00c5633e750021cafef83e830b2e0da9029d20576c6c0bd5a61"
+immutable_reuse = true
+licensed_rows_remain_local = true

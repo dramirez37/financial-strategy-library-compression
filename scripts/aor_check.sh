@@ -34,6 +34,18 @@ cached_before="$(git diff --cached --binary HEAD | shasum -a 256 | awk '{print $
     julia/scripts/lock_financial_strategy_library_panel_v1_execution_010.jl --check
 "$JULIA_CMD" --threads=8 --startup-file=no --project=julia \
     julia/test/run_financial_strategy_library_panel_v1_execution_tests.jl
+"$JULIA_CMD" --startup-file=no --project=julia \
+    julia/scripts/create_financial_strategy_library_panel_v2_registries.jl --check
+"$JULIA_CMD" --startup-file=no --project=julia \
+    julia/scripts/lock_financial_strategy_library_panel_v2.jl --check
+"$JULIA_CMD" --startup-file=no --project=julia \
+    julia/test/run_financial_strategy_library_panel_v2_tests.jl
+"$JULIA_CMD" --threads=4 --startup-file=no --project=julia \
+    julia/test/run_financial_strategy_library_panel_v4_tests.jl
+"$JULIA_CMD" --startup-file=no --project=julia \
+    julia/scripts/lock_financial_strategy_library_panel_v4_design.jl --check
+"$JULIA_CMD" --threads=8 --startup-file=no --project=julia \
+    julia/scripts/audit_financial_strategy_library_panel_v4.jl --check
 "$ROOT/scripts/aor_manuscript.sh"
 "$ROOT/scripts/aor_public_boundary_audit.sh"
 "$ROOT/scripts/build_aor_release.sh" --check-inputs

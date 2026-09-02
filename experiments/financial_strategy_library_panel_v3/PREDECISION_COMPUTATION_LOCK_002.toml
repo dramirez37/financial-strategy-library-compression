@@ -1,0 +1,34 @@
+change_scope = "Parquet.jl Tables API compatibility only"
+computation_code_aggregate_sha256 = "3cbbbcdfb408f20247e634a1069f630ab43730b5fcf9c43b4386d2962efd0de0"
+evaluation_return_values_accessed_before_lock_002 = false
+experiment_id = "financial-strategy-library-panel-v3"
+historical_predecision_return_computation_permitted = true
+historical_proposal_or_evaluation_return_access_permitted = false
+initial_attempt_local_result_artifacts_written = false
+initial_attempt_opened_parquet_metadata = true
+initial_attempt_return_values_inspected_or_materialized = false
+language = "Julia"
+local_stage_manifest_sha256 = "9ec318b11a170cb47ff2d0d7b1c8d99b91eff2f0ee77c2b2457468de735b12f4"
+next_required_seal = "frozen predecision dockets exact arms nested action sets and complete trial ledger"
+previous_computation_lock_sha256 = "db4c9cc5aa6427ad8e08d516c2bb43e82e5b9e552619584f68c0b1e908556c20"
+proposal_return_values_accessed_before_lock_002 = false
+public_stage_manifest_sha256 = "65dae31f8588e5d422cc6d121e5af70b4ee066d3da1d2b3321b5c043da4d6dd0"
+schema_version = "financial-strategy-library-panel-v3-predecision-computation-lock-v2"
+scientific_design_changed = false
+sealed_file_count = 4
+staged_parquet_aggregate_sha256 = "8088d71a63811d076248222bf97965dec2d9758e92165a0eb441942b7815b9e0"
+staged_parquet_count = 38
+status = "LOCKED_PREDECISION_COMPUTATION_002"
+v3_outcomes_opened = false
+
+[sealed_file_sha256]
+"julia/scripts/lock_financial_strategy_library_panel_v3_predecision_computation_002.jl" = "042ff20d3a7f0ac5f5219a65559ad28e8ca9951712077b0030ba75697a8fc4b5"
+"julia/scripts/run_financial_strategy_library_panel_v3_predecision_computation.jl" = "817e9b52367495c4c1c3fbfc319148556d613715b185431df07d166b7f04024b"
+"julia/test/run_financial_strategy_library_panel_v3_predecision_computation_io_tests.jl" = "21e4442feb7428a1ec1605b451427d01eab17cf9cdf22d2970e0994f13e7c71e"
+"julia/test/test_financial_strategy_library_panel_v3_predecision_computation_io.jl" = "163921bb99d4e1733a1effacd32d82440c9b78d6d6130249c6d8b7634b2fecb7"
+
+[synthetic_io_sentinel]
+exact_negative_one_preserved = true
+historical_return_values_accessed = false
+row_count = 4
+status = "SYNTHETIC_PARQUET_TABLE_COMPATIBILITY_PASSED"

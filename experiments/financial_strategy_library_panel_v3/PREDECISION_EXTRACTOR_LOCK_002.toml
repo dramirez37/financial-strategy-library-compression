@@ -1,0 +1,44 @@
+access_was_authorized_by_001 = true
+change_scope = "performance_only_no_selection_or_semantic_change"
+design_lock_sha256 = "28aad014abce4b6c24a2b8b84535727ff58335676d8cc8bf47c6fa0544644a56"
+effective_historical_predecision_return_access_permitted = true
+evaluation_values_accessed_before_002 = false
+experiment_id = "financial-strategy-library-panel-v3"
+extractor_aggregate_sha256 = "22848972c7c5cf27fcca0f749f4959892e08fe33f35a38b69f72d08aa46bdb32"
+historical_predecision_return_access_permitted = true
+historical_proposal_or_evaluation_return_access_permitted = false
+identifier_date_filter_must_precede_return_decode = true
+identifier_date_reader = "aligned Parquet.ColCursor streams"
+interrupted_run_completed_chunk_count = 8
+interrupted_run_local_artifacts_written = false
+language = "Julia"
+local_universe_selection_sha256 = "3f28073006d84ac8b7237ada07e416ff6d99186d729a1745fcf54de602ae6f4f"
+next_required_seal = "frozen predecision libraries exact arms action sets and trial ledger"
+performance_change = "replace allocating row dictionaries with aligned projected column cursors"
+predecision_amendment_lock_sha256 = "6aaa1cce4c01066ab66c5f371993e326a0e9ec0a469d636731eb506c6e3e5c77"
+predecision_values_accessed_before_002 = true
+previous_extractor_lock_sha256 = "9bb2050c6f88ba63d1c57882bd5a827ae4c8a94a69d030f5f8edd41adc277953"
+proposal_values_accessed_before_002 = false
+return_reader = "aligned exact-source-range Parquet.ColCursor streams"
+schema_version = "financial-strategy-library-panel-v3-predecision-extractor-lock-v2"
+sealed_file_count = 4
+source_master_manifest_sha256 = "0aaec2b748a9e2043b8ce6583b4318874b4efd8abbfa9a10b197df6d5e124e2d"
+status = "LOCKED_PREDECISION_EXTRACTOR_002"
+terminal_delisting_fields_required = true
+
+[sealed_file_sha256]
+"julia/scripts/lock_financial_strategy_library_panel_v3_predecision_extractor_002.jl" = "af177ff34688d503359aca4c5d3d664bfc3a2581f85cc9a48104546174329ce8"
+"julia/scripts/stage_financial_strategy_library_panel_v3_predecision_returns.jl" = "b87c68ac76eeac7e1beb941ffa49cdea1d2cc607089f7d732d7b5a32bbe45fd8"
+"julia/test/run_financial_strategy_library_panel_v3_predecision_staging_tests.jl" = "2ed378fd5e7bf3af11ec47b94b0eb80c4d1f2837f9b245cdbb82df8b35c373b0"
+"julia/test/test_financial_strategy_library_panel_v3_predecision_staging.jl" = "39781d221f4ddeb638050fbbed1abc68f7eefa3b589180b336a856e45fddd8da"
+
+[synthetic_sentinel]
+exact_negative_one_return_preserved = true
+exact_target_range_count = 2
+identifier_date_rows_scanned = 8
+postdecision_rows_decoded = 0
+postdecision_rows_present_in_source = 4
+real_historical_return_values_accessed = false
+return_rows_decoded_after_filter = 4
+status = "SYNTHETIC_SENTINEL_PASSED"
+terminal_delisting_rows_preserved = 1

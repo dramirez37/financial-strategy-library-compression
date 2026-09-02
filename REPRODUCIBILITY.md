@@ -69,6 +69,7 @@ numerical rule.
 | `make aor-financial-panel-v1-audit` | Independently reread and exactly audit a completed local panel on eight threads, with durable structural and postdecision progress bars, without rerunning algorithms or financial analysis. | Medium. | Completed ignored panel artifacts; raw licensed rows are not opened. | Recomputed local structural and full audit certificates. |
 | `make aor-financial-panel-v1-analysis` | Run or resume the registered downstream analysis only after a passing full result audit. | Short to medium. | Audited ignored structural and postdecision result records; raw licensed rows are not opened. | Snappy-compressed algorithm, instance, summary, identity-overlap, exact-method-agreement, and carrier-multiplicity Parquet artifacts; a seven-table/five-figure catalog; five compact editable SVGs; and a hash manifest. |
 | `make aor-financial-panel-v1-analysis-audit` | Independently hash and schema-audit the completed Parquet analysis on eight threads. | Short. | Completed ignored analysis artifacts. | Local analysis-audit certificate; no analysis is recomputed. |
+| `make aor-financial-panel-v2-design-check` | Verify the post-v1, pre-v2-outcome design lock, deterministic registries, security-level support rule, frontier-only counterfactual, budget-matched comparator, frozen challenge choice, paired contrast, and full-calendar delisting handling. | Short. | Public design and synthetic fixtures only; it does not open licensed rows or v2 outcomes. | Pass/fail diagnostics for the prospective v2 scientific design and mechanism implementation. |
 | `make aor-benchmark-audit` | Read and independently audit the committed final Algorithmic Compression Benchmark v2 artifacts with exact feasibility/burden checks and byte-drift comparison. | Medium to long; reads the complete saved result tree. | Public committed synthetic results only. | Pass/fail report; no solver, heuristic, generator, or result writer is invoked. |
 | `make aor-manuscript` | Compile the Springer article and independently compiled Online Resource 1, then audit their recorder dependency graphs. | Short to medium. | Public editable LaTeX, bibliography, table, figure, and canonical CSV inputs. | `journal/aor/manuscript/build/aor-journal-manuscript.pdf` and `journal/aor/online_resource/build/aor-online-resource-1.pdf`. |
 | `make aor-check` | Run every nonmutating journal theory, algorithm, committed-result, manuscript, source-completeness, release-input, and public/licensed-boundary check. | Long but bounded; no final-study execution. | Public clone only; no licensed rows. | Pass/fail diagnostics; it fingerprints the worktree and index before and after. |
@@ -1773,6 +1774,61 @@ and the registered finite search audits.  The complete ordered gate adds the
 clean build, executable axiom whitelist, registered `N=1024` replays,
 canonical-resource replication, live presentation-artifact checks, worktree
 drift guard, and final bibliography/reference reconciliation described above.
+
+### Point-in-Time Portfolio-Library Retention Study
+
+The retrospective point-in-time study is Julia-first and requires Julia
+1.12.6. Its sealed public-safe manifests and every active manuscript input can
+be checked without exposing raw licensed returns:
+
+```sh
+JULIA_EXE=/absolute/path/to/julia make aor-point-in-time-study-audit
+```
+
+That nonlicensed target verifies the predecision, proposal-policy, and
+evaluation seal hashes; the fixed-choice replay status; the exact postcheck
+flags; the absence of raw returns, licensed identifiers, and selected
+identities from public manifests; and deterministic regeneration of the
+article and Online Resource tables. Full licensed replay commands remain in
+the immutable experiment README and use eight Julia threads.
+
+```text
+julia/scripts/stage_financial_strategy_library_panel_v3_evaluation_returns_amendment_001.jl
+julia/scripts/run_financial_strategy_library_panel_v3_evaluation_amendment_001.jl
+julia/scripts/seal_financial_strategy_library_panel_v3_evaluation_result_amendment_001.jl
+```
+
+The original execution lock remains byte-identical. The first staging failure
+and its zero-access proof are preserved in
+`experiments/financial_strategy_library_panel_v3/EVALUATION_STAGING_FAILURE_001.toml`.
+The sealed public result is retrospective and development-facing; it is the
+article's financial case study, not a fresh confirmatory claim.
+
+### Calibrated Closure-Option Mechanism Experiment
+
+This is a Julia-first synthetic mechanism experiment. The public aggregate
+calibration is derived from all 2,479 complete strategy paths across the 37
+gate-passed point-in-time proposal cells; it contains no security identifiers or return
+observations. Recalibrating those nuisance moments requires the licensed local
+proposal artifacts:
+
+```sh
+JULIA_EXE=/absolute/path/to/julia make aor-financial-panel-v4-calibration-check
+```
+
+The sealed result itself can be independently regenerated from the public
+aggregate calibration without licensed rows:
+
+```sh
+JULIA_EXE=/absolute/path/to/julia make aor-closure-option-experiment-audit
+```
+
+That target checks the pre-result design lock, runs the Julia tests,
+regenerates all 16,384 world rows using eight deterministic threads, compares
+the ledger and summary byte for byte, verifies every row hash and paired
+dose-response invariant, and checks the registered result seal. The experiment
+validates a positive closure mechanism under a registered data-generating
+process; it does not make a historical market-alpha claim.
 
 ## CI action pins
 

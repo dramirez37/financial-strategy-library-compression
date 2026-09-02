@@ -1,0 +1,43 @@
+schema_version = "financial-strategy-library-panel-v2-design-amendment-v3"
+amendment_id = "DESIGN_AMENDMENT_003"
+predecessor_design_lock = "DESIGN_LOCK_003.json"
+amendment_date = "2026-09-01"
+classification = "predecision-computational-pilot-informed flagship restart"
+scientific_design_changed = true
+primary_estimand_changed = false
+universe_changed = false
+profile_estimator_changed = false
+candidate_scores_observed_before_amendment = true
+registered_seed_consumed_before_amendment = true
+solver_runtime_observed_before_amendment = true
+postdecision_outcome_observed_before_amendment = false
+predecessor_run_may_enter_flagship_estimands = false
+
+[source_docket_revision]
+old_rule = "union per-security, per-scenario, and per-capability ranks"
+new_rule = "union per-scenario and per-capability ranks"
+reason = "a per-security quota scales the active source with universe size and turns a standard-strategy candidate universe into an artificial maintenance denominator"
+all_100_securities_remain_in_candidate_grammar = true
+all_100_securities_remain_eligible_for_masked_menus = true
+scenario_rank_depths_unchanged = true
+capability_carrier_depths_unchanged = true
+postdecision_information_used = false
+
+[solver_revision]
+main_mip_time_limit_seconds = 180
+relative_gap = 0.0
+absolute_gap = 0.0
+exact_rational_incumbent_checks_unchanged = true
+solver_optimality_claim_requires_solver_optimal_status = true
+
+[stress_revision]
+inline_population_timing = false
+policy = "run steady-state timing in a separate benchmark artifact after the sealed scientific run"
+stress_membership_recorded_in_main_run = true
+scientific_arm_selection_uses_stress_timing = false
+
+[fresh_randomization]
+seed_namespace = "financial-strategy-library-panel-v2-flagship-restart-002"
+registry = "registry/SEED_REGISTRY_FLAGSHIP_002.csv"
+registry_sha256 = "c40083e7ef58b6796fdc296e81f7871996c02deee8a689a2b0c45b6167101f18"
+disjoint_from_original_and_restart_001 = true

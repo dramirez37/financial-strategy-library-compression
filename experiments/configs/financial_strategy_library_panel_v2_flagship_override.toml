@@ -1,0 +1,46 @@
+override_schema_version = "financial-strategy-library-panel-v2-flagship-override-v1"
+status = "predecision_pilot_informed_flagship_locked_before_any_postdecision_outcome"
+v2_predecision_pilot_observed = true
+v2_postdecision_outcomes_observed = false
+
+[universe]
+profile_support_is_security_eligibility_rule = false
+profile_support_counts_diagnostic_only = true
+insufficient_profile_security_policy = "retain full-calendar security; estimate sparse regime coordinates with locked shrinkage"
+insufficient_profile_origin_policy = "never fail an origin solely because a market regime is rare"
+
+[operating_profiles]
+regime_profile_estimator = "linear_state_utility_shrinkage_to_pooled_v1"
+regime_profile_prior_strength_sessions = 25
+regime_profile_formula = "n/(n+25)*state_utility + 25/(n+25)*pooled_compression_utility"
+zero_state_support_fallback = "pooled_compression_utility"
+
+[innovation_challenges]
+seed_namespace = "financial-strategy-library-panel-v2-flagship-restart-003"
+seed_registry = "experiments/financial_strategy_library_panel_v2/registry/SEED_REGISTRY_FLAGSHIP_003.csv"
+predecessor_seed_reuse_permitted = false
+
+[source_dockets]
+include_per_security_rank_depth = false
+flagship_source_rule = "union of registered scenario and capability ranks; no mechanical per-security quota"
+
+[computational_stress_block]
+inline_population_timing = false
+mip_time_limit_seconds = 180
+stress_timing_policy = "separate benchmark artifact after the sealed scientific run"
+
+[arms]
+population_primary_mode = "greedy_reverse_delete"
+primary_safe_arm = "innovation_safe_greedy"
+primary_comparator_arm = "frontier_only_budget_matched"
+exact_mip_policy = "separate computational benchmark; never gates the population experiment"
+
+[master_panel]
+reuse_existing = true
+adopted_manifest_sha256 = "0aaec2b748a9e2043b8ce6583b4318874b4efd8abbfa9a10b197df6d5e124e2d"
+adopted_directory_aggregate_sha256 = "585fe9f1312dd00c5633e750021cafef83e830b2e0da9029d20576c6c0bd5a61"
+source_execution_lock_aggregate_sha256 = "c3c00f22322b504f83e4fa2394c7d68e43437f81de369544e0d8c621280f46f2"
+expected_file_count = 158
+expected_chunk_count = 155
+expected_retained_rows = 38327975
+adoption_policy = "immutable lock-008 master panel; validate complete directory aggregate before every reuse"

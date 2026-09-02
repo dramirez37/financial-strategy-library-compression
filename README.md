@@ -122,6 +122,11 @@ contract, commands, and public outputs available without licensed access.
 | `experiments/financial_terminal_audit/` | Terminal financial-audit protocol, public records, and ignored local-data contract. |
 | `experiments/financial_annual_walkforward_audit/` | Annual walk-forward financial-audit protocol, public records, and ignored local-data contract. |
 | `experiments/financial_resource_optimization/` | Cross-audit resource-optimization protocol and public certificates. |
+| `experiments/financial_strategy_library_panel_v1/` | Completed and audited first-generation financial panel, including its immutable design history and public aggregates. |
+| `experiments/financial_strategy_library_panel_v2/` | Completed sealed panel with audited public aggregate results, exact-arm certificates, and origin-level paired contrasts. |
+| `experiments/financial_strategy_library_panel_v2_economic_design_audit/` | Post-hoc falsification audit of the sealed v2 decision mechanism; v2 itself remains unchanged. |
+| `experiments/financial_strategy_library_panel_v3/` | Immutable internal provenance for the **Point-in-Time Portfolio-Library Retention Study**: point-in-time liquid universes, nested compression arms, protected adoption, search/capacity diagnostics, and a sealed transparent null result. |
+| `experiments/financial_strategy_library_panel_v4/` | Immutable internal provenance for the **Calibrated Closure-Option Mechanism Experiment**: aggregate-calibrated noise, positive/null/adverse regimes, an independently calibrated learner, and a complete hashed world ledger. |
 | `experiments/algorithmic_compression_v2/` | Locked journal benchmark, committed final outputs, solver logs, and exact audit certificates. |
 | `manuscript/` | Main-paper source, appendices, bibliography, generated figures/tables, and build script. |
 | `manuscript/online_supplement/` | Standalone supplement source and build script. |

@@ -1,0 +1,23 @@
+schema_version = "financial-strategy-library-panel-v2-execution-amendment-v1"
+amendment_id = "EXECUTION_AMENDMENT_001"
+predecessor_execution_lock = "EXECUTION_LOCK.json"
+failure_stage = "required daily schema header check"
+failure_type = "IOError EPIPE from intentionally early gzip-pipe close"
+licensed_security_history_header_parsed_before_amendment = true
+licensed_daily_header_parsed_before_amendment = true
+licensed_daily_data_row_parsed_before_amendment = false
+universe_constructed_before_amendment = false
+registered_seed_consumed_before_amendment = false
+candidate_score_observed_before_amendment = false
+arm_or_solver_outcome_observed_before_amendment = false
+postdecision_outcome_observed_before_amendment = false
+scientific_estimand_changed = false
+eligibility_rule_changed = false
+registry_changed = false
+information_firewall_changed = false
+
+[correction]
+drain_compressed_schema_stream_after_header = true
+parse_or_retain_drained_rows = false
+allowed_predecessor_output = "local_results/FAILED_ATTEMPT_001_ENVIRONMENT.toml"
+overwrite_prior_scientific_output = false

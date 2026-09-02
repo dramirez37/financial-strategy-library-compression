@@ -1,0 +1,7 @@
+arm_id,frontier_required,closure_required,exact_primary,budget_rule,role
+source,true,true,false,uncompressed frozen source,structural upper benchmark
+innovation_safe_exact,true,true,true,minimum exact burden,primary safe structural arm
+frontier_only_exact,true,false,true,minimum exact burden,comparator parent
+frontier_only_exact_budget_matched,true,false,true,same realized burden cap as innovation_safe_exact,primary structural comparator
+innovation_safe_greedy,true,true,false,no greater than source burden,algorithmic benchmark
+permuted_closure_sham,true,true,false,same realized burden cap as innovation_safe_exact,negative control

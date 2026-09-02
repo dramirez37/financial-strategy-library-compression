@@ -1,0 +1,36 @@
+schema_version = "financial-strategy-library-panel-v2-execution-amendment-v8"
+amendment_id = "EXECUTION_AMENDMENT_008"
+predecessor_execution_lock = "EXECUTION_LOCK_008.json"
+design_amendment = "DESIGN_AMENDMENT_002"
+failed_attempt_census = "FAILED_EXECUTION_CENSUS_004.toml"
+scientific_score_observed_before_amendment = true
+registered_seed_consumed_before_amendment = true
+arm_or_solver_outcome_observed_before_amendment = true
+predecision_file_serialized_before_amendment = false
+predecision_seal_created_before_amendment = false
+postdecision_outcome_observed_before_amendment = false
+
+[cleanup]
+user_requested = true
+retain_master_market_panel = true
+remove_partial_origin_status = true
+remove_active_local_results = true
+retain_tracked_provenance = true
+remove_unrelated_experiments = false
+
+[master_reuse]
+require_exact_top_level_data_set = ["master_market_panel"]
+validate_manifest_sha256 = true
+validate_complete_directory_aggregate = true
+validate_interval_parquet_sha256 = true
+validate_row_and_chunk_totals = true
+adopted_file_count = 158
+adopted_chunk_count = 155
+adopted_retained_rows = 38327975
+
+[scientific_restart]
+hard_state_support_gate_removed = true
+sparse_state_profile_shrinkage_added = true
+fresh_seed_registry_required = true
+postdecision_firewall_unchanged = true
+primary_estimand_unchanged = true

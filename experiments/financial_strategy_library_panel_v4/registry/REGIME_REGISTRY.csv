@@ -1,0 +1,6 @@
+regime_id,margin_rule,oracle_action,role
+adversarial_margin,-1.0*calibrated_threshold,decline,negative_control
+null_margin,0.0,decline,size_control
+low_dose_positive,economic_hurdle,adopt,secondary_positive
+powered_positive,2.0*calibrated_threshold,adopt,primary_positive
+

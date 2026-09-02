@@ -1,0 +1,59 @@
+schema_version = "financial-strategy-library-panel-v2-failed-execution-census-v1"
+created_date = "2026-09-01"
+experiment_id = "financial-strategy-library-panel-v2"
+attempt = 9
+terminal_stage = "focused-docket exact arm solving across first eight parallel origins"
+master_panel_complete = true
+all_origin_universes_completed = true
+structurally_evaluable_origins = 20
+scientific_score_observed = true
+registered_seed_consumed = true
+arm_or_solver_outcome_observed = true
+computational_scalability_observed = true
+postdecision_outcome_observed = false
+predecision_files_serialized = 0
+predecision_seal_created = false
+successor_requires_fresh_seed_namespace = true
+predecessor_confirmatory_reuse_permitted = false
+local_artifacts_removed_after_census = true
+
+[failure_diagnosis]
+source_docket_per_security_quota = true
+inline_stress_repetitions_per_admitted_cell = 5
+mip_time_limit_seconds = 900
+mechanism = "large per-security source dockets and inline repeated MIPs made computational diagnostics a gate on the scientific run"
+elapsed_minutes_before_interrupt = 22
+heldout_information_used = false
+
+[partial_origin_status]
+path = "local_data/origin_status"
+removed_after_census = true
+file_count = 20
+byte_size = 12974725
+directory_aggregate_sha256 = "cf18a3b1f45937b8ab365ad29d3bd67ab22a6e1f8468cdad0bcdff337640d8e2"
+
+[local_results]
+path = "local_results"
+removed_after_census = true
+file_count = 4
+byte_size = 9781
+directory_aggregate_sha256 = "d1c14f77419545f14ceb6687af83bdf99f5cd28da01d5636f0b42fe77a449996"
+
+[[local_results.files]]
+path = "ENVIRONMENT.toml"
+sha256 = "9d49816d851e1bba17dcf2b5ea25e0d697672db353ce403d321b9fc600bd2e43"
+[[local_results.files]]
+path = "MASTER_ACCESS_STRUCTURAL.toml"
+sha256 = "3350b488fc6fe9d8f475c79fc976808424606e0781a5e69b58bc20a19e112e1b"
+[[local_results.files]]
+path = "MASTER_PANEL_SUMMARY.toml"
+sha256 = "53ea055a8a19c15a5179ddc4ad23b173affca61ab2a4ea7e874e6b9f8c6d55a2"
+[[local_results.files]]
+path = "SOURCE_AUDIT.toml"
+sha256 = "5fc0b76535f0c2e2bd269fb771dc14fb93e151632aa20116f815c698cb787cdf"
+
+[retained_master_panel]
+file_count = 158
+retained_master_rows = 38327975
+directory_aggregate_sha256 = "585fe9f1312dd00c5633e750021cafef83e830b2e0da9029d20576c6c0bd5a61"
+manifest_sha256 = "0aaec2b748a9e2043b8ce6583b4318874b4efd8abbfa9a10b197df6d5e124e2d"

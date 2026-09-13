@@ -6,7 +6,9 @@ journal-facing correspondence. A supporting finite fixture never upgrades the
 status of a universal result, and solver evidence establishes none of the
 mathematical claims in this table.
 
-\begin{longtable}{p{0.25\linewidth}p{0.11\linewidth}p{0.25\linewidth}p{0.30\linewidth}}
+\begingroup
+\setlength{\tabcolsep}{3pt}
+\begin{longtable}{@{}p{0.25\linewidth}p{0.13\linewidth}p{0.25\linewidth}p{0.30\linewidth}@{}}
 \caption{Evidence status of the journal theory and algorithm results.}
 \label{tab:or-theorem-evidence}\\
 \toprule
@@ -32,19 +34,20 @@ Preprocessing propositions & SC-PRE &
 objective preservation, reconstruction, propagation, and fixed-point claims
 are exact fixtures and Julia tested, not formally verified. \\
 Enumeration and requirement-mask DP correctness, complexity, and FPT status &
-SC-DP & \textbf{Human proof only} & Exact cross-method fixtures and Julia
+\path{SC-DP} & \textbf{Human proof only} & Exact cross-method fixtures and Julia
 tests; Lean mask identities do not formalize the recurrence invariant or
 complexity bound. \\
-Weighted-greedy transfer and reverse deletion & SC-GREEDY &
+Weighted-greedy transfer and reverse deletion & \path{SC-GREEDY} &
 \textbf{Human proof only} & The external Chv\'atal theorem is not re-formalized;
 finite ratios are exact fixtures and Julia tested. \\
-Rechecked-deletion feasibility & SC-DEL-SUITE / OPT-T2T4 &
+Rechecked-deletion feasibility & \texttt{SC-DEL-}\newline\texttt{SUITE} / \path{OPT-T2T4} &
 \textbf{Lean verified} for an abstract supplied safe trace; \textbf{human proof
 only} for concrete-suite termination and final-scan irreducibility & Julia
 tests cover scoring, stale-certificate invalidation, reproducible randomness,
 counters, feasibility, and irreducibility. No approximation quality follows. \\
 \bottomrule
 \end{longtable}
+\endgroup
 
 The Lean axiom audits recorded for the tagged-cover and preprocessing
 declarations print only \texttt{propext}, \texttt{Classical.choice}, and

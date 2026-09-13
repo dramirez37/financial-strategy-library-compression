@@ -1,5 +1,10 @@
 # Manual verification needed before AoOR submission
 
+Author update, September 13, 2026: David Ramirez confirmed no financial or
+non-financial competing interests. The corresponding declaration in
+`manuscript/author_metadata.tex` is finalized. This resolves A3 only; it does
+not imply completion of unrelated journal-specific portal confirmations.
+
 ## Status
 
 Internet access was available on 2026-08-26. This is therefore not an

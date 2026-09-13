@@ -1,5 +1,23 @@
 # Reproducibility Protocol
 
+## Current SSRN package
+
+The September 13, 2026 package is `release/v0.2.0-ssrn/`. Run
+`make ssrn-check` to validate its frozen PDF, metadata and source hashes, or
+`make ssrn-build` to rebuild the article, supplement and combined upload.
+Both require Python with `pypdf`; set `PYTHON_EXE` if needed. The
+[submission guide](ssrn/README.md) documents dependencies and archive replay,
+and [quality review](ssrn/QUALITY_REVIEW.md) records the executed gates.
+
+The historical algorithmic benchmark audit validates the original Makefile,
+Project and Manifest bytes at the recorded execution commit against the
+immutable lock. It permits the current project to add dependencies only if
+every original external dependency entry and compatibility bound is unchanged.
+The local package must retain its identity, path and original dependencies.
+Eight regression checks cover accepted additions and rejected pin, identity,
+compatibility and dependency changes. Saved results remain byte-for-byte
+checked; this is not a rerun of historical timings in the expanded environment.
+
 ## How to use this document
 
 This file is the complete outside-researcher reproduction record for the

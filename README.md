@@ -2,17 +2,22 @@
 
 ## Paper
 
-- **Journal title:** *Innovation-Safe Compression of Financial Strategy
-  Libraries under Partial Information: Complexity, Algorithms, and Financial
-  Evidence*
+- **Title:** *Innovation-Safe Compression of Financial Strategy Libraries:
+  Semantics, Complexity, and Algorithms*
 - **Author:** David Ramirez
 - **ORCID:** [0009-0000-3128-5123](https://orcid.org/0009-0000-3128-5123)
-- **Journal release candidate:** `v0.2.0-aor-submission`
-- **Historical preprint release:** `v0.1.1-arxiv` (August 25, 2026)
+- **Current preprint:** `v0.2.0-ssrn` (September 13, 2026), prepared for SSRN
+- **Historical preprint candidate:** `v0.1.1-arxiv` (August 25, 2026; not an arXiv posting)
 - **Repository:**
   [github.com/dramirez37/financial-strategy-library-compression](https://github.com/dramirez37/financial-strategy-library-compression)
-- **Journal status:** submission release candidate; no acceptance, peer-review,
-  or DOI claim
+- **Status:** preprint; not peer reviewed; no SSRN identifier or DOI assigned
+
+Download the [complete SSRN upload PDF](release/v0.2.0-ssrn/financial-strategy-library-compression-ssrn.pdf),
+the [article](release/v0.2.0-ssrn/financial-strategy-library-compression-preprint.pdf),
+or the [supplement](release/v0.2.0-ssrn/financial-strategy-library-compression-supplement.pdf).
+The [SSRN submission guide](ssrn/README.md) provides copy-ready metadata,
+requirements, build commands and the quality review. This package uses the
+latest research sources, including the complete named financial studies.
 
 `make aor-release` creates the versioned Springer article, Online Resource 1,
 editable-source archive, public registered benchmark archive, checksums, and
@@ -58,7 +63,9 @@ validation-status appendix.
 ## Quick start
 
 The pinned versions are Lean 4.32.0 and Julia 1.12.6. Run commands from the
-repository root. Start with the nonmutating journal gate; it does not rerun the
+repository root. Verify the SSRN package with `make ssrn-check` using Python
+with `pypdf` installed; rebuild it with `make ssrn-build`. For computational
+validation, the broader journal gate does not rerun the
 long final algorithmic benchmark, the frozen `N=1024` study, or a licensed
 financial workflow:
 
@@ -133,6 +140,8 @@ contract, commands, and public outputs available without licensed access.
 | `journal/aor/manuscript/` | Springer-compatible journal article and its local editable inputs. |
 | `journal/aor/online_resource/` | Independently compiled Online Resource 1 and public-safe canonical inputs. |
 | `release/v0.1.1-arxiv/` | Versioned PDFs, arXiv-ready TeX bundle, and SHA-256/commit metadata. |
+| `ssrn/` | Current SSRN drivers, official requirements, submission guide and quality review. |
+| `release/v0.2.0-ssrn/` | Complete SSRN upload, separate PDFs, editable source, submission metadata, and checksums. |
 | `release/v0.2.0-aor-submission/` | Journal PDFs, source and public-benchmark archives, checksums, environment, citation, and Zenodo metadata. |
 | `scripts/` | Public disclosure audit and complete verification orchestration. |
 

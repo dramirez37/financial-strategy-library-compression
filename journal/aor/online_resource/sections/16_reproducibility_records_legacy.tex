@@ -89,7 +89,8 @@ Its exact run and byte-drift check are
 julia --project=julia \
   julia/scripts/run_randomized_library_optimization_extension.jl
 julia --project=julia \
-  julia/scripts/run_randomized_library_optimization_extension.jl --check
+  julia/scripts/run_randomized_library_optimization_extension.jl \
+  --check
 \end{verbatim}
 Every trial enumerates all 32 inactive-containing sublibraries.  The readable
 exact summary is

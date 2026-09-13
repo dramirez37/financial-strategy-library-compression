@@ -10,6 +10,7 @@
 \usetikzlibrary{patterns}
 \usepackage{placeins}
 \usepackage{xcolor}
+\usepackage{bookmark}
 \usepackage[capitalise,noabbrev]{cleveref}
 
 \numberwithin{equation}{section}
@@ -57,10 +58,17 @@
   pdfsubject={Original Research for Annals of Operations Research},
   pdfkeywords={financial strategy libraries, innovation-safe compression, weighted set cover, exact algorithms, model governance}
 }
+\ifdefined\SSRNPreprint
+\hypersetup{pdfsubject={Preprint v0.2.0-ssrn, 13 September 2026; not peer reviewed},pdflang={en-US}}
+\fi
 
 \begin{document}
 
+\ifdefined\SSRNPreprint
+\articletype{Preprint --- 13 September 2026 --- Not peer reviewed}
+\else
 \articletype{Original Research}
+\fi
 \title[Innovation-safe strategy-library compression]{Innovation-Safe Compression of Financial Strategy Libraries: Semantics, Complexity, and Algorithms}
 
 \author*[1]{\fnm{David} \sur{Ramirez}}\email{\AORCorrespondingEmail}
@@ -111,7 +119,6 @@ set cover, exact algorithms, model governance}
 \FloatBarrier
 \input{07_computational_study}
 \FloatBarrier
-\clearpage
 \input{08_financial_case_studies}
 \FloatBarrier
 \input{09_conclusion}
@@ -127,6 +134,12 @@ benchmark, point-in-time financial and calibrated mechanism records, solver and 
 theorem--evidence correspondence, and reproducibility commands. It compiles
 independently from \path{journal/aor/online_resource/main.tex}; raw licensed
 data are excluded.
+\ifdefined\SSRNPreprint
+The complete SSRN upload PDF appends this resource after the article's
+references; its pages and numbered results use an S prefix. Separate article
+and supplement PDFs are also provided in the repository's
+\path{release/v0.2.0-ssrn/} directory.
+\fi
 
 \section*{Statements and Declarations}
 
@@ -148,18 +161,22 @@ generated tables, and generated figures supporting the journal version are
 provided in the project repository. The retrospective financial audits use
 licensed CRSP/WRDS source data. Raw and row-level licensed observations cannot
 be redistributed. Researchers with independent licensed access can reproduce
-the licensed-data stages using the documented input contracts. Any final
-repository link, archive identifier, and reuse condition remains subject to
-release-time verification.
+the licensed-data stages using the documented input contracts. Public
+materials and data-access instructions are available at
+\url{https://github.com/dramirez37/financial-strategy-library-compression}.
+Original manuscript and documentation materials are licensed under CC BY 4.0,
+subject to the licensed-data and third-party exclusions in the repository's
+\path{LICENSE} file.
 
 \DeclarationHead{Code availability}
 The project repository contains Julia 1.12.6 and Lean 4.32.0 source, pinned
 environments, exact fixtures, registered configurations, and reproducibility
 commands. The editable article and Online Resource source trees include every
 public-safe table, figure, and canonical-data input they consume; public-safe
-Julia and Lean source remains in the project repository. Any final public
-repository link or archival identifier remains subject to release-time
-verification.
+Julia and Lean source remains in the project repository linked above.
+Original software is licensed under the MIT License. The
+\path{release/v0.2.0-ssrn/} directory records PDF checksums, source provenance,
+and submission metadata; no archival DOI is claimed.
 
 \DeclarationHead{Author contributions}
 \AORAuthorContributionStatement

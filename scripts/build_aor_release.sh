@@ -25,8 +25,8 @@ check_inputs() {
     [[ "$(git -C "$ROOT" branch --show-current)" == "journal/aor-v0.2.0" ]] ||
         fail "the AoOR release must be built on journal/aor-v0.2.0"
     for path in \
-        "$ROOT/CITATION.cff" \
-        "$ROOT/.zenodo.json" \
+        "$ROOT/journal/aor/release/CITATION.cff" \
+        "$ROOT/journal/aor/release/zenodo.json" \
         "$ROOT/journal/aor/release/RELEASE_NOTES.md" \
         "$ROOT/journal/aor/requirements/OFFICIAL_REQUIREMENTS.md" \
         "$ROOT/journal/aor/requirements/COMPLIANCE_REPORT.md" \
@@ -35,12 +35,12 @@ check_inputs() {
         "$ROOT/experiments/algorithmic_compression_v2/results/audit/audit_summary.toml"; do
         [[ -f "$path" ]] || fail "required release input is absent: ${path#"$ROOT/"}"
     done
-    rg -qF "version: $VERSION" "$ROOT/CITATION.cff" ||
+    rg -qF "version: $VERSION" "$ROOT/journal/aor/release/CITATION.cff" ||
         fail "CITATION.cff does not identify $VERSION"
-    rg -qF '"version": "v0.2.0-aor-submission"' "$ROOT/.zenodo.json" ||
+    rg -qF '"version": "v0.2.0-aor-submission"' "$ROOT/journal/aor/release/zenodo.json" ||
         fail ".zenodo.json does not identify $VERSION"
-    if rg -q '"doi"[[:space:]]*:' "$ROOT/.zenodo.json" ||
-       rg -q '^doi:' "$ROOT/CITATION.cff"; then
+    if rg -q '"doi"[[:space:]]*:' "$ROOT/journal/aor/release/zenodo.json" ||
+       rg -q '^doi:' "$ROOT/journal/aor/release/CITATION.cff"; then
         fail "citation metadata claims a DOI that has not been assigned"
     fi
     rg -q '^passed = true$' \
@@ -155,8 +155,8 @@ build_release() {
 
     cp "$ARTICLE_PDF" "$payload/aor-journal-manuscript.pdf"
     cp "$RESOURCE_PDF" "$payload/aor-online-resource-1.pdf"
-    cp "$ROOT/CITATION.cff" "$payload/CITATION.cff"
-    cp "$ROOT/.zenodo.json" "$payload/zenodo.json"
+    cp "$ROOT/journal/aor/release/CITATION.cff" "$payload/CITATION.cff"
+    cp "$ROOT/journal/aor/release/zenodo.json" "$payload/zenodo.json"
     cp "$ROOT/journal/aor/release/RELEASE_NOTES.md" "$payload/RELEASE_NOTES.md"
 
     source_hash="$(shasum -a 256 "$payload/$SOURCE_ARCHIVE" | awk '{print $1}')"

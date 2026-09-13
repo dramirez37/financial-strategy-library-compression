@@ -383,3 +383,13 @@ public-audit:
 
 verify:
 	@./scripts/verify.sh
+.PHONY: ssrn-build ssrn-check
+PYTHON_EXE ?= python3
+
+ssrn-build:
+	@"$(PYTHON_EXE)" scripts/build_ssrn_tables.py --check
+	@"$(PYTHON_EXE)" scripts/build_ssrn_release.py
+
+ssrn-check:
+	@"$(PYTHON_EXE)" scripts/build_ssrn_tables.py --check
+	@"$(PYTHON_EXE)" scripts/build_ssrn_release.py --check

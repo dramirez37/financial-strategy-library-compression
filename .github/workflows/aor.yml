@@ -103,7 +103,21 @@ jobs:
             texlive-latex-extra texlive-latex-recommended texlive-pictures
 
       - name: Compile article and Online Resource 1
-        run: make aor-manuscript
+        run: |
+          ./journal/aor/manuscript/build.sh
+          ./journal/aor/online_resource/build.sh
+          ./scripts/aor_source_completeness.sh
+
+      - name: Verify and rebuild the SSRN submission package
+        run: |
+          sudo apt-get install --no-install-recommends python3-venv
+          python3 -m venv /tmp/ssrn-python
+          /tmp/ssrn-python/bin/pip install pypdf==6.10.0
+          make ssrn-check PYTHON_EXE=/tmp/ssrn-python/bin/python
+          make ssrn-build PYTHON_EXE=/tmp/ssrn-python/bin/python
+          mkdir -p ssrn/build/archive-replay
+          tar -xzf release/v0.2.0-ssrn/financial-strategy-library-compression-ssrn-source.tar.gz -C ssrn/build/archive-replay
+          /tmp/ssrn-python/bin/python ssrn/build/archive-replay/scripts/build_ssrn_release.py
 
       - name: Upload PDFs and logs on failure
         if: failure()
@@ -136,7 +150,9 @@ jobs:
             texlive-latex-extra texlive-latex-recommended texlive-pictures
 
       - name: Build source graphs
-        run: make aor-manuscript
+        run: |
+          ./journal/aor/manuscript/build.sh
+          ./journal/aor/online_resource/build.sh
 
       - name: Audit recorder dependencies and editable inputs
         run: ./scripts/aor_source_completeness.sh

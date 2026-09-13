@@ -42,3 +42,11 @@ an explicit `JULIA_EXE` pointing to Julia 1.12.6.
 `full_check.sh` is retained as a compatibility alias for `verify.sh` so older
 commands and documentation execute the same complete gate. Additional scripts
 must use Julia for research computation and shell only for orchestration.
+# SSRN preparation
+
+`build_ssrn_release.py` builds and verifies the active article and complete
+supplement, checks fonts/text/links, and packages the combined SSRN upload and
+editable sources. `build_ssrn_tables.py --check` verifies that readable
+benchmark tables retain the original rows and columns. See `ssrn/README.md`
+and `ssrn/QUALITY_REVIEW.md`. Both are exposed as `make ssrn-build` and
+`make ssrn-check`; Python with `pypdf` is required for PDF packaging.

@@ -11,6 +11,8 @@
 \usepackage{tikz}
 \usetikzlibrary{patterns}
 \usepackage{xcolor}
+\usepackage{bookmark}
+\usepackage{xurl}
 \usepackage[l3]{csvsimple}
 \usepackage[capitalise,noabbrev]{cleveref}
 
@@ -30,6 +32,9 @@
 \def\ps@plain{\let\@mkboth\@gobbletwo\let\@oddhead\@empty
   \let\@evenhead\@empty\def\@oddfoot{\hfill\thepage\hfill}%
   \let\@evenfoot\@oddfoot}
+% The vendor headings style uses portrait widths on rotated pages. A plain
+% numbered style avoids off-page empty header boxes on landscape tables.
+\let\ps@headings\ps@plain
 \makeatother
 
 \theoremstyle{definition}
@@ -67,10 +72,17 @@
   pdfsubject={Online Resource 1 for Annals of Operations Research},
   pdfkeywords={financial strategy libraries, safe compression, supplementary proofs, computational records, reproducibility}
 }
+\ifdefined\SSRNPreprint
+\hypersetup{pdfsubject={Supplement to preprint v0.2.0-ssrn, 13 September 2026; not peer reviewed},pdflang={en-US}}
+\fi
 
 \begin{document}
 
+\ifdefined\SSRNPreprint
+\articletype{Preprint supplement --- 13 September 2026 --- Not peer reviewed}
+\else
 \articletype{Supplementary Information}
+\fi
 \title[Online Resource 1]{Online Resource 1: Proofs, Extended Results,
 Computational Records, and Reproducibility Materials\\[0.5em]
 for ``Innovation-Safe Compression of Financial Strategy Libraries:
@@ -82,8 +94,8 @@ Semantics, Complexity, and Algorithms''}
   \href{https://orcid.org/0009-0000-3128-5123}{ORCID:
   0009-0000-3128-5123}}
 
-\abstract{Online Resource 1 for the journal article submitted to
-\emph{Annals of Operations Research}. It contains complete supporting proofs,
+\abstract{Online Resource 1 for the accompanying research article.
+It contains complete supporting proofs,
 extended theoretical results and counterexamples, canonical numerical records,
 the frozen preprint-era randomized-library study, the distinct registered
 algorithmic benchmark, point-in-time financial and calibrated mechanism
@@ -93,7 +105,11 @@ licensed CRSP/WRDS observations are excluded.}
 
 \maketitle
 
+\ifdefined\SSRNPreprint
+\noindent\textbf{Version:} \texttt{v0.2.0-ssrn}, prepared for SSRN.\par
+\else
 \noindent\textbf{Journal:} \emph{Annals of Operations Research}.\par
+\fi
 \noindent\textbf{Online Resource number:} 1.\par
 \noindent\textbf{Corresponding author:} David Ramirez,
 \href{mailto:ramirezdavv@gmail.com}{\texttt{ramirezdavv@gmail.com}}.\par

@@ -45,9 +45,10 @@ invalid generator outcomes remain terminal failures rather than silently
 repaired instances.
 
 \begin{landscape}
-\input{tables/registered_design_realized}
+\input{tables/readable/registered_design_realized}
 \end{landscape}
 
+\begin{landscape}
 \subsection{Exact-method agreement}
 
 On \AORExactCapable\ exact-capable instances, complete burden agreement was
@@ -57,8 +58,10 @@ different returned optimizer identities occurred in
 \AOROptimizerIdentityDifferences\ cases. The table is exact finite
 computation plus exact semantic audit, not Lean verification.
 
-\input{tables/exact_method_agreement}
+\input{tables/readable/exact_method_agreement}
+\end{landscape}
 
+\begin{landscape}
 \subsection{Complete scaling and failure records}
 
 The scaling table preserves per-family, per-size, per-algorithm solved counts,
@@ -71,12 +74,11 @@ with the registered \texttt{IMPLEMENTATION\_ERROR} status. They arose when
 complete enumeration crossed its declared applicability cap; the raw statuses
 are immutable, and no absent enumeration solution is imputed.
 
-\begin{landscape}
-\input{tables/computational_scaling}
+\input{tables/readable/computational_scaling}
 \end{landscape}
 
 \begin{landscape}
-\input{tables/failure_statuses}
+\input{tables/readable/failure_statuses}
 \end{landscape}
 
 \subsection{Preprocessing, multi-start, and registered models}
@@ -103,7 +105,7 @@ failed or nonestimable specifications without changing links, penalties, or
 covariates after outcomes were observed.
 
 \begin{landscape}
-\input{tables/registered_model_diagnostics}
+\input{tables/readable/registered_model_diagnostics}
 \end{landscape}
 
 These model outputs are retained as the executed registered record, not as

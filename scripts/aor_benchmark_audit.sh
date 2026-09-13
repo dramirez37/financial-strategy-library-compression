@@ -22,6 +22,9 @@ fail() {
 
 cd "$ROOT"
 
+"$JULIA_EXE" --startup-file=no --project="$ROOT/julia" \
+    "$ROOT/julia/test/test_historical_benchmark_environment.jl"
+
 before_status="$(git status --porcelain=v1 --untracked-files=all -- "$STUDY_PATH")"
 before_diff="$(git diff --binary HEAD -- "$STUDY_PATH" | shasum -a 256 | awk '{print $1}')"
 

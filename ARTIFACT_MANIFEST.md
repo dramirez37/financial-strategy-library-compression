@@ -1,5 +1,21 @@
 # Artifact Manifest
 
+## SSRN package, September 13, 2026
+
+`release/v0.2.0-ssrn/` contains the current research article, complete Online
+Resource 1, combined upload PDF, copy-ready abstract with AI disclosure,
+submission metadata, and editable document-source archive. The authoritative
+per-file hashes are in `SHA256SUMS`; `SOURCE_MANIFEST.json` binds every
+recorded local document input and the builders. `PDF_AUDIT.json` records the
+structural PDF checks. The producer is `scripts/build_ssrn_release.py`.
+
+`scripts/build_ssrn_tables.py` produces
+`journal/aor/online_resource/tables/readable/` from the original generated
+benchmark tables. These display copies retain all rows and columns, repeat
+identifying columns across split tables, and record the source-table hashes.
+They change presentation only; the design locks, raw results and canonical
+analysis outputs remain unchanged. See `ssrn/QUALITY_REVIEW.md` for validation.
+
 ## How to use this manifest
 
 This is the public lineage index for the preprint's formal sources, exact

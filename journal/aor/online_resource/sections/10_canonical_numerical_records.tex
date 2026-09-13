@@ -8,9 +8,9 @@ CSV files; compilation does not rerun either numerical solver.  Exact rational
 fields retain their machine-readable \texttt{numerator//denominator} form.
 The compact stationary table is included to make the record self-contained.
 
-\newcommand{\recordfield}[1]{{\ttfamily\expandafter\detokenize\expandafter{#1}}}
+\newcommand{\recordfield}[1]{\expandafter\path\expandafter{#1}}
+\newcolumntype{K}[1]{>{\raggedright\arraybackslash}p{\dimexpr #1\linewidth-2\tabcolsep\relax}}
 
-\clearpage
 \subsection{Convergence history and stationary solution}
 
 \begin{figure}[htbp]
@@ -368,16 +368,16 @@ that never reach the upper envelope, and the globally active breakpoints.
 \begin{landscape}
 \scriptsize
 \csvreader[
-  longtable={@{}llllllllllll@{}},
+  longtable={@{}K{.07}K{.05}K{.085}K{.07}K{.07}K{.085}K{.07}K{.07}K{.12}K{.07}K{.07}K{.07}@{}},
   table head={\caption{All pairwise resource-price relationships and crossing candidates.}
     \label{tab:supp-pairwise-crossings}\\
     \toprule
-    Schedule & Belief & Left library & Left value & \shortstack{Left display\\burden \(\widetilde W\)} & Right library &
-    Right value & \shortstack{Right display\\burden \(\widetilde W\)} & Relation & Price & Nonnegative & Globally active\\
+    Schedule & Belief & Left library & Left value & Left display burden \(\widetilde W\) & Right library &
+    Right value & Right display burden \(\widetilde W\) & Relation & Price & Nonneg. & Globally active\\
     \midrule\endfirsthead
     \toprule
-    Schedule & Belief & Left library & Left value & \shortstack{Left display\\burden \(\widetilde W\)} & Right library &
-    Right value & \shortstack{Right display\\burden \(\widetilde W\)} & Relation & Price & Nonnegative & Globally active\\
+    Schedule & Belief & Left library & Left value & Left display burden \(\widetilde W\) & Right library &
+    Right value & Right display burden \(\widetilde W\) & Relation & Price & Nonneg. & Globally active\\
     \midrule\endhead
     \bottomrule\endfoot}
 ]{data/unified_canonical_resource_switching_prices.csv}{

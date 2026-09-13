@@ -139,7 +139,7 @@ EMAIL_PATTERN='[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}'
 PUBLICATION_EMAIL='ramirezdavv'@'gmail.com'
 EMAIL_FILES="$(git grep -IlE "$EMAIL_PATTERN" -- . || true)"
 UNAPPROVED_EMAIL_FILES="$(printf '%s\n' "$EMAIL_FILES" | rg -v \
-    '^(\.zenodo\.json|CITATION\.cff|manuscript/main\.tex|manuscript/online_supplement/main\.tex|journal/aor/(cover_letter\.md|main\.tex|supplement\.tex)|journal/aor/manuscript/author_metadata\.tex|journal/aor/online_resource/main\.tex|journal/aor/requirements/COMPLIANCE_REPORT\.md|release/v0\.1\.1-arxiv/arxiv-source/(paper|supplement)\.tex|release/v0\.2\.0-aor-submission/(CITATION\.cff|zenodo\.json))$' || true)"
+    '^(\.zenodo\.json|CITATION\.cff|manuscript/main\.tex|manuscript/online_supplement/main\.tex|journal/aor/(cover_letter\.md|main\.tex|supplement\.tex)|journal/aor/manuscript/author_metadata\.tex|journal/aor/online_resource/main\.tex|journal/aor/requirements/COMPLIANCE_REPORT\.md|journal/aor/release/(CITATION\.cff|zenodo\.json)|release/v0\.1\.1-arxiv/arxiv-source/(paper|supplement)\.tex|release/v0\.2\.0-aor-submission/(CITATION\.cff|zenodo\.json)|release/v0\.2\.0-ssrn/submission_metadata\.json|ssrn/README\.md|scripts/build_ssrn_release\.py)$' || true)"
 [[ -z "$UNAPPROVED_EMAIL_FILES" ]] ||
     print_paths_and_fail "email addresses require publication review; values suppressed" "$UNAPPROVED_EMAIL_FILES"
 

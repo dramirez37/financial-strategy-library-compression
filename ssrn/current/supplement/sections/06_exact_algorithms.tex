@@ -105,9 +105,10 @@ so $D_0[0]=0$ and all other states are unreachable.
 Assume the invariant at $i-1$.  Every subset of the first $i$ strategies
 either omits strategy $i$, in which case it supplies the skip candidate already
 characterized by $D_{i-1}$, or contains strategy $i$.  Removing $i$ from the
-latter subset leaves some predecessor mask $q$ with optimal predecessor cost
-$D_{i-1}[q]$; reinserting it produces mask $q\mathbin{\mathrm{OR}}R_i$ and
-cost $D_{i-1}[q]+w_i$.  Conversely, every skip or take transition constructs
+latter subset leaves some predecessor mask $q$ and cost at least
+$D_{i-1}[q]$. Replacing that predecessor by a minimum-cost one and reinserting
+$i$ produces the same mask $q\mathbin{\mathrm{OR}}R_i$ at cost
+$D_{i-1}[q]+w_i$. Conversely, every skip or take transition constructs
 a subset of the first $i$ strategies with the stated mask and burden.  Taking
 the minimum over these exhaustive and disjoint cases proves the invariant for
 layer $i$.  Stored predecessor records follow the same transitions, so every

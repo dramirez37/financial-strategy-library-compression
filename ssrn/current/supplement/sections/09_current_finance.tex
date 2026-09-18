@@ -60,8 +60,11 @@ nested in the safe set before reading proposal scores. The complete candidate
 ledger retains source-docket exclusions, missing capabilities, rejected
 candidates, cash, and unavailable cells. The analysis unit is the origin;
 candidate specifications and daily returns are not independent replications.
+Adjacent origins share formation and compression histories and should not be
+treated as independent market replications either. Origin summaries are
+descriptive; no cross-origin significance claim is made.
 
-\subsection{Certainty equivalent and protected selection}
+\subsection{Certainty equivalent and the registered selection screen}
 
 For gross daily portfolio return \(r_t\), one-way turnover \(q_t\), and
 net return \(n_t=r_t-0.0005q_t\), the primary annual certainty equivalent is
@@ -81,18 +84,37 @@ difference and \(\mathrm{se}_i\) is the standard deviation of its bootstrap
 differences, the reference maximum for each draw uses
 \((\delta_i-\delta_i^*)/\mathrm{se}_i\), with zero used when the standard
 error is zero. The 90th percentile of that maximum is the one-sided critical
-value \(c\), giving lower bound \(\delta_i-c\,\mathrm{se}_i\).
+value \(c\), giving the screening score \(\ell_i=\delta_i-c\,\mathrm{se}_i\).
 
-The comparator selects cash unless an eligible candidate's simultaneous lower
-bound over cash exceeds the hurdle. The safe policy defaults to that exact
+The comparator selects cash unless an eligible candidate's score over cash
+exceeds the hurdle. The safe policy defaults to that exact
 choice. Because the comparator is selected from proposal data, the safe
 reference family includes every complete safe-candidate by complete
 comparator-candidate contrast, including cash. Replacement requires the
-corresponding simultaneous lower bound to exceed the hurdle. Family shrinkage
+corresponding score to exceed the hurdle. Family shrinkage
 ranks only candidates that pass this gate: its center is the family mean,
 its latent variance is the nonnegative part of between-path sample variance
 minus median squared standard error, and its reliability weights shrink each
 candidate toward that center. Identifier order resolves remaining ties.
+
+\paragraph{Coverage boundary of this screen.}
+The implemented reference uses \(\delta_i-\delta_i^*\), the reflection of
+\(\delta_i^*-\delta_i\), with standard errors fixed across resamples.
+A conventional lower confidence construction instead calibrates the upper
+sampling error \(\delta_i-\theta_i\); bootstrap multiple-testing results
+require a valid approximation to the joint error law
+\citep{RomanoWolf2005}. Reflection does not preserve a general asymmetric
+error law. For example, with one contrast, unit standard error, and exact
+centered error \(E=Z-1\), \(Z\sim\operatorname{Exp}(1)\), the 90th
+percentile of \(-E\) is \(1+\log(0.9)\). Using it in a lower bound gives
+coverage \(1-e^{-2}/0.9\simeq0.8496\), not 0.90. This is an analytic
+counterexample to an unconditional guarantee, not an estimate of coverage in
+our financial sample. No finite-sample coverage validation or applicable
+asymptotic argument is supplied for this particular screen. Its 90\% level
+is therefore a tuning parameter. The recorded policy and all its outcomes
+are reported as implemented; they do not establish familywise error control.
+The separate synthetic learner below uses a scalar null-calibrated threshold
+and does not validate this financial bootstrap rule.
 
 \subsection{Origin-level outcomes and robustness}
 

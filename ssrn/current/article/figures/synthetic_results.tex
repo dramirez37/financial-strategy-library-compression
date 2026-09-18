@@ -1,0 +1,54 @@
+\begin{figure}[!htbp]
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=.95\linewidth,height=4.7cm,publicationaxis,
+ title={(a) Oracle and learner: all four synthetic regimes},
+ ylabel={Value (model units)},xmin=-.5,xmax=3.5,ymin=-.004,ymax=.064,
+ xtick={0,1,2,3},xticklabels={Adverse,Null,Low positive,Powered},
+ ytick={0,.02,.04,.06},ymajorgrids,
+ legend style={at={(.02,.97)},anchor=north west,font=\small,legend columns=2}]
+\addplot[black!55,thin,forget plot] coordinates {(-.5,0)(3.5,0)};
+\addplot[only marks,figblue,mark=o,mark size=2.5pt,thick,
+ error bars/.cd,y dir=both,y explicit]
+ table[col sep=comma,x expr=\thisrow{regime}-.09,y=oracle,y error minus=oracle_minus,y error plus=oracle_plus]{figures/mechanism_summary.csv};
+\addlegendentry{Oracle}
+\addplot[only marks,figorange,mark=square*,mark size=2pt,thick,
+ error bars/.cd,y dir=both,y explicit]
+ table[col sep=comma,x expr=\thisrow{regime}+.09,y=learned,y error minus=learned_minus,y error plus=learned_plus]{figures/mechanism_summary.csv};
+\addlegendentry{Learner}
+\end{axis}
+\end{tikzpicture}
+\par\medskip
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=2 by 1,horizontal sep=1.25cm},
+ width=.43\linewidth,height=4.4cm,publicationaxis,ymajorgrids]
+\nextgroupplot[title={(b) Low-value detail},ylabel={Value (model units)},
+ xmin=-.4,xmax=2.4,ymin=-.0005,ymax=.0035,
+ xtick={0,1,2},xticklabels={Adverse,Null,Low},ytick={0,.001,.002,.003}]
+\addplot[black!55,thin,forget plot] coordinates {(-.4,0)(2.4,0)};
+\addplot[only marks,figblue,mark=o,mark size=2.5pt,thick,restrict x to domain=-.4:2.4,
+ error bars/.cd,y dir=both,y explicit]
+ table[col sep=comma,x expr=\thisrow{regime}-.09,y=oracle,y error minus=oracle_minus,y error plus=oracle_plus]{figures/mechanism_summary.csv};
+\addplot[only marks,figorange,mark=square*,mark size=2pt,thick,restrict x to domain=-.4:2.4,
+ error bars/.cd,y dir=both,y explicit]
+ table[col sep=comma,x expr=\thisrow{regime}+.09,y=learned,y error minus=learned_minus,y error plus=learned_plus]{figures/mechanism_summary.csv};
+\nextgroupplot[title={(c) Learner adoption},ylabel={Adoption (\%)},
+ xmin=-.5,xmax=3.5,ymin=-4,ymax=105,
+ xtick={0,1,2,3},xticklabels={A,N,L,P},ytick={0,25,50,75,100}]
+\addplot[only marks,figorange,mark=square*,mark size=2pt,thick,
+ error bars/.cd,y dir=both,y explicit]
+ table[col sep=comma,x=regime,y=adoption_pct,y error minus=adoption_minus,y error plus=adoption_plus]{figures/mechanism_summary.csv};
+\end{groupplot}
+\end{tikzpicture}
+\caption{Synthetic option value and exercise under calibrated noise.
+Each regime contains 4,096 test worlds. Panel (a) plots value means with
+95\% intervals (mean $\pm1.96$ standard errors); panel (b) repeats the first
+three regimes on an explicitly expanded value scale. Panel (c) shows adoption
+with 95\% Wilson intervals, in the same adverse (A), null (N), low (L), and
+powered (P) order. Zero-length oracle intervals at the adverse and null doses
+reflect deterministic abstention. The true margins are $-0.027008$, 0,
+0.0025, and 0.054016. Common random numbers pair regimes. The powered dose is
+chosen by the power design, not estimated from market returns. All plotted
+values and intervals are regenerated from the complete sealed synthetic ledger.}
+\label{fig:synthetic-results}
+\end{figure}

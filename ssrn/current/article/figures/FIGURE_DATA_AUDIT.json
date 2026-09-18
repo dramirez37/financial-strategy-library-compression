@@ -1,0 +1,71 @@
+{
+  "scope": "Deterministic figure inputs; no new market or synthetic experiment.",
+  "figure_1": {
+    "type": "exact schematic",
+    "belief_count": 1,
+    "profiles": {
+      "cash": 0,
+      "A": 1,
+      "B": 0,
+      "C": 1
+    },
+    "modules": {
+      "cash": [],
+      "A": [],
+      "B": [
+        "m"
+      ],
+      "C": []
+    },
+    "weights": {
+      "cash": 0,
+      "A": 1,
+      "B": 1,
+      "C": 1
+    },
+    "source": [
+      "cash",
+      "A",
+      "B",
+      "C"
+    ],
+    "safe": [
+      "cash",
+      "A",
+      "B"
+    ],
+    "frontier_only_budget_matched": [
+      "cash",
+      "A",
+      "C"
+    ],
+    "project_requirement": [
+      "m"
+    ]
+  },
+  "figure_2": {
+    "burden": "mean of per-origin fractional reductions times 100",
+    "options": "mean additional proposal actions relative to the budget-matched frontier-only library",
+    "heldout": "safe minus frontier-only annual certainty-equivalent difference times 100 (percentage points)",
+    "missing": "2005 ETF universe gate failure remains nan, never zero",
+    "uncertainty": "origin-level descriptive outcomes; no cross-origin confidence interval"
+  },
+  "figure_3": {
+    "value_units": "model continuation-value units, not market-return estimates",
+    "mean_intervals": "mean +/- 1.96 sample standard errors across 4096 worlds per regime",
+    "adoption_intervals": "95% Wilson using z=1.96",
+    "pairing": "common random numbers across regimes; no independent-regime inference",
+    "zoom": "separate explicitly labeled low-value scale, first three regimes"
+  },
+  "checks": {
+    "all_synthetic_intervals_recomputed": true,
+    "all_four_regimes_retained": true,
+    "financial_failed_gate_retained": true
+  },
+  "source_sha256": {
+    "evidence/financial/PREDECISION_COMPUTATION_MANIFEST.toml": "d134746a7e56cd16e957572eec951a18a51d844586817885e4fd230851b08a09",
+    "evidence/financial/EVALUATION_RESULT_MANIFEST.toml": "fc905909509eaec14ea377efa987c0946c32fc8b9cd3db81c9eb21df395bab7e",
+    "evidence/mechanism/V4_SUMMARY.csv": "489b8dd6d2acb0616e9ff8284832f1bf6be979ae4fd1f441bda808a25c6cbfdf",
+    "evidence/mechanism/V4_WORLD_LEDGER.csv": "875cf261ada397583590f0e14ceccfa4f4dc4b6e1ee58b5364f8472682073e29"
+  }
+}

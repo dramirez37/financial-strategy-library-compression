@@ -6,9 +6,11 @@ from pypdf import PdfReader, PdfWriter
 from pypdf.constants import PageLabelStyle
 from pypdf.generic import TextStringObject, NameObject
 from verify_evidence import verify
+from build_figures import build as build_figures
+from verify_review import verify as verify_review
 ROOT = Path(__file__).resolve().parent
 TITLE = "Innovation-Safe Compression of Financial Strategy Libraries: Semantics, Complexity, and Algorithms"
-VERSION = "v0.3.0-ssrn"
+VERSION = "v0.3.1-ssrn"
 DATE = "2026-09-18"
 NAMES = {"article":"financial-strategy-library-compression-preprint.pdf", "supplement":"financial-strategy-library-compression-supplement.pdf", "complete":"financial-strategy-library-compression-ssrn.pdf"}
 def run(args, **kw): return subprocess.check_output(args, text=True, **kw)
@@ -117,7 +119,7 @@ def source_files():
     result=[]
     for d in ['article','supplement','evidence']:
         result.extend(p for p in (ROOT/d).rglob('*') if p.is_file())
-    for name in ['build.py','verify_evidence.py','README.md','LICENSE','REPRODUCTION_MANIFEST.json','QUALITY_REVIEW.md']:
+    for name in ['build.py','build_figures.py','verify_review.py','verify_evidence.py','README.md','LICENSE','REPRODUCTION_MANIFEST.json','QUALITY_REVIEW.md','READINESS_REVIEW.md']:
         p=ROOT/name
         if p.is_file():result.append(p)
     return sorted(result)
@@ -129,12 +131,14 @@ def check(release):
     for path,digest in json.loads((release/'SOURCE_MANIFEST.json').read_text()).items():
         assert sha(ROOT/path)==digest,path
     verify()
+    verify_review()
     stats={kind:inspect_pdf(release/name) for kind,name in NAMES.items()}
     print(json.dumps({'passed':True,'pdfs':stats},indent=2))
 
 def build(release):
     release.mkdir(parents=True,exist_ok=True)
     evidence=verify()
+    review=verify_review()
     for kind in ['article','supplement']:
         out=release/'.build'/kind;out.mkdir(parents=True,exist_ok=True)
         with (out/'stdout.log').open('w') as log:
@@ -158,14 +162,14 @@ def build(release):
             expected.append([(typ,target+offset if typ=='page' else target) for typ,target in targets])
     assert link_targets(PdfReader(release/NAMES['complete']))==expected,'Merged destination drift'
     stats={kind:inspect_pdf(release/name) for kind,name in NAMES.items()}
-    for name,value in [('submission_metadata.json',data),('PDF_AUDIT.json',stats),('EVIDENCE_CHECK.json',evidence)]:
+    for name,value in [('submission_metadata.json',data),('PDF_AUDIT.json',stats),('EVIDENCE_CHECK.json',evidence),('REVIEW_CHECK.json',review)]:
         (release/name).write_text(json.dumps(value,indent=2)+'\n')
     (release/'abstract_for_ssrn.txt').write_text(data['abstract_for_ssrn']+'\n')
     files=source_files();manifest={p.relative_to(ROOT).as_posix():sha(p) for p in files}
     (release/'SOURCE_MANIFEST.json').write_text(json.dumps(manifest,indent=2)+'\n')
     with tarfile.open(release/'financial-strategy-library-compression-ssrn-source.tar.gz','w:gz') as archive:
         for p in files:archive.add(p,arcname=p.relative_to(ROOT).as_posix(),recursive=False)
-    for name in ['README.md','REPRODUCTION_MANIFEST.json','QUALITY_REVIEW.md']:
+    for name in ['README.md','REPRODUCTION_MANIFEST.json','QUALITY_REVIEW.md','READINESS_REVIEW.md']:
         if (ROOT/name).is_file():shutil.copyfile(ROOT/name,release/name)
     notes=f"""# Preprint package {VERSION}
 

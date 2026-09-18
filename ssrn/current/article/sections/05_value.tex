@@ -76,24 +76,29 @@ Fix exact rationals \(0\le\beta<1\), \(0\le\rho,\pi\le1\), a reward cap
 Suppose the bridge uniquely enables the descendant, retention gives survival
 mass \(\rho^d\) and conditional admission probability \(\pi\), deletion makes
 that descendant mass zero, and
-\(\kappa\le\beta^d\rho^d\pi C\). Then the retained-minus-deleted value loss is
+\(\kappa\le\beta^d\rho^d\pi C\). For a realized continuation gain
+\(g\in[0,C]\), with the option to decline research, the
+retained-minus-deleted optimal-value loss is
 
 \begin{equation}
- \operatorname{Loss}_d
- =\beta^d\rho^d\pi C-\kappa.
+ \operatorname{Loss}_d(g)
+ =\max\{0,\beta^d\rho^d\pi g-\kappa\}
+ \leq\beta^d\rho^d\pi C-\kappa.
  \label{eq:normalized-pruning-loss}
 \end{equation}
 
-For fixed \((\beta,\rho,\pi,d,\kappa)\), this is the sharp upper bound over
-descendant rewards in \([0,C]\), attained at \(C\). Whenever the denominator
-is positive, the loss divided by the attainable net bridge value equals one.
+For fixed \((\beta,\rho,\pi,d,\kappa)\), the right-hand side is the sharp
+upper bound over descendant gains in \([0,C]\), attained at \(g=C\).
+At that endpoint, whenever the denominator is positive, the loss divided by
+the attainable net bridge value equals one.
 If \(C\le1\), the additive loss is at most one; arbitrarily large additive
 loss requires reward scaling.
 \end{theorem}
 
 The proof expands the one available project branch. Retention contributes
-the discounted joint survival-and-admission mass times the capped continuation
-gain, less cost; deletion contributes zero. Maximization over the reward
+the maximum of declining research and its discounted survival-and-admission
+mass times the continuation gain, less cost; deletion contributes zero.
+Maximization over the reward
 interval is attained at its upper endpoint. The factor
 \(\rho^d\pi\) comes from sequential generation and conditional admission, not
 from an independence assumption. Common operating value cancels under

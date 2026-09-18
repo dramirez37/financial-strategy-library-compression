@@ -112,9 +112,12 @@ The productive state of a retained library is
   K_L:=(F_L,C_L).
   \label{eq:closure-compression}
 \end{equation}
-It is the \emph{library component} of the controlled state.  The filtered
-belief remains part of the decision state, and an unfinished project also
-requires its identity and remaining duration.
+It is the \emph{library component} of the controlled state at embedded
+decision epochs. The filtered belief remains part of that state. No new
+decision is taken during a committed project. If a calendar-time representation
+exposes intermediate observations, it must also retain enough history to
+condition the declared joint completion law; project identity and remaining
+duration alone need not suffice for an arbitrary path--outcome coupling.
 \end{definition}
 
 For \(K=(F,C)\), define the local compressed update
@@ -125,7 +128,7 @@ For \(K=(F,C)\), define the local compressed update
  \left(b\mapsto\max\{F(b),j_s(b)\},
        \cl(C\cup\mods(s))\right).
 \]
-Extensivity and idempotence of closure give
+The three defining closure properties give
 \begin{equation}
   K_{L\oplus o}=\operatorname{addK}(K_L,o).
   \label{eq:raw-compressed-local-update}
@@ -175,7 +178,9 @@ corresponding raw and compressed action values, and then their finite maxima,
 agree.  Bellman intertwining and contraction give the stationary clauses.
 The complete normalization and projection proof is in Online Resource~1,
 Sections~S1--S2.  The result permits belief--admission dependence and makes no
-generic quotient-minimality claim.
+generic quotient-minimality claim. Action correspondence concerns Continue and
+research-project choices. It does not require retaining every raw strategy
+identity that attains the same operating frontier.
 
 \paragraph{Operational factorization audit.}
 The assumption can be checked table by table. Project availability, cost,

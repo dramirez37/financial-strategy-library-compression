@@ -150,8 +150,10 @@ cover has cost at most $B$. The reduction is a polynomial many-one reduction.
 Together with membership in NP and
 \cref{lem:aor-full-union-weighted-set-cover}, this proves NP-completeness of
 the stated restricted subclass and therefore of \textsc{ISC-ID}. The
-normalization proof uses unit costs on its nontrivial branch, so the restricted
-subclass remains NP-complete with unit active weights. Solving the associated
+normalization can use the fixed no-instance with one singleton of cost one
+and budget zero in its uncovered-universe branch. It then uses unit costs in
+every branch, so the restricted subclass remains NP-complete with unit active
+weights. Solving the associated
 minimum-burden problem would decide whether its optimum is at most $B$, which
 proves NP-hardness of the optimization problem.
 \end{proof}

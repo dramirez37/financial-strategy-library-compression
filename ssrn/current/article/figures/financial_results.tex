@@ -1,0 +1,53 @@
+\begin{figure}[tbp]
+\centering
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=2 by 1,horizontal sep=1.15cm},
+ width=.44\linewidth,height=4.5cm,publicationaxis,
+ symbolic x coords={0,1},xtick=data,xticklabels={Equity,ETF},
+ enlarge x limits=.6,ymin=0,ymajorgrids,/pgf/bar width=16pt,
+ nodes near coords,nodes near coords style={font=\footnotesize},
+ every node near coord/.append style={/pgf/number format/fixed,/pgf/number format/precision=1}]
+\nextgroupplot[title={(a) Burden reduction},ylabel={Mean reduction (\%)},ymax=100,ytick={0,25,50,75,100}]
+\addplot[ybar,draw=figblue,fill=figblue!20] table[col sep=comma,x=group,y=burden_reduction_pct]{figures/financial_summary.csv};
+\nextgroupplot[title={(b) Additional research options},ylabel={Mean number of actions},ymax=90,ytick={0,20,40,60,80}]
+\addplot[ybar,draw=figblue,fill=figblue!20] table[col sep=comma,x=group,y=added_options]{figures/financial_summary.csv};
+\end{groupplot}
+\end{tikzpicture}
+\par\medskip
+\begin{tikzpicture}
+\begin{axis}[width=.96\linewidth,height=5.0cm,publicationaxis,
+ title={(c) Held-out investment outcome by compression origin},
+ xlabel={Origin year (evaluation occurs two years later)},
+ ylabel={Annual CE difference (pp)},
+ xmin=2004.4,xmax=2023.6,xtick={2005,2008,2011,2014,2017,2020,2023},
+ ymin=-4.7,ymax=1,ytick={-4,-3,-2,-1,0},ymajorgrids,
+ xticklabel style={/pgf/number format/1000 sep={}},
+ legend style={at={(.5,-.36)},anchor=north,legend columns=2,font=\small},
+ unbounded coords=discard]
+\addplot[black!55,thin,forget plot] coordinates {(2004.4,0)(2023.6,0)};
+\addplot[only marks,mark=o,mark size=2.8pt,figblue,thick,
+ restrict expr to domain={\thisrow{group}}{0:0}]
+ table[col sep=comma,x=origin,y=ce_pp]{figures/financial_origins.csv};
+\addlegendentry{Common equity (19 complete)}
+\addplot[only marks,mark=x,mark size=2pt,figorange,thick,
+ restrict expr to domain={\thisrow{group}}{1:1}]
+ table[col sep=comma,x=origin,y=ce_pp]{figures/financial_origins.csv};
+\addlegendentry{ETF (18 complete)}
+\node[anchor=north west,font=\footnotesize,align=left] at (axis cs:2005,-.65)
+ {ETF 2005: unavailable\\(universe gate failed)};
+\node[anchor=west,font=\footnotesize,align=left] at (axis cs:2016.4,-3.8)
+ {ETF 2016: $-3.896$ pp\\sole policy replacement};
+\end{axis}
+\end{tikzpicture}
+\caption{Structural savings and options are separate from investment gains.
+Panels (a)--(b) average across 19 common-equity and 18 complete ETF origins.
+Burden reduction is relative to each origin's source; added options are relative
+to its budget-matched frontier-only library. Burden is a validation-computation
+index, not monetary cost. Panel (c) reports every complete origin's safe-minus-
+frontier-only annual certainty-equivalent (CE) difference in percentage points.
+All common-equity choices and 17 ETF choices coincide, so their contrasts are
+exactly zero; the circles and crosses overlap at zero. The failed ETF origin
+is missing, not zero. These are descriptive outcomes, without a cross-origin
+confidence interval. Source: sealed public predecision and evaluation manifests.}
+\label{fig:financial-results}
+\end{figure}

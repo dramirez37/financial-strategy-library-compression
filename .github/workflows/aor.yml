@@ -53,6 +53,11 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Install formal audit dependency
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends ripgrep
+
       - name: Set up Julia 1.12.6
         uses: julia-actions/setup-julia@fa02766e078afaaf09b14210362cee14137e6a32 # v3
         with:
@@ -99,7 +104,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install --no-install-recommends \
             latexmk poppler-utils ripgrep \
-            texlive-fonts-recommended texlive-latex-base \
+            cm-super texlive-fonts-recommended texlive-latex-base \
             texlive-latex-extra texlive-latex-recommended texlive-pictures
 
       - name: Compile article and Online Resource 1
@@ -116,7 +121,7 @@ jobs:
           make ssrn-check PYTHON_EXE=/tmp/ssrn-python/bin/python
           make ssrn-build PYTHON_EXE=/tmp/ssrn-python/bin/python
           mkdir -p ssrn/build/archive-replay
-          tar -xzf release/v0.3.0-ssrn/financial-strategy-library-compression-ssrn-source.tar.gz -C ssrn/build/archive-replay
+          tar -xzf release/v0.3.1-ssrn/financial-strategy-library-compression-ssrn-source.tar.gz -C ssrn/build/archive-replay
           /tmp/ssrn-python/bin/python ssrn/build/archive-replay/build.py --output ssrn/build/archive-rebuilt
           /tmp/ssrn-python/bin/python ssrn/build/archive-replay/build.py --output ssrn/build/archive-rebuilt --check
 
@@ -147,7 +152,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install --no-install-recommends \
             latexmk poppler-utils ripgrep \
-            texlive-fonts-recommended texlive-latex-base \
+            cm-super texlive-fonts-recommended texlive-latex-base \
             texlive-latex-extra texlive-latex-recommended texlive-pictures
 
       - name: Build source graphs

@@ -1,0 +1,33 @@
+{
+  "financial_summaries": {
+    "liquid_common_equity": {
+      "source_burden_mean": 8169.1578947368425,
+      "safe_burden_mean": 2183.842105263158,
+      "burden_reduction_mean": 0.7310221543528936,
+      "added_options_mean": 65.94736842105263,
+      "heldout_ce_mean": 0.0,
+      "same_choice_count": 19
+    },
+    "liquid_plain_etf": {
+      "source_burden_mean": 8909.222222222223,
+      "safe_burden_mean": 2231.722222222222,
+      "burden_reduction_mean": 0.7468962517012009,
+      "added_options_mean": 66.05555555555556,
+      "heldout_ce_mean": -0.002164315537131558,
+      "same_choice_count": 17
+    }
+  },
+  "passed": true,
+  "evidence_files": 31,
+  "benchmark_instances": 173,
+  "terminal_runs": 3907,
+  "accepted_libraries": 3526,
+  "exact_agreement": 31,
+  "exact_denominator": 38,
+  "synthetic_worlds": 16384,
+  "financial_origins": {
+    "liquid_common_equity": 19,
+    "liquid_plain_etf": 18
+  },
+  "scope": "Read-only public-record verification; no scientific experiment rerun."
+}

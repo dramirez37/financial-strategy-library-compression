@@ -82,14 +82,37 @@ insertion obey
  K_{L\oplus o}=\operatorname{addK}(K_L,o).
  \label{eq:or-local-update}
 \end{equation}
-Stationary claims additionally assume a common discount factor
-$0<\beta<1$; finite-horizon claims do not.
+We use the article's common discount factor $0\leq\beta<1$. The
+finite-horizon proof needs no contraction assumption; the stationary result
+uses the recorded contraction clause, which the finite Bellman specification
+below satisfies.
+
+\paragraph{Calendar horizon and Bellman specification.}
+There are $h$ operating reward dates remaining, $\bar V_0=0$, and no terminal
+salvage. A project may start only if $d_q\leq h$; there is no unfinished
+terminal project. Write $a_q\in\{0,1\}$ for operation while active and
+$\kappa_q(b,K)$ for initiation cost. For $h\geq1$, Continue has value
+\[
+ Q_h^0(b,K)=F(b)+\beta\sum_{b'}P_B(b,b')\bar V_{h-1}(b',K).
+\]
+An available project that fits the horizon has value
+\begin{align}
+ Q_h^q(b,K)={}&-\kappa_q(b,K)
+ +\sum_{\mathbf b,o}\Lambda_q(\mathbf b,o\mid b,K)
+ \Biggl[a_q\sum_{t=0}^{d_q-1}\beta^t F(b_t)\nonumber\\
+ &\hspace{35mm}+\beta^{d_q}
+ \bar V_{h-d_q}\bigl(b_{d_q},\operatorname{addK}(K,o)\bigr)\Biggr].
+ \label{eq:or-calendar-bellman}
+\end{align}
+The value $\bar V_h$ is the maximum over Continue and those projects. The raw
+recursion replaces $K$ by $L$ and $\operatorname{addK}$ by $L\oplus o$.
+The stationary operators use the same expressions with an unindexed
+continuation function and all available projects.
 
 \begin{theorem}[Raw-to-compressed controlled semi-Markov projection]
 \label{thm:or-raw-compressed-projection}
-Under the preceding assumptions, $K_L=(F_L,C_L)$, augmented during an
-unfinished project by project identity and remaining duration, is a
-controlled semi-Markov state for the raw library process. Raw and compressed
+Under the preceding assumptions, $(b,K_L)$ is a controlled semi-Markov
+state at embedded decision epochs for the raw library process. Raw and compressed
 finite-horizon values agree at every raw state, and the complete sets of
 maximizing actions agree under the natural action identification. Under the
 stationary discount clause, the raw and compressed Bellman operators have
@@ -128,6 +151,11 @@ action set preserves this modulus, so both Bellman operators are
 $\beta$-contractions. Bellman intertwining, established by the action-value
 identity above, maps the compressed fixed point to a raw fixed point. Banach
 uniqueness gives value equality; the same pointwise action-value identity gives
-the complete maximizing stationary-action correspondence. No closure
-detectability assumption enters this forward projection.
+the complete maximizing stationary-action correspondence. At $\beta=0$ both
+operators have modulus zero and the same argument applies. No closure
+detectability assumption enters this forward projection. For an arbitrary
+joint path--outcome law, a state observed during an unfinished project may
+need its initiation information or observed path history. This theorem makes
+no sufficiency claim for current belief, project identity, and remaining
+duration alone between decision epochs.
 \end{proof}

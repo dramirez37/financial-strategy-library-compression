@@ -1,0 +1,42 @@
+{
+  "passed": true,
+  "figure_checks": {
+    "passed": true,
+    "figures": 3,
+    "source_files": 4,
+    "uncertainty_recomputed": true,
+    "generated_files": [
+      "financial_summary.csv",
+      "financial_origins.csv",
+      "mechanism_summary.csv",
+      "FIGURE_DATA_AUDIT.json"
+    ]
+  },
+  "optional_bridge_fixture": {
+    "gains": [
+      "0",
+      "1",
+      "2",
+      "4"
+    ],
+    "optimal_losses": [
+      "0",
+      "0",
+      "0",
+      "1/2"
+    ],
+    "sharp_cap_bound": "1/2"
+  },
+  "reflected_error_counterexample": {
+    "law": "E=Exp(1)-1, known unit standard deviation",
+    "nominal_level": 0.9,
+    "reflected_critical": 0.8946394843421737,
+    "reflected_coverage": 0.8496274630704304,
+    "upper_error_critical": 1.3025850929940455,
+    "upper_error_coverage": 0.9,
+    "scope": "Analytic counterexample only; not estimated coverage for the financial study."
+  },
+  "unit_weight_no_instance_checked": true,
+  "within_project_history_counterexample_checked": true,
+  "scope": "Independent small checks and full public-ledger figure reconciliation; no new financial result or universal proof."
+}

@@ -6,8 +6,8 @@ document, and maintain. Some are used in portfolios today. Others remain in the
 library because their signals, filters, allocation rules, or risk controls may
 be useful in later research. Maintaining every strategy consumes resources;
 removing a strategy can reduce that burden. The manager's problem is to decide
-which strategies can leave the active library without giving up either current
-operating choices or capabilities needed to build future strategies.
+which strategies can leave the active library without reducing its best modeled
+operating value or losing declared capabilities needed to build future strategies.
 
 Consider two strategies that offer the same current portfolio opportunity.
 One also carries a capability needed by a possible new strategy. If the team
@@ -16,7 +16,9 @@ strategy may become unavailable. A performance-based redundancy check cannot
 detect that loss. Conversely, keeping every strategy that carries a useful
 capability can be unnecessarily expensive when several entries preserve the
 same capabilities. The decision therefore concerns the retained library as a
-whole.
+whole. Figure~\ref{fig:capability-bridge} gives a concrete example.
+
+\input{figures/capability_bridge}
 
 Here, removal means leaving the active maintenance and validation set. Legal
 records, source code, research history, and mandatory archives remain subject
@@ -58,7 +60,7 @@ several methods on a registered synthetic design. The financial application
 then examines portfolio-strategy libraries formed from point-in-time common
 equities and ETFs. It finds substantial reductions in a validation-burden
 index while preserving more research options than a budget-matched library
-that preserves only current operation. The protected policy exercises none of
+that preserves only current operation. The screening policy exercises none of
 the additional common-equity options; its single ETF replacement loses
 held-out value. A calibrated synthetic experiment separately shows why an
 available positive-value option can remain too difficult to recognize at a

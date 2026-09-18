@@ -1,0 +1,37 @@
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[x=\linewidth,y=1cm,>=Stealth,
+  box/.style={draw=black!65,fill=white,align=center,inner sep=6pt,font=\small},
+  pathline/.style={->,thick,draw=black!65}]
+\node[box,text width=0.91\linewidth] (source) at (.5,0)
+ {\textbf{Source library: cash, A, B, C}\\
+ A and C offer the same current payoff of 1.\\
+ B offers 0 today, but uniquely carries research capability $m$.};
+\node[box,draw=figblue,text width=.405\linewidth] (safe) at (.245,-2.3)
+ {\textbf{Innovation-safe retention}\\Keep cash, A, B\\
+ Current best payoff: 1\\Capability $m$: retained};
+\node[box,draw=figorange,text width=.405\linewidth] (fo) at (.755,-2.3)
+ {\textbf{Frontier-only retention}\\Keep cash, A, C\\
+ Current best payoff: 1\\Capability $m$: lost};
+\draw[pathline] (source.south) -- ++(0,-.35) -| (safe.north);
+\node[fill=white,inner sep=2pt,font=\small] at (.245,-1.12) {remove C};
+\draw[pathline] (source.south) -- ++(0,-.35) -| (fo.north);
+\node[fill=white,inner sep=2pt,font=\small] at (.755,-1.12) {remove B};
+\node[align=center,font=\small,text width=.43\linewidth] (yes) at (.245,-4.25)
+ {\textbf{Future project remains available}\\Research and adoption still require\\separate economic decisions.};
+\node[align=center,font=\small,text width=.43\linewidth] (no) at (.755,-4.25)
+ {\textbf{Future project is unavailable}\\Its required capability $m$ has\\no retained carrier.};
+\draw[pathline,draw=figblue] (safe.south) -- (yes.north);
+\draw[pathline,draw=figorange] (fo.south) -- (no.north);
+\end{tikzpicture}
+\caption{Current operating redundancy can conceal a research capability.
+This exact schematic has one operating condition, identity closure, unit burden
+for A, B, C, and zero burden and payoff for mandatory cash. Both retained
+libraries have burden 2 rather than the source's 3 and preserve its frontier.
+The frontier-only choice is augmented to the same burden; it is not asserted
+to be the minimum frontier-only library. Only B carries $m$, which is required
+for the future project. Availability is preserved without assuming that the
+project is profitable or will be selected. These are model values, not market
+observations.}
+\label{fig:capability-bridge}
+\end{figure}

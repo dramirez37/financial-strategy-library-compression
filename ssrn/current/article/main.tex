@@ -5,9 +5,19 @@
 \usepackage{amsmath,amssymb,amsfonts,mathtools}
 \usepackage{booktabs,longtable,array}
 \usepackage{graphicx}
+\usepackage{pgfplots}
+\usepgfplotslibrary{groupplots}
+\usetikzlibrary{arrows.meta,positioning}
+\pgfplotsset{compat=1.18}
 \usepackage{capt-of}
 \usepackage{placeins}
+\usepackage{flafter}
 \usepackage{xcolor}
+\definecolor{figblue}{HTML}{255E87}
+\definecolor{figorange}{HTML}{B55B22}
+\pgfplotsset{publicationaxis/.style={font=\small,axis lines=left,
+ tick align=outside,grid style={black!12},scaled ticks=false,
+ ticklabel style={/pgf/number format/fixed,/pgf/number format/precision=3},title style={font=\small\bfseries}}}
 \usepackage{bookmark}
 \usepackage{xurl}
 \usepackage[capitalise,noabbrev]{cleveref}
@@ -53,7 +63,7 @@
 \newcommand{\AORPreprocessingMultistartTable}{\input{tables/preprocessing_multistart_compact}}
 \newcommand{\AORPointInTimeFinancialTable}{\input{tables/point_in_time_portfolio_library_study}}
 \newcommand{\AORClosureOptionTable}{\input{tables/closure_option_mechanism_experiment}}
-\hypersetup{pdftitle={Innovation-Safe Compression of Financial Strategy Libraries: Semantics, Complexity, and Algorithms},pdfauthor={David Ramirez},pdfsubject={Preprint v0.3.0-ssrn, 18 September 2026; not peer reviewed},pdflang={en-US}}
+\hypersetup{pdftitle={Innovation-Safe Compression of Financial Strategy Libraries: Semantics, Complexity, and Algorithms},pdfauthor={David Ramirez},pdfsubject={Preprint v0.3.1-ssrn, 18 September 2026; not peer reviewed},pdflang={en-US}}
 \begin{document}
 \articletype{Preprint --- 18 September 2026 --- Not peer reviewed}
 \title[Innovation-safe strategy-library compression]{Innovation-Safe Compression of Financial Strategy Libraries: Semantics, Complexity, and Algorithms}
@@ -61,7 +71,7 @@
 \affil*[1]{\orgname{\AORAffiliationOrganization},
 \orgaddress{\city{\AORAffiliationCity}, \state{\AORAffiliationState}, \country{\AORAffiliationCountry}};
 \href{https://orcid.org/\AORCorrespondingORCID}{ORCID: \AORCorrespondingORCID}}
-\abstract{A portfolio research team can reduce maintenance burden by retiring strategies, but an entry that adds nothing to today's trading menu may still enable valuable future research. We ask which entries can be removed while preserving both uses. We give a conditional preservation principle: an operating frontier and a declared closure of reusable capabilities preserve the controlled research and operating process under explicit invariance assumptions. With identity closure, minimum-burden safe retention is exactly classical weighted set cover. This representation supplies preprocessing rules, exact methods, and a transferred greedy guarantee. Counterexamples show that preserving current operation can destroy future research value and that heaviest-safe-first deletion can be arbitrarily far from minimum burden. The computational benchmark retains all 3,907 run outcomes and verifies exact-method agreement wherever the required comparisons are available. A retrospective financial study finds large burden-index reductions and additional research options, but no policy replacement in common equities and a loss from its sole ETF replacement. A calibrated synthetic experiment distinguishes option availability from reliable exercise: a small positive bridge value is not recovered, while a prospectively powered value is. These results establish a specified retention principle and bounded experimental findings, without establishing a market premium.}
+\abstract{A portfolio research team can reduce maintenance burden by retiring strategies, but an entry that adds nothing to today's trading menu may still enable valuable future research. We ask which entries can be removed while preserving both uses. We give a conditional preservation principle: an operating frontier and a declared closure of reusable capabilities preserve the controlled research and operating process under explicit invariance assumptions. With identity closure, minimum-burden safe retention is exactly classical weighted set cover. This representation supplies preprocessing rules, exact methods, and a transferred greedy guarantee. Counterexamples show that preserving current operation can destroy future research value and that heaviest-safe-first deletion can be arbitrarily far from minimum burden. The computational benchmark retains all 3,907 run outcomes and verifies exact-method agreement wherever the required comparisons are available. A retrospective financial study finds large burden-index reductions and additional research options, but no policy replacement in common equities and a loss from its sole ETF replacement. A calibrated synthetic experiment distinguishes option availability from reliable exercise: a small positive bridge value has a learned-value interval spanning zero, while a larger designed dose has a positive interval. These results establish a specified retention principle and bounded experimental findings, without establishing a market premium.}
 \keywords{financial strategy libraries, innovation-safe compression, weighted set cover, exact algorithms, model governance}
 \maketitle
 \input{sections/01_problem}
@@ -73,7 +83,6 @@
 \input{sections/06_computation}
 \FloatBarrier
 \input{sections/07_finance}
-\FloatBarrier
 \input{sections/08_related}
 \input{sections/09_conclusion}
 \backmatter
@@ -96,7 +105,7 @@ The reproduction guide identifies the required inputs and source files.
 \DeclarationHead{Code availability}Julia 1.12.6 and Lean 4.32.0 sources and pinned
 environments are available at
 \url{https://github.com/dramirez37/financial-strategy-library-compression}.
-The \href{https://github.com/dramirez37/financial-strategy-library-compression/tree/v0.3.0-ssrn/release/v0.3.0-ssrn}{versioned preprint package}
+The \href{https://github.com/dramirez37/financial-strategy-library-compression/tree/v0.3.1-ssrn/release/v0.3.1-ssrn}{versioned preprint package}
 contains the PDFs, editable source, and public evidence. Its reproduction manifest binds the selected scientific sources
 by hash. The document archive builds the PDFs independently; full computational
 replication uses the specified repository sources. Original software is MIT

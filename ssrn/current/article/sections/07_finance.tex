@@ -7,7 +7,7 @@ active validation burden of portfolio-strategy libraries while preserving a
 larger menu of admissible future research options than a budget-matched
 frontier-only library. It is a retrospective development-facing panel, not an
 independent confirmatory market test. Its contribution is the combination of
-point-in-time source construction, an explicit portfolio grammar, protected
+point-in-time source construction, an explicit portfolio grammar, prespecified
 proposal decisions, exact structural rechecks, and a transparent held-out null
 result.
 
@@ -42,7 +42,7 @@ more operationally concrete than free-form module tags, but they remain a
 modeled grammar: they do not prove that tacit knowledge or every institutional
 artifact is frictionlessly recoverable.
 
-\subsection{Compression and protected proposal policy}
+\subsection{Compression and proposal screening policy}
 
 The innovation-safe arm minimizes the registered validation-computation burden
 subject to exact source-frontier and full declared-closure equality. Its
@@ -50,9 +50,13 @@ frontier-only comparator is augmented under the safe arm's realized burden cap
 using a frozen preproposal order. The comparator action set is a subset of the
 safe action set in every gate-passed cell. Cash is always feasible, and the
 safe policy begins with the exact comparator choice. It can replace that choice
-only when a simultaneous moving-block lower confidence bound for incremental
+only when the registered simultaneous moving-block bootstrap score for incremental
 proposal value exceeds 0.0025 in annual certainty-equivalent return. The policy therefore
-treats closure as an option, not a forced trade.
+treats closure as an option, not a forced trade. The score uses the reflected
+resampling statistic documented in Online Resource~1, Section~S8. Its nominal
+90\% tuning level has no established finite-sample simultaneous coverage for
+this design. We interpret it as a prespecified adoption screen, not a verified
+confidence guarantee or protection against an adverse held-out realization.
 
 Across the gate-passed origins, \AORPointInTimePreprocessingSolutions\ safe
 solutions are resolved by exact preprocessing and
@@ -74,9 +78,13 @@ actions and \AORPointInTimeETFAddedOptions\ additional ETF actions.
 
 \AORPointInTimeFinancialTable
 
+Figure~\ref{fig:financial-results} separates burden reduction and option
+availability from the origin-level held-out outcomes.
+\input{figures/financial_results}
+
 \subsection{Held-out result: options are not exercises}
 
-The protected policy makes \AORPointInTimeEquityPolicyReplacements\
+The screening policy makes \AORPointInTimeEquityPolicyReplacements\
 common-equity replacements. Consequently, every common-equity held-out
 innovation-safe-minus-frontier-only contrast is exactly zero because the two
 policies choose the same action. This is not evidence that the two libraries
@@ -119,7 +127,7 @@ For research governance, the result is useful precisely because it is not a
 success story about returns. A manager can remove substantial declared
 validation burden while exactly preserving current opportunities and a much
 larger research-option menu. Whether any added option should be exercised is a
-separate statistical decision, and a protected selector can rationally abstain.
+separate statistical decision, and the registered selector can abstain.
 Removal from the active maintenance set also does not authorize deletion from
 legal, compliance, or reproducibility archives. A stronger empirical claim
 would require a newly locked market vintage or independent panel, documented
@@ -134,7 +142,7 @@ finite-data policy can recognize a valuable bridge. We therefore isolate that
 question in a design-locked synthetic experiment. The innovation-safe and
 frontier-only libraries have identical current frontiers and identical
 retention burdens. Only the safe library carries the capability needed to run
-one declared research project. For delay (d), survival probability \(\rho\),
+one declared research project. For delay \(d\), survival probability \(\rho\),
 admission probability \(\pi\), descendant gain \(G\), and research cost
 \(\kappa\), the registered treatment margin is
 \[
@@ -168,9 +176,13 @@ equal-burden, and bridge-availability structural checks.
 
 \AORClosureOptionTable
 
+Figure~\ref{fig:synthetic-results} shows the oracle--learner gap with
+uncertainty and a separate view of the low-value regimes.
+\input{figures/synthetic_results}
+
 This evidence makes the option/exercise distinction concrete. Exact closure
 preservation can create access to a genuinely positive project while a
-conservative learner rationally fails to exercise a small option at the
+threshold-based learner rarely exercises a small option at the
 available signal-to-noise ratio. Conversely, the powered row shows recovery
 only for a deliberately larger treatment. The experiment validates the
 declared bridge mechanism under calibrated synthetic noise. It is not a

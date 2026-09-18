@@ -20,6 +20,21 @@ Result & Verification status & Supporting evidence and boundary \\
 Result & Verification status & Supporting evidence and boundary \\
 \midrule
 \endhead
+Raw-to-compressed projection &
+\textbf{Lean verified} for the encoded finite model; \textbf{human proof}
+for the displayed Bellman specification & Exact admission and pushforward,
+finite-horizon value equality, and stationary lifting under supplied contraction
+obligations; duration and operation are project-only in that encoding. The
+hidden-state filter and arbitrary within-project Markov
+sufficiency are not formalized. \\
+Sharp normalized bridge loss &
+\textbf{Lean verified} for the parameterized canonical construction;
+\textbf{human proof} for the general optional-project bound & The canonical
+reward equals its cap. Below the cap the optional value is the positive part
+of net project value; equality with the cap bound is not asserted. \\
+Operational--generative decomposition &
+\textbf{Human algebraic identity} & Substitution of the defined research-option
+premium; it is not a positivity or market-performance theorem. \\
 Tagged-cover equivalence and weighted objective identity &
 \textbf{Lean verified} & Human proof; exact Julia boundary fixtures. The Lean
 result covers the encoded universal biconditional and burden identity, not

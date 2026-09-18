@@ -116,8 +116,9 @@ jobs:
           make ssrn-check PYTHON_EXE=/tmp/ssrn-python/bin/python
           make ssrn-build PYTHON_EXE=/tmp/ssrn-python/bin/python
           mkdir -p ssrn/build/archive-replay
-          tar -xzf release/v0.2.0-ssrn/financial-strategy-library-compression-ssrn-source.tar.gz -C ssrn/build/archive-replay
-          /tmp/ssrn-python/bin/python ssrn/build/archive-replay/scripts/build_ssrn_release.py
+          tar -xzf release/v0.3.0-ssrn/financial-strategy-library-compression-ssrn-source.tar.gz -C ssrn/build/archive-replay
+          /tmp/ssrn-python/bin/python ssrn/build/archive-replay/build.py --output ssrn/build/archive-rebuilt
+          /tmp/ssrn-python/bin/python ssrn/build/archive-replay/build.py --output ssrn/build/archive-rebuilt --check
 
       - name: Upload PDFs and logs on failure
         if: failure()

@@ -1,0 +1,90 @@
+schema_version = "financial-strategy-library-panel-v4-design-v1"
+experiment_id = "financial-strategy-library-panel-v4"
+study_title = "Calibrated Closure-Activated Mechanism Experiment"
+status = "pre_result_design"
+language = "Julia"
+v3_result_is_immutable_input_context = true
+v3_policy_outcomes_enter_v4_treatment_margins = false
+
+[decision]
+primary_question = "Does innovation-safe compression preserve strictly positive productive value when a closure-exclusive financial descendant satisfies the AOR bridge-margin condition?"
+primary_estimand = "mean realized oracle productive value of innovation-safe compression minus the burden-matched frontier-only comparator in the powered positive regime"
+primary_unit = "independently seeded market-calibrated mechanism world"
+primary_comparator = "frontier-only library with identical operating frontier and retention burden but without the bridge capability"
+empirical_alpha_claim_permitted = false
+
+[calibration]
+source_experiment = "financial-strategy-library-panel-v3"
+source_role = "noise and dependence calibration only"
+source_directory = "experiments/financial_strategy_library_panel_v3/local_data/proposal_computation"
+source_manifest = "experiments/financial_strategy_library_panel_v3/PROPOSAL_POLICY_RESULT_SEAL.toml"
+gate_passed_cells_only = true
+use_every_complete_candidate_path = true
+security_identifiers_exported = false
+return_values_exported = false
+calibration_output = "experiments/financial_strategy_library_panel_v4/calibration/CALIBRATION.toml"
+
+[simulation]
+calibration_world_count = 4096
+evaluation_world_count_per_regime = 4096
+proposal_sessions = 756
+annualization_sessions = 252
+proposal_burnin_sessions = 100
+common_random_numbers_across_regimes = true
+heavy_tail_family = "variance-normalized Student t with degrees of freedom calibrated from residual kurtosis"
+dependence_family = "stationary AR(1) calibrated from within-strategy residual paths"
+
+[bridge]
+discount_factor = 0.99
+survival_probability = 0.98
+admission_probability = 0.90
+delay_periods = 1
+economic_hurdle = 0.0025
+research_cost_rule = "two times the calibrated null adoption threshold"
+powered_margin_rule = "two times the calibrated null adoption threshold"
+safe_oracle_rule = "research if and only if the true net bridge margin is positive"
+frontier_rule = "closure-exclusive research project is infeasible"
+
+[selection]
+target_candidate_count = 1
+candidate_is_predeclared_by_module_lineage = true
+historical_best_candidate_search_permitted = false
+null_calibration_quantile = 0.95
+adoption_threshold_rule = "maximum of the economic hurdle and the independently simulated null 95th percentile"
+calibration_and_evaluation_seeds_are_disjoint = true
+
+[structure]
+safe_retention_burden = 3
+frontier_retention_burden = 3
+safe_operating_frontier = 1
+frontier_operating_frontier = 1
+safe_bridge_capability = true
+frontier_bridge_capability = false
+cash_is_always_feasible = true
+
+[success_gates]
+primary_oracle_lower_95_ci_strictly_positive = true
+primary_theoretical_value_inside_95_ci = true
+primary_learned_lower_95_ci_strictly_positive = true
+primary_adoption_rate_minimum = 0.90
+null_false_adoption_rate_maximum = 0.065
+adversarial_adoption_rate_maximum = 0.01
+null_oracle_value_exactly_zero = true
+adversarial_oracle_value_exactly_zero = true
+structural_checks_pass_in_every_world = true
+
+[reporting]
+world_ledger_required = true
+report_mean = true
+report_median = true
+report_standard_error = true
+report_95_confidence_interval = true
+report_adoption_rate = true
+report_wilson_interval = true
+report_theoretical_value = true
+report_oracle_and_learned_value_separately = true
+
+[claim_boundary]
+positive_claim = "mechanism validation under a preregistered closure-active data-generating process"
+prohibited_claims = ["historical market alpha", "deployable trading profitability", "causal effect in the population of securities", "guaranteed positive performance in untouched markets"]
+v3_role = "retrospective external-validity companion and transparent null policy result"

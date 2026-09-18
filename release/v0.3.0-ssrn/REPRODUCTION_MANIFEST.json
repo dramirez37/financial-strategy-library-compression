@@ -1,0 +1,274 @@
+{
+  "schema": "current-paper-reproduction-v1",
+  "repository": "https://github.com/dramirez37/financial-strategy-library-compression",
+  "source_commit": "bb58f33fd42f82f51b2866b44a666c3094f2932a",
+  "scope": "Document inputs and public evidence are bundled. Selected scientific sources are hash-bound at the repository commit; the document archive is not a complete computational environment.",
+  "bundled_evidence": {
+    "evidence/benchmark/final_algorithm_runs.csv": {
+      "repository_path": "experiments/algorithmic_compression_v2/results/final_algorithm_runs.csv",
+      "sha256": "3a71d2c91cd0e8ca41a33d9ab1788ced75646238410f1f5d24235d079c239a26"
+    },
+    "evidence/benchmark/audit_summary.toml": {
+      "repository_path": "experiments/algorithmic_compression_v2/results/audit/audit_summary.toml",
+      "sha256": "63f53448a6bb0bfebb2063eb0cc8168b267ae4a343f32ad1c9b4ab933c2644a1"
+    },
+    "evidence/benchmark/exact_method_agreement.csv": {
+      "repository_path": "journal/aor/tables/exact_method_agreement.csv",
+      "sha256": "81bd0f78fad3d88ef9368a74b373d8e5ff399ad85834ebec1bdec92f0fd36a04"
+    },
+    "evidence/benchmark/heuristic_quality.csv": {
+      "repository_path": "journal/aor/tables/heuristic_quality.csv",
+      "sha256": "bdc46a779699bbf46de1b31b555a3060ce823876afaddf04cdfff65e55d465e1"
+    },
+    "evidence/benchmark/preprocessing_summary.csv": {
+      "repository_path": "journal/aor/tables/preprocessing_summary.csv",
+      "sha256": "5532ade05ca52aaba529e4ae858c17ab704ee17aac1925dfabdb7858f7b84fb4"
+    },
+    "evidence/benchmark/preprocessing_reductions.csv": {
+      "repository_path": "journal/aor/tables/preprocessing_reductions.csv",
+      "sha256": "701e76ea2918c4901fd6eb21db301d4e0aa0d1c6abc8b689631abd1de3e5bb1b"
+    },
+    "evidence/benchmark/multistart_summary.csv": {
+      "repository_path": "journal/aor/tables/multistart_summary.csv",
+      "sha256": "dc84d227f1317ceca88566643ab4d13c0e2447559880c95b6835238fc520721f"
+    },
+    "evidence/benchmark/adversarial_family.csv": {
+      "repository_path": "journal/aor/tables/adversarial_family.csv",
+      "sha256": "5f50d32681618fa64b528c17d234b1c74b8d68c25505ff1b244a844878a916f8"
+    },
+    "evidence/benchmark/failure_statuses.csv": {
+      "repository_path": "journal/aor/tables/failure_statuses.csv",
+      "sha256": "fd24f873005d3ae3e0de01f5ceacc9804e30edbbd63139d897595753176a3477"
+    },
+    "evidence/benchmark/registered_design_realized.csv": {
+      "repository_path": "journal/aor/tables/registered_design_realized.csv",
+      "sha256": "d92e32267bd1da36071c9a2f9b17b95a1955d8aa5e23d4170dfc4d947c5a5c1e"
+    },
+    "evidence/financial/PREDECISION_COMPUTATION_MANIFEST.toml": {
+      "repository_path": "experiments/financial_strategy_library_panel_v3/predecision_computation/PREDECISION_COMPUTATION_MANIFEST.toml",
+      "sha256": "d134746a7e56cd16e957572eec951a18a51d844586817885e4fd230851b08a09"
+    },
+    "evidence/financial/PREDECISION_COMPUTATION_RESULT_SEAL.toml": {
+      "repository_path": "experiments/financial_strategy_library_panel_v3/PREDECISION_COMPUTATION_RESULT_SEAL.toml",
+      "sha256": "6d879cbf17c17337d0efb502605f71f75f5f174f29d1e0a5ef9945d9ff11902d"
+    },
+    "evidence/financial/PROPOSAL_POLICY_MANIFEST.toml": {
+      "repository_path": "experiments/financial_strategy_library_panel_v3/proposal_policy/PROPOSAL_POLICY_MANIFEST.toml",
+      "sha256": "79543e491e66a42c7152384c7bf24d9d53841429dd600d9ebb6c9d09bdd43926"
+    },
+    "evidence/financial/PROPOSAL_POLICY_RESULT_SEAL.toml": {
+      "repository_path": "experiments/financial_strategy_library_panel_v3/PROPOSAL_POLICY_RESULT_SEAL.toml",
+      "sha256": "35ac8541432dfd102944024fde36b82324ea3bc943bc6556aef11ca1b2a251b4"
+    },
+    "evidence/financial/EVALUATION_RESULT_MANIFEST.toml": {
+      "repository_path": "experiments/financial_strategy_library_panel_v3/evaluation_results/EVALUATION_RESULT_MANIFEST.toml",
+      "sha256": "fc905909509eaec14ea377efa987c0946c32fc8b9cd3db81c9eb21df395bab7e"
+    },
+    "evidence/financial/EVALUATION_RESULT_SEAL.toml": {
+      "repository_path": "experiments/financial_strategy_library_panel_v3/EVALUATION_RESULT_SEAL.toml",
+      "sha256": "156e4691a9c4962ba325e6931c6682f90390ef70ad16bb90d0fae7fa11f136d6"
+    },
+    "evidence/financial/BURDEN_REGISTRY.csv": {
+      "repository_path": "experiments/financial_strategy_library_panel_v3/registry/BURDEN_REGISTRY.csv",
+      "sha256": "af2e630f3bec35c239daae37e9fdae1624be4ba34490f1aabb927df94d053973"
+    },
+    "evidence/financial/CAPABILITY_REGISTRY.csv": {
+      "repository_path": "experiments/financial_strategy_library_panel_v3/registry/CAPABILITY_REGISTRY.csv",
+      "sha256": "6f7ad736b9aa5fb24cb37a41d40b1077dfb8c73da6d646b7ba1068adfd052997"
+    },
+    "evidence/financial/ORIGIN_REGISTRY.csv": {
+      "repository_path": "experiments/financial_strategy_library_panel_v3/registry/ORIGIN_REGISTRY.csv",
+      "sha256": "9a60e66bb5e5f6d814a240588ed7c43ab29c703a1e1ed4a71aa5dc7801d157d0"
+    },
+    "evidence/financial/SEED_REGISTRY.csv": {
+      "repository_path": "experiments/financial_strategy_library_panel_v3/registry/SEED_REGISTRY.csv",
+      "sha256": "6e863c498bffb8f916ccd8fe129c5696c3f6dca2c11f985e993949c48735ef3b"
+    },
+    "evidence/financial/UNIVERSE_REGISTRY.csv": {
+      "repository_path": "experiments/financial_strategy_library_panel_v3/registry/UNIVERSE_REGISTRY.csv",
+      "sha256": "25f6ef3a70f503d2cb232f1478aef2707f7acf95201bed6371298e4d04e073ed"
+    },
+    "evidence/mechanism/CALIBRATION.toml": {
+      "repository_path": "experiments/financial_strategy_library_panel_v4/calibration/CALIBRATION.toml",
+      "sha256": "8397dd4da5cb6e2605c2b0099b315029610c6c643045c552dd4d4365db36a6ba"
+    },
+    "evidence/mechanism/RESULT_MANIFEST.toml": {
+      "repository_path": "experiments/financial_strategy_library_panel_v4/results/RESULT_MANIFEST.toml",
+      "sha256": "aa6dfd6676abed284baa4d0a39357330b72180c8699de78e0057412cb05994b1"
+    },
+    "evidence/mechanism/V4_SUMMARY.csv": {
+      "repository_path": "experiments/financial_strategy_library_panel_v4/results/V4_SUMMARY.csv",
+      "sha256": "489b8dd6d2acb0616e9ff8284832f1bf6be979ae4fd1f441bda808a25c6cbfdf"
+    },
+    "evidence/mechanism/V4_WORLD_LEDGER.csv": {
+      "repository_path": "experiments/financial_strategy_library_panel_v4/results/V4_WORLD_LEDGER.csv",
+      "sha256": "875cf261ada397583590f0e14ceccfa4f4dc4b6e1ee58b5364f8472682073e29"
+    },
+    "evidence/mechanism/REGIME_REGISTRY.csv": {
+      "repository_path": "experiments/financial_strategy_library_panel_v4/registry/REGIME_REGISTRY.csv",
+      "sha256": "a27e7e471fb9dabe5a871fa2130ee8aa74c246e9905723d6de3dc74e8e6c6416"
+    },
+    "evidence/mechanism/SEED_REGISTRY.csv": {
+      "repository_path": "experiments/financial_strategy_library_panel_v4/registry/SEED_REGISTRY.csv",
+      "sha256": "c50b7851b8b49b3a938634ad7593cd53d70695bc54db921cc28308c2332525b2"
+    },
+    "evidence/mechanism/RESULT_SEAL.toml": {
+      "repository_path": "experiments/financial_strategy_library_panel_v4/RESULT_SEAL.toml",
+      "sha256": "061bdbbe70eef345acca1fa225ddc0135002e15adf1bef168c3aa31a3e51e673"
+    },
+    "evidence/mechanism/config.toml": {
+      "repository_path": "experiments/configs/financial_strategy_library_panel_v4.toml",
+      "sha256": "febe7641201cf5b46df425e2a8aea390fb5c004494232531f2d8597d2e817065"
+    },
+    "evidence/benchmark/FINAL_INSTANCE_REGISTRY.csv": {
+      "repository_path": "experiments/algorithmic_compression_v2/registry/INSTANCE_REGISTRY.csv",
+      "sha256": "1a5135bebb43162c5ec3865706aa40b70783eab94876e3a07d26e139f7a9f596",
+      "source_sha256": "1c43bc47fbbc67377bc4a67ef10705cfe42342820cd2fc0cffe7b02639e78394",
+      "selection": "phase == final; all selected fields preserved; LF CSV serialization"
+    },
+    "evidence/benchmark/FINAL_SEED_REGISTRY.csv": {
+      "repository_path": "experiments/algorithmic_compression_v2/registry/SEED_REGISTRY.csv",
+      "sha256": "79ee3711f04d6166cb3e631d4af900632d40525d4b851de113986033b7e0759c",
+      "source_sha256": "a1fc4e1c1770db3f642122c6f13f3125e451909991e8e701d4dda1c26483618a",
+      "selection": "phase == final; all selected fields preserved; LF CSV serialization"
+    }
+  },
+  "scientific_sources": {
+    "experiments/configs/financial_strategy_library_panel_v3.toml": "d08efa1d7d043cc1bb304dd843ad4b76e13802bc63c867f65d005a545c1f0a94",
+    "experiments/financial_strategy_library_panel_v3/DATA_CONTRACT.md": "d54da846ff17adc4c9427b74b3a8112a815bb4528021555c2cb2e0ff529b24ac",
+    "experiments/financial_strategy_library_panel_v3/EVALUATION_IMPLEMENTATION_SPEC.md": "0c44056eb056d9ac99a55c2efc2e278f3df0031f45530b892a5abe89dccdf362",
+    "experiments/financial_strategy_library_panel_v3/PREDECISION_COMPUTATION_SPEC.md": "95cab9c5cb97fec56c6274e3784a9f826dfa436450131c46b7708a3c608e9525",
+    "experiments/financial_strategy_library_panel_v3/PREDECISION_IMPLEMENTATION_SPEC.md": "97051ea8363fb019ee80ab62c14d6b953df0686ad9474956efbee4e4c354e97e",
+    "experiments/financial_strategy_library_panel_v3/PROPOSAL_EXECUTION_SPEC.md": "bfb22bcc781a71cc40c043c6e83ee257c7617a4c7e136370195b954c6dd34828",
+    "formal/StrategyInnovation/Audit/JournalAlgorithms.lean": "c7e277a7bd891a5f7766be314488343b0b1d09fe1474a7540473a28ed4337c04",
+    "formal/StrategyInnovation/Audit/NormalizedPruningLoss.lean": "f3d6346f19ebc52134e8fe1ccafa35255ed8c2ff18974d1cd5df01f831786c40",
+    "formal/StrategyInnovation/Audit/RawToCompressed.lean": "aef3e94fe88046951f2510102fa403c5426e202af1a1168199c0083c8ae7a715",
+    "formal/StrategyInnovation/Audit/TaggedCoverPreprocessing.lean": "c766d32b115d4bb8b9191592ed566674c189dbf9658b7dd318a54bfbb911695c",
+    "formal/StrategyInnovation/Audit/TaggedSafeCompression.lean": "f0fd6434ea1713308dc4e07f0939d848d7156eec0f7d20b82e02d8e7809dd33c",
+    "formal/StrategyInnovation/Audit/UnifiedSafeDeletion.lean": "1b009f4266dedf0d6b5c4c9a8d7f1325d6a5d20775d07c1c05d923f7540214d9",
+    "formal/StrategyInnovation/Basic/Model.lean": "4b2e65b169918ee6576d67e8d59c5ac5160d748babe2f832ea0eeb0aef8c1036",
+    "formal/StrategyInnovation/Basic/Probability.lean": "c25a812fca5c5829b69f3b2acca4122597a6ee6abfb9c404d06d6ef6c2eac1b5",
+    "formal/StrategyInnovation/Bellman/Contraction.lean": "b8299b511b408dfd97e65ccb70df4a4aaaa208d2b2f7f0fbd67716df8cc67e7e",
+    "formal/StrategyInnovation/Compression/NormalizedPruningLoss.lean": "6d240d5111ea12aae7c98c9d443bba50a869936247a1362c5eed60a66eddde2b",
+    "formal/StrategyInnovation/Compression/SafeDeletion.lean": "ef45deadb4fe0ed7b05d6b4469d7bca2dcc030567f8a302960abaef7e56452cb",
+    "formal/StrategyInnovation/Compression/UnifiedSafeDeletion.lean": "9f7b76f2d067e3d994f8165b13bb071b123595cedb71f331257b7df994083c16",
+    "formal/StrategyInnovation/Compression/UnifiedSafeDeletionExamples.lean": "c063a3433a1be9c8ed3a9531d965bffbe08e0fb9e247bdb688461e8cb0b7fda2",
+    "formal/StrategyInnovation/Counterexamples/FrontierPruningLoss.lean": "652842666fd4293935dad4a19153f2297649a49c3e0bdd2af9c843dedc8f22a0",
+    "formal/StrategyInnovation/Fixtures/JournalAlgorithms.lean": "c30e4800c98f00598c4ebc46edb4b1ed522287408c55cca43bc891e45297d174",
+    "formal/StrategyInnovation/Library/Closure.lean": "6228ec5c7bc24350300aa17c68e3ad62cbd94405f70e1a97c7d43847a137341b",
+    "formal/StrategyInnovation/Library/Frontier.lean": "ed0d9cb34c04eefdd46dce5a4bfa193a4daeef1984ed44f135748834da5ce04f",
+    "formal/StrategyInnovation/Library/InnovationState.lean": "8779cb6376bea4ba10cfd7e00e37574151743bb111bb040604e1ac0bc1816fd9",
+    "formal/StrategyInnovation/Library/Library.lean": "2b4b7a63f6ca20636b62435cc2a02b40e4f63c8521446095d13b841cfff61c71",
+    "formal/StrategyInnovation/Library/Strategy.lean": "56ee500e0ba8dcaa2145e7bf6d5ed0bf7fde5a9b68b066d52dd96b4b3dd36ce5",
+    "formal/StrategyInnovation/Optimization/ResourceBurden.lean": "3989f462bffde966c61cbb93e3c2a3bff2f4e1f5480efa2888cd1d355b951b38",
+    "formal/StrategyInnovation/Optimization/SafeCompression.lean": "f7cf298e3be33f0bfbf952071090f4988aba46be5a74afe82bfd869e2779347c",
+    "formal/StrategyInnovation/Optimization/TaggedCoverPreprocessing.lean": "c6cdd4ff2e638f1de532829c4a1e0551552ed31c386cc31ada305093b69339f5",
+    "formal/StrategyInnovation/Optimization/TaggedSafeCompression.lean": "108547f0ca5ebbff544ee50010b6fb89e3503a55a8be34375db772b1e06ad926",
+    "formal/StrategyInnovation/Projection/RawToCompressed.lean": "f9de09dc8b4f65d29abdef17d1797ee11b298d8e1c6c4ab26c59d682ddd8232d",
+    "formal/StrategyInnovation/Quotient/DynamicInnovation.lean": "65edea64150761f0e4f08af82059cc8c66fbb9c4e1f8391a1194502792b7318c",
+    "formal/StrategyInnovation/Quotient/FrontierClosure.lean": "7f94a6f8fdafb4d9b6937407577e9422231703835e6b1e91d03742901f16547b",
+    "formal/StrategyInnovation/Quotient/RawFrontierClosure.lean": "bda39e3de45fc83d90f7bf198857731c219d159a23895c77acfbdaaa72b357d9",
+    "formal/StrategyInnovation/Quotient/UnifiedDynamicInnovation.lean": "b5bc10ac76c70b02ed27241930b179a3a58c0880de9c6a9caa8c37e92a929cd2",
+    "formal/StrategyInnovation/Raw.lean": "19fd2f7cf685fda868c6bfc94df8ab480efefc09c220bdf4566f8f7f3731567e",
+    "formal/StrategyInnovation/Raw/Admission.lean": "f29b400afccb8ef772f5c9ab032b30f462307b72881b37f3c11a82f9bd5d0237",
+    "formal/StrategyInnovation/Raw/AdmittedCandidate.lean": "ad5cf1354f6385c4e3f21160bc6d148ea6929615776e3ffedd92637844099a41",
+    "formal/StrategyInnovation/Raw/CandidateGeneration.lean": "9c80d8b593704d2231be09b98cab4e84fba88a339a8665bf08f740314d57b96a",
+    "formal/StrategyInnovation/Raw/Closure.lean": "08086421454a4fe2fa0886693fe4590362ff6b2cc6437f370a2d487a6b736389",
+    "formal/StrategyInnovation/Raw/CompressedUpdate.lean": "71d37577e5b2bd99915273b2d6081012f6137da7034fea0367aaa24fb0ce5fcf",
+    "formal/StrategyInnovation/Raw/Library.lean": "268de56cc0d27ae6613361fdd06472f1c8ab2fbc3de370940be277cb0786c27c",
+    "formal/StrategyInnovation/Raw/LibraryUpdate.lean": "0e38c70bae745cae9a3d1814f624b9501752bd80bac4005a146d7e1730da1b92",
+    "formal/StrategyInnovation/Raw/ModuleSet.lean": "4c9f3bc50c8bf9d33fbfcd2af3b96c9dbbbda6a19580116da75893aa16ef8ef0",
+    "formal/StrategyInnovation/Raw/StrategyCatalog.lean": "473373e0611fa14ba0b58830486b67195422f944a33b52c8f65aa474141dc410",
+    "formal/StrategyInnovation/Value/FiniteHorizon.lean": "cbfa52891eef5bc7861e5f2314cac7886128e90fa9ab8dede399a5dddcec7334",
+    "formal/lake-manifest.json": "3a4f06e0171dcd53da8b62ee48bd84cf8ac50782a4c262ce1977b4c555e30aff",
+    "formal/lakefile.toml": "21392fd80ede1b9ee9c7c4b2fb3aa9313695abb0a09a34533be007c25400f426",
+    "formal/lean-toolchain": "2773c517aa90b66ea8a2c52bddddf84393157797f8341be0df45294fff7fd32e",
+    "julia/Manifest.toml": "bb86bf92babc6c148dcf5e73d2e230d5b2e68002b1a542ab16c983a6206aebe3",
+    "julia/Project.toml": "dd6ab9b382b179a3ee75f8ffb2df65093c6faaa5ee5b801bf8d6e5b439494a90",
+    "julia/scripts/analyze_algorithmic_compression_v2.jl": "6ced581e3b7e104ea369bdb34eabc52202edaf4ef871ee23c431624995bd00a9",
+    "julia/scripts/audit_algorithmic_compression_final_v2.jl": "0fb3191ed94eacebfd82d9af05138fa188c1e470bb41e7a6927ad07662d76d23",
+    "julia/scripts/audit_financial_strategy_library_panel_v4.jl": "c7e175c764f43a0f9c3e821a7108e14388c1395cd6e7b5c7fd9a81d3c6c81b85",
+    "julia/scripts/build_financial_strategy_library_panel_v3_universe_census.jl": "99c3092cf5de4a9c5bf3a29489c98353f045996661f8d570b2a5c650fdb2cd13",
+    "julia/scripts/calibrate_financial_strategy_library_panel_v4.jl": "2a2ddc161980ecfec10e2ed218d422df3a1b0b81eca4ba7e18837927641db401",
+    "julia/scripts/check_algorithmic_compression_final_v2.jl": "06c50962ac0ca4e97a0891898852777c99a615f6baf1530e5c1cbdc96b741965",
+    "julia/scripts/check_financial_strategy_library_panel_v3_design.jl": "136a5ab5d83c6ac78bec8716a8c396bc79c8ef81526e6c9c6d5ce47fa6c623c3",
+    "julia/scripts/check_financial_strategy_library_panel_v3_predecision_binding_replay.jl": "ef341e6198cac04a0bd9f753977616fbc7484366c91993ae8393209777035ecd",
+    "julia/scripts/check_financial_strategy_library_panel_v3_proposal_stage_replay.jl": "43c60b5ca1e1eb96c996d8dd36153aea9d62a65f5b414d8bbffc769f03870761",
+    "julia/scripts/create_algorithmic_compression_v2_registries.jl": "3cf7c648f5e5e2cdfeb8b195ec22e274e19eecfa11a1c1c0e1aff2a926d69f60",
+    "julia/scripts/export_financial_strategy_library_panel_v3_proposal_policy.jl": "cc06477501f258916eb0b709a5671f633e8ca01aa094f818810a1ef4e6e5ef2c",
+    "julia/scripts/export_safe_deletion_gap_family.jl": "1180d09989e7d8f857008370e6357316e274287cb8cedab8321ee904c6e15dfb",
+    "julia/scripts/export_tagged_cover_theorem_fixture.jl": "9b7c520a5269763dc2f2b5ebfc07fb0ab03a0602f6e062c36247e8a90a20bd68",
+    "julia/scripts/lock_algorithmic_compression_design_v2.jl": "339cbaba819ce8927ce0ad2143df945c4827a91b656b4a1c93539a1b96cdd814",
+    "julia/scripts/lock_financial_strategy_library_panel_v3_design.jl": "2c784f54c4389ff54cf60df36048715d55b3a4b1f177294fe833a5818463af1b",
+    "julia/scripts/lock_financial_strategy_library_panel_v3_evaluation_execution.jl": "0027745a39df713029f8f23600ad90151d366e2e238d36d2a4286b0bee04cf7b",
+    "julia/scripts/lock_financial_strategy_library_panel_v3_evaluation_staging_validator_amendment_001.jl": "60fea9c141d60fe2d9c8802c6ff9ba00601ff9b0b6235f54a2c87338e5b5d765",
+    "julia/scripts/lock_financial_strategy_library_panel_v3_predecision_access_amendment_002.jl": "14d7302b9a0e905d36b724f6b5f2b5f0bdddc2d4d18a524e5f59ea5f0486a7d7",
+    "julia/scripts/lock_financial_strategy_library_panel_v3_predecision_amendment_001.jl": "6f218c27c1d5a39c00c114e0ff3ffb7d2eb915fc4e763a7f452801f98f0218ef",
+    "julia/scripts/lock_financial_strategy_library_panel_v3_predecision_audit_amendment_004.jl": "2f9beb97ef5c0ea5990c31186c2e5b4d8833862864475bc3af337bb0fb0b45f5",
+    "julia/scripts/lock_financial_strategy_library_panel_v3_predecision_binding_amendment_003.jl": "bc73dc21aab9e8681be8d83824286e92b7e22a4bd83bd07d7501b680282c86b4",
+    "julia/scripts/lock_financial_strategy_library_panel_v3_predecision_computation.jl": "add0710cd63cfd0de247352264394fcabdbe11e2ba6a0c207238db4bbe594336",
+    "julia/scripts/lock_financial_strategy_library_panel_v3_predecision_computation_002.jl": "042ff20d3a7f0ac5f5219a65559ad28e8ca9951712077b0030ba75697a8fc4b5",
+    "julia/scripts/lock_financial_strategy_library_panel_v3_predecision_extractor.jl": "4e2f27721c41492ab16005e6fff597663b80d21e9d328a5c596cc0381d9186ef",
+    "julia/scripts/lock_financial_strategy_library_panel_v3_predecision_extractor_002.jl": "af177ff34688d503359aca4c5d3d664bfc3a2581f85cc9a48104546174329ce8",
+    "julia/scripts/lock_financial_strategy_library_panel_v3_predecision_extractor_003.jl": "43b3f26ed2cc10b141ea3c8d9942726eddffa0f7040090786b8ae09de8564439",
+    "julia/scripts/lock_financial_strategy_library_panel_v3_proposal_computation_amendment_001.jl": "8a2aafbe1f5e3f9fdd767695fa9bc895089b909a7cf67f909461f5491ce82b5e",
+    "julia/scripts/lock_financial_strategy_library_panel_v3_proposal_computation_amendment_001_002.jl": "897d47171456fb2d8ee5a8a321bcdde89e03adeb9a61fef6c6e012bcf8ed57e5",
+    "julia/scripts/lock_financial_strategy_library_panel_v3_proposal_computation_amendment_001_003.jl": "3211985c5baa40c9b9960eb7b309717a785c3cf66648e7ea097cb1b955596889",
+    "julia/scripts/lock_financial_strategy_library_panel_v3_proposal_execution.jl": "f26fb29d242776474c3ad1bc7dddc6ff5857ea39c5408d8fb06bd3f377ed1852",
+    "julia/scripts/lock_financial_strategy_library_panel_v3_proposal_policy_interface.jl": "3bfffc72a2acddb893fd94614a455950321d848ff68e2e691b6d462bf51d3bee",
+    "julia/scripts/lock_financial_strategy_library_panel_v3_proposal_policy_interface_002.jl": "7c3fe13f819029f58d0a4e055e86e62a558b93f26e641f7f948f3158a5668939",
+    "julia/scripts/lock_financial_strategy_library_panel_v3_proposal_policy_interface_003.jl": "90ce167d8b3e02c73090275781828f643bd29fcf2351f50c6b8a9f5361255ce7",
+    "julia/scripts/lock_financial_strategy_library_panel_v3_proposal_postcompletion_binding_amendment_003.jl": "56c7e9c566b6952bf30b7313cf5f1d0226adc37cc5060dc4f3877a6cea2e5f77",
+    "julia/scripts/lock_financial_strategy_library_panel_v3_proposal_postcompletion_binding_amendment_003_002.jl": "2764c050a5f42ea8c08aace3f329c950b45b0ac5707492de1805b91db2b7ee8b",
+    "julia/scripts/lock_financial_strategy_library_panel_v3_proposal_robustness_computation_amendment_005.jl": "e4b0c2303fa88151f6a202495319c2d11ad791cf10a4e93987632f06f011d097",
+    "julia/scripts/lock_financial_strategy_library_panel_v3_proposal_robustness_freeze_amendment_004.jl": "f2f4d9f5739de361b7996d5375bd9ad677ff4ca76f3d75b9f259d49df3eafd81",
+    "julia/scripts/lock_financial_strategy_library_panel_v3_proposal_stage_replay_amendment_002.jl": "0feb3809e61bac2ba987b5eac957e13fb2062bf7530fd8b5678c428465017ba7",
+    "julia/scripts/lock_financial_strategy_library_panel_v4_design.jl": "db8d0d5e8f596c98c1aeca14c3ba7e692144b226815f5bb6d62c32a45b76ff52",
+    "julia/scripts/run_algorithmic_compression_final_v2.jl": "dc8951f0c69ebbcdcbaedae922ce8e1c6a5a558f0b7edc44f9569cbb75c00b1b",
+    "julia/scripts/run_financial_strategy_library_panel_v3_evaluation.jl": "75dd0c487be14287063392e78f4b2bb4d99d51138e252c581ff3ec357d5c251e",
+    "julia/scripts/run_financial_strategy_library_panel_v3_evaluation_amendment_001.jl": "0e1f037f574a65c28af119ef05f53e33348e472d4e4f7d722f3bd7df1aa6ff67",
+    "julia/scripts/run_financial_strategy_library_panel_v3_predecision_computation.jl": "817e9b52367495c4c1c3fbfc319148556d613715b185431df07d166b7f04024b",
+    "julia/scripts/run_financial_strategy_library_panel_v3_proposal.jl": "448b7d38cf696a312ffb4aa7cbc460a7cdadca8cb5b36c9249c30c6acfd51b86",
+    "julia/scripts/run_financial_strategy_library_panel_v3_proposal_robustness.jl": "8a05dcdc6b1de4c19c850096d33c09a1fd258ff424d6543d6ba70a15d2d25c72",
+    "julia/scripts/run_financial_strategy_library_panel_v4.jl": "29937dd8cf067f6b930338de296575a7e7b420321ef83b3f59e02124146b9b20",
+    "julia/scripts/seal_financial_strategy_library_panel_v3_evaluation_result.jl": "03272d363c1e66bc0ceb41a4a142294b6e460c3e34a1e2b9e965235c0fa28553",
+    "julia/scripts/seal_financial_strategy_library_panel_v3_evaluation_result_amendment_001.jl": "479206f9be2d87d48c9dae2ee89323fd0ff8dd89ea5d5849563a42d57089f557",
+    "julia/scripts/seal_financial_strategy_library_panel_v3_predecision_computation_result.jl": "6385202423daf19397c7d70d87b927408d1ebd20f0489f89a24751ed3d8b5c94",
+    "julia/scripts/seal_financial_strategy_library_panel_v3_proposal_policy_result.jl": "363df98ad7a5a7ac1721e48983155d2356d2f3dd382e76e1c66f6a6b3e444901",
+    "julia/scripts/seal_financial_strategy_library_panel_v3_proposal_robustness_result.jl": "e9783a8f662abb6197a5ddf087d728cbeddf128b15db2e8a8f53e43779606f97",
+    "julia/scripts/stage_financial_strategy_library_panel_v3_evaluation_returns.jl": "10c82fe3c4986dd699097f32f619478e92a9f56f2c23ed5544c345f61d6c598a",
+    "julia/scripts/stage_financial_strategy_library_panel_v3_evaluation_returns_amendment_001.jl": "017b4520c85438ad22768464d72029a3265c6a987d7e24369f6a7d98c7cf1b0c",
+    "julia/scripts/stage_financial_strategy_library_panel_v3_predecision_returns.jl": "10e1e79aa5598341194d1449d74b15098f612eb4b9ec1acd3e9984c5347109a6",
+    "julia/scripts/stage_financial_strategy_library_panel_v3_proposal_returns.jl": "4313ebbd9b50becbb51b822b2853ded9299a4eb5cb911ecd733a8bf857d8fd62",
+    "julia/scripts/verify_safe_compression_complexity_reductions.jl": "bb7f41303debc349d2937b2dd6339e6f70d6e58058640ef31b1e51eb68bdcbd0",
+    "julia/src/AlgorithmicCompressionGenerators.jl": "d48c2b3e0c9cdb5442b7cd002bd9631a524a6501b8317ea5ee36ef95242fad66",
+    "julia/src/ApproximateCompression.jl": "a600e485b4e2cca0bdee84ceee3702071c0a77cee797c8fbb205b8df9cdab1ac",
+    "julia/src/Beliefs.jl": "3a8c11bafc199cc4bfe7b55bb9613ff793e4290c4af1c37d91403b2fdb89f061",
+    "julia/src/CertifiedDeletionJournalCompression.jl": "9a6b2e1babf0d0edcdaa15c89a40f4e07edd74d8ab9a1e5fe81bdb3264ded26a",
+    "julia/src/Compression.jl": "50e348d42a8b849646a34cb97248549e7cb2a0a43b6efc40f81c8ca8cc2ada5c",
+    "julia/src/ExactJournalCompression.jl": "0fd6913b5cb9a3a918f2facd00e611a3dbfd7e6a1ae63edcccf1d70adbb81ec9",
+    "julia/src/FinancialStrategyLibraryPanelV3.jl": "cabd1e8c600b458070e863544dc7e98ca973ac0b8c39148b200c47cd7f0e9be0",
+    "julia/src/FinancialStrategyLibraryPanelV3Evaluation.jl": "93c825a93b951dc5155d1daecb420ef99383b54200bcd0de1a529a17e66f0302",
+    "julia/src/FinancialStrategyLibraryPanelV3Predecision.jl": "cadf9f417a68802b3c6809faced242d0229e2f6fe7d196be322135b7b4de368b",
+    "julia/src/FinancialStrategyLibraryPanelV3PredecisionComputation.jl": "feaeef86e705ca821f8fbae3a071046b573959c7717acd2b9f3b5b7a12c8d65b",
+    "julia/src/FinancialStrategyLibraryPanelV3Proposal.jl": "37ac21f889da81093158c017f628f52f3aad74e771f8132b9f12c3b875598e3d",
+    "julia/src/FinancialStrategyLibraryPanelV3ProposalRobustness.jl": "8c52871328638db292f125dd73eb1a95cb9e7f0741507cb38d1cc3fc09051fad",
+    "julia/src/FinancialStrategyLibraryPanelV4.jl": "01c4c49318eaf421e50fb36bcb42501c25461c88eb86523b63158db17540f167",
+    "julia/src/GreedyJournalCompression.jl": "a4a379b4d7196eaa9d532b0d39f8b08cfcfb4378e4eb970c1ecbfe00a64489f4",
+    "julia/src/JournalCompressionInstance.jl": "575cadde78181067803fd6c38582c1881fe3baeb373cd75635ea9d63da250a3c",
+    "julia/src/JournalCompressionMIP.jl": "b07efddec28e1959c638b860d1fbc168c16f5b8c57eea1f9db3542a06d90e3ac",
+    "julia/src/JournalExactnessAudit.jl": "7d7eb2c0361b46287d24e2d4588fe89b0d544926e35d44c4486fde17a38dd0b8",
+    "julia/src/Libraries.jl": "969dc3c96831f62caa782459a781508d27e6c92970a901e5ce6276f39d33397e",
+    "julia/src/Profiles.jl": "93f150f394a1f94e592f41d2287ec919cd6741be02fc67fa23ec5cef270a01b8",
+    "julia/src/RawDynamicProgramming.jl": "668d97fb11c65df682573b648fafb9236fe878a2fe353ae6f5ce6f843f9d702b",
+    "julia/src/SafeCompressionComplexity.jl": "d691f7e92d99dbb3006beb03f94e759c9144c01e7e0c556ddf81ea4df6148036",
+    "julia/src/SafeCompressionSolver.jl": "227b84e437d80afe949a3834faa78269fc645e94273b9dd0b870296714385298",
+    "julia/src/StrategyInnovation.jl": "5946a250d35278f4d50c6e3fba63cfcfcdb0a5a2ad554e7a7957806413560765",
+    "julia/src/TaggedCover.jl": "e98ba20ba668b4a857b9845644c12468ea8420233a9bc8fd621045b652c6bf1e",
+    "julia/src/TaggedCoverPreprocessing.jl": "c9b18154bbc0cf356731f44b0e634e8c3a9055ca46bcec1edcf43777887e8583",
+    "julia/src/Types.jl": "18770c42625753c66aaaf16f0fb3f9f8b0b2427c6ab9d0f12aad5c10742aabee",
+    "julia/test/Manifest.toml": "056e3fbaca03013e29bf84020ac073ecec9b555e779f6252a539d5ec010c6ec0",
+    "julia/test/Project.toml": "7237a73cff1e7ff018a4c5ec145de57586ec94f9fd70d678e467bc5ffc58fec2",
+    "julia/test/run_aor_algorithm_tests.jl": "a311da157549ba02dc353e882d271d5652342ed22a3114bcbc228d97852c1756"
+  }
+}

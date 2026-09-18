@@ -1,0 +1,15 @@
+component_class,component_value,work_units
+base,portfolio_strategy,100
+signal,momentum_20,20
+signal,momentum_60,60
+signal,mean_reversion_5,5
+filter,always,0
+filter,trend_100,100
+horizon,5,51
+horizon,20,13
+allocation,equal_weight,5
+allocation,inverse_volatility,25
+gross,0.5,0
+gross,1.0,0
+exit,horizon,5
+exit,signal_flip,252

@@ -1,0 +1,72 @@
+\section{Benchmark design and complete outcome accounting}
+\label{sec:or-algorithmic-benchmark-v2}
+
+The registered identity-closure benchmark contains
+\AORBenchmarkInstances\ instances: \AORBenchmarkSmallExact\ small exact,
+\AORBenchmarkStructured\ structured, and \AORBenchmarkAdversarial\ adversarial.
+The small family supports independent exact comparisons. The structured family
+varies source size, tagged requirements, incidence density, module overlap,
+bundles, unique carriers, weight dispersion, and frontier--module association.
+The adversarial family exercises the proved deletion gap, ties, duplicates,
+dominance, rare carriers, symmetry, and bundles. The instance registry fixes
+the realized comparison set; a requested but infeasible generator cell remains
+an unavailable instance.
+
+\subsection{Methods and evidence}
+
+The method grid includes enumeration, mask dynamic programming, two registered
+HiGHS formulations, weighted and cardinality greedy, greedy followed by reverse
+deletion, deterministic deletion orders, seeded random deletion, and 32-start
+deletion. Maximum immediate release and heaviest-safe-first are identical
+under additive weights and constitute one scientific method. The record keeps
+the two registered labels so that run-unit counts remain reproducible.
+
+The independent audit checks original-coordinate mandatory retention, tagged
+coverage, complete frontier and closure equality, and exact burden. It accepts
+\AORBenchmarkAccepted\ libraries among \AORBenchmarkRuns\ terminal run units.
+All \AORBenchmarkUnsuccessful\ unsuccessful units remain in the denominator.
+Of \AORExactCapable\ exact-capable instances, \AORExactAgreement\ have all
+required exact-method burdens available and equal, and \AORExactUnavailable\
+have incomplete comparisons. Equal burdens with different optimizer identities
+occur in \AOROptimizerIdentityDifferences\ comparisons and are consistent with
+ties. Medium structured references are exactly rechecked HiGHS incumbents;
+solver-reported global optimality is distinct from the exact feasibility audit.
+
+\input{tables/current_terminal_counts}
+
+The six implementation-error statuses arise when enumeration exceeds its
+registered applicability cap. They supply no enumeration result. Generation
+failures cover \AORGenerationFailedInstances\ source cells and remove complete
+requested structural combinations. No failed instance is replaced. No terminal
+run is a time-limit outcome; therefore no timeout-gap distribution is estimated.
+
+\subsection{Finite deletion-gap check}
+
+The following registered fixtures compare the observed burden ratio with the
+proved singleton--bundle family. They check the finite implementation, while
+the theorem establishes the unbounded family result.
+\input{tables/adversarial_gap_compact}
+
+\subsection{Interpretation and execution conditions}
+
+Full preprocessing commonly resolves structured instances completely. This
+supports the importance of forced carriers in this design but leaves limited
+evidence about difficult residual search. Multi-start completes all starts on
+\AORMultistartComplete\ instances and improves on its first start on
+\AORMultistartImproved; successful sensitivity runs do not replace failed
+primary runs.
+
+Execution used Julia \AORJuliaVersion\ and HiGHS \AORHiGHSVersion\ on an
+\AORCPU, with \AORWorkerCount\ concurrent one-thread processes. Times include
+compilation and worker contention, and the execution record identifies the
+source worktree. They are not steady-state speed estimates. The registered
+performance profile uses unlike success targets across methods. The registered
+HC3 models also omit within-instance dependence and cannot recover missing
+generator cells. Neither output supports the article's comparative or
+inferential claims. The published comparison instead uses exact agreement,
+certified burden, preprocessing, and the complete status census.
+
+The data files named in the reproduction manifest supply the complete
+instance registry, exact-agreement records, method-level burden summaries,
+preprocessing and multi-start summaries, and terminal records. The PDF reports
+aggregates; no source row is removed from those current study records.

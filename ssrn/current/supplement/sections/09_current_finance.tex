@@ -1,0 +1,158 @@
+\section{Financial and mechanism methods}
+\label{sec:supp-point-in-time-financial}
+
+The point-in-time portfolio study is retrospective development evidence.
+Its historical setting was known during design. Its sequential freezes protect
+the stated within-study information boundary, without making the historical
+sample an independent confirmatory test.
+
+\subsection{Financial universe, strategy grammar, and timing}
+
+For origin year \(y\), years \(y-5\) through \(y-3\) form the source library;
+years \(y-2\) through \(y\) provide compression profiles; year \(y+1\) supplies
+proposal estimates and freezes policy choices; year \(y+2\) evaluates those
+choices. No evaluation value enters any choice. The primary universe contains
+the 100 most liquid eligible US common equities at the origin. The separate
+ETF replication selects up to 50 eligible plain ETFs and requires at least 20.
+One ETF origin fails its universe gate and remains unavailable. Eligibility
+uses predecision data and does not require subsequent survival.
+
+The 96-specification grammar crosses three signals, two filters, two holding
+horizons, two allocation rules, two gross exposures, and two exit rules.
+Signals use 20- or 60-session momentum or five-session mean reversion; filters
+are unrestricted entry or a 100-session trend filter. Allocation is equal
+weight or inverse trailing volatility. Exposure is subject to the frozen
+security cap and a 10\% annual portfolio-volatility ceiling; unused exposure
+remains cash. Intended weights formed at close \(t\) first earn the return
+indexed \(t+2\). Observed delisting returns are earned by the effective
+position and followed by cash. A required missing return makes the path
+unavailable; it is never imputed as zero. The current grammar and burden
+registries fix the remaining rule values and identifiers.
+
+Formation and compression each use 12 profile rows: three years crossed with
+5- and 30-basis-point one-way costs and risk aversion 1 and 3. Each floating
+profile is rounded to the nearest \(10^{-12}\) and represented as an exact
+rational for comparison. Thus frontier equality is exact for the recorded
+table, without treating measured returns as exact economic quantities.
+The source contains all formation-frontier carriers plus the first three
+formation-ranked carriers of each required capability. It is frozen before
+compression profiles are computed. Each cell has
+\AORPointInTimeCapabilities\ declared capabilities, including atomic rules,
+interfaces, relevant point-in-time data, corporate actions, aggregation, and
+cost/capacity support.
+
+\subsection{Burden, compression, and proposal sets}
+
+A strategy's burden is the exact integer sum of its components in the frozen
+burden registry. It is a validation-computation index, with zero burden for
+mandatory cash. The safe arm preserves the source frontier and full capability
+union. The comparator first solves frontier-only retention and then adds whole
+source entries in descending mean compression score, breaking ties by
+identifier, whenever they fit within the safe arm's realized burden cap.
+Every endpoint is independently checked in the unpreprocessed coordinates.
+\AORPointInTimePreprocessingSolutions\ safe cells are resolved by exact
+preprocessing; \AORPointInTimeSolverSolutions\ receive HiGHS
+\texttt{OPTIMAL} status and an exact feasibility/burden postcheck.
+
+Proposal actions comprise the grammar candidates excluded from the source
+docket and enabled by the retained requirements. The comparator action set is
+nested in the safe set before reading proposal scores. The complete candidate
+ledger retains source-docket exclusions, missing capabilities, rejected
+candidates, cash, and unavailable cells. The analysis unit is the origin;
+candidate specifications and daily returns are not independent replications.
+
+\subsection{Certainty equivalent and protected selection}
+
+For gross daily portfolio return \(r_t\), one-way turnover \(q_t\), and
+net return \(n_t=r_t-0.0005q_t\), the primary annual certainty equivalent is
+\[
+ \mathrm{CE}=252\,\overline r
+ -252\,\overline{0.0005q}
+ -\tfrac12\,3\,252\,\widehat{\operatorname{Var}}(n),
+\]
+with the registered sample-variance convention. The mean, cost, and risk
+penalty are reported separately. The economic adoption hurdle is 0.0025 in
+annual CE units.
+
+Proposal uncertainty uses 5,000 paired circular moving-block bootstrap draws
+with 20-session blocks. A draw applies the same resampled session indices to
+each candidate and baseline. If \(\delta_i\) is an estimated annual CE
+difference and \(\mathrm{se}_i\) is the standard deviation of its bootstrap
+differences, the reference maximum for each draw uses
+\((\delta_i-\delta_i^*)/\mathrm{se}_i\), with zero used when the standard
+error is zero. The 90th percentile of that maximum is the one-sided critical
+value \(c\), giving lower bound \(\delta_i-c\,\mathrm{se}_i\).
+
+The comparator selects cash unless an eligible candidate's simultaneous lower
+bound over cash exceeds the hurdle. The safe policy defaults to that exact
+choice. Because the comparator is selected from proposal data, the safe
+reference family includes every complete safe-candidate by complete
+comparator-candidate contrast, including cash. Replacement requires the
+corresponding simultaneous lower bound to exceed the hurdle. Family shrinkage
+ranks only candidates that pass this gate: its center is the family mean,
+its latent variance is the nonnegative part of between-path sample variance
+minus median squared standard error, and its reliability weights shrink each
+candidate toward that center. Identifier order resolves remaining ties.
+
+\subsection{Origin-level outcomes and robustness}
+
+All \AORPointInTimeEquityOrigins\ common-equity pairs choose the same action,
+so their held-out contrasts are exactly zero. One of the
+\AORPointInTimeETFOrigins\ complete ETF pairs replaces the comparator and
+realizes a negative contrast. The complete origin-level record follows.
+\input{tables/point_in_time_origin_results}
+
+The prespecified cost, risk-aversion, and hurdle grid preserves common-equity
+choice equality. ETF differences remain at the same origin and disappear at
+higher costs. Leave-one-origin-out summaries aggregate frozen choices without
+reselection. Unregistered larger-universe and closure-sham variants remain
+unavailable. Forced-maximum and full-family search summaries are diagnostics
+and never feed back into selection. Capacity calculations score frozen choices
+and retain missing inputs, incomplete paths, and participation-cap breaches.
+
+\subsection{Calibrated synthetic bridge experiment}
+
+The two libraries have equal current frontier and burden; only the safe one
+can run the specified descendant project. The parameters are
+\(\beta=0.99\), \(\rho=0.98\), \(\pi=0.90\), and \(d=1\), so success
+probability is 0.882. The net bridge margin is
+\(M=\beta^d\rho^d\pi G-\kappa\). An oracle researches precisely when
+\(M>0\); the learner researches when its noisy estimate exceeds an
+independently calibrated threshold.
+
+Calibration uses \AORPointInTimeCompletePaths\ complete financial proposal
+paths and \AORPointInTimeResidualObservations\ residual observations, after
+removing cross-strategy date means within cells. It estimates scale, lag-one
+dependence, and tail thickness. Simulated proposal noise follows a stationary
+AR(1) with variance-normalized Student innovations, 100 burn-in sessions,
+756 proposal sessions, and annualization 252. A separate 4,096-world null
+simulation fixes the threshold at the greater of the 0.0025 hurdle and its
+95th percentile, giving 0.027008117603021155. Research cost and powered margin
+are each twice that threshold.
+
+The four margins are negative one threshold, zero, 0.0025, and positive two
+thresholds. Each has 4,096 test worlds. Common random numbers pair regimes
+within a world; calibration and test seeds are disjoint. Mean intervals use
+mean plus or minus 1.96 standard errors; adoption uses Wilson intervals.
+All four regimes and all worlds remain in the ledger. The primary
+powered-oracle gate requires a positive lower endpoint and inclusion of the
+analytic margin. The powered learner must have a positive lower endpoint and
+at least 90\% adoption. Null and adverse point adoption must not exceed
+6.5\% and 1\%, respectively.
+
+The article reports the full four-regime table. Its null point adoption is
+\AORClosureNullAdoption, while its Wilson upper endpoint is
+\AORClosureNullWilsonUpper. The low positive dose does not yield a positive
+learned interval; the powered one does. The powered margin is a designed dose,
+and the experiment supports its declared synthetic mechanism rather than a
+market premium. Structural assertions check frontier, burden, and bridge
+availability in every world.
+
+\subsection{Input access}
+
+Public financial outputs contain aggregate results, structural counts, and
+cryptographic seals. Raw CRSP/WRDS rows, security identifiers, return paths,
+and selected identities derived from licensed returns are excluded. Full
+source-data replication requires independent licensed access. Public aggregate
+tables and the synthetic ledger have separate reproducible checks identified
+in the reproduction guide.

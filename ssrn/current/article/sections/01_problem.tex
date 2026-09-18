@@ -1,0 +1,72 @@
+\section{The financial retention problem}
+\label{sec:introduction}
+
+A portfolio research team accumulates strategies that it must test, monitor,
+document, and maintain. Some are used in portfolios today. Others remain in the
+library because their signals, filters, allocation rules, or risk controls may
+be useful in later research. Maintaining every strategy consumes resources;
+removing a strategy can reduce that burden. The manager's problem is to decide
+which strategies can leave the active library without giving up either current
+operating choices or capabilities needed to build future strategies.
+
+Consider two strategies that offer the same current portfolio opportunity.
+One also carries a capability needed by a possible new strategy. If the team
+retains only the other strategy, today's opportunity is preserved but the new
+strategy may become unavailable. A performance-based redundancy check cannot
+detect that loss. Conversely, keeping every strategy that carries a useful
+capability can be unnecessarily expensive when several entries preserve the
+same capabilities. The decision therefore concerns the retained library as a
+whole.
+
+Here, removal means leaving the active maintenance and validation set. Legal
+records, source code, research history, and mandatory archives remain subject
+to their own retention rules. A capability is an explicitly declared input to
+the modeled research process. The model applies when retaining its designated
+carriers is what makes that capability available; it does not assume that a
+strategy label contains all of an institution's knowledge.
+
+We represent the manager's two preservation targets in simple terms. The
+\emph{operating frontier} records the best current operating value offered by
+the source library in each modeled condition. The \emph{generative closure}
+records the capabilities available after applying the declared rules for
+combining the retained strategies' components. Innovation-safe compression
+finds a least-burden subset of the source library that preserves both targets.
+The burden can represent a specified validation or governance index; its
+interpretation must be fixed before looking at subsequent investment outcomes.
+
+The contribution is a conditional preservation principle for a maintained
+strategy library, an exact optimization representation of that principle, and
+counterexamples showing why weaker deletion rules can fail. The financial
+question concerns the availability of reusable inputs to subsequent research.
+The covering algorithms used to implement the retention decision are
+established methods. Our financial evidence measures the declared burden and
+research opportunities separately from subsequent investment performance.
+
+The mathematical argument follows that decision. First, we specify when the
+two targets summarize the library's role in a research process. We prove that
+preserving them then preserves the process's operating rewards and future
+choices. An identity-dependent project supplies a counterexample when the
+assumption fails. Next, for a model in which capabilities are simply the union
+of retained components, we show that the decision is a weighted covering
+problem. This connects the financial specification to established optimization
+methods \citep{Karp1972,Chvatal1979}. A separate counterexample proves that
+repeatedly deleting the heaviest redundant entry can leave an arbitrarily
+expensive library even when every deletion is safe.
+
+The computational study checks exact agreement and the burdens returned by
+several methods on a registered synthetic design. The financial application
+then examines portfolio-strategy libraries formed from point-in-time common
+equities and ETFs. It finds substantial reductions in a validation-burden
+index while preserving more research options than a budget-matched library
+that preserves only current operation. The protected policy exercises none of
+the additional common-equity options; its single ETF replacement loses
+held-out value. A calibrated synthetic experiment separately shows why an
+available positive-value option can remain too difficult to recognize at a
+small signal-to-noise ratio.
+
+These results distinguish preserving an opportunity, deciding to use it, and
+realizing value from it. They establish a conditional retention principle and
+bounded computational and financial findings. The financial application is
+retrospective development evidence, and its burden index is not a measured
+institutional cost saving. The assumptions and the counterexamples below
+state precisely where the principle applies.

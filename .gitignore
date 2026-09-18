@@ -205,3 +205,10 @@ baselines/
 ssrn/build/
 !release/v0.2.0-ssrn/*.pdf
 !release/v0.2.0-ssrn/financial-strategy-library-compression-ssrn-source.tar.gz
+
+# Current reviewed SSRN publication artifacts; keep compilation local.
+release/v0.3.0-ssrn/.build/
+!release/v0.3.0-ssrn/*.pdf
+!release/v0.3.0-ssrn/financial-strategy-library-compression-ssrn-source.tar.gz
+ssrn/current/__pycache__/
+ssrn/current/**/__pycache__/

@@ -139,7 +139,7 @@ EMAIL_PATTERN='[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}'
 PUBLICATION_EMAIL='ramirezdavv'@'gmail.com'
 EMAIL_FILES="$(git grep -IlE "$EMAIL_PATTERN" -- . || true)"
 UNAPPROVED_EMAIL_FILES="$(printf '%s\n' "$EMAIL_FILES" | rg -v \
-    '^(\.zenodo\.json|CITATION\.cff|manuscript/main\.tex|manuscript/online_supplement/main\.tex|journal/aor/(cover_letter\.md|main\.tex|supplement\.tex)|journal/aor/manuscript/author_metadata\.tex|journal/aor/online_resource/main\.tex|journal/aor/requirements/COMPLIANCE_REPORT\.md|journal/aor/release/(CITATION\.cff|zenodo\.json)|release/v0\.1\.1-arxiv/arxiv-source/(paper|supplement)\.tex|release/v0\.2\.0-aor-submission/(CITATION\.cff|zenodo\.json)|release/v0\.2\.0-ssrn/submission_metadata\.json|ssrn/README\.md|scripts/build_ssrn_release\.py)$' || true)"
+    '^(\.zenodo\.json|CITATION\.cff|manuscript/main\.tex|manuscript/online_supplement/main\.tex|journal/aor/(cover_letter\.md|main\.tex|supplement\.tex)|journal/aor/manuscript/author_metadata\.tex|journal/aor/online_resource/main\.tex|journal/aor/requirements/COMPLIANCE_REPORT\.md|journal/aor/release/(CITATION\.cff|zenodo\.json)|release/v0\.1\.1-arxiv/arxiv-source/(paper|supplement)\.tex|release/v0\.2\.0-aor-submission/(CITATION\.cff|zenodo\.json)|release/v0\.[23]\.0-ssrn/submission_metadata\.json|ssrn/README\.md|ssrn/current/(build\.py|article/author_metadata\.tex|supplement/main\.tex)|scripts/build_ssrn_release\.py)$' || true)"
 [[ -z "$UNAPPROVED_EMAIL_FILES" ]] ||
     print_paths_and_fail "email addresses require publication review; values suppressed" "$UNAPPROVED_EMAIL_FILES"
 
@@ -249,11 +249,11 @@ for release_path in \
         fail "required release file is not tracked: $release_path"
 done
 
-for metadata_path in README.md CITATION.cff manuscript/main.tex manuscript/online_supplement/main.tex "$RELEASE_METADATA"; do
+for metadata_path in manuscript/main.tex manuscript/online_supplement/main.tex "$RELEASE_METADATA"; do
     rg -qF "$RELEASE_VERSION" "$metadata_path" ||
         fail "release identifier is missing from $metadata_path"
 done
-for metadata_path in CITATION.cff "$RELEASE_METADATA"; do
+for metadata_path in "$RELEASE_METADATA"; do
     rg -qF "$RELEASE_DATE" "$metadata_path" ||
         fail "release date is missing from $metadata_path"
 done
@@ -269,6 +269,17 @@ done
 if rg -qF 'is intended to provide' manuscript/main.tex; then
     fail "main-paper Data and Code Availability language is still future-facing"
 fi
+
+# Current publication metadata must point to the reviewed package. The checks
+# below still verify the immutable archived artifacts against their own seals.
+for metadata_path in README.md CITATION.cff .zenodo.json ssrn/README.md; do
+    rg -qF 'v0.3.0-ssrn' "$metadata_path" ||
+        fail "current preprint identifier is missing from $metadata_path"
+done
+for metadata_path in CITATION.cff .zenodo.json; do
+    rg -qF '2026-09-18' "$metadata_path" ||
+        fail "current preprint date is missing from $metadata_path"
+done
 
 MAIN_RECORDED_HASH="$(awk -F': ' '/^- Main PDF SHA-256:/ {print $2}' "$RELEASE_METADATA")"
 SUPPLEMENT_RECORDED_HASH="$(awk -F': ' '/^- Supplement PDF SHA-256:/ {print $2}' "$RELEASE_METADATA")"

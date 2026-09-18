@@ -1,0 +1,57 @@
+\section{Reproducing the paper and its evidence}
+\label{sec:current-reproduction}
+
+The accompanying editable source package builds the article, this resource,
+and their combined PDF. Run \texttt{python3 build.py --output ./release} after
+installing Python with \texttt{pypdf}, a LaTeX distribution with
+\texttt{latexmk}, and Poppler. The builder checks references, embedded fonts,
+searchable text, page counts, and internal destinations in the combined file.
+Its source manifest and SHA-256 checksums identify every distributed input.
+The current package is available from the repository's
+\href{https://github.com/dramirez37/financial-strategy-library-compression/tree/v0.3.0-ssrn/release/v0.3.0-ssrn}{versioned preprint release directory}.
+
+\subsection{Public evidence and source binding}
+
+The \path{evidence/} directory contains the complete benchmark terminal CSV,
+instance and seed registries, exact-agreement and method summaries; the
+financial study's public aggregate evaluation manifest and burden/capability
+registries; and the calibrated synthetic experiment's configuration,
+calibration, regime and seed registries, summary, and complete world ledger.
+The machine-readable \path{REPRODUCTION_MANIFEST.json} records original
+repository paths and SHA-256 hashes for these files and the selected scientific
+sources. Internal study identifiers locate the exact implemented experiments.
+
+The repository source commit is
+\path{bb58f33fd42f82f51b2866b44a666c3094f2932a}.
+The document source archive is self-contained for PDF rebuilding and public
+evidence inspection. Full computational replication additionally requires the
+repository's pinned Julia and Lean environments and the scientific source
+files identified in the manifest. File hashes, rather than a moving branch
+name, bind the computational inputs.
+
+\subsection{Mathematical and algorithmic verification}
+
+The main article and Sections~S1--S6 contain the human arguments. Selected Lean
+modules cover the projection, tagged-cover result, finite preprocessing cores,
+and supplied safe-deletion traces. The correspondence in Section~S9 states
+which complete results remain human proofs. The reproduction guide gives
+focused Julia fixture checks and Lean module commands; a successful finite
+fixture is not a universal proof.
+
+\subsection{Numerical reproduction}
+
+The benchmark's saved terminal records retain unsuccessful and unavailable
+runs. The exact audit reads those outcomes and rechecks returned libraries;
+regenerating a benchmark is a separate computation whose machine timing may
+change. The financial tables can be checked against distributed public
+aggregates, but portfolio paths and policy selection require independent
+licensed data access under the specified staging contracts. The synthetic
+experiment can be rerun from its public calibration and fixed configuration;
+its calibration and test worlds are distinct. The public calibration values
+suffice for this rerun; recalibrating those values from source market returns
+requires the licensed paths.
+
+The accompanying \path{README.md} provides commands for each of these tasks
+and distinguishes rebuilding documents, checking public records, and
+recomputing scientific outputs. No raw or row-level licensed observation is
+included in the distribution.

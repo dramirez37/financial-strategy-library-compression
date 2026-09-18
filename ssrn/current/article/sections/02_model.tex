@@ -1,0 +1,224 @@
+\section{A model of operation and future research}
+\label{sec:model}
+\label{sec:model-projection}
+
+The model records the strategies a manager can operate and the capabilities available for further research. The controller observes a filtered belief, operates
+from a verified strategy library, and may initiate positive-duration research
+that generates and verifies a candidate before admission. The theorem does not
+derive library invariance from finance primitives; it identifies the conclusion
+that follows when the primitives pass the explicit factorization checks below.
+The retention decision is made once, before the controlled process is evaluated.
+
+\subsection{Hidden state, filtered belief, and operating profiles}
+
+Let \(X\) be a finite hidden market-state set with at least two elements and
+let \(B\) be a finite nonempty set of filtered beliefs.  A belief
+\(b\in B\) has an exact rational interpretation
+\(\mu_b\in\Delta_{\mathbb Q}(X)\); the already-filtered belief evolves under
+an exact rational Markov kernel \(P_B\).  The controller observes \(b\), not
+the hidden state \(x\in X\).
+
+The finite strategy catalog is \(S\), with distinguished inactive strategy
+\(s_0\).  Strategy \(s\) has immutable state-contingent operating payoff
+\(u_s:X\to\mathbb Q\) and belief-indexed operating profile
+\begin{equation}
+  j_s(b):=\sum_{x\in X}\mu_b(x)u_s(x),
+  \qquad j_{s_0}(b)=0.
+  \label{eq:operational-profile}
+\end{equation}
+Thus \(j_s(b)\) is the payoff from operating \(s\) now; research costs and
+continuation values are separate objects.  The formal projection theorem uses
+the resulting exact profile table as primitive data, so it does not claim a
+kernel-verified derivation of that table from a hidden-state model.
+
+Partial information matters to the controlled projection through the filtered
+belief and its transition law. It is not required by the later tagged-cover
+equivalence, which needs only a finite index set of operating-profile rows. The
+financial study in Section~\ref{sec:financial-case-studies} uses calendar-year
+performance profiles crossed with declared cost and risk settings as these
+rows; it does not estimate the hidden-state filter in this subsection.
+
+\subsection{Modules, closure, and the raw retained library}
+
+Let \(M\) be a finite module set.  Each strategy carries an immutable set
+\(\mods(s)\subseteq M\), with \(\mods(s_0)=\varnothing\).  A module is a
+declared reusable capability tag for later research, not a direct operating
+payoff or necessarily a separately owned software artifact.  The
+declared closure operator
+\[
+  \cl:2^M\longrightarrow 2^M
+\]
+is extensive, monotone, and idempotent.  These properties allow capabilities
+to be generated from combinations of raw modules; identity closure is the
+special case \(\cl(A)=A\).
+
+A raw retained library is a source subset \(L\subseteq S\) containing
+\(s_0\).  Its operating frontier, raw module inventory, and generative closure
+are
+\begin{align}
+  F_L(b)&:=\max_{s\in L}j_s(b),
+  &U_L^{\mathrm{raw}}&:=\bigcup_{s\in L}\mods(s),
+  \label{eq:frontier-union}\\
+  C_L&:=\cl(U_L^{\mathrm{raw}}).
+  \label{eq:raw-library-closure}
+\end{align}
+Finiteness and mandatory inactivity make the maximum attained and imply
+\(F_L(b)\geq0\).  The raw decision state is \((b,L)\): continuing earns the
+frontier payoff, advances the belief once, and leaves the library unchanged.
+
+An entry may itself be a portfolio strategy, but the operating decision here
+selects one catalog entry at a time. Equality of \(F_L\) therefore preserves
+the best entry's modeled payoff at each belief; it does not by itself preserve
+the risk--return opportunities from combining entries with different joint
+returns. An application that reallocates across entries must include the
+relevant joint payoff and allocation information in its preservation target.
+
+\subsection{Generation, verification, admission, and timing}
+
+Let \(Q\) be a finite project set.  At project \(q\), belief \(b\), and
+closure \(C\), candidate generation follows an exact law
+\[
+  G(q,b,C)\in\Delta_{\mathbb Q}(\{\mathsf{none}\}\mathbin{\dot\cup}S).
+\]
+A generated candidate \(s\) passes verification with exact probability
+\(\nu(q,b,C,s)\).  The admitted law is derived rather than separately chosen:
+\begin{equation}
+  \Gamma(q,b,C)(s)=G(q,b,C)(s)\nu(q,b,C,s),
+  \label{eq:admitted-law-main}
+\end{equation}
+and all failed-generation and failed-verification mass is assigned to
+\(\mathsf{none}\).  Successful admission adds the verified catalog row,
+whereas every other outcome leaves the source unchanged:
+\begin{equation}
+  L\oplus\mathsf{none}=L,
+  \qquad L\oplus s=L\cup\{s\}.
+  \label{eq:raw-library-update}
+\end{equation}
+
+Each available project has an initiation cost, an operation/suspension flag,
+and an integer duration \(d_q\geq1\).  Its exact joint completion law couples
+the intervening belief path with the admitted outcome; the two components need
+not be independent.  The incumbent library remains in force until completion,
+then \eqref{eq:raw-library-update} is applied.  Full probability-table
+definitions, null-outcome normalization, path and outcome marginals, and
+pushforward identities are assigned to Online Resource~1, Section~S1.
+
+\subsection{The productive library state}
+
+\begin{definition}[Frontier--closure library state]
+\label{def:finite-library-state}
+The productive state of a retained library is
+\begin{equation}
+  K_L:=(F_L,C_L).
+  \label{eq:closure-compression}
+\end{equation}
+It is the \emph{library component} of the controlled state.  The filtered
+belief remains part of the decision state, and an unfinished project also
+requires its identity and remaining duration.
+\end{definition}
+
+For \(K=(F,C)\), define the local compressed update
+\[
+ \operatorname{addK}(K,\mathsf{none})=K,
+ \qquad
+ \operatorname{addK}(K,s)=
+ \left(b\mapsto\max\{F(b),j_s(b)\},
+       \cl(C\cup\mods(s))\right).
+\]
+Extensivity and idempotence of closure give
+\begin{equation}
+  K_{L\oplus o}=\operatorname{addK}(K_L,o).
+  \label{eq:raw-compressed-local-update}
+\end{equation}
+
+\begin{assumption}[Finite library-invariant research process]
+\label{asm:aor-projection-process}
+The sets \(B,S,M,Q\) are finite, \(B\) and every admissible library are
+nonempty, and all displayed profiles and probability tables are exact.  The
+inactive strategy has zero profile and no modules; closure is extensive,
+monotone, and idempotent.  Generation and primitive verification depend on the
+incumbent library only through \((q,b,C_L)\).  Project availability, initiation
+cost, duration, operation flag, and the joint completion law depend on the
+library only through \((b,K_L)\).  Each duration is positive, the joint law has
+the declared belief-path and admitted-outcome marginals, and discount satisfies
+\(0\leq\beta<1\).  Stationary conclusions additionally assume the recorded
+raw and compressed Bellman operators are contractions.
+\end{assumption}
+
+\section{What safe retention preserves}
+\label{sec:preservation}
+
+\begin{theorem}[Raw-to-compressed controlled Markov projection]
+\label{thm:raw-to-compressed-projection}
+Under \cref{asm:aor-projection-process}, the update in
+\eqref{eq:raw-compressed-local-update} induces a normalized transition on
+realizable states \(K_L\).  If \(K_L=K_{\widetilde L}\), the two raw libraries
+have identical project availability, cost, duration, incumbent operating
+reward blocks, and joint terminal-belief--next-compressed-state laws after
+projection.  Hence \((b,K_L)\) is a controlled semi-Markov projection at
+embedded decision epochs and, for every finite calendar horizon \(h\),
+\[
+  V_h^{\mathrm{raw}}(b,L)=\bar V_h(b,K_L).
+\]
+Under the additional contraction clause, stationary fixed-point values agree
+under the same projection and a maximizing stationary compressed selector
+lifts to a Bellman-optimal raw selector.
+\end{theorem}
+
+\noindent\emph{Proof sketch.}
+Equation~\eqref{eq:raw-compressed-local-update} makes the next compressed state
+a deterministic pushforward of the admitted raw update.  The
+library-invariance assumptions make this law, every feasible action, and its
+payoff block constant on each fiber of \(L\mapsto K_L\).  Strong induction on
+calendar horizon is well founded because every research duration is positive;
+corresponding raw and compressed action values, and then their finite maxima,
+agree.  Bellman intertwining and contraction give the stationary clauses.
+The complete normalization and projection proof is in Online Resource~1,
+Sections~S1--S2.  The result permits belief--admission dependence and makes no
+generic quotient-minimality claim.
+
+\paragraph{Operational factorization audit.}
+The assumption can be checked table by table. Project availability, cost,
+duration, operation while active, and the joint completion law must be constant
+whenever \((b,F_L,C_L)\) is constant; candidate generation and verification
+must be constant whenever \((q,b,C_L)\) is constant; and admission must update
+the compressed state through \(\operatorname{addK}\). A nontrivial finite class
+satisfying these conditions consists of module-gated projects whose
+availability is a predicate of \((q,b,C_L)\), whose candidate and verification
+tables are indexed by \((q,b,C_L)\), and whose duration, cost, and completion
+tables are indexed by \((q,b,F_L,C_L)\). Correlation between terminal belief
+and admission remains unrestricted within each indexed joint table.
+
+The condition is substantive. Let two one-active-strategy libraries
+\(L_a=\{s_0,a\}\) and \(L_b=\{s_0,b\}\) have identical zero profiles and no
+modules. Then \(K_{L_a}=K_{L_b}\). If a zero-cost, one-period project with
+deterministic positive completion value is available only when the raw identity
+\(a\) is retained, their feasible actions and values differ. The projection
+therefore fails. The same failure occurs if a primitive depends directly on
+raw cardinality, provenance, owner, or archival status. These variables must
+either be included in the compressed state or ruled out by the declared
+information architecture.
+
+\subsection{Retention burden and exact source-relative compression}
+
+Let \(w_{s_0}=0\) and give every active strategy an exact rational retention
+weight \(w_s>0\).  The one-time burden is
+\begin{equation}
+  W(L):=\sum_{s\in L}w_s.
+  \label{eq:library-burden}
+\end{equation}
+It may index storage, validation, monitoring, active maintenance, retrieval,
+governance, and human attention. Additivity is a modeling assumption. A weight
+is not automatically an observed monetary or labor cost, and it is not
+operating payoff or project cost. Burden is not a component of \(K_L\): equal
+productive states can have different burdens. In the financial cases,
+``retained'' means retained in the active maintenance and validation set;
+mandatory archival records, code, data, ownership, and reactivation controls
+remain outside this binary decision.
+
+For a fixed verified source \(L\), exact source-relative compression chooses
+an inactive-containing sublibrary \(L'\subseteq L\) with
+\(K_{L'}=K_L\) and minimum \(W(L')\).  By
+\cref{thm:raw-to-compressed-projection}, this outer retention decision changes
+only the raw representation, not the declared productive process.  Section~\ref{sec:cover-complexity}
+defines its feasible family and optimization model.

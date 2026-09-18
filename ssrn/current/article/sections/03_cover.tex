@@ -1,0 +1,245 @@
+\section{Exact compression, covering representation, and complexity}
+\label{sec:cover-complexity}
+\label{sec:compression}
+
+Fix a verified finite source library \(L\).  Safety is source-relative:
+compression may delete source entries but may neither import a replacement nor
+change the declared profiles, modules, or closure operator.
+
+\subsection{Safe feasibility and productive preservation}
+
+The safe-feasible family and its global minimum-weight correspondence are
+\begin{align}
+ \mathcal P_{\mathrm{safe}}(L)
+   &:=\{L'\subseteq L:s_0\in L',\
+          F_{L'}=F_L,\ C_{L'}=C_L\},
+   \label{eq:safe-compression-family}\\
+ \mathcal M_{\mathrm{safe}}(L)
+   &:=\operatorname*{arg\,min}_{L'\in\mathcal P_{\mathrm{safe}}(L)}W(L').
+   \label{eq:minimum-safe-compression}
+\end{align}
+Equality is exact at every declared belief and for the entire declared
+generative closure.  In particular, a currently dominated strategy is not
+safe to remove merely because it contributes no current frontier value.
+
+\begin{theorem}[Minimum-resource innovation-safe representation]
+\label{thm:minimum-safe-compression}
+Let \(L\) be a finite source library containing \(s_0\), let the catalog and
+closure satisfy \cref{asm:aor-projection-process}, and let
+\(w_{s_0}=0\) with exact rational \(w_s>0\) for every active source strategy.
+Then \(\mathcal P_{\mathrm{safe}}(L)\) is finite and nonempty,
+\(\mathcal M_{\mathrm{safe}}(L)\neq\varnothing\), and every
+\(L'\in\mathcal P_{\mathrm{safe}}(L)\) has the same finite-horizon productive
+values as \(L\).  Under the contraction clause of
+\cref{asm:aor-projection-process}, it also has the same stationary productive
+value and complete optimal stationary-action correspondence.
+\end{theorem}
+
+\noindent\emph{Proof.}
+The source is feasible relative to itself and has only finitely many
+sublibraries, so an exact burden minimum is attained.  Feasibility is exactly
+\(K_{L'}=K_L\); the value and action conclusions follow from
+\cref{thm:raw-to-compressed-projection}.  Neither optimizer uniqueness nor a
+particular deletion path follows.
+
+A converse from equal observed behavior to equal closure requires an additional detectability assumption; the supporting proof states that separate condition.
+
+\subsection{Identity closure induces a tagged cover}
+\label{subsec:aor-tagged-cover}
+
+The reduction in this subsection is the computational consequence of the
+preservation semantics. Once the tagged universe is constructed, the resulting
+optimization problem is ordinary weighted set cover: its generic binary model,
+NP-hardness antecedent, greedy approximation theorem, mask recurrence, and
+standard cover preprocessing are not claimed as new combinatorial-optimization
+theory. The application-specific content is the exact mapping from frontier and
+closure equality to tagged coverage, together with its identity-closure limit.
+
+The algorithms below apply to identity closure. General closure remains governed by exact equality of the closed module unions.
+
+
+Assume throughout this subsection that closure is identity.  Define the
+disjoint tagged requirement universe
+\begin{equation}
+ \mathcal U_L^{\mathrm{tag}}
+ :=\{\mathsf{frontier}(b):b\in B\}
+   \mathbin{\dot\cup}
+   \{\mathsf{module}(m):m\in C_L\},
+ \label{eq:tagged-requirement-universe}
+\end{equation}
+and, for each \(s\in L\), its source-relative coverage
+\begin{equation}
+ \mathcal R_s
+ :=\{\mathsf{frontier}(b):j_s(b)=F_L(b)\}
+   \cup
+   \{\mathsf{module}(m):m\in\mods(s)\}.
+ \label{eq:strategy-tagged-coverage}
+\end{equation}
+Frontier and module tags remain distinct even when their underlying identifiers
+print alike.  Exact equality in the first term means that every tied source
+attainer covers the belief row.
+
+\begin{theorem}[Tagged-cover equivalence under identity closure]
+\label{thm:aor-tagged-cover-equivalence}
+Let \(B,M,S\) be finite, let \(B\neq\varnothing\), and let
+\(s_0\in L'\subseteq L\subseteq S\).  Profiles are exact rational functions
+\(j_s:B\to\mathbb Q\); \(j_{s_0}=0\), \(\mods(s_0)=\varnothing\), maxima are
+attained, and closure is identity on \(2^M\).  Then
+\begin{equation}
+ F_{L'}=F_L\ \text{and}\ C_{L'}=C_L
+ \quad\Longleftrightarrow\quad
+ \mathcal U_L^{\mathrm{tag}}\subseteq
+       \bigcup_{s\in L'}\mathcal R_s.
+ \label{eq:tagged-cover-equivalence}
+\end{equation}
+No unique frontier attainer or unique module carrier is assumed.  If
+\(F_L(b)=0\), mandatory \(s_0\) itself covers
+\(\mathsf{frontier}(b)\).
+\end{theorem}
+
+\noindent\emph{Proof.}
+If \(L'\) preserves the frontier, a finite maximizer in \(L'\) covers each
+frontier tag.  Under identity closure,
+\(C_{L'}=C_L\) is equality of raw module unions, so some retained carrier
+covers every module tag.  Conversely, source inclusion gives
+\(F_{L'}\leq F_L\) and \(C_{L'}\subseteq C_L\).  Coverage supplies a retained
+source attainer at every belief and a retained raw carrier for every source
+module, giving the reverse inclusions.  Ties and multiple carriers are
+existential choices, while the zero-frontier row is witnessed by \(s_0\).
+
+For exact rational weights, the equivalent binary model is
+\begin{align}
+ \min_x\quad &\sum_{s\in L}w_sx_s,
+     \label{eq:tagged-cover-objective}\\
+ \text{s.t.}\quad
+ &\sum_{s\in L:\,j_s(b)=F_L(b)}x_s\geq1,
+       &&b\in B,
+       \label{eq:tagged-frontier-rows}\\
+ &\sum_{s\in L:\,m\in\mods(s)}x_s\geq1,
+       &&m\in C_L,
+       \label{eq:tagged-module-rows}\\
+ &x_{s_0}=1,\qquad x_s\in\{0,1\},
+       &&s\in L.
+       \label{eq:tagged-binary-domain}
+\end{align}
+The source restriction is built into the columns.  All zero-frontier rows may
+be removed after fixing \(s_0\), but retaining them in
+\(\mathcal U_L^{\mathrm{tag}}\) keeps the semantic construction literal.
+
+The boundary is substantive.  If
+\(\cl(\{a,b\})=\{a,b,c\}\) although no strategy carries \(c\), an independent
+row for each member of \(C_L\) rejects even the source library.  General
+closure therefore requires direct closure equality or a separately proved
+extended formulation.  Frontier rows alone and module rows alone are likewise
+insufficient; exact counterexamples are in Online Resource~1, Section~S3.
+
+\subsection{Baseline mixed-integer formulation}
+\label{subsec:aor-baseline-mip}
+
+Equations~\eqref{eq:tagged-cover-objective}--\eqref{eq:tagged-binary-domain}
+are the baseline MIP.  Its input is a validated, canonically ordered
+identity-closure instance with exact weights and declared mandatory columns.
+Exact preprocessing may fix columns and remove satisfied rows before JuMP and
+HiGHS receive the residual binary cover.  Exact weights are scaled to an
+integer objective only after the scaling identity and solver range are
+verified.
+
+Each returned selection is lifted to original strategy identities and independently
+checked for mandatory retention, frontier equality, closure equality, and exact
+burden. Fractional vectors are rejected without rounding. Solver status and
+bounds remain numerical evidence of global optimality; the exact postcheck
+certifies the returned library's feasibility and burden. If preprocessing
+solves the instance completely, no solver is invoked.
+
+\subsection{Computational complexity}
+\label{subsec:aor-safe-compression-complexity}
+
+\textsc{Identity-Closure Safe Compression} (\textsc{ISC-ID}) has the following
+explicit decision encoding.  The input lists a finite source
+\(L=\{s_0,s_1,\ldots,s_n\}\), a finite nonempty belief set, exact
+binary-rational profiles, a finite module universe and incidence rows,
+identity closure, positive binary-integer active weights, and a nonnegative
+binary-integer threshold \(D\).  Strategy \(s_0\) is mandatory, has zero
+profile, no modules, and zero weight.  The question is whether some
+\(s_0\in L'\subseteq L\) preserves the exact source frontier and closure and
+has \(W(L')\leq D\).
+
+\begin{theorem}[Identity-closure safe-compression complexity]
+\label{thm:aor-safe-compression-complexity}
+Under the explicit encoding in the preceding paragraph,
+\textnormal{\textsc{ISC-ID}} is NP-complete.  It remains NP-complete on the
+restricted subclass with one belief, zero profiles for every strategy, a
+zero-weight module-free inactive strategy, identity closure, a source whose
+active module rows have full union, and unit active weights.  Consequently,
+minimum-burden identity-closure safe compression is NP-hard, and any broader
+model class containing this subclass is NP-hard.  No NP-membership conclusion
+for arbitrary nonidentity closure follows unless its encoding admits a
+polynomial exact closure-equality verifier.
+\end{theorem}
+
+\noindent\emph{Proof sketch.}
+A selected-strategy bit vector is a polynomial certificate: exact rational
+maxima, row unions, binary-integer burden, source inclusion, and mandatory
+retention are polynomially checkable in the explicit input length.  For
+hardness, normalize Karp's \textsc{Set Cover} decision problem
+\citep{Karp1972} to a nonempty universe and a full-union indexed family, using
+fixed yes/no outputs for the empty- or uncovered-universe branches.  Give each
+universe element a module, each indexed set an active strategy carrying its
+modules, every active strategy unit weight and zero profile, and add one
+zero-profile inactive strategy.  Use one belief and copy the budget.  The
+inactive strategy preserves the trivial frontier, while identity-closure
+equality is exactly set-cover equality and burden is exactly selected-set
+cardinality.  Incidence size and integer bit lengths are copied polynomially.
+The complete membership, normalization, forward, reverse, size, and threshold
+audit is in Online Resource~1, Section~S3.  No strong-hardness,
+inapproximability, or APX-hardness claim is made.
+
+\subsection{Exact preprocessing of the tagged cover}
+\label{subsec:aor-preprocessing}
+
+Fix the tagged universe from the source before reducing the model.  After
+declared mandatory strategies are selected, let \(Q\) be the unsatisfied rows,
+\(A\) the available nonfixed columns, and
+\(\mathcal R_s^Q=\mathcal R_s\cap Q\).  Mandatory weights are nonnegative,
+optional weights are strictly positive exact rationals, and there are no
+identity-sensitive side constraints, groups, exact-cardinality conditions, or
+mutual exclusions beyond the pure cover.  All incidence and weight
+comparisons are exact.
+
+\begin{proposition}[Exact preprocessing suite]
+\label{prop:aor-preprocessing-feasibility-core}
+Under the assumptions in the preceding paragraph, the following fixed-point
+rules preserve feasibility, the exact optimum value including forced-weight
+offsets, and at least one liftable optimum:
+\begin{enumerate}
+ \item fix the unique available carrier of any residual requirement;
+ \item delete nonmandatory \(s\) when
+       \(\mathcal R_s^Q\subset\mathcal R_t^Q\) and \(w_t\leq w_s\);
+ \item for identical residual coverage, retain a stable minimum-weight
+       representative and record every equal-weight substitution;
+ \item after a forced selection, remove satisfied rows and recompute all
+       rules;
+ \item delete a nonmandatory column with empty residual coverage; and
+ \item merge rows having identical carrier sets.
+\end{enumerate}
+Strictly cheaper dominance, strictly heavier duplicates, empty positive-weight
+columns, forced columns, and duplicate rows preserve all original optimizer
+identities.  Equal-weight duplicate columns recover all identities through the
+recorded substitution map.  Equal-weight strict dominance need not preserve
+all optimizer identities and makes no such claim.  Restarting the stable scan
+after each transformation terminates after finitely many row or column
+removals and yields a fixed point.  A zero-carrier residual row is an
+infeasibility certificate, not an invitation to repair the instance.
+\end{proposition}
+
+\noindent\emph{Proof sketch.}
+A unique carrier is forced by its covering row.  A no-heavier coverage
+superset can replace a dominated selected column without losing a witness.
+Identical columns permit exact substitution; identical rows impose the same
+inequality; and an empty positive-weight column occurs in no optimum.  Forced
+columns contribute a selection-independent offset, and propagation composes
+these correspondences.  Every successful step removes a finite row or column,
+which proves termination.  The strict/equal weight cases give precisely the
+optimizer-identity qualifications in the statement.  Full propositions,
+adversarial examples, reconstruction maps, and the deterministic rule order
+are in Online Resource~1, Section~S4.

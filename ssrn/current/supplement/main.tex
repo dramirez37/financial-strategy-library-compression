@@ -1,0 +1,94 @@
+\documentclass[pdflatex,sn-mathphys-ay]{sn-jnl}
+
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb,amsfonts,mathtools}
+\usepackage{booktabs,longtable,array}
+\usepackage{tocloft}
+\usepackage{pdflscape}
+\usepackage{graphicx}
+\usepackage{capt-of}
+\usepackage{xcolor}
+\usepackage{bookmark}
+\usepackage{xurl}
+\usepackage[capitalise,noabbrev]{cleveref}
+
+\renewcommand{\thesection}{S\arabic{section}}
+\renewcommand{\thetable}{S\arabic{table}}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\renewcommand{\thepage}{S\arabic{page}}
+\numberwithin{equation}{section}
+\allowdisplaybreaks
+\setcounter{tocdepth}{2}
+\setlength{\cftsecnumwidth}{3.4em}
+\setlength{\cftsubsecnumwidth}{4.4em}
+
+% The distributed v3.1 class contains a literal "ddd" in its plain-page
+% footer. Keep the vendor file unchanged and correct only that page style.
+\makeatletter
+\def\ps@plain{\let\@mkboth\@gobbletwo\let\@oddhead\@empty
+  \let\@evenhead\@empty\def\@oddfoot{\hfill\thepage\hfill}%
+  \let\@evenfoot\@oddfoot}
+% The vendor headings style uses portrait widths on rotated pages. A plain
+% numbered style avoids off-page empty header boxes on landscape tables.
+\let\ps@headings\ps@plain
+\makeatother
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{assumption}[definition]{Assumption}
+\newtheorem{example}[definition]{Example}
+\newtheorem{counterexample}[definition]{Counterexample}
+
+\theoremstyle{plain}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+
+\crefname{assumption}{Assumption}{Assumptions}
+\Crefname{assumption}{Assumption}{Assumptions}
+\crefname{counterexample}{Counterexample}{Counterexamples}
+\Crefname{counterexample}{Counterexample}{Counterexamples}
+
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Fin}{\operatorname{Fin}}
+\newcommand{\cl}{\operatorname{cl}}
+\newcommand{\mods}{\operatorname{mods}}
+\newcommand{\DI}{\mathrm{DI}}
+\newcommand{\op}{\mathrm{op}}
+\newcommand{\gen}{\mathrm{gen}}
+\newcommand{\one}{\mathbf{1}}
+\newcommand{\powersetfin}{\mathcal{P}_{\mathrm{fin}}}
+
+\input{tables/evidence_macros}
+
+\hypersetup{pdftitle={Online Resource 1: Supporting Proofs, Methods, and Reproduction},pdfauthor={David Ramirez},pdfsubject={Supplement to preprint v0.3.0-ssrn, 18 September 2026; not peer reviewed},pdflang={en-US}}
+\begin{document}
+\articletype{Preprint supplement --- 18 September 2026 --- Not peer reviewed}
+\title[Online Resource 1]{Online Resource 1: Supporting Proofs, Methods, and Reproduction\\[0.5em]
+for ``Innovation-Safe Compression of Financial Strategy Libraries: Semantics, Complexity, and Algorithms''}
+\author*[1]{\fnm{David} \sur{Ramirez}}\email{ramirezdavv@gmail.com}
+\affil*[1]{\orgname{Independent Researcher},\orgaddress{\city{Orlando}, \state{FL}, \country{USA}};\href{https://orcid.org/0009-0000-3128-5123}{ORCID: 0009-0000-3128-5123}}
+\abstract{This resource supplies the supporting probability and preservation arguments, covering and complexity proofs, algorithm guarantees, and deletion counterexample for the accompanying article. It also gives complete benchmark outcome accounting, financial and synthetic methods, origin-level financial results, verification scope, and instructions for reproducing the paper and its evidence. Public data are distributed separately in machine-readable form; licensed CRSP/WRDS observations require independent access.}
+\maketitle
+\noindent\textbf{Version:} \texttt{v0.3.0-ssrn}.\par
+\noindent\textbf{Evidence boundary:} Human proof, Lean kernel verification, exact finite computation, solver evidence, synthetic evidence, and retrospective financial evidence are identified separately.
+\clearpage\tableofcontents\clearpage
+\input{sections/01_probability_normalization}
+\input{sections/02_productive_equivalence}
+\input{sections/04_cover_complexity_proofs}
+\input{sections/05_preprocessing_proofs}
+\input{sections/06_algorithm_proofs}
+\input{sections/07_local_global_gap}
+\input{sections/08_current_benchmark}
+\input{sections/09_current_finance}
+\input{sections/15_theorem_evidence_correspondence}
+\input{sections/10_current_reproduction}
+\section*{Generative-AI disclosure}
+OpenAI ChatGPT and Codex assisted with LaTeX drafting and editing, software
+review, and repository-based analysis and reproducibility tasks. The author
+remains solely responsible for the resource. No AI system is an author and no
+generative-AI image is used.
+\bibliography{bibliography/references}
+\end{document}

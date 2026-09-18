@@ -1,0 +1,96 @@
+\section{Exact Preprocessing Propositions}
+\label{sec:or-preprocessing-proofs}
+
+Fix an identity-closure tagged covering instance after all declared mandatory
+columns have been selected. Let $Q$ be the remaining requirement rows,
+$A$ the available nonfixed columns, $R_s^Q=R_s\cap Q$, and let each
+optional weight be a strictly positive exact rational. There are no
+identity-sensitive side constraints, groups, exact-cardinality constraints,
+or mutual exclusions: this is the pure covering model. Every transformation
+records original identifiers, forced selections, fixed burden, equal-weight
+substitutions, and merged-row memberships.
+
+\begin{proposition}[Mandatory carrier and forced propagation]
+\label{prop:or-forced-carrier}
+If $u\in Q$ has exactly one carrier $s\in A$, every feasible completion
+selects $s$. Fixing $s$, adding $w_s$ to the objective offset, deleting
+the rows it satisfies, and recomputing carriers preserves feasibility, the
+exact optimum value, every optimum identity, and reconstruction.
+\end{proposition}
+
+\begin{proof}
+Any feasible completion must cover $u$, and $s$ is its only available
+carrier, so $s$ occurs in every completion. Removing already satisfied rows
+does not change the constraints on the remaining columns. Splitting every
+feasible objective into the fixed term $w_s$ and its residual term is a
+bijection between feasible residual selections and feasible original
+selections containing the already forced columns. Repeating the argument
+after every selection proves propagation.
+\end{proof}
+
+\begin{proposition}[Coverage dominance]
+\label{prop:or-coverage-dominance}
+Suppose $s,t\in A$, $s\neq t$, $R_s^Q\subseteq R_t^Q$, and
+$w_t\leq w_s$. If $s$ is not mandatory, deleting $s$ preserves
+feasibility, the optimum value, and at least one optimum. If $w_t<w_s$, no
+optimum contains $s$, so all optimizer identities are preserved. If
+$w_t=w_s$, all optimizer identities need not be preserved; a reconstruction
+record must retain the admissible substitution $s\leftrightarrow t$ where
+its surrounding selection remains feasible.
+\end{proposition}
+
+\begin{proof}
+Take a feasible selection containing $s$. If it also contains $t$, then
+deleting $s$ preserves coverage and strictly lowers burden because
+$w_s>0$. If it does not contain $t$, replace $s$ by $t$. Superset
+coverage preserves feasibility and the burden weakly falls. Thus every
+feasible solution has a no-worse representative without $s$, which proves
+feasibility and optimum-value preservation and supplies at least one reduced
+optimum. Under strict inequality, either case strictly improves any selection
+containing $s$, so no original optimum uses it. Under equality, replacement
+can exchange two distinct optimizer identities without changing burden.
+\end{proof}
+
+\begin{proposition}[Duplicate columns and empty contribution]
+\label{prop:or-duplicate-empty-columns}
+For columns with identical residual coverage, retaining a stable
+minimum-weight representative and deleting the others preserves feasibility,
+the exact optimum value, and at least one optimum. Strictly heavier duplicates
+cannot occur in an optimum. Equal-weight duplicates require an explicit
+substitution class to reconstruct all optimizer identities. A nonmandatory
+positive-weight column with empty residual coverage may be deleted; it occurs
+in no optimum.
+\end{proposition}
+
+\begin{proof}
+Identical-coverage replacement leaves every row status unchanged and weakly
+reduces burden, with strict reduction for a heavier duplicate. Stable choice
+only fixes which representative remains in the reduced model. Recording the
+equal-weight class recovers the alternative identities consistent with the
+rest of a lifted selection. An empty-contribution column changes no residual
+constraint, and deleting it strictly lowers any selection that contains it.
+\end{proof}
+
+\begin{proposition}[Duplicate requirement rows]
+\label{prop:or-duplicate-requirements}
+If two residual requirement rows have identical carrier sets, replacing them
+by one representative preserves feasibility, optimum value, at least one
+optimum, and all optimizer identities. Recording both original row identifiers
+preserves the feasibility certificate.
+\end{proposition}
+
+\begin{proof}
+A selection intersects one carrier set if and only if it intersects the
+identical other carrier set. The two inequalities therefore define the same
+feasible selections and do not enter the objective. Merging them changes no
+optimizer; the row-membership record merely expands the final certificate.
+\end{proof}
+
+The implementation applies the rules to a stable fixed point and restarts its
+ordered scan after every transformation. Each nontrivial step removes a row or
+column or fixes a previously available column, so finiteness proves
+termination. The complete machine audit distinguishes forced columns,
+dominated columns, duplicate columns, empty columns, satisfied rows, and
+duplicate rows. These are exact combinatorial propositions. Julia randomized
+exhaustive tests and Lean finite-mask identities are separate evidence layers;
+neither turns a downstream solver status into a formal optimality proof.

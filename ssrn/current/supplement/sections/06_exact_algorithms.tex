@@ -1,0 +1,153 @@
+\subsection{Independent exact algorithms}
+\label{subsec:aor-exact-algorithms}
+
+The tagged representation gives two independent exact finite methods.  They
+share only validated input, mandatory-selection preprocessing, and the final
+source-library certificate; their search procedures are different.  Complete
+enumeration is the small-library oracle.  Requirement-mask dynamic programming
+is parameterized by the number of residual tagged requirements.
+
+Fix every mandatory strategy first.  Let $W_0$ be their exact burden, delete
+every requirement they satisfy, and let the residual instance have strategies
+$1,\ldots,n$ and requirements $1,\ldots,r$.  Write $R_i\subseteq[r]$ for
+the residual tagged coverage of strategy $i$ and $w_i>0$ for its exact weight.
+Mandatory preprocessing alone removes no optional strategy, so it preserves
+all optimizer identities.  If a serialized instance already contains a valid
+stronger preprocessing map, the algorithms use its residual model, exact
+offset, and declared reconstruction map; complete-tie output is rejected when
+that map says that some equal-cost identities are unreconstructable.
+
+The preprocessing assumptions and reconstruction qualifications are proved in Section~S4.
+
+\subsubsection{Complete enumeration}
+The enumeration method visits every one of the $2^n$ residual binary
+selections.  It tests tagged coverage directly, sums burden in exact rational
+arithmetic, and retains either every minimum or the declared stable
+representative.  It then lifts forced selections and rechecks mandatory
+retention, the original operating frontier, the original identity closure, and
+the exact burden independently of the search test.
+
+\begin{proposition}[Correctness of complete enumeration]
+\label{prop:aor-complete-enumeration}
+On a valid finite tagged identity-closure instance, complete enumeration
+returns a minimum-burden safe source sublibrary.  When complete-tie retention
+is requested and the preprocessing map preserves all optimizer identities, it
+returns every minimum-burden source selection.
+\end{proposition}
+
+\begin{proof}
+Under mandatory-only preprocessing, every admissible source sublibrary is the
+forced set together with exactly one of the $2^n$ residual subsets.
+Enumeration evaluates all of them.  Its feasibility test is therefore true
+for precisely the feasible residual subsets, and its exact minimum is the
+residual optimum.  Adding the selection-independent burden $W_0$ preserves
+objective order, and lifting is a feasibility- and burden-preserving
+bijection.
+
+If the input already carries stronger preprocessing, the preprocessing
+propositions establish optimum-value preservation and a valid canonical lift;
+the solver does not reassert a bijection for eliminated columns.  When the map
+also declares all optimizer identities reconstructable, its equal-coverage
+classes enumerate the additional optimal identities.  Finally, the
+independent original-library checks exclude a corrupted lift or incidence-only
+certificate.  The tagged-cover equivalence theorem identifies every checked
+lift with a safe source sublibrary.
+\end{proof}
+
+\subsubsection{Requirement-mask dynamic program}
+Encode a requirement subset by an $r$-bit mask; union is bitwise OR.  The
+implemented forward recurrence is the following.
+
+\begin{enumerate}
+\item Set $D_0[0]=0$ and leave every other mask unreachable.
+\item For $i=1,\ldots,n$ and every mask $q$, carry the skip transition
+      $(q,D_{i-1}[q])$ and the take transition
+      $(q\mathbin{\mathrm{OR}}R_i,D_{i-1}[q]+w_i)$ into layer $i$, keeping
+      the lower exact burden.
+\item At equal burden, keep the first predecessor under the declared stable
+      traversal, or retain every tied predecessor when complete-tie mode is
+      requested.
+\item Return the entry for the all-ones mask, add $W_0$, reconstruct the
+      original selection, and run the independent source-library certificate.
+\end{enumerate}
+
+The implementation scans masks in increasing integer order and strategies in
+canonical identifier order, emitting the skip transition before the take
+transition.  In representative mode it keeps the first exact predecessor; in
+complete-tie mode it stores the complete optimal predecessor DAG and expands
+it only during reconstruction.  Thus iteration and representative tie
+selection are deterministic; hash-table iteration order does not determine
+output.
+
+\begin{theorem}[Exact requirement-mask dynamic programming]
+\label{thm:aor-requirement-mask-dp}
+For a valid finite tagged identity-closure instance, the recurrence above
+returns a minimum-burden safe source sublibrary and reconstructs at least one
+optimizer.  In representative mode it uses $O(n2^r)$ exact-arithmetic and mask
+operations and $O(2^r)$ cost states plus $O(n2^r)$ reconstruction-aware
+predecessor records.  If only optimum value were required, the two cost layers
+would use $O(2^r)$ memory.  Complete-tie retention is output-sensitive:
+materializing $T$ tied reconstruction vectors adds $O(Tn)$ bits and can be
+exponential in $n$.
+
+Consequently, the representative algorithm is fixed-parameter tractable in
+$r$: its bit-complexity is $2^r$ times a polynomial in the explicit input
+length.  It is not polynomial in the full input size when $r$ is unrestricted.
+\end{theorem}
+
+\begin{proof}
+For $i\in\{0,\ldots,n\}$ and mask $q$, let $D_i[q]$ be the minimum exact
+burden of a subset of the first $i$ residual strategies whose coverage union
+is exactly $q$, with $D_i[q]=+\infty$ if no such subset exists.  We prove the
+stored invariant by induction on $i$.  At $i=0$, only the empty subset exists,
+so $D_0[0]=0$ and all other states are unreachable.
+
+Assume the invariant at $i-1$.  Every subset of the first $i$ strategies
+either omits strategy $i$, in which case it supplies the skip candidate already
+characterized by $D_{i-1}$, or contains strategy $i$.  Removing $i$ from the
+latter subset leaves some predecessor mask $q$ with optimal predecessor cost
+$D_{i-1}[q]$; reinserting it produces mask $q\mathbin{\mathrm{OR}}R_i$ and
+cost $D_{i-1}[q]+w_i$.  Conversely, every skip or take transition constructs
+a subset of the first $i$ strategies with the stated mask and burden.  Taking
+the minimum over these exhaustive and disjoint cases proves the invariant for
+layer $i$.  Stored predecessor records follow the same transitions, so every
+finite state has a valid path to the base layer.  Equal-cost merging preserves
+the first predecessor under the declared deterministic traversal; retaining
+every equal-cost predecessor preserves the complete optimal predecessor DAG.
+Expanding that DAG preserves every tied residual identity, subject to the
+explicitly enforced output cap.
+
+At $i=n$, a residual selection is feasible exactly when its union is the
+all-ones mask.  Hence $D_n[2^r-1]$ is the residual optimum.  Adding the fixed
+mandatory offset and lifting preserve objective value directly under
+mandatory-only preprocessing; for a supplied stronger map, those properties
+are the content of the preprocessing propositions.  Applying the tagged-cover
+equivalence proves safe-compression optimality.  The independent exact
+certificate rechecks the source frontier, source closure, mandatory
+strategies, and burden rather than using the DP mask as its sole evidence.
+
+There are $2^r$ masks and two relaxations per strategy-mask pair, giving
+$O(n2^r)$ recurrence operations in the unit-cost mask/arithmetic model.  Two
+layers contain at most $2^r$ exact costs.  The implementation additionally
+stores optimal predecessor records across the $n$ layers, giving the stated
+reconstruction-aware bound.  Exact rational sums and comparisons have bit
+cost polynomial in the explicit input bit length: sums of at most $n$ encoded
+weights have polynomially bounded numerator and denominator length.  Thus the
+bit-time bound is $2^r\operatorname{poly}(|I|)$, which is fixed-parameter
+tractable in $r$ and remains exponential when $r$ is part of unrestricted
+input.
+\end{proof}
+
+\subsubsection{Evidence boundary and counters}
+Both methods are exact finite computations, not Lean kernel verification and
+not mixed-integer solver evidence.  The supporting mask-union declaration
+does not change that status.  The standard result object records the
+exact objective and checked selections separately from wall-clock
+measurements.  For enumeration, candidate count is the number of binary
+subsets tested.  For the DP, a visited state is a reachable mask at one
+strategy layer and a transition is one evaluated skip or take relaxation;
+the final reachable-state count is reported separately.  Runtime fields are
+single-run measurements split into preprocessing, search, and
+reconstruction/certification scopes.  They are instrumentation, not an
+algorithmic scaling finding; scaling evidence requires the separately locked
+benchmark design.

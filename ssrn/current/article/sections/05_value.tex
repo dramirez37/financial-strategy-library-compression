@@ -1,0 +1,107 @@
+\section{Why current redundancy can destroy future value}
+\label{sec:economic-implications}
+\label{sec:value}
+
+The preservation constraint has an economic purpose beyond reproducing a
+static payoff menu. Frontier equality protects current operating
+opportunities; closure equality protects the inputs from which future
+opportunities can be generated. We separate current operating value from the value of access to a future project.
+
+\subsection{Operational and generative value}
+
+For a finite horizon, let \(P_n(b,L)\) be the value when the library is frozen
+and research is unavailable, and let \(U_n(b,L)\) be the corresponding full
+value when every feasible positive-duration project is available. Thus
+
+\begin{align}
+ P_0(b,L)&=0,\nonumber\\
+ P_{n+1}(b,L)&=F_L(b)+\beta
+   \sum_{b'}P_B(b,b')P_n(b',L),
+ \label{eq:passive-value}
+\end{align}
+
+where \(P_B\) is the filtered-belief transition under continued operation.
+Write \(\Omega_n=U_n-P_n\) for the research-option premium. For inserting a
+candidate \(s\), define total, operational, and generative increments by
+
+\begin{align}
+ \mathcal I_n(s\mid b,L)
+   &:=U_n(b,L\cup\{s\})-U_n(b,L),\nonumber\\
+ \Delta_n^{\mathrm{op}}(s\mid b,L)
+   &:=P_n(b,L\cup\{s\})-P_n(b,L),\nonumber\\
+ \Delta_n^{\mathrm{gen}}(s\mid b,L)
+   &:=\Omega_n(b,L\cup\{s\})-\Omega_n(b,L).
+ \label{eq:value-channels}
+\end{align}
+
+\begin{proposition}[Operational--generative decomposition]
+\label{thm:value-decomposition}
+For every finite horizon \(n\), filtered belief \(b\), finite raw library
+\(L\), and admissible candidate \(s\),
+
+\begin{equation}
+ \mathcal I_n(s\mid b,L)
+ =\Delta_n^{\mathrm{op}}(s\mid b,L)
+  +\Delta_n^{\mathrm{gen}}(s\mid b,L).
+ \label{eq:value-decomposition}
+\end{equation}
+
+If \(F_{L\cup\{s\}}=F_L\), then the operational increment is zero. If in
+addition \(C_{L\cup\{s\}}=C_L\), then the total increment is zero under the
+projection assumptions of Theorem~\ref{thm:raw-to-compressed-projection}.
+\end{proposition}
+
+The equality is an accounting identity, not a sign theorem. A strategy may
+be silent in the passive operating problem and valuable because it carries a
+module that enables research; conversely, the generative residual need not be
+positive if insertion changes costs or the relative appeal of projects. The
+frontier--closure projection makes the two channels operationally useful:
+frontier silence identifies zero current operating value, whereas joint
+frontier and closure silence identifies zero productive value within the
+declared process.
+
+\subsection{Sharp loss from frontier-only retention}
+
+Consider a dominated bridge strategy that uniquely carries the capability
+needed for one descendant project. Its deletion leaves the source frontier
+unchanged but makes the distinguished descendant unreachable. The following
+statement fixes the scope of the loss calculation: the incumbent operating
+block is common, there are no other differential projects or continuation
+gains, and the terminal continuation gain is bounded by \(C\).
+
+\begin{theorem}[Sharp normalized frontier-only bridge loss]
+\label{thm:normalized-frontier-pruning-loss}
+Fix exact rationals \(0\le\beta<1\), \(0\le\rho,\pi\le1\), a reward cap
+\(C\ge0\), a project cost \(\kappa\ge0\), and an integer delay \(d\ge1\).
+Suppose the bridge uniquely enables the descendant, retention gives survival
+mass \(\rho^d\) and conditional admission probability \(\pi\), deletion makes
+that descendant mass zero, and
+\(\kappa\le\beta^d\rho^d\pi C\). Then the retained-minus-deleted value loss is
+
+\begin{equation}
+ \operatorname{Loss}_d
+ =\beta^d\rho^d\pi C-\kappa.
+ \label{eq:normalized-pruning-loss}
+\end{equation}
+
+For fixed \((\beta,\rho,\pi,d,\kappa)\), this is the sharp upper bound over
+descendant rewards in \([0,C]\), attained at \(C\). Whenever the denominator
+is positive, the loss divided by the attainable net bridge value equals one.
+If \(C\le1\), the additive loss is at most one; arbitrarily large additive
+loss requires reward scaling.
+\end{theorem}
+
+The proof expands the one available project branch. Retention contributes
+the discounted joint survival-and-admission mass times the capped continuation
+gain, less cost; deletion contributes zero. Maximization over the reward
+interval is attained at its upper endpoint. The factor
+\(\rho^d\pi\) comes from sequential generation and conditional admission, not
+from an independence assumption. Common operating value cancels under
+frontier equality; if operation differs while research is in progress, its
+exact discounted difference must be added. The calculation above supplies the bridge proof; the positive-duration model accounts separately for any operating reward earned during research.
+
+The result explains why operational redundancy is not generative redundancy.
+A frontier-only rule can be exact for today's operating menu and still remove
+the entire positive net value of a future bridge. It does not assert an
+unbounded normalized loss or a general value formula for arbitrary deleted
+libraries.

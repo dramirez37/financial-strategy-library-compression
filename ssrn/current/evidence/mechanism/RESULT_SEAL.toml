@@ -1,0 +1,24 @@
+design_lock_sha256 = "346d965d7e1ddd706d6009c3cab8d0971d62fcc10e4f5241f6076bdd2b8220e4"
+experiment_id = "financial-strategy-library-panel-v4"
+language = "Julia"
+paired_common_random_numbers_pass = true
+paired_dose_response_monotonicity_pass = true
+result_manifest_sha256 = "aa6dfd6676abed284baa4d0a39357330b72180c8699de78e0057412cb05994b1"
+schema_version = "financial-strategy-library-panel-v4-result-audit-v1"
+status = "INDEPENDENT_RECOMPUTATION_PASS"
+summary_csv_sha256 = "489b8dd6d2acb0616e9ff8284832f1bf6be979ae4fd1f441bda808a25c6cbfdf"
+world_ledger_sha256 = "875cf261ada397583590f0e14ceccfa4f4dc4b6e1ee58b5364f8472682073e29"
+world_record_hashes_pass = true
+world_rows_recomputed = 16384
+
+[registered_gate_status]
+adversarial_adoption_rate_maximum = true
+adversarial_oracle_value_exactly_zero = true
+all_registered_gates_pass = true
+null_false_adoption_rate_maximum = true
+null_oracle_value_exactly_zero = true
+primary_adoption_rate_minimum = true
+primary_learned_lower_95_ci_strictly_positive = true
+primary_oracle_lower_95_ci_strictly_positive = true
+primary_theoretical_value_inside_95_ci = true
+structural_checks_pass_in_every_world = true

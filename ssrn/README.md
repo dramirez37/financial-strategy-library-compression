@@ -2,24 +2,23 @@
 
 The current preprint is **Innovation-Safe Compression of Financial Strategy
 Libraries: Semantics, Complexity, and Algorithms**, David Ramirez,
-`v0.2.0-ssrn`, September 13, 2026. It is prepared for SSRN, has not been peer
-reviewed, and has no assigned SSRN identifier or DOI.
+**v0.3.0-ssrn**, September 18, 2026. It has not been submitted to SSRN or peer
+reviewed. No SSRN identifier or DOI is assigned.
 
-## Upload files and fields
+## Upload and metadata
 
-Upload `release/v0.2.0-ssrn/financial-strategy-library-compression-ssrn.pdf`.
-It contains the research article followed by the complete Online Resource 1,
-with separate numbering and PDF bookmarks. The separate article and supplement
-PDFs are convenience copies, not additional SSRN submissions.
+Use the [combined manuscript and supplement](../release/v0.3.0-ssrn/financial-strategy-library-compression-ssrn.pdf).
+It has separate article and supplement numbering and PDF bookmarks. Separate
+PDFs are available in the same release directory for reading.
 
-Paste `release/v0.2.0-ssrn/abstract_for_ssrn.txt` into the abstract field,
-including its AI disclosure paragraph. Check the automatically extracted
-title and author fields against `submission_metadata.json`.
+Paste [abstract_for_ssrn.txt](../release/v0.3.0-ssrn/abstract_for_ssrn.txt),
+including its AI disclosure paragraph, into the submission abstract field.
+Check extracted fields against [submission_metadata.json](../release/v0.3.0-ssrn/submission_metadata.json).
 
 | Field | Entry |
 |---|---|
 | Content type | Preprint |
-| Date written / this revision | September 13, 2026 |
+| Date written / this revision | September 18, 2026 |
 | Author / primary contact | David Ramirez |
 | Affiliation | Independent Researcher, Orlando, FL, USA |
 | Email | ramirezdavv@gmail.com |
@@ -30,46 +29,29 @@ title and author fields against `submission_metadata.json`.
 | DOI / SSRN number | Leave blank until assigned |
 
 Suggested subject areas are financial economics, portfolio research, and
-operations research. Choose the closest classifications available in the live
-form; these are suggestions, not verified current SSRN eJournal names.
-Keywords are in the metadata. Optional JEL codes are left unset.
+operations research. Select the closest classifications in the live form;
+these are suggestions, not verified current eJournal names. Keywords are
+provided in the metadata. Optional JEL codes remain unset.
 
-Before submitting, review the final PDF, confirm your SSRN author profile is
-current, and complete the live authorship and rights attestations. The author
-confirmed no competing interests on September 13, 2026; identity, affiliation
-and no funding were already recorded as author-confirmed. Account state and
-portal attestations cannot be established from repository files. After SSRN
-posts the paper, add its actual URL and assigned identifier to README and
-citation metadata. Preserve the versioned package.
+Review the final PDF, confirm the author profile, and complete the live
+publication attestations before submitting. Posting this package on GitHub
+does not submit it to SSRN. Add an SSRN URL and identifier only after assignment.
 
-## Build and verify
-
-Requirements: TeX Live with latexmk, pdfTeX, BibTeX and the packages used by
-the journal sources; Poppler (`pdftotext`, `pdffonts`); Python 3.11 or newer;
-and `pypdf` 6.10.0 (the recorded packaging version). Set `PYTHON_EXE` for a
-different Python environment. No licensed data are required.
+## Build, evidence, and review
 
 ```sh
 make ssrn-build PYTHON_EXE=python3
 make ssrn-check PYTHON_EXE=python3
 ```
 
-To rebuild the editable document archive, extract it into an empty directory
-and run `python3 scripts/build_ssrn_release.py` there. This archive contains
-document inputs, not the complete computational replication repository.
+These commands use the current self-contained sources in `ssrn/current/`.
+Requirements and commands for rebuilding an extracted source archive and
+recomputing scientific outputs are in the [reproduction guide](current/README.md).
+The [versioned source archive](../release/v0.3.0-ssrn/financial-strategy-library-compression-ssrn-source.tar.gz)
+contains the current document inputs and public evidence.
 
-The SSRN drivers reuse the authoritative sources in `journal/aor/`. The
-switch changes front matter and publication status, not mathematical or
-empirical content. Readable benchmark tables retain every original row and
-column; split tables repeat identifying columns. Their generator never
-rewrites locked experiments. `SOURCE_MANIFEST.json` binds the exact document
-sources. `PDF_AUDIT.json` records fonts, text, links, pages and hashes.
-TeX timestamps can change PDF bytes on rebuild; each delivered package is
-checked against its own `SHA256SUMS`.
-
-See `QUALITY_REVIEW.md` for checks actually executed and their limitations,
-and `REQUIREMENTS.md` for official SSRN sources. These controls improve
-submission quality; SSRN makes its own posting decision.
-
-The earlier `v0.1.1-arxiv` files remain immutable historical candidates.
-Their name records an intended submission route, not an arXiv posting.
+The [quality review](../release/v0.3.0-ssrn/QUALITY_REVIEW.md) states the checks
+actually completed. [SOURCE_MANIFEST.json](../release/v0.3.0-ssrn/SOURCE_MANIFEST.json)
+and [SHA256SUMS](../release/v0.3.0-ssrn/SHA256SUMS) bind the source and release.
+The [official requirements](REQUIREMENTS.md) cover the upload fields, AI
+statement, PDF properties, and posting criteria. SSRN makes its own posting decision.

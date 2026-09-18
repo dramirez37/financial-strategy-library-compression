@@ -1,0 +1,58 @@
+\clearpage
+\section{Theorem and Evidence Correspondence}
+\label{sec:or-theorem-evidence}
+
+The table records the proof and verification scope of the results used in this paper. A supporting finite fixture never upgrades the
+status of a universal result, and solver evidence establishes none of the
+mathematical claims in this table.
+
+\begingroup
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.28\linewidth}>{\raggedright\arraybackslash}p{0.27\linewidth}>{\raggedright\arraybackslash}p{0.40\linewidth}@{}}
+\caption{Evidence status of the theory and algorithm results.}
+\label{tab:or-theorem-evidence}\\
+\toprule
+Result & Verification status & Supporting evidence and boundary \\
+\midrule
+\endfirsthead
+\toprule
+Result & Verification status & Supporting evidence and boundary \\
+\midrule
+\endhead
+Tagged-cover equivalence and weighted objective identity &
+\textbf{Lean verified} & Human proof; exact Julia boundary fixtures. The Lean
+result covers the encoded universal biconditional and burden identity, not
+complexity or approximation. \\
+Identity-closure NP-completeness &
+\textbf{Human proof only} & Exact reduction fixtures and Julia tests; no Lean
+complexity framework. \\
+Unbounded heaviest-safe-first gap &
+\textbf{Human proof only} & Exact rational family fixtures and Julia tests;
+Lean checks one finite arithmetic case only. \\
+Preprocessing propositions &
+\textbf{Human proof only} & Lean verifies selected finite feasibility cores;
+objective preservation, reconstruction, propagation, and fixed-point claims
+are exact fixtures and Julia tested, not formally verified. \\
+Enumeration and requirement-mask DP correctness, complexity, and FPT status & \textbf{Human proof only} & Exact cross-method fixtures and Julia
+tests; Lean mask identities do not formalize the recurrence invariant or
+complexity bound. \\
+Weighted-greedy transfer and reverse deletion &
+\textbf{Human proof only} & The external Chv\'atal theorem is not re-formalized;
+finite ratios are exact fixtures and Julia tested. \\
+Rechecked-deletion feasibility &
+\textbf{Lean verified} for an abstract supplied safe trace; \textbf{human proof
+only} for concrete-suite termination and final-scan irreducibility & Julia
+tests cover scoring, stale-certificate invalidation, reproducible randomness,
+counters, feasibility, and irreducibility. No approximation quality follows. \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+The Lean axiom audits recorded for the tagged-cover and preprocessing
+declarations print only \texttt{propext}, \texttt{Classical.choice}, and
+\texttt{Quot.sound}. The shared Julia--Lean fixture prevents manual
+transcription of selected finite rational values. The reproduction manifest identifies the required formal sources under
+\path{formal/StrategyInnovation/Optimization/},
+\path{formal/StrategyInnovation/Fixtures/}, and
+\path{formal/StrategyInnovation/Audit/}.

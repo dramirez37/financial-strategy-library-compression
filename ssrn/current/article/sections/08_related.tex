@@ -1,0 +1,62 @@
+\section{Relation to existing work}
+\label{sec:literature}\label{sec:literature-boundary}
+
+The financial motivation connects costly information acquisition with the
+maintenance of productive capabilities. \citet{VanNieuwerburghVeldkamp2010}
+jointly model information acquisition and portfolio choice, showing how
+learning incentives affect investment. \citet{EisfeldtPapanikolaou2013}
+model organization capital embodied in key talent and link its firm-specific
+productivity and outside options to financial risk. Our retention problem
+focuses on declared reusable inputs to later strategy research: removing a
+carrier can change which projects remain feasible even when its current
+operating contribution is redundant. The closure is a specified capability
+inventory, not an estimate of tacit knowledge or an institutional measure of
+organization capital. This paper asks when a smaller library preserves that
+inventory and its modeled uses; it does not determine whether every capability
+is worth maintaining.
+
+Belief-state reduction supplies the control architecture used here.
+\citet{SmallwoodSondik1973} and \citet{Sondik1978} develop finite- and
+infinite-horizon partially observed control; \citet{White1976} treats a
+partially observed semi-Markov process. Our additional question concerns the
+library component of state: which retained strategies leave both operating
+choices and the declared generation process unchanged? The frontier--closure
+pair summarizes that component under the factorization assumption. The belief
+and active-project variables remain in the controlled state.
+
+The preservation target distinguishes this problem from nearby reductions.
+Incremental pruning removes redundant value vectors in a fixed POMDP backup
+\citep{CassandraLittmanZhang1997}; state aggregation identifies behaviorally
+equivalent states for a specified model \citep{GivanDeanGreig2003}. Neither
+requires a removed strategy to remain available as a carrier for subsequent
+generation. Compact control libraries trade static usefulness against library
+size and search effort \citep{DeyEtAl2012}. Reward-free policy compression
+uses set cover to represent state--action distributions for downstream tasks
+\citep{MuttiDelColRestelli2022}. Here the choices are subsets of a given
+source, and the preserved objects are its operating frontier and generative
+closure.
+
+Once identity closure makes those objects a finite tagged requirement set,
+the algorithmic core is classical weighted cover. The complexity reduction
+uses Karp's set-cover problem \citep{Karp1972}, and the greedy guarantee is
+transferred from \citet{Chvatal1979}. The modeling contribution is the mapping
+from the financial preservation condition to that problem; the generic cover
+algorithms are established methods. Nonidentity closure requires a separate
+representation of capability interactions. Maximum-coverage or adaptive
+selection guarantees do not follow merely from calling capabilities a library.
+
+In finance, automated construction has long used genetic search and
+reinforcement methods \citep{AllenKarjalainen1999,MoodySaffell2001}.
+Those studies concern constructing or operating strategies; our decision is
+which entries in a maintained source can be removed while preserving its
+specified opportunities. Our burden index measures the declared maintenance
+requirements; it is not an estimate of institutional compliance costs.
+
+A larger candidate menu also creates a larger selection problem. The
+literature on data snooping and multiple testing explains why more available
+strategies cannot itself establish better investment performance
+\citep{SullivanTimmermannWhite1999,White2000,HarveyLiuZhu2016}. The financial
+study therefore freezes a simultaneous proposal-time adoption rule before
+held-out evaluation and reports abstention and adverse exercise. Its known
+historical setting still limits external validity, and post-publication decay
+provides a further reason for restraint \citep{McLeanPontiff2016}.

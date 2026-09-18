@@ -387,9 +387,7 @@ verify:
 PYTHON_EXE ?= python3
 
 ssrn-build:
-	@"$(PYTHON_EXE)" scripts/build_ssrn_tables.py --check
-	@"$(PYTHON_EXE)" scripts/build_ssrn_release.py
+	@"$(PYTHON_EXE)" ssrn/current/build.py --output release/v0.3.0-ssrn
 
 ssrn-check:
-	@"$(PYTHON_EXE)" scripts/build_ssrn_tables.py --check
-	@"$(PYTHON_EXE)" scripts/build_ssrn_release.py --check
+	@"$(PYTHON_EXE)" ssrn/current/build.py --output release/v0.3.0-ssrn --check

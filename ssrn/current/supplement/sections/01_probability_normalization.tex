@@ -1,0 +1,133 @@
+\section{Exact probability normalization and projection identities}
+\label{or:aor-probability-normalization}
+
+For a finite carrier \(A\), every probability law in the model is an exact
+rational table
+\[
+  \Delta_{\mathbb Q}(A):=
+  \left\{p:A\to\mathbb Q:
+  p(a)\geq0\ \text{for every }a,
+  \sum_{a\in A}p(a)=1\right\}.
+\]
+Beliefs, belief-kernel rows, and candidate-generation rows use this convention.
+At fixed project \(q\), belief \(b\), and closure \(C\), verification assigns
+\begin{align}
+ \Gamma(q,b,C)(s)
+   &=G(q,b,C)(s)\nu(q,b,C,s),\qquad s\in S,
+   \label{eq:or-admission-some}\\
+ \Gamma(q,b,C)(\mathsf{none})
+   &=G(q,b,C)(\mathsf{none})
+     +\sum_{s\in S}G(q,b,C)(s)
+       \bigl(1-\nu(q,b,C,s)\bigr).
+   \label{eq:or-admission-none}
+\end{align}
+Every term is nonnegative. Summing
+\eqref{eq:or-admission-some}--\eqref{eq:or-admission-none} cancels the
+verification split and recovers the unit mass of \(G\), so \(\Gamma\) is
+normalized.
+
+Conditional on initial belief \(b\), productive state \(K=(F,C)\), and
+project \(q\) of duration \(d_q\), let
+\(\Lambda_q(\mathbf b,o\mid b,K)\) be the exact joint law of the belief path
+\(\mathbf b=(b_0,\ldots,b_{d_q})\) and admitted outcome \(o\). Its specified
+marginals are
+\begin{align}
+ \sum_o\Lambda_q(\mathbf b,o\mid b,K)
+   &=\mathbf1\{b_0=b\}
+     \prod_{t=0}^{d_q-1}P_B(b_t,b_{t+1}),
+   \label{eq:or-completion-path-marginal}\\
+ \sum_{\mathbf b}\Lambda_q(\mathbf b,o\mid b,K)
+   &=\Gamma(q,b,C)(o).
+   \label{eq:or-completion-outcome-marginal}
+\end{align}
+These equations do not impose independence between the belief path and the
+admitted outcome.
+
+For a raw source library \(L\), deterministic update gives
+\[
+ \mathcal Q_q^{\mathrm{raw}}(b',L'\mid b,L)
+ :=\sum_{\substack{\mathbf b,o:\ b_{d_q}=b'\\L\oplus o=L'}}
+   \Lambda_q(\mathbf b,o\mid b,K_L).
+\]
+For realizable \(K=(F,C)\), the two compressed pushforwards are
+\begin{align}
+ \overline T_q(K'\mid b,K)
+   &:=\sum_{o:\operatorname{addK}(K,o)=K'}
+       \Gamma(q,b,C)(o),
+   \label{eq:or-compressed-outcome-law}\\
+ \overline{\mathcal Q}_q(b',K'\mid b,K)
+   &:=\sum_{\substack{\mathbf b,o:\ b_{d_q}=b'\\
+       \operatorname{addK}(K,o)=K'}}
+       \Lambda_q(\mathbf b,o\mid b,K).
+   \label{eq:or-compressed-joint-law}
+\end{align}
+Finite deterministic pushforward preserves nonnegativity and total mass.
+The local update identity
+\(K_{L\oplus o}=\operatorname{addK}(K_L,o)\) also makes every compressed
+successor realizable. These identities supply the normalization clause of the
+raw-to-compressed projection theorem; they do not supply the factorization,
+positive-duration induction, or contraction arguments by themselves.
+
+\subsection{Complete projection proof}
+
+The article assumes a finite hidden state, finite filtered belief
+carrier, finite strategy catalog, finite project catalog, positive integer
+project durations, exact rational transition and completion laws, and a
+mandatory inactive strategy. Every operating reward, project availability
+indicator, project cost, duration, generation law, verification law, and
+joint terminal belief--admission law factors through the current belief and
+the productive library state \(K_L=(F_L,C_L)\). Raw insertion and compressed
+insertion obey
+\begin{equation}
+ K_{L\oplus o}=\operatorname{addK}(K_L,o).
+ \label{eq:or-local-update}
+\end{equation}
+Stationary claims additionally assume a common discount factor
+$0<\beta<1$; finite-horizon claims do not.
+
+\begin{theorem}[Raw-to-compressed controlled semi-Markov projection]
+\label{thm:or-raw-compressed-projection}
+Under the preceding assumptions, $K_L=(F_L,C_L)$, augmented during an
+unfinished project by project identity and remaining duration, is a
+controlled semi-Markov state for the raw library process. Raw and compressed
+finite-horizon values agree at every raw state, and the complete sets of
+maximizing actions agree under the natural action identification. Under the
+stationary discount clause, the raw and compressed Bellman operators have
+unique fixed points with the same values and maximizing stationary-action
+correspondence.
+\end{theorem}
+
+\begin{proof}
+Fix a raw library $L$, belief $b$, and feasible action. For Continue,
+the operating reward and belief transition depend on $L$ only through
+$F_L$, hence through $K_L$. For a project $q$, the factorization
+assumption makes feasibility, cost, duration, the incumbent operating-reward
+block, and the joint completion law functions of $(b,K_L,q)$. Equations
+\eqref{eq:or-admission-some}--\eqref{eq:or-completion-outcome-marginal}
+show that this law is normalized without imposing independence between the
+belief path and admission. Pushing it through the deterministic raw update
+and using \eqref{eq:or-local-update} gives exactly the compressed transition
+law \eqref{eq:or-compressed-joint-law}. Its support consists of realizable
+compressed states. Thus two raw libraries in the same $K$-fiber have the
+same feasible actions, current reward blocks, durations, and conditional laws
+of the next compressed decision state.
+
+For a finite calendar horizon $h$, prove equality of every corresponding
+action value by strong induction on $h$. The claim is immediate at horizon
+zero. Continue invokes the induction hypothesis at $h-1$; a feasible
+project invokes it after its positive duration $d_q$, at $h-d_q<h$.
+Current rewards and transition laws already agree by the preceding paragraph.
+Each corresponding action value therefore agrees, as do the finite maxima and
+the complete maximizing-action sets. Finiteness makes every maximum attained.
+
+For the stationary clause, cast the exact rational tables into the reals and
+use the sup norm on the finite state carrier. Conditional expectation is
+nonexpansive. Continue discounts continuation by $\beta$, and a project
+discounts it by $\beta^{d_q}\leq\beta$. Maximization over the common finite
+action set preserves this modulus, so both Bellman operators are
+$\beta$-contractions. Bellman intertwining, established by the action-value
+identity above, maps the compressed fixed point to a raw fixed point. Banach
+uniqueness gives value equality; the same pointwise action-value identity gives
+the complete maximizing stationary-action correspondence. No closure
+detectability assumption enters this forward projection.
+\end{proof}

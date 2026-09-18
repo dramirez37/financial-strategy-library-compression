@@ -1,0 +1,94 @@
+\subsection{Worst-case gap for heaviest-safe-first deletion}
+\label{sec:aor-safe-deletion-gap}
+
+Define
+\(\operatorname{HSF}\) to recheck exact source-relative safety at the current
+library, delete a safely deletable active strategy of greatest weight, and
+repeat until none remains.  Ties may be resolved by any fixed rule; the
+construction below has a unique greatest-weight choice at its decisive step.
+For a minimization instance with positive optimum, its output ratio is the
+retained burden divided by the global minimum safe burden.
+
+\begin{theorem}[Unbounded gap for heaviest-safe-first deletion]
+\label{thm:aor-heaviest-safe-first-gap}
+Let \(k\geq2\) be an integer and let
+\(\epsilon\in\mathbb Q\) satisfy \(0<\epsilon<k-1\).  Consider one belief,
+identity module closure, modules \(m_1,\ldots,m_k\), and a mandatory inactive
+strategy of zero weight, zero profile, and no modules.  For each \(i\), let
+\(s_i\) have zero profile, weight one, and module set \(\{m_i\}\).  Let the
+bundle \(s_B\) have zero profile, weight \(1+\epsilon\), and all \(k\)
+modules.  At the full source library:
+\begin{enumerate}
+\item every active strategy is safely deletable, and \(s_B\) is the unique
+  heaviest safely deletable strategy;
+\item \(\operatorname{HSF}\) deletes \(s_B\) and stops at the library of all
+  \(k\) singletons, which is inclusion-wise irreducible and has burden \(k\);
+\item the bundle-only active library is the unique global minimum safe
+  representation and has burden \(1+\epsilon\).
+\end{enumerate}
+Consequently, the output ratio of \(\operatorname{HSF}\) is
+\[
+ \frac{k}{1+\epsilon}.
+\]
+The rule \(\operatorname{HSF}\) therefore has no constant approximation
+guarantee over finite identity-closure innovation-safe compression instances.
+Moreover, one-deletion irreducibility alone has no constant worst-case burden
+guarantee relative to the global safe optimum.
+\end{theorem}
+
+\begin{proof}
+All active profiles and the mandatory inactive profile are zero.  The source
+frontier is therefore zero and remains zero in every admissible sublibrary.
+Under identity closure, exact safety in this family reduces to covering all
+of \(m_1,\ldots,m_k\).  A retained active set covers those modules if and only
+if it contains \(s_B\), or it contains every singleton
+\(s_1,\ldots,s_k\).
+
+At the full source, removing any singleton leaves \(s_B\), so every
+singleton is safely deletable.  Removing \(s_B\) leaves all singletons, so
+the bundle is safely deletable as well.  Because \(\epsilon>0\), the bundle
+weight \(1+\epsilon\) is strictly greater than each singleton weight one.
+Thus it is the unique heaviest currently safe strategy, and
+\(\operatorname{HSF}\) deletes it first.
+
+After that deletion, singleton \(s_i\) is the only retained carrier of
+\(m_i\).  Deleting it would change the closure, so no further deletion is
+safe.  More strongly, every proper sublibrary of the singleton endpoint omits
+some \(s_i\) and hence loses \(m_i\); the endpoint is inclusion-wise
+irreducible.  Additivity of burden gives endpoint burden \(k\).
+
+The bundle-only active library is safe and has burden \(1+\epsilon\).  Any
+safe library without the bundle must retain all \(k\) singletons and has
+burden \(k>1+\epsilon\).  Any safe library with the bundle and at least one
+singleton has burden strictly above \(1+\epsilon\), since active weights are
+positive.  The bundle-only library is therefore the unique global optimum,
+and division by its positive burden gives the stated ratio.
+
+Finally, fix the rational value \(\epsilon=1/2\).  It satisfies the family
+condition for every \(k\geq2\), while the ratio is \(2k/3\), which exceeds
+any proposed finite constant for a sufficiently large integer \(k\).  This
+proves the two negative guarantees: the named rule reaches these endpoints,
+and the endpoints themselves are one-deletion irreducible.  It does not say
+that every deletion rule reaches them.
+\end{proof}
+
+\begin{example}[Shared finite gap arithmetic]
+\label{ex:aor-gap-shared-formal-fixture}
+At \(k=4\) and \(\epsilon=1/2\), the heaviest-safe-first endpoint has
+burden \(4\), the bundle optimum has burden \(3/2\), and their exact ratio is
+\(8/3\).  The common Julia--Lean fixture checks this displayed arithmetic and
+the Julia generator separately checks the corresponding finite safety trace.
+The Lean declaration does not formalize the universal safety characterization,
+the named algorithm, or the unboundedness argument.
+\end{example}
+
+The deletion-order boundary is exact.  If a rechecked maximal deletion
+sequence removes the bundle first, each remaining singleton is essential and
+the sequence stops at burden \(k\).  If it removes any singleton first, the
+bundle becomes essential for that singleton's module; every remaining
+singleton stays redundant while the bundle is retained, so maximal deletion
+ends at the bundle-only optimum.  Thus the theorem applies to the specified
+heaviest-safe-first rule and supplies bad one-deletion-irreducible endpoints,
+but it does not apply to every deletion order.  In particular, it is not a
+lower bound for forward weighted-cover construction or for all certified
+deletion heuristics.

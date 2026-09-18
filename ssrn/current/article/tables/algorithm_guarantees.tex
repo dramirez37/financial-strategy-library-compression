@@ -1,0 +1,17 @@
+\begin{table}[htbp]
+\caption{Guarantees under the stated assumptions. Exact returned-library checks certify feasibility; they do not turn solver or heuristic output into a proof of optimality.}
+\label{tab:aor-algorithm-guarantees}
+\centering\small
+\begin{tabular}{@{}p{0.28\linewidth}p{0.64\linewidth}@{}}
+\toprule
+Method & Guarantee and limit \\
+\midrule
+Enumeration & Exact optimum; exponential in optional strategies \(n\). \\
+Mask dynamic programming & Exact optimum; \(O(n2^r)\) recurrence operations, exponential in residual requirements \(r\). \\
+HiGHS mixed-integer model & Exactly rechecked feasible incumbent; solver-reported optimality is separate evidence. \\
+Weighted greedy, with optional reverse deletion & \(H(d)\le H(r)\) approximation under identity closure and positive optional weights. \\
+Cardinality greedy & Feasible cover; no burden factor for unequal weights. \\
+Rechecked deletion, including multi-start & Feasible, one-deletion irreducible endpoint; no general burden factor. Heaviest-first has an unbounded worst-case ratio. \\
+\bottomrule
+\end{tabular}
+\end{table}

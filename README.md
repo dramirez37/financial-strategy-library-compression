@@ -1,156 +1,78 @@
 # Innovation-Safe Compression of Financial Strategy Libraries
 
-## Paper
+**David Ramirez · Independent Researcher · [ORCID](https://orcid.org/0009-0000-3128-5123)**
 
-- **Title:** *Innovation-Safe Compression of Financial Strategy Libraries:
-  Semantics, Complexity, and Algorithms*
-- **Author:** David Ramirez
-- **ORCID:** [0009-0000-3128-5123](https://orcid.org/0009-0000-3128-5123)
-- **Current preprint:** `v0.2.0-ssrn` (September 13, 2026), prepared for SSRN
-- **Historical preprint candidate:** `v0.1.1-arxiv` (August 25, 2026; not an arXiv posting)
-- **Repository:**
-  [github.com/dramirez37/financial-strategy-library-compression](https://github.com/dramirez37/financial-strategy-library-compression)
-- **Status:** preprint; not peer reviewed; no SSRN identifier or DOI assigned
+Current preprint: **v0.3.0-ssrn**, September 18, 2026. Prepared for SSRN;
+not peer reviewed. No SSRN identifier or DOI has been assigned.
 
-Download the [complete SSRN upload PDF](release/v0.2.0-ssrn/financial-strategy-library-compression-ssrn.pdf),
-the [article](release/v0.2.0-ssrn/financial-strategy-library-compression-preprint.pdf),
-or the [supplement](release/v0.2.0-ssrn/financial-strategy-library-compression-supplement.pdf).
-The [SSRN submission guide](ssrn/README.md) provides copy-ready metadata,
-requirements, build commands and the quality review. This package uses the
-latest research sources, including the complete named financial studies.
+## Read the paper
 
-`make aor-release` creates the versioned Springer article, Online Resource 1,
-editable-source archive, public registered benchmark archive, checksums, and
-metadata under `release/v0.2.0-aor-submission/`. The immutable historical
-[`v0.1.1-arxiv`](release/v0.1.1-arxiv/) PDFs and arXiv source bundle remain
-available with their original provenance.
+- [Complete manuscript and supplement](release/v0.3.0-ssrn/financial-strategy-library-compression-ssrn.pdf)
+- [Research article](release/v0.3.0-ssrn/financial-strategy-library-compression-preprint.pdf)
+- [Supporting proofs, methods, and reproduction](release/v0.3.0-ssrn/financial-strategy-library-compression-supplement.pdf)
+- [Editable source and public evidence](release/v0.3.0-ssrn/financial-strategy-library-compression-ssrn-source.tar.gz)
+- [Submission metadata and instructions](ssrn/README.md)
 
-The paper studies exact compression of finite financial-strategy libraries
-when a retained strategy may contribute both current operating value and
-modules needed to generate future strategies. It separates frontier-only
-compression from innovation-safe compression and studies exact, capacity-
-constrained, penalized, and dynamic retention problems.
+The paper asks when a portfolio research team can reduce its active strategy
+library without losing the modeled operating choices or reusable inputs to
+future research. It establishes a conditional preservation principle, gives
+its exact weighted-cover representation under identity closure, and shows
+how weaker deletion rules fail. The operating decision selects a catalog
+entry, which may itself be a portfolio; the guarantee does not automatically
+preserve diversification across several entries.
 
-## What the repository contains
+The evidence consists of a registered computational benchmark, a retrospective
+point-in-time financial study, and a calibrated synthetic mechanism experiment.
+The financial study retains its null common-equity contrasts and adverse ETF
+replacement. A larger research menu does not establish a return premium.
 
-1. A Lean 4 formalization of the finite statements identified in the theorem
-   ledger.
-2. A Julia implementation of the model, exact finite algorithms, canonical
-   benchmark, experiments, and artifact generators.
-3. Exact rational fixtures shared between Julia and Lean, with deterministic
-   drift checks.
-4. A registered randomized finite-library study with fixed designs, seeds,
-   amendment locks, complete outputs, and an independent result audit.
-5. Two retrospective financial mechanism audits based on licensed CRSP/WRDS
-   data, with redistributable aggregate outputs but no distributed source rows.
-6. Isolated Springer-compatible LaTeX sources for the journal article and
-   Online Resource 1, alongside the preserved preprint sources.
+## Reproduce the current paper
 
-## Evidence hierarchy
-
-| Evidence | What it supports | What it does not support |
-|---|---|---|
-| Mathematical proof | Human-readable derivations under the assumptions stated in the paper and appendices. | A claim of machine verification unless a corresponding Lean declaration is recorded. |
-| Lean verification | Kernel checking of the encoded finite statement and assumptions listed in `THEOREM_LEDGER.md`. | Claims outside that encoding, empirical conclusions, or correctness of Julia experiments. |
-| Exact rational computation | Exact evaluation, enumeration, fixtures, and counterexample searches for registered finite inputs. | A universal theorem without a separate proof. |
-| Randomized synthetic evidence | Design-conditional behavior under the registered finite generator. | Population prevalence, causal evidence, or theorem proof. |
-| Retrospective financial evidence | Mechanism diagnostics in the documented CRSP/WRDS samples. | Causal, prospective, forecasting, alpha, or deployable-performance claims. |
-
-These categories are tracked separately in
-[`THEOREM_LEDGER.md`](THEOREM_LEDGER.md) and the manuscript's
-validation-status appendix.
-
-## Quick start
-
-The pinned versions are Lean 4.32.0 and Julia 1.12.6. Run commands from the
-repository root. Verify the SSRN package with `make ssrn-check` using Python
-with `pypdf` installed; rebuild it with `make ssrn-build`. For computational
-validation, the broader journal gate does not rerun the
-long final algorithmic benchmark, the frozen `N=1024` study, or a licensed
-financial workflow:
+The [reproduction guide](ssrn/current/README.md) distinguishes document building,
+public-record verification, and full scientific computation. Python 3.11+,
+`pypdf`, LaTeX with `latexmk`, and Poppler are needed for the document commands:
 
 ```sh
-make aor-check
+make ssrn-check PYTHON_EXE=python3
+make ssrn-build PYTHON_EXE=python3
 ```
 
-Run the journal components independently as needed:
+The source archive also rebuilds independently after extraction:
 
 ```sh
-make aor-theory-check
-make aor-algorithm-tests
-make aor-benchmark-audit
-make aor-manuscript
+python3 verify_evidence.py
+python3 build.py --output ./release
+python3 build.py --output ./release --check
 ```
 
-After the author declarations and release metadata are final and the worktree
-is clean, create and verify the versioned candidate with `make aor-release`.
-The historical preprint gates remain available as `make preprint-check`,
-`make manuscript`, and `make arxiv-bundle`.
+The [release directory](release/v0.3.0-ssrn/) includes source and PDF hashes,
+submission fields, the PDF audit, and the [quality review](release/v0.3.0-ssrn/QUALITY_REVIEW.md).
+The [reproduction manifest](release/v0.3.0-ssrn/REPRODUCTION_MANIFEST.json)
+binds the 136 selected scientific sources to commit
+`bb58f33fd42f82f51b2866b44a666c3094f2932a`, using Julia 1.12.6 and Lean 4.32.0.
+The [versioned package](https://github.com/dramirez37/financial-strategy-library-compression/tree/v0.3.0-ssrn/release/v0.3.0-ssrn)
+is the fixed reference for this preprint.
 
-The registered randomized replay is intentionally separate because it is the
-long-running (N=1024) workflow:
-
-```sh
-make randomized
-```
-
-Researchers with the required license run the financial workflow explicitly:
-
-```sh
-ALGOLIB_CRSP_ROOT=data/licensed/crsp make financial-licensed
-```
-
-The complete developer/release gate remains `make verify`. Detailed purposes,
-runtime categories, data requirements, outputs, and underlying authoritative
-commands are in [`REPRODUCIBILITY.md`](REPRODUCIBILITY.md).
-
-## Licensed financial data
-
-**The financial audits use licensed CRSP/WRDS data. Raw and row-level licensed
-data are not distributed.**
-
-Researchers with independent licensed access can supply the expected local
-files under `data/licensed/`, set `ALGOLIB_CRSP_ROOT`, and run the preparation
-and audit scripts. The scripts do not download licensed data or silently use a
-synthetic substitute. See [`DATA_ACCESS.md`](DATA_ACCESS.md) for the input
-contract, commands, and public outputs available without licensed access.
-
-## Repository map
-
-| Path | Contents |
+| Material | Location |
 |---|---|
-| `formal/` | Lean source, project lockfiles, theorem audits, and generated exact fixtures. |
-| `julia/` | Julia environments, package source, tests, registered runners, and artifact generators. |
-| `shared/` | Exact fixture schema, JSON fixtures, and theorem-export contracts. |
-| `data/` | Empty, ignored local-data template and licensed-source schema contract. |
-| `experiments/configs/` | Immutable experiment configurations and registered parameters. |
-| `experiments/randomized_library_v2/` | Randomized-study design locks, amendments, trial registry, and seed registry. |
-| `experiments/results/` | Redistributable exact, synthetic, and aggregate result artifacts. |
-| `experiments/financial_terminal_audit/` | Terminal financial-audit protocol, public records, and ignored local-data contract. |
-| `experiments/financial_annual_walkforward_audit/` | Annual walk-forward financial-audit protocol, public records, and ignored local-data contract. |
-| `experiments/financial_resource_optimization/` | Cross-audit resource-optimization protocol and public certificates. |
-| `experiments/financial_strategy_library_panel_v1/` | Completed and audited first-generation financial panel, including its immutable design history and public aggregates. |
-| `experiments/financial_strategy_library_panel_v2/` | Completed sealed panel with audited public aggregate results, exact-arm certificates, and origin-level paired contrasts. |
-| `experiments/financial_strategy_library_panel_v2_economic_design_audit/` | Post-hoc falsification audit of the sealed v2 decision mechanism; v2 itself remains unchanged. |
-| `experiments/financial_strategy_library_panel_v3/` | Immutable internal provenance for the **Point-in-Time Portfolio-Library Retention Study**: point-in-time liquid universes, nested compression arms, protected adoption, search/capacity diagnostics, and a sealed transparent null result. |
-| `experiments/financial_strategy_library_panel_v4/` | Immutable internal provenance for the **Calibrated Closure-Option Mechanism Experiment**: aggregate-calibrated noise, positive/null/adverse regimes, an independently calibrated learner, and a complete hashed world ledger. |
-| `experiments/algorithmic_compression_v2/` | Locked journal benchmark, committed final outputs, solver logs, and exact audit certificates. |
-| `manuscript/` | Main-paper source, appendices, bibliography, generated figures/tables, and build script. |
-| `manuscript/online_supplement/` | Standalone supplement source and build script. |
-| `journal/aor/manuscript/` | Springer-compatible journal article and its local editable inputs. |
-| `journal/aor/online_resource/` | Independently compiled Online Resource 1 and public-safe canonical inputs. |
-| `release/v0.1.1-arxiv/` | Versioned PDFs, arXiv-ready TeX bundle, and SHA-256/commit metadata. |
-| `ssrn/` | Current SSRN drivers, official requirements, submission guide and quality review. |
-| `release/v0.2.0-ssrn/` | Complete SSRN upload, separate PDFs, editable source, submission metadata, and checksums. |
-| `release/v0.2.0-aor-submission/` | Journal PDFs, source and public-benchmark archives, checksums, environment, citation, and Zenodo metadata. |
-| `scripts/` | Public disclosure audit and complete verification orchestration. |
+| Current article and supplement sources | `ssrn/current/article/`, `ssrn/current/supplement/` |
+| Public benchmark, financial aggregates, and synthetic ledger | `ssrn/current/evidence/` |
+| Scientific source bindings and reproduction commands | `ssrn/current/REPRODUCTION_MANIFEST.json`, `ssrn/current/README.md` |
+| Downloadable PDFs, source archive, and checksums | `release/v0.3.0-ssrn/` |
 
-## Reproducibility
+## Evidence and access
 
-See [`REPRODUCIBILITY.md`](REPRODUCIBILITY.md) for environments, registered
-commands, seeds, and validation gates, and
-[`ARTIFACT_MANIFEST.md`](ARTIFACT_MANIFEST.md) for artifact lineage, hashes,
-producers, and manuscript consumers. Run `make public-audit` to check the
-release and licensed-data boundary.
+Human proofs, selected Lean results, finite exact checks, solver conclusions,
+and experimental findings have distinct scopes. The supplement records those
+boundaries. Public checks retain all 3,907 benchmark terminal outcomes and all
+16,384 synthetic test worlds; they do not rerun the scientific computations.
 
-License terms and third-party exclusions are in [`LICENSE`](LICENSE).
+The financial study uses licensed CRSP/WRDS inputs. Raw observations, return
+paths, and security-level identifiers are excluded from the current package.
+Independent financial replication requires separate licensed access under the
+input contracts identified in the reproduction manifest. The distributed
+aggregates support public table verification.
+
+Original software is MIT-licensed and manuscript material is CC BY 4.0,
+subject to the third-party and licensed-data exclusions in [LICENSE](LICENSE).
+Permanent repository: https://github.com/dramirez37/financial-strategy-library-compression

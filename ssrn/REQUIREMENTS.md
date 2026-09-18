@@ -1,4 +1,4 @@
-# SSRN requirements verified September 13, 2026
+# SSRN requirements verified September 18, 2026
 
 The workflow prepares the files; it does not submit through an SSRN account.
 

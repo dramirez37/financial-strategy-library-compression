@@ -9,3 +9,9 @@ experiments/algorithmic_compression_v2/results/control export-ignore
 
 # Deprecated compatibility wrapper; public commands use `scripts/verify.sh`.
 scripts/full_check.sh export-ignore
+
+# Preserve upstream TeX support files and sealed registry bytes exactly.
+ssrn/current/**/sn-jnl.cls -text -whitespace
+ssrn/current/**/sn-mathphys-ay.bst -text -whitespace
+ssrn/current/evidence/mechanism/REGIME_REGISTRY.csv -whitespace
+ssrn/current/evidence/mechanism/SEED_REGISTRY.csv -whitespace
